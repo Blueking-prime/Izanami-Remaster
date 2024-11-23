@@ -2,6 +2,10 @@ extends Base_Character
 
 class_name Player
 
+@onready var sp_bar: ProgressBar = $ProgressBar2
+@onready var gear: Node = $Gear
+@onready var inventory: ItemList = $Inventory
+
 # Player stats
 @export var max_sp: float:
 	get():
@@ -10,7 +14,6 @@ class_name Player
 @export var sp: float:
 	set(value):
 		sp = value
-		print($ProgressBar2)
 		_update_sp_bar()
 
 @export var xp: int = 0
@@ -18,7 +21,6 @@ class_name Player
 @export var level_up_xp: int = 50 * (2 ** lvl)
 @export var mag: int = 0
 @export var level_stats: Array = []
-@export var inventory: Array = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,8 +30,8 @@ func _ready() -> void:
 	super()
 
 func _update_sp_bar():
-	if $ProgressBar2:
-		$ProgressBar2.value = (sp/max_sp) * 100
+	if sp_bar:
+		sp_bar.value = (sp/max_sp) * 100
 
 func restore():
 	sp += stats['END'] * 3
@@ -103,3 +105,8 @@ func die():
 	super.die()
 	print('And so you fall, your journey never to be completed')
 ## Add death screen and shit
+
+
+func _on_gear_gear_change() -> void:
+	update_stats()
+	print(stats, hp, max_hp, sp, max_sp)

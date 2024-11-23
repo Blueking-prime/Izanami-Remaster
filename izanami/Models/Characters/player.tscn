@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqykicfu0u1ug"]
 
-[ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://base_character.tscn" id="1_ll1t0"]
-[ext_resource type="Script" path="res://player.gd" id="2_lj72d"]
-[ext_resource type="Script" path="res://gear.gd" id="5_k34jo"]
+[ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
+[ext_resource type="Script" path="res://Models/Characters/player.gd" id="2_lj72d"]
+[ext_resource type="Script" path="res://Models/gear.gd" id="5_k34jo"]
 
 [node name="Player" instance=ExtResource("1_ll1t0")]
 script = ExtResource("2_lj72d")
@@ -13,7 +13,6 @@ gold = 0
 level_up_xp = null
 mag = 0
 level_stats = []
-inventory = []
 
 [node name="ProgressBar2" type="ProgressBar" parent="." index="4"]
 offset_left = -53.0
@@ -24,6 +23,10 @@ value = 100.0
 
 [node name="Gear" type="Node" parent="." index="5"]
 script = ExtResource("5_k34jo")
+gear_location = "res://Assets/gear.json"
+head = &"WoolCap"
+weapon = &"Excalihuh?"
+body = &"Turtle Shell"
 
 [node name="Inventory" type="ItemList" parent="." index="6"]
 visible = false
@@ -45,3 +48,5 @@ offset_left = -285.0
 offset_top = 7.0
 offset_right = -245.0
 offset_bottom = 47.0
+
+[connection signal="gear_change" from="Gear" to="." method="_on_gear_gear_change"]

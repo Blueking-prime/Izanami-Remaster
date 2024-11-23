@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://blo1mx1pvjnu5"]
+
+[ext_resource type="Script" path="res://Models/skill.gd" id="1_8ynum"]
+
+[resource]
+script = ExtResource("1_8ynum")
+name = &"Strong Strike"
+stats = [&"STR"]
+stat_multiplier = 3
+cost = 15
+boost = [1, 1]
+flavour_text = "You spend your pent up energy and swing with gusto"
+element = &""
+status_effect = []
+effect = Callable()

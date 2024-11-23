@@ -2,6 +2,10 @@ class_name Base_Character
 
 extends CharacterBody2D
 
+@onready var hp_bar = $HP_Bar
+@onready var pointer = $Pointer
+@onready var skills = $Skills
+
 # CHARACTER STATS
 @export var character_name: String = name
 var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
@@ -22,7 +26,6 @@ var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, 
 @export var status_effect: StringName = 'null'
 @export var alive: bool = true
 @export var lvl: int = 1
-@export var skills: ItemList = null
 @export var ally: int
 
 
@@ -31,14 +34,15 @@ func _ready() -> void:
 	stats = base_stats
 	#print(base_stats, ' ', stats)
 	hp = max_hp
-	$Pointer.set_position(Vector2(-100 * ally, 0))
+	pointer.set_position(Vector2(-100 * ally, 0))
 	
 	if ally > 0:
-		$Pointer.set_texture(load("res://right_arrow.svg"))
+		pointer.set_texture(load("res://Assets/right_arrow.svg"))
 	else:
-		$Pointer.set_texture(load("res://left_arrow.svg"))
-	#print(name, $Pointer.position)
+		pointer.set_texture(load("res://Assets/left_arrow.svg"))
+	#print(name, pointer.position)
 	#print(hp)
+	print(skills.get_skills())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -46,7 +50,8 @@ func _process(_delta: float) -> void:
 	pass
 
 func _update_hp_bar():
-	$ProgressBar.value = (hp / max_hp) * 100
+	if hp_bar:
+		hp_bar.value = (hp / max_hp) * 100
 
 func focus():
 	$Pointer.show()

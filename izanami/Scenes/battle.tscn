@@ -1,36 +1,35 @@
 [gd_scene load_steps=6 format=3 uid="uid://deahjbvovxuvn"]
 
-[ext_resource type="Script" path="res://battle.gd" id="1_f84b8"]
-[ext_resource type="Script" path="res://enemy_side_battle.gd" id="1_hbddi"]
-[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://enemy.tscn" id="2_x44qt"]
-[ext_resource type="Script" path="res://player_side_battle.gd" id="3_4c05o"]
-[ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://base_character.tscn" id="5_767o0"]
+[ext_resource type="Script" path="res://Scenes/battle.gd" id="1_ivyfm"]
+[ext_resource type="Script" path="res://Scenes/enemy_side_battle.gd" id="2_cdpmu"]
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/enemy.tscn" id="3_spgr2"]
+[ext_resource type="Script" path="res://Scenes/player_side_battle.gd" id="4_n0p7c"]
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/player.tscn" id="5_puib7"]
 
 [node name="Battle" type="Node2D"]
-script = ExtResource("1_f84b8")
+script = ExtResource("1_ivyfm")
 
 [node name="Enemies" type="Node2D" parent="."]
-script = ExtResource("1_hbddi")
+script = ExtResource("2_cdpmu")
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("2_x44qt")]
+[node name="Enemy" parent="Enemies" instance=ExtResource("3_spgr2")]
 position = Vector2(1017, 58)
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("2_x44qt")]
+[node name="Enemy3" parent="Enemies" instance=ExtResource("3_spgr2")]
 position = Vector2(1022, 528)
 
-[node name="Enemy4" parent="Enemies" instance=ExtResource("2_x44qt")]
+[node name="Enemy4" parent="Enemies" instance=ExtResource("3_spgr2")]
 position = Vector2(1013, 359)
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource("2_x44qt")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("3_spgr2")]
 position = Vector2(1010, 200)
 
 [node name="Players" type="Node2D" parent="."]
-script = ExtResource("3_4c05o")
+script = ExtResource("4_n0p7c")
 
-[node name="Base Character" parent="Players" instance=ExtResource("5_767o0")]
+[node name="Player" parent="Players" instance=ExtResource("5_puib7")]
 
-[node name="Base Character2" parent="Players" instance=ExtResource("5_767o0")]
-position = Vector2(239, 385)
+[node name="Player2" parent="Players" instance=ExtResource("5_puib7")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
