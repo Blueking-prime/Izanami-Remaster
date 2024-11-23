@@ -1,4 +1,10 @@
-extends "res://base_character.gd"
+class_name Enemy
+
+extends Base_Character
+
+func  _ready() -> void:
+	ally = -1
+	super._ready()
 
 func gold_drop():
 	var sum = 0

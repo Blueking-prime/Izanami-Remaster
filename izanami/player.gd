@@ -1,33 +1,39 @@
-extends "res://base_character.gd"
+extends Base_Character
+
+class_name Player
 
 # Player stats
-@export var sp: int = max_sp()
-@export var gear: StringName = ''
-@export var exp: int = 0
+@export var max_sp: float:
+	get():
+		return (stats['AGI'] + stats['END']) * 3
+
+@export var sp: float:
+	set(value):
+		sp = value
+		print($ProgressBar2)
+		_update_sp_bar()
+
+@export var xp: int = 0
 @export var gold: int = 0
-@export var level_up_exp: int = 50 * (2 ** lvl)
+@export var level_up_xp: int = 50 * (2 ** lvl)
 @export var mag: int = 0
 @export var level_stats: Array = []
 @export var inventory: Array = []
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	ally = 1
+	sp = max_sp
+	super._ready()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func max_sp():
-	return (stats['AGI'] + stats['END']) * 3
-
+func _update_sp_bar():
+	$ProgressBar2.value = (sp/max_sp) * 100
 
 func restore():
 	sp += stats['END'] * 3
-	if sp > max_sp():
-		sp = max_sp()
+	if sp > max_sp:
+		sp = max_sp
 
 #func act(action: str, inst: str, target):
 	#x = super().act(action, inst, target)
@@ -37,8 +43,9 @@ func restore():
 		#return use_items(inst, target)
 	#return x
 
+
 func update_stats():
-	var current_max = [max_hp(), max_sp()]
+	var current_max = [max_hp, max_sp]
 
 	for i in stats:
 		stats[i] = base_stats[i] + $Gear.stats[i]
@@ -50,14 +57,14 @@ func update_derived_stats(current_max: Array):
 	sp = (sp/current_max[1]) * max_sp
 
 func level_up(value):
-	exp += value
-	if exp < level_up_exp:
+	xp += value
+	if xp < level_up_xp:
 		return
 
-	var current_max = [max_hp(), max_sp()]
+	var current_max = [max_hp, max_sp]
 	var curr_stats = base_stats
 
-	exp -= level_up_exp
+	xp -= level_up_xp
 	lvl += 1
 
 	for i in level_stats:
@@ -66,7 +73,7 @@ func level_up(value):
 	base_stats = curr_stats
 
 	update_derived_stats(current_max)
-	level_up_exp = 50 * (2 ** lvl)
+	level_up_xp = 50 * (2 ** lvl)
 
 
 func status():
@@ -74,7 +81,7 @@ func status():
 	if sp < 0:
 		status_effect = 'EnExhaust'
 	if status_effect == 'EnExhaust':
-		sp -= max_sp() / 4
+		sp -= max_sp / 4
 
 #func move(map, direction: str):
 	#x, y = map.player_pos
@@ -92,6 +99,6 @@ func status():
 	#map.check_tile()
 
 func die():
-	super().die()
+	super.die()
 	print('And so you fall, your journey never to be completed')
 ## Add death screen and shit

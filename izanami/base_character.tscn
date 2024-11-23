@@ -2,14 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://icon.svg" id="1_bws8a"]
 [ext_resource type="Script" path="res://base_character.gd" id="1_xdi15"]
-[ext_resource type="Script" path="res://skills.gd" id="3_t705h"]
+[ext_resource type="Texture2D" uid="uid://bp7i6cfifbwpi" path="res://left_arrow.svg" id="4_s1wr3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6uwf"]
 size = Vector2(120, 119)
 
 [node name="Base Character" type="CharacterBody2D"]
+position = Vector2(239, 72)
 script = ExtResource("1_xdi15")
-stats = {}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(6, 2)
@@ -19,9 +19,16 @@ texture = ExtResource("1_bws8a")
 position = Vector2(7, 1)
 shape = SubResource("RectangleShape2D_h6uwf")
 
-[node name="Skills" type="ItemList" parent="."]
-offset_left = -218.0
-offset_top = 10.0
-offset_right = -178.0
-offset_bottom = 50.0
-script = ExtResource("3_t705h")
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -54.0
+offset_top = 74.0
+offset_right = 64.0
+offset_bottom = 101.0
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Pointer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(104, 0)
+scale = Vector2(2.56, 3.44)
+texture = ExtResource("4_s1wr3")

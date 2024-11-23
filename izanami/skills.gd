@@ -6,7 +6,3 @@ var character_skills = []
 func _ready() -> void:
 	for i in character_skills:
 		add_item(i.get('name'))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
