@@ -25,10 +25,11 @@ class_name Player
 func _ready() -> void:
 	ally = 1
 	sp = max_sp
-	super._ready()
+	super()
 
 func _update_sp_bar():
-	$ProgressBar2.value = (sp/max_sp) * 100
+	if $ProgressBar2:
+		$ProgressBar2.value = (sp/max_sp) * 100
 
 func restore():
 	sp += stats['END'] * 3
