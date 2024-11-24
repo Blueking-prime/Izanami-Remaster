@@ -1,15 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://blo1mx1pvjnu5"]
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=2 format=3 uid="uid://blo1mx1pvjnu5"]
 
-[ext_resource type="Script" path="res://Models/skill.gd" id="1_8ynum"]
+[ext_resource type="Script" path="res://Models/offensive_skill.gd" id="1_ggc18"]
 
 [resource]
-script = ExtResource("1_8ynum")
+script = ExtResource("1_ggc18")
+element = &""
 name = &"Strong Strike"
-stats = [&"STR"]
+stats = Array[StringName]([&"STR"])
 stat_multiplier = 3
 cost = 15
 boost = [1, 1]
 flavour_text = "You spend your pent up energy and swing with gusto"
-element = &""
+lvl_requirement = 1
+crit_chance = 0.2
+crit_mult = 2
 status_effect = []
-effect = Callable()
+value = 0

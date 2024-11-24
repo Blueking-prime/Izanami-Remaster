@@ -2,9 +2,9 @@ class_name Base_Character
 
 extends CharacterBody2D
 
-@onready var hp_bar = $HP_Bar
-@onready var pointer = $Pointer
-@onready var skills = $Skills
+@onready var hp_bar: ProgressBar = $HP_Bar
+@onready var pointer: Sprite2D = $Pointer
+@onready var skills: Node = $Skills
 
 # CHARACTER STATS
 @export var character_name: String = name
@@ -43,6 +43,7 @@ func _ready() -> void:
 	#print(name, pointer.position)
 	#print(hp)
 	print(skills.get_skills())
+	print(skills.get_skills()[1].action(self, self))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

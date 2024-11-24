@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://yxcota6ap2ey"]
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=2 format=3 uid="uid://yxcota6ap2ey"]
 
-[ext_resource type="Script" path="res://Models/skill.gd" id="1_ov5dy"]
+[ext_resource type="Script" path="res://Models/offensive_skill.gd" id="1_4rdnf"]
 
 [resource]
-script = ExtResource("1_ov5dy")
+script = ExtResource("1_4rdnf")
+element = &""
 name = &"Attack"
-stats = [&"STR"]
+stats = Array[StringName]([&"STR"])
 stat_multiplier = 1
 cost = 0
 boost = [1, 1]
 flavour_text = ""
-element = &""
+lvl_requirement = 1
+crit_chance = 0.2
+crit_mult = 2
 status_effect = []
+value = 0

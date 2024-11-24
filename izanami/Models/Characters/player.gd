@@ -77,6 +77,7 @@ func level_up(value):
 
 	update_derived_stats(current_max)
 	level_up_xp = 50 * (2 ** lvl)
+	skills.update_skills()
 
 
 func status():

@@ -4,7 +4,7 @@ extends Base_Character
 
 func  _ready() -> void:
 	ally = -1
-	super._ready()
+	super()
 
 func gold_drop():
 	var sum = 0
