@@ -14,12 +14,13 @@ level_up_xp = null
 mag = 0
 level_stats = []
 
-[node name="ProgressBar2" type="ProgressBar" parent="." index="4"]
+[node name="SP_Bar" type="ProgressBar" parent="." index="4"]
 offset_left = -53.0
 offset_top = 102.0
 offset_right = 65.0
 offset_bottom = 129.0
 value = 100.0
+allow_lesser = true
 
 [node name="Gear" type="Node" parent="." index="5"]
 script = ExtResource("5_k34jo")

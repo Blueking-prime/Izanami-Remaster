@@ -2,7 +2,7 @@ extends Base_Character
 
 class_name Player
 
-@onready var sp_bar: ProgressBar = $ProgressBar2
+@onready var sp_bar: ProgressBar = $SP_Bar
 @onready var gear: Node = $Gear
 @onready var inventory: ItemList = $Inventory
 
@@ -31,7 +31,7 @@ func _ready() -> void:
 
 func _update_sp_bar():
 	if sp_bar:
-		sp_bar.value = (sp/max_sp) * 100
+		sp_bar.value = (sp / max_sp) * 100
 
 func restore():
 	sp += stats['END'] * 3
@@ -102,6 +102,15 @@ func status():
 			#pass
 	#map.check_tile()
 
+func consume_sp(value: float):
+	#print('sp', sp)
+	if sp <= 0:
+		print('Out of SP')
+		return false
+	sp -= value
+	#print('sp ', sp)
+	return true
+
 func die():
 	super.die()
 	print('And so you fall, your journey never to be completed')
@@ -110,4 +119,4 @@ func die():
 
 func _on_gear_gear_change() -> void:
 	update_stats()
-	print(stats, hp, max_hp, sp, max_sp)
+	#print(stats, hp, max_hp, sp, max_sp)

@@ -31,7 +31,7 @@ var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	stats = base_stats
+	#stats = base_stats
 	#print(base_stats, ' ', stats)
 	hp = max_hp
 	pointer.set_position(Vector2(-100 * ally, 0))
@@ -42,8 +42,9 @@ func _ready() -> void:
 		pointer.set_texture(load("res://Assets/left_arrow.svg"))
 	#print(name, pointer.position)
 	#print(hp)
-	print(skills.get_skills())
-	print(skills.get_skills()[1].action(self, self))
+	print(stats)
+	#print(skills.get_skills())
+	#print(skills.get_skills()[1].action(self, self))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -60,6 +61,13 @@ func focus():
 func unfocus():
 	$Pointer.hide()
 
+func get_skills():
+	return skills.get_skills()
+
+func use_skill(skill_id, target):
+	var skill = get_skills()[skill_id]
+	skill.action(self, target)
+
 func damage(value: float):
 	value /= DEF
 	print('%s takes %f damage!' % [name, value])
@@ -71,7 +79,7 @@ func damage(value: float):
 
 func heal(value: float):
 	hp += value
-	print(' %s healed %f HP' % [character_name, value])
+	print(' %s healed %f HP' % [name, value])
 	if hp > max_hp:
 		hp = max_hp
 
@@ -80,5 +88,5 @@ func status():
 		damage(max_hp / 7)
 
 func die():
-	print('%s is dead' % [character_name])
+	print('%s is dead' % [name])
 	alive = false

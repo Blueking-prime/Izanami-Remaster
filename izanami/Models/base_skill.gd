@@ -12,21 +12,19 @@ extends Resource
 @export var crit_chance: float = 0.2
 @export var crit_mult: int = 2
 @export var status_effect: Array
-@export var value: int
+@export var value: int = 0
+@export var aoe: bool = false
+@export var targetable: bool = true
 
 func action(obj: Base_Character, target: Base_Character):
 	var stat_total = 0
-	var value = 0
-	
+
 	if obj.status_effect == 'Exhausted':
 		return false
 
-	if obj.has_meta('sp'):
-		if obj.sp <= 0:
-			print('Out of SP')
+	if 'sp' in obj:
+		if not obj.consume_sp(cost):
 			return false
-		obj.sp -= cost
-		print('sp ', obj.sp)
 
 	if flavour_text != '':
 		print(flavour_text)
@@ -50,7 +48,6 @@ func action(obj: Base_Character, target: Base_Character):
 			target.status_effect = status_effect[0]
 		else:
 			print('Miss!')
-
 	return true
 
 func rand_chance(chance: float) -> bool:

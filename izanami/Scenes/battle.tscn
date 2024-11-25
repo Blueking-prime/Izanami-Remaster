@@ -9,6 +9,13 @@
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_ivyfm")
 
+[node name="Players" type="Node2D" parent="."]
+script = ExtResource("4_n0p7c")
+
+[node name="Player" parent="Players" instance=ExtResource("5_puib7")]
+
+[node name="Player2" parent="Players" instance=ExtResource("5_puib7")]
+
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_cdpmu")
 
@@ -24,13 +31,6 @@ position = Vector2(1013, 359)
 [node name="Enemy2" parent="Enemies" instance=ExtResource("3_spgr2")]
 position = Vector2(1010, 200)
 
-[node name="Players" type="Node2D" parent="."]
-script = ExtResource("4_n0p7c")
-
-[node name="Player" parent="Players" instance=ExtResource("5_puib7")]
-
-[node name="Player2" parent="Players" instance=ExtResource("5_puib7")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Actions" type="VBoxContainer" parent="CanvasLayer"]
@@ -43,14 +43,6 @@ offset_bottom = 348.0
 layout_mode = 2
 text = "Attack"
 
-[node name="Guard" type="Button" parent="CanvasLayer/Actions"]
-layout_mode = 2
-text = "Guard"
-
-[node name="Run" type="Button" parent="CanvasLayer/Actions"]
-layout_mode = 2
-text = "Run"
-
 [node name="Skills" type="MenuButton" parent="CanvasLayer/Actions"]
 layout_mode = 2
 text = "Skills"
@@ -59,4 +51,16 @@ text = "Skills"
 layout_mode = 2
 text = "Items"
 
+[node name="Guard" type="Button" parent="CanvasLayer/Actions"]
+layout_mode = 2
+text = "Guard"
+
+[node name="Run" type="Button" parent="CanvasLayer/Actions"]
+layout_mode = 2
+text = "Run"
+
 [connection signal="pressed" from="CanvasLayer/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/Actions/Skills" to="." method="_on_skills_pressed"]
+[connection signal="pressed" from="CanvasLayer/Actions/Items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="CanvasLayer/Actions/Guard" to="." method="_on_guard_pressed"]
+[connection signal="pressed" from="CanvasLayer/Actions/Run" to="." method="_on_run_pressed"]
