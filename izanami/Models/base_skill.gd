@@ -15,6 +15,7 @@ extends Resource
 @export var value: int = 0
 @export var aoe: bool = false
 @export var targetable: bool = true
+@export var desc: String
 
 func action(obj: Base_Character, target: Base_Character):
 	var stat_total = 0

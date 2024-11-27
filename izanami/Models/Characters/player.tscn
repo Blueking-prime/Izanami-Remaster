@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
-[ext_resource type="Script" path="res://Models/Characters/player.gd" id="2_lj72d"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_lj72d"]
 [ext_resource type="Script" path="res://Models/gear.gd" id="5_k34jo"]
 
 [node name="Player" instance=ExtResource("1_ll1t0")]
@@ -14,7 +14,7 @@ level_up_xp = null
 mag = 0
 level_stats = []
 
-[node name="SP_Bar" type="ProgressBar" parent="." index="4"]
+[node name="SPBar" type="ProgressBar" parent="." index="4"]
 offset_left = -53.0
 offset_top = 102.0
 offset_right = 65.0
@@ -29,25 +29,34 @@ head = &"WoolCap"
 weapon = &"Excalihuh?"
 body = &"Turtle Shell"
 
-[node name="Inventory" type="ItemList" parent="." index="6"]
+[node name="Inventory" type="Node" parent="." index="6"]
+
+[node name="SkillList" type="ItemList" parent="Skills" index="0"]
 visible = false
-offset_left = -272.0
-offset_top = 12.0
-offset_right = -232.0
-offset_bottom = 52.0
+anchors_preset = -1
+anchor_left = 0.211
+anchor_top = 0.117
+anchor_right = 0.211
+anchor_bottom = 0.117
+offset_left = 150.928
+offset_top = -56.816
+offset_right = 282.928
+offset_bottom = 56.184
 
-[node name="Items" type="ItemList" parent="Inventory" index="1"]
-layout_mode = 0
-offset_left = -282.0
-offset_top = 9.0
-offset_right = -242.0
-offset_bottom = 49.0
-
-[node name="Gear" type="ItemList" parent="Inventory" index="2"]
-layout_mode = 0
-offset_left = -285.0
-offset_top = 7.0
-offset_right = -245.0
-offset_bottom = 47.0
+[node name="ItemList" type="ItemList" parent="Items" index="0"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.214
+anchor_top = 0.119
+anchor_right = 0.214
+anchor_bottom = 0.119
+offset_left = 147.472
+offset_top = 61.888
+offset_right = 279.472
+offset_bottom = 163.888
+max_columns = 2
+fixed_column_width = 50
 
 [connection signal="gear_change" from="Gear" to="." method="_on_gear_gear_change"]
+[connection signal="item_activated" from="Skills/SkillList" to="." method="_on_skill_list_activated"]
+[connection signal="item_activated" from="Items/ItemList" to="." method="_on_item_list_activated"]

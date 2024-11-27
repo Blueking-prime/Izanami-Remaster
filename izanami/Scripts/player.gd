@@ -2,9 +2,11 @@ extends Base_Character
 
 class_name Player
 
-@onready var sp_bar: ProgressBar = $SP_Bar
+@onready var sp_bar: ProgressBar = $SPBar
 @onready var gear: Node = $Gear
-@onready var inventory: ItemList = $Inventory
+@onready var inventory: Node = $Inventory
+@onready var skill_menu: ItemList = $Skills/SkillList
+@onready var item_menu: ItemList = $Items/ItemList
 
 # Player stats
 @export var max_sp: float:
@@ -22,12 +24,17 @@ class_name Player
 @export var mag: int = 0
 @export var level_stats: Array = []
 
+var active_selection
+var chosen_option: bool = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ally = 1
 	sp = max_sp
 	super()
+	_display_skills()
+	_display_items()
 
 func _update_sp_bar():
 	if sp_bar:
@@ -78,6 +85,7 @@ func level_up(value):
 	update_derived_stats(current_max)
 	level_up_xp = 50 * (2 ** lvl)
 	skills.update_skills()
+	_display_skills()
 
 
 func status():
@@ -111,12 +119,50 @@ func consume_sp(value: float):
 	#print('sp ', sp)
 	return true
 
+
+func _display_skills():
+	skill_menu.clear()
+	for i in get_skills():
+		skill_menu.add_item(i.name)
+
+func show_skill_menu():
+	skill_menu.show()
+	skill_menu.grab_focus()
+
+
+func _display_items():
+	item_menu.clear()
+	var items = get_items()
+	for i in items:
+		item_menu.add_item(i)
+		item_menu.add_item(str(items[i]))
+
+func show_item_menu():
+	item_menu.show()
+	item_menu.grab_focus()
+
+func use_item(item_name, target):
+	super.use_item(item_name, target)
+	_display_items()
+
 func die():
-	super.die()
 	print('And so you fall, your journey never to be completed')
+	super.die()
 ## Add death screen and shit
 
 
 func _on_gear_gear_change() -> void:
 	update_stats()
 	#print(stats, hp, max_hp, sp, max_sp)
+
+
+func _on_skill_list_activated(index: int) -> void:
+	active_selection = index
+	skill_menu.hide()
+	chosen_option = true
+
+
+func _on_item_list_activated(index: int) -> void:
+	active_selection = item_menu.get_item_text(index)
+	item_menu.hide()
+	chosen_option = true

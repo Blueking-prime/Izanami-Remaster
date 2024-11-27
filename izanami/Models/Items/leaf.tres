@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://buw6s7v2076je"]
+
+[ext_resource type="Script" path="res://Models/base_item.gd" id="1_g3uao"]
+
+[resource]
+script = ExtResource("1_g3uao")
+name = "Leaf"
+type = &"heal"
+value = 20
+buffs = [1, 1]
+status = &""
+desc = ""

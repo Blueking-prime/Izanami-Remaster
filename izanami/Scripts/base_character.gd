@@ -2,9 +2,10 @@ class_name Base_Character
 
 extends CharacterBody2D
 
-@onready var hp_bar: ProgressBar = $HP_Bar
+@onready var hp_bar: ProgressBar = $HPBar
 @onready var pointer: Sprite2D = $Pointer
 @onready var skills: Node = $Skills
+@onready var items: Node = $Items
 
 # CHARACTER STATS
 @export var character_name: String = name
@@ -51,9 +52,11 @@ func _process(_delta: float) -> void:
 	#var input_direction = Vector2()
 	pass
 
+
 func _update_hp_bar():
 	if hp_bar:
 		hp_bar.value = (hp / max_hp) * 100
+
 
 func focus():
 	$Pointer.show()
@@ -61,12 +64,27 @@ func focus():
 func unfocus():
 	$Pointer.hide()
 
+
 func get_skills():
 	return skills.get_skills()
 
 func use_skill(skill_id, target):
-	var skill = get_skills()[skill_id]
+	var skill: Skill = get_skills()[skill_id]
 	skill.action(self, target)
+
+
+func get_items():
+	return items.get_items()
+
+func use_item(item_name, target):
+	var item: Item = items.get_item(item_name)
+	item.use(target)
+	items.remove_item(item)
+
+
+func guard():
+	DEF *= 2
+	print('%s braces for impact' % [name])
 
 func damage(value: float):
 	value /= DEF

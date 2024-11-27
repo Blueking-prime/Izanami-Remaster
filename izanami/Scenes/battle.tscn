@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://deahjbvovxuvn"]
 
-[ext_resource type="Script" path="res://Scenes/battle.gd" id="1_ivyfm"]
-[ext_resource type="Script" path="res://Scenes/enemy_side_battle.gd" id="2_cdpmu"]
+[ext_resource type="Script" path="res://Scripts/battle.gd" id="1_ivyfm"]
+[ext_resource type="Script" path="res://Scripts/enemy_side_battle.gd" id="2_cdpmu"]
 [ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/enemy.tscn" id="3_spgr2"]
-[ext_resource type="Script" path="res://Scenes/player_side_battle.gd" id="4_n0p7c"]
+[ext_resource type="Script" path="res://Scripts/player_side_battle.gd" id="4_n0p7c"]
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/player.tscn" id="5_puib7"]
 
 [node name="Battle" type="Node2D"]
@@ -34,20 +34,27 @@ position = Vector2(1010, 200)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Actions" type="VBoxContainer" parent="CanvasLayer"]
-offset_left = 261.0
-offset_top = 214.0
-offset_right = 359.0
-offset_bottom = 348.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -332.0
+offset_right = 49.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Attack" type="Button" parent="CanvasLayer/Actions"]
 layout_mode = 2
 text = "Attack"
 
-[node name="Skills" type="MenuButton" parent="CanvasLayer/Actions"]
+[node name="Skills" type="Button" parent="CanvasLayer/Actions"]
 layout_mode = 2
 text = "Skills"
 
-[node name="Items" type="MenuButton" parent="CanvasLayer/Actions"]
+[node name="Items" type="Button" parent="CanvasLayer/Actions"]
 layout_mode = 2
 text = "Items"
 

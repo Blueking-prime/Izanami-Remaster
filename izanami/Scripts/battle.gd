@@ -7,8 +7,10 @@ var player_array: Array = []
 var is_battling: bool = false
 var index: int = 0
 var idx: int = 0
-var current_actor
+var current_player
 var flag: StringName
+var has_chosen_option: bool = false
+
 @onready var choice = $CanvasLayer/Actions
 @onready var players = $Players
 @onready var enemies = $Enemies
@@ -37,10 +39,14 @@ func _process(_delta: float) -> void:
 			_action()
 
 	act(turn_order[idx])
+	if current_player.chosen_option:
+		current_player.chosen_option = false
+		choice.hide()
+		_start_choosing()
 
 func _action():
-	print(current_actor, ' is acting')
-	#print(current_actor.stats)
+	print(current_player, ' is acting')
+	#print(current_player.stats)
 	match flag:
 		'Attack': use_basic_attack()
 		'Skills': use_skills()
@@ -55,8 +61,7 @@ func _action():
 		idx = 0
 
 func act(actor: Base_Character):
-	current_actor = actor
-	current_actor.focus()
+	actor.focus()
 	if not is_battling:
 		print(actor.name)
 		#actor.focus()
@@ -72,6 +77,7 @@ func act(actor: Base_Character):
 				idx = 0
 		else:
 			is_battling = true
+			current_player = actor
 			show_choice()
 		
 		#actor.unfocus()
@@ -100,7 +106,9 @@ func _on_attack_pressed() -> void:
 
 
 func _on_guard_pressed() -> void:
-	pass # Replace with function body.
+	flag = 'Guard'
+	choice.hide()
+	_action()
 
 
 func _on_run_pressed() -> void:
@@ -109,25 +117,25 @@ func _on_run_pressed() -> void:
 
 func _on_skills_pressed() -> void:
 	flag = 'Skills'
-	choice.hide()
-	_start_choosing()
+	current_player.show_skill_menu()
 
 
 func _on_items_pressed() -> void:
-	pass # Replace with function body.
+	flag = 'Items'
+	current_player.show_item_menu()
+
 
 func use_basic_attack():
-	current_actor.use_skill(0, actors[index])
+	current_player.use_skill(0, actors[index])
 
 func use_skills():
-	var skills = current_actor.get_skills()
-	print(skills)
+	current_player.use_skill(current_player.active_selection, actors[index])
 
 func use_guard():
-	pass
+	current_player.guard()
 
 func use_run():
 	pass
 
 func use_items():
-	pass
+	current_player.use_item(current_player.active_selection, actors[index])
