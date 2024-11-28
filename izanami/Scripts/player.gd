@@ -145,6 +145,12 @@ func use_item(item_name, target):
 	super.use_item(item_name, target)
 	_display_items()
 
+func reset_menu():
+	item_menu.hide()
+	skill_menu.hide()
+	active_selection = null
+	chosen_option = false
+
 func die():
 	print('And so you fall, your journey never to be completed')
 	super.die()
