@@ -132,10 +132,10 @@ func show_skill_menu():
 
 func _display_items():
 	item_menu.clear()
-	var items = get_items()
-	for i in items:
+	var _items = get_items()
+	for i in _items:
 		item_menu.add_item(i)
-		item_menu.add_item(str(items[i]))
+		item_menu.add_item(str(_items[i]))
 
 func show_item_menu():
 	item_menu.show()
@@ -164,11 +164,9 @@ func _on_gear_gear_change() -> void:
 
 func _on_skill_list_activated(index: int) -> void:
 	active_selection = index
-	skill_menu.hide()
 	chosen_option = true
 
 
 func _on_item_list_activated(index: int) -> void:
 	active_selection = item_menu.get_item_text(index)
-	item_menu.hide()
 	chosen_option = true

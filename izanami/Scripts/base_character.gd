@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var pointer: Sprite2D = $Pointer
 @onready var skills: Node = $Skills
 @onready var items: Node = $Items
+@onready var nametag: Label = $NameTag
 
 # CHARACTER STATS
 @export var character_name: String = name
@@ -35,23 +36,18 @@ func _ready() -> void:
 	#stats = base_stats
 	#print(base_stats, ' ', stats)
 	hp = max_hp
-	pointer.set_position(Vector2(-100 * ally, 0))
+	pointer.set_position(Vector2(0, -130))
+	nametag.text = name
 	
-	if ally > 0:
-		pointer.set_texture(load("res://Assets/right_arrow.svg"))
-	else:
-		pointer.set_texture(load("res://Assets/left_arrow.svg"))
+	#if ally > 0:
+		#pointer.set_texture(load("res://Assets/right_arrow.svg"))
+	#else:
+		#pointer.set_texture(load("res://Assets/left_arrow.svg"))
 	#print(name, pointer.position)
 	#print(hp)
 	print(stats)
 	#print(skills.get_skills())
 	#print(skills.get_skills()[1].action(self, self))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	#var input_direction = Vector2()
-	pass
-
 
 func _update_hp_bar():
 	if hp_bar:

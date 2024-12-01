@@ -8,8 +8,8 @@ var is_battling: bool = false
 var index: int = 0
 var idx: int = 0
 var current_player
+var targetting: bool = false
 var flag: StringName
-var has_chosen_option: bool = false
 var turncount = 1
 
 @onready var choice = $CanvasLayer/Actions
@@ -26,16 +26,22 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	if not choice.visible:
+	if targetting:
 		#if is_instance_of(actors[index], Player):
-		if Input.is_action_just_pressed("ui_up"):
+		if Input.is_action_just_pressed("ui_left"):
 			if index > 0:
 				index -= 1
 				switch_focus(index, index + 1)
-		if Input.is_action_just_pressed("ui_down"):
+			else:
+				index = actors.size() - 1
+				switch_focus(index, 0)
+		if Input.is_action_just_pressed("ui_right"):
 			if index < actors.size() - 1:
 				index += 1
 				switch_focus(index, index - 1)
+			else:
+				index = 0
+				switch_focus(index, actors.size() - 1)
 		if Input.is_action_just_pressed("ui_accept"):
 			_action()
 	
@@ -47,7 +53,7 @@ func _process(_delta: float) -> void:
 	act(turn_order[idx])
 	if current_player.chosen_option:
 		current_player.chosen_option = false
-		choice.hide()
+		targetting = true
 		_start_choosing()
 
 func _action():
@@ -61,11 +67,15 @@ func _action():
 		'Run': use_run()
 		
 	is_battling = false
-	choice.hide()
+	targetting = true
+	current_player.reset_menu()
 	_advance_actor()
 
 func act(actor: Base_Character):
 	actor.focus()
+	if not actor.alive:
+		_advance_actor()
+		return
 	if not is_battling:
 		print(actor.name)
 		#actor.focus()
@@ -86,8 +96,9 @@ func act(actor: Base_Character):
 
 
 func _advance_actor():
+	_reset_focus()
 	idx += 1
-	if idx >= 6:
+	if idx >= actors.size():
 		idx = 0
 		turncount += 1
 
@@ -97,7 +108,7 @@ func switch_focus(x, y):
 	actors[y].unfocus()
 
 func show_choice():
-	choice.show()
+	targetting = false
 	choice.find_child("Attack").grab_focus()
 	
 func _reset_focus():
@@ -112,17 +123,17 @@ func _start_choosing():
 
 func _on_attack_pressed() -> void:
 	flag = 'Attack'
-	choice.hide()
+	targetting = true
 	_start_choosing()
 
 func _on_guard_pressed() -> void:
 	flag = 'Guard'
-	choice.hide()
+	targetting = true
 	_action()
 
 func _on_run_pressed() -> void:
 	flag = 'Run'
-	choice.hide()
+	targetting = true
 	_action()
 
 func _on_skills_pressed() -> void:

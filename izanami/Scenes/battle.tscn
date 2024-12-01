@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://deahjbvovxuvn"]
 
-[ext_resource type="Script" path="res://Scripts/battle.gd" id="1_ivyfm"]
+[ext_resource type="Script" path="res://Scenes/battle.gd" id="1_ivyfm"]
 [ext_resource type="Script" path="res://Scripts/enemy_side_battle.gd" id="2_cdpmu"]
-[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/enemy.tscn" id="3_spgr2"]
 [ext_resource type="Script" path="res://Scripts/player_side_battle.gd" id="4_n0p7c"]
-[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/player.tscn" id="5_puib7"]
+[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="5_puib7"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_ivyfm")
@@ -13,23 +13,15 @@ script = ExtResource("1_ivyfm")
 script = ExtResource("4_n0p7c")
 
 [node name="Player" parent="Players" instance=ExtResource("5_puib7")]
+position = Vector2(239, 72)
 
 [node name="Player2" parent="Players" instance=ExtResource("5_puib7")]
+position = Vector2(239, 72)
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_cdpmu")
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("3_spgr2")]
-position = Vector2(1017, 58)
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource("3_spgr2")]
-position = Vector2(1022, 528)
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource("3_spgr2")]
-position = Vector2(1013, 359)
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource("3_spgr2")]
-position = Vector2(1010, 200)
+no_of_enemies = 4
+enemy_group = ExtResource("5_6mwjl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -39,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -49.0
-offset_top = -332.0
-offset_right = 49.0
-offset_bottom = -161.0
+offset_left = -545.0
+offset_top = -210.0
+offset_right = -430.0
+offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 0
 

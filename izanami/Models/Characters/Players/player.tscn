@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="2_lj72d"]
+[ext_resource type="Script" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
 [ext_resource type="Script" path="res://Models/gear.gd" id="5_k34jo"]
 
 [node name="Player" instance=ExtResource("1_ll1t0")]
@@ -13,6 +13,9 @@ gold = 0
 level_up_xp = null
 mag = 0
 level_stats = []
+
+[node name="Pointer" parent="." index="3"]
+visible = false
 
 [node name="SPBar" type="ProgressBar" parent="." index="4"]
 offset_left = -53.0

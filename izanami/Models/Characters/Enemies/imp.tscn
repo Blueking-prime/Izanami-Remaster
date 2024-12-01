@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqial3twfexr4"]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_j5t71"]
+[ext_resource type="Script" path="res://Models/Characters/Enemies/imp.gd" id="2_058a4"]
+
+[node name="Imp" instance=ExtResource("1_j5t71")]
+position = Vector2(239, 72)
+script = ExtResource("2_058a4")
+enemy_atk_lines = ["The Imp slashes at you with improvised weapons and you take"]
+enemy_element = &"Fire"
+enemy_stats = {
+"AGI": 2,
+"END": 4,
+"GUI": 2,
+"INT": 3,
+"STR": 3,
+"WIS": 2
+}
+
+[node name="Pointer" parent="." index="3"]
+visible = false
+texture_filter = 0
