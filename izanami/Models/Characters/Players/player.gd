@@ -3,6 +3,7 @@ extends Base_Character
 class_name Player
 
 @onready var sp_bar: ProgressBar = $SPBar
+@onready var sp_bar_text: Label = $SPBar/Label
 @onready var gear: Node = $Gear
 @onready var inventory: Node = $Inventory
 @onready var skill_menu: ItemList = $Skills/SkillList
@@ -39,9 +40,10 @@ func _ready() -> void:
 func _update_sp_bar():
 	if sp_bar:
 		sp_bar.value = (sp / max_sp) * 100
+		sp_bar_text.text = str(sp, ' / ', max_sp)
 
 func restore():
-	sp += stats['END'] * 3
+	sp += stats['END'] * 2
 	if sp > max_sp:
 		sp = max_sp
 

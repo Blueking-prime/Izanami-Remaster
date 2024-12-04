@@ -3,6 +3,7 @@ class_name Base_Character
 extends CharacterBody2D
 
 @onready var hp_bar: ProgressBar = $HPBar
+@onready var hp_bar_text: Label = $HPBar/Label
 @onready var pointer: Sprite2D = $Pointer
 @onready var skills: Node = $Skills
 @onready var items: Node = $Items
@@ -52,6 +53,7 @@ func _ready() -> void:
 func _update_hp_bar():
 	if hp_bar:
 		hp_bar.value = (hp / max_hp) * 100
+		hp_bar_text.text = str(hp, ' / ', max_hp)
 
 
 func focus():

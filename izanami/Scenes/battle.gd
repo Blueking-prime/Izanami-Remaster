@@ -178,8 +178,8 @@ func use_run():
 
 func use_items():
 	current_player.use_item(current_player.active_selection, actors[index])
-#
-#
+
+
 #func rand_chance(chance: float) -> bool:
 	#if randf() < chance:
 		#return true
