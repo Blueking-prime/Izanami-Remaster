@@ -7,8 +7,9 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	item_group.load_all_into(_items)
-	_update_dict()
+	if item_group:
+		item_group.load_all_into(_items)
+		_update_dict()
 
 func add_item(item: Item):
 	#var item = load(item_location + '/' + item_name + '.tres') as Item

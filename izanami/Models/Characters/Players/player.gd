@@ -89,7 +89,7 @@ func level_up(value):
 
 
 func status():
-	super().status()
+	super.status()
 	if sp < 0:
 		status_effect = 'EnExhaust'
 	if status_effect == 'EnExhaust':

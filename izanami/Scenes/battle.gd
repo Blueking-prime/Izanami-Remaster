@@ -76,8 +76,13 @@ func act(actor: Base_Character):
 	if not actor.alive:
 		_advance_actor()
 		return
+	if actor.status_effect == 'Stunned':
+		print('%s is stunned' % [actor.name])
+		_advance_actor()
+		return
 	if not is_battling:
 		print(actor.name)
+		actor.status()
 		#actor.focus()
 		if is_instance_of(actor, Enemy):
 			var target_player = randi_range(0, player_array.size() - 1)
@@ -101,6 +106,8 @@ func _advance_actor():
 	if idx >= actors.size():
 		idx = 0
 		turncount += 1
+		for i in player_array:
+			i.restore()
 
 
 func switch_focus(x, y):

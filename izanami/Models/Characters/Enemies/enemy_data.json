@@ -1,0 +1,20 @@
+[
+	{
+		"name": "Goblin",
+		"stats": [1, 1, 0, 1, 0, 0],
+		"element": "Fire",
+		"atk_line": [
+			"The Goblin slashes at you with its claws and you take"
+		],
+		"skill_resource_file": ""
+	},
+	{
+		"name": "Imp",
+		"stats": [3, 3, 2, 4, 2, 2],
+		"element": "Fire",
+		"atk_line": [
+			"The Imp slashes at you with improvised weapons and you take"
+		],
+		"skill_resource_file": ""
+	}
+]

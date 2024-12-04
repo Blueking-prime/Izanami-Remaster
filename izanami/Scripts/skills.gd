@@ -7,8 +7,9 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	skill_group.load_all_into(_all_skills)
-	update_skills()
+	if skill_group:
+		skill_group.load_all_into(_all_skills)
+		update_skills()
 
 func add_skill(skill: Skill):
 	#var skill = load(skill_location + '/' + skill_name + '.tres') as Skill

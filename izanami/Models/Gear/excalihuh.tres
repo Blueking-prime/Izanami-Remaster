@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://c7142lx6rgmo5"]
+
+[ext_resource type="Script" path="res://Models/base_gear.gd" id="1_8rp22"]
+
+[resource]
+script = ExtResource("1_8rp22")
+name = "Excalihuh?"
+slot = &"weapon"
+stats = {
+"AGI": 5,
+"END": 5,
+"GUI": 0,
+"INT": 0,
+"STR": 5,
+"WIS": 0
+}
+desc = ""
