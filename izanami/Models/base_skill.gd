@@ -35,7 +35,7 @@ func action(obj: Base_Character, target: Base_Character):
 			stat_total += obj.stats[stat]
 	
 	print(stat_total)
-	if rand_chance(crit_chance):
+	if Global.rand_chance(crit_chance):
 		print('CRIT!')
 		value = stat_total * stat_multiplier * crit_mult
 	else:
@@ -45,14 +45,14 @@ func action(obj: Base_Character, target: Base_Character):
 	obj.DEF *= boost[1]
 
 	if status_effect:
-		if rand_chance(status_effect[1]):
+		if Global.rand_chance(status_effect[1]):
 			target.status_effect = status_effect[0]
 		else:
 			print('Miss!')
 	return true
 
-func rand_chance(chance: float) -> bool:
-	if randf() < chance:
-		return true
-	else:
-		return false
+#func rand_chance(chance: float) -> bool:
+	#if randf() < chance:
+		#return true
+	#else:
+		#return false

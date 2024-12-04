@@ -171,17 +171,17 @@ func use_run():
 	if max_enemy_speed < 1:
 		max_enemy_speed = 1
 
-	if rand_chance(current_player.stats['AGI'] / max_enemy_speed):
+	if Global.rand_chance(current_player.stats['AGI'] / max_enemy_speed):
 		print('You escaped')
 	else:
 		print('You failed to escape')
 
 func use_items():
 	current_player.use_item(current_player.active_selection, actors[index])
-
-
-func rand_chance(chance: float) -> bool:
-	if randf() < chance:
-		return true
-	else:
-		return false
+#
+#
+#func rand_chance(chance: float) -> bool:
+	#if randf() < chance:
+		#return true
+	#else:
+		#return false
