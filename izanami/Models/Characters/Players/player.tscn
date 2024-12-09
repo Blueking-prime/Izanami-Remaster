@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_etuff"]
-[ext_resource type="Script" path="res://Models/gear.gd" id="5_k34jo"]
+[ext_resource type="Script" path="res://Scripts/gear.gd" id="5_k34jo"]
 
 [node name="Player" instance=ExtResource("1_ll1t0")]
 script = ExtResource("2_lj72d")

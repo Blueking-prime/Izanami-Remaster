@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Offensive_Skill" load_steps=2 format=3 uid="uid://yxcota6ap2ey"]
 
-[ext_resource type="Script" path="res://Models/offensive_skill.gd" id="1_4rdnf"]
+[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_4rdnf"]
 
 [resource]
 script = ExtResource("1_4rdnf")

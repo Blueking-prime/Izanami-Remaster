@@ -18,8 +18,7 @@ func rand_chance(chance: float):
 		return false
 
 
-func path(start: Array[int], goal: Array[int],
-		walls: Array[Array], width: int, height: int, visited: Array = []):
+func path(start: Array, goal: Array, walls: Array, width: int, height: int, visited: Array = []):
 
 	if start in walls:
 		return false

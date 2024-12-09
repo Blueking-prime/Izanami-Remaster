@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://deahjbvovxuvn"]
 
-[ext_resource type="Script" path="res://Scenes/battle.gd" id="1_ivyfm"]
+[ext_resource type="Script" path="res://Scripts/battle.gd" id="1_ivyfm"]
 [ext_resource type="Script" path="res://Scripts/enemy_side_battle.gd" id="2_cdpmu"]
 [ext_resource type="Script" path="res://Scripts/player_side_battle.gd" id="4_n0p7c"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
