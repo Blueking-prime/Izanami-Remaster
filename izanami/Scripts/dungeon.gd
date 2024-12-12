@@ -18,7 +18,7 @@ var _item_drops = []
 
 @export var width: int = 8
 @export var height: int = 5 
-@export var spawn_chance: float = 0.8
+@export var enemy_spawn_chance: float = 0.8
 @export var gear_drop_group: ResourceGroup
 @export var item_drop_group: ResourceGroup
 @export var exit_flag: bool = false
@@ -45,8 +45,8 @@ func _ready() -> void:
 
 	map.display_dungeon()
 
-func _process(delta: float) -> void:
-	check_tile(player)
+func _process(_delta: float) -> void:
+	check_tile()
 
 #func main(player):
 	#print('-------------------------------------')
@@ -63,14 +63,14 @@ func _process(delta: float) -> void:
 		#print('-------------------------------------')
 
 
-func check_tile(player: Player):
+func check_tile():
 	if player_pos in map.filled_coords:
 		if player_pos == map.stop:
 			exit_dungeon()
 		elif player_pos in map.treasure_tiles:
-			collect_treasure(player)
+			collect_treasure()
 		elif player_pos in map.enemy_tiles:
-			initiate_battle(player)
+			initiate_battle()
 		else:
 			pass
 
@@ -90,7 +90,7 @@ func _load_items():
 	_item_drops = item_drop_group.load_all()
 	
 	
-func collect_treasure(player: Player):
+func collect_treasure():
 	var x
 	var index
 	var drop
@@ -111,8 +111,8 @@ func collect_treasure(player: Player):
 	map.display_dungeon()
 
 
-func initiate_battle(player: Player):
-	var n = 1 + Global.rand_spread(spawn_chance, 3)
+func initiate_battle():
+	var n = 1 + Global.rand_spread(enemy_spawn_chance, 3)
 	var index
 	for i in range(n):
 		index = Global.randint(0, len(enemy_types) - 1)

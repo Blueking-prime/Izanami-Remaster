@@ -2,9 +2,12 @@ extends Node
 
 @onready var width: int = get_parent().width
 @onready var height: int = get_parent().height
-@onready var spawn_chance: float = get_parent().spawn_chance
+@onready var enemy_spawn_chance: float = get_parent().enemy_spawn_chance
 @onready var legend: Array = get_parent().legend
 @onready var player_pos = get_parent().player_pos
+
+@export var treasure_spawn_chance: float = 0.2
+@export var max_treasure_no: int = 5
 
 var start = []
 var stop = []
@@ -17,13 +20,49 @@ var treasure_no
 var enemy_no
 
 
-
 func _ready() -> void:
 	var check = false
 	while not check:
 		generate_dungeon_layout()
 		check = verify_dungeon()
 	
+	_fill_gaps()
+	_pad_chests()
+	
+func get_empty_tiles():
+	var tiles = []
+	for i in width:
+		for j in height:
+			tiles.append([i, j])
+	
+	return tiles
+
+func _fill_gaps():
+	var tiles = get_empty_tiles()
+	for coord in tiles:
+		if coord in walls:
+			tiles.erase(coord)
+	
+	for tile in tiles:
+		if not Global.path(start, tile, walls, width, height, []):
+			walls.append(tile)
+
+func _pad_chests():
+	var x
+	var y 
+	var surrounding_tiles = []
+	for coord in treasure_tiles:
+		x = coord[0]
+		y = coord[1]
+		surrounding_tiles = [
+			[x - 1, y],
+			[x + 1, y],
+			[x, y - 1],
+			[x, y + 1],
+		]
+		for i in surrounding_tiles:
+			if i in walls:
+				walls.erase(i)
 
 func generate_dungeon_layout():
 	width -= 1
@@ -48,7 +87,7 @@ func generate_dungeon_layout():
 	height += 1
 
 func generate_treasure_tiles():
-	treasure_no = 1 + Global.rand_spread(0.2, 5)
+	treasure_no = 1 + Global.rand_spread(treasure_spawn_chance, max_treasure_no)
 	treasure_tiles = []
 	var i = 0
 	var coord
@@ -69,9 +108,9 @@ func generate_walls():
 	for i in range(width + 1):
 		for j in range(height + 1):
 			if i == 0 or j == 0 or i == width or j == height:
-				chance = 0.7
+				chance = 0.5
 			else:
-				chance = 0.3
+				chance = 0.2
 			
 			cur_coord = [i, j]
 			if cur_coord not in filled_coords:
@@ -85,7 +124,7 @@ func generate_walls():
 						filled_coords.append(coord)
 
 func spawn_enemies_floor():
-	enemy_no = Global.rand_spread(spawn_chance, width * height - len(filled_coords))
+	enemy_no = Global.rand_spread(enemy_spawn_chance, width * height - len(filled_coords))
 	enemy_tiles = []
 	var i = 0
 	var coord
@@ -128,7 +167,7 @@ func display_dungeon():
 	dungeon_map[stop[1]][stop[0]] = legend[1]
 
 	# Player_pos
-	var player_pos = get_parent().player_pos
+	player_pos = get_parent().player_pos
 	dungeon_map[player_pos[1]][player_pos[0]] = legend[2]
 
 	for i in treasure_tiles:

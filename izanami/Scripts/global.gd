@@ -61,36 +61,7 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 
 	return false
 
-# func dialog_choice(prompt: String, choices: Array = ['Yes', 'No'], back = true):
-#     low_limit = 1
-#     if len(choices) == 0:
-#         return -1
-#     while true:
-#         try:
-#             print(prompt)
-#             for i, j in enumerate(choices, 1):
-#                 print(f'{i} - {j}')
-#             if back:
-#                 print('0 - back')
-#                 low_limit = 0
-#             x = int(input('? '))
-#             if x not in range(low_limit, len(choices) + 1):
-#                 print('Invalid option!')
-#                 continue
-
-#             if choices == ['Yes', 'No']:
-#                 if x == 1:
-#                     return true
-#                 if x == 2:
-#                     return false
-#             else:
-#                 return x
-#         except ValueError:
-#             print('Invalid option!')
-#             continue
-
-
-func dialog_choice(prompt: String, back = true, choices: Array[String] = ['Yes', 'No']):
+func dialog_choice(_prompt: String, _back = true, _choices: Array[String] = ['Yes', 'No']):
 	#low_limit = 1
 	#if len(choices) == 0:
 		#return -1
@@ -131,7 +102,7 @@ func dialog_choice(prompt: String, back = true, choices: Array[String] = ['Yes',
 			#continue
 	pass
 
-func dialog_choice_shop(prompt: String, choices: Dictionary):
+func dialog_choice_shop(_prompt: String, _choices: Dictionary):
 	#if len(choices) == 0:
 		#return -1
 	#while true:
