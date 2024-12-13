@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drei8wtrpbio6"]
+[gd_scene load_steps=10 format=3 uid="uid://drei8wtrpbio6"]
 
 [ext_resource type="Script" path="res://Models/Characters/base_character.gd" id="1_e6dxp"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="2_au5i3"]
@@ -11,17 +11,27 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6uwf"]
 size = Vector2(120, 119)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
+radius = 6.08276
+
 [node name="Base Character" type="CharacterBody2D"]
 position = Vector2(241, 131)
 script = ExtResource("1_e6dxp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BattleSprite" type="Sprite2D" parent="."]
 position = Vector2(6, 2)
 texture = ExtResource("2_au5i3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5, -1)
+[node name="BattleHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_h6uwf")
+
+[node name="DungeonSprite" type="Sprite2D" parent="."]
+position = Vector2(3, 2)
+
+[node name="DungeonHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(3, 7)
+shape = SubResource("CircleShape2D_xiiub")
 
 [node name="HPBar" type="ProgressBar" parent="."]
 offset_left = -54.0

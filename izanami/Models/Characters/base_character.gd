@@ -8,6 +8,11 @@ extends CharacterBody2D
 @onready var skills: Node = $Skills
 @onready var items: Node = $Items
 @onready var nametag: Label = $NameTag
+@onready var battle_hitbox: CollisionShape2D = $BattleHitbox
+@onready var battle_sprite: Sprite2D = $BattleSprite
+@onready var dungeon_hitbox: CollisionShape2D = $DungeonHitbox
+@onready var dungeon_sprite: Sprite2D = $DungeonSprite
+
 
 # CHARACTER STATS
 @export var character_name: String = name
@@ -36,6 +41,7 @@ var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, 
 func _ready() -> void:
 	#stats = base_stats
 	#print(base_stats, ' ', stats)
+	
 	hp = max_hp
 	pointer.set_position(Vector2(0, -130))
 	nametag.text = name
@@ -55,6 +61,11 @@ func _update_hp_bar():
 		hp_bar.value = (hp / max_hp) * 100
 		hp_bar_text.text = str(hp, ' / ', max_hp)
 
+func dungeon_display():
+	battle_sprite.hide()
+	battle_hitbox.hide()
+	dungeon_hitbox.show()
+	dungeon_sprite.show()
 
 func focus():
 	$Pointer.show()

@@ -8,7 +8,6 @@ var dungeon_sample = [
 	["█", "█", "█", "-", "-", "█", "█", "█"]
 ]
 
-var _player_pos = []
 var _gear_drops = []
 var _item_drops = []
 
@@ -26,26 +25,28 @@ var _item_drops = []
 @export var enemy_types: Array = []
 
 @export var player_pos: Array:
-	get():
-		return _player_pos
+	#get():
+		#return [player.position.x, player.position.y]
 	set(coords):
 		if (coords[0] < 0 or coords[0] >= width) or (coords[1] < 0 or coords[1] >= height):
 			print('Out of Bounds!')
 		elif coords in map.walls:
 			print("There's a wall in the way")
 		else:
-			_player_pos = coords
+			player.position = Vector2i(coords[0], coords[1])
+			player_pos = coords
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player_pos = map.start
 	enemy_types = [enemy_types]
 	#_load_items()
+	Shape2D
 
 	map.display_dungeon()
 
 func _process(_delta: float) -> void:
+	#player.move(map)
 	check_tile()
 
 #func main(player):

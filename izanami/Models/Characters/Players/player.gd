@@ -97,20 +97,17 @@ func status():
 	if status_effect == 'EnExhaust':
 		sp -= max_sp / 4
 
-#func move(map, direction: str):
-	#x, y = map.player_pos
-	#match direction:
-		#case 'u':
-			#map.player_pos = (x, y - 1)
-		#case 'd':
-			#map.player_pos = (x, y + 1)
-		#case 'l':
-			#map.player_pos = (x - 1, y)
-		#case 'r':
-			#map.player_pos = (x + 1, y)
-		#case _:
-			#pass
-	#map.check_tile()
+func move(map: Node):
+	var x = map.player_pos[0]
+	var y = map.player_pos[1]
+	if Input.is_action_just_pressed("ui_down"):
+		map.player_pos = [x, y - 1]
+	if Input.is_action_just_pressed("ui_down"):
+		map.player_pos = [x, y + 1]
+	if Input.is_action_just_pressed("ui_down"):
+		map.player_pos = [x - 1, y]
+	if Input.is_action_just_pressed("ui_down"):
+		map.player_pos = [x + 1, y]
 
 func consume_sp(value: float):
 	#print('sp', sp)

@@ -28,6 +28,12 @@ enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")
 
 auto_rebuild=true
 
+[layer_names]
+
+2d_physics/layer_1="Walls"
+2d_physics/layer_2="Chests"
+2d_physics/layer_3="Entry/Exit"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

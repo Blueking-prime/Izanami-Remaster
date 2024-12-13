@@ -27,7 +27,8 @@ func _ready() -> void:
 		check = verify_dungeon()
 	
 	_fill_gaps()
-	_pad_chests()
+	_pad_tile(treasure_tiles)
+	_pad_tile([start, stop])
 	
 func get_empty_tiles():
 	var tiles = []
@@ -47,11 +48,11 @@ func _fill_gaps():
 		if not Global.path(start, tile, walls, width, height, []):
 			walls.append(tile)
 
-func _pad_chests():
+func _pad_tile(tile_set):
 	var x
 	var y 
 	var surrounding_tiles = []
-	for coord in treasure_tiles:
+	for coord in tile_set:
 		x = coord[0]
 		y = coord[1]
 		surrounding_tiles = [
@@ -59,6 +60,10 @@ func _pad_chests():
 			[x + 1, y],
 			[x, y - 1],
 			[x, y + 1],
+			[x - 1, y + 1],
+			[x - 1, y - 1],
+			[x + 1, y + 1],
+			[x + 1, y - 1],
 		]
 		for i in surrounding_tiles:
 			if i in walls:
@@ -168,7 +173,7 @@ func display_dungeon():
 
 	# Player_pos
 	player_pos = get_parent().player_pos
-	dungeon_map[player_pos[1]][player_pos[0]] = legend[2]
+	#dungeon_map[player_pos[1]][player_pos[0]] = legend[2]
 
 	for i in treasure_tiles:
 		dungeon_map[i[1]][i[0]] = legend[3]
