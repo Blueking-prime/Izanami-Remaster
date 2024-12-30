@@ -1,8 +1,8 @@
 extends TileMapLayer
 
-@onready var width: int = get_parent().width
-@onready var height: int = get_parent().height
-@onready var player: Player = get_parent().player
+@onready var width: int = get_parent().get_parent().width
+@onready var height: int = get_parent().get_parent().height
+@onready var player: Player = get_parent().get_parent().player
 
 @export var treasure_atlas_coords: Vector2i
 @export var treasure_source_id: int
@@ -18,7 +18,7 @@ var chests: Array
 var entrance: Array
 var exit: Array
 
-@onready var map: Node = $"../Map"
+@onready var map: Node = $"../../Map"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

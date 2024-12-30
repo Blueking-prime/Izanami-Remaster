@@ -8,10 +8,9 @@ extends CharacterBody2D
 @onready var skills: Node = $Skills
 @onready var items: Node = $Items
 @onready var nametag: Label = $NameTag
-@onready var battle_hitbox: CollisionShape2D = $BattleHitbox
 @onready var battle_sprite: Sprite2D = $BattleSprite
-@onready var dungeon_hitbox: CollisionShape2D = $DungeonHitbox
 @onready var dungeon_sprite: Sprite2D = $DungeonSprite
+@onready var hitbox: CollisionShape2D = $Hitbox
 
 
 # CHARACTER STATS
@@ -63,9 +62,17 @@ func _update_hp_bar():
 
 func dungeon_display():
 	battle_sprite.hide()
-	battle_hitbox.hide()
-	dungeon_hitbox.show()
 	dungeon_sprite.show()
+	hp_bar.hide()
+	nametag.hide()
+	pointer.hide()
+
+func battle_display():
+	battle_sprite.show()
+	dungeon_sprite.hide()
+	hp_bar.show()
+	nametag.show()
+	pointer.show()
 
 func focus():
 	$Pointer.show()

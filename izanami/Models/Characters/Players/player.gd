@@ -2,6 +2,7 @@ extends Base_Character
 
 class_name Player
 
+## CHILD NODES
 @onready var sp_bar: ProgressBar = $SPBar
 @onready var sp_bar_text: Label = $SPBar/Label
 @onready var gear: Node = $Gear
@@ -9,7 +10,7 @@ class_name Player
 @onready var skill_menu: ItemList = $Skills/SkillList
 @onready var item_menu: ItemList = $Items/ItemList
 
-# Player stats
+## DYNAMIC PROPERTIES
 @export var max_sp: float:
 	get():
 		return (stats['AGI'] + stats['END']) * 3
@@ -19,43 +20,50 @@ class_name Player
 		sp = value
 		_update_sp_bar()
 
+## STATIC PROPERTIES
 @export var xp: int = 0
 @export var gold: int = 0
 @export var level_up_xp: int = 50 * (2 ** lvl)
 @export var mag: int = 0
 @export var level_stats: Array = []
 
+## LOGIC VARIABLES
+@export var speed = 50.0
+
+## STATES
 var active_selection
 var chosen_option: bool = false
 
+## SIGNALS
+signal object_hit(object_type)
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	ally = 1
 	sp = max_sp
 	super()
 	_display_skills()
 	_display_items()
+	
 
-func _update_sp_bar():
-	if sp_bar:
-		sp_bar.value = (sp / max_sp) * 100
-		sp_bar_text.text = str(sp, ' / ', max_sp)
-
-func restore():
-	sp += stats['END'] * 2
-	if sp > max_sp:
-		sp = max_sp
-
-#func act(action: str, inst: str, target):
-	#x = super().act(action, inst, target)
-	#if x:
-		#return x
-	#if action == 'Items':
-		#return use_items(inst, target)
-	#return x
+func _physics_process(delta):
+	# Get input direction
+	var direction = Vector2()
+	direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
+	
+	if direction.length():
+		direction = direction.normalized()
+		velocity = direction * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.y = move_toward(velocity.y, 0, speed)
+	
+	move_and_slide()
 
 
+
+
+## MODIFY PROPERTIES
 func update_stats():
 	var current_max = [max_hp, max_sp]
 
@@ -90,24 +98,13 @@ func level_up(value):
 	_display_skills()
 
 
-func status():
-	super.status()
-	if sp < 0:
-		status_effect = 'EnExhaust'
-	if status_effect == 'EnExhaust':
-		sp -= max_sp / 4
 
-func move(map: Node):
-	var x = map.player_pos[0]
-	var y = map.player_pos[1]
-	if Input.is_action_just_pressed("ui_down"):
-		map.player_pos = [x, y - 1]
-	if Input.is_action_just_pressed("ui_down"):
-		map.player_pos = [x, y + 1]
-	if Input.is_action_just_pressed("ui_down"):
-		map.player_pos = [x - 1, y]
-	if Input.is_action_just_pressed("ui_down"):
-		map.player_pos = [x + 1, y]
+## CHILD NODE FUNCTIONS
+### SP
+func _update_sp_bar():
+	if sp_bar:
+		sp_bar.value = (sp / max_sp) * 100
+		sp_bar_text.text = str(sp, ' / ', max_sp)
 
 func consume_sp(value: float):
 	#print('sp', sp)
@@ -119,6 +116,7 @@ func consume_sp(value: float):
 	return true
 
 
+### SKILLS
 func _display_skills():
 	skill_menu.clear()
 	for i in get_skills():
@@ -128,7 +126,12 @@ func show_skill_menu():
 	skill_menu.show()
 	skill_menu.grab_focus()
 
+func _on_skill_list_activated(index: int) -> void:
+	active_selection = index
+	chosen_option = true
 
+
+### ITEMS
 func _display_items():
 	item_menu.clear()
 	var _items = get_items()
@@ -144,11 +147,36 @@ func use_item(item_name, target):
 	super.use_item(item_name, target)
 	_display_items()
 
+func _on_item_list_activated(index: int) -> void:
+	active_selection = item_menu.get_item_text(index)
+	chosen_option = true
+
+
+### UI DISPLAYS
 func reset_menu():
 	item_menu.hide()
 	skill_menu.hide()
 	active_selection = null
 	chosen_option = false
+
+func dungeon_display():
+	super.dungeon_display()
+	sp_bar.hide()
+
+
+
+## END OF TURN EFFECTS
+func restore():
+	sp += stats['END'] * 2
+	if sp > max_sp:
+		sp = max_sp
+
+func status():
+	super.status()
+	if sp < 0:
+		status_effect = 'EnExhaust'
+	if status_effect == 'EnExhaust':
+		sp -= max_sp / 4
 
 func die():
 	print('And so you fall, your journey never to be completed')
@@ -156,16 +184,12 @@ func die():
 ## Add death screen and shit
 
 
+## MISC SIGNALS
 func _on_gear_gear_change() -> void:
 	update_stats()
 	#print(stats, hp, max_hp, sp, max_sp)
 
 
-func _on_skill_list_activated(index: int) -> void:
-	active_selection = index
-	chosen_option = true
-
-
-func _on_item_list_activated(index: int) -> void:
-	active_selection = item_menu.get_item_text(index)
-	chosen_option = true
+func _on_detector_object_hit(object_type: Variant) -> void:
+	print(object_type, ' hit')
+	emit_signal('object_hit', object_type)

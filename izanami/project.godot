@@ -33,6 +33,8 @@ auto_rebuild=true
 2d_physics/layer_1="Walls"
 2d_physics/layer_2="Chests"
 2d_physics/layer_3="Entry/Exit"
+2d_physics/layer_4="Player"
+2d_physics/layer_5="Enemies"
 
 [rendering]
 

@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqykicfu0u1ug"]
+[gd_scene load_steps=8 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_etuff"]
 [ext_resource type="Script" path="res://Scripts/gear.gd" id="5_k34jo"]
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="5_yd6jm"]
+[ext_resource type="Script" path="res://Scripts/detector.gd" id="6_g43wq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mmjfn"]
+radius = 9.0
 
 [node name="Player" instance=ExtResource("1_ll1t0")]
 script = ExtResource("2_lj72d")
@@ -15,9 +19,10 @@ gold = 0
 level_up_xp = null
 mag = 0
 level_stats = []
+speed = 50.0
 
-[node name="Pointer" parent="." index="3"]
-visible = false
+[node name="DungeonSprite" parent="." index="1"]
+texture = ExtResource("5_yd6jm")
 
 [node name="SPBar" type="ProgressBar" parent="." index="4"]
 offset_left = -53.0
@@ -48,6 +53,9 @@ player_gear_data = ExtResource("4_etuff")
 
 [node name="Inventory" type="Node" parent="." index="6"]
 
+[node name="Pointer" parent="." index="7"]
+visible = false
+
 [node name="SkillList" type="ItemList" parent="Skills" index="0"]
 visible = false
 anchors_preset = -1
@@ -74,9 +82,15 @@ offset_bottom = 163.888
 max_columns = 2
 fixed_column_width = 50
 
-[node name="DungeonSprite" parent="." index="10"]
-texture = ExtResource("5_yd6jm")
+[node name="Detector" type="Area2D" parent="." index="11"]
+script = ExtResource("6_g43wq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0"]
+position = Vector2(3, 7)
+shape = SubResource("CircleShape2D_mmjfn")
 
 [connection signal="gear_change" from="Gear" to="." method="_on_gear_gear_change"]
 [connection signal="item_activated" from="Skills/SkillList" to="." method="_on_skill_list_activated"]
 [connection signal="item_activated" from="Items/ItemList" to="." method="_on_item_list_activated"]
+[connection signal="body_shape_entered" from="Detector" to="Detector" method="_on_body_shape_entered"]
+[connection signal="object_hit" from="Detector" to="." method="_on_detector_object_hit"]

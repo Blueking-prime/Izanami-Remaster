@@ -25,16 +25,8 @@ var _item_drops = []
 @export var enemy_types: Array = []
 
 @export var player_pos: Array:
-	#get():
-		#return [player.position.x, player.position.y]
-	set(coords):
-		if (coords[0] < 0 or coords[0] >= width) or (coords[1] < 0 or coords[1] >= height):
-			print('Out of Bounds!')
-		elif coords in map.walls:
-			print("There's a wall in the way")
-		else:
-			player.position = Vector2i(coords[0], coords[1])
-			player_pos = coords
+	get():
+		return [player.position.x / 16, player.position.y / 16]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -45,36 +37,8 @@ func _ready() -> void:
 
 	map.display_dungeon()
 
-func _process(_delta: float) -> void:
-	#player.move(map)
-	check_tile()
 
-#func main(player):
-	#print('-------------------------------------')
-	#print("LEGEND")
-	#print("%s = Player" % [legend[2]])
-	#print("%s = Treasure" % [legend[3]])
-	#print("%s = Wall" % [legend[4]])
-	#print("%s = Exit" % [legend[1]])
-	#print("Use 'w', 'a', 's', and 'd' to move")
-#
-	#while not exit_flag:
-		##var x = input('direction? ')
-		##player.move(x)
-		#print('-------------------------------------')
-
-
-func check_tile():
-	if player_pos in map.filled_coords:
-		if player_pos == map.stop:
-			exit_dungeon()
-		elif player_pos in map.treasure_tiles:
-			collect_treasure()
-		elif player_pos in map.enemy_tiles:
-			initiate_battle()
-		else:
-			pass
-
+## EXIT LOGIC
 func exit_dungeon():
 	var x = Global.dialog_choice("Do you want to leave the Dungeon?", false)
 	if x:
@@ -86,11 +50,14 @@ func exit_dungeon():
 		i.free()
 
 
+
+
+## TREASURE LOGIC
 func _load_items():
 	_gear_drops = gear_drop_group.load_all()
 	_item_drops = item_drop_group.load_all()
-	
-	
+
+
 func collect_treasure():
 	var x
 	var index
@@ -112,6 +79,8 @@ func collect_treasure():
 	map.display_dungeon()
 
 
+
+## BATTLE LOGIC
 func initiate_battle():
 	var n = 1 + Global.rand_spread(enemy_spawn_chance, 3)
 	var index
