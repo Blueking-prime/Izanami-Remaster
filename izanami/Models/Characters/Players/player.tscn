@@ -19,7 +19,7 @@ gold = 0
 level_up_xp = null
 mag = 0
 level_stats = []
-speed = 50.0
+speed = 150.0
 
 [node name="DungeonSprite" parent="." index="1"]
 texture = ExtResource("5_yd6jm")
@@ -93,4 +93,3 @@ shape = SubResource("CircleShape2D_mmjfn")
 [connection signal="item_activated" from="Skills/SkillList" to="." method="_on_skill_list_activated"]
 [connection signal="item_activated" from="Items/ItemList" to="." method="_on_item_list_activated"]
 [connection signal="body_shape_entered" from="Detector" to="Detector" method="_on_body_shape_entered"]
-[connection signal="object_hit" from="Detector" to="." method="_on_detector_object_hit"]

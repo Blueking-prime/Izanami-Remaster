@@ -6,6 +6,8 @@ extends TileMapLayer
 
 @export var treasure_atlas_coords: Vector2i
 @export var treasure_source_id: int
+@export var treasure_opened_atlas_coords: Vector2i
+@export var treasure_opened_source_id: int
 @export var entrance_atlas_coords: Vector2i
 @export var entrance_source_id: int
 @export var exit_atlas_coords: Vector2i
@@ -105,3 +107,14 @@ func _render_exit():
 
 func _render_enemies():
 	pass
+
+
+func _swap_chest_state(coords):
+		set_cell(
+			coords,
+			treasure_opened_source_id,
+			treasure_opened_atlas_coords
+		)
+
+func _on_detector_hit_chest(coords) -> void:
+	_swap_chest_state(coords)

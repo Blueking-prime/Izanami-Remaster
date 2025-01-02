@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ck8bsrl8idlci"]
+[gd_scene load_steps=15 format=3 uid="uid://ck8bsrl8idlci"]
 
 [ext_resource type="Script" path="res://Scripts/dungeon.gd" id="1_cwupn"]
+[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_ur1yd"]
 [ext_resource type="Script" path="res://Scripts/dungeon_map.gd" id="2_y54nv"]
 [ext_resource type="Texture2D" uid="uid://jau6vpcqyha4" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_.png" id="3_81fwx"]
+[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="3_hvtat"]
 [ext_resource type="Texture2D" uid="uid://bf8ixj6j10mqx" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_ [resources].png" id="3_vnavp"]
 [ext_resource type="Texture2D" uid="uid://cmmt3ba4u5yo7" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="3_y31a5"]
 [ext_resource type="Script" path="res://Scenes/floor.gd" id="4_3yl0k"]
@@ -513,6 +515,8 @@ script = ExtResource("1_cwupn")
 player = NodePath("ObjectsSort/Player")
 width = 30
 height = 15
+item_drop_group = ExtResource("2_ur1yd")
+gear_drop_group = ExtResource("3_hvtat")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(527, 263)
@@ -520,7 +524,6 @@ scale = Vector2(0.68365, 0.68365)
 
 [node name="Map" type="Node" parent="."]
 script = ExtResource("2_y54nv")
-treasure_spawn_chance = 0.9
 max_treasure_no = 10
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -537,6 +540,7 @@ top_level = true
 y_sort_enabled = true
 collision_layer = 16
 collision_mask = 63
+speed = 150.0
 
 [node name="Walls" type="TileMapLayer" parent="ObjectsSort"]
 y_sort_enabled = true
@@ -546,6 +550,13 @@ collision_visibility_mode = 1
 script = ExtResource("4_kgaeo")
 treasure_atlas_coords = Vector2i(1, 5)
 treasure_source_id = 2
+treasure_opened_atlas_coords = Vector2i(2, 5)
+treasure_opened_source_id = 2
 entrance_atlas_coords = Vector2i(2, 2)
 exit_atlas_coords = Vector2i(3, 2)
 wall_terrain_set = 1
+
+[connection signal="hit_chest" from="ObjectsSort/Player/Detector" to="." method="_on_detector_hit_chest"]
+[connection signal="hit_chest" from="ObjectsSort/Player/Detector" to="ObjectsSort/Walls" method="_on_detector_hit_chest"]
+
+[editable path="ObjectsSort/Player"]

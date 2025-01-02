@@ -3,10 +3,11 @@ extends Node
 @onready var width: int = get_parent().width
 @onready var height: int = get_parent().height
 @onready var enemy_spawn_chance: float = get_parent().enemy_spawn_chance
-@onready var legend: Array = get_parent().legend
+@onready var treasure_spawn_chance: float = get_parent().treasure_spawn_chance
+
 @onready var player_pos = get_parent().player_pos
 
-@export var treasure_spawn_chance: float = 0.2
+@export var legend: Array = ['I', 'O', '*', 'T', '█']
 @export var max_treasure_no: int = 5
 
 var start = []

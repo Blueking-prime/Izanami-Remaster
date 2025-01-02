@@ -35,7 +35,9 @@ var active_selection
 var chosen_option: bool = false
 
 ## SIGNALS
-signal object_hit(object_type)
+#signal hit_chest
+#signal hit_enemy
+#signal hit_exit
 
 
 func _ready() -> void:
