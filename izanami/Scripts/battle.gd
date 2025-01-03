@@ -1,5 +1,9 @@
 extends Node2D
 
+@export var no_of_enemies: int
+@export var enemy_group: ResourceGroup
+
+
 var actors: Array = []
 var turn_order: Array = []
 var enemy_array: Array = []
@@ -17,7 +21,8 @@ var turncount = 1
 @onready var enemies = $Enemies
 
 func _ready() -> void:
-	player_array = players.players
+	_player_party_setup()
+	player_array = players.party
 	enemy_array = enemies.enemies
 	actors = player_array + enemy_array
 	turn_order = actors.slice(0)
@@ -55,6 +60,11 @@ func _process(_delta: float) -> void:
 		current_player.chosen_option = false
 		targetting = true
 		_start_choosing()
+
+func _player_party_setup():
+	players.action_menu = choice
+	players.battle_setup()
+	
 
 func _action():
 	print(current_player, ' is acting')
@@ -178,10 +188,3 @@ func use_run():
 
 func use_items():
 	current_player.use_item(current_player.active_selection, actors[index])
-
-
-#func rand_chance(chance: float) -> bool:
-	#if randf() < chance:
-		#return true
-	#else:
-		#return false

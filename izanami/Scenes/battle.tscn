@@ -1,27 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://deahjbvovxuvn"]
+[gd_scene load_steps=5 format=3 uid="uid://deahjbvovxuvn"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_ivyfm"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_a6unq"]
 [ext_resource type="Script" path="res://Scripts/enemy_side_battle.gd" id="2_cdpmu"]
-[ext_resource type="Script" path="res://Scripts/player_side_battle.gd" id="4_n0p7c"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
-[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="5_puib7"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_ivyfm")
+no_of_enemies = 4
+enemy_group = ExtResource("5_6mwjl")
 
-[node name="Players" type="Node2D" parent="."]
-script = ExtResource("4_n0p7c")
-
-[node name="Player" parent="Players" instance=ExtResource("5_puib7")]
-position = Vector2(239, 72)
-
-[node name="Player2" parent="Players" instance=ExtResource("5_puib7")]
-position = Vector2(239, 72)
+[node name="Players" parent="." instance=ExtResource("2_a6unq")]
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_cdpmu")
-no_of_enemies = 4
-enemy_group = ExtResource("5_6mwjl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

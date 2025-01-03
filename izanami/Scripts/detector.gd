@@ -29,4 +29,4 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 	if body is TileMapLayer:
 		_process_tile_collison(body, body_rid)
 	if body is Enemy:
-		emit_signal('hit_enemy', body)
+		hit_enemy.emit(body)

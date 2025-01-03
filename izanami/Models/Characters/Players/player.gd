@@ -9,6 +9,7 @@ class_name Player
 @onready var inventory: Node = $Inventory
 @onready var skill_menu: ItemList = $Skills/SkillList
 @onready var item_menu: ItemList = $Items/ItemList
+@onready var detector: Area2D = $Detector
 
 ## DYNAMIC PROPERTIES
 @export var max_sp: float:

@@ -39,6 +39,8 @@ func _ready() -> void:
 	#chests = [[6, 0], [5, 6], [28, 3], [12, 4], [26, 5]]
 	#print('walls = ', walls)
 	
+	player.detector.hit_chest.connect(_on_detector_hit_chest)
+	
 	_render_treasure_chests()
 	_render_inner_walls()
 	_render_outer_walls()

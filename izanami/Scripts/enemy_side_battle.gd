@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var no_of_enemies: int = 1
-@export var enemy_group: ResourceGroup 
+@onready var no_of_enemies: int = get_parent().no_of_enemies
+@onready var enemy_group: ResourceGroup  = get_parent().enemy_group
 
 var enemies: Array = []
 var _enemy_set = []

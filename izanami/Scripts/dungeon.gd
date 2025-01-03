@@ -41,6 +41,9 @@ var player_pos: Array:
 func _ready() -> void:
 	_load_items()
 	#_load_enemies()
+	
+	player.detector.hit_chest.connect(_on_detector_hit_chest)
+	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
 
 	map.display_dungeon()
 
@@ -101,9 +104,8 @@ func initiate_battle():
 	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, 4)
 	
 	var battle = battle_scene.instantiate()
-	
+	player.in_battle = true
 	add_sibling(battle)
-	#battle.battle(player, enemy_list)
 
 
 func _on_detector_hit_enemy(body: Variant) -> void:
