@@ -8,6 +8,7 @@ var dungeon_sample = [
 	["█", "█", "█", "-", "-", "█", "█", "█"]
 ]
 
+@onready var battle_scene: PackedScene = preload("res://Scenes/battle.tscn")
 
 ## CHILD NODES
 @onready var map = $Map
@@ -16,20 +17,21 @@ var dungeon_sample = [
 ## MAP PROPERTIES
 @export var width: int = 8
 @export var height: int = 5 
-@export var enemy_types: Array = []
+@export var enemy_types: ResourceGroup
 
 ## DROPS
 @export var item_drop_group: ResourceGroup
 @export var gear_drop_group: ResourceGroup
 var _gear_drops = []
-var _item_drops = []
+var _item_drops = [] 
 
 ## DROP RATES
 @export var enemy_spawn_chance: float = 0.8
 @export var treasure_spawn_chance: float = 0.2
 @export var gear_chance: float = 0.5
 
-
+## WORKING VARIABLES
+var _enemy_set
 var player_pos: Array:
 	get():
 		return [player.position.x / 16, player.position.y / 16]
@@ -37,8 +39,8 @@ var player_pos: Array:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	enemy_types = [enemy_types]
 	_load_items()
+	#_load_enemies()
 
 	map.display_dungeon()
 
@@ -92,11 +94,19 @@ func _on_detector_hit_chest(coords) -> void:
 
 
 ## BATTLE LOGIC
-func initiate_battle():
-	var n = 1 + Global.rand_spread(enemy_spawn_chance, 3)
-	var index
-	for i in range(n):
-		index = randi_range(0, len(enemy_types) - 1)
-		map.enemy_list.append(enemy_types[index])
+func _load_enemies():
+	_enemy_set = enemy_types.load_all()
 
+func initiate_battle():
+	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, 4)
+	
+	var battle = battle_scene.instantiate()
+	
+	add_sibling(battle)
 	#battle.battle(player, enemy_list)
+
+
+func _on_detector_hit_enemy(body: Variant) -> void:
+	print(body)
+	initiate_battle()
+	body.queue_free()

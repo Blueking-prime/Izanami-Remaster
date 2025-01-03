@@ -48,6 +48,7 @@ func place_charscters():
 		if x_coord < 0:
 			x_coord = screen_size.x + x_coord
 		
+		enemies[i].battle_display()
 		enemies[i].position = Vector2(x_coord + screen_size.x, y_coord)
 		print(enemies[i].name, enemies[i].position)
 	

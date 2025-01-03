@@ -9,28 +9,27 @@
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="7_eqn43"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
-radius = 6.08276
+radius = 7.0
 
 [node name="Base Character" type="CharacterBody2D"]
 position = Vector2(241, 131)
 script = ExtResource("1_e6dxp")
 
 [node name="BattleSprite" type="Sprite2D" parent="."]
-position = Vector2(6, 2)
 texture = ExtResource("2_au5i3")
 
 [node name="DungeonSprite" type="Sprite2D" parent="."]
-position = Vector2(3, 2)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_au5i3")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(3, 7)
 shape = SubResource("CircleShape2D_xiiub")
 
 [node name="HPBar" type="ProgressBar" parent="."]
-offset_left = -54.0
-offset_top = 74.0
-offset_right = 64.0
-offset_bottom = 101.0
+offset_left = -59.0
+offset_top = 69.0
+offset_right = 59.0
+offset_bottom = 96.0
 value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
@@ -51,7 +50,7 @@ grow_vertical = 2
 
 [node name="Pointer" type="Sprite2D" parent="."]
 texture_filter = 2
-position = Vector2(6, -95)
+position = Vector2(-1, -94)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_thvh2")
 
@@ -64,13 +63,12 @@ script = ExtResource("6_4tgcu")
 item_group = ExtResource("7_eqn43")
 
 [node name="NameTag" type="Label" parent="."]
-offset_left = -54.0
-offset_top = -98.0
-offset_right = 66.0
-offset_bottom = -75.0
+offset_left = -60.0
+offset_top = -90.0
+offset_right = 60.0
+offset_bottom = -67.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2
-metadata/_edit_use_anchors_ = true

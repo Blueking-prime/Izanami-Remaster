@@ -33,6 +33,7 @@ class_name Player
 ## STATES
 var active_selection
 var chosen_option: bool = false
+var in_battle: bool = false
 
 ## SIGNALS
 #signal hit_chest
@@ -49,18 +50,19 @@ func _ready() -> void:
 	
 
 func _physics_process(delta):
-	# Get input direction
-	var direction = Vector2()
-	direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
-	
-	if direction.length():
-		direction = direction.normalized()
-		velocity = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.y = move_toward(velocity.y, 0, speed)
-	
-	move_and_slide()
+	# Get input 
+	if not in_battle:
+		var direction = Vector2()
+		direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
+		
+		if direction.length():
+			direction = direction.normalized()
+			velocity = direction * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.y = move_toward(velocity.y, 0, speed)
+		
+		move_and_slide()
 
 
 
@@ -165,6 +167,9 @@ func dungeon_display():
 	super.dungeon_display()
 	sp_bar.hide()
 
+func battle_display():
+	super.battle_display()
+	sp_bar.show()
 
 
 ## END OF TURN EFFECTS

@@ -540,7 +540,31 @@ top_level = true
 y_sort_enabled = true
 collision_layer = 16
 collision_mask = 63
-speed = 150.0
+
+[node name="BattleSprite" parent="ObjectsSort/Player" index="0"]
+position = Vector2(6, 2)
+
+[node name="DungeonSprite" parent="ObjectsSort/Player" index="1"]
+position = Vector2(3, 2)
+
+[node name="Hitbox" parent="ObjectsSort/Player" index="2"]
+position = Vector2(3, 7)
+
+[node name="HPBar" parent="ObjectsSort/Player" index="3"]
+offset_left = -54.0
+offset_top = 74.0
+offset_right = 64.0
+offset_bottom = 101.0
+
+[node name="Pointer" parent="ObjectsSort/Player" index="7"]
+position = Vector2(6, -95)
+
+[node name="NameTag" parent="ObjectsSort/Player" index="10"]
+offset_left = -54.0
+offset_top = -98.0
+offset_right = 66.0
+offset_bottom = -75.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Walls" type="TileMapLayer" parent="ObjectsSort"]
 y_sort_enabled = true
@@ -558,5 +582,6 @@ wall_terrain_set = 1
 
 [connection signal="hit_chest" from="ObjectsSort/Player/Detector" to="." method="_on_detector_hit_chest"]
 [connection signal="hit_chest" from="ObjectsSort/Player/Detector" to="ObjectsSort/Walls" method="_on_detector_hit_chest"]
+[connection signal="hit_enemy" from="ObjectsSort/Player/Detector" to="." method="_on_detector_hit_enemy"]
 
 [editable path="ObjectsSort/Player"]

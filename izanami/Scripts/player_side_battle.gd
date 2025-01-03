@@ -42,6 +42,8 @@ func place_characters():
 
 func place_menu():
 	for i in players:
+		i.battle_display()
+		i.in_battle = true
 		i.item_menu.size = action_menu.size + Vector2(100, 0)
 		i.item_menu.position = action_menu.position + Vector2(140, 0)
 		i.skill_menu.size = action_menu.size + Vector2(100, 0)

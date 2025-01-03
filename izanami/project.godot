@@ -19,6 +19,7 @@ config/icon="res://Assets/icon.svg"
 
 Global="*res://Scripts/global.gd"
 Inventory="*res://Scripts/inventory.gd"
+Stats="*res://Scripts/stats.gd"
 
 [editor_plugins]
 
