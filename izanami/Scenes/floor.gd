@@ -26,5 +26,5 @@ func _render_background_floor():
 				Vector2i(2 * x + 1, 2 * y),
 				Vector2i(2 * x + 1, 2 * y + 1)
 				])
-				
+
 	set_cells_terrain_connect(all_tiles, terrain_set, terrain_id)

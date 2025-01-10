@@ -21,6 +21,10 @@ Global="*res://Scripts/global.gd"
 Inventory="*res://Scripts/inventory.gd"
 Stats="*res://Scripts/stats.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")

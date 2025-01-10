@@ -1,7 +1,10 @@
 extends Node2D
 
+class_name Battle
+
 @export var no_of_enemies: int
 @export var enemy_group: ResourceGroup
+@export var players: Node
 
 
 var actors: Array = []
@@ -15,9 +18,10 @@ var current_player
 var targetting: bool = false
 var flag: StringName
 var turncount = 1
+var earned_exp: int
+var dungeon: Dungeon
 
 @onready var choice = $CanvasLayer/Actions
-@onready var players = $Players
 @onready var enemies = $Enemies
 
 func _ready() -> void:
@@ -28,7 +32,7 @@ func _ready() -> void:
 	turn_order = actors.slice(0)
 	turn_order.sort_custom(func(a, b): return a.stats['AGI'] > b.stats['AGI'])
 	#print(turn_order)
-	
+
 
 func _process(_delta: float) -> void:
 	if targetting:
@@ -49,7 +53,7 @@ func _process(_delta: float) -> void:
 				switch_focus(index, actors.size() - 1)
 		if Input.is_action_just_pressed("ui_accept"):
 			_action()
-	
+
 	if Input.is_action_just_pressed('ui_cancel') and current_player == turn_order[idx]:
 		current_player.reset_menu()
 		show_choice()
@@ -61,10 +65,14 @@ func _process(_delta: float) -> void:
 		targetting = true
 		_start_choosing()
 
+	if not len(enemy_array):
+		exit_battle("win")
+
 func _player_party_setup():
+	players.show()
 	players.action_menu = choice
 	players.battle_setup()
-	
+
 
 func _action():
 	print(current_player, ' is acting')
@@ -75,7 +83,7 @@ func _action():
 		'Items': use_items()
 		'Guard': use_guard()
 		'Run': use_run()
-		
+
 	is_battling = false
 	targetting = true
 	current_player.reset_menu()
@@ -106,7 +114,7 @@ func act(actor: Base_Character):
 			is_battling = true
 			current_player = actor
 			show_choice()
-		
+
 		#actor.unfocus()
 
 
@@ -114,11 +122,21 @@ func _advance_actor():
 	_reset_focus()
 	idx += 1
 	if idx >= actors.size():
-		idx = 0
-		turncount += 1
-		for i in player_array:
-			i.restore()
+		end_turn()
 
+func end_turn():
+	idx = 0
+	turncount += 1
+	for i in player_array:
+		i.restore()
+
+	for i in enemy_array:
+		if not i.alive:
+			earned_exp += i.exp_drop()
+			enemy_array.erase(i)
+			turn_order.erase(i)
+			actors.erase(i)
+			i.queue_free()
 
 func switch_focus(x, y):
 	actors[x].focus()
@@ -127,7 +145,7 @@ func switch_focus(x, y):
 func show_choice():
 	targetting = false
 	choice.find_child("Attack").grab_focus()
-	
+
 func _reset_focus():
 	index = 0
 	for actor in actors:
@@ -176,15 +194,28 @@ func use_run():
 	var enemy_speed_array = []
 	for i in enemy_array:
 		enemy_speed_array.append(i.stats['AGI'])
-	
+
 	var max_enemy_speed = enemy_speed_array.max()
 	if max_enemy_speed < 1:
 		max_enemy_speed = 1
 
 	if Global.rand_chance(current_player.stats['AGI'] / max_enemy_speed):
 		print('You escaped')
+		exit_battle("run")
 	else:
 		print('You failed to escape')
 
 func use_items():
 	current_player.use_item(current_player.active_selection, actors[index])
+
+func exit_battle(exit_type: StringName):
+	print(earned_exp, ": EARNED")
+	if exit_type == "run":
+		pass
+	elif exit_type == "win":
+		players.level_up(earned_exp)
+
+	if dungeon:
+		dungeon.reset_from_battle()
+	players.battle_reset()
+	queue_free()

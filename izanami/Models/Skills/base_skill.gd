@@ -33,7 +33,7 @@ func action(obj: Base_Character, target: Base_Character):
 	for stat in obj.stats:
 		if stat in stats:
 			stat_total += obj.stats[stat]
-	
+
 	print(stat_total)
 	if Global.rand_chance(crit_chance):
 		print('CRIT!')

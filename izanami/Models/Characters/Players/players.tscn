@@ -1,13 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk5618o5l67d5"]
 
-[ext_resource type="Script" path="res://Scripts/player_side_battle.gd" id="1_m2oad"]
+[ext_resource type="Script" path="res://Models/Characters/Players/players.gd" id="1_m2oad"]
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="2_eydhy"]
 
 [node name="Players" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_m2oad")
 
 [node name="Player" parent="." instance=ExtResource("2_eydhy")]
+y_sort_enabled = true
 position = Vector2(239, 72)
 
 [node name="Player2" parent="." instance=ExtResource("2_eydhy")]
-position = Vector2(239, 72)
+y_sort_enabled = true
+position = Vector2(402, 72)
+
+[editable path="Player"]
+[editable path="Player2"]

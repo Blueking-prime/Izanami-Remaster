@@ -13,7 +13,7 @@ func _ready() -> void:
 	width = map.width
 	height = map.height
 	walls = map.walls
-	
+
 	_render_inner_walls()
 	_render_outer_walls()
 
@@ -33,7 +33,7 @@ func _render_outer_walls():
 			Vector2i(i    , 2 * height),
 			Vector2i(i + 1, 2 * height)
 		])
-	
+
 	set_cells_terrain_connect(outer_walls, 1, 0, false)
 
 func _render_inner_walls():
@@ -49,5 +49,5 @@ func _render_inner_walls():
 				Vector2i(2 * x + 1, 2 * y),
 				Vector2i(2 * x + 1, 2 * y + 1)
 				])
-	
+
 	set_cells_terrain_connect(walls_vector_array, 1, 0, false)

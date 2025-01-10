@@ -17,15 +17,15 @@ func use_skill(skill_id, target):
 func gold_drop():
 	var sum = 0
 	for i in stats:
-		sum += i.value
-	
+		sum += stats[i]
+
 	return sum * 10
 
 func exp_drop():
 	var sum = 0
 	for i in stats:
-		sum += i.value
-	
+		sum += stats[i]
+
 	return sum * 9
 
 func die():

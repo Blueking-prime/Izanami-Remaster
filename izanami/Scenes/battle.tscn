@@ -1,21 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://deahjbvovxuvn"]
+[gd_scene load_steps=6 format=3 uid="uid://deahjbvovxuvn"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_ivyfm"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_a6unq"]
 [ext_resource type="Script" path="res://Scripts/enemy_side_battle.gd" id="2_cdpmu"]
+[ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="3_x5jg1"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("players")]
+z_index = 3
 script = ExtResource("1_ivyfm")
-no_of_enemies = 4
+no_of_enemies = 2
 enemy_group = ExtResource("5_6mwjl")
-
-[node name="Players" parent="." instance=ExtResource("2_a6unq")]
-
-[node name="Enemies" type="Node2D" parent="."]
-script = ExtResource("2_cdpmu")
+players = NodePath("Players")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+show_behind_parent = true
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_x5jg1")
 
 [node name="Actions" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
@@ -49,6 +55,12 @@ text = "Guard"
 [node name="Run" type="Button" parent="CanvasLayer/Actions"]
 layout_mode = 2
 text = "Run"
+
+[node name="Players" parent="." instance=ExtResource("2_a6unq")]
+visible = false
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("2_cdpmu")
 
 [connection signal="pressed" from="CanvasLayer/Actions/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Actions/Skills" to="." method="_on_skills_pressed"]

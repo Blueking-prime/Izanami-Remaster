@@ -510,17 +510,14 @@ sources/1 = SubResource("TileSetAtlasSource_gx82d")
 sources/2 = SubResource("TileSetAtlasSource_w13t1")
 sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
-[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("players")]
 script = ExtResource("1_cwupn")
-player = NodePath("Players/Player")
+players = NodePath("ObjectsSort/Players")
 width = 30
 height = 15
+MAX_ENEMIES = 1
 item_drop_group = ExtResource("2_ur1yd")
 gear_drop_group = ExtResource("3_hvtat")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(527, 263)
-scale = Vector2(0.68365, 0.68365)
 
 [node name="Map" type="Node" parent="."]
 script = ExtResource("2_y54nv")
@@ -531,11 +528,12 @@ z_index = -5
 tile_set = SubResource("TileSet_c3q0b")
 script = ExtResource("4_3yl0k")
 
-[node name="Players" parent="." instance=ExtResource("4_ndjag")]
-
 [node name="ObjectsSort" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(241, 131)
+
+[node name="Players" parent="ObjectsSort" instance=ExtResource("4_ndjag")]
+position = Vector2(-241, -131)
 
 [node name="Walls" type="TileMapLayer" parent="ObjectsSort"]
 y_sort_enabled = true
@@ -550,5 +548,3 @@ treasure_opened_source_id = 2
 entrance_atlas_coords = Vector2i(2, 2)
 exit_atlas_coords = Vector2i(3, 2)
 wall_terrain_set = 1
-
-[editable path="Players"]

@@ -127,3 +127,11 @@ func dialog_choice_shop(_prompt: String, _choices: Dictionary):
 			#print('Invalid option!')
 			#continue
 	pass
+
+## FUNCTON TESTS
+func rand_spread_test():
+	var n
+	for i in 1000:
+		n = rand_spread(0.5, 4)
+		if n > 4:
+			print(n)

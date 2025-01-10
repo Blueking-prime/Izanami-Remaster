@@ -12,11 +12,11 @@ class_name Player
 @onready var detector: Area2D = $Detector
 
 ## DYNAMIC PROPERTIES
-@export var max_sp: float:
+@export var max_sp: int:
 	get():
 		return (stats['AGI'] + stats['END']) * 3
 
-@export var sp: float:
+@export var sp: int:
 	set(value):
 		sp = value
 		_update_sp_bar()
@@ -48,21 +48,21 @@ func _ready() -> void:
 	super()
 	_display_skills()
 	_display_items()
-	
 
-func _physics_process(delta):
-	# Get input 
+
+func _physics_process(_delta):
+	# Get input
 	if not in_battle:
 		var direction = Vector2()
 		direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
-		
+
 		if direction.length():
 			direction = direction.normalized()
 			velocity = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			velocity.y = move_toward(velocity.y, 0, speed)
-		
+
 		move_and_slide()
 
 
@@ -83,9 +83,11 @@ func update_derived_stats(current_max: Array):
 
 func level_up(value):
 	xp += value
+	print(name, " gained ", xp, "EXP")
 	if xp < level_up_xp:
 		return
 
+	print(name, " leveled up!")
 	var current_max = [max_hp, max_sp]
 	var curr_stats = base_stats
 
@@ -94,7 +96,7 @@ func level_up(value):
 
 	for i in level_stats:
 		curr_stats[i] += 1
-	
+
 	base_stats = curr_stats
 
 	update_derived_stats(current_max)

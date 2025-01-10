@@ -85,6 +85,7 @@ offset_left = 147.472
 offset_top = 61.888
 offset_right = 279.472
 offset_bottom = 163.888
+auto_height = true
 max_columns = 2
 fixed_column_width = 50
 

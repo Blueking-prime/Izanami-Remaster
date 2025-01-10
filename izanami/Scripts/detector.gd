@@ -14,7 +14,7 @@ func _process_tile_collison(body: Node2D, body_rid: RID):
 	collided_tile_coords = body.get_coords_for_body_rid(body_rid)
 	tile_data = body.get_cell_tile_data(collided_tile_coords)
 	var mask = tile_data.get_custom_data_by_layer_id(0)
-	
+
 	_update_tile_collision(mask)
 
 

@@ -3,7 +3,7 @@ class_name Item
 extends Resource
 
 @export var name: StringName
-@export var type: StringName 
+@export var type: StringName
 @export var value: int = 0
 @export var boost: Array = [1, 1]
 @export var status_effect: Array

@@ -18,11 +18,11 @@ extends CharacterBody2D
 var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
 @export var stats: Dictionary = base_stats
 
-@export var max_hp: float:
+@export var max_hp: int:
 	get():
 		return (base_stats['END'] * 10) + (base_stats['WIS'] * 3) + (lvl * 15)
 
-@export var hp: float:
+@export var hp: int:
 	set(value):
 		hp = value
 		#print(hp, ' ', value, ' ', max_hp)
@@ -40,11 +40,11 @@ var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, 
 func _ready() -> void:
 	#stats = base_stats
 	#print(base_stats, ' ', stats)
-	
+
 	hp = max_hp
 	pointer.set_position(Vector2(0, -130))
 	nametag.text = name
-	
+
 	#if ally > 0:
 		#pointer.set_texture(load("res://Assets/right_arrow.svg"))
 	#else:
@@ -76,7 +76,7 @@ func battle_display():
 
 func focus():
 	$Pointer.show()
-	
+
 func unfocus():
 	$Pointer.hide()
 

@@ -16,7 +16,7 @@ func _ready() -> void:
 	#height = map.height
 	chests = map.treasure_tiles
 	chests = [[6, 0], [5, 6], [28, 3], [12, 4], [26, 5]]
-	
+
 	_render_treasure_chests()
 
 func _render_treasure_chests():

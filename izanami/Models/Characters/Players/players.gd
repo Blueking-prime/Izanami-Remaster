@@ -3,8 +3,10 @@ extends Node2D
 var party: Array = []
 var leader: Player
 var index: int = 0
+var stored_pos: Vector2
 
 @export var action_menu: VBoxContainer
+@export var source: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,12 +16,27 @@ func _ready() -> void:
 
 ## BATTLE SCENE
 func battle_setup():
+	stored_pos = leader.position
+	z_index += 1
+
 	for i in party:
+		i.show()
 		i.battle_display()
 		i.in_battle = true
-	
+
 	place_menu()
 	place_characters_in_battle()
+
+func battle_reset():
+	leader.position = stored_pos
+	z_index -= 1
+
+	for i in party:
+		i.dungeon_display()
+		i.hide()
+		i.in_battle = false
+
+	leader.show()
 
 
 func place_characters_in_battle():
@@ -46,10 +63,9 @@ func place_characters_in_battle():
 		x_coord = round(((screen_size.x / party_size) * i) + hor_offset) * party[i].ally
 		if x_coord < 0:
 			x_coord = screen_size.x + x_coord
-		
+
 		party[i].position = Vector2(x_coord, y_coord)
 		print(party[i].name, party[i].position)
-	
 
 func place_menu():
 	for i in party:
@@ -57,3 +73,8 @@ func place_menu():
 		i.item_menu.position = action_menu.position + Vector2(140, 0)
 		i.skill_menu.size = action_menu.size + Vector2(100, 0)
 		i.skill_menu.position = action_menu.position + Vector2(140, 0)
+
+func level_up(xp: int):
+	xp /= len(party)
+	for i in party:
+		i.level_up(xp)
