@@ -1,5 +1,8 @@
 extends Node
 
+@onready var text_box_scene: PackedScene = preload("res://Models/Menus/text_box.tscn")
+@onready var dialog_box_scene: PackedScene = preload("res://Models/Menus/dialog_box_center.tscn")
+
 func rand_coord(width: int, height: int):
 	return [randi_range(0, width - 1), randi_range(0, height - 1)]
 
@@ -61,46 +64,26 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 
 	return false
 
-func dialog_choice(_prompt: String, _back = true, _choices: Array[String] = ['Yes', 'No']):
-	#low_limit = 1
-	#if len(choices) == 0:
-		#return -1
-	#while true:
-		#try:
-			#print('')
-			#print(prompt)
-#
-			#Stringuctured_choices = {j: i for i, j in enumerate(choices, 1)}
-			#filtered_choices = [i for i in choices if i]
-#
-			#for i, j in enumerate(filtered_choices, 1):
-				#print(f'{i} - {j}')
-			#if back:
-				#print('0 - back')
-				#low_limit = 0
-#
-			#x = int(input('? '))
-			#if x not in range(low_limit, len(filtered_choices) + 1):
-				#print('Invalid option!')
-				#continue
-#
-			#if choices == ['Yes', 'No']:
-				#if x == 1:
-					#return true
-				#if x == 2:
-					#return false
-			#else:
-				#if x == 0:
-					#return -1
-#
-				#choice = filtered_choices[x - 1]
-				#x = Stringuctured_choices[choice]
-				#return x
-#
-		#except ValueError:
-			#print('Invalid option!')
-			#continue
-	pass
+
+func dialog_choice(prompt: String, back = true, choices: Array[String] = ['Yes', 'No']):
+	var text_box = text_box_scene.instantiate()
+	print(text_box)
+
+	get_tree().get_current_scene().add_sibling(text_box)
+
+	var title = text_box.get_node("Margin/VBox/Title")
+	var text = text_box.get_node("Margin/VBox/Text")
+	var options = text_box.get_node("Margin/VBox/Options")
+
+	text.text = prompt
+
+	choices.clear()
+	for i in choices:
+		options.add_item(i)
+
+
+	return text_box
+
 
 func dialog_choice_shop(_prompt: String, _choices: Dictionary):
 	#if len(choices) == 0:
@@ -128,6 +111,7 @@ func dialog_choice_shop(_prompt: String, _choices: Dictionary):
 			#continue
 	pass
 
+
 ## FUNCTON TESTS
 func rand_spread_test():
 	var n
@@ -135,3 +119,8 @@ func rand_spread_test():
 		n = rand_spread(0.5, 4)
 		if n > 4:
 			print(n)
+
+
+## SIGNALS
+func _on_option_selected(index: int):
+	return index

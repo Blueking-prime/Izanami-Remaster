@@ -15,13 +15,13 @@ func _ready() -> void:
 		_curr_gear = player_gear_data.load_all()
 		for gear in _curr_gear:
 			equip_gear(gear)
-			
+
 func equip_gear(gear: Gear):
 	match gear.slot:
 		'head': head = gear
 		'body': body = gear
 		'weapon': weapon = gear
-	
+
 	_update_total_stats()
 	emit_signal('gear_change')
 

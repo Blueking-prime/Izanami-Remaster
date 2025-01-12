@@ -74,6 +74,9 @@ func place_menu():
 		i.skill_menu.size = action_menu.size + Vector2(100, 0)
 		i.skill_menu.position = action_menu.position + Vector2(140, 0)
 
+func place_ui():
+	pass
+
 func level_up(xp: int):
 	xp /= len(party)
 	for i in party:

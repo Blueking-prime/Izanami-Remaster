@@ -10,7 +10,7 @@ var dungeon_sample = [
 	["█", "█", "█", "-", "-", "█", "█", "█"]
 ]
 
-@onready var battle_scene: PackedScene = preload("res://Scenes/battle.tscn")
+@export var battle_scene: PackedScene
 
 ## CHILD NODES
 @onready var map = $Map
@@ -98,9 +98,9 @@ func collect_treasure():
 	drop = x[index]
 
 	print(drop)
-	var u = Inventory.add_item(drop.name)
-	print(Inventory.item_count)
-	print(Inventory.get_item_text(u))
+	#var u = Inventory.add_item(drop.name)
+	#print(Inventory.item_count)
+	#print(Inventory.get_item_text(u))
 	print("You got %s!" % [drop.name])
 
 

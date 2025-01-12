@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://bnbjoofilujw1"]
+[gd_scene load_steps=5 format=3 uid="uid://bnbjoofilujw1"]
+
+[ext_resource type="Script" path="res://Scenes/shop_inventory.gd" id="1_to4xg"]
+[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_0wgb3"]
+[ext_resource type="Script" path="res://Scenes/player_inventory.gd" id="2_b27v5"]
+[ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/text_box.tscn" id="4_08oii"]
 
 [node name="ShopMenu" type="Control"]
 layout_mode = 3
@@ -32,69 +37,22 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 auto_height = true
-item_count = 3
-item_0/text = "Leaf"
-item_1/text = "Razor"
-item_2/text = "Excalihuh?"
+max_columns = 2
+script = ExtResource("1_to4xg")
+item_group = ExtResource("2_0wgb3")
 
-[node name="ShopInventory2" type="ItemList" parent="CanvasLayer/HBoxContainer"]
+[node name="PlayerInventory" type="ItemList" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 auto_height = true
 item_count = 3
+max_columns = 2
 item_0/text = "Leaf"
 item_1/text = "Razor"
 item_2/text = "Excalihuh?"
+script = ExtResource("2_b27v5")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -871.0
-offset_top = -271.0
-offset_right = 871.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="TextBox" parent="CanvasLayer" instance=ExtResource("4_08oii")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label2" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Dialogue Box"
-
-[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1, 0)
-layout_mode = 2
-text = "Add skill icons Add level cap (maybe) Implement AoE skills and self_targeting skills Flesh out status effects Move battle movement and selection to separate nodeImplement dialog boxesLearn how to move players between scenesMake enemies not spawn on outer rows and columnsMove stats to Stats scriptChange map enemy spawning to reflect contained enemiesFix item usage bug"
-autowrap_mode = 2
-
-[node name="ShopInventory3" type="ItemList" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-auto_height = true
-item_count = 3
-item_0/text = "Leaf"
-item_1/text = "Razor"
-item_2/text = "Excalihuh?"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_constants/separation = 500
-alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 2
-text = "Ok
-"
-
-[node name="Button2" type="Button" parent="CanvasLayer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 2
-text = "Nah"
+[connection signal="item_activated" from="CanvasLayer/HBoxContainer/ShopInventory" to="CanvasLayer/HBoxContainer/ShopInventory" method="_on_item_activated"]
+[connection signal="item_activated" from="CanvasLayer/HBoxContainer/PlayerInventory" to="CanvasLayer/HBoxContainer/PlayerInventory" method="_on_item_activated"]

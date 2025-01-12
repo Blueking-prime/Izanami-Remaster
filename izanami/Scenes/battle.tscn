@@ -26,7 +26,7 @@ visible = false
 script = ExtResource("2_cdpmu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
+layer = -1
 
 [node name="Actions" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
