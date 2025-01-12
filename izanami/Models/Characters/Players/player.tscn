@@ -12,8 +12,8 @@ radius = 9.0
 
 [node name="Player" instance=ExtResource("1_ll1t0")]
 script = ExtResource("2_lj72d")
-max_sp = 0.0
-sp = 0.0
+max_sp = 0
+sp = 0
 xp = 0
 gold = 0
 level_up_xp = null

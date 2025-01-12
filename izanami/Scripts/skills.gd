@@ -16,7 +16,7 @@ func add_skill(skill: Skill):
 	var _skill_names = []
 	for i in _skills:
 		_skill_names.append(i.name)
-	
+
 	if skill.name not in _skill_names:
 		_skills.append(skill)
 

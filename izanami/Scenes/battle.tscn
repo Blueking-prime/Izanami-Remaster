@@ -13,15 +13,20 @@ no_of_enemies = 2
 enemy_group = ExtResource("5_6mwjl")
 players = NodePath("Players")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-follow_viewport_enabled = true
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="."]
 show_behind_parent = true
 offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("3_x5jg1")
+
+[node name="Players" parent="." instance=ExtResource("2_a6unq")]
+visible = false
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("2_cdpmu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="Actions" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
@@ -55,12 +60,6 @@ text = "Guard"
 [node name="Run" type="Button" parent="CanvasLayer/Actions"]
 layout_mode = 2
 text = "Run"
-
-[node name="Players" parent="." instance=ExtResource("2_a6unq")]
-visible = false
-
-[node name="Enemies" type="Node2D" parent="."]
-script = ExtResource("2_cdpmu")
 
 [connection signal="pressed" from="CanvasLayer/Actions/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Actions/Skills" to="." method="_on_skills_pressed"]
