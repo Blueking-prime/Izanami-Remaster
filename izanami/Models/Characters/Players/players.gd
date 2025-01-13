@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Party
+
 var party: Array = []
 var leader: Player
 var index: int = 0
@@ -22,7 +24,8 @@ func battle_setup():
 	for i in party:
 		i.show()
 		i.battle_display()
-		i.in_battle = true
+
+	freeze()
 
 	place_menu()
 	place_characters_in_battle()
@@ -34,7 +37,8 @@ func battle_reset():
 	for i in party:
 		i.dungeon_display()
 		i.hide()
-		i.in_battle = false
+
+	unfreeze()
 
 	leader.show()
 
@@ -81,3 +85,11 @@ func level_up(xp: int):
 	xp /= len(party)
 	for i in party:
 		i.level_up(xp)
+
+func freeze():
+	for i in party:
+		i.freeze_movement = true
+
+func unfreeze():
+	for i in party:
+		i.freeze_movement = false

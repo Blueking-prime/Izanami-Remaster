@@ -3,6 +3,8 @@ extends Node
 @onready var text_box_scene: PackedScene = preload("res://Models/Menus/text_box.tscn")
 @onready var dialog_box_scene: PackedScene = preload("res://Models/Menus/dialog_box_center.tscn")
 
+var textbox_response: int
+
 func rand_coord(width: int, height: int):
 	return [randi_range(0, width - 1), randi_range(0, height - 1)]
 
@@ -65,24 +67,29 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 	return false
 
 
-func dialog_choice(prompt: String, back = true, choices: Array[String] = ['Yes', 'No']):
+func dialog_choice(prompt: String, _back = true, choices: Array[String] = ['Yes', 'No']) -> int:
 	var text_box = text_box_scene.instantiate()
 	print(text_box)
 
 	get_tree().get_current_scene().add_sibling(text_box)
 
-	var title = text_box.get_node("Margin/VBox/Title")
-	var text = text_box.get_node("Margin/VBox/Text")
-	var options = text_box.get_node("Margin/VBox/Options")
+	var _title: Label = text_box.get_node("Margin/VBox/Title")
+	var text: Label = text_box.get_node("Margin/VBox/Text")
+	var options: ItemList = text_box.get_node("Margin/VBox/Options")
 
 	text.text = prompt
 
-	choices.clear()
+	options.clear()
 	for i in choices:
 		options.add_item(i)
 
+	options.item_activated.connect(_on_option_selected)
+	options.grab_focus()
+	await options.item_activated
 
-	return text_box
+	text_box.queue_free()
+
+	return textbox_response
 
 
 func dialog_choice_shop(_prompt: String, _choices: Dictionary):
@@ -123,4 +130,4 @@ func rand_spread_test():
 
 ## SIGNALS
 func _on_option_selected(index: int):
-	return index
+	textbox_response = index

@@ -34,7 +34,7 @@ class_name Player
 ## STATES
 var active_selection
 var chosen_option: bool = false
-var in_battle: bool = false
+var freeze_movement: bool = false
 
 ## SIGNALS
 #signal hit_chest
@@ -52,7 +52,7 @@ func _ready() -> void:
 
 func _physics_process(_delta):
 	# Get input
-	if not in_battle:
+	if not freeze_movement:
 		var direction = Vector2()
 		direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
 

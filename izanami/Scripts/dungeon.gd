@@ -14,7 +14,7 @@ var dungeon_sample = [
 
 ## CHILD NODES
 @onready var map = $Map
-@export var players: Node2D
+@export var players: Party
 
 ## MAP PROPERTIES
 @export var width: int = 8
@@ -52,6 +52,7 @@ func _ready() -> void:
 
 	player.detector.hit_chest.connect(_on_detector_hit_chest)
 	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
+	player.detector.hit_exit.connect(_on_detector_hit_exit)
 
 	map.display_dungeon()
 
@@ -64,16 +65,21 @@ func player_party_setup():
 
 ## EXIT LOGIC
 func exit_dungeon():
-	var x = Global.dialog_choice("Do you want to leave the Dungeon?", false)
-	if x:
-		pass
+	players.freeze()
+	var x = await Global.dialog_choice("Do you want to leave the Dungeon?", false)
 
-	#unload all resources
-	for i in _gear_drops:
-		i.free()
-	for i in _item_drops:
-		i.free()
+	print('Premature exit')
+	if Global.textbox_response == 0:
+		print('Yes')
+		##RELOAD TOWN
+		queue_free()
+	elif Global.textbox_response == 1:
+		print('No')
+	players.unfreeze()
 
+func _on_detector_hit_exit(coords) -> void:
+	print(coords)
+	exit_dungeon()
 
 
 
