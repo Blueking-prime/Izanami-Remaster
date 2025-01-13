@@ -1,7 +1,6 @@
 extends Node
 
 @onready var text_box_scene: PackedScene = preload("res://Models/Menus/text_box.tscn")
-@onready var dialog_box_scene: PackedScene = preload("res://Models/Menus/dialog_box_center.tscn")
 
 var textbox_response: int
 

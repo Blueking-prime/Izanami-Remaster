@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqykicfu0u1ug"]
+[gd_scene load_steps=9 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_etuff"]
+[ext_resource type="Script" path="res://Scripts/inventory.gd" id="4_gg4w5"]
 [ext_resource type="Script" path="res://Scripts/gear.gd" id="5_k34jo"]
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="5_yd6jm"]
 [ext_resource type="Script" path="res://Scripts/detector.gd" id="6_g43wq"]
@@ -53,11 +54,12 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Gear" type="Node" parent="." index="5"]
+[node name="Inventory" type="Node" parent="." index="5"]
+script = ExtResource("4_gg4w5")
+
+[node name="Gear" type="Node" parent="." index="6"]
 script = ExtResource("5_k34jo")
 player_gear_data = ExtResource("4_etuff")
-
-[node name="Inventory" type="Node" parent="." index="6"]
 
 [node name="Pointer" parent="." index="7"]
 visible = false

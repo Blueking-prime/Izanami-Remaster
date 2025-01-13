@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnbjoofilujw1"]
+[gd_scene load_steps=6 format=3 uid="uid://bnbjoofilujw1"]
 
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_pw8uo"]
 [ext_resource type="Script" path="res://Scenes/shop_inventory.gd" id="1_to4xg"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_0wgb3"]
 [ext_resource type="Script" path="res://Scenes/player_inventory.gd" id="2_b27v5"]
@@ -15,6 +16,8 @@ grow_vertical = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[node name="Player" parent="." instance=ExtResource("1_pw8uo")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -41,7 +44,7 @@ max_columns = 2
 script = ExtResource("1_to4xg")
 item_group = ExtResource("2_0wgb3")
 
-[node name="PlayerInventory" type="ItemList" parent="CanvasLayer/HBoxContainer"]
+[node name="PlayerInventory" type="ItemList" parent="CanvasLayer/HBoxContainer" node_paths=PackedStringArray("player")]
 layout_mode = 2
 size_flags_horizontal = 3
 auto_height = true
@@ -51,6 +54,7 @@ item_0/text = "Leaf"
 item_1/text = "Razor"
 item_2/text = "Excalihuh?"
 script = ExtResource("2_b27v5")
+player = NodePath("../../../Player")
 
 [node name="TextBox" parent="CanvasLayer" instance=ExtResource("4_08oii")]
 

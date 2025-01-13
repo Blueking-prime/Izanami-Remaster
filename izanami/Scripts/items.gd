@@ -1,19 +1,29 @@
 extends Node
 
 #@export_dir var item_location: String
-@export var _items: Array[Item] = []
+@export var _items: Array = []
 @export var item_group: ResourceGroup
 @export var _item_dict: Dictionary
 
+var inventory
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	inventory = get_node("../Inventory")
 	if item_group:
 		item_group.load_all_into(_items)
-		_update_dict()
+	if inventory:
+		for i in inventory.items:
+			_items.append(i)
+		for i in _items:
+			inventory.add_entry(i)
+	_update_dict()
 
 func add_item(item: Item):
 	#var item = load(item_location + '/' + item_name + '.tres') as Item
 	_items.append(item)
+	if inventory:
+		inventory.add_entry(item)
 	_update_dict()
 
 func _update_dict():

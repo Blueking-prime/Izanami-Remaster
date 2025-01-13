@@ -11,14 +11,14 @@ extends ItemList
 func _ready() -> void:
 	if item_group:
 		item_group.load_all_into(_items)
-		update_dict()
+		update_listing()
 
 
-func update_dict():
+func update_listing():
 	_item_dict.clear()
 	for i in _items:
 		if i.name in _item_dict:
-			_item_dict[i] += 1
+			_item_dict[i.name] += 1
 		else:
 			_item_dict.get_or_add(i.name, 1)
 
@@ -29,7 +29,7 @@ func update_dict():
 
 func add_entry(entry: Variant):
 	_items.append(entry)
-	update_dict()
+	update_listing()
 
 func transfer_item(id: int):
 	var item = get_item_text(id)
@@ -42,5 +42,4 @@ func transfer_item(id: int):
 
 func _on_item_activated(index: int) -> void:
 	transfer_item(index)
-	player_list.update_dict()
-	update_dict()
+	update_listing()

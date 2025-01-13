@@ -68,12 +68,11 @@ func exit_dungeon():
 	players.freeze()
 	var x = await Global.dialog_choice("Do you want to leave the Dungeon?", false)
 
-	print('Premature exit')
-	if Global.textbox_response == 0:
+	if x == 0:
 		print('Yes')
 		##RELOAD TOWN
 		queue_free()
-	elif Global.textbox_response == 1:
+	elif x == 1:
 		print('No')
 	players.unfreeze()
 
@@ -104,9 +103,7 @@ func collect_treasure():
 	drop = x[index]
 
 	print(drop)
-	#var u = Inventory.add_item(drop.name)
-	#print(Inventory.item_count)
-	#print(Inventory.get_item_text(u))
+	player.inventory.add_entry(drop)
 	print("You got %s!" % [drop.name])
 
 
