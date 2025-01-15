@@ -4,9 +4,12 @@
 
 [resource]
 script = ExtResource("1_g3uao")
-name = "Leaf"
+name = &"Leaf"
 type = &"heal"
 value = 20
-buffs = [1, 1]
-status = &""
-desc = ""
+boost = [1, 1]
+status_effect = &""
+accuracy = 1.0
+desc = "A revitalizing leaf. Heals a single target."
+price = 10
+aoe = false

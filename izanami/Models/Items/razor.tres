@@ -4,9 +4,12 @@
 
 [resource]
 script = ExtResource("1_jwad1")
-name = "Razor"
+name = &"Razor"
 type = &"damage"
 value = 20
-buffs = [1, 1]
-status = &""
-desc = ""
+boost = [1, 1]
+status_effect = &""
+accuracy = 1.0
+desc = "A sharp razor blade. Cuts a single target."
+price = 10
+aoe = false

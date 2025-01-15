@@ -6,8 +6,12 @@ extends Resource
 @export var type: StringName
 @export var value: int = 0
 @export var boost: Array = [1, 1]
-@export var status_effect: Array
+@export var status_effect: StringName
+@export var accuracy: float = 1
 @export var desc: String
+@export var price: int = 0
+@export var aoe: bool = false
+@export var element: StringName
 
 func use(target):
 	match type:
@@ -27,7 +31,7 @@ func use_damage(target):
 	target.damage(value)
 
 func use_cleanse(target):
-	if target.status_effect == status_effect[0]:
+	if target.status_effect == status_effect:
 		target.status_effect = 'null'
 	else:
 		print('No effect')

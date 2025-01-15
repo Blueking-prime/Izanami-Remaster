@@ -7,6 +7,7 @@ extends ItemList
 @onready var shop_list: ItemList = $"../ShopInventory"
 
 var inventory
+var description
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,8 +27,20 @@ func add_entry(entry: Variant):
 
 func transfer_item(id: int):
 	var item = inventory.get_entry_by_name(get_item_text(id))
+	if 'equipped' in item:
+		if item.equipped:
+			print("Can't sell equipped items")
+			return
+	inventory.remove_entry(item)
 	shop_list.add_entry(item)
 
 func _on_item_activated(index: int) -> void:
 	transfer_item(index)
 	update_listing()
+
+
+func _on_item_selected(index: int) -> void:
+	if description:
+		description.queue_free()
+	var item = inventory.get_entry_by_name(get_item_text(index))
+	description = Global.show_description(item)

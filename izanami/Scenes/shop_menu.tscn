@@ -18,6 +18,7 @@ grow_vertical = 2
 anchor_mode = 0
 
 [node name="Player" parent="." instance=ExtResource("1_pw8uo")]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -27,9 +28,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -933.0
-offset_top = 83.0
+offset_top = 111.0
 offset_right = -119.0
-offset_bottom = 777.0
+offset_bottom = 608.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -59,4 +60,6 @@ player = NodePath("../../../Player")
 [node name="TextBox" parent="CanvasLayer" instance=ExtResource("4_08oii")]
 
 [connection signal="item_activated" from="CanvasLayer/HBoxContainer/ShopInventory" to="CanvasLayer/HBoxContainer/ShopInventory" method="_on_item_activated"]
+[connection signal="item_selected" from="CanvasLayer/HBoxContainer/ShopInventory" to="CanvasLayer/HBoxContainer/ShopInventory" method="_on_item_selected"]
 [connection signal="item_activated" from="CanvasLayer/HBoxContainer/PlayerInventory" to="CanvasLayer/HBoxContainer/PlayerInventory" method="_on_item_activated"]
+[connection signal="item_selected" from="CanvasLayer/HBoxContainer/PlayerInventory" to="CanvasLayer/HBoxContainer/PlayerInventory" method="_on_item_selected"]

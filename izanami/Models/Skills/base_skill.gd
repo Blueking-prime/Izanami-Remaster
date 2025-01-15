@@ -11,7 +11,8 @@ extends Resource
 @export var lvl_requirement: int = 1
 @export var crit_chance: float = 0.2
 @export var crit_mult: int = 2
-@export var status_effect: Array
+@export var status_effect: StringName
+@export var accuracy: float = 1
 @export var value: int = 0
 @export var aoe: bool = false
 @export var targetable: bool = true
@@ -45,8 +46,8 @@ func action(obj: Base_Character, target: Base_Character):
 	obj.DEF *= boost[1]
 
 	if status_effect:
-		if Global.rand_chance(status_effect[1]):
-			target.status_effect = status_effect[0]
+		if Global.rand_chance(accuracy):
+			target.status_effect = status_effect
 		else:
 			print('Miss!')
 	return true

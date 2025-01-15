@@ -1,6 +1,7 @@
 extends Node
 
 @onready var text_box_scene: PackedScene = preload("res://Models/Menus/text_box.tscn")
+@onready var description_box_scene: PackedScene = preload("res://Models/Menus/description_box.tscn")
 
 var textbox_response: int
 
@@ -67,7 +68,7 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 
 
 func dialog_choice(prompt: String, _back = true, choices: Array[String] = ['Yes', 'No']) -> int:
-	var text_box = text_box_scene.instantiate()
+	var text_box: Control = text_box_scene.instantiate()
 	print(text_box)
 
 	get_tree().get_current_scene().add_sibling(text_box)
@@ -89,6 +90,76 @@ func dialog_choice(prompt: String, _back = true, choices: Array[String] = ['Yes'
 	text_box.queue_free()
 
 	return textbox_response
+
+
+func show_description(object: Resource):
+	var description_box: Control = description_box_scene.instantiate()
+	print(description_box)
+
+	get_tree().get_current_scene().add_child(description_box)
+
+	var type: Label = description_box.get_node("Margin/Vbox/Hbox/Type")
+	var element: Label = description_box.get_node("Margin/Vbox/Hbox/Element")
+	var value: Label = description_box.get_node("Margin/Vbox/Hbox/Vbox/Value")
+	var effect_chance: Label = description_box.get_node("Margin/Vbox/Hbox/Vbox/EffectChance")
+	var description: Label = description_box.get_node("Margin/Vbox/Description")
+	var subtype: Label = description_box.get_node("Margin/Vbox/Hbox2/Subtype")
+	var target_scope: Label = description_box.get_node("Margin/Vbox/Hbox2/TargetScope")
+	var sell_price: Label = description_box.get_node("Margin/Vbox/Hbox2/SellPrice")
+	var weapon_status: Label = description_box.get_node("Margin/Vbox/Hbox2/WeaponStatus")
+	var cost: Label = description_box.get_node("Margin/Vbox/Hbox2/Cost")
+	var stats: Label = description_box.get_node("Margin/Vbox/Hbox/Stats")
+
+	if 'stats' in object:
+		var stats_string = ''
+		for i in object.stats:
+			if object.stats[i] != 0:
+				stats_string += i + ': ' + str(object.stats[i]) + ' '
+		stats.text = stats_string
+	else:
+		stats.hide()
+
+
+
+	if object is Gear:
+		type.text = 'Gear'
+		subtype.text = object.slot
+		if object.equipped:
+			weapon_status.text = 'Equipped'
+		effect_chance.hide()
+		target_scope.hide()
+		value.hide()
+	else:
+		if object is Item:
+			type.text = 'Item'
+		if object is Skill:
+			type.text = 'Skill'
+
+		if object.value != 0:
+			value.text = str(object.value)
+		elif object.status_effect:
+			value.text = object.status_effect
+		else:
+			value.hide()
+
+		subtype.text = object.type
+		effect_chance.text = str(object.accuracy * 100) + '%'
+		if object.aoe:
+			target_scope.text = 'AOE'
+		else:
+			target_scope.text = "Single"
+		weapon_status.hide()
+
+	if 'price' in object:
+		sell_price.text = str(object.price)
+	elif object is Skill:
+		sell_price.text = str(object.crit_chance * 100) + '%'
+	else:
+		sell_price.hide()
+	element.text = object.element
+	description.text = object.desc
+
+	return description_box
 
 
 func dialog_choice_shop(_prompt: String, _choices: Dictionary):

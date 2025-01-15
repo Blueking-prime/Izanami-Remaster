@@ -21,7 +21,6 @@ func add_entry(entry: Variant):
 	else:
 		inventory_data.get_or_add(entry.name, 1)
 
-
 func remove_entry(entry: Variant):
 	inventory.erase(entry)
 	if entry is Gear:
@@ -36,5 +35,4 @@ func remove_entry(entry: Variant):
 func get_entry_by_name(entry: String):
 	for i in inventory:
 		if i.name == entry:
-			remove_entry(i)
 			return i

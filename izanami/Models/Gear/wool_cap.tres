@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Gear" load_steps=2 format=3 uid="uid://cew7tehlv0njn"]
+[gd_resource type="Resource" script_class="Gear" load_steps=3 format=3 uid="uid://cew7tehlv0njn"]
 
 [ext_resource type="Script" path="res://Models/Gear/base_gear.gd" id="1_iyx6m"]
+[ext_resource type="Script" path="res://Models/Skills/base_skill.gd" id="1_yoor5"]
 
 [resource]
 script = ExtResource("1_iyx6m")
@@ -14,4 +15,6 @@ stats = {
 "STR": 0,
 "WIS": 0
 }
-desc = ""
+desc = "Only suited for the drippiest of peasants"
+price = 10
+add_skills = Array[ExtResource("1_yoor5")]([])
