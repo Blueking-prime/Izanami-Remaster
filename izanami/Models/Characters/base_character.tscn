@@ -11,11 +11,29 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 radius = 7.0
 
-[node name="Base Character" type="CharacterBody2D"]
+[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("hp_bar", "hp_bar_text", "pointer", "nametag", "battle_sprite", "dungeon_sprite", "hitbox")]
 position = Vector2(241, 131)
 script = ExtResource("1_e6dxp")
+hp_bar = NodePath("HPBar")
+hp_bar_text = NodePath("HPBar/Label")
+pointer = NodePath("Pointer")
+nametag = NodePath("NameTag")
+battle_sprite = NodePath("DungeonSprite")
+dungeon_sprite = NodePath("BattleSprite")
+hitbox = NodePath("Hitbox")
 
-[node name="BattleSprite" type="Sprite2D" parent="."]
+[node name="BattleSprite" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_au5i3")
 
 [node name="DungeonSprite" type="Sprite2D" parent="."]
@@ -30,6 +48,8 @@ offset_left = -59.0
 offset_top = 69.0
 offset_right = 59.0
 offset_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true

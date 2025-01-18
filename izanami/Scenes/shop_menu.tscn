@@ -17,8 +17,10 @@ grow_vertical = 2
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="Player" parent="." instance=ExtResource("1_pw8uo")]
+[node name="Player" parent="." node_paths=PackedStringArray("battle_sprite", "dungeon_sprite") instance=ExtResource("1_pw8uo")]
 visible = false
+battle_sprite = NodePath("BattleSprite")
+dungeon_sprite = NodePath("DungeonSprite")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

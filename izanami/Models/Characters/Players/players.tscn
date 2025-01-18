@@ -8,13 +8,25 @@ z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_m2oad")
 
-[node name="Player" parent="." instance=ExtResource("2_eydhy")]
+[node name="Player" parent="." node_paths=PackedStringArray("battle_sprite", "dungeon_sprite") instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(239, 72)
+battle_sprite = NodePath("BattleSprite")
+dungeon_sprite = NodePath("DungeonSprite")
 
-[node name="Player2" parent="." instance=ExtResource("2_eydhy")]
+[node name="HPBar" parent="Player" index="3"]
+size_flags_horizontal = 1
+size_flags_vertical = 0
+
+[node name="Player2" parent="." node_paths=PackedStringArray("battle_sprite", "dungeon_sprite") instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(402, 72)
+battle_sprite = NodePath("BattleSprite")
+dungeon_sprite = NodePath("DungeonSprite")
+
+[node name="HPBar" parent="Player2" index="3"]
+size_flags_horizontal = 1
+size_flags_vertical = 0
 
 [editable path="Player"]
 [editable path="Player2"]

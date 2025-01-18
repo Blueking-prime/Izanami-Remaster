@@ -7,8 +7,6 @@ extends ItemList
 @export var _item_dict: Dictionary
 @onready var player_list: ItemList = $"../PlayerInventory"
 
-var description
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if item_group:
@@ -48,11 +46,11 @@ func _on_item_activated(index: int) -> void:
 	update_listing()
 
 func _on_item_selected(index: int) -> void:
-	if description:
-		description.queue_free()
+	if Global.description_box_node:
+		Global.description_box_node.queue_free()
 	var item = get_item_text(index)
 	_item_dict[item] -= 1
 	for i in _items:
 		if i.name == item:
-			description = Global.show_description(i)
+			Global.show_description(i)
 			return

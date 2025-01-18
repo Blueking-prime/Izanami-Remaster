@@ -2,18 +2,20 @@ class_name Base_Character
 
 extends CharacterBody2D
 
-@onready var hp_bar: ProgressBar = $HPBar
-@onready var hp_bar_text: Label = $HPBar/Label
-@onready var pointer: Sprite2D = $Pointer
+## CHILD NODES
 @onready var skills: Node = $Skills
 @onready var items: Node = $Items
-@onready var nametag: Label = $NameTag
-@onready var battle_sprite: Sprite2D = $BattleSprite
-@onready var dungeon_sprite: Sprite2D = $DungeonSprite
-@onready var hitbox: CollisionShape2D = $Hitbox
+
+@export var hp_bar: ProgressBar
+@export var hp_bar_text: Label
+@export var pointer: Sprite2D
+@export var nametag: Label
+@export var battle_sprite: Sprite2D
+@export var dungeon_sprite: TextureRect
+@export var hitbox: CollisionShape2D
 
 
-# CHARACTER STATS
+## CHARACTER STATS
 @export var character_name: String = name
 var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
 @export var stats: Dictionary = base_stats
@@ -36,7 +38,6 @@ var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, 
 @export var ally: int
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#stats = base_stats
 	#print(base_stats, ' ', stats)
@@ -51,7 +52,7 @@ func _ready() -> void:
 		#pointer.set_texture(load("res://Assets/left_arrow.svg"))
 	#print(name, pointer.position)
 	#print(hp)
-	print(stats)
+	#print(stats)
 	#print(skills.get_skills())
 	#print(skills.get_skills()[1].action(self, self))
 

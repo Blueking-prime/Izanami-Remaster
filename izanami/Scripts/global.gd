@@ -4,6 +4,8 @@ extends Node
 @onready var description_box_scene: PackedScene = preload("res://Models/Menus/description_box.tscn")
 
 var textbox_response: int
+var description_box_parent: Node
+var description_box_node: Node
 
 func rand_coord(width: int, height: int):
 	return [randi_range(0, width - 1), randi_range(0, height - 1)]
@@ -92,11 +94,13 @@ func dialog_choice(prompt: String, _back = true, choices: Array[String] = ['Yes'
 	return textbox_response
 
 
-func show_description(object: Resource):
+func show_description(object: Resource) -> void:
 	var description_box: Control = description_box_scene.instantiate()
-	print(description_box)
 
-	get_tree().get_current_scene().add_child(description_box)
+	if description_box_parent:
+		description_box_parent.add_child(description_box)
+	else:
+		get_tree().get_current_scene().add_child(description_box)
 
 	var type: Label = description_box.get_node("Margin/Vbox/Hbox/Type")
 	var element: Label = description_box.get_node("Margin/Vbox/Hbox/Element")
@@ -113,13 +117,16 @@ func show_description(object: Resource):
 	if 'stats' in object:
 		var stats_string = ''
 		for i in object.stats:
-			if object.stats[i] != 0:
-				stats_string += i + ': ' + str(object.stats[i]) + ' '
+			if object.stats is Dictionary:
+				if object.stats[i] != 0:
+					stats_string += i + ': ' + str(object.stats[i]) + ' '
+			else:
+				stats_string += i + ' '
 		stats.text = stats_string
 	else:
 		stats.hide()
 
-
+	cost.hide()
 
 	if object is Gear:
 		type.text = 'Gear'
@@ -134,6 +141,8 @@ func show_description(object: Resource):
 			type.text = 'Item'
 		if object is Skill:
 			type.text = 'Skill'
+			cost.show()
+			cost.text = str(object.cost)
 
 		if object.value != 0:
 			value.text = str(object.value)
@@ -151,7 +160,7 @@ func show_description(object: Resource):
 		weapon_status.hide()
 
 	if 'price' in object:
-		sell_price.text = str(object.price)
+		sell_price.text = '#' + str(object.price)
 	elif object is Skill:
 		sell_price.text = str(object.crit_chance * 100) + '%'
 	else:
@@ -159,7 +168,7 @@ func show_description(object: Resource):
 	element.text = object.element
 	description.text = object.desc
 
-	return description_box
+	description_box_node = description_box
 
 
 func dialog_choice_shop(_prompt: String, _choices: Dictionary):

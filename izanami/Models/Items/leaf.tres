@@ -13,3 +13,4 @@ accuracy = 1.0
 desc = "A revitalizing leaf. Heals a single target."
 price = 10
 aoe = false
+element = &""

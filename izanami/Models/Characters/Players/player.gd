@@ -3,13 +3,15 @@ extends Base_Character
 class_name Player
 
 ## CHILD NODES
-@onready var sp_bar: ProgressBar = $SPBar
-@onready var sp_bar_text: Label = $SPBar/Label
 @onready var gear: Node = $Gear
 @onready var inventory: Node = $Inventory
-@onready var skill_menu: ItemList = $Skills/SkillList
-@onready var item_menu: ItemList = $Items/ItemList
 @onready var detector: Area2D = $Detector
+
+@export var sp_bar: ProgressBar
+@export var sp_bar_text: Label
+@export var skill_menu: ItemList
+@export var item_menu: ItemList
+
 
 ## DYNAMIC PROPERTIES
 @export var max_sp: int:
@@ -131,11 +133,21 @@ func _display_skills():
 
 func show_skill_menu():
 	skill_menu.show()
+	skill_menu.item_activated.connect(_on_skill_list_activated)
+	skill_menu.item_selected.connect(_on_skill_list_selected)
+	_display_skills()
 	skill_menu.grab_focus()
 
 func _on_skill_list_activated(index: int) -> void:
 	active_selection = index
 	chosen_option = true
+	skill_menu.release_focus()
+
+func _on_skill_list_selected(index: int) -> void:
+	if Global.description_box_node:
+		Global.description_box_node.queue_free()
+	Global.show_description(get_skills()[index])
+	Global.description_box_node.size_flags_stretch_ratio = 2
 
 
 ### ITEMS
@@ -148,6 +160,9 @@ func _display_items():
 
 func show_item_menu():
 	item_menu.show()
+	item_menu.item_activated.connect(_on_item_list_activated)
+	item_menu.item_selected.connect(_on_item_list_selected)
+	_display_items()
 	item_menu.grab_focus()
 
 func use_item(item_name, target):
@@ -157,12 +172,19 @@ func use_item(item_name, target):
 func _on_item_list_activated(index: int) -> void:
 	active_selection = item_menu.get_item_text(index)
 	chosen_option = true
+	item_menu.release_focus()
+
+func _on_item_list_selected(index: int) -> void:
+	if Global.description_box_node:
+		Global.description_box_node.queue_free()
+	Global.show_description(items.get_item(item_menu.get_item_text(index)))
+	Global.description_box_node.size_flags_stretch_ratio = 2
 
 
 ### UI DISPLAYS
 func reset_menu():
-	item_menu.hide()
-	skill_menu.hide()
+	#item_menu.hide()
+	#skill_menu.hide()
 	active_selection = null
 	chosen_option = false
 

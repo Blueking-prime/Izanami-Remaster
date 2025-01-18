@@ -4,6 +4,9 @@ extends Skill
 
 @export var element: StringName = ''
 
+func  _init() -> void:
+	type = 'Offensive Skill'
+
 func action(obj: Base_Character, target: Base_Character):
 	var val = super.action(obj, target)
 	if target.has_meta('element'):

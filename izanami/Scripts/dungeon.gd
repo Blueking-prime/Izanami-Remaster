@@ -124,7 +124,7 @@ func initiate_battle():
 	battle.no_of_enemies = no_of_enemies
 	battle.dungeon = self
 	battle.players = players
-	player.in_battle = true
+	#player.in_battle = true
 	get_node("Background").hide()
 	get_node("ObjectsSort/Walls").hide()
 	call_deferred("add_sibling", battle)

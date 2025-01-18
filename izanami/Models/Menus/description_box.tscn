@@ -3,6 +3,8 @@
 [node name="DescriptionBox" type="PanelContainer"]
 offset_right = 582.0
 offset_bottom = 373.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 2

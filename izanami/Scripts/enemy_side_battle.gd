@@ -14,7 +14,7 @@ func _ready() -> void:
 func _initialize_enemies():
 	#Spawn enemies here
 	_enemy_set = enemy_group.load_all()
-	print(_enemy_set)
+	#print(_enemy_set)
 
 	var _type
 	for i in no_of_enemies:
@@ -27,7 +27,7 @@ func _initialize_enemies():
 
 func place_charscters():
 	var screen_size = get_viewport_rect().size
-	print(screen_size)
+	#print(screen_size)
 	screen_size.x /= 2
 	screen_size.y /= 2
 	var enemies_size = enemies.size()
@@ -50,6 +50,6 @@ func place_charscters():
 
 		enemies[i].battle_display()
 		enemies[i].position = Vector2(x_coord + screen_size.x, y_coord)
-		print(enemies[i].name, enemies[i].position)
+		#print(enemies[i].name, enemies[i].position)
 
 	enemies.reverse()

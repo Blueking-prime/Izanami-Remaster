@@ -6,18 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="3_x5jg1"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("players")]
-z_index = 3
+[node name="Battle" type="Node" node_paths=PackedStringArray("players", "choice", "skill_panel", "ui_panel", "desc_box", "dummy_control")]
 script = ExtResource("1_ivyfm")
 no_of_enemies = 2
 enemy_group = ExtResource("5_6mwjl")
 players = NodePath("Players")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-show_behind_parent = true
-offset_right = 1152.0
-offset_bottom = 648.0
-texture = ExtResource("3_x5jg1")
+choice = NodePath("CanvasLayer/MarginContainer/UIContainer/Actions")
+skill_panel = NodePath("CanvasLayer/MarginContainer/UIContainer/SkillPanel")
+ui_panel = NodePath("CanvasLayer/MarginContainer/UIContainer")
+desc_box = NodePath("CanvasLayer/MarginContainer/UIContainer/DescriptionPanel")
+dummy_control = NodePath("DummyControl")
 
 [node name="Players" parent="." instance=ExtResource("2_a6unq")]
 visible = false
@@ -25,44 +23,88 @@ visible = false
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("2_cdpmu")
 
+[node name="DummyControl" type="Button" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Actions" type="VBoxContainer" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
+show_behind_parent = true
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_x5jg1")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -545.0
-offset_top = -210.0
-offset_right = -430.0
-offset_bottom = -39.0
+offset_left = -809.0
+offset_top = -540.0
+offset_right = 809.0
+offset_bottom = -128.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Attack" type="Button" parent="CanvasLayer/Actions"]
+[node name="UIContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Actions" type="VBoxContainer" parent="CanvasLayer/MarginContainer/UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Attack" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Attack"
 
-[node name="Skills" type="Button" parent="CanvasLayer/Actions"]
+[node name="Skills" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Skills"
 
-[node name="Items" type="Button" parent="CanvasLayer/Actions"]
+[node name="Items" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Items"
 
-[node name="Guard" type="Button" parent="CanvasLayer/Actions"]
+[node name="Guard" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Guard"
 
-[node name="Run" type="Button" parent="CanvasLayer/Actions"]
+[node name="Run" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Run"
 
-[connection signal="pressed" from="CanvasLayer/Actions/Attack" to="." method="_on_attack_pressed"]
-[connection signal="pressed" from="CanvasLayer/Actions/Skills" to="." method="_on_skills_pressed"]
-[connection signal="pressed" from="CanvasLayer/Actions/Items" to="." method="_on_items_pressed"]
-[connection signal="pressed" from="CanvasLayer/Actions/Guard" to="." method="_on_guard_pressed"]
-[connection signal="pressed" from="CanvasLayer/Actions/Run" to="." method="_on_run_pressed"]
+[node name="SkillPanel" type="ItemList" parent="CanvasLayer/MarginContainer/UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DescriptionPanel" type="PanelContainer" parent="CanvasLayer/MarginContainer/UIContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Skills" to="." method="_on_skills_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Guard" to="." method="_on_guard_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Run" to="." method="_on_run_pressed"]
+[connection signal="item_selected" from="CanvasLayer/MarginContainer/UIContainer/SkillPanel" to="." method="_on_skill_panel_item_selected"]

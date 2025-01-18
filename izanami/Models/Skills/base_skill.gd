@@ -17,6 +17,7 @@ extends Resource
 @export var aoe: bool = false
 @export var targetable: bool = true
 @export var desc: String
+@export var type: StringName
 
 func action(obj: Base_Character, target: Base_Character):
 	var stat_total = 0

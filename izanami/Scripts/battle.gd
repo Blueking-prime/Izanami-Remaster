@@ -1,12 +1,21 @@
-extends Node2D
+extends Node
 
 class_name Battle
 
+## CUSTOM PARAMETERS
 @export var no_of_enemies: int
 @export var enemy_group: ResourceGroup
-@export var players: Node
+@export var players: Party
+@onready var enemies = $Enemies
 
+## CHILD NODES
+@export var choice: Control
+@export var skill_panel: Control
+@export var ui_panel: Control
+@export var desc_box: Control
+@export var dummy_control: Control
 
+## WORKING VARIABLES
 var actors: Array = []
 var turn_order: Array = []
 var enemy_array: Array = []
@@ -21,8 +30,6 @@ var turncount = 1
 var earned_exp: int
 var dungeon: Dungeon
 
-@onready var choice = $CanvasLayer/Actions
-@onready var enemies = $Enemies
 
 func _ready() -> void:
 	_player_party_setup()
@@ -68,12 +75,27 @@ func _process(_delta: float) -> void:
 	if not len(enemy_array):
 		exit_battle("win")
 
+## SETUP FUNCTIONS
 func _player_party_setup():
 	players.show()
 	players.action_menu = choice
+	players.skill_panel = skill_panel
+	Global.description_box_parent = ui_panel
 	players.battle_setup()
 
+func exit_battle(exit_type: StringName):
+	print(earned_exp, ": EARNED")
+	if exit_type == "run":
+		pass
+	elif exit_type == "win":
+		players.level_up(earned_exp)
 
+	if dungeon:
+		dungeon.reset_from_battle()
+	players.battle_reset()
+	queue_free()
+
+## TURN FUNCTIONS
 func _action():
 	print(current_player, ' is acting')
 	#print(current_player.stats)
@@ -117,7 +139,6 @@ func act(actor: Base_Character):
 
 		#actor.unfocus()
 
-
 func _advance_actor():
 	_reset_focus()
 	idx += 1
@@ -138,6 +159,7 @@ func end_turn():
 			actors.erase(i)
 			i.queue_free()
 
+## POINTER FUNCTIONS
 func switch_focus(x, y):
 	actors[x].focus()
 	actors[y].unfocus()
@@ -155,32 +177,40 @@ func _start_choosing():
 	_reset_focus()
 	actors[index].focus()
 
+func _release_focus():
+	dummy_control.grab_focus()
 
+## ACTION MENU SIGNAL PROCESSORS
 func _on_attack_pressed() -> void:
 	flag = 'Attack'
 	targetting = true
+	_release_focus()
 	_start_choosing()
 
 func _on_guard_pressed() -> void:
 	flag = 'Guard'
 	targetting = true
+	_release_focus()
 	_action()
 
 func _on_run_pressed() -> void:
 	flag = 'Run'
 	targetting = true
+	_release_focus()
 	_action()
 
 func _on_skills_pressed() -> void:
 	flag = 'Skills'
 	current_player.show_skill_menu()
-
+	#_release_focus()
 
 func _on_items_pressed() -> void:
 	flag = 'Items'
 	current_player.show_item_menu()
+	#_release_focus()
 
 
+## ACTION MENU FUNCTIONS
 func use_basic_attack():
 	current_player.use_skill(0, actors[index])
 
@@ -208,14 +238,7 @@ func use_run():
 func use_items():
 	current_player.use_item(current_player.active_selection, actors[index])
 
-func exit_battle(exit_type: StringName):
-	print(earned_exp, ": EARNED")
-	if exit_type == "run":
-		pass
-	elif exit_type == "win":
-		players.level_up(earned_exp)
-
-	if dungeon:
-		dungeon.reset_from_battle()
-	players.battle_reset()
-	queue_free()
+## OTHER SIGNALS
+func _on_skill_panel_item_selected(_index: int) -> void:
+	if desc_box.visible:
+		desc_box.hide()

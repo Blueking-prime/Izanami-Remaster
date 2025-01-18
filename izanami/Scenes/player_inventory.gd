@@ -7,7 +7,6 @@ extends ItemList
 @onready var shop_list: ItemList = $"../ShopInventory"
 
 var inventory
-var description
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,7 +39,7 @@ func _on_item_activated(index: int) -> void:
 
 
 func _on_item_selected(index: int) -> void:
-	if description:
-		description.queue_free()
+	if Global.description_box_node:
+		Global.description_box_node.queue_free()
 	var item = inventory.get_entry_by_name(get_item_text(index))
-	description = Global.show_description(item)
+	Global.show_description(item)
