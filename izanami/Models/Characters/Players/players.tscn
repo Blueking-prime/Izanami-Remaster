@@ -1,32 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk5618o5l67d5"]
+[gd_scene load_steps=4 format=3 uid="uid://dk5618o5l67d5"]
 
 [ext_resource type="Script" path="res://Models/Characters/Players/players.gd" id="1_m2oad"]
+[ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_blcr2"]
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="2_eydhy"]
 
 [node name="Players" type="Node2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_m2oad")
+battle_sprite_scene = ExtResource("2_blcr2")
 
-[node name="Player" parent="." node_paths=PackedStringArray("battle_sprite", "dungeon_sprite") instance=ExtResource("2_eydhy")]
+[node name="Player" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(239, 72)
-battle_sprite = NodePath("BattleSprite")
-dungeon_sprite = NodePath("DungeonSprite")
 
-[node name="HPBar" parent="Player" index="3"]
-size_flags_horizontal = 1
-size_flags_vertical = 0
-
-[node name="Player2" parent="." node_paths=PackedStringArray("battle_sprite", "dungeon_sprite") instance=ExtResource("2_eydhy")]
+[node name="Player2" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(402, 72)
-battle_sprite = NodePath("BattleSprite")
-dungeon_sprite = NodePath("DungeonSprite")
-
-[node name="HPBar" parent="Player2" index="3"]
-size_flags_horizontal = 1
-size_flags_vertical = 0
 
 [editable path="Player"]
+[editable path="Player/BattleSprite"]
 [editable path="Player2"]
+[editable path="Player2/BattleSprite"]

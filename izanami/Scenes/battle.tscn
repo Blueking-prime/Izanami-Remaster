@@ -1,32 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://deahjbvovxuvn"]
+[gd_scene load_steps=7 format=3 uid="uid://deahjbvovxuvn"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_ivyfm"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_a6unq"]
 [ext_resource type="Script" path="res://Scripts/enemy_side_battle.gd" id="2_cdpmu"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="3_x5jg1"]
+[ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="4_5t7r8"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
 
-[node name="Battle" type="Node" node_paths=PackedStringArray("players", "choice", "skill_panel", "ui_panel", "desc_box", "dummy_control")]
+[node name="Battle" type="Node" node_paths=PackedStringArray("players", "choice", "skill_panel", "ui_panel", "desc_box", "dummy_control", "player_section")]
 script = ExtResource("1_ivyfm")
 no_of_enemies = 2
 enemy_group = ExtResource("5_6mwjl")
 players = NodePath("Players")
-choice = NodePath("CanvasLayer/MarginContainer/UIContainer/Actions")
-skill_panel = NodePath("CanvasLayer/MarginContainer/UIContainer/SkillPanel")
-ui_panel = NodePath("CanvasLayer/MarginContainer/UIContainer")
-desc_box = NodePath("CanvasLayer/MarginContainer/UIContainer/DescriptionPanel")
+choice = NodePath("CanvasLayer/ActionBoxUI/VBox/Actions")
+skill_panel = NodePath("CanvasLayer/ActionBoxUI/VBox/SkillPanel")
+ui_panel = NodePath("CanvasLayer/ActionBoxUI/VBox")
+desc_box = NodePath("CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
 dummy_control = NodePath("DummyControl")
-
-[node name="Players" parent="." instance=ExtResource("2_a6unq")]
-visible = false
-
-[node name="Enemies" type="Node2D" parent="."]
-script = ExtResource("2_cdpmu")
-
-[node name="DummyControl" type="Button" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+player_section = NodePath("CanvasLayer/ActorContainer/PlayerSection")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -42,15 +33,37 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_x5jg1")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="ActorContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="PlayerSection" type="HBoxContainer" parent="CanvasLayer/ActorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="EnemySection" type="HBoxContainer" parent="CanvasLayer/ActorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BattleSprite" parent="CanvasLayer/ActorContainer/EnemySection" instance=ExtResource("4_5t7r8")]
+visible = false
+layout_mode = 2
+
+[node name="ActionBoxUI" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.511
+anchor_top = 0.513
+anchor_right = 0.511
 anchor_bottom = 1.0
-offset_left = -809.0
-offset_top = -540.0
-offset_right = 809.0
+offset_left = -830.12
+offset_top = -14.04
+offset_right = 787.88
 offset_bottom = -128.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -59,52 +72,66 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="UIContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="VBox" type="HBoxContainer" parent="CanvasLayer/ActionBoxUI"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Actions" type="VBoxContainer" parent="CanvasLayer/MarginContainer/UIContainer"]
+[node name="Actions" type="VBoxContainer" parent="CanvasLayer/ActionBoxUI/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Attack" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
+[node name="Attack" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Attack"
 
-[node name="Skills" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
+[node name="Skills" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Skills"
 
-[node name="Items" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
+[node name="Items" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Items"
 
-[node name="Guard" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
+[node name="Guard" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Guard"
 
-[node name="Run" type="Button" parent="CanvasLayer/MarginContainer/UIContainer/Actions"]
+[node name="Run" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Run"
 
-[node name="SkillPanel" type="ItemList" parent="CanvasLayer/MarginContainer/UIContainer"]
+[node name="SkillPanel" type="ItemList" parent="CanvasLayer/ActionBoxUI/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DescriptionPanel" type="PanelContainer" parent="CanvasLayer/MarginContainer/UIContainer"]
+[node name="DescriptionPanel" type="PanelContainer" parent="CanvasLayer/ActionBoxUI/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Attack" to="." method="_on_attack_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Skills" to="." method="_on_skills_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Items" to="." method="_on_items_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Guard" to="." method="_on_guard_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/UIContainer/Actions/Run" to="." method="_on_run_pressed"]
-[connection signal="item_selected" from="CanvasLayer/MarginContainer/UIContainer/SkillPanel" to="." method="_on_skill_panel_item_selected"]
+[node name="Players" parent="." instance=ExtResource("2_a6unq")]
+visible = false
+
+[node name="Enemies" type="Node2D" parent="." node_paths=PackedStringArray("enemy_section")]
+visible = false
+script = ExtResource("2_cdpmu")
+enemy_section = NodePath("../CanvasLayer/ActorContainer/EnemySection")
+battle_sprite_scene = ExtResource("4_5t7r8")
+
+[node name="DummyControl" type="Button" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Skills" to="." method="_on_skills_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Guard" to="." method="_on_guard_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Run" to="." method="_on_run_pressed"]
+[connection signal="item_selected" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="." method="_on_skill_panel_item_selected"]

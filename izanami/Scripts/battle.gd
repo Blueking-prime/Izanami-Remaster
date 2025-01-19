@@ -14,6 +14,7 @@ class_name Battle
 @export var ui_panel: Control
 @export var desc_box: Control
 @export var dummy_control: Control
+@export var player_section: Control
 
 ## WORKING VARIABLES
 var actors: Array = []
@@ -77,7 +78,7 @@ func _process(_delta: float) -> void:
 
 ## SETUP FUNCTIONS
 func _player_party_setup():
-	players.show()
+	players.player_section = player_section
 	players.action_menu = choice
 	players.skill_panel = skill_panel
 	Global.description_box_parent = ui_panel

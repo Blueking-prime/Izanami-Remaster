@@ -7,8 +7,6 @@ class_name Player
 @onready var inventory: Node = $Inventory
 @onready var detector: Area2D = $Detector
 
-@export var sp_bar: ProgressBar
-@export var sp_bar_text: Label
 @export var skill_menu: ItemList
 @export var item_menu: ItemList
 
@@ -111,9 +109,9 @@ func level_up(value):
 ## CHILD NODE FUNCTIONS
 ### SP
 func _update_sp_bar():
-	if sp_bar:
-		sp_bar.value = (sp / max_sp) * 100
-		sp_bar_text.text = str(sp, ' / ', max_sp)
+	if battle_sprite.sp_bar:
+		battle_sprite.sp_bar.value = (sp / max_sp) * 100
+		battle_sprite.sp_bar_text.text = str(sp, ' / ', max_sp)
 
 func consume_sp(value: float):
 	#print('sp', sp)
@@ -188,14 +186,6 @@ func reset_menu():
 	active_selection = null
 	chosen_option = false
 
-func dungeon_display():
-	super.dungeon_display()
-	sp_bar.hide()
-
-func battle_display():
-	super.battle_display()
-	sp_bar.show()
-
 
 ## END OF TURN EFFECTS
 func restore():
@@ -222,6 +212,6 @@ func _on_gear_gear_change() -> void:
 	#print(stats, hp, max_hp, sp, max_sp)
 
 
-func _on_detector_object_hit(object_type: Variant) -> void:
-	print(object_type, ' hit')
-	emit_signal('object_hit', object_type)
+#func _on_detector_object_hit(object_type: Variant) -> void:
+	#print(object_type, ' hit')
+	#emit_signal('object_hit', object_type)

@@ -10,13 +10,14 @@ atk_lines = []
 element = &""
 
 [node name="BattleSprite" parent="." index="0"]
-offset_left = -60.0
-offset_top = -67.0
-offset_right = -44.0
-offset_bottom = -51.0
-scale = Vector2(7.25, 7.125)
+offset_top = -165.5
+offset_bottom = 165.5
+
+[node name="BattleSprite" parent="BattleSprite/VBox" index="1"]
 texture = ExtResource("3_l2v3y")
 
 [node name="DungeonSprite" parent="." index="1"]
 scale = Vector2(1, 1)
 texture = ExtResource("3_l2v3y")
+
+[editable path="BattleSprite"]

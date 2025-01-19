@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3nogdpgqda7d"]
+
+[ext_resource type="Script" path="res://Scenes/battle_sprite.gd" id="1_o83ir"]
+[ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="2_1pw31"]
+[ext_resource type="Texture2D" uid="uid://dhk5om5486n8k" path="res://Assets/down-arrow-svgrepo-com.svg" id="3_j4uhy"]
+
+[node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "battle_sprite", "pointer", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text")]
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 50
+script = ExtResource("1_o83ir")
+nametag = NodePath("VBox/NameTag")
+battle_sprite = NodePath("VBox/BattleSprite")
+pointer = NodePath("VBox/BattleSprite/Pointer")
+hp_bar = NodePath("VBox/HPBar")
+hp_bar_text = NodePath("VBox/HPBar/HPBarText")
+sp_bar = NodePath("VBox/SPBar")
+sp_bar_text = NodePath("VBox/SPBar/SPBarText")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="NameTag" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Slim Shady"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BattleSprite" type="TextureRect" parent="VBox"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("2_1pw31")
+stretch_mode = 5
+
+[node name="Pointer" type="TextureRect" parent="VBox/BattleSprite"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = -72.0
+offset_right = 25.0
+offset_bottom = -22.0
+grow_horizontal = 2
+texture = ExtResource("3_j4uhy")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HPBar" type="ProgressBar" parent="VBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="HPBarText" type="Label" parent="VBox/HPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SPBar" type="ProgressBar" parent="VBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="SPBarText" type="Label" parent="VBox/SPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
