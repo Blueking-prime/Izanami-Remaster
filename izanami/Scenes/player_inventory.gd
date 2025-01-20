@@ -2,7 +2,8 @@ extends ItemList
 
 
 #@export_dir var item_location: String
-@export var player: Player
+@export var players: Party
+var player
 
 @onready var shop_list: ItemList = $"../ShopInventory"
 
@@ -10,15 +11,22 @@ var inventory
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	inventory = player.inventory
+	if players:
+		player = players.leader
+	load_stock()
+
+func load_stock():
+	if player:
+		inventory = player.inventory
 	update_listing()
 
 
 func update_listing():
 	clear()
-	for i in inventory.inventory_data:
-		add_item(i)
-		add_item(str(inventory.inventory_data[i]))
+	if inventory:
+		for i in inventory.inventory_data:
+			add_item(i)
+			add_item(str(inventory.inventory_data[i]))
 
 func add_entry(entry: Variant):
 	inventory.add_entry(entry)
@@ -39,7 +47,7 @@ func _on_item_activated(index: int) -> void:
 
 
 func _on_item_selected(index: int) -> void:
-	if Global.description_box_node:
-		Global.description_box_node.queue_free()
+	if Global.description_box:
+		Global.description_box.queue_free()
 	var item = inventory.get_entry_by_name(get_item_text(index))
 	Global.show_description(item)

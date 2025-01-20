@@ -23,7 +23,6 @@ class_name Player
 
 ## STATIC PROPERTIES
 @export var xp: int = 0
-@export var gold: int = 0
 @export var level_up_xp: int = 50 * (2 ** lvl)
 @export var mag: int = 0
 @export var level_stats: Array = []
@@ -142,10 +141,10 @@ func _on_skill_list_activated(index: int) -> void:
 	skill_menu.release_focus()
 
 func _on_skill_list_selected(index: int) -> void:
-	if Global.description_box_node:
-		Global.description_box_node.queue_free()
+	if Global.description_box:
+		Global.description_box.queue_free()
 	Global.show_description(get_skills()[index])
-	Global.description_box_node.size_flags_stretch_ratio = 2
+	Global.description_box.size_flags_stretch_ratio = 2
 
 
 ### ITEMS
@@ -173,10 +172,10 @@ func _on_item_list_activated(index: int) -> void:
 	item_menu.release_focus()
 
 func _on_item_list_selected(index: int) -> void:
-	if Global.description_box_node:
-		Global.description_box_node.queue_free()
+	if Global.description_box:
+		Global.description_box.queue_free()
 	Global.show_description(items.get_item(item_menu.get_item_text(index)))
-	Global.description_box_node.size_flags_stretch_ratio = 2
+	Global.description_box.size_flags_stretch_ratio = 2
 
 
 ### UI DISPLAYS

@@ -66,7 +66,7 @@ func player_party_setup():
 ## EXIT LOGIC
 func exit_dungeon():
 	players.freeze()
-	var x = await Global.dialog_choice("Do you want to leave the Dungeon?", false)
+	var x = await Global.dialog_choice("System", "Do you want to leave the Dungeon?")
 
 	if x == 0:
 		print('Yes')

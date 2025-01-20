@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://s3bvhf5ano50"]
 
 [node name="TextBox" type="PanelContainer"]
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.715
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -871.0
-offset_top = -57.0
+anchor_bottom = 0.947
+offset_left = -851.0
+offset_top = -0.200012
 offset_right = 871.0
-offset_bottom = -57.0
+offset_bottom = 0.23999
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -26,11 +26,13 @@ theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="Margin/VBox"]
 layout_mode = 2
+size_flags_vertical = 1
 text = "Dialogue Box"
 
 [node name="Text" type="Label" parent="Margin/VBox"]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
+size_flags_vertical = 1
 text = "Add skill icons Add level cap (maybe) Implement AoE skills and self_targeting skills Flesh out status effects Move battle movement and selection to separate nodeImplement dialog boxesLearn how to move players between scenesMake enemies not spawn on outer rows and columnsMove stats to Stats scriptChange map enemy spawning to reflect contained enemiesFix item usage bug"
 autowrap_mode = 2
 
@@ -41,6 +43,7 @@ layout_mode = 2
 [node name="Options" type="ItemList" parent="Margin/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 auto_height = true
 item_count = 3
 item_0/text = "Leaf"

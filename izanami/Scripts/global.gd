@@ -2,10 +2,14 @@ extends Node
 
 @onready var text_box_scene: PackedScene = preload("res://Models/Menus/text_box.tscn")
 @onready var description_box_scene: PackedScene = preload("res://Models/Menus/description_box.tscn")
+@onready var shop_menu_scene: PackedScene = preload("res://Scenes/shop_menu.tscn")
 
 var textbox_response: int
 var description_box_parent: Node
-var description_box_node: Node
+var description_box: Node
+var shop_menu: Node
+
+signal next
 
 func rand_coord(width: int, height: int):
 	return [randi_range(0, width - 1), randi_range(0, height - 1)]
@@ -69,16 +73,17 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 	return false
 
 
-func dialog_choice(prompt: String, _back = true, choices: Array[String] = ['Yes', 'No']) -> int:
+func dialog_choice(speaker: String, prompt: String, choices: Array[String] = ['Yes', 'No']) -> int:
 	var text_box: Control = text_box_scene.instantiate()
 	print(text_box)
 
 	get_tree().get_current_scene().add_sibling(text_box)
 
-	var _title: Label = text_box.get_node("Margin/VBox/Title")
+	var title: Label = text_box.get_node("Margin/VBox/Title")
 	var text: Label = text_box.get_node("Margin/VBox/Text")
 	var options: ItemList = text_box.get_node("Margin/VBox/Options")
 
+	title.text = speaker
 	text.text = prompt
 
 	options.clear()
@@ -94,8 +99,31 @@ func dialog_choice(prompt: String, _back = true, choices: Array[String] = ['Yes'
 	return textbox_response
 
 
+func show_text_box(speaker: String, prompt: String) -> void:
+	var text_box: Control = text_box_scene.instantiate()
+	print(text_box)
+
+	get_tree().get_current_scene().add_sibling(text_box)
+
+	print(get_tree().get_current_scene())
+
+	var title: Label = text_box.get_node("Margin/VBox/Title")
+	var text: Label = text_box.get_node("Margin/VBox/Text")
+	text_box.get_node("Margin/VBox/Options").hide()
+	text_box.get_node("Margin/VBox/Control").hide()
+
+	title.text = speaker
+	text.text = prompt
+
+	await next
+
+	print("We have awaited")
+
+	text_box.queue_free()
+
+
 func show_description(object: Resource) -> void:
-	var description_box: Control = description_box_scene.instantiate()
+	description_box = description_box_scene.instantiate()
 
 	if description_box_parent:
 		description_box_parent.add_child(description_box)
@@ -168,34 +196,20 @@ func show_description(object: Resource) -> void:
 	element.text = object.element
 	description.text = object.desc
 
-	description_box_node = description_box
 
+func dialog_choice_shop(players: Party, stock: ResourceGroup):
+	shop_menu = shop_menu_scene.instantiate()
 
-func dialog_choice_shop(_prompt: String, _choices: Dictionary):
-	#if len(choices) == 0:
-		#return -1
-	#while true:
-		#try:
-			#print('')
-			#print(prompt)
-			#print('S/N - Name : Cost')
-			#for i, j in enumerate(choices.keys(), 1):
-				#print(f'{i} - {j} : {choices[j]}')
-			#print('0 - back')
-#
-			#x = int(input('? '))
-			#if x not in range(0, len(choices) + 1):
-				#print('Invalid option!')
-				#continue
-#
-			#if x == 0:
-				#return -1
-#
-			#return Array(choices.keys())[x - 1]
-		#except ValueError:
-			#print('Invalid option!')
-			#continue
-	pass
+	get_tree().get_current_scene().add_sibling(shop_menu)
+
+	var shop_inventory_pane: ItemList = shop_menu.get_node("CanvasLayer/HBoxContainer/ShopInventory")
+	var player_inventory_pane: ItemList = shop_menu.get_node("CanvasLayer/HBoxContainer/PlayerInventory")
+
+	shop_inventory_pane.item_group = stock
+	player_inventory_pane.players = players
+
+	shop_inventory_pane.load_stock()
+	player_inventory_pane.load_stock()
 
 
 ## FUNCTON TESTS
@@ -210,3 +224,11 @@ func rand_spread_test():
 ## SIGNALS
 func _on_option_selected(index: int):
 	textbox_response = index
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		print('Enter pressed')
+		next.emit()
+	elif event.is_action_pressed("click"):
+		print('Mouse Clicked')
+		next.emit()

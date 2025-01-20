@@ -18,7 +18,6 @@ item_menu = NodePath("Items/ItemList")
 max_sp = 0
 sp = 0
 xp = 0
-gold = 0
 level_up_xp = null
 mag = 0
 level_stats = []

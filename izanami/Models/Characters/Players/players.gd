@@ -2,6 +2,14 @@ extends Node2D
 
 class_name Party
 
+@export var action_menu: Control
+@export var skill_panel: Control
+@export var source: String
+@export var battle_sprite_scene: PackedScene
+@export var player_section: Control
+
+@export var gold: int
+
 var party: Array = []
 var leader: Player
 var index: int = 0
@@ -9,13 +17,6 @@ var index: int = 0
 var party_panels: Dictionary = {}
 var stored_pos: Vector2
 var sprites: Array = []
-
-
-@export var action_menu: Control
-@export var skill_panel: Control
-@export var source: String
-@export var battle_sprite_scene: PackedScene
-@export var player_section: Control
 
 func _ready() -> void:
 	party = get_children()

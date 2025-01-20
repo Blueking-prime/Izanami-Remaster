@@ -17,10 +17,8 @@ grow_vertical = 2
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="Player" parent="." node_paths=PackedStringArray("battle_sprite", "dungeon_sprite") instance=ExtResource("1_pw8uo")]
+[node name="Player" parent="." instance=ExtResource("1_pw8uo")]
 visible = false
-battle_sprite = NodePath("BattleSprite")
-dungeon_sprite = NodePath("DungeonSprite")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -47,7 +45,7 @@ max_columns = 2
 script = ExtResource("1_to4xg")
 item_group = ExtResource("2_0wgb3")
 
-[node name="PlayerInventory" type="ItemList" parent="CanvasLayer/HBoxContainer" node_paths=PackedStringArray("player")]
+[node name="PlayerInventory" type="ItemList" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 auto_height = true
@@ -57,9 +55,16 @@ item_0/text = "Leaf"
 item_1/text = "Razor"
 item_2/text = "Excalihuh?"
 script = ExtResource("2_b27v5")
-player = NodePath("../../../Player")
 
 [node name="TextBox" parent="CanvasLayer" instance=ExtResource("4_08oii")]
+visible = false
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 57.0
+offset_top = 51.0
+offset_right = 233.0
+offset_bottom = 131.0
+text = "Exit"
 
 [connection signal="item_activated" from="CanvasLayer/HBoxContainer/ShopInventory" to="CanvasLayer/HBoxContainer/ShopInventory" method="_on_item_activated"]
 [connection signal="item_selected" from="CanvasLayer/HBoxContainer/ShopInventory" to="CanvasLayer/HBoxContainer/ShopInventory" method="_on_item_selected"]

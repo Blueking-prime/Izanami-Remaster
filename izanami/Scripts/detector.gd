@@ -1,8 +1,12 @@
 extends Area2D
 
+## DUNGEON SIGNALs
 signal hit_chest(coords)
 signal hit_enemy(coords)
 signal hit_exit(coords)
+
+## TOWN SIGNALS
+signal hit_building(body)
 
 var tile_data: TileData
 var collided_tile_coords: Vector2i
@@ -30,3 +34,5 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 		_process_tile_collison(body, body_rid)
 	if body is Enemy:
 		hit_enemy.emit(body)
+	if body is StaticBody2D:
+		hit_building.emit(body)

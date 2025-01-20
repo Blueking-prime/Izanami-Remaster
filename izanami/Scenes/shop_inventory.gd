@@ -9,10 +9,12 @@ extends ItemList
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	load_stock()
+
+func load_stock():
 	if item_group:
 		item_group.load_all_into(_items)
 		update_listing()
-
 
 func update_listing():
 	_item_dict.clear()
@@ -46,8 +48,8 @@ func _on_item_activated(index: int) -> void:
 	update_listing()
 
 func _on_item_selected(index: int) -> void:
-	if Global.description_box_node:
-		Global.description_box_node.queue_free()
+	if Global.description_box:
+		Global.description_box.queue_free()
 	var item = get_item_text(index)
 	_item_dict[item] -= 1
 	for i in _items:
