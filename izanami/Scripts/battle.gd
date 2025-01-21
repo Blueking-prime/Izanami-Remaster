@@ -33,6 +33,7 @@ var dungeon: Dungeon
 
 
 func _ready() -> void:
+	Global.description_box_parent = ui_panel
 	_player_party_setup()
 	player_array = players.party
 	enemy_array = enemies.enemies
@@ -81,7 +82,6 @@ func _player_party_setup():
 	players.player_section = player_section
 	players.action_menu = choice
 	players.skill_panel = skill_panel
-	Global.description_box_parent = ui_panel
 	players.battle_setup()
 
 func exit_battle(exit_type: StringName):

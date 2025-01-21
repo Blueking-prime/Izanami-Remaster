@@ -1,18 +1,30 @@
-extends ItemList
+extends Node
 
+class_name PlayerInventory
 
-#@export_dir var item_location: String
+## CHILD NODES
+@export var list: ItemList
+@export var count: ItemList
+@export var cost: ItemList
+
+## EXTERNAL PARAMETERS
 @export var players: Party
+@export var desc_box_container: BoxContainer
+@onready var shop_list: ShopInventory = $"../ShopInventory"
+
+## WORKING VARIABLES
 var player
-
-@onready var shop_list: ItemList = $"../ShopInventory"
-
+var gold
 var inventory
 
-# Called when the node enters the scene tree for the first time.
+signal sell
+
+
 func _ready() -> void:
+	Global.description_box_parent = desc_box_container
 	if players:
 		player = players.leader
+		gold = players.gold
 	load_stock()
 
 func load_stock():
@@ -22,32 +34,39 @@ func load_stock():
 
 
 func update_listing():
-	clear()
+	list.clear()
+	count.clear()
+	cost.clear()
+
 	if inventory:
 		for i in inventory.inventory_data:
-			add_item(i)
-			add_item(str(inventory.inventory_data[i]))
+			list.add_item(i)
+			count.add_item(str(inventory.inventory_data[i]))
+			cost.add_item(str(inventory.get_entry_by_name(i).price))
 
 func add_entry(entry: Variant):
 	inventory.add_entry(entry)
 	update_listing()
 
 func transfer_item(id: int):
-	var item = inventory.get_entry_by_name(get_item_text(id))
+	var item = inventory.get_entry_by_name(list.get_item_text(id))
 	if 'equipped' in item:
 		if item.equipped:
 			print("Can't sell equipped items")
 			return
 	inventory.remove_entry(item)
+	gold += item.price
+	sell.emit('item sold')
 	shop_list.add_entry(item)
 
 func _on_item_activated(index: int) -> void:
 	transfer_item(index)
 	update_listing()
 
-
 func _on_item_selected(index: int) -> void:
+	list.select(index)
+	count.select(index)
+	cost.select(index)
 	if Global.description_box:
 		Global.description_box.queue_free()
-	var item = inventory.get_entry_by_name(get_item_text(index))
-	Global.show_description(item)
+	Global.show_description(inventory.get_entry_by_name(list.get_item_text(index)))

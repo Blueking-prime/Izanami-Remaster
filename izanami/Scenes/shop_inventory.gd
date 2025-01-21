@@ -1,14 +1,25 @@
-extends ItemList
+extends Node
 
+class_name ShopInventory
 
-#@export_dir var item_location: String
-@export var _items: Array = []
+## CHILD NODES
+@export var list: ItemList
+@export var count: ItemList
+@export var cost: ItemList
+
+## EXTERNAL PARAMETERS
+@export var desc_box_container: BoxContainer
 @export var item_group: ResourceGroup
-@export var _item_dict: Dictionary
-@onready var player_list: ItemList = $"../PlayerInventory"
+@onready var player_list: PlayerInventory = $"../PlayerInventory"
 
-# Called when the node enters the scene tree for the first time.
+## WORKING VARIABLES
+@export var _items: Array = []
+@export var _item_dict: Dictionary
+
+signal sell(condition)
+
 func _ready() -> void:
+	Global.description_box_parent = desc_box_container
 	load_stock()
 
 func load_stock():
@@ -24,35 +35,51 @@ func update_listing():
 		else:
 			_item_dict.get_or_add(i.name, 1)
 
-	clear()
+	list.clear()
+	count.clear()
+	cost.clear()
 	for i in _item_dict:
-		add_item(i)
-		add_item(str(_item_dict[i]))
+		list.add_item(i)
+		count.add_item(str(_item_dict[i]))
+		cost.add_item(str(_get_item(i).price))
 
 func add_entry(entry: Variant):
 	_items.append(entry)
 	update_listing()
 
-func transfer_item(id: int):
-	var item = get_item_text(id)
-
-	_item_dict[item] -= 1
+func _get_item(item: String):
 	for i in _items:
 		if i.name == item:
-			player_list.add_entry(i)
-			_items.erase(i)
-			return
+			return i
+
+func transfer_item(id: int):
+	var item_name = list.get_item_text(id)
+	var item = _get_item(item_name)
+	if not _check_cost(item):
+		return
+	_item_dict[item_name] -= 1
+	player_list.add_entry(item)
+	_items.erase(item)
+
+func _check_cost(item: Variant) -> bool:
+	print(player_list.gold)
+	if item.price <= player_list.gold:
+		player_list.gold -= item.price
+		sell.emit('item bought')
+		return true
+	else:
+		sell.emit('low funds')
+		return false
 
 func _on_item_activated(index: int) -> void:
 	transfer_item(index)
 	update_listing()
 
 func _on_item_selected(index: int) -> void:
+	list.select(index)
+	count.select(index)
+	cost.select(index)
+
 	if Global.description_box:
 		Global.description_box.queue_free()
-	var item = get_item_text(index)
-	_item_dict[item] -= 1
-	for i in _items:
-		if i.name == item:
-			Global.show_description(i)
-			return
+	Global.show_description(_get_item(list.get_item_text(index)))

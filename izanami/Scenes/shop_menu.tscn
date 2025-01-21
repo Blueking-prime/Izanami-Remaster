@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnbjoofilujw1"]
 
-[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_pw8uo"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="1_84uve"]
 [ext_resource type="Script" path="res://Scenes/shop_inventory.gd" id="1_to4xg"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_0wgb3"]
-[ext_resource type="Script" path="res://Scenes/player_inventory.gd" id="2_b27v5"]
+[ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/Inventory.tscn" id="2_3k3hf"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/text_box.tscn" id="4_08oii"]
 
 [node name="ShopMenu" type="Control"]
@@ -11,62 +11,54 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="Player" parent="." instance=ExtResource("1_pw8uo")]
-visible = false
+[node name="Players" parent="." instance=ExtResource("1_84uve")]
+position = Vector2(667, 190)
+gold = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -933.0
-offset_top = 111.0
-offset_right = -119.0
-offset_bottom = 608.0
-grow_horizontal = 0
+[node name="PlayerInventory" parent="CanvasLayer" node_paths=PackedStringArray("players") instance=ExtResource("2_3k3hf")]
+players = NodePath("../../Players")
+
+[node name="ShopInventory" parent="CanvasLayer" node_paths=PackedStringArray("desc_box_container") instance=ExtResource("2_3k3hf")]
+anchor_left = 0.002
+anchor_right = 0.349
+offset_left = 105.16
+offset_right = -0.0800171
+script = ExtResource("1_to4xg")
+desc_box_container = NodePath("../Description Box")
+item_group = ExtResource("2_0wgb3")
+_items = []
+_item_dict = {}
+
+[node name="Description Box" type="BoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.36
+anchor_top = 0.5
+anchor_right = 0.655
+anchor_bottom = 0.667
+offset_left = -1.20001
+offset_right = 0.399902
+offset_bottom = -0.360046
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 20
 alignment = 1
-
-[node name="ShopInventory" type="ItemList" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-auto_height = true
-max_columns = 2
-script = ExtResource("1_to4xg")
-item_group = ExtResource("2_0wgb3")
-
-[node name="PlayerInventory" type="ItemList" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-auto_height = true
-item_count = 3
-max_columns = 2
-item_0/text = "Leaf"
-item_1/text = "Razor"
-item_2/text = "Excalihuh?"
-script = ExtResource("2_b27v5")
 
 [node name="TextBox" parent="CanvasLayer" instance=ExtResource("4_08oii")]
 visible = false
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 57.0
-offset_top = 51.0
-offset_right = 233.0
-offset_bottom = 131.0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 109.0
+offset_bottom = 68.0
 text = "Exit"
-
-[connection signal="item_activated" from="CanvasLayer/HBoxContainer/ShopInventory" to="CanvasLayer/HBoxContainer/ShopInventory" method="_on_item_activated"]
-[connection signal="item_selected" from="CanvasLayer/HBoxContainer/ShopInventory" to="CanvasLayer/HBoxContainer/ShopInventory" method="_on_item_selected"]
-[connection signal="item_activated" from="CanvasLayer/HBoxContainer/PlayerInventory" to="CanvasLayer/HBoxContainer/PlayerInventory" method="_on_item_activated"]
-[connection signal="item_selected" from="CanvasLayer/HBoxContainer/PlayerInventory" to="CanvasLayer/HBoxContainer/PlayerInventory" method="_on_item_selected"]
