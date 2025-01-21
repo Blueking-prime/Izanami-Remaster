@@ -17,18 +17,16 @@ var player
 var gold
 var inventory
 
-signal sell
-
 
 func _ready() -> void:
 	Global.description_box_parent = desc_box_container
 	if players:
 		player = players.leader
-		gold = players.gold
 	load_stock()
 
 func load_stock():
 	if player:
+		gold = players.gold
 		inventory = player.inventory
 	update_listing()
 
@@ -56,7 +54,7 @@ func transfer_item(id: int):
 			return
 	inventory.remove_entry(item)
 	gold += item.price
-	sell.emit('item sold')
+	Global.sell.emit('item sold')
 	shop_list.add_entry(item)
 
 func _on_item_activated(index: int) -> void:

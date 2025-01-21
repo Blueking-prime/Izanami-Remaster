@@ -26,7 +26,6 @@ battle_scene = ExtResource("2_mdgdy")
 
 [node name="Players" parent="." instance=ExtResource("3_xl0pa")]
 position = Vector2(957, 357)
-gold = 100
 
 [node name="Demonitarium" type="Node2D" parent="."]
 position = Vector2(268, 264)

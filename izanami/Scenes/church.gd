@@ -36,11 +36,11 @@ func dialogue():
 	await Global.show_text_box("Sister Amaka", "Come my child, be healed")
 
 func choose():
-	var option = await Global.dialog_choice("", 'Choose: ', ['Healing', 'Purge', 'Blessing'])
+	var option = await Global.show_text_choice("", 'Choose: ', ['Healing', 'Purge', 'Blessing'])
 	if option == 2:
 		cost = len(players.party) * 20
 
-	var heal = await Global.dialog_choice("Sister Amaka", "That will be %d yen | Balance: %d" % [cost, players.gold])
+	var heal = await Global.show_text_choice("Sister Amaka", "That will be %d yen | Balance: %d" % [cost, players.gold])
 	if heal == 0:
 		if players.gold >= cost:
 			match option:

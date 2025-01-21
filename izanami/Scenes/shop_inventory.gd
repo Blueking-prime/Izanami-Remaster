@@ -16,14 +16,19 @@ class_name ShopInventory
 @export var _items: Array = []
 @export var _item_dict: Dictionary
 
-signal sell(condition)
 
 func _ready() -> void:
 	Global.description_box_parent = desc_box_container
+	#Global.sell.connect(_sell)
 	load_stock()
+
+#func _sell(cond: String):
+	#print(cond)
+	#Global.sell.disconnect(_sell)
 
 func load_stock():
 	if item_group:
+		_items.clear()
 		item_group.load_all_into(_items)
 		update_listing()
 
@@ -62,13 +67,12 @@ func transfer_item(id: int):
 	_items.erase(item)
 
 func _check_cost(item: Variant) -> bool:
-	print(player_list.gold)
 	if item.price <= player_list.gold:
 		player_list.gold -= item.price
-		sell.emit('item bought')
+		Global.sell.emit('item bought')
 		return true
 	else:
-		sell.emit('low funds')
+		Global.sell.emit('low funds')
 		return false
 
 func _on_item_activated(index: int) -> void:

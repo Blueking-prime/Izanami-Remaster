@@ -35,7 +35,7 @@ func _check_building(node: Variant):
 		#func_church()
 
 #func main():
-	#var action = await Global.dialog_choice("What do you want to do?", actions)
+	#var action = await Global.show_text_choice("What do you want to do?", actions)
 	#match action:
 		#1:
 			#talk()
@@ -45,7 +45,7 @@ func _check_building(node: Variant):
 			#status()
 
 #func talk():
-	#var character = await Global.dialog_choice('Who do you want to talk to?', characters)
+	#var character = await Global.show_text_choice('Who do you want to talk to?', characters)
 	#match character:
 		#1:
 			#Dialogue.kobaneko()
@@ -60,10 +60,10 @@ func func_palace():
 func func_apothecary():
 	await Global.show_text_box('', "An indescribable miasma rises out as you open the door, the smell of ginseng, rabbit foot and other unknowable reagents")
 	while true:
-		var option = await Global.dialog_choice("Lenarr, the Alchemist", "What would you like to purchase, adventurer!", Parameters.apothy)
+		var option = await Global.show_text_choice("Lenarr, the Alchemist", "What would you like to purchase, adventurer!", Parameters.apothy)
 		#try:
 		var cost = Parameters.apothy[option]
-		var confirm = await Global.dialog_choice("Lenarr, the Alchemist", "That will be {cost} yen | Balance: {players.gold}")
+		var confirm = await Global.show_text_choice("Lenarr, the Alchemist", "That will be {cost} yen | Balance: {players.gold}")
 		if confirm:
 			if players.gold >= cost:
 				for item in Parameters.items:
@@ -83,7 +83,7 @@ func func_demonitorium():
 	await Global.show_text_box("Crowley", "Test your skills, adventurer... Anything you carve out is yours.")
 	await Global.show_text_box("Crowley", "Whatever you want, I got it.")
 	while true:
-		var option = await Global.dialog_choice("Crowley", "What would you like to purchase? ", ["Buy Mag", "See Demons", "Talk to Crowley"])
+		var option = await Global.show_text_choice("Crowley", "What would you like to purchase? ", ["Buy Mag", "See Demons", "Talk to Crowley"])
 		match option:
 			1:
 				var x
@@ -94,7 +94,7 @@ func func_demonitorium():
 					#except ValueError:
 					continue
 				var cost = 10 * x
-				var confirm = await Global.dialog_choice("Crowley", "That will be {cost} yen. | Balance: {players.gold}")
+				var confirm = await Global.show_text_choice("Crowley", "That will be {cost} yen. | Balance: {players.gold}")
 				if confirm:
 					if players.gold >= cost:
 						players.gold -= cost
@@ -104,10 +104,10 @@ func func_demonitorium():
 			2:
 				var fights = Parameters.demon_training
 				while true:
-					var fight = await Global.dialog_choice('What do you want to fight', fights)
+					var fight = await Global.show_text_choice('What do you want to fight', fights)
 					#try:
 					var cost = fights[fight]
-					var confirm =  await Global.dialog_choice("Crowley", "That will be {cost} yen | Balance: {players.gold}")
+					var confirm =  await Global.show_text_choice("Crowley", "That will be {cost} yen | Balance: {players.gold}")
 					if confirm:
 						if players.gold >= cost:
 							var enemy
@@ -126,7 +126,7 @@ func func_demonitorium():
 
 func func_dungeon():
 	await Global.show_text_box('System', "You are travelling to Dungeon Level {Parameters.dungeon_level}")
-	var confirm = await Global.dialog_choice("System", "Confirm: ")
+	var confirm = await Global.show_text_choice("System", "Confirm: ")
 	#if confirm:
 		#match Parameters.dungeon_level:
 			#1:
@@ -151,7 +151,7 @@ func func_dungeon():
 
 func status():
 	while true:
-		var view = await Global.dialog_choice("System", "What do you want to do?", ['Stats', 'Equipment', 'Magic', 'Save'])
+		var view = await Global.show_text_choice("System", "What do you want to do?", ['Stats', 'Equipment', 'Magic', 'Save'])
 		match view:
 			1:
 				var text_ = \
@@ -178,10 +178,10 @@ func status():
 				#weapon_dict = {i.name: i.stats for i in weapons}
 				#while true:
 					#try:
-						#equip = Global.dialog_choice('Which gear do you want to equip', weapon_dict)
+						#equip = Global.show_text_choice('Which gear do you want to equip', weapon_dict)
 						#for weapon in weapons:
 							#if weapon.name == equip:
-								#confirm = Global.dialog_choice(f"Confirm", back=false)
+								#confirm = Global.show_text_choice(f"Confirm", back=false)
 								#if confirm:
 									#players.equip_gear(weapon)
 									#await Global.show_text_box(f'{equip} equipped!')

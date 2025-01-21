@@ -20,6 +20,7 @@ grow_vertical = 2
 anchor_mode = 0
 
 [node name="Players" parent="." instance=ExtResource("1_84uve")]
+visible = false
 position = Vector2(667, 190)
 gold = 100
 
@@ -56,7 +57,7 @@ alignment = 1
 [node name="TextBox" parent="CanvasLayer" instance=ExtResource("4_08oii")]
 visible = false
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="ExitButton" type="Button" parent="CanvasLayer"]
 offset_left = 30.0
 offset_top = 25.0
 offset_right = 109.0
