@@ -21,6 +21,7 @@ var characters = ["Kobaneko", "White"]
 
 func _ready() -> void:
 	players.leader.detector.hit_building.connect(_check_building)
+	Global.player_party = players
 
 
 func _check_building(node: Variant):

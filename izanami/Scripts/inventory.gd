@@ -28,8 +28,6 @@ func add_entry(entry: Variant):
 	else:
 		inventory_data.get_or_add(entry.name, [entry])
 
-	print(inventory_data)
-
 func remove_entry(entry: Variant):
 	if entry is Gear:
 		gear_data[entry.name].erase(entry)

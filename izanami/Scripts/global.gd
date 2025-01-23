@@ -7,6 +7,8 @@ extends Node
 @onready var dungeon_scene: PackedScene = preload("res://Scenes/dungeon.tscn")
 @onready var battle_scene: PackedScene = preload("res://Scenes/battle.tscn")
 
+var player_party: Party
+
 var description_box_parent: Node
 var description_box: Control
 var shop_menu: Control

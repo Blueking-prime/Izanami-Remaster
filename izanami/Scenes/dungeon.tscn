@@ -514,7 +514,7 @@ sources/0 = SubResource("TileSetAtlasSource_aepm2")
 script = ExtResource("1_cwupn")
 players = NodePath("ObjectsSort/Players")
 width = 30
-height = 15
+height = 20
 MAX_ENEMIES = 1
 item_drop_group = ExtResource("2_ur1yd")
 gear_drop_group = ExtResource("3_hvtat")
@@ -533,6 +533,7 @@ y_sort_enabled = true
 position = Vector2(241, 131)
 
 [node name="Players" parent="ObjectsSort" instance=ExtResource("4_ndjag")]
+visible = false
 position = Vector2(-241, -131)
 
 [node name="Walls" type="TileMapLayer" parent="ObjectsSort"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=14 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/town.gd" id="1_ntvnu"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_xl0pa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="6_0ljby"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="6_yt5pf"]
 [ext_resource type="Script" path="res://Scenes/apothecary.gd" id="7_4eobs"]
+[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="9_4m3ej"]
 [ext_resource type="Script" path="res://Scenes/dungeon_town.gd" id="10_b283d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
@@ -19,12 +20,14 @@ radius = 186.454
 radius = 177.902
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7ftm"]
+radius = 170.012
 
-[node name="Town" type="Node2D" node_paths=PackedStringArray("church", "smithy", "apothecary", "demonitarium", "palace", "crowley", "kobaneko", "white", "players")]
+[node name="Town" type="Node2D" node_paths=PackedStringArray("church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "crowley", "kobaneko", "white", "players")]
 script = ExtResource("1_ntvnu")
 church = NodePath("Church")
 smithy = NodePath("Smithy")
 apothecary = NodePath("Apothecary")
+dungeon = NodePath("Dungeon")
 demonitarium = NodePath("Demonitarium")
 palace = NodePath("Palace")
 crowley = NodePath("Characters/Crowley")
@@ -61,6 +64,12 @@ shape = SubResource("CircleShape2D_xjhl4")
 [node name="Dungeon" type="StaticBody2D" parent="."]
 position = Vector2(1657, 264)
 script = ExtResource("10_b283d")
+dungeon_1_enemies = ExtResource("9_4m3ej")
+dungeon_1_item_drops = ExtResource("6_yt5pf")
+dungeon_1_gear_drops = ExtResource("6_0ljby")
+dungeon_2_enemies = ExtResource("9_4m3ej")
+dungeon_2_item_drops = ExtResource("6_yt5pf")
+dungeon_2_gear_drops = ExtResource("6_0ljby")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dungeon"]
 shape = SubResource("CircleShape2D_f7ftm")

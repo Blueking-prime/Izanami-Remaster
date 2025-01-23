@@ -1,19 +1,18 @@
 extends TileMapLayer
 
-@onready var width: int = get_parent().width
-@onready var height: int = get_parent().height
-
 @onready var map: Node = $"../Map"
 
 @export var terrain_set: int
 @export var terrain_id: int
 
 var walls: Array
+var width
+var height
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#width = map.width
-	#height = map.height
+	width = map.width
+	height = map.height
 	_render_background_floor()
 
 func _render_background_floor():

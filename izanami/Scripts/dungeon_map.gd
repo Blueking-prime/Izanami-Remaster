@@ -21,6 +21,7 @@ var enemy_tiles = []
 var treasure_no
 var enemy_no
 
+var visited = []
 
 func _ready() -> void:
 	var check = false
@@ -29,9 +30,58 @@ func _ready() -> void:
 		check = verify_dungeon()
 
 	_fill_gaps()
+
+	upscale()
+
 	_pad_tile(treasure_tiles)
 	_pad_tile([start, stop])
 	_pad_tile(enemy_tiles)
+
+func upscale(factor: int = 2):
+	var new_dungeon_map = []
+	for j in height * factor:
+		var row = []
+		for i in width * factor:
+			row.append('-')
+		new_dungeon_map.append(row)
+
+	var new_walls = []
+	var new_treasure_tiles = []
+	var new_enemy_tiles = []
+	var new_start = [start[0] * 2, start[1] * 2]
+	var new_stop = [stop[0] * 2, stop[1] * 2]
+
+	# [p] = [p0][pl]
+	#       [p2][p3]
+
+	for y in range(height):
+		for x in range(width):
+			if [x, y] in walls:
+				new_walls.append([2 * x,     2 * y])
+				new_walls.append([2 * x + 1, 2 * y])
+				new_walls.append([2 * x,     2 * y + 1])
+				new_walls.append([2 * x + 1, 2 * y + 1])
+
+			if [x,y] in treasure_tiles:
+				new_treasure_tiles.append([2 * x, 2 * y])
+
+			if [x,y] in enemy_tiles:
+				new_enemy_tiles.append([2 * x, 2 * y])
+
+	width *= 2
+	height *= 2
+
+	filled_coords = []
+	filled_coords.append_array(new_enemy_tiles)
+	filled_coords.append_array(new_treasure_tiles)
+	filled_coords.append_array(new_walls)
+
+	walls = new_walls
+	treasure_tiles = new_treasure_tiles
+	enemy_tiles = new_enemy_tiles
+
+	start = new_start
+	stop = new_stop
 
 
 func get_empty_tiles():
@@ -49,8 +99,13 @@ func _fill_gaps():
 			tiles.erase(coord)
 
 	for tile in tiles:
-		if not Global.path(start, tile, walls, width, height, []):
+		if tile in visited:
+			continue
+
+		var new_visits = []
+		if not Global.path(start, tile, walls, width, height, new_visits):
 			walls.append(tile)
+			visited.append_array(new_visits)
 
 func _pad_tile(tile_set):
 	var x
@@ -147,12 +202,19 @@ func spawn_enemy_tiles_floor():
 
 
 func verify_dungeon():
-	if not Global.path(start, stop, walls, width, height, []):
+	if not Global.path(start, stop, walls, width, height, visited):
 		return false
 
 	for i in treasure_tiles:
-		if not Global.path(start, i, walls, width, height, []):
+		# Checks if node has already been visited from start
+		if i in visited:
+			continue
+
+		# Else path trace from start to this point and add new path to existing paths
+		var new_visits = []
+		if not Global.path(start, i, walls, width, height, new_visits):
 			return false
+		visited.append_array(new_visits)
 
 	return true
 
@@ -168,7 +230,7 @@ func display_dungeon():
 		dungeon_map.append(row)
 
 	# Start
-	dungeon_map[start[1]][start[0]] = ' '
+	dungeon_map[start[1]][start[0]] = '*'
 
 	# Stop
 	dungeon_map[stop[1]][stop[0]] = legend[1]

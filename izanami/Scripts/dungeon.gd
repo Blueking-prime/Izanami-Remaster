@@ -57,8 +57,10 @@ func _ready() -> void:
 
 func player_party_setup():
 	for i in players.party:
+		i.dungeon_display()
 		i.hide()
 	player.show()
+	players.unfreeze()
 
 
 ## EXIT LOGIC

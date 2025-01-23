@@ -1,7 +1,5 @@
 extends TileMapLayer
 
-@onready var width: int = get_parent().get_parent().width
-@onready var height: int = get_parent().get_parent().height
 @onready var player: Player = get_parent().get_parent().player
 
 @onready var enemy_scene: PackedScene = preload("res://Models/Characters/Enemies/enemy.tscn")
@@ -23,6 +21,8 @@ var enemies: Array
 var entrance: Array
 var exit: Array
 var enemy_nodes
+var width
+var height
 
 @onready var map: Node = $"../../Map"
 
@@ -32,6 +32,8 @@ func _ready() -> void:
 	enemies = map.enemy_tiles
 	entrance = map.start
 	exit = map.stop
+	height = map.height
+	width = map.width
 	#print('walls = ', walls)
 
 	player.detector.hit_chest.connect(_on_detector_hit_chest)
@@ -42,14 +44,15 @@ func _ready() -> void:
 	_render_entrance()
 	_render_exit()
 	_place_enemies()
-	_place_player()
+	place_player()
 
 
-func _place_player():
+func place_player():
 	player.dungeon_display()
-	player.position = Vector2i(2*16*entrance[0], 2*16*entrance[1])
+	player.position = Vector2i(entrance[0], entrance[1])
 	print(player.position)
 	print(entrance)
+	print('Palced successfully')
 
 func _place_enemies():
 	for coord in enemies:
@@ -57,7 +60,6 @@ func _place_enemies():
 		add_child(enemy)
 		enemy.dungeon_display()
 		enemy.position = Vector2i(2*16*coord[0], 2*16*coord[1])
-		print(enemy.position)
 
 	enemy_nodes = get_children()
 
