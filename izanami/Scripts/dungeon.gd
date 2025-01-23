@@ -10,8 +10,6 @@ var dungeon_sample = [
 	["█", "█", "█", "-", "-", "█", "█", "█"]
 ]
 
-@export var battle_scene: PackedScene
-
 ## CHILD NODES
 @onready var map = $Map
 @export var players: Party
@@ -120,7 +118,7 @@ func _load_enemies():
 func initiate_battle():
 	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, MAX_ENEMIES)
 
-	var battle: Battle = battle_scene.instantiate()
+	var battle: Battle = Global.battle_scene.instantiate()
 	battle.no_of_enemies = no_of_enemies
 	battle.dungeon = self
 	battle.players = players

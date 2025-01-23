@@ -4,6 +4,9 @@ extends Node
 @onready var description_box_scene: PackedScene = preload("res://Models/Menus/description_box.tscn")
 @onready var shop_menu_scene: PackedScene = preload("res://Scenes/shop_menu.tscn")
 
+@onready var dungeon_scene: PackedScene = preload("res://Scenes/dungeon.tscn")
+@onready var battle_scene: PackedScene = preload("res://Scenes/battle.tscn")
+
 var description_box_parent: Node
 var description_box: Control
 var shop_menu: Control
@@ -78,7 +81,7 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 
 
 func show_text_choice(speaker: String, prompt: String, choices: Array[String] = ['Yes', 'No']) -> int:
-	if text_box:
+	if is_instance_valid(text_box):
 		text_box.queue_free()
 
 	text_box = text_box_scene.instantiate()
@@ -106,7 +109,7 @@ func show_text_choice(speaker: String, prompt: String, choices: Array[String] = 
 
 ## UI ELEMENTS
 func show_text_box(speaker: String, prompt: String, persist: bool = false) -> void:
-	if text_box:
+	if is_instance_valid(text_box):
 		text_box.queue_free()
 
 	text_box = text_box_scene.instantiate()
@@ -127,7 +130,7 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 
 
 func show_description(object: Resource) -> void:
-	if description_box:
+	if is_instance_valid(description_box):
 		description_box.queue_free()
 
 	description_box = description_box_scene.instantiate()
@@ -205,7 +208,7 @@ func show_description(object: Resource) -> void:
 
 
 func show_shop_menu(players: Party, stock: ResourceGroup):
-	if shop_menu:
+	if is_instance_valid(shop_menu):
 		shop_menu.queue_free()
 
 	shop_menu = shop_menu_scene.instantiate()

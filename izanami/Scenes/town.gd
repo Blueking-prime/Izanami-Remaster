@@ -2,20 +2,18 @@ extends Node2D
 
 class_name Town
 
-@export var demonitarium: Node
-@export var palace: Node
 @export var church: Node
 @export var smithy: Node
-@export var dungeon: Node
 @export var apothecary: Node
+@export var dungeon: Node
+@export var demonitarium: Node
+@export var palace: Node
 
 @export var crowley: Node
 @export var kobaneko: Node
 @export var white: Node
 
 @export var players: Party
-
-@export var battle_scene: PackedScene
 
 var locations = ["Palace", "Church", "Smithy", "Apothecary", "Demonitorium", "Dungeon"]
 var actions = ['Talk', "Go Somewhere", 'Status']
@@ -61,26 +59,6 @@ func _check_building(node: Variant):
 func func_palace():
 	return
 
-func func_apothecary():
-	await Global.show_text_box('', "An indescribable miasma rises out as you open the door, the smell of ginseng, rabbit foot and other unknowable reagents")
-	while true:
-		var option = await Global.show_text_choice("Lenarr, the Alchemist", "What would you like to purchase, adventurer!", players.apothy)
-		#try:
-		var cost = players.apothy[option]
-		var confirm = await Global.show_text_choice("Lenarr, the Alchemist", "That will be {cost} yen | Balance: {players.gold}")
-		if confirm:
-			if players.gold >= cost:
-				for item in players.items:
-					if item['name'] == option:
-						#players.inventory.append(Base_Item(item))
-						players.gold -= cost
-						break
-			else:
-				await Global.show_text_box('System', "You don't have enough Yen")
-				continue
-		#except KeyError:
-		break
-	return
 
 func func_demonitorium():
 	await Global.show_text_box('', "Unholy sigils paint the walls and howling creatures cackle from cages hanging precariously overhead")
@@ -116,8 +94,8 @@ func func_demonitorium():
 						if players.gold >= cost:
 							var enemy
 							#enemy = getattr(enemy_models, fight)()
-							battle_scene.instantiate()
-							battle_scene.stuff = [players, [enemy]]
+							Global.battle_scene.instantiate()
+							Global.battle_scene.stuff = [players, [enemy]]
 						else:
 							await Global.show_text_box('', "Broke ass n*gga")
 					#except KeyError:
@@ -128,30 +106,6 @@ func func_demonitorium():
 				break
 	return
 
-func func_dungeon():
-	await Global.show_text_box('System', "You are travelling to Dungeon Level {players.dungeon_level}")
-	var confirm = await Global.show_text_choice("System", "Confirm: ")
-	#if confirm:
-		#match players.dungeon_level:
-			#1:
-				#Dungeon(enemy_types=[enemy_models.Goblin, enemy_models.Oni]).main(players)
-			#2:
-				#Dungeon(enemy_types=[enemy_models.Imp, enemy_models.Oni]).main(players)
-			#3:
-				#Dungeon(enemy_types=[enemy_models.Imp, enemy_models.Orias]).main(players)
-			#4:
-				#Dungeon(enemy_types=[enemy_models.Hobgoblin, enemy_models.Balam]).main(players)
-				#battle(players, [enemy_models.Gigas()])
-			#5:
-				#Dungeon(enemy_types=[enemy_models.Hobgoblin, enemy_models.Belial]).main(players)
-				#Dialogue.final_floor(players)
-			#_:
-				#Dungeon(
-					#width=16,
-					#height=10,
-					#enemy_types=[getattr(enemy_models, i) for i in players.enemies]
-				#).main(players)
-	return
 
 func status():
 	while true:

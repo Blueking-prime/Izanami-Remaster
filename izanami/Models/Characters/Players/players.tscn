@@ -21,11 +21,11 @@ gear_group = ExtResource("5_caqig")
 
 [node name="Player" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
-position = Vector2(239, 72)
+position = Vector2(0, 0)
 
 [node name="Player2" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
-position = Vector2(402, 72)
+position = Vector2(163, 0)
 
 [editable path="Player"]
 [editable path="Player/BattleSprite"]

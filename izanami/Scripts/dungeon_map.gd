@@ -1,5 +1,6 @@
 extends Node
 
+
 @onready var width: int = get_parent().width
 @onready var height: int = get_parent().height
 @onready var enemy_spawn_chance: float = get_parent().enemy_spawn_chance
@@ -31,6 +32,7 @@ func _ready() -> void:
 	_pad_tile(treasure_tiles)
 	_pad_tile([start, stop])
 	_pad_tile(enemy_tiles)
+
 
 func get_empty_tiles():
 	var tiles = []

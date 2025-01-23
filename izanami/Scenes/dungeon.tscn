@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://ck8bsrl8idlci"]
+[gd_scene load_steps=15 format=3 uid="uid://ck8bsrl8idlci"]
 
 [ext_resource type="Script" path="res://Scripts/dungeon.gd" id="1_cwupn"]
-[ext_resource type="PackedScene" uid="uid://deahjbvovxuvn" path="res://Scenes/battle.tscn" id="2_ejng3"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_ur1yd"]
 [ext_resource type="Script" path="res://Scripts/dungeon_map.gd" id="2_y54nv"]
 [ext_resource type="Texture2D" uid="uid://jau6vpcqyha4" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_.png" id="3_81fwx"]
@@ -513,7 +512,6 @@ sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
 [node name="Dungeon" type="Node2D" node_paths=PackedStringArray("players")]
 script = ExtResource("1_cwupn")
-battle_scene = ExtResource("2_ejng3")
 players = NodePath("ObjectsSort/Players")
 width = 30
 height = 15
