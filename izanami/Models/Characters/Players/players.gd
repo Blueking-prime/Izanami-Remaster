@@ -9,6 +9,9 @@ class_name Party
 @export var player_section: Control
 
 @export var gold: int
+@export var dungeon_level: int = 1
+
+@export var inventory: Inventory
 
 var party: Array = []
 var leader: Player
@@ -19,7 +22,7 @@ var stored_pos: Vector2
 var sprites: Array = []
 
 func _ready() -> void:
-	party = get_children()
+	party = get_children().filter(func(x): if x is Player: return x)
 	leader = party[0]
 
 

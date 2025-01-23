@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Models/Skills/base_skill.gd" id="1_wd2iy"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_8rp22")
 name = "Excalihuh?"
 slot = &"weapon"
@@ -17,4 +18,6 @@ stats = {
 }
 desc = "RESTRICTED COPYRIGHT"
 price = 100
+equipped = false
 add_skills = Array[ExtResource("1_wd2iy")]([])
+element = &""

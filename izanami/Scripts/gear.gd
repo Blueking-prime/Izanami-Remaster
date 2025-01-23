@@ -12,7 +12,7 @@ var inventory
 signal gear_change
 
 func _ready() -> void:
-	inventory = get_node("../Inventory")
+	inventory = get_parent().get_node("../Inventory")
 
 	if player_gear_data:
 		_curr_gear = player_gear_data.load_all()

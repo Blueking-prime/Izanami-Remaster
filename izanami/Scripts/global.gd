@@ -212,8 +212,8 @@ func show_shop_menu(players: Party, stock: ResourceGroup):
 
 	get_tree().get_current_scene().add_sibling(shop_menu)
 
-	var shop_inventory_pane: ShopInventory = shop_menu.get_node("CanvasLayer/ShopInventory")
-	var player_inventory_pane: PlayerInventory = shop_menu.get_node("CanvasLayer/PlayerInventory")
+	var shop_inventory_pane: ShopInventoryMenu = shop_menu.get_node("CanvasLayer/ShopInventory")
+	var player_inventory_pane: PlayerInventoryMenu = shop_menu.get_node("CanvasLayer/PlayerInventory")
 	var exit_button: Button = shop_menu.get_node("CanvasLayer/ExitButton")
 
 	shop_inventory_pane.item_group = stock
@@ -248,3 +248,5 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("click"):
 		#print('Mouse Clicked')
 		next.emit()
+	if event.is_action_pressed("ui_cancel"):
+		sell.emit('exit')

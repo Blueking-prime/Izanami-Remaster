@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Models/Items/base_item.gd" id="1_jwad1"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_jwad1")
 name = &"Razor"
 type = &"damage"

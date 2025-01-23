@@ -4,7 +4,6 @@ class_name Player
 
 ## CHILD NODES
 @onready var gear: Node = $Gear
-@onready var inventory: Node = $Inventory
 @onready var detector: Area2D = $Detector
 
 @export var skill_menu: ItemList
@@ -153,7 +152,7 @@ func _display_items():
 	var _items = get_items()
 	for i in _items:
 		item_menu.add_item(i)
-		item_menu.add_item(str(_items[i]))
+		item_menu.add_item(str(len(_items[i])))
 
 func show_item_menu():
 	item_menu.show()

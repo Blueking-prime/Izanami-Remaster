@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Models/Items/base_item.gd" id="1_g3uao"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_g3uao")
 name = &"Leaf"
 type = &"heal"

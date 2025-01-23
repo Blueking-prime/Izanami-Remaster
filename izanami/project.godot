@@ -18,8 +18,6 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 Global="*res://Scripts/global.gd"
-Parameters="*res://Scripts/parameters.gd"
-Dialogue="*res://Scripts/dialogue.gd"
 
 [debug]
 

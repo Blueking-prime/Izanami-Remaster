@@ -1,6 +1,6 @@
 extends Node
 
-class_name PlayerInventory
+class_name PlayerInventoryMenu
 
 ## CHILD NODES
 @export var list: ItemList
@@ -10,24 +10,21 @@ class_name PlayerInventory
 ## EXTERNAL PARAMETERS
 @export var players: Party
 @export var desc_box_container: BoxContainer
-@onready var shop_list: ShopInventory = $"../ShopInventory"
+@onready var shop_list: ShopInventoryMenu = $"../ShopInventory"
 
 ## WORKING VARIABLES
-var player
 var gold
 var inventory
 
 
 func _ready() -> void:
 	Global.description_box_parent = desc_box_container
-	if players:
-		player = players.leader
 	load_stock()
 
 func load_stock():
-	if player:
+	if players:
 		gold = players.gold
-		inventory = player.inventory
+		inventory = players.inventory
 	update_listing()
 
 
@@ -39,7 +36,7 @@ func update_listing():
 	if inventory:
 		for i in inventory.inventory_data:
 			list.add_item(i)
-			count.add_item(str(inventory.inventory_data[i]))
+			count.add_item(str(len(inventory.inventory_data[i])))
 			cost.add_item(str(inventory.get_entry_by_name(i).price))
 
 func add_entry(entry: Variant):

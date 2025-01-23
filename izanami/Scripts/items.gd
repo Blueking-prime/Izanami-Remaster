@@ -1,48 +1,37 @@
 extends Node
 
-#@export_dir var item_location: String
-@export var _items: Array = []
 @export var item_group: ResourceGroup
 @export var _item_dict: Dictionary
 
-var inventory
+var inventory: Inventory
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	inventory = get_node("../Inventory")
+	inventory = get_parent().get_node("../Inventory")
 	if item_group:
-		item_group.load_all_into(_items)
+		for i in item_group.load_all():
+			add_item(i)
+
 	if inventory:
-		for i in inventory.items:
-			_items.append(i)
-		for i in _items:
-			inventory.add_entry(i)
-	_update_dict()
+		_item_dict = inventory.item_data
+
 
 func add_item(item: Item):
-	#var item = load(item_location + '/' + item_name + '.tres') as Item
-	_items.append(item)
+	if item.name in _item_dict:
+		_item_dict[item.name].append(item)
+	else:
+		_item_dict.get_or_add(item.name, [item])
+
 	if inventory:
 		inventory.add_entry(item)
-	_update_dict()
-
-func _update_dict():
-	_item_dict.clear()
-	for i in _items:
-		if i.name in _item_dict:
-			_item_dict[i] += 1
-		else:
-			_item_dict.get_or_add(i.name, 1)
 
 func get_item(item_name: String):
-	for i in _items:
-		if i.name == item_name:
-			return i
-	print('No such item')
+	return _item_dict[item_name][0]
 
 func remove_item(item: Item):
-	_items.erase(item)
-	_update_dict()
+	_item_dict[item.name].erase(item)
+	if not len(_item_dict[item.name]):
+		_item_dict.erase(item.name)
 
 func get_items():
 	return _item_dict

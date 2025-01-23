@@ -9,6 +9,10 @@ class_name Town
 @export var dungeon: Node
 @export var apothecary: Node
 
+@export var crowley: Node
+@export var kobaneko: Node
+@export var white: Node
+
 @export var players: Party
 
 @export var battle_scene: PackedScene
@@ -60,13 +64,13 @@ func func_palace():
 func func_apothecary():
 	await Global.show_text_box('', "An indescribable miasma rises out as you open the door, the smell of ginseng, rabbit foot and other unknowable reagents")
 	while true:
-		var option = await Global.show_text_choice("Lenarr, the Alchemist", "What would you like to purchase, adventurer!", Parameters.apothy)
+		var option = await Global.show_text_choice("Lenarr, the Alchemist", "What would you like to purchase, adventurer!", players.apothy)
 		#try:
-		var cost = Parameters.apothy[option]
+		var cost = players.apothy[option]
 		var confirm = await Global.show_text_choice("Lenarr, the Alchemist", "That will be {cost} yen | Balance: {players.gold}")
 		if confirm:
 			if players.gold >= cost:
-				for item in Parameters.items:
+				for item in players.items:
 					if item['name'] == option:
 						#players.inventory.append(Base_Item(item))
 						players.gold -= cost
@@ -102,7 +106,7 @@ func func_demonitorium():
 					else:
 						await Global.show_text_box('System', "You don't have enough Yen")
 			2:
-				var fights = Parameters.demon_training
+				var fights = players.demon_training
 				while true:
 					var fight = await Global.show_text_choice('What do you want to fight', fights)
 					#try:
@@ -119,16 +123,16 @@ func func_demonitorium():
 					#except KeyError:
 						break
 			3:
-				Dialogue.crowley()
+				crowley.crowley()
 			_:
 				break
 	return
 
 func func_dungeon():
-	await Global.show_text_box('System', "You are travelling to Dungeon Level {Parameters.dungeon_level}")
+	await Global.show_text_box('System', "You are travelling to Dungeon Level {players.dungeon_level}")
 	var confirm = await Global.show_text_choice("System", "Confirm: ")
 	#if confirm:
-		#match Parameters.dungeon_level:
+		#match players.dungeon_level:
 			#1:
 				#Dungeon(enemy_types=[enemy_models.Goblin, enemy_models.Oni]).main(players)
 			#2:
@@ -145,7 +149,7 @@ func func_dungeon():
 				#Dungeon(
 					#width=16,
 					#height=10,
-					#enemy_types=[getattr(enemy_models, i) for i in Parameters.enemies]
+					#enemy_types=[getattr(enemy_models, i) for i in players.enemies]
 				#).main(players)
 	return
 
@@ -162,7 +166,7 @@ func status():
 				'Weapon:'
 
 				await Global.show_text_box('', text_)
-				#for i in Parameters.gear_parts:
+				#for i in players.gear_parts:
 					##try:
 					#await Global.show_text_box('\t{i.capitalize()}: {players.gear[i].name} - {players.gear[i].stats}')
 					##except AttributeError:

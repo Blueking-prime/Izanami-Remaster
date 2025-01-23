@@ -1,7 +1,5 @@
 extends Node2D
 
-class_name Shop
-
 @onready var players: Party = get_parent().players
 
 @export var stock: ResourceGroup

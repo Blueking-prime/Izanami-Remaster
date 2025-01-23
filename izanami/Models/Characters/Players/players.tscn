@@ -1,14 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk5618o5l67d5"]
+[gd_scene load_steps=7 format=3 uid="uid://dk5618o5l67d5"]
 
 [ext_resource type="Script" path="res://Models/Characters/Players/players.gd" id="1_m2oad"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_blcr2"]
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="2_eydhy"]
+[ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_aasua"]
+[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="4_4q1mc"]
+[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="5_caqig"]
 
-[node name="Players" type="Node2D"]
+[node name="Players" type="Node2D" node_paths=PackedStringArray("inventory")]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_m2oad")
 battle_sprite_scene = ExtResource("2_blcr2")
+inventory = NodePath("Inventory")
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("3_aasua")
+item_group = ExtResource("4_4q1mc")
+gear_group = ExtResource("5_caqig")
 
 [node name="Player" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true

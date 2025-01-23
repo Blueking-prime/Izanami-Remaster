@@ -1,6 +1,6 @@
 extends Node
 
-class_name ShopInventory
+class_name ShopInventoryMenu
 
 ## CHILD NODES
 @export var list: ItemList
@@ -10,11 +10,10 @@ class_name ShopInventory
 ## EXTERNAL PARAMETERS
 @export var desc_box_container: BoxContainer
 @export var item_group: ResourceGroup
-@onready var player_list: PlayerInventory = $"../PlayerInventory"
+@onready var player_list: PlayerInventoryMenu = $"../PlayerInventory"
 
 ## WORKING VARIABLES
-@export var _items: Array = []
-@export var _item_dict: Dictionary
+@export var inventory: Dictionary
 
 
 func _ready() -> void:
@@ -28,43 +27,46 @@ func _ready() -> void:
 
 func load_stock():
 	if item_group:
-		_items.clear()
-		item_group.load_all_into(_items)
+		inventory.clear()
+		for i in item_group.load_all():
+			if i.name in inventory:
+				inventory[i.name].append(i)
+			else:
+				inventory.get_or_add(i.name, [i])
 		update_listing()
 
 func update_listing():
-	_item_dict.clear()
-	for i in _items:
-		if i.name in _item_dict:
-			_item_dict[i.name] += 1
-		else:
-			_item_dict.get_or_add(i.name, 1)
-
 	list.clear()
 	count.clear()
 	cost.clear()
-	for i in _item_dict:
+	for i in inventory:
 		list.add_item(i)
-		count.add_item(str(_item_dict[i]))
+		count.add_item(str(len(inventory[i])))
 		cost.add_item(str(_get_item(i).price))
 
 func add_entry(entry: Variant):
-	_items.append(entry)
+	if entry.name in inventory:
+		inventory[entry.name].append(entry)
+	else:
+		inventory.get_or_add(entry.name, [entry])
+	update_listing()
+
+func remove_item(entry: Variant):
+	inventory[entry.name].erase(entry)
+	if not len(inventory[entry.name]):
+		inventory.erase(entry.name)
 	update_listing()
 
 func _get_item(item: String):
-	for i in _items:
-		if i.name == item:
-			return i
+	return inventory[item][0]
 
 func transfer_item(id: int):
 	var item_name = list.get_item_text(id)
 	var item = _get_item(item_name)
 	if not _check_cost(item):
 		return
-	_item_dict[item_name] -= 1
 	player_list.add_entry(item)
-	_items.erase(item)
+	remove_item(item)
 
 func _check_cost(item: Variant) -> bool:
 	if item.price <= player_list.gold:

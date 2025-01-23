@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="1_84uve"]
 [ext_resource type="Script" path="res://Scenes/shop_inventory.gd" id="1_to4xg"]
-[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_0wgb3"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/Inventory.tscn" id="2_3k3hf"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/text_box.tscn" id="4_08oii"]
+[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_b5lik"]
 
 [node name="ShopMenu" type="Control"]
 layout_mode = 3
@@ -37,9 +37,8 @@ offset_left = 105.16
 offset_right = -0.0800171
 script = ExtResource("1_to4xg")
 desc_box_container = NodePath("../Description Box")
-item_group = ExtResource("2_0wgb3")
-_items = []
-_item_dict = {}
+item_group = ExtResource("4_b5lik")
+inventory = {}
 
 [node name="Description Box" type="BoxContainer" parent="CanvasLayer"]
 anchors_preset = -1

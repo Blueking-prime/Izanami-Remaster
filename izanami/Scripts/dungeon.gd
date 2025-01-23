@@ -66,7 +66,7 @@ func player_party_setup():
 ## EXIT LOGIC
 func exit_dungeon():
 	players.freeze()
-	var x = await Global.dialog_choice("System", "Do you want to leave the Dungeon?")
+	var x = await Global.show_text_choice("System", "Do you want to leave the Dungeon?")
 
 	if x == 0:
 		print('Yes')
@@ -103,7 +103,7 @@ func collect_treasure():
 	drop = x[index]
 
 	print(drop)
-	player.inventory.add_entry(drop)
+	players.inventory.add_entry(drop)
 	print("You got %s!" % [drop.name])
 
 

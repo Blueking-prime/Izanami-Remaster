@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_xl0pa"]
 [ext_resource type="Script" path="res://Scenes/church.gd" id="4_ya8nq"]
 [ext_resource type="Script" path="res://Scenes/smithy.gd" id="5_ww4xy"]
-[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="6_yt5pf"]
+[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="6_0ljby"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
 radius = 172.491
@@ -13,7 +13,7 @@ radius = 172.491
 [sub_resource type="CircleShape2D" id="CircleShape2D_faye3"]
 radius = 186.454
 
-[node name="Town" type="Node2D" node_paths=PackedStringArray("demonitarium", "palace", "church", "smithy", "dungeon", "apothecary", "players")]
+[node name="Town" type="Node2D" node_paths=PackedStringArray("demonitarium", "palace", "church", "smithy", "dungeon", "apothecary", "crowley", "kobaneko", "white", "players")]
 script = ExtResource("1_ntvnu")
 demonitarium = NodePath("Demonitarium")
 palace = NodePath("Palace")
@@ -21,6 +21,9 @@ church = NodePath("Church")
 smithy = NodePath("Smithy")
 dungeon = NodePath("Dungeon")
 apothecary = NodePath("Apothecary")
+crowley = NodePath("Characters/Crowley")
+kobaneko = NodePath("Characters/Kobaneko")
+white = NodePath("Characters/White")
 players = NodePath("Players")
 battle_scene = ExtResource("2_mdgdy")
 
@@ -43,7 +46,7 @@ shape = SubResource("CircleShape2D_7phy7")
 [node name="Smithy" type="StaticBody2D" parent="."]
 position = Vector2(268, 821)
 script = ExtResource("5_ww4xy")
-stock = ExtResource("6_yt5pf")
+stock = ExtResource("6_0ljby")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Smithy"]
 shape = SubResource("CircleShape2D_faye3")
@@ -59,3 +62,5 @@ position = Vector2(957, 264)
 [node name="Kobaneko" type="Node2D" parent="Characters"]
 
 [node name="White" type="Node2D" parent="Characters"]
+
+[node name="Crowley" type="Node2D" parent="Characters"]
