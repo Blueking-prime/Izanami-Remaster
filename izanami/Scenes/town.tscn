@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=15 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/town.gd" id="1_ntvnu"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_xl0pa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scenes/apothecary.gd" id="7_4eobs"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="9_4m3ej"]
 [ext_resource type="Script" path="res://Scenes/dungeon_town.gd" id="10_b283d"]
+[ext_resource type="Script" path="res://Scenes/demonitarium.gd" id="10_frbt0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
 radius = 172.491
@@ -30,7 +31,7 @@ apothecary = NodePath("Apothecary")
 dungeon = NodePath("Dungeon")
 demonitarium = NodePath("Demonitarium")
 palace = NodePath("Palace")
-crowley = NodePath("Characters/Crowley")
+crowley = NodePath("Demonitarium/Crowley")
 kobaneko = NodePath("Characters/Kobaneko")
 white = NodePath("Characters/White")
 players = NodePath("Players")
@@ -74,8 +75,27 @@ dungeon_2_gear_drops = ExtResource("6_0ljby")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dungeon"]
 shape = SubResource("CircleShape2D_f7ftm")
 
-[node name="Demonitarium" type="Node2D" parent="."]
+[node name="Demonitarium" type="Node2D" parent="." node_paths=PackedStringArray("crowley", "quantity_input", "confirm_button")]
 position = Vector2(268, 264)
+script = ExtResource("10_frbt0")
+crowley = NodePath("Crowley")
+quantity_input = NodePath("QuantityInput")
+confirm_button = NodePath("Button")
+
+[node name="Crowley" type="Node2D" parent="Demonitarium"]
+position = Vector2(-268, -264)
+
+[node name="QuantityInput" type="SpinBox" parent="Demonitarium"]
+offset_right = 83.0625
+offset_bottom = 31.0
+max_value = 99.0
+rounded = true
+
+[node name="Button" type="Button" parent="Demonitarium"]
+offset_left = 83.0
+offset_right = 150.0
+offset_bottom = 31.0
+text = "Confirm"
 
 [node name="Palace" type="Node2D" parent="."]
 position = Vector2(1657, 821)
@@ -85,5 +105,3 @@ position = Vector2(1657, 821)
 [node name="Kobaneko" type="Node2D" parent="Characters"]
 
 [node name="White" type="Node2D" parent="Characters"]
-
-[node name="Crowley" type="Node2D" parent="Characters"]

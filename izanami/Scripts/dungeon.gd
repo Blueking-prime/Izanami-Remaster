@@ -68,13 +68,29 @@ func exit_dungeon():
 	players.freeze()
 	var x = await Global.show_text_choice("System", "Do you want to leave the Dungeon?")
 
+	players.unfreeze()
 	if x == 0:
 		print('Yes')
-		##RELOAD TOWN
+		load_town()
 		queue_free()
 	elif x == 1:
 		print('No')
-	players.unfreeze()
+
+func load_town():
+	var town = Global.town_scene.instantiate()
+	print(town)
+	var town_players = town.get_node("Players")
+	town.remove_child(town_players)
+	town.players = players
+
+	get_node('ObjectsSort').remove_child(players)
+	town.add_child(players)
+	add_sibling(town)
+	get_tree().current_scene = town
+	print(get_tree().current_scene)
+
+	print('Town Loaded')
+
 
 func _on_detector_hit_exit(coords) -> void:
 	print(coords)

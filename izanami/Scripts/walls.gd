@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 @onready var player: Player = get_parent().get_parent().player
+@onready var players: Party = get_parent().get_parent().players
 
 @onready var enemy_scene: PackedScene = preload("res://Models/Characters/Enemies/enemy.tscn")
 
@@ -48,11 +49,14 @@ func _ready() -> void:
 
 
 func place_player():
-	player.dungeon_display()
-	player.position = Vector2i(entrance[0], entrance[1])
-	print(player.position)
-	print(entrance)
-	print('Palced successfully')
+	var player_pos = Vector2i(entrance[0] * 16, entrance[1] * 16)
+	if player_pos.x <= 0:
+		player_pos.x = 16
+	if player_pos.y <= 0:
+		player_pos.y = 16
+
+	players.position = player_pos
+	player.position = player_pos
 
 func _place_enemies():
 	for coord in enemies:

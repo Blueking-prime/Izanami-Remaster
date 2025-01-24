@@ -6,6 +6,7 @@ extends Node
 
 @onready var dungeon_scene: PackedScene = preload("res://Scenes/dungeon.tscn")
 @onready var battle_scene: PackedScene = preload("res://Scenes/battle.tscn")
+@onready var town_scene: PackedScene = preload("res://Scenes/town.tscn")
 
 var player_party: Party
 

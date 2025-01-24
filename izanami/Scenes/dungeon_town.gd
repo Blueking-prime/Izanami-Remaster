@@ -106,10 +106,9 @@ func set_dungeon_level():
 
 func load_dungeon():
 	get_parent().remove_child(players)
-	get_parent().add_sibling(dungeon)
 	dungeon.get_node('ObjectsSort').add_child(players)
-	print(dungeon.get_node('ObjectsSort/Walls'))
-	dungeon.get_node('ObjectsSort/Walls').place_player()
+	get_parent().add_sibling(dungeon)
+	get_tree().current_scene = dungeon
 
 # Figure out howto load this after floor four
 #battle(players, [enemy_models.Gigas()])

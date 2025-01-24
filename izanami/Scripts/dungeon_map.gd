@@ -10,6 +10,7 @@ extends Node
 
 @export var legend: Array = ['I', 'O', '*', 'T', '█', 'E']
 @export var max_treasure_no: int = 5
+@export var upscale_factor: int = 2
 
 var start = []
 var stop = []
@@ -37,11 +38,11 @@ func _ready() -> void:
 	_pad_tile([start, stop])
 	_pad_tile(enemy_tiles)
 
-func upscale(factor: int = 2):
+func upscale():
 	var new_dungeon_map = []
-	for j in height * factor:
+	for j in height * upscale_factor:
 		var row = []
-		for i in width * factor:
+		for i in width * upscale_factor:
 			row.append('-')
 		new_dungeon_map.append(row)
 

@@ -61,51 +61,6 @@ func func_palace():
 	return
 
 
-func func_demonitorium():
-	await Global.show_text_box('', "Unholy sigils paint the walls and howling creatures cackle from cages hanging precariously overhead")
-	await Global.show_text_box("Crowley", "Test your skills, adventurer... Anything you carve out is yours.")
-	await Global.show_text_box("Crowley", "Whatever you want, I got it.")
-	while true:
-		var option = await Global.show_text_choice("Crowley", "What would you like to purchase? ", ["Buy Mag", "See Demons", "Talk to Crowley"])
-		match option:
-			1:
-				var x
-				while true:
-					#try:
-					#var x = int(await Global.show_text_box("How much do you want to buy: [number] "))
-					break
-					#except ValueError:
-					continue
-				var cost = 10 * x
-				var confirm = await Global.show_text_choice("Crowley", "That will be {cost} yen. | Balance: {players.gold}")
-				if confirm:
-					if players.gold >= cost:
-						players.gold -= cost
-						#players.mag += x
-					else:
-						await Global.show_text_box('System', "You don't have enough Yen")
-			2:
-				var fights = players.demon_training
-				while true:
-					var fight = await Global.show_text_choice('What do you want to fight', fights)
-					#try:
-					var cost = fights[fight]
-					var confirm =  await Global.show_text_choice("Crowley", "That will be {cost} yen | Balance: {players.gold}")
-					if confirm:
-						if players.gold >= cost:
-							var enemy
-							#enemy = getattr(enemy_models, fight)()
-							Global.battle_scene.instantiate()
-							Global.battle_scene.stuff = [players, [enemy]]
-						else:
-							await Global.show_text_box('', "Broke ass n*gga")
-					#except KeyError:
-						break
-			3:
-				crowley.crowley()
-			_:
-				break
-	return
 
 
 func status():

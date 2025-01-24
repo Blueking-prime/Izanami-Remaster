@@ -9,6 +9,7 @@ class_name Party
 @export var player_section: Control
 
 @export var gold: int
+@export var mag: int
 @export var dungeon_level: int = 1
 
 @export var inventory: Inventory
@@ -31,9 +32,9 @@ func battle_setup():
 	stored_pos = leader.position
 	z_index += 1
 
-	for i in party:
-		i.show()
-		i.battle_display()
+	#for i in party:
+		#i.show()
+		#i.battle_display()
 
 	freeze()
 
@@ -51,24 +52,33 @@ func battle_reset():
 	unfreeze()
 
 	revert_menu()
+	revert_sprites()
 
 	leader.show()
 
 
 func place_characters_in_battle():
 	for i in party:
-		var sprite: BattleSprite = battle_sprite_scene.instantiate()
+		#var sprite: BattleSprite = battle_sprite_scene.instantiate()
+#
+		#sprite.battle_sprite.texture = i.battle_sprite.battle_sprite.texture
+		#sprite.nametag.text = i.battle_sprite.nametag.text
+		#sprite.hp_bar_text.text = str(i.hp) + '/' + str(i.max_hp)
+		#sprite.sp_bar_text.text = str(i.sp) + '/' + str(i.max_sp)
 
-		sprite.battle_sprite.texture = i.battle_sprite.battle_sprite.texture
-		sprite.nametag.text = i.battle_sprite.nametag.text
-		sprite.hp_bar_text.text = str(i.hp) + '/' + str(i.max_hp)
-		sprite.sp_bar_text.text = str(i.sp) + '/' + str(i.max_sp)
+		var sprite = i.battle_sprite
 
+		i.remove_child(sprite)
 		player_section.add_child(sprite)
+
 		i.battle_sprite = sprite
 		sprites.append(sprite)
 
 		i.battle_display()
+
+func revert_sprites():
+	for i in len(party):
+		party[i].battle_sprite = sprites[i]
 
 func place_menu():
 	for i in party:
