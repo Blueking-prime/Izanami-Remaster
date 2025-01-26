@@ -5,25 +5,30 @@ extends Node2D
 
 @onready var no_of_enemies: int = get_parent().no_of_enemies
 @onready var enemy_group: ResourceGroup  = get_parent().enemy_group
+@onready var enemy_set: Array = get_parent().enemy_set
 
 var enemies: Array = []
-var _enemy_set = []
 var sprites = []
 
 func _ready() -> void:
-	_initialize_enemies()
+	if len(enemy_set):
+		_initialize_enemies(false)
+	if enemy_group:
+		_initialize_enemies(true)
+
 	place_charscters()
 
 
-func _initialize_enemies():
+func _initialize_enemies(from_resource_group: bool):
 	#Spawn enemies here
-	_enemy_set = enemy_group.load_all()
-	#print(_enemy_set)
+	if from_resource_group:
+		enemy_set = enemy_group.load_all()
+	#print(enemy_set)
 
 	var _type
 	for i in no_of_enemies:
-		_type = randi_range(0, _enemy_set.size() - 1)
-		add_child(_enemy_set[_type].instantiate())
+		_type = randi_range(0, enemy_set.size() - 1)
+		add_child(enemy_set[_type].instantiate())
 
 	enemies = get_children()
 	#for i in enemies.size():

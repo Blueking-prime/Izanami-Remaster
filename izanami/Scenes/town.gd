@@ -84,7 +84,7 @@ func status():
 				#await Global.show_text_box('Inventory:')
 				players.display_inventory()
 			2:
-				var weapons
+				var weapons = 0
 				#weapons = [i for i in players.inventory if isinstance(i, Base_Gear)]
 				if len(weapons) == 0:
 					#await Global.show_text_box('No equipment in inventory')

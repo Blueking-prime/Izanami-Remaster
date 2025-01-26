@@ -32,7 +32,6 @@ var _item_drops = []
 @export var gear_chance: float = 0.5
 
 ## WORKING VARIABLES
-var _enemy_set
 var player: Player:
 	get():
 		return players.leader
@@ -130,9 +129,6 @@ func _on_detector_hit_chest(coords) -> void:
 
 
 ## BATTLE LOGIC
-func _load_enemies():
-	_enemy_set = enemy_types.load_all()
-
 func initiate_battle():
 	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, MAX_ENEMIES)
 
@@ -140,6 +136,7 @@ func initiate_battle():
 	battle.no_of_enemies = no_of_enemies
 	battle.dungeon = self
 	battle.players = players
+	battle.enemy_group = enemy_types
 	#player.in_battle = true
 	get_node("Background").hide()
 	get_node("ObjectsSort/Walls").hide()
