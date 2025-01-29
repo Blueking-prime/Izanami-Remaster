@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjf7wmor410ps"]
+
+[ext_resource type="Script" path="res://Models/Menus/base_overlay.gd" id="1_fxe44"]
+[ext_resource type="Texture2D" uid="uid://cya3ku2ta4pme" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/coin_anim_f0.png" id="2_rfrb6"]
+[ext_resource type="Script" path="res://Models/Menus/player_display_container.gd" id="2_slhvk"]
+[ext_resource type="Texture2D" uid="uid://bdvitgwmv2ayt" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/coin_anim_f1.png" id="3_6kcpy"]
+[ext_resource type="PackedScene" uid="uid://mmi7n42qt3ph" path="res://Models/Menus/player_data.tscn" id="3_446mo"]
+
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "coin_counter", "mag_counter")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fxe44")
+player_status = NodePath("StatusOverlay/MarginContainer/PlayerContainer")
+coin_counter = NodePath("ResourceDisplay/MarginContainer/GridContainer/CoinCount")
+mag_counter = NodePath("ResourceDisplay/MarginContainer/GridContainer/MagCount")
+
+[node name="StatusOverlay" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 346.0
+offset_bottom = 60.0
+
+[node name="MarginContainer" type="MarginContainer" parent="StatusOverlay"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PlayerContainer" type="VBoxContainer" parent="StatusOverlay/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("2_slhvk")
+data_card_scene = ExtResource("3_446mo")
+
+[node name="PlayerData" parent="StatusOverlay/MarginContainer/PlayerContainer" instance=ExtResource("3_446mo")]
+visible = false
+layout_mode = 2
+
+[node name="ResourceDisplay" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 116.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ResourceDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="ResourceDisplay/MarginContainer"]
+layout_mode = 2
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="CoinSprite" type="TextureRect" parent="ResourceDisplay/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_rfrb6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CoinCount" type="Label" parent="ResourceDisplay/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MagSprite" type="TextureRect" parent="ResourceDisplay/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_rfrb6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MagCount" type="Label" parent="ResourceDisplay/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -83.0
+offset_right = -40.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="SettingsButton" type="Button" parent="MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+icon = ExtResource("3_6kcpy")
+
+[node name="InventoryButton" type="Button" parent="MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Inventory"
+icon = ExtResource("3_6kcpy")
+
+[connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=22 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/town.gd" id="1_ntvnu"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_xl0pa"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Models/Menus/demonitarium_fights.gd" id="12_va63s"]
 [ext_resource type="Texture2D" uid="uid://cx2uyxlvrhnso" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/imp_idle_anim_f0.png" id="13_808nt"]
 [ext_resource type="Texture2D" uid="uid://dglgyqpiktqx5" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/big_demon_idle_anim_f0.png" id="14_ewnv5"]
+[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="16_sg5ny"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
 radius = 172.491
@@ -31,8 +32,9 @@ radius = 170.012
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cilw"]
 radius = 186.218
 
-[node name="Town" type="Node2D" node_paths=PackedStringArray("church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "crowley", "kobaneko", "white", "players")]
+[node name="Town" type="Node2D" node_paths=PackedStringArray("overlay", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "crowley", "kobaneko", "white", "players")]
 script = ExtResource("1_ntvnu")
+overlay = NodePath("ShopLayer/BaseOverlay")
 church = NodePath("Church")
 smithy = NodePath("Smithy")
 apothecary = NodePath("Apothecary")
@@ -168,5 +170,7 @@ theme_override_constants/v_separation = 81
 [node name="Cost" parent="ShopLayer/DemonitariumFights/Items" index="2"]
 size_flags_horizontal = 1
 theme_override_constants/v_separation = 81
+
+[node name="BaseOverlay" parent="ShopLayer" instance=ExtResource("16_sg5ny")]
 
 [editable path="ShopLayer/DemonitariumFights"]

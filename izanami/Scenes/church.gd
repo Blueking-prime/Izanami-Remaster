@@ -48,7 +48,7 @@ func choose():
 					for i in players.party: i.heal(i.max_hp)
 					await Global.show_text_box("Sister Amaka","You have been healed. Go now and sin no more")
 				1:
-					for i in players.party: i.status_effect = null
+					for i in players.party: i.status_effect = 'null'
 					await Global.show_text_box("Sister Amaka","You have been delivered from ailment. Go now and be free.")
 				2:
 					# Do something

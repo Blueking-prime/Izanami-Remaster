@@ -107,9 +107,9 @@ func level_up(value):
 ## CHILD NODE FUNCTIONS
 ### SP
 func _update_sp_bar():
-	if battle_sprite.sp_bar:
-		battle_sprite.sp_bar.value = (sp / max_sp) * 100
-		battle_sprite.sp_bar_text.text = str(sp, ' / ', max_sp)
+	if sp_bar:
+		sp_bar.value = (sp / max_sp) * 100
+		sp_bar_text.text = str(sp, ' / ', max_sp)
 
 func consume_sp(value: float):
 	#print('sp', sp)

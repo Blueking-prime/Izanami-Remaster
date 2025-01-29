@@ -1,6 +1,5 @@
 extends Node
 
-
 @onready var width: int = get_parent().width
 @onready var height: int = get_parent().height
 @onready var enemy_spawn_chance: float = get_parent().enemy_spawn_chance
@@ -83,7 +82,6 @@ func upscale():
 
 	start = new_start
 	stop = new_stop
-
 
 func get_empty_tiles():
 	var tiles = []
@@ -197,10 +195,13 @@ func spawn_enemy_tiles_floor():
 		coord = Global.rand_coord(width, height)
 		if coord in filled_coords:
 			continue
+		if coord[0] < 1:
+			coord[0] == 1
+		if coord[1] < 1:
+			coord[1] == 1
 		enemy_tiles.append(coord)
 		filled_coords.append(coord)
 		i += 1
-
 
 func verify_dungeon():
 	if not Global.path(start, stop, walls, width, height, visited):
@@ -218,8 +219,6 @@ func verify_dungeon():
 		visited.append_array(new_visits)
 
 	return true
-
-
 
 func display_dungeon():
 	dungeon_map = []

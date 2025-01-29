@@ -24,7 +24,10 @@ var sprites: Array = []
 
 func _ready() -> void:
 	party = get_children().filter(func(x): if x is Player: return x)
+	for i in party:
+		i.hide()
 	leader = party[0]
+	leader.show()
 
 
 ## BATTLE SCENE
@@ -52,33 +55,37 @@ func battle_reset():
 	unfreeze()
 
 	revert_menu()
-	revert_sprites()
+	#revert_sprites()
 
 	leader.show()
 
 
 func place_characters_in_battle():
 	for i in party:
-		#var sprite: BattleSprite = battle_sprite_scene.instantiate()
-#
-		#sprite.battle_sprite.texture = i.battle_sprite.battle_sprite.texture
-		#sprite.nametag.text = i.battle_sprite.nametag.text
-		#sprite.hp_bar_text.text = str(i.hp) + '/' + str(i.max_hp)
-		#sprite.sp_bar_text.text = str(i.sp) + '/' + str(i.max_sp)
+		var sprite: BattleSprite = battle_sprite_scene.instantiate()
 
-		var sprite = i.battle_sprite
+		sprite.battle_sprite.texture = i.battle_sprite_texture.texture
+		sprite.nametag.text = i.battle_sprite.nametag.text
+		sprite.hp_bar_text.text = str(i.hp) + '/' + str(i.max_hp)
+		sprite.sp_bar_text.text = str(i.sp) + '/' + str(i.max_sp)
 
-		i.remove_child(sprite)
-		player_section.add_child(sprite)
+		i.nametag = sprite.nametag
+		i.hp_bar = sprite.hp_bar
+		i.hp_bar_text = sprite.hp_bar_text
+		i.sp_bar = sprite.sp_bar
+		i.sp_bar_text = sprite.sp_bar_text
+		i.pointer = sprite.pointer
+		i.battle_sprite_texture = sprite.battle_sprite
 
 		i.battle_sprite = sprite
-		sprites.append(sprite)
+
+		player_section.add_child(sprite)
 
 		i.battle_display()
 
-func revert_sprites():
-	for i in len(party):
-		party[i].battle_sprite = sprites[i]
+#func revert_sprites():
+	#for i in len(party):
+		#party[i].battle_sprite = sprites[i]
 
 func place_menu():
 	for i in party:

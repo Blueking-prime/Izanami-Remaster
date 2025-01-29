@@ -38,14 +38,21 @@ func place_charscters():
 	for i in enemies:
 		var sprite: BattleSprite = battle_sprite_scene.instantiate()
 
-		sprite.battle_sprite.texture = i.battle_sprite.battle_sprite.texture
+		sprite.battle_sprite.texture = i.battle_sprite_texture.texture
 		sprite.nametag.text = i.battle_sprite.nametag.text
 		sprite.hp_bar_text.text = str(i.hp) + '/' + str(i.max_hp)
+
+		i.nametag = sprite.nametag
+		i.hp_bar = sprite.hp_bar
+		i.hp_bar_text = sprite.hp_bar_text
+		i.pointer = sprite.pointer
+		i.battle_sprite_texture = sprite.battle_sprite
+
 		sprite.sp_bar.hide()
 
-		enemy_section.add_child(sprite)
 		i.battle_sprite = sprite
-		sprites.append(sprite)
+
+		enemy_section.add_child(sprite)
 
 		i.battle_display()
 

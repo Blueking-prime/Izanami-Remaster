@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ck8bsrl8idlci"]
+[gd_scene load_steps=16 format=3 uid="uid://ck8bsrl8idlci"]
 
 [ext_resource type="Script" path="res://Scripts/dungeon.gd" id="1_cwupn"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_ur1yd"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cmmt3ba4u5yo7" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="3_y31a5"]
 [ext_resource type="Script" path="res://Scenes/floor.gd" id="4_3yl0k"]
 [ext_resource type="Script" path="res://Scripts/walls.gd" id="4_kgaeo"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="9_1mf7q"]
+[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="10_qxu4p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aepm2"]
 texture = ExtResource("3_y31a5")
@@ -509,8 +511,9 @@ sources/1 = SubResource("TileSetAtlasSource_gx82d")
 sources/2 = SubResource("TileSetAtlasSource_w13t1")
 sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
-[node name="Dungeon" type="Node2D"]
+[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("players")]
 script = ExtResource("1_cwupn")
+players = NodePath("ObjectsSort/Players")
 width = 30
 height = 20
 MAX_ENEMIES = 1
@@ -533,6 +536,8 @@ script = ExtResource("4_3yl0k")
 [node name="ObjectsSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Players" parent="ObjectsSort" instance=ExtResource("9_1mf7q")]
+
 [node name="Walls" type="TileMapLayer" parent="ObjectsSort"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_c3q0b")
@@ -547,3 +552,5 @@ exit_atlas_coords = Vector2i(3, 2)
 wall_terrain_set = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BaseOverlay" parent="CanvasLayer" instance=ExtResource("10_qxu4p")]

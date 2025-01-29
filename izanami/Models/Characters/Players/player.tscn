@@ -22,6 +22,9 @@ mag = 0
 level_stats = []
 speed = 150.0
 
+[node name="BattleSprite" parent="." index="0"]
+visible = false
+
 [node name="BattleSprite" parent="BattleSprite/VBox" index="1"]
 texture = ExtResource("5_yd6jm")
 

@@ -6,6 +6,16 @@ extends CharacterBody2D
 @onready var skills: Node = $Skills
 @onready var items: Node = $Items
 
+@export var nametag: Label
+
+@export var hp_bar: ProgressBar
+@export var hp_bar_text: Label
+@export var sp_bar: ProgressBar
+@export var sp_bar_text: Label
+
+@export var pointer: TextureRect
+@export var battle_sprite_texture: TextureRect
+
 @export var battle_sprite: BattleSprite
 @export var dungeon_sprite: Sprite2D
 @export var hitbox: CollisionShape2D
@@ -40,7 +50,7 @@ func _ready() -> void:
 
 	hp = max_hp
 	#pointer.set_position(Vector2(0, -130))
-	battle_sprite.nametag.text = name
+	nametag.text = name
 
 	#if ally > 0:
 		#pointer.set_texture(load("res://Assets/right_arrow.svg"))
@@ -53,9 +63,9 @@ func _ready() -> void:
 	#print(skills.get_skills()[1].action(self, self))
 
 func _update_hp_bar():
-	if battle_sprite.hp_bar:
-		battle_sprite.hp_bar.value = (hp / max_hp) * 100
-		battle_sprite.hp_bar_text.text = str(hp, ' / ', max_hp)
+	if hp_bar:
+		hp_bar.value = (hp / max_hp) * 100
+		hp_bar_text.text = str(hp, ' / ', max_hp)
 
 func dungeon_display():
 	battle_sprite.hide()
@@ -66,10 +76,10 @@ func battle_display():
 	dungeon_sprite.hide()
 
 func focus():
-	battle_sprite.pointer.show()
+	pointer.show()
 
 func unfocus():
-	battle_sprite.pointer.hide()
+	pointer.hide()
 
 
 func get_skills():

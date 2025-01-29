@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Town
 
+@export var overlay: UIOverlay
+
 @export var church: Node
 @export var smithy: Node
 @export var apothecary: Node
@@ -23,45 +25,24 @@ func _ready() -> void:
 	players.leader.detector.hit_building.connect(_check_building)
 	Global.player_party = players
 
+	overlay.load_ui_elements()
+
 
 func _check_building(node: Variant):
+	overlay.hide()
 	match node:
-		church: church.main()
-		dungeon: dungeon.main()
-		smithy: smithy.main()
-		apothecary: apothecary.main()
-		demonitarium: demonitarium.main()
-		palace: palace.main()
+		church: await church.main()
+		dungeon: await dungeon.main()
+		smithy: await smithy.main()
+		apothecary: await apothecary.main()
+		demonitarium: await demonitarium.main()
+		palace: await palace.main()
+
+	overlay.show()
 
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("ui_end"):
 		#func_church()
-
-#func main():
-	#var action = await Global.show_text_choice("What do you want to do?", actions)
-	#match action:
-		#1:
-			#talk()
-		#2:
-			#enter()
-		#3:
-			#status()
-
-#func talk():
-	#var character = await Global.show_text_choice('Who do you want to talk to?', characters)
-	#match character:
-		#1:
-			#Dialogue.kobaneko()
-		#2:
-			#Dialogue.white()
-	#return
-
-
-func func_palace():
-	return
-
-
-
 
 func status():
 	while true:
