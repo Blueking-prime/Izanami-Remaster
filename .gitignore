@@ -13,4 +13,6 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
-*.txt
+
+izanami/Assets/fantasy_ \[version 2 (2).0\]/readMe_.txt
+izanami/Assets/fantasy_ \[version 2.0\]/readMe_.txt
