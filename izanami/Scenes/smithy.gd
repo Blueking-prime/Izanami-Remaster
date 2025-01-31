@@ -4,6 +4,7 @@ extends Node2D
 
 @export var stock: ResourceGroup
 
+@onready var overlay: UIOverlay = get_parent().overlay
 
 func main():
 	players.freeze()
@@ -35,6 +36,7 @@ func exit_shop():
 	if confirm == 0:
 		Global.sell.disconnect(_sell_parser)
 		Global.shop_menu.queue_free()
+		overlay.show()
 		players.unfreeze()
 	else:
 		default_text()

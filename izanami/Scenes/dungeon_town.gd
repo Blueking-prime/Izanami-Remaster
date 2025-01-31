@@ -2,6 +2,8 @@ extends Node
 
 @onready var players: Party = get_parent().players
 
+@onready var overlay: UIOverlay = get_parent().overlay
+
 var dungeon: Dungeon
 
 @export var dungeon_1_enemies: ResourceGroup
@@ -38,6 +40,8 @@ func main():
 		set_dungeon_level()
 		load_dungeon()
 		get_parent().queue_free()
+	else :
+		overlay.show()
 
 func set_dungeon_level():
 	match players.dungeon_level:

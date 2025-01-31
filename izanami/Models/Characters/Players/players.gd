@@ -25,6 +25,8 @@ var sprites: Array = []
 func _ready() -> void:
 	party = get_children().filter(func(x): if x is Player: return x)
 	for i in party:
+		# Store battle sprites in array to recall
+		sprites.append(i.battle_sprite)
 		i.hide()
 	leader = party[0]
 	leader.show()
@@ -55,7 +57,7 @@ func battle_reset():
 	unfreeze()
 
 	revert_menu()
-	#revert_sprites()
+	revert_sprites()
 
 	leader.show()
 
@@ -83,9 +85,10 @@ func place_characters_in_battle():
 
 		i.battle_display()
 
-#func revert_sprites():
-	#for i in len(party):
-		#party[i].battle_sprite = sprites[i]
+func revert_sprites():
+	for i in len(party):
+		party[i].battle_sprite = sprites[i]
+		party[i].pointer = sprites[i]
 
 func place_menu():
 	for i in party:

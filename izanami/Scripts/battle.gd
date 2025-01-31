@@ -30,7 +30,11 @@ var targetting: bool = false
 var flag: StringName
 var turncount = 1
 var earned_exp: int
+
+## RETURN LOCATIONS
 var dungeon: Dungeon
+var town: Town
+var demonitarium: Node
 
 
 func _ready() -> void:
@@ -94,6 +98,11 @@ func exit_battle(exit_type: StringName):
 
 	if dungeon:
 		dungeon.reset_from_battle()
+	#elif town:
+		#town.reset_from_battle()
+	elif demonitarium:
+		demonitarium.reset_from_battle()
+
 	players.battle_reset()
 	queue_free()
 

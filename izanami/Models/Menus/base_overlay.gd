@@ -9,6 +9,9 @@ class_name UIOverlay
 @export var coin_counter: Label
 @export var mag_counter: Label
 
+## OVERLAYS
+@export var inventory_menu: InventoryMenu
+
 var players
 
 func load_ui_elements():
@@ -18,7 +21,8 @@ func load_ui_elements():
 	mag_counter.text = str(players.mag)
 
 func _on_inventory_button_pressed() -> void:
-	pass # Replace with function body.
+	inventory_menu.load_inventory()
+	inventory_menu.show()
 
 
 func _on_settings_button_pressed() -> void:

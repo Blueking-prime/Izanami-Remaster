@@ -83,13 +83,14 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 	return false
 
 
+## UI ELEMENTS
 func show_text_choice(speaker: String, prompt: String, choices: Array[String] = ['Yes', 'No']) -> int:
 	if is_instance_valid(text_box):
 		text_box.queue_free()
 
 	text_box = text_box_scene.instantiate()
 
-	get_tree().get_current_scene().add_sibling(text_box)
+	get_tree().get_current_scene().get_child(-1).add_child(text_box)
 
 	var title: Label = text_box.get_node("Margin/VBox/Title")
 	var text: Label = text_box.get_node("Margin/VBox/Text")
@@ -110,14 +111,14 @@ func show_text_choice(speaker: String, prompt: String, choices: Array[String] = 
 
 	return textbox_response
 
-## UI ELEMENTS
+
 func show_text_box(speaker: String, prompt: String, persist: bool = false) -> void:
 	if is_instance_valid(text_box):
 		text_box.queue_free()
 
 	text_box = text_box_scene.instantiate()
 
-	get_tree().get_current_scene().add_sibling(text_box)
+	get_tree().get_current_scene().get_child(-1).add_child(text_box)
 
 	var title: Label = text_box.get_node("Margin/VBox/Title")
 	var text: Label = text_box.get_node("Margin/VBox/Text")
@@ -141,7 +142,7 @@ func show_description(object: Resource) -> void:
 	if description_box_parent:
 		description_box_parent.add_child(description_box)
 	else:
-		get_tree().get_current_scene().add_child(description_box)
+		get_tree().get_current_scene().get_child(-1).add_child(description_box)
 
 	var type: Label = description_box.get_node("Margin/Vbox/Hbox/Type")
 	var element: Label = description_box.get_node("Margin/Vbox/Hbox/Element")
@@ -216,7 +217,7 @@ func show_shop_menu(players: Party, stock: ResourceGroup):
 
 	shop_menu = shop_menu_scene.instantiate()
 
-	get_tree().get_current_scene().add_sibling(shop_menu)
+	get_tree().get_current_scene().get_child(-1).add_child(shop_menu)
 
 	var shop_inventory_pane: ShopInventoryMenu = shop_menu.get_node("CanvasLayer/ShopInventory")
 	var player_inventory_pane: PlayerInventoryMenu = shop_menu.get_node("CanvasLayer/PlayerInventory")

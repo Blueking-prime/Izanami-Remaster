@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b06gp60lhyyxx"]
+[gd_scene load_steps=5 format=3 uid="uid://b06gp60lhyyxx"]
 
+[ext_resource type="Script" path="res://Models/Menus/inventory_menu.gd" id="1_mfe14"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/Inventory.tscn" id="1_ty00r"]
 [ext_resource type="Script" path="res://Models/Menus/inventory_items.gd" id="2_miuef"]
+[ext_resource type="Script" path="res://Models/Menus/inventory_gear.gd" id="3_dtbst"]
 
-[node name="InventoryMenu" type="Control"]
-layout_mode = 3
+[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("items_menu", "gear_menu", "misc_menu")]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mfe14")
+items_menu = NodePath("TabContainer/Items")
+gear_menu = NodePath("TabContainer/Gear")
+misc_menu = NodePath("TabContainer/Misc")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -36,7 +42,7 @@ visible = false
 [node name="Gear" parent="TabContainer" instance=ExtResource("1_ty00r")]
 visible = false
 layout_mode = 2
-script = null
+script = ExtResource("3_dtbst")
 metadata/_tab_index = 1
 
 [node name="Label3" parent="TabContainer/Gear/Heading/MarginContainer/HBoxContainer" index="2"]

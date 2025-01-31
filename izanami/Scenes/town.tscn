@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=23 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/town.gd" id="1_ntvnu"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_xl0pa"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cx2uyxlvrhnso" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/imp_idle_anim_f0.png" id="13_808nt"]
 [ext_resource type="Texture2D" uid="uid://dglgyqpiktqx5" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/big_demon_idle_anim_f0.png" id="14_ewnv5"]
 [ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="16_sg5ny"]
+[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="17_xgnyn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
 radius = 172.491
@@ -32,9 +33,10 @@ radius = 170.012
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cilw"]
 radius = 186.218
 
-[node name="Town" type="Node2D" node_paths=PackedStringArray("overlay", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "crowley", "kobaneko", "white", "players")]
+[node name="Town" type="Node2D" node_paths=PackedStringArray("overlay", "back_button", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "crowley", "kobaneko", "white", "players")]
 script = ExtResource("1_ntvnu")
-overlay = NodePath("ShopLayer/BaseOverlay")
+overlay = NodePath("CanvasLayer/BaseOverlay")
+back_button = NodePath("CanvasLayer/BackButton")
 church = NodePath("Church")
 smithy = NodePath("Smithy")
 apothecary = NodePath("Apothecary")
@@ -91,8 +93,8 @@ position = Vector2(268, 264)
 script = ExtResource("10_frbt0")
 crowley = NodePath("Crowley")
 quantity_input = NodePath("QuantityInput")
-confirm_button = NodePath("Button")
-demonitarium_display = NodePath("../ShopLayer/DemonitariumFights")
+confirm_button = NodePath("QuantityInput/Button")
+demonitarium_display = NodePath("../CanvasLayer/DemonitariumFights")
 unlocked_demons = ExtResource("9_4m3ej")
 
 [node name="Crowley" type="Node2D" parent="Demonitarium"]
@@ -107,12 +109,11 @@ offset_bottom = 291.0
 max_value = 99.0
 rounded = true
 
-[node name="Button" type="Button" parent="Demonitarium"]
-visible = false
-offset_left = 551.0
-offset_top = 212.0
-offset_right = 661.0
-offset_bottom = 291.0
+[node name="Button" type="Button" parent="Demonitarium/QuantityInput"]
+layout_mode = 0
+offset_left = 131.0
+offset_right = 241.0
+offset_bottom = 79.0
 text = "Confirm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Demonitarium"]
@@ -127,10 +128,10 @@ position = Vector2(1657, 821)
 
 [node name="White" type="Node2D" parent="Characters"]
 
-[node name="ShopLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="DemonitariumFights" parent="ShopLayer" node_paths=PackedStringArray("desc") instance=ExtResource("11_w4wdy")]
+[node name="DemonitariumFights" parent="CanvasLayer" node_paths=PackedStringArray("desc") instance=ExtResource("11_w4wdy")]
 visible = false
 anchor_left = 0.498
 anchor_bottom = 0.619
@@ -143,16 +144,16 @@ desc = NodePath("Items/Count")
 demon_group = ExtResource("9_4m3ej")
 demons = {}
 
-[node name="Label" parent="ShopLayer/DemonitariumFights/Heading/MarginContainer/HBoxContainer" index="0"]
+[node name="Label" parent="CanvasLayer/DemonitariumFights/Heading/MarginContainer/HBoxContainer" index="0"]
 size_flags_stretch_ratio = 2.0
 horizontal_alignment = 1
 
-[node name="Label2" parent="ShopLayer/DemonitariumFights/Heading/MarginContainer/HBoxContainer" index="1"]
+[node name="Label2" parent="CanvasLayer/DemonitariumFights/Heading/MarginContainer/HBoxContainer" index="1"]
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
 text = "Stats"
 
-[node name="List" parent="ShopLayer/DemonitariumFights/Items" index="0"]
+[node name="List" parent="CanvasLayer/DemonitariumFights/Items" index="0"]
 size_flags_stretch_ratio = 2.0
 fixed_icon_size = Vector2i(100, 100)
 item_0/text = "Goblin"
@@ -162,15 +163,26 @@ item_1/icon = ExtResource("13_808nt")
 item_2/text = "Daemon"
 item_2/icon = ExtResource("14_ewnv5")
 
-[node name="Count" parent="ShopLayer/DemonitariumFights/Items" index="1"]
+[node name="Count" parent="CanvasLayer/DemonitariumFights/Items" index="1"]
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
 theme_override_constants/v_separation = 81
 
-[node name="Cost" parent="ShopLayer/DemonitariumFights/Items" index="2"]
+[node name="Cost" parent="CanvasLayer/DemonitariumFights/Items" index="2"]
 size_flags_horizontal = 1
 theme_override_constants/v_separation = 81
 
-[node name="BaseOverlay" parent="ShopLayer" instance=ExtResource("16_sg5ny")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu") instance=ExtResource("16_sg5ny")]
+inventory_menu = NodePath("../InventoryMenu")
 
-[editable path="ShopLayer/DemonitariumFights"]
+[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("17_xgnyn")]
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 87.0
+offset_bottom = 60.0
+text = "Back"
+
+[editable path="CanvasLayer/DemonitariumFights"]

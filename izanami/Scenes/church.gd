@@ -5,9 +5,15 @@ extends Node2D
 var cost: int = 0
 var text_: String
 
+@onready var back_button: Button = get_parent().back_button
+@onready var overlay: UIOverlay = get_parent().overlay
 
 func main():
 	players.freeze()
+
+	back_button.show()
+	back_button.pressed.connect(exit_shop)
+
 
 	process_status()
 
@@ -17,7 +23,7 @@ func main():
 	await dialogue()
 	await choose()
 
-	players.unfreeze()
+	exit_shop()
 
 func process_status():
 	cost = 0
@@ -56,4 +62,10 @@ func choose():
 			players.gold -= cost
 		else:
 			await Global.show_text_box('System', "You don't have enough Yen")
-	print(players.gold)
+
+func exit_shop():
+	if Global.text_box:
+		Global.text_box.queue_free()
+	players.unfreeze()
+	back_button.hide()
+	overlay.show()

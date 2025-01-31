@@ -8,17 +8,20 @@ extends Node
 @export var unlocked_demons: ResourceGroup
 
 @onready var players: Party = get_parent().players
+@onready var back_button: Button = get_parent().back_button
+@onready var overlay: UIOverlay = get_parent().overlay
 
 func main():
 	players.freeze()
+	back_button.show()
 
 	Global.sell.connect(_sell_parser)
+	demonitarium_display.fight_demon.connect(fight_enemy)
+	back_button.pressed.connect(exit_shop)
 
 	await Global.show_text_box('', "Unholy sigils paint the walls and howling creatures cackle from cages hanging precariously overhead")
 	await Global.show_text_box("Crowley", "Test your skills, adventurer... Anything you carve out is yours.")
 	await choose_option()
-
-	players.unfreeze()
 
 
 func choose_option():
@@ -56,6 +59,7 @@ func buy_mag():
 
 func see_demons():
 	demonitarium_display.show()
+	demonitarium_display.grab_focus()
 	demonitarium_display.players = players
 	Global.show_text_box("Crowley", 'What do you want to fight?', true)
 	#var cost = fights[fight]
@@ -81,19 +85,25 @@ func fight_enemy(enemy_scene):
 
 	var battle: Battle = Global.battle_scene.instantiate()
 	battle.no_of_enemies = no_of_enemies
-	#battle.dungeon = self
+	battle.demonitarium = self
 	battle.players = players
 	battle.enemy_set = [enemy_scene]
 	#player.in_battle = true
 	get_parent().call_deferred("add_sibling", battle)
 
+func reset_from_battle():
+	get_parent().overlay.load_ui_elements()
+	await Global.show_text_box('Crowley', 'Oh! So you survived?')
+	await choose_option()
 
 func exit_shop():
 	var confirm = await Global.show_text_choice("Crowley", "Have your fears overcome you? ")
 	if confirm == 0:
 		Global.sell.disconnect(_sell_parser)
-		Global.shop_menu.queue_free()
 		players.unfreeze()
+		quantity_input.hide()
+		back_button.hide()
+		overlay.show()
 	else:
 		await choose_option()
 
@@ -103,9 +113,7 @@ func low_funds():
 
 
 ## SIGNALS
-func _sell_parser(condition: String, enemy_scene):
-	if condition == 'item sold':
-		fight_enemy(enemy_scene)
+func _sell_parser(condition: String):
 	if condition == 'low funds':
 		low_funds()
 	if condition == 'exit':

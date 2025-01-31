@@ -13,6 +13,8 @@ extends Node
 ## WORKING VARIABLES
 @export var demons: Dictionary
 
+## SIGNAL
+signal fight_demon(demon)
 
 func _ready() -> void:
 	#Global.description_box_parent = desc_box_container
@@ -86,7 +88,7 @@ func fight_entry(id: int):
 func _check_price(demon: Dictionary) -> bool:
 	if demon.price <= players.gold:
 		players.gold -= demon.price
-		Global.sell.emit('item sold', demon.scene)
+		fight_demon.emit(demon.scene)
 		return true
 	else:
 		Global.sell.emit('low funds')

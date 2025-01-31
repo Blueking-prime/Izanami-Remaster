@@ -19,6 +19,20 @@ desc_box = NodePath("CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
 dummy_control = NodePath("DummyControl")
 player_section = NodePath("CanvasLayer/ActorContainer/PlayerSection")
 
+[node name="Players" parent="." instance=ExtResource("2_a6unq")]
+visible = false
+
+[node name="Enemies" type="Node2D" parent="." node_paths=PackedStringArray("enemy_section")]
+visible = false
+script = ExtResource("2_cdpmu")
+enemy_section = NodePath("../CanvasLayer/ActorContainer/EnemySection")
+battle_sprite_scene = ExtResource("4_5t7r8")
+
+[node name="DummyControl" type="Button" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -114,20 +128,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-
-[node name="Players" parent="." instance=ExtResource("2_a6unq")]
-visible = false
-
-[node name="Enemies" type="Node2D" parent="." node_paths=PackedStringArray("enemy_section")]
-visible = false
-script = ExtResource("2_cdpmu")
-enemy_section = NodePath("../CanvasLayer/ActorContainer/EnemySection")
-battle_sprite_scene = ExtResource("4_5t7r8")
-
-[node name="DummyControl" type="Button" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Skills" to="." method="_on_skills_pressed"]

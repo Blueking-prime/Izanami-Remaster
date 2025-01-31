@@ -13,6 +13,7 @@ var dungeon_sample = [
 ## CHILD NODES
 @onready var map = $Map
 @export var players: Party
+@export var overlay: UIOverlay
 
 ## MAP PROPERTIES
 @export var width: int = 8
@@ -43,6 +44,9 @@ var player: Player:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if not Global.player_party:
+		Global.player_party = players
+
 	player_party_setup()
 	_load_items()
 	#_load_enemies()
@@ -53,8 +57,11 @@ func _ready() -> void:
 
 	map.display_dungeon()
 
+	overlay.load_ui_elements()
+
 
 func player_party_setup():
+	players.show()
 	for i in players.party:
 		i.dungeon_display()
 		i.hide()
@@ -131,6 +138,7 @@ func _on_detector_hit_chest(coords) -> void:
 ## BATTLE LOGIC
 func initiate_battle():
 	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, MAX_ENEMIES)
+	overlay.hide()
 
 	var battle: Battle = Global.battle_scene.instantiate()
 	battle.no_of_enemies = no_of_enemies
@@ -151,3 +159,5 @@ func _on_detector_hit_enemy(body: Variant) -> void:
 func reset_from_battle():
 	get_node("Background").show()
 	get_node("ObjectsSort/Walls").show()
+	overlay.load_ui_elements()
+	overlay.show()

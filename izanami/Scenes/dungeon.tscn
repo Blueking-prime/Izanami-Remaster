@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://ck8bsrl8idlci"]
+[gd_scene load_steps=18 format=3 uid="uid://ck8bsrl8idlci"]
 
 [ext_resource type="Script" path="res://Scripts/dungeon.gd" id="1_cwupn"]
+[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="2_c7fje"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_ur1yd"]
 [ext_resource type="Script" path="res://Scripts/dungeon_map.gd" id="2_y54nv"]
 [ext_resource type="Texture2D" uid="uid://jau6vpcqyha4" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_.png" id="3_81fwx"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/walls.gd" id="4_kgaeo"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="9_1mf7q"]
 [ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="10_qxu4p"]
+[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="12_8eno4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aepm2"]
 texture = ExtResource("3_y31a5")
@@ -511,11 +513,13 @@ sources/1 = SubResource("TileSetAtlasSource_gx82d")
 sources/2 = SubResource("TileSetAtlasSource_w13t1")
 sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
-[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("players")]
+[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("players", "overlay")]
 script = ExtResource("1_cwupn")
 players = NodePath("ObjectsSort/Players")
+overlay = NodePath("CanvasLayer/BaseOverlay")
 width = 30
 height = 20
+enemy_types = ExtResource("2_c7fje")
 MAX_ENEMIES = 1
 item_drop_group = ExtResource("2_ur1yd")
 gear_drop_group = ExtResource("3_hvtat")
@@ -537,6 +541,7 @@ script = ExtResource("4_3yl0k")
 y_sort_enabled = true
 
 [node name="Players" parent="ObjectsSort" instance=ExtResource("9_1mf7q")]
+visible = false
 
 [node name="Walls" type="TileMapLayer" parent="ObjectsSort"]
 y_sort_enabled = true
@@ -553,4 +558,7 @@ wall_terrain_set = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseOverlay" parent="CanvasLayer" instance=ExtResource("10_qxu4p")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu") instance=ExtResource("10_qxu4p")]
+inventory_menu = NodePath("../InventoryMenu")
+
+[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("12_8eno4")]

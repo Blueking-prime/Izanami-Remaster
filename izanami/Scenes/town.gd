@@ -3,6 +3,7 @@ extends Node2D
 class_name Town
 
 @export var overlay: UIOverlay
+@export var back_button: Button
 
 @export var church: Node
 @export var smithy: Node
@@ -22,8 +23,10 @@ var actions = ['Talk', "Go Somewhere", 'Status']
 var characters = ["Kobaneko", "White"]
 
 func _ready() -> void:
+	if not Global.player_party:
+		Global.player_party = players
+
 	players.leader.detector.hit_building.connect(_check_building)
-	Global.player_party = players
 
 	overlay.load_ui_elements()
 
@@ -37,8 +40,6 @@ func _check_building(node: Variant):
 		apothecary: await apothecary.main()
 		demonitarium: await demonitarium.main()
 		palace: await palace.main()
-
-	overlay.show()
 
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("ui_end"):
