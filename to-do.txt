@@ -1,5 +1,7 @@
 Izanami Remaster Todo List
 - [ ] Add hot keys for action menu
+- [ ] Enable Pure mouse and pure keyboard navigation support
+- [ ] Enable using up and down on keyboard to switch between player and enemy teams
 - [ ] Add skill icons
 - [ ] Add level cap (maybe)
 - [ ] Implement AoE skills and self_targeting skills

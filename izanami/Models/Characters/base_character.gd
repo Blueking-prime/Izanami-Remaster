@@ -14,6 +14,7 @@ extends CharacterBody2D
 @export var sp_bar_text: Label
 
 @export var pointer: TextureRect
+@export var indicator: TextureRect
 @export var battle_sprite_texture: TextureRect
 
 @export var battle_sprite: BattleSprite
@@ -75,27 +76,33 @@ func battle_display():
 	battle_sprite.show()
 	dungeon_sprite.hide()
 
-func focus():
+func set_acting():
+	indicator.show()
+
+func unset_acting():
+	indicator.hide()
+
+func target():
 	pointer.show()
 
-func unfocus():
+func untarget():
 	pointer.hide()
 
 
 func get_skills():
 	return skills.get_skills()
 
-func use_skill(skill_id, target):
+func use_skill(skill_id, _target):
 	var skill: Skill = get_skills()[skill_id]
-	skill.action(self, target)
+	skill.action(self, _target)
 
 
 func get_items():
 	return items.get_items()
 
-func use_item(item_name, target):
+func use_item(item_name, _target):
 	var item: Item = items.get_item(item_name)
-	item.use(target)
+	item.use(_target)
 	items.remove_item(item)
 
 

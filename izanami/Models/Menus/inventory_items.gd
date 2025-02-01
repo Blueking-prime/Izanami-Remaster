@@ -30,7 +30,7 @@ func update_listing():
 			list.add_item(i)
 			count.add_item(str(len(inventory.item_data[i])))
 
-func _on_item_activated(index: int) -> void:
+func _on_item_activated(_index: int) -> void:
 	pass
 
 func _on_item_selected(index: int) -> void:

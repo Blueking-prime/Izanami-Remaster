@@ -1,23 +1,46 @@
-[gd_scene load_steps=7 format=3 uid="uid://deahjbvovxuvn"]
+[gd_scene load_steps=11 format=3 uid="uid://deahjbvovxuvn"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_ivyfm"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_a6unq"]
 [ext_resource type="Script" path="res://Scripts/enemy_side_battle.gd" id="2_cdpmu"]
+[ext_resource type="Script" path="res://Scenes/battle_setup.gd" id="3_dbox5"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="3_x5jg1"]
+[ext_resource type="Script" path="res://Scenes/battle_input_processing.gd" id="4_1gqnq"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="4_5t7r8"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
+[ext_resource type="Script" path="res://Scenes/battle_turn_actions.gd" id="5_jqv44"]
+[ext_resource type="Script" path="res://Scenes/battle_actions.gd" id="6_mlml3"]
 
-[node name="Battle" type="Node" node_paths=PackedStringArray("players", "choice", "skill_panel", "ui_panel", "desc_box", "dummy_control", "player_section")]
+[node name="Battle" type="Node" node_paths=PackedStringArray("players", "enemies", "setup", "process_input", "process_turns", "process_actions")]
 script = ExtResource("1_ivyfm")
 no_of_enemies = 2
 enemy_group = ExtResource("5_6mwjl")
 players = NodePath("Players")
-choice = NodePath("CanvasLayer/ActionBoxUI/VBox/Actions")
-skill_panel = NodePath("CanvasLayer/ActionBoxUI/VBox/SkillPanel")
-ui_panel = NodePath("CanvasLayer/ActionBoxUI/VBox")
-desc_box = NodePath("CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
-dummy_control = NodePath("DummyControl")
-player_section = NodePath("CanvasLayer/ActorContainer/PlayerSection")
+enemies = NodePath("Enemies")
+setup = NodePath("Setup")
+process_input = NodePath("Input")
+process_turns = NodePath("Turns")
+process_actions = NodePath("Actions")
+
+[node name="Setup" type="Node" parent="." node_paths=PackedStringArray("player_section", "choice", "skill_panel", "desc_box_parent")]
+script = ExtResource("3_dbox5")
+player_section = NodePath("../CanvasLayer/ActorContainer/PlayerSection")
+choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
+skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
+desc_box_parent = NodePath("../CanvasLayer/ActionBoxUI/VBox")
+
+[node name="Input" type="Node" parent="." node_paths=PackedStringArray("choice", "skill_panel", "dummy_control", "desc_box")]
+script = ExtResource("4_1gqnq")
+choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
+skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
+dummy_control = NodePath("../DummyControl")
+desc_box = NodePath("../CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
+
+[node name="Turns" type="Node" parent="."]
+script = ExtResource("5_jqv44")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("6_mlml3")
 
 [node name="Players" parent="." instance=ExtResource("2_a6unq")]
 visible = false
@@ -29,7 +52,6 @@ enemy_section = NodePath("../CanvasLayer/ActorContainer/EnemySection")
 battle_sprite_scene = ExtResource("4_5t7r8")
 
 [node name="DummyControl" type="Button" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -129,9 +151,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Attack" to="." method="_on_attack_pressed"]
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Skills" to="." method="_on_skills_pressed"]
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Items" to="." method="_on_items_pressed"]
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Guard" to="." method="_on_guard_pressed"]
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Run" to="." method="_on_run_pressed"]
-[connection signal="item_selected" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="." method="_on_skill_panel_item_selected"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Attack" to="Input" method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Skills" to="Input" method="_on_skills_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Items" to="Input" method="_on_items_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Guard" to="Input" method="_on_guard_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Run" to="Input" method="_on_run_pressed"]
+[connection signal="item_activated" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="Input" method="_on_skill_panel_item_activated"]
+[connection signal="item_selected" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="Input" method="_on_skill_panel_item_selected"]

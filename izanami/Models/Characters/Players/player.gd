@@ -136,8 +136,6 @@ func show_skill_menu():
 
 func _on_skill_list_activated(index: int) -> void:
 	active_selection = index
-	chosen_option = true
-	skill_menu.release_focus()
 
 func _on_skill_list_selected(index: int) -> void:
 	if Global.description_box:
@@ -161,14 +159,12 @@ func show_item_menu():
 	_display_items()
 	item_menu.grab_focus()
 
-func use_item(item_name, target):
-	super.use_item(item_name, target)
+func use_item(item_name, _target):
+	super.use_item(item_name, _target)
 	_display_items()
 
 func _on_item_list_activated(index: int) -> void:
 	active_selection = item_menu.get_item_text(index)
-	chosen_option = true
-	item_menu.release_focus()
 
 func _on_item_list_selected(index: int) -> void:
 	if Global.description_box:

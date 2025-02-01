@@ -77,6 +77,7 @@ func place_characters_in_battle():
 		i.sp_bar = sprite.sp_bar
 		i.sp_bar_text = sprite.sp_bar_text
 		i.pointer = sprite.pointer
+		i.indicator = sprite.indicator
 		i.battle_sprite_texture = sprite.battle_sprite
 
 		i.battle_sprite = sprite
@@ -88,7 +89,8 @@ func place_characters_in_battle():
 func revert_sprites():
 	for i in len(party):
 		party[i].battle_sprite = sprites[i]
-		party[i].pointer = sprites[i]
+		party[i].pointer = sprites[i].pointer
+		party[i].indicator = sprites[i].indicator
 
 func place_menu():
 	for i in party:

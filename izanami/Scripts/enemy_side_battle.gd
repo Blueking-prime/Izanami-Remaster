@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name BattleEnemies
+
 @export var enemy_section: Control
 @export var battle_sprite_scene: PackedScene
 
@@ -10,7 +12,7 @@ extends Node2D
 var enemies: Array = []
 var sprites = []
 
-func _ready() -> void:
+func load_enemies() -> void:
 	if len(enemy_set):
 		_initialize_enemies(false)
 	if enemy_group:
@@ -46,6 +48,7 @@ func place_charscters():
 		i.hp_bar = sprite.hp_bar
 		i.hp_bar_text = sprite.hp_bar_text
 		i.pointer = sprite.pointer
+		i.indicator = sprite.indicator
 		i.battle_sprite_texture = sprite.battle_sprite
 
 		sprite.sp_bar.hide()

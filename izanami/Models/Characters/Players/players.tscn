@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk5618o5l67d5"]
+[gd_scene load_steps=8 format=3 uid="uid://dk5618o5l67d5"]
 
 [ext_resource type="Script" path="res://Models/Characters/Players/players.gd" id="1_m2oad"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_blcr2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_aasua"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="4_4q1mc"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="5_caqig"]
+[ext_resource type="Texture2D" uid="uid://dhk5om5486n8k" path="res://Assets/down-arrow-svgrepo-com.svg" id="7_8iwop"]
 
 [node name="Players" type="Node2D" node_paths=PackedStringArray("inventory")]
 z_index = 1
@@ -23,9 +24,23 @@ gear_group = ExtResource("5_caqig")
 y_sort_enabled = true
 position = Vector2(0, 0)
 
+[node name="Indicator" parent="Player/BattleSprite/VBox/BattleSprite" index="1"]
+visible = true
+texture = ExtResource("7_8iwop")
+
+[node name="DungeonSprite" parent="Player" index="1"]
+visible = true
+
 [node name="Player2" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(163, 0)
+
+[node name="Indicator" parent="Player2/BattleSprite/VBox/BattleSprite" index="1"]
+visible = true
+texture = ExtResource("7_8iwop")
+
+[node name="DungeonSprite" parent="Player2" index="1"]
+visible = true
 
 [editable path="Player"]
 [editable path="Player/BattleSprite"]

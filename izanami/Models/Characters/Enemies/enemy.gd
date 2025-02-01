@@ -9,9 +9,9 @@ func  _ready() -> void:
 	ally = -1
 	super()
 
-func use_skill(skill_id, target):
+func use_skill(skill_id, _target):
 	print(atk_lines[randi_range(0, atk_lines.size() - 1)])
-	super.use_skill(skill_id,target)
+	super.use_skill(skill_id,_target)
 
 
 func gold_drop():

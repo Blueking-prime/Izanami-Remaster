@@ -9,3 +9,7 @@ class_name InventoryMenu
 func load_inventory():
 	items_menu.load_stock()
 	gear_menu.load_stock()
+
+
+func _on_exit_button_pressed() -> void:
+	hide()

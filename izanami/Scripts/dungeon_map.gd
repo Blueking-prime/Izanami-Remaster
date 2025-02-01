@@ -196,9 +196,9 @@ func spawn_enemy_tiles_floor():
 		if coord in filled_coords:
 			continue
 		if coord[0] < 1:
-			coord[0] == 1
+			coord[0] = 1
 		if coord[1] < 1:
-			coord[1] == 1
+			coord[1] = 1
 		enemy_tiles.append(coord)
 		filled_coords.append(coord)
 		i += 1

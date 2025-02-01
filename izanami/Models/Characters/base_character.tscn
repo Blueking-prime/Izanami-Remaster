@@ -11,7 +11,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 radius = 7.0
 
-[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("nametag", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
+[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("nametag", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
 position = Vector2(241, 131)
 script = ExtResource("1_e6dxp")
 nametag = NodePath("BattleSprite/VBox/NameTag")
@@ -20,6 +20,7 @@ hp_bar_text = NodePath("BattleSprite/VBox/HPBar/HPBarText")
 sp_bar = NodePath("BattleSprite/VBox/SPBar")
 sp_bar_text = NodePath("BattleSprite/VBox/SPBar/SPBarText")
 pointer = NodePath("BattleSprite/VBox/BattleSprite/Pointer")
+indicator = NodePath("BattleSprite/VBox/BattleSprite/Indicator")
 battle_sprite_texture = NodePath("BattleSprite/VBox/BattleSprite")
 battle_sprite = NodePath("BattleSprite")
 dungeon_sprite = NodePath("DungeonSprite")
@@ -37,6 +38,12 @@ offset_right = 120.0
 offset_bottom = 182.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Pointer" parent="BattleSprite/VBox/BattleSprite" index="0"]
+visible = false
+
+[node name="Indicator" parent="BattleSprite/VBox/BattleSprite" index="1"]
+visible = false
 
 [node name="SPBar" parent="BattleSprite/VBox" index="3"]
 visible = false

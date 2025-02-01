@@ -7,7 +7,8 @@ var inventory: Inventory
 
 
 func _ready() -> void:
-	inventory = get_parent().get_node("../Inventory")
+	if get_parent().has_node("../Inventory"):
+		inventory = get_parent().get_node("../Inventory")
 	if item_group:
 		for i in item_group.load_all():
 			add_item(i)
