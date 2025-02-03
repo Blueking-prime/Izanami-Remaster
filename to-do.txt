@@ -4,7 +4,7 @@ Izanami Remaster Todo List
 - [ ] Enable Pure mouse and pure keyboard navigation support
 - [x] Enable using up and down on keyboard to switch between player and enemy teams
 - [ ] Add skill icons
-- [ ] Add level cap (maybe)
+- [x] Add level cap (maybe)
 - [x] Implement AoE skills and self_targeting skills
 - [ ] Flesh out status effects
 - [x] Move battle movement and selection to separate node
@@ -22,8 +22,7 @@ Izanami Remaster Todo List
 - [ ] Add status ailments to overlay
 - [ ] Add Church menu and implement blessing UI
 - [ ] Add Level Requirement to skill
-- [x] Add numpad targeting
-- [ ] Add player container to root tree 
+- [x] Add numpad targeting 
 - [ ] Replace gear change signal with get_parent call
 - [ ] Add spacing between item list selections or just change from item list to custom UI
 - [x] Add description page for skills, include:
