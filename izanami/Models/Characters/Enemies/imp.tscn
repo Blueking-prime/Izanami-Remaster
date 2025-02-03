@@ -16,7 +16,6 @@ enemy_stats = {
 "STR": 3,
 "WIS": 2
 }
+character_name = "Imp"
 
-[node name="Pointer" parent="." index="3"]
-visible = false
-texture_filter = 0
+[editable path="BattleSprite"]

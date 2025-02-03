@@ -25,6 +25,7 @@ class_name Player
 @export var level_up_xp: int = 50 * (2 ** lvl)
 @export var mag: int = 0
 @export var level_stats: Array = []
+@export var level_cap: int = 60
 
 ## LOGIC VARIABLES
 @export var speed = 50.0
@@ -85,6 +86,9 @@ func level_up(value):
 	if xp < level_up_xp:
 		return
 
+	if lvl >= level_cap:
+		return
+
 	print(name, " leveled up!")
 	var current_max = [max_hp, max_sp]
 	var curr_stats = base_stats
@@ -129,13 +133,9 @@ func _display_skills():
 
 func show_skill_menu():
 	skill_menu.show()
-	skill_menu.item_activated.connect(_on_skill_list_activated)
 	skill_menu.item_selected.connect(_on_skill_list_selected)
 	_display_skills()
 	skill_menu.grab_focus()
-
-func _on_skill_list_activated(index: int) -> void:
-	active_selection = index
 
 func _on_skill_list_selected(index: int) -> void:
 	if Global.description_box:
@@ -154,17 +154,15 @@ func _display_items():
 
 func show_item_menu():
 	item_menu.show()
-	item_menu.item_activated.connect(_on_item_list_activated)
 	item_menu.item_selected.connect(_on_item_list_selected)
 	_display_items()
 	item_menu.grab_focus()
 
 func use_item(item_name, _target):
+	if item_name is int:
+		item_name = item_menu.get_item_text(active_selection)
 	super.use_item(item_name, _target)
 	_display_items()
-
-func _on_item_list_activated(index: int) -> void:
-	active_selection = item_menu.get_item_text(index)
 
 func _on_item_list_selected(index: int) -> void:
 	if Global.description_box:

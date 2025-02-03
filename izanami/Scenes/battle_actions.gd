@@ -6,7 +6,7 @@ class_name BattleActions
 @onready var process_turns: BattleTurns = get_parent().process_turns
 @onready var setup: BattleSetup = get_parent().setup
 
-var target: Base_Character
+var target
 var player: Player
 
 ## TURN FUNCTIONS
@@ -25,6 +25,7 @@ func action():
 	process_input.flag = ''
 
 	process_input.targetting = false
+	process_input.aoe_targetting = false
 	player.reset_menu()
 	process_turns.advance_actor()
 

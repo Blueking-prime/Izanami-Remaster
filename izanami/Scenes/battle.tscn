@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://deahjbvovxuvn"]
+[gd_scene load_steps=12 format=3 uid="uid://deahjbvovxuvn"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_ivyfm"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_a6unq"]
@@ -10,6 +10,9 @@
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
 [ext_resource type="Script" path="res://Scenes/battle_turn_actions.gd" id="5_jqv44"]
 [ext_resource type="Script" path="res://Scenes/battle_actions.gd" id="6_mlml3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hqfu"]
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="Battle" type="Node" node_paths=PackedStringArray("players", "enemies", "setup", "process_input", "process_turns", "process_actions")]
 script = ExtResource("1_ivyfm")
@@ -29,12 +32,13 @@ choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
 skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
 desc_box_parent = NodePath("../CanvasLayer/ActionBoxUI/VBox")
 
-[node name="Input" type="Node" parent="." node_paths=PackedStringArray("choice", "skill_panel", "dummy_control", "desc_box")]
+[node name="Input" type="Node" parent="." node_paths=PackedStringArray("choice", "skill_panel", "dummy_control", "desc_box", "dummy_option")]
 script = ExtResource("4_1gqnq")
 choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
 skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
 dummy_control = NodePath("../DummyControl")
 desc_box = NodePath("../CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
+dummy_option = NodePath("../CanvasLayer/ActionBoxUI/DummyOption")
 
 [node name="Turns" type="Node" parent="."]
 script = ExtResource("5_jqv44")
@@ -52,6 +56,7 @@ enemy_section = NodePath("../CanvasLayer/ActorContainer/EnemySection")
 battle_sprite_scene = ExtResource("4_5t7r8")
 
 [node name="DummyControl" type="Button" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -107,6 +112,16 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+
+[node name="DummyOption" type="Button" parent="CanvasLayer/ActionBoxUI"]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.1
+theme_override_styles/focus = SubResource("StyleBoxFlat_6hqfu")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6hqfu")
+disabled = true
+button_mask = 0
+flat = true
 
 [node name="VBox" type="HBoxContainer" parent="CanvasLayer/ActionBoxUI"]
 layout_mode = 2

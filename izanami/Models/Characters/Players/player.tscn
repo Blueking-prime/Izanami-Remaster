@@ -20,7 +20,9 @@ xp = 0
 level_up_xp = null
 mag = 0
 level_stats = []
+level_cap = 60
 speed = 150.0
+character_name = "Player"
 
 [node name="BattleSprite" parent="." index="0"]
 visible = false

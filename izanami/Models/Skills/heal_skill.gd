@@ -5,6 +5,10 @@ extends Skill
 func  _init() -> void:
 	type = 'Heal Skill'
 
-func action(obj: Base_Character, target: Base_Character):
+func action(obj: Base_Character, target: Variant):
 	super.action(obj, target)
-	target.heal(value)
+	if aoe:
+		for i in target:
+			i.heal(value)
+	else:
+		target.heal(value)

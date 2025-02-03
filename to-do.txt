@@ -1,27 +1,28 @@
 Izanami Remaster Todo List
 - [ ] Add hot keys for action menu
+- [ ] Add default target section depending on skill type
 - [ ] Enable Pure mouse and pure keyboard navigation support
-- [ ] Enable using up and down on keyboard to switch between player and enemy teams
+- [x] Enable using up and down on keyboard to switch between player and enemy teams
 - [ ] Add skill icons
 - [ ] Add level cap (maybe)
-- [ ] Implement AoE skills and self_targeting skills
+- [x] Implement AoE skills and self_targeting skills
 - [ ] Flesh out status effects
-- [ ] Move battle movement and selection to separate node
-- [ ] Make enemies not spawn on outer rows and columns
+- [x] Move battle movement and selection to separate node
+- [x] Make enemies not spawn on outer rows and columns
 - [ ] Change map enemy spawning to reflect contained enemies
-- [ ] Fix item usage bug
+- [x] Fix item usage bug
 - [ ] Implement option to choose chest drop location for dungeon drops 
 - [ ] Include boost info in item and skill desc
-- [ ] Fix inability to click on exit button
+- [x] Fix inability to click on exit button
 - [ ] Apply new dictionary system to skills
 - [ ] Add equipping an dequipping gear
 - [ ] implement enemypedia tracking for demonitarium fight unlocks
 - [ ] Add status effect icons and hover to describe status
-- [ ] Fix enemy name bugs
+- [x] Fix enemy name bugs
 - [ ] Add status ailments to overlay
 - [ ] Add Church menu and implement blessing UI
 - [ ] Add Level Requirement to skill
-- [ ] Add numpad targeting
+- [x] Add numpad targeting
 - [ ] Add player container to root tree 
 - [ ] Replace gear change signal with get_parent call
 - [ ] Add spacing between item list selections or just change from item list to custom UI

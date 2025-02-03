@@ -19,7 +19,7 @@ extends Resource
 @export var desc: String
 @export var type: StringName
 
-func action(obj: Base_Character, target: Base_Character):
+func action(obj: Base_Character, target: Variant):
 	var stat_total = 0
 
 	if obj.status_effect == 'Exhausted':
@@ -47,10 +47,17 @@ func action(obj: Base_Character, target: Base_Character):
 	obj.DEF *= boost[1]
 
 	if status_effect:
-		if Global.rand_chance(accuracy):
-			target.status_effect = status_effect
+		if aoe:
+			for i in target:
+				if Global.rand_chance(accuracy):
+					i.status_effect = status_effect
+				else:
+					print('Miss!')
 		else:
-			print('Miss!')
+			if Global.rand_chance(accuracy):
+				target.status_effect = status_effect
+			else:
+				print('Miss!')
 	return true
 
 #func rand_chance(chance: float) -> bool:

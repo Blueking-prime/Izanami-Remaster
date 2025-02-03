@@ -14,11 +14,19 @@ extends Resource
 @export var element: StringName
 
 func use(target):
+	if aoe:
+		for i in target:
+			use_on_target(i)
+	else:
+		use_on_target(target)
+
+func use_on_target(target):
 	match type:
 		'buff': use_buff(target)
 		'heal': use_heal(target)
 		'damage': use_damage(target)
 		'cleanse': use_cleanse(target)
+
 
 func use_buff(target):
 	target.ATK *= boost[0]

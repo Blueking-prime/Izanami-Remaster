@@ -8,6 +8,7 @@
 script = ExtResource("2_43wjv")
 atk_lines = []
 element = &""
+character_name = "Enemy"
 
 [node name="BattleSprite" parent="." index="0"]
 offset_top = -165.5

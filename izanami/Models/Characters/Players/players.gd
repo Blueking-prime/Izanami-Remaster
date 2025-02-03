@@ -68,8 +68,8 @@ func place_characters_in_battle():
 
 		sprite.battle_sprite.texture = i.battle_sprite_texture.texture
 		sprite.nametag.text = i.battle_sprite.nametag.text
-		sprite.hp_bar_text.text = str(i.hp) + '/' + str(i.max_hp)
-		sprite.sp_bar_text.text = str(i.sp) + '/' + str(i.max_sp)
+		sprite.hp_bar_text.text = str(i.hp) + ' / ' + str(i.max_hp)
+		sprite.sp_bar_text.text = str(i.sp) + ' / ' + str(i.max_sp)
 
 		i.nametag = sprite.nametag
 		i.hp_bar = sprite.hp_bar

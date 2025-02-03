@@ -13,5 +13,5 @@ status_effect = &""
 accuracy = 1.0
 desc = "A sharp razor blade. Cuts a single target."
 price = 10
-aoe = false
+aoe = true
 element = &""

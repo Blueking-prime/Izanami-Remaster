@@ -25,6 +25,7 @@ battle_sprite_texture = NodePath("BattleSprite/VBox/BattleSprite")
 battle_sprite = NodePath("BattleSprite")
 dungeon_sprite = NodePath("DungeonSprite")
 hitbox = NodePath("Hitbox")
+character_name = "Base Character"
 
 [node name="BattleSprite" parent="." instance=ExtResource("2_ar764")]
 anchors_preset = 8
@@ -38,12 +39,6 @@ offset_right = 120.0
 offset_bottom = 182.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Pointer" parent="BattleSprite/VBox/BattleSprite" index="0"]
-visible = false
-
-[node name="Indicator" parent="BattleSprite/VBox/BattleSprite" index="1"]
-visible = false
 
 [node name="SPBar" parent="BattleSprite/VBox" index="3"]
 visible = false

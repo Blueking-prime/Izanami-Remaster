@@ -23,7 +23,7 @@ extends CharacterBody2D
 
 
 ## CHARACTER STATS
-@export var character_name: String = name
+@export var character_name: String
 var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
 @export var stats: Dictionary = base_stats
 
@@ -51,7 +51,7 @@ func _ready() -> void:
 
 	hp = max_hp
 	#pointer.set_position(Vector2(0, -130))
-	nametag.text = name
+	nametag.text = character_name
 
 	#if ally > 0:
 		#pointer.set_texture(load("res://Assets/right_arrow.svg"))
@@ -108,11 +108,11 @@ func use_item(item_name, _target):
 
 func guard():
 	DEF *= 2
-	print('%s braces for impact' % [name])
+	print('%s braces for impact' % [character_name])
 
 func damage(value: float):
 	value /= DEF
-	print('%s takes %f damage!' % [name, value])
+	print('%s takes %f damage!' % [character_name, value])
 	if value < hp:
 		hp -= value
 	else:
@@ -121,7 +121,7 @@ func damage(value: float):
 
 func heal(value: float):
 	hp += value
-	print(' %s healed %f HP' % [name, value])
+	print(' %s healed %f HP' % [character_name, value])
 	if hp > max_hp:
 		hp = max_hp
 
@@ -130,5 +130,5 @@ func status():
 		damage(max_hp / 7)
 
 func die():
-	print('%s is dead' % [name])
+	print('%s is dead' % [character_name])
 	alive = false

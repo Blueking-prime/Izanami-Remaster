@@ -7,11 +7,19 @@ extends Skill
 func  _init() -> void:
 	type = 'Offensive Skill'
 
-func action(obj: Base_Character, target: Base_Character):
+func action(obj: Base_Character, target: Variant):
 	var val = super.action(obj, target)
-	if target.has_meta('element'):
-		if element == target.element:
-			value *= 2
-	value *= obj.ATK
-	target.damage(value)
+	if aoe:
+		for i in target:
+			if i.has_meta('element'):
+				if element == i.element:
+					value *= 2
+			value *= obj.ATK
+			i.damage(value)
+	else:
+		if target.has_meta('element'):
+			if element == target.element:
+				value *= 2
+		value *= obj.ATK
+		target.damage(value)
 	return val
