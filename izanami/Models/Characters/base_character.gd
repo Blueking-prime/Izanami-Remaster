@@ -24,12 +24,15 @@ extends CharacterBody2D
 
 ## CHARACTER STATS
 @export var character_name: String
-var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
-@export var stats: Dictionary = base_stats
+@export var root_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
+var base_stats: Dictionary = root_stats.duplicate()
+var stats: Dictionary = base_stats.duplicate()
+
+@export var level_stats: Array = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
 
 @export var max_hp: int:
 	get():
-		return (base_stats['END'] * 10) + (base_stats['WIS'] * 3) + (lvl * 15)
+		return (stats['END'] * 10) + (stats['WIS'] * 3) + (lvl * 15)
 
 @export var hp: int:
 	set(value):
@@ -48,7 +51,7 @@ var base_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, 
 func _ready() -> void:
 	#stats = base_stats
 	#print(base_stats, ' ', stats)
-
+	update_stats()
 	hp = max_hp
 	#pointer.set_position(Vector2(0, -130))
 	nametag.text = character_name
@@ -59,7 +62,9 @@ func _ready() -> void:
 		#pointer.set_texture(load("res://Assets/left_arrow.svg"))
 	#print(name, pointer.position)
 	#print(hp)
-	#print(stats)
+	print("ROOT STATS", root_stats)
+	print("BASE STATS", base_stats)
+	print("STATS", stats)
 	#print(skills.get_skills())
 	#print(skills.get_skills()[1].action(self, self))
 
@@ -87,6 +92,14 @@ func target():
 
 func untarget():
 	pointer.hide()
+
+
+func update_stats():
+	for i in root_stats:
+		if i in level_stats:
+			base_stats[i] = lvl * root_stats[i]
+
+	stats = base_stats.duplicate()
 
 
 func get_skills():

@@ -6,6 +6,7 @@ class_name BattleEnemies
 @export var battle_sprite_scene: PackedScene
 
 @onready var no_of_enemies: int = get_parent().no_of_enemies
+@onready var enemy_level: int = get_parent().enemy_level
 @onready var enemy_group: ResourceGroup  = get_parent().enemy_group
 @onready var enemy_set: Array = get_parent().enemy_set
 
@@ -30,7 +31,10 @@ func _initialize_enemies(from_resource_group: bool):
 	var _type
 	for i in no_of_enemies:
 		_type = randi_range(0, enemy_set.size() - 1)
-		add_child(enemy_set[_type].instantiate())
+		var enemy: Enemy = enemy_set[_type].instantiate()
+		enemy.lvl = enemy_level
+
+		add_child(enemy)
 
 	enemies = get_children()
 	#for i in enemies.size():

@@ -207,7 +207,9 @@ func show_description(object: Resource) -> void:
 		sell_price.text = str(object.crit_chance * 100) + '%'
 	else:
 		sell_price.hide()
-	element.text = object.element
+
+	if 'element' in object:
+		element.text = object.element
 	description.text = object.desc
 
 

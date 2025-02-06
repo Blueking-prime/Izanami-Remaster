@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqykicfu0u1ug"]
+[gd_scene load_steps=9 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_etuff"]
+[ext_resource type="PackedScene" uid="uid://c4saveptihd08" path="res://Models/Menus/skill_list.tscn" id="4_xqul7"]
 [ext_resource type="Script" path="res://Scripts/gear.gd" id="5_k34jo"]
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="5_yd6jm"]
 [ext_resource type="Script" path="res://Scripts/detector.gd" id="6_g43wq"]
@@ -19,7 +20,6 @@ sp = 0
 xp = 0
 level_up_xp = null
 mag = 0
-level_stats = []
 level_cap = 60
 speed = 150.0
 character_name = "Player"
@@ -37,40 +37,19 @@ visible = true
 scale = Vector2(1, 1)
 texture = ExtResource("5_yd6jm")
 
-[node name="SkillList" type="ItemList" parent="Skills" index="0"]
+[node name="SkillList" parent="Skills" index="0" instance=ExtResource("4_xqul7")]
 visible = false
-anchors_preset = -1
-anchor_left = 0.211
-anchor_top = 0.117
-anchor_right = 0.211
-anchor_bottom = 0.117
-offset_left = 150.928
-offset_top = -56.816
-offset_right = 282.928
-offset_bottom = 56.184
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="Gear" type="Node" parent="." index="4"]
 script = ExtResource("5_k34jo")
 player_gear_data = ExtResource("4_etuff")
 
-[node name="ItemList" type="ItemList" parent="Items" index="0"]
+[node name="ItemList" parent="Items" index="0" instance=ExtResource("4_xqul7")]
 visible = false
-anchors_preset = -1
-anchor_left = 0.214
-anchor_top = 0.119
-anchor_right = 0.214
-anchor_bottom = 0.119
-offset_left = 147.472
-offset_top = 61.888
-offset_right = 279.472
-offset_bottom = 163.888
-size_flags_horizontal = 3
-size_flags_vertical = 3
-auto_height = true
-max_columns = 2
-fixed_column_width = 50
+offset_left = 558.352
+offset_top = 190.408
+offset_right = 689.352
+offset_bottom = 279.408
 
 [node name="Detector" type="Area2D" parent="." index="6"]
 script = ExtResource("6_g43wq")
@@ -78,10 +57,8 @@ script = ExtResource("6_g43wq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0"]
 shape = SubResource("CircleShape2D_mmjfn")
 
-[connection signal="item_activated" from="Skills/SkillList" to="." method="_on_skill_list_activated"]
 [connection signal="item_selected" from="Skills/SkillList" to="." method="_on_skill_list_selected"]
 [connection signal="gear_change" from="Gear" to="." method="_on_gear_gear_change"]
-[connection signal="item_activated" from="Items/ItemList" to="." method="_on_item_list_activated"]
 [connection signal="item_selected" from="Items/ItemList" to="." method="_on_item_list_selected"]
 [connection signal="body_shape_entered" from="Detector" to="Detector" method="_on_body_shape_entered"]
 

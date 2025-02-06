@@ -1,41 +1,45 @@
-Izanami Remaster Todo List
-- [ ] Add hot keys for action menu
-- [ ] Add default target section depending on skill type
+Izanami Remaster To-do List
+GOALS
 - [ ] Enable Pure mouse and pure keyboard navigation support
-- [x] Enable using up and down on keyboard to switch between player and enemy teams
-- [ ] Add skill icons
-- [x] Add level cap (maybe)
-- [x] Implement AoE skills and self_targeting skills
 - [ ] Flesh out status effects
+- [ ] Include boost info in item and skill description
+- [ ] Add skill icons
+TASKS (WORKABLE)
+- [ ] Implement status menu for viewing character status
+- [ ] Add default target section depending on skill type
+- [ ] Add equipping and un-equipping gear
+- [ ] Add Church menu and implement blessing UI
+- [ ] Replace gear change signal with get_parent call
+- [x] Add hot keys for action menu
+- [x] Enable using up and down on keyboard to switch between player and enemy teams
+- [x] Add level cap (maybe)
+- [x] Implement AoE skills
+- [x] Implement self_targeting skills
 - [x] Move battle movement and selection to separate node
 - [x] Make enemies not spawn on outer rows and columns
-- [ ] Change map enemy spawning to reflect contained enemies
 - [x] Fix item usage bug
-- [ ] Implement option to choose chest drop location for dungeon drops 
-- [ ] Include boost info in item and skill desc
 - [x] Fix inability to click on exit button
-- [ ] Apply new dictionary system to skills
-- [ ] Add equipping an dequipping gear
-- [ ] implement enemypedia tracking for demonitarium fight unlocks
-- [ ] Add status effect icons and hover to describe status
 - [x] Fix enemy name bugs
-- [ ] Add status ailments to overlay
-- [ ] Add Church menu and implement blessing UI
-- [ ] Add Level Requirement to skill
 - [x] Add numpad targeting 
-- [ ] Replace gear change signal with get_parent call
-- [ ] Add spacing between item list selections or just change from item list to custom UI
+- [x] Add spacing between item list selections or just change from item list to custom UI
+- [x] Add Level Requirement to skill
 - [x] Add description page for skills, include:
 	- [x] cost
 	- [x] Crit chance
 	- [x] damage
-	- [x] short desc
+	- [x] short description
 	- [x] stats 
 	- [x] status effect
 	- [x] type
-- [x] Add esc function (reset focus and show child)
+- [x] Add ESC function (reset focus and show child)
 - [x] Add functions to skill class
-- [x] Add sp restoration and other battle functions
+- [x] Add SP restoration and other battle functions
 - [x] Create new classes for skills
 - [x] Set player container in battle as own scene
+TASKS (AWAITING IMPLEMENTATION OF OTHER COMPONENTS)
+- [ ] Change map enemy spawning to reflect contained enemies
+- [ ] Implement option to choose chest drop location for dungeon drops 
+- [ ] implement enemypedia tracking for demonitarium fight unlocks
+- [ ] Add status ailments to overlay
+- [ ] Add status effect icons and hover to describe status
 

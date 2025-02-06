@@ -6,7 +6,7 @@ extends Enemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	base_stats = enemy_stats
+	root_stats = enemy_stats
 	atk_lines = enemy_atk_lines
 	element = enemy_element
 	super()

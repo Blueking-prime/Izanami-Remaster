@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=2 format=3 uid="uid://vro1nr1pn8tw"]
+
+[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_iwy8i"]
+
+[resource]
+script = ExtResource("1_iwy8i")
+element = &"Fire"
+name = &"Wild Style"
+stats = Array[StringName]([&"STR"])
+stat_multiplier = 3
+cost = 30
+boost = [1, 1]
+flavour_text = "You let loose, lashing out against all your enemies"
+lvl_requirement = 5
+crit_chance = 0.5
+crit_mult = 2
+status_effect = &""
+accuracy = 0.8
+value = 0
+aoe = true
+targetable = true
+desc = ""
+type = &""

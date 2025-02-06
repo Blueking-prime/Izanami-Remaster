@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Heal_Skill" load_steps=2 format=3 uid="uid://cggj74vuy0hgv"]
+
+[ext_resource type="Script" path="res://Models/Skills/heal_skill.gd" id="1_i4hob"]
+
+[resource]
+script = ExtResource("1_i4hob")
+name = &"Prayer"
+stats = Array[StringName]([&"GUI"])
+stat_multiplier = 1
+cost = 10
+boost = [1, 1]
+flavour_text = "You gather your faith and pray for divine mercy"
+lvl_requirement = 1
+crit_chance = 0.1
+crit_mult = 2
+status_effect = &""
+accuracy = 1.0
+value = 0
+aoe = false
+targetable = false
+desc = "Pray to God for a bit of healing"
+type = &""

@@ -3,7 +3,7 @@ extends Node
 class_name BattleInput
 
 @export var choice: Control
-@export var skill_panel: ItemList
+@export var skill_panel: SkillMenu
 @export var dummy_control: Control
 @export var desc_box: Control
 @export var dummy_option: Button
@@ -168,8 +168,12 @@ func _on_skill_panel_item_activated(idx: int) -> void:
 	if flag == 'Skills':
 		if process_turns.current_player.get_skills()[process_turns.current_player.active_selection].aoe:
 			aoe_check = true
+		if not process_turns.current_player.get_skills()[process_turns.current_player.active_selection].targetable:
+			process_actions.target = process_turns.current_player
+			process_actions.action()
+			return
 	if flag == 'Items':
-		if process_turns.current_player.items.get_item(skill_panel.get_item_text(idx)).aoe:
+		if process_turns.current_player.items.get_item(skill_panel.list.get_item_text(idx)).aoe:
 			aoe_check = true
 
 	if aoe_check:

@@ -6,8 +6,8 @@ class_name Player
 @onready var gear: Node = $Gear
 @onready var detector: Area2D = $Detector
 
-@export var skill_menu: ItemList
-@export var item_menu: ItemList
+@export var skill_menu: SkillMenu
+@export var item_menu: SkillMenu
 
 
 ## DYNAMIC PROPERTIES
@@ -24,7 +24,6 @@ class_name Player
 @export var xp: int = 0
 @export var level_up_xp: int = 50 * (2 ** lvl)
 @export var mag: int = 0
-@export var level_stats: Array = []
 @export var level_cap: int = 60
 
 ## LOGIC VARIABLES
@@ -32,7 +31,6 @@ class_name Player
 
 ## STATES
 var active_selection
-var chosen_option: bool = false
 var freeze_movement: bool = false
 
 ## SIGNALS
@@ -71,6 +69,7 @@ func _physics_process(_delta):
 func update_stats():
 	var current_max = [max_hp, max_sp]
 
+	super.update_stats()
 	for i in stats:
 		stats[i] = base_stats[i] + $Gear.stats[i]
 
@@ -90,18 +89,11 @@ func level_up(value):
 		return
 
 	print(name, " leveled up!")
-	var current_max = [max_hp, max_sp]
-	var curr_stats = base_stats
 
 	xp -= level_up_xp
 	lvl += 1
 
-	for i in level_stats:
-		curr_stats[i] += 1
-
-	base_stats = curr_stats
-
-	update_derived_stats(current_max)
+	update_stats()
 	level_up_xp = 50 * (2 ** lvl)
 	skills.update_skills()
 	_display_skills()
@@ -129,17 +121,16 @@ func consume_sp(value: float):
 func _display_skills():
 	skill_menu.clear()
 	for i in get_skills():
-		skill_menu.add_item(i.name)
+		skill_menu.list.add_item(i.name)
+		skill_menu.cost.add_item(str(i.cost))
 
 func show_skill_menu():
 	skill_menu.show()
 	skill_menu.item_selected.connect(_on_skill_list_selected)
 	_display_skills()
-	skill_menu.grab_focus()
+	skill_menu.list.grab_focus()
 
 func _on_skill_list_selected(index: int) -> void:
-	if Global.description_box:
-		Global.description_box.queue_free()
 	Global.show_description(get_skills()[index])
 	Global.description_box.size_flags_stretch_ratio = 2
 
@@ -149,39 +140,38 @@ func _display_items():
 	item_menu.clear()
 	var _items = get_items()
 	for i in _items:
-		item_menu.add_item(i)
-		item_menu.add_item(str(len(_items[i])))
+		item_menu.list.add_item(i)
+		item_menu.cost.add_item(str(len(_items[i])))
 
 func show_item_menu():
 	item_menu.show()
 	item_menu.item_selected.connect(_on_item_list_selected)
 	_display_items()
-	item_menu.grab_focus()
+	item_menu.list.grab_focus()
 
 func use_item(item_name, _target):
 	if item_name is int:
-		item_name = item_menu.get_item_text(active_selection)
+		item_name = item_menu.list.get_item_text(active_selection)
 	super.use_item(item_name, _target)
 	_display_items()
 
 func _on_item_list_selected(index: int) -> void:
-	if Global.description_box:
-		Global.description_box.queue_free()
-	Global.show_description(items.get_item(item_menu.get_item_text(index)))
+	Global.show_description(items.get_item(item_menu.list.get_item_text(index)))
 	Global.description_box.size_flags_stretch_ratio = 2
 
 
 ### UI DISPLAYS
 func reset_menu():
-	#item_menu.hide()
-	#skill_menu.hide()
+	item_menu.clear()
+	skill_menu.clear()
 	active_selection = null
-	chosen_option = false
+	if is_instance_valid(Global.description_box):
+		Global.description_box.queue_free()
 
 
 ## END OF TURN EFFECTS
 func restore():
-	sp += stats['END'] * 2
+	sp += stats['END']
 	if sp > max_sp:
 		sp = max_sp
 

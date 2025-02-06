@@ -7,4 +7,4 @@ script = ExtResource("1_f72vl")
 base_folder = "res://Models/Skills"
 includes = Array[String](["*.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://Models/Skills/basic_attack.tres", "res://Models/Skills/strong_strike.tres"])
+paths = Array[String](["res://Models/Skills/basic_attack.tres", "res://Models/Skills/prayer.tres", "res://Models/Skills/strong_strike.tres", "res://Models/Skills/wild_slash.tres"])

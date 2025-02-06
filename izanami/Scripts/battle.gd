@@ -4,6 +4,7 @@ class_name Battle
 
 ## CUSTOM PARAMETERS
 @export var no_of_enemies: int
+@export var enemy_level: int = 1
 @export var enemy_group: ResourceGroup
 @export var enemy_set: Array
 @export var players: Party

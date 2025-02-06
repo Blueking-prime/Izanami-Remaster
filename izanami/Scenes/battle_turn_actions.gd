@@ -2,6 +2,8 @@ extends Node
 
 class_name BattleTurns
 
+@export var turncount_label: Label
+
 @onready var process_input: BattleInput = get_parent().process_input
 @onready var setup: BattleSetup = get_parent().setup
 
@@ -70,11 +72,16 @@ func end_turn():
 	if not len(enemy_array):
 		setup.exit_battle("win", get_parent().earned_exp)
 
+	turncount_label.text = str(turncount)
+
 func enemy_attack_script_placeholder():
 	var target_player = randi_range(0, player_array.size() - 1)
 	var skill_id = randi_range(0, actor.get_skills().size() - 1)
 	#player_array[target_player].focus()
-	actor.use_skill(skill_id, player_array[target_player])
+	if actor.get_skills()[skill_id].aoe:
+		actor.use_skill(skill_id, player_array)
+	else:
+		actor.use_skill(skill_id, player_array[target_player])
 	print('from ', actor.name)
 	#player_array[target_player].unfocus()
 	advance_actor()

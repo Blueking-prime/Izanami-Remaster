@@ -12,7 +12,18 @@ class_name UIOverlay
 ## OVERLAYS
 @export var inventory_menu: InventoryMenu
 
+@export var inventory_key: InputEventKey
+
 var players
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == inventory_key.keycode:
+			print(event)
+			if inventory_menu.visible:
+				inventory_menu.hide()
+			else:
+				inventory_menu.show()
 
 func load_ui_elements():
 	players = Global.player_party
