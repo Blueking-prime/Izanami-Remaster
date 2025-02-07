@@ -174,7 +174,7 @@ func show_description(object: Resource) -> void:
 		type.text = 'Gear'
 		subtype.text = object.slot
 		if object.equipped:
-			weapon_status.text = 'Equipped'
+			weapon_status.show()
 		effect_chance.hide()
 		target_scope.hide()
 		value.hide()

@@ -13,10 +13,10 @@ var _export_plugin: ResourceGroupsExportPlugin
 func _enter_tree():
 	add_tool_menu_item("Rebuild project resource groups", _rebuild_resource_groups)
 	_group_scanner = ResourceGroupScanner.new(get_editor_interface().get_resource_filesystem())
-	
+
 	# try to get the setting, if it doesn't exist, set it to true
 	var auto_rebuild: bool = ProjectSettings.get_setting(REBUILD_SETTING, true)
-	
+
 	# make sure it is there
 	ProjectSettings.set_setting("godot_resource_groups/auto_rebuild", auto_rebuild)
 	# add property info so it shows up in the editor
@@ -25,7 +25,7 @@ func _enter_tree():
 		"description": "Automatically rebuild resource groups when the project is built.",
 		"type": TYPE_BOOL,
 	})
-	
+
 	# register the export plugin
 	_export_plugin = ResourceGroupsExportPlugin.new(_rebuild_resource_groups)
 	add_export_plugin(_export_plugin)
@@ -53,7 +53,7 @@ func _rebuild_resource_groups():
 		var resource_paths = resource_scanner.scan()
 
 		group.paths = resource_paths
-		
+
 
 		ResourceSaver.save(group)
 		get_editor_interface().get_resource_filesystem().update_file(group.resource_path)

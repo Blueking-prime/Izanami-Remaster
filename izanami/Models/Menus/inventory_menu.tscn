@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b06gp60lhyyxx"]
+[gd_scene load_steps=7 format=3 uid="uid://b06gp60lhyyxx"]
 
 [ext_resource type="Script" path="res://Models/Menus/inventory_menu.gd" id="1_mfe14"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/Inventory.tscn" id="1_ty00r"]
 [ext_resource type="Script" path="res://Models/Menus/inventory_items.gd" id="2_miuef"]
 [ext_resource type="Script" path="res://Models/Menus/inventory_gear.gd" id="3_dtbst"]
+[ext_resource type="Script" path="res://Models/Menus/equip_target_selector.gd" id="5_gumd2"]
+[ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="6_ir5o8"]
 
 [node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("items_menu", "gear_menu", "misc_menu")]
 visible = false
@@ -31,6 +33,7 @@ offset_left = 103.0
 offset_top = 95.0
 offset_right = 864.0
 offset_bottom = 981.0
+focus_mode = 2
 current_tab = 0
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
@@ -47,10 +50,11 @@ visible = false
 [node name="Cost" parent="TabContainer/Items/Items" index="2"]
 visible = false
 
-[node name="Gear" parent="TabContainer" node_paths=PackedStringArray("desc_box_container") instance=ExtResource("1_ty00r")]
+[node name="Gear" parent="TabContainer" node_paths=PackedStringArray("target_selector", "desc_box_container") instance=ExtResource("1_ty00r")]
 visible = false
 layout_mode = 2
 script = ExtResource("3_dtbst")
+target_selector = NodePath("../../EquipTargetSelector")
 desc_box_container = NodePath("../../BoxContainer")
 metadata/_tab_index = 1
 
@@ -86,7 +90,46 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="EquipTargetSelector" type="HBoxContainer" parent="." node_paths=PackedStringArray("player_list", "head_slot_list", "weapon_slot_list", "body_slot_list")]
+visible = false
+layout_mode = 0
+offset_left = 1006.0
+offset_top = 131.0
+offset_right = 1728.0
+offset_bottom = 171.0
+theme_override_constants/separation = 0
+script = ExtResource("5_gumd2")
+player_list = NodePath("Player")
+head_slot_list = NodePath("Head")
+weapon_slot_list = NodePath("Weapon")
+body_slot_list = NodePath("Body")
+
+[node name="Player" type="ItemList" parent="EquipTargetSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+auto_height = true
+item_count = 1
+item_0/text = "Leader"
+item_0/icon = ExtResource("6_ir5o8")
+
+[node name="Head" type="ItemList" parent="EquipTargetSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+
+[node name="Weapon" type="ItemList" parent="EquipTargetSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+
+[node name="Body" type="ItemList" parent="EquipTargetSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="item_activated" from="EquipTargetSelector" to="TabContainer/Gear" method="choose_target"]
+[connection signal="item_activated" from="EquipTargetSelector/Player" to="EquipTargetSelector" method="_on_player_item_activated"]
 
 [editable path="TabContainer/Items"]
 [editable path="TabContainer/Gear"]

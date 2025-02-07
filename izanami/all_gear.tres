@@ -7,4 +7,4 @@ script = ExtResource("1_x0vcg")
 base_folder = "res://Models/Gear"
 includes = Array[String](["*.tres"])
 excludes = Array[String]([])
-paths = Array[String](["res://Models/Gear/excalihuh.tres", "res://Models/Gear/wool_cap.tres"])
+paths = Array[String](["res://Models/Gear/excalihuh.tres", "res://Models/Gear/bamboo_shoot.tres", "res://Models/Gear/wool_cap.tres"])

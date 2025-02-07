@@ -85,7 +85,4 @@ func _on_item_selected(index: int) -> void:
 	list.select(index)
 	count.select(index)
 	cost.select(index)
-
-	if Global.description_box:
-		Global.description_box.queue_free()
 	Global.show_description(_get_item(list.get_item_text(index)))

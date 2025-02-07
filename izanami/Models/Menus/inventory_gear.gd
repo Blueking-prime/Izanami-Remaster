@@ -3,6 +3,7 @@ extends Node
 ## CHILD NODES
 @export var list: ItemList
 @export var count: ItemList
+@export var target_selector: EquipTargetSelector
 
 ## EXTERNAL PARAMETERS
 @export var players: Party
@@ -10,6 +11,7 @@ extends Node
 
 ## WORKING VARIABLES
 var inventory: Inventory
+var selected_gear: Gear
 
 func _ready() -> void:
 	Global.description_box_parent = desc_box_container
@@ -30,12 +32,26 @@ func update_listing():
 			list.add_item(i)
 			count.add_item(str(len(inventory.gear_data[i])))
 
-func _on_item_activated(_index: int) -> void:
-	pass
+func show_target_selector():
+	target_selector.clear()
+	for i in players.party:
+		target_selector.add_item(i)
+
+	target_selector.show()
+	target_selector.player_list.grab_focus()
+
+func choose_target(index: int):
+	players.party[index].gear.equip_gear(selected_gear)
+	target_selector.hide()
+
+
+func _on_item_activated(index: int) -> void:
+	selected_gear = inventory.get_entry_by_name(list.get_item_text(index))
+	_on_item_selected(index)
+	show_target_selector()
+
 
 func _on_item_selected(index: int) -> void:
 	list.select(index)
 	count.select(index)
-	if Global.description_box:
-		Global.description_box.queue_free()
 	Global.show_description(inventory.get_entry_by_name(list.get_item_text(index)))

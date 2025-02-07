@@ -7,22 +7,27 @@ extends Node
 var dungeon: Dungeon
 
 @export var dungeon_1_enemies: ResourceGroup
+@export var dungeon_1_levels: int
 @export var dungeon_1_item_drops: ResourceGroup
 @export var dungeon_1_gear_drops: ResourceGroup
 
 @export var dungeon_2_enemies: ResourceGroup
+@export var dungeon_2_levels: int
 @export var dungeon_2_item_drops: ResourceGroup
 @export var dungeon_2_gear_drops: ResourceGroup
 
 @export var dungeon_3_enemies: ResourceGroup
+@export var dungeon_3_levels: int
 @export var dungeon_3_item_drops: ResourceGroup
 @export var dungeon_3_gear_drops: ResourceGroup
 
 @export var dungeon_4_enemies: ResourceGroup
+@export var dungeon_4_levels: int
 @export var dungeon_4_item_drops: ResourceGroup
 @export var dungeon_4_gear_drops: ResourceGroup
 
 @export var dungeon_5_enemies: ResourceGroup
+@export var dungeon_5_levels: int
 @export var dungeon_5_item_drops: ResourceGroup
 @export var dungeon_5_gear_drops: ResourceGroup
 

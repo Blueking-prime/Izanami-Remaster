@@ -23,14 +23,12 @@ gear_group = ExtResource("5_caqig")
 y_sort_enabled = true
 position = Vector2(0, 0)
 character_name = "Leader"
-level_stats = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
 lvl = 10
 
 [node name="Player2" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(163, 0)
 character_name = "P2"
-level_stats = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
 
 [editable path="Player"]
 [editable path="Player/BattleSprite"]

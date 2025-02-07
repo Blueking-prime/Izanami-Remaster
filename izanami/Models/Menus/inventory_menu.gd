@@ -12,4 +12,5 @@ func load_inventory():
 
 
 func _on_exit_button_pressed() -> void:
+	Global.player_party.unfreeze()
 	hide()

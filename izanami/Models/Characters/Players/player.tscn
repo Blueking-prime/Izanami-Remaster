@@ -58,7 +58,6 @@ script = ExtResource("6_g43wq")
 shape = SubResource("CircleShape2D_mmjfn")
 
 [connection signal="item_selected" from="Skills/SkillList" to="." method="_on_skill_list_selected"]
-[connection signal="gear_change" from="Gear" to="." method="_on_gear_gear_change"]
 [connection signal="item_selected" from="Items/ItemList" to="." method="_on_item_list_selected"]
 [connection signal="body_shape_entered" from="Detector" to="Detector" method="_on_body_shape_entered"]
 

@@ -9,8 +9,6 @@ var inventory
 @export var weapon: Gear
 @export var body: Gear
 
-signal gear_change
-
 func _ready() -> void:
 	inventory = get_parent().get_node("../Inventory")
 
@@ -24,14 +22,30 @@ func _ready() -> void:
 
 func equip_gear(gear: Gear):
 	match gear.slot:
-		'head': head = gear
-		'body': body = gear
-		'weapon': weapon = gear
-
-	gear.equipped = true
+		'head':
+			if head:
+				head.equipped = false
+			head = gear
+			head.equipped = true
+		'body':
+			if body:
+				body.equipped = false
+			body = gear
+			body.equipped = true
+		'weapon':
+			if weapon:
+				weapon.equipped = false
+			weapon = gear
+			weapon.equipped = true
 
 	_update_total_stats()
-	emit_signal('gear_change')
+	get_parent().update_stats()
+
+	for i in [head, body, weapon]:
+		if i:
+			print(i.name, ' ')
+		else:
+			print(i, ' ')
 
 func _update_total_stats():
 	for i in stats: stats[i] = 0

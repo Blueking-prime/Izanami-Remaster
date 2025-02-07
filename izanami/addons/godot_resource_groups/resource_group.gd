@@ -35,7 +35,10 @@ func load_all() -> Array[Resource]:
 ## the item is skipped.
 func load_all_into(destination:Array):
 	for path in paths:
-		destination.append(load(path))
+		var object = load(path)
+		if object is Gear:
+			object = object.duplicate(true)
+		destination.append(object)
 
 ## Gets all paths of resources inside of this resource group that
 ## match the given include and exclude criteria

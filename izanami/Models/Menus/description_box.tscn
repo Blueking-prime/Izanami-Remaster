@@ -98,6 +98,7 @@ text = "Sell value"
 vertical_alignment = 1
 
 [node name="WeaponStatus" type="Label" parent="Margin/Vbox/Hbox2"]
+visible = false
 layout_mode = 2
 text = "Equipped"
 vertical_alignment = 1

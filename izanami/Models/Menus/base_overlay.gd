@@ -13,17 +13,20 @@ class_name UIOverlay
 @export var inventory_menu: InventoryMenu
 
 @export var inventory_key: InputEventKey
+@export var settings_key: InputEventKey
+@export var status_key: InputEventKey
 
-var players
+var players: Party
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.pressed and event.keycode == inventory_key.keycode:
-			print(event)
-			if inventory_menu.visible:
-				inventory_menu.hide()
-			else:
-				inventory_menu.show()
+		if event.pressed:
+			match event.keycode:
+				inventory_key.keycode: _on_inventory_button_pressed()
+				settings_key.keycode: pass
+				status_key.keycode: pass
+		if event.is_action_pressed("ui_cancel") and inventory_menu.visible:
+			_on_inventory_button_pressed()
 
 func load_ui_elements():
 	players = Global.player_party
@@ -32,8 +35,13 @@ func load_ui_elements():
 	mag_counter.text = str(players.mag)
 
 func _on_inventory_button_pressed() -> void:
+	Global.player_party.freeze()
+
 	inventory_menu.load_inventory()
-	inventory_menu.show()
+	if inventory_menu.visible:
+		inventory_menu._on_exit_button_pressed()
+	else:
+		inventory_menu.show()
 
 
 func _on_settings_button_pressed() -> void:

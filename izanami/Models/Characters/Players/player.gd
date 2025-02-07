@@ -188,12 +188,6 @@ func die():
 ## Add death screen and shit
 
 
-## MISC SIGNALS
-func _on_gear_gear_change() -> void:
-	update_stats()
-	#print(stats, hp, max_hp, sp, max_sp)
-
-
 #func _on_detector_object_hit(object_type: Variant) -> void:
 	#print(object_type, ' hit')
 	#emit_signal('object_hit', object_type)

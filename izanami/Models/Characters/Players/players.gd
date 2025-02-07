@@ -17,6 +17,7 @@ class_name Party
 var party: Array = []
 var leader: Player
 var index: int = 0
+var frozen: bool = false
 
 var party_panels: Dictionary = {}
 var stored_pos: Vector2
@@ -112,9 +113,11 @@ func level_up(xp: int):
 		i.level_up(xp)
 
 func freeze():
+	frozen = true
 	for i in party:
 		i.freeze_movement = true
 
 func unfreeze():
+	frozen = false
 	for i in party:
 		i.freeze_movement = false

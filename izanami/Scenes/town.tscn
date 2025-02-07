@@ -59,6 +59,11 @@ script = ExtResource("4_ya8nq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Church"]
 shape = SubResource("CircleShape2D_7phy7")
 
+[node name="Label" type="Label" parent="Church"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Church"
+
 [node name="Smithy" type="StaticBody2D" parent="."]
 position = Vector2(268, 821)
 script = ExtResource("5_ww4xy")
@@ -66,6 +71,11 @@ stock = ExtResource("6_0ljby")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Smithy"]
 shape = SubResource("CircleShape2D_faye3")
+
+[node name="Label" type="Label" parent="Smithy"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Smithy"
 
 [node name="Apothecary" type="StaticBody2D" parent="."]
 position = Vector2(957, 264)
@@ -75,18 +85,33 @@ stock = ExtResource("6_yt5pf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apothecary"]
 shape = SubResource("CircleShape2D_xjhl4")
 
+[node name="Label" type="Label" parent="Apothecary"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Apothecary"
+
 [node name="Dungeon" type="StaticBody2D" parent="."]
 position = Vector2(1657, 264)
 script = ExtResource("10_b283d")
 dungeon_1_enemies = ExtResource("9_4m3ej")
+dungeon_1_levels = 1
 dungeon_1_item_drops = ExtResource("6_yt5pf")
 dungeon_1_gear_drops = ExtResource("6_0ljby")
 dungeon_2_enemies = ExtResource("9_4m3ej")
+dungeon_2_levels = 5
 dungeon_2_item_drops = ExtResource("6_yt5pf")
 dungeon_2_gear_drops = ExtResource("6_0ljby")
+dungeon_3_levels = 15
+dungeon_4_levels = 30
+dungeon_5_levels = 60
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dungeon"]
 shape = SubResource("CircleShape2D_f7ftm")
+
+[node name="Label" type="Label" parent="Dungeon"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Dungeon"
 
 [node name="Demonitarium" type="StaticBody2D" parent="." node_paths=PackedStringArray("crowley", "quantity_input", "confirm_button", "demonitarium_display")]
 position = Vector2(268, 264)
@@ -118,6 +143,11 @@ text = "Confirm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Demonitarium"]
 shape = SubResource("CircleShape2D_7cilw")
+
+[node name="Label" type="Label" parent="Demonitarium"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Demonitarium"
 
 [node name="Palace" type="Node2D" parent="."]
 position = Vector2(1657, 821)

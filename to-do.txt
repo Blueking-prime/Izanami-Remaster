@@ -7,9 +7,11 @@ GOALS
 TASKS (WORKABLE)
 - [ ] Implement status menu for viewing character status
 - [ ] Add default target section depending on skill type
-- [ ] Add equipping and un-equipping gear
+- [x] Add equipping and un-equipping gear
+- [ ] Implement using items from inventory menu
 - [ ] Add Church menu and implement blessing UI
-- [ ] Replace gear change signal with get_parent call
+- [ ] Implement weapon skills
+- [x] Replace gear change signal with get_parent call
 - [x] Add hot keys for action menu
 - [x] Enable using up and down on keyboard to switch between player and enemy teams
 - [x] Add level cap (maybe)

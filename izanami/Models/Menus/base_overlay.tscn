@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjf7wmor410ps"]
+[gd_scene load_steps=9 format=3 uid="uid://bjf7wmor410ps"]
 
 [ext_resource type="Script" path="res://Models/Menus/base_overlay.gd" id="1_fxe44"]
 [ext_resource type="Texture2D" uid="uid://cya3ku2ta4pme" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/coin_anim_f0.png" id="2_rfrb6"]
@@ -10,6 +10,16 @@
 device = -1
 keycode = 73
 unicode = 105
+
+[sub_resource type="InputEventKey" id="InputEventKey_b8x87"]
+device = -1
+keycode = 69
+unicode = 101
+
+[sub_resource type="InputEventKey" id="InputEventKey_yeuch"]
+device = -1
+keycode = 83
+unicode = 115
 
 [node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "coin_counter", "mag_counter")]
 layout_mode = 3
@@ -23,6 +33,8 @@ player_status = NodePath("StatusOverlay/MarginContainer/PlayerContainer")
 coin_counter = NodePath("ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 mag_counter = NodePath("ResourceDisplay/MarginContainer/GridContainer/MagCount")
 inventory_key = SubResource("InputEventKey_0qrx2")
+settings_key = SubResource("InputEventKey_b8x87")
+status_key = SubResource("InputEventKey_yeuch")
 
 [node name="StatusOverlay" type="PanelContainer" parent="."]
 layout_mode = 0
