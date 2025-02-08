@@ -54,4 +54,6 @@ func _on_item_activated(index: int) -> void:
 func _on_item_selected(index: int) -> void:
 	list.select(index)
 	count.select(index)
-	Global.show_description(inventory.get_entry_by_name(list.get_item_text(index)))
+	var item = inventory.get_entry_by_name(list.get_item_text(index))
+	if item:
+		Global.show_description(item)

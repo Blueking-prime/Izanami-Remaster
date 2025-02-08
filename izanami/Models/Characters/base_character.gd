@@ -29,6 +29,7 @@ var base_stats: Dictionary = root_stats.duplicate()
 var stats: Dictionary = base_stats.duplicate()
 
 @export var level_stats: Array = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
+@export var desc: String
 
 @export var max_hp: int:
 	get():

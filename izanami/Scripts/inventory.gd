@@ -40,7 +40,9 @@ func remove_entry(entry: Variant):
 
 func get_entry_by_name(entry: String):
 	var value
-	if inventory_data[entry]:
+	print(inventory_data)
+	print(entry)
+	if entry in inventory_data:
 		if len(inventory_data[entry]):
 			value = inventory_data[entry][0]
 

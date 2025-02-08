@@ -3,7 +3,7 @@ extends Base_Character
 class_name Player
 
 ## CHILD NODES
-@onready var gear: Node = $Gear
+@onready var gear: PlayerGear = $Gear
 @onready var detector: Area2D = $Detector
 
 @export var skill_menu: SkillMenu

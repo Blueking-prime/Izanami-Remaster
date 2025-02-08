@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=24 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/town.gd" id="1_ntvnu"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_xl0pa"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dglgyqpiktqx5" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/big_demon_idle_anim_f0.png" id="14_ewnv5"]
 [ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="16_sg5ny"]
 [ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="17_xgnyn"]
+[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/status_overlay.tscn" id="18_v5rlg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
 radius = 172.491
@@ -202,10 +203,14 @@ theme_override_constants/v_separation = 81
 size_flags_horizontal = 1
 theme_override_constants/v_separation = 81
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu") instance=ExtResource("16_sg5ny")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu") instance=ExtResource("16_sg5ny")]
 inventory_menu = NodePath("../InventoryMenu")
+status_menu = NodePath("../StatusOverlay")
 
 [node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("17_xgnyn")]
+
+[node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("18_v5rlg")]
+visible = false
 
 [node name="BackButton" type="Button" parent="CanvasLayer"]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk5618o5l67d5"]
+[gd_scene load_steps=8 format=3 uid="uid://dk5618o5l67d5"]
 
 [ext_resource type="Script" path="res://Models/Characters/Players/players.gd" id="1_m2oad"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_blcr2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="3_aasua"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="4_4q1mc"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="5_caqig"]
+[ext_resource type="Texture2D" uid="uid://b5yhyrxx2sj4g" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/elf_f_idle_anim_f0.png" id="7_442t2"]
 
 [node name="Players" type="Node2D" node_paths=PackedStringArray("inventory")]
 z_index = 1
@@ -22,13 +23,20 @@ gear_group = ExtResource("5_caqig")
 [node name="Player" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(0, 0)
-character_name = "Leader"
+character_name = "P1"
 lvl = 10
 
 [node name="Player2" parent="." instance=ExtResource("2_eydhy")]
+visible = false
 y_sort_enabled = true
 position = Vector2(163, 0)
 character_name = "P2"
+
+[node name="BattleSprite" parent="Player2/BattleSprite/VBox" index="1"]
+texture = ExtResource("7_442t2")
+
+[node name="DungeonSprite" parent="Player2" index="1"]
+texture = ExtResource("7_442t2")
 
 [editable path="Player"]
 [editable path="Player/BattleSprite"]

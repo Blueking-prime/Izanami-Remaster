@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b06gp60lhyyxx"]
+[gd_scene load_steps=8 format=3 uid="uid://b06gp60lhyyxx"]
 
 [ext_resource type="Script" path="res://Models/Menus/inventory_menu.gd" id="1_mfe14"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/Inventory.tscn" id="1_ty00r"]
@@ -6,8 +6,9 @@
 [ext_resource type="Script" path="res://Models/Menus/inventory_gear.gd" id="3_dtbst"]
 [ext_resource type="Script" path="res://Models/Menus/equip_target_selector.gd" id="5_gumd2"]
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="6_ir5o8"]
+[ext_resource type="Script" path="res://Models/Menus/heal_target_selector.gd" id="7_5ycy6"]
 
-[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("items_menu", "gear_menu", "misc_menu")]
+[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("items_menu", "gear_menu", "misc_menu", "tab_container")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +19,7 @@ script = ExtResource("1_mfe14")
 items_menu = NodePath("TabContainer/Items")
 gear_menu = NodePath("TabContainer/Gear")
 misc_menu = NodePath("TabContainer/Misc")
+tab_container = NodePath("TabContainer")
 
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 0
@@ -25,6 +27,9 @@ offset_left = 30.0
 offset_top = 26.0
 offset_right = 103.0
 offset_bottom = 68.0
+focus_neighbor_right = NodePath("../TabContainer/Items/Items/List")
+focus_neighbor_bottom = NodePath("../TabContainer/Items/Items/List")
+focus_next = NodePath("../TabContainer/Items/Items/List")
 text = "Exit"
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -38,10 +43,12 @@ current_tab = 0
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 
-[node name="Items" parent="TabContainer" node_paths=PackedStringArray("desc_box_container") instance=ExtResource("1_ty00r")]
+[node name="Items" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector") instance=ExtResource("1_ty00r")]
 layout_mode = 2
+focus_mode = 2
 script = ExtResource("2_miuef")
 desc_box_container = NodePath("../../BoxContainer")
+target_selector = NodePath("../../TargetSelector")
 metadata/_tab_index = 0
 
 [node name="Label3" parent="TabContainer/Items/Heading/MarginContainer/HBoxContainer" index="2"]
@@ -53,6 +60,7 @@ visible = false
 [node name="Gear" parent="TabContainer" node_paths=PackedStringArray("target_selector", "desc_box_container") instance=ExtResource("1_ty00r")]
 visible = false
 layout_mode = 2
+focus_mode = 2
 script = ExtResource("3_dtbst")
 target_selector = NodePath("../../EquipTargetSelector")
 desc_box_container = NodePath("../../BoxContainer")
@@ -67,6 +75,7 @@ visible = false
 [node name="Misc" parent="TabContainer" instance=ExtResource("1_ty00r")]
 visible = false
 layout_mode = 2
+focus_mode = 2
 script = null
 metadata/_tab_index = 2
 
@@ -127,9 +136,30 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 
+[node name="TargetSelector" type="HBoxContainer" parent="." node_paths=PackedStringArray("player_list")]
+visible = false
+layout_mode = 0
+offset_left = 1006.0
+offset_top = 131.0
+offset_right = 1728.0
+offset_bottom = 171.0
+theme_override_constants/separation = 0
+script = ExtResource("7_5ycy6")
+player_list = NodePath("Player")
+
+[node name="Player" type="ItemList" parent="TargetSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+auto_height = true
+item_count = 1
+item_0/text = "Leader"
+item_0/icon = ExtResource("6_ir5o8")
+
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="item_activated" from="EquipTargetSelector" to="TabContainer/Gear" method="choose_target"]
 [connection signal="item_activated" from="EquipTargetSelector/Player" to="EquipTargetSelector" method="_on_player_item_activated"]
+[connection signal="item_activated" from="TargetSelector" to="TabContainer/Items" method="choose_target"]
+[connection signal="item_activated" from="TargetSelector/Player" to="TargetSelector" method="_on_player_item_activated"]
 
 [editable path="TabContainer/Items"]
 [editable path="TabContainer/Gear"]

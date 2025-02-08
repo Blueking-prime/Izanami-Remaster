@@ -133,6 +133,12 @@ size_flags_vertical = 3
 text = "Settings"
 icon = ExtResource("3_6kcpy")
 
+[node name="StatusButton" type="Button" parent="MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Status"
+icon = ExtResource("3_6kcpy")
+
 [node name="InventoryButton" type="Button" parent="MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -140,4 +146,5 @@ text = "Inventory"
 icon = ExtResource("3_6kcpy")
 
 [connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
 [connection signal="pressed" from="MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]
