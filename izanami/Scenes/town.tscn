@@ -51,7 +51,7 @@ players = NodePath("Players")
 
 [node name="Players" parent="." instance=ExtResource("3_xl0pa")]
 position = Vector2(1297, 490)
-gold = 100
+gold = 500
 
 [node name="Church" type="StaticBody2D" parent="."]
 position = Vector2(957, 821)

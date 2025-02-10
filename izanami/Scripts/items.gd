@@ -8,7 +8,7 @@ class_name CharacterItems
 var inventory: Inventory
 
 
-func _ready() -> void:
+func load_stock() -> void:
 	if get_parent().has_node("../Inventory"):
 		inventory = get_parent().get_node("../Inventory")
 	if item_group:

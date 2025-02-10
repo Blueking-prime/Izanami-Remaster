@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Gear" load_steps=3 format=3 uid="uid://c7142lx6rgmo5"]
+[gd_resource type="Resource" script_class="Gear" load_steps=4 format=3 uid="uid://c7142lx6rgmo5"]
 
 [ext_resource type="Script" path="res://Models/Gear/base_gear.gd" id="1_8rp22"]
 [ext_resource type="Script" path="res://Models/Skills/base_skill.gd" id="1_wd2iy"]
+[ext_resource type="Resource" uid="uid://dq3540vbrfpuc" path="res://Models/Skills/WeaponSkills/light_of_saber.tres" id="3_gkv74"]
 
 [resource]
 resource_local_to_scene = true
@@ -19,5 +20,5 @@ stats = {
 desc = "RESTRICTED COPYRIGHT"
 price = 100
 equipped = false
-add_skills = Array[ExtResource("1_wd2iy")]([])
+skills = Array[ExtResource("1_wd2iy")]([ExtResource("3_gkv74")])
 element = &""

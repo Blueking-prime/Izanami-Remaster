@@ -19,6 +19,7 @@ func create_card(player: Player):
 	var card: PlayerStatusCard = player_status_card_scene.instantiate()
 
 	card.nametag.text = player.nametag.text
+	card.classname.text = player.classname
 	card.icon.texture = player.battle_sprite_texture.texture
 
 	if player == players.leader:

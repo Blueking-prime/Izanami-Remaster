@@ -3,8 +3,8 @@ extends Base_Character
 class_name Player
 
 ## CHILD NODES
-@onready var gear: PlayerGear = $Gear
-@onready var detector: Area2D = $Detector
+@export var gear: PlayerGear
+@export var detector: Area2D
 
 @export var skill_menu: SkillMenu
 @export var item_menu: SkillMenu
@@ -20,14 +20,18 @@ class_name Player
 		sp = value
 		_update_sp_bar()
 
+@export var level_up_xp: int:
+	get():
+		return 50 * (2 ** lvl)
+
 ## STATIC PROPERTIES
 @export var xp: int = 0
-@export var level_up_xp: int = 50 * (2 ** lvl)
 @export var mag: int = 0
-@export var level_cap: int = 60
 
-## LOGIC VARIABLES
-@export var speed = 50.0
+## CONSTANTS
+@export var level_cap: int = 60
+@export var speed: int = 50
+@export var classname: StringName
 
 ## STATES
 var active_selection
@@ -43,6 +47,7 @@ func _ready() -> void:
 	ally = 1
 	sp = max_sp
 	super()
+	gear.load_stock()
 	_display_skills()
 	_display_items()
 

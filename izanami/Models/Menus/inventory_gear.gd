@@ -41,7 +41,10 @@ func show_target_selector():
 	target_selector.player_list.grab_focus()
 
 func choose_target(index: int):
-	players.party[index].gear.equip_gear(selected_gear)
+	if players.party[index].gear.check_equipped(selected_gear):
+		players.party[index].gear.unequip_gear(selected_gear.slot)
+	else:
+		players.party[index].gear.equip_gear(selected_gear)
 	target_selector.hide()
 
 

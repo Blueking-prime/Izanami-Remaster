@@ -5,8 +5,9 @@ GOALS
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
 TASKS (WORKABLE)
-- [/] Implement weapon skills
+- [x] Implement weapon skills
 - [ ] Add Church menu and implement blessing UI
+- [x] Add using skills outside of battle
 - [x] Add default target section depending on skill type
 - [x] Add leader selector
 - [x] Implement status menu for viewing character status

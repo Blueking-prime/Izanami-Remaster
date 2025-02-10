@@ -11,17 +11,20 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mmjfn"]
 radius = 9.0
 
-[node name="Player" node_paths=PackedStringArray("skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
+[node name="Player" node_paths=PackedStringArray("gear", "detector", "skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
 script = ExtResource("2_lj72d")
+gear = NodePath("Gear")
+detector = NodePath("Detector")
 skill_menu = NodePath("Skills/SkillList")
 item_menu = NodePath("Items/ItemList")
 max_sp = 0
 sp = 0
+level_up_xp = 0
 xp = 0
-level_up_xp = null
 mag = 0
 level_cap = 60
-speed = 150.0
+speed = 500
+classname = &""
 character_name = "Player"
 desc = "A named shade"
 
@@ -38,12 +41,12 @@ visible = true
 scale = Vector2(1, 1)
 texture = ExtResource("5_yd6jm")
 
-[node name="SkillList" parent="Skills" index="0" instance=ExtResource("4_xqul7")]
-visible = false
-
-[node name="Gear" type="Node" parent="." index="4"]
+[node name="Gear" type="Node" parent="." index="3"]
 script = ExtResource("5_k34jo")
 player_gear_data = ExtResource("4_etuff")
+
+[node name="SkillList" parent="Skills" index="0" instance=ExtResource("4_xqul7")]
+visible = false
 
 [node name="ItemList" parent="Items" index="0" instance=ExtResource("4_xqul7")]
 visible = false

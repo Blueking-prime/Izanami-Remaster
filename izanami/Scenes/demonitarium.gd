@@ -80,6 +80,9 @@ func talk_to_crowley():
 ## ADD COMMENT ON PURCHASE TRIGGER
 func fight_enemy(enemy_scene):
 	demonitarium_display.hide()
+	back_button.hide()
+	quantity_input.hide()
+	Global.sell.disconnect(_sell_parser)
 
 	var no_of_enemies = 1
 
@@ -92,17 +95,21 @@ func fight_enemy(enemy_scene):
 	get_parent().call_deferred("add_sibling", battle)
 
 func reset_from_battle():
+	players.freeze()
 	get_parent().overlay.load_ui_elements()
 	await Global.show_text_box('Crowley', 'Oh! So you survived?')
+	back_button.show()
+	Global.sell.connect(_sell_parser)
 	await choose_option()
 
 func exit_shop():
 	var confirm = await Global.show_text_choice("Crowley", "Have your fears overcome you? ")
 	if confirm == 0:
 		Global.sell.disconnect(_sell_parser)
-		players.unfreeze()
+		demonitarium_display.hide()
 		quantity_input.hide()
 		back_button.hide()
+		players.unfreeze()
 		overlay.show()
 	else:
 		await choose_option()

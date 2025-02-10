@@ -3,8 +3,8 @@ class_name Base_Character
 extends CharacterBody2D
 
 ## CHILD NODES
-@onready var skills: CharacterSkills = $Skills
-@onready var items: CharacterItems = $Items
+@export var skills: CharacterSkills
+@export var items: CharacterItems
 
 @export var nametag: Label
 
@@ -56,6 +56,8 @@ func _ready() -> void:
 	hp = max_hp
 	#pointer.set_position(Vector2(0, -130))
 	nametag.text = character_name
+	skills.load_stock()
+	items.load_stock()
 
 	#if ally > 0:
 		#pointer.set_texture(load("res://Assets/right_arrow.svg"))

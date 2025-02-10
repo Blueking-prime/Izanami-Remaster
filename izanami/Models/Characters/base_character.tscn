@@ -11,9 +11,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 radius = 7.0
 
-[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("nametag", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
+[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "nametag", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
 position = Vector2(241, 131)
 script = ExtResource("1_e6dxp")
+skills = NodePath("Skills")
+items = NodePath("Items")
 nametag = NodePath("BattleSprite/VBox/NameTag")
 hp_bar = NodePath("BattleSprite/VBox/HPBar")
 hp_bar_text = NodePath("BattleSprite/VBox/HPBar/HPBarText")

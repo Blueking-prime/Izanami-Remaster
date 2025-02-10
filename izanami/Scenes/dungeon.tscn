@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ck8bsrl8idlci"]
+[gd_scene load_steps=19 format=3 uid="uid://ck8bsrl8idlci"]
 
 [ext_resource type="Script" path="res://Scripts/dungeon.gd" id="1_cwupn"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="2_c7fje"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="9_1mf7q"]
 [ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="10_qxu4p"]
 [ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="12_8eno4"]
+[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/status_overlay.tscn" id="14_j4ljq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aepm2"]
 texture = ExtResource("3_y31a5")
@@ -558,7 +559,11 @@ wall_terrain_set = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu") instance=ExtResource("10_qxu4p")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu") instance=ExtResource("10_qxu4p")]
 inventory_menu = NodePath("../InventoryMenu")
+status_menu = NodePath("../StatusOverlay")
 
 [node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("12_8eno4")]
+
+[node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("14_j4ljq")]
+visible = false

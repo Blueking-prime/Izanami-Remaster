@@ -23,6 +23,7 @@ gear_group = ExtResource("5_caqig")
 [node name="Player" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(0, 0)
+classname = &"Knight"
 character_name = "P1"
 lvl = 10
 
@@ -30,6 +31,7 @@ lvl = 10
 visible = false
 y_sort_enabled = true
 position = Vector2(163, 0)
+classname = &"Elf"
 character_name = "P2"
 
 [node name="BattleSprite" parent="Player2/BattleSprite/VBox" index="1"]

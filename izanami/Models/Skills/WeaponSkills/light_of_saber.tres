@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=2 format=3 uid="uid://dq3540vbrfpuc"]
+
+[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_v1vyu"]
+
+[resource]
+script = ExtResource("1_v1vyu")
+element = &"Holy"
+name = &"Light of Saber"
+stats = Array[StringName]([&"GUI", &"WIS", &"STR"])
+stat_multiplier = 3
+cost = 20
+boost = [2, 1]
+flavour_text = "A beam of holy ligh erupts from your blade"
+lvl_requirement = 25
+crit_chance = 0.4
+crit_mult = 2
+status_effect = &""
+accuracy = 1.0
+value = 0
+aoe = true
+targetable = true
+desc = "A holy beam. You feel like you've seen this somewhere"
+type = &""
