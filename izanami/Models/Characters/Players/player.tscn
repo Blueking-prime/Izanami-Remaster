@@ -23,6 +23,7 @@ mag = 0
 level_cap = 60
 speed = 150.0
 character_name = "Player"
+desc = "A named shade"
 
 [node name="BattleSprite" parent="." index="0"]
 visible = false

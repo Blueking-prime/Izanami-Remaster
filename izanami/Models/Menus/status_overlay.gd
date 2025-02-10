@@ -5,6 +5,7 @@ class_name StatusOverlay
 @export var player_status_card_scene: PackedScene
 
 @export var player_container: HBoxContainer
+@export var target_selector:TargetSelector
 
 var players: Party
 
@@ -55,4 +56,25 @@ func _clear_data_cards():
 
 func _on_exit_button_pressed() -> void:
 	Global.player_party.unfreeze()
+	target_selector.hide()
 	hide()
+
+func show_target_selector():
+	target_selector.clear()
+	for i in players.party:
+		target_selector.add_item(i)
+
+	target_selector.show()
+	target_selector.player_list.grab_focus()
+
+func choose_target(index: int):
+	players.leader = players.party[index]
+	load_menu()
+	target_selector.hide()
+
+func _on_switch_button_pressed() -> void:
+	if visible:
+		if target_selector.visible:
+			target_selector.hide()
+		else:
+			show_target_selector()

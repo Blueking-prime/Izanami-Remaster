@@ -16,7 +16,7 @@ var sprites = []
 func load_enemies() -> void:
 	if len(enemy_set):
 		_initialize_enemies(false)
-	if enemy_group:
+	elif enemy_group:
 		_initialize_enemies(true)
 
 	place_charscters()
@@ -26,7 +26,6 @@ func _initialize_enemies(from_resource_group: bool):
 	#Spawn enemies here
 	if from_resource_group:
 		enemy_set = enemy_group.load_all()
-	#print(enemy_set)
 
 	var _type
 	for i in no_of_enemies:
@@ -37,6 +36,7 @@ func _initialize_enemies(from_resource_group: bool):
 		add_child(enemy)
 
 	enemies = get_children()
+	print(enemies)
 	#for i in enemies.size():
 		#enemies[i].name = enemies[i].get_class() + ' ' + str(i)
 

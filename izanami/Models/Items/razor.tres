@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_jwad1")
 name = &"Razor"
+offensive = true
 type = &"damage"
 value = 20
 boost = [1, 1]

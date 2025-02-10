@@ -8,5 +8,5 @@ extends Resource
 @export var desc: String
 @export var price: int = 0
 @export var equipped: bool = false
-@export var add_skills: Array[Skill]
+@export var skills: ResourceGroup
 @export var element: StringName

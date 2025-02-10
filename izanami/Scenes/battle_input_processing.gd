@@ -18,6 +18,7 @@ var index: int = 0
 var flag: StringName
 var aoe_targetting: bool = false
 var target_group: Array = []
+var offense: bool = true
 
 ## TARGETTING
 func _input(event: InputEvent) -> void:
@@ -109,14 +110,25 @@ func switch_focus_aoe():
 func start_choosing():
 	targetting = true
 	reset_target()
+	if offense:
+		index = process_turns.player_array.size()
+
 	process_turns.actors[index].target()
 	process_actions.target = process_turns.actors[index]
-
 func start_choosing_aoe():
 	targetting = true
 	aoe_targetting = true
 	reset_target()
-	switch_focus_aoe()
+
+	if offense:
+		target_group = process_turns.enemy_array
+	else :
+		target_group = process_turns.player_array
+
+	for i in target_group:
+		i.target()
+
+	process_actions.target = target_group
 
 func reset_target():
 	index = 0
@@ -166,15 +178,22 @@ func _on_skill_panel_item_activated(idx: int) -> void:
 
 	var aoe_check: bool = false
 	if flag == 'Skills':
-		if process_turns.current_player.get_skills()[process_turns.current_player.active_selection].aoe:
+		var skill: Skill = process_turns.current_player.get_skills()[process_turns.current_player.active_selection]
+		if skill.aoe:
 			aoe_check = true
-		if not process_turns.current_player.get_skills()[process_turns.current_player.active_selection].targetable:
+		if not skill.targetable:
 			process_actions.target = process_turns.current_player
 			process_actions.action()
 			return
+		if skill is Offensive_Skill:
+			offense = true
+		if skill is Heal_Skill:
+			offense = false
 	if flag == 'Items':
-		if process_turns.current_player.items.get_item(skill_panel.list.get_item_text(idx)).aoe:
+		var item: Item = process_turns.current_player.items.get_item(skill_panel.list.get_item_text(idx))
+		if item.aoe:
 			aoe_check = true
+		offense = item.offensive
 
 	if aoe_check:
 		start_choosing_aoe()

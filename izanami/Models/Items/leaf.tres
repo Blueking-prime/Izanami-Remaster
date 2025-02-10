@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_g3uao")
 name = &"Leaf"
+offensive = false
 type = &"heal"
 value = 20
 boost = [1, 1]

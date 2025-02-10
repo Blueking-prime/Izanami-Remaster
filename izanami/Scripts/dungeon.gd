@@ -12,6 +12,7 @@ var dungeon_sample = [
 
 ## CHILD NODES
 @onready var map = $Map
+@onready var walls = $ObjectsSort/Walls
 @export var players: Party
 @export var overlay: UIOverlay
 
@@ -36,6 +37,7 @@ var _item_drops = []
 var player: Player:
 	get():
 		return players.leader
+
 
 #var player_pos: Array:
 	#get():
@@ -151,10 +153,11 @@ func initiate_battle():
 	call_deferred("add_sibling", battle)
 
 
-func _on_detector_hit_enemy(body: Variant) -> void:
+func _on_detector_hit_enemy(body: Enemy) -> void:
 	print(body)
 	initiate_battle()
 	body.queue_free()
+
 
 func reset_from_battle():
 	get_node("Background").show()

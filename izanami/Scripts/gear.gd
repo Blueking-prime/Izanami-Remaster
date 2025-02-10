@@ -30,6 +30,10 @@ func equip_gear(gear: Gear):
 	gear_dict[gear.slot] = gear
 	gear_dict[gear.slot].equipped = true
 
+	if gear.skills:
+		for i in gear.skills.load_all():
+			get_parent().skills.add_skill(i)
+
 	_update_total_stats()
 	get_parent().update_stats()
 

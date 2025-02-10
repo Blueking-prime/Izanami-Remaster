@@ -2,8 +2,7 @@ extends TileMapLayer
 
 @onready var player: Player = get_parent().get_parent().player
 @onready var players: Party = get_parent().get_parent().players
-
-@onready var enemy_scene: PackedScene = preload("res://Models/Characters/Enemies/enemy.tscn")
+@onready var enemy_types: ResourceGroup = get_parent().get_parent().enemy_types
 
 @export var treasure_atlas_coords: Vector2i
 @export var treasure_source_id: int
@@ -59,8 +58,11 @@ func place_player():
 	player.position = player_pos
 
 func _place_enemies():
+	var enemy_set = enemy_types.load_all()
 	for coord in enemies:
-		var enemy = enemy_scene.instantiate()
+		var _type = randi_range(0, enemy_set.size() - 1)
+		var enemy: Enemy = enemy_set[_type].instantiate()
+
 		add_child(enemy)
 		enemy.dungeon_display()
 		enemy.position = Vector2i(2*16*coord[0], 2*16*coord[1])

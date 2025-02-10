@@ -1,5 +1,7 @@
 extends Node
 
+class_name CharacterSkills
+
 #@export_dir var skill_location: String
 @export var _all_skills: Array[Skill] = []
 @export var _skills: Array[Skill] = []

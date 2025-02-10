@@ -5,12 +5,13 @@ GOALS
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
 TASKS (WORKABLE)
-- [ ] Implement status menu for viewing character status
-- [ ] Add default target section depending on skill type
-- [x] Add equipping and un-equipping gear
-- [ ] Implement using items from inventory menu
+- [/] Implement weapon skills
 - [ ] Add Church menu and implement blessing UI
-- [ ] Implement weapon skills
+- [x] Add default target section depending on skill type
+- [x] Add leader selector
+- [x] Implement status menu for viewing character status
+- [x] Add equipping and un-equipping gear
+- [x] Implement using items from inventory menu
 - [x] Replace gear change signal with get_parent call
 - [x] Add hot keys for action menu
 - [x] Enable using up and down on keyboard to switch between player and enemy teams
@@ -39,7 +40,7 @@ TASKS (WORKABLE)
 - [x] Create new classes for skills
 - [x] Set player container in battle as own scene
 TASKS (AWAITING IMPLEMENTATION OF OTHER COMPONENTS)
-- [ ] Change map enemy spawning to reflect contained enemies
+- [-] Change map enemy spawning to reflect contained enemies
 - [ ] Implement option to choose chest drop location for dungeon drops 
 - [ ] implement enemypedia tracking for demonitarium fight unlocks
 - [ ] Add status ailments to overlay

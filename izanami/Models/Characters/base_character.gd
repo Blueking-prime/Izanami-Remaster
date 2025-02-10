@@ -3,8 +3,8 @@ class_name Base_Character
 extends CharacterBody2D
 
 ## CHILD NODES
-@onready var skills: Node = $Skills
-@onready var items: Node = $Items
+@onready var skills: CharacterSkills = $Skills
+@onready var items: CharacterItems = $Items
 
 @export var nametag: Label
 
@@ -63,9 +63,9 @@ func _ready() -> void:
 		#pointer.set_texture(load("res://Assets/left_arrow.svg"))
 	#print(name, pointer.position)
 	#print(hp)
-	print("ROOT STATS", root_stats)
-	print("BASE STATS", base_stats)
-	print("STATS", stats)
+	#print("ROOT STATS", root_stats)
+	#print("BASE STATS", base_stats)
+	#print("STATS", stats)
 	#print(skills.get_skills())
 	#print(skills.get_skills()[1].action(self, self))
 

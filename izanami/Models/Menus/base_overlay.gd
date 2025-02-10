@@ -17,6 +17,7 @@ class_name UIOverlay
 @export var inventory_key: InputEventKey
 @export var settings_key: InputEventKey
 @export var status_key: InputEventKey
+@export var switch_key: InputEventKey
 
 
 var players: Party
@@ -30,6 +31,7 @@ func _input(event: InputEvent) -> void:
 				inventory_key.keycode: _on_inventory_button_pressed()
 				settings_key.keycode: _on_settings_button_pressed()
 				status_key.keycode: _on_status_button_pressed()
+				switch_key.keycode: status_menu._on_switch_button_pressed()
 		if event.is_action_pressed("ui_cancel"):
 			_clear_visible_menus()
 

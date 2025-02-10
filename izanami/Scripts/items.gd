@@ -1,5 +1,7 @@
 extends Node
 
+class_name CharacterItems
+
 @export var item_group: ResourceGroup
 @export var _item_dict: Dictionary
 
