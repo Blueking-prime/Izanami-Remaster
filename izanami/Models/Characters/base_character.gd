@@ -50,6 +50,9 @@ var stats: Dictionary = base_stats.duplicate()
 
 
 func _ready() -> void:
+	load_character()
+
+func load_character():
 	#stats = base_stats
 	#print(base_stats, ' ', stats)
 	update_stats()
@@ -148,3 +151,12 @@ func status():
 func die():
 	print('%s is dead' % [character_name])
 	alive = false
+
+func save() -> CharacterSaveData:
+	var save_data: CharacterSaveData = CharacterSaveData.new()
+
+	save_data.hp = hp
+	save_data.lvl = lvl
+	save_data.alive = alive
+
+	return save_data

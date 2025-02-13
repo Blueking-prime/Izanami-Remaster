@@ -17,6 +17,8 @@ class_name UIOverlay
 @export var inventory_key: InputEventKey
 @export var settings_key: InputEventKey
 @export var status_key: InputEventKey
+@export var save_key: InputEventKey
+
 @export var switch_key: InputEventKey
 
 
@@ -31,6 +33,7 @@ func _input(event: InputEvent) -> void:
 				inventory_key.keycode: _on_inventory_button_pressed()
 				settings_key.keycode: _on_settings_button_pressed()
 				status_key.keycode: _on_status_button_pressed()
+				save_key.keycode: _on_save_button_pressed()
 				switch_key.keycode: status_menu._on_switch_button_pressed()
 		if event.is_action_pressed("ui_cancel"):
 			_clear_visible_menus()
@@ -72,3 +75,7 @@ func _on_status_button_pressed() -> void:
 	else:
 		_clear_visible_menus()
 		status_menu.show()
+
+
+func _on_save_button_pressed() -> void:
+	SaveAndLoad.save_game()

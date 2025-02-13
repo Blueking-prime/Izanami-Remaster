@@ -4,8 +4,9 @@ class_name PlayerGear
 
 @export var stats: Dictionary = {"STR": 0, "INT": 0, "WIS": 0, "END": 0, "GUI": 0, "AGI": 0}
 @export var player_gear_data: ResourceGroup
-var _curr_gear
-var inventory
+
+var _curr_gear: Array
+var inventory: Inventory
 
 @export var gear_dict: Dictionary = {
 	'head': null,
@@ -70,3 +71,17 @@ func _update_total_stats():
 
 	for i in gear_dict:
 		if gear_dict[i]: for j in stats: stats[j] += gear_dict[i].stats[j]
+
+func test_path():
+	for i in gear_dict:
+		if gear_dict[i]:
+			print(gear_dict[i])
+			print(gear_dict[i].path)
+
+func save() -> ResourceGroup:
+	var saved_gear: ResourceGroup = ResourceGroup.new()
+
+	for i in gear_dict:
+		if gear_dict[i]: saved_gear.paths.append(gear_dict[i].path)
+
+	return saved_gear

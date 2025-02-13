@@ -5,8 +5,10 @@ GOALS
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
 TASKS (WORKABLE)
-- [x] Implement weapon skills
 - [ ] Add Church menu and implement blessing UI
+- [ ] Add enemies chasing players in dungeon
+- [ ] Add saving and loading games
+- [x] Implement weapon skills
 - [x] Add using skills outside of battle
 - [x] Add default target section depending on skill type
 - [x] Add leader selector

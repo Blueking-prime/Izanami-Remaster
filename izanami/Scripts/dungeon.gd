@@ -155,6 +155,7 @@ func initiate_battle():
 
 func _on_detector_hit_enemy(body: Enemy) -> void:
 	print(body)
+	#! USE scene_file_path TO REMEMBERWHAT NODE TO LOAD
 	initiate_battle()
 	body.queue_free()
 

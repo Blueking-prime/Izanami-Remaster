@@ -43,14 +43,15 @@ var freeze_movement: bool = false
 #signal hit_exit
 
 
-func _ready() -> void:
+func load_character():
 	ally = 1
 	sp = max_sp
-	super()
+	super.load_character()
 	gear.load_stock()
 	_display_skills()
 	_display_items()
 
+	gear.test_path()
 
 func _physics_process(_delta):
 	# Get input
@@ -192,6 +193,18 @@ func die():
 	super.die()
 ## Add death screen and shit
 
+func save() -> CharacterSaveData:
+	var save_data: PlayerSaveData = PlayerSaveData.new()
+
+	save_data.hp = hp
+	save_data.lvl = lvl
+	save_data.alive = alive
+
+	save_data.sp = sp
+	save_data.xp = xp
+	save_data.gear = gear.save()
+
+	return save_data
 
 #func _on_detector_object_hit(object_type: Variant) -> void:
 	#print(object_type, ' hit')

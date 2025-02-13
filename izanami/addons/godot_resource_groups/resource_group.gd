@@ -38,6 +38,7 @@ func load_all_into(destination:Array):
 		var object = load(path)
 		if object is Gear:
 			object = object.duplicate(true)
+			object.path = path
 		destination.append(object)
 
 ## Gets all paths of resources inside of this resource group that

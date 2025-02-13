@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Models/Gear/base_gear.gd" id="2_rl6ry"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("2_rl6ry")
 name = "Bamboo Shoot"
 slot = &"weapon"
@@ -19,5 +18,5 @@ stats = {
 desc = "A simple bamboo shoot"
 price = 30
 equipped = false
-add_skills = Array[ExtResource("1_rh3i3")]([])
+skills = Array[ExtResource("1_rh3i3")]([])
 element = &"Wood"

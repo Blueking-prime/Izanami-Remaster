@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://dq3540vbrfpuc" path="res://Models/Skills/WeaponSkills/light_of_saber.tres" id="3_gkv74"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_8rp22")
 name = "Excalihuh?"
 slot = &"weapon"

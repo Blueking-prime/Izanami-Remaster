@@ -10,3 +10,4 @@ extends Resource
 @export var equipped: bool = false
 @export var skills: Array[Skill]
 @export var element: StringName
+@export var path: String = resource_path

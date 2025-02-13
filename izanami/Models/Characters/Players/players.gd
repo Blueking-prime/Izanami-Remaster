@@ -121,3 +121,18 @@ func unfreeze():
 	frozen = false
 	for i in party:
 		i.freeze_movement = false
+
+func save() -> PartySaveData:
+	var save_data = PartySaveData.new()
+
+	save_data.dungeon_level = dungeon_level
+	save_data.gold = gold
+	save_data.mag = mag
+	save_data.inventory_data = inventory.save_stock()
+
+	save_data.position = position
+
+	for i in party:
+		save_data.players.append(i.save())
+
+	return save_data

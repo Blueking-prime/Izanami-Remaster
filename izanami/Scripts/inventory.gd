@@ -58,3 +58,18 @@ func get_count(entry: Variant):
 		return len(inventory_data[entry])
 	else:
 		return len(inventory_data[entry.name])
+
+func save_stock() -> ResourceGroup:
+	var save_data: ResourceGroup = ResourceGroup.new()
+
+	for i in inventory_data:
+		for j in inventory_data[i]:
+			if j is Gear:
+				if not j.equipped:
+					print("GEAR APPENDED", j.name)
+					save_data.paths.append(j.path)
+				continue
+			print("ITEM APPENDED", j.name)
+			save_data.paths.append(j.resource_path)
+
+	return save_data
