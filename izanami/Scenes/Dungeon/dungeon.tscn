@@ -1,22 +1,22 @@
 [gd_scene load_steps=19 format=3 uid="uid://ck8bsrl8idlci"]
 
-[ext_resource type="Script" path="res://Scripts/dungeon.gd" id="1_cwupn"]
-[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="2_c7fje"]
-[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="2_ur1yd"]
-[ext_resource type="Script" path="res://Scripts/dungeon_map.gd" id="2_y54nv"]
-[ext_resource type="Texture2D" uid="uid://jau6vpcqyha4" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_.png" id="3_81fwx"]
-[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="3_hvtat"]
-[ext_resource type="Texture2D" uid="uid://bf8ixj6j10mqx" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_ [resources].png" id="3_vnavp"]
-[ext_resource type="Texture2D" uid="uid://cmmt3ba4u5yo7" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="3_y31a5"]
-[ext_resource type="Script" path="res://Scenes/floor.gd" id="4_3yl0k"]
-[ext_resource type="Script" path="res://Scripts/walls.gd" id="4_kgaeo"]
-[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="9_1mf7q"]
-[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="10_qxu4p"]
-[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="12_8eno4"]
-[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/status_overlay.tscn" id="14_j4ljq"]
+[ext_resource type="Script" path="res://Scenes/Dungeon/dungeon.gd" id="1_k4ybk"]
+[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="2_nbhj7"]
+[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="3_sqiqp"]
+[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_8c7x3"]
+[ext_resource type="Script" path="res://Scenes/Dungeon/dungeon_map.gd" id="5_u0aap"]
+[ext_resource type="Texture2D" uid="uid://cmmt3ba4u5yo7" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="6_waojl"]
+[ext_resource type="Texture2D" uid="uid://jau6vpcqyha4" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_.png" id="7_5kpit"]
+[ext_resource type="Texture2D" uid="uid://bf8ixj6j10mqx" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_ [resources].png" id="8_b5xp5"]
+[ext_resource type="Script" path="res://Scenes/Dungeon/floor.gd" id="9_ag11o"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="10_4bew8"]
+[ext_resource type="Script" path="res://Scenes/Dungeon/walls.gd" id="11_jfal0"]
+[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="12_m8pvk"]
+[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="13_h8mub"]
+[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/status_overlay.tscn" id="14_cl6si"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aepm2"]
-texture = ExtResource("3_y31a5")
+texture = ExtResource("6_waojl")
 3:2/0 = 0
 3:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-6.024, -2.008, -4.05537, -3.07106, 4.016, -2.95294, 6.024, -1.96863, 6.024, 2.95294, 3.93725, 3.93725, -4.016, 3.97663, -6, 2.9375)
 3:2/0/custom_data_0 = &"Exit"
@@ -25,7 +25,7 @@ texture = ExtResource("3_y31a5")
 2:2/0/custom_data_0 = &"Entrance"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx82d"]
-texture = ExtResource("3_81fwx")
+texture = ExtResource("7_5kpit")
 1:1/0 = 0
 1:1/0/y_sort_origin = 4
 1:1/0/terrain_set = 1
@@ -486,7 +486,7 @@ texture = ExtResource("3_81fwx")
 1:5/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w13t1"]
-texture = ExtResource("3_vnavp")
+texture = ExtResource("8_b5xp5")
 1:5/size_in_atlas = Vector2i(1, 2)
 1:5/0 = 0
 1:5/0/texture_origin = Vector2i(0, 8)
@@ -515,40 +515,40 @@ sources/2 = SubResource("TileSetAtlasSource_w13t1")
 sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
 [node name="Dungeon" type="Node2D" node_paths=PackedStringArray("players", "overlay")]
-script = ExtResource("1_cwupn")
+script = ExtResource("1_k4ybk")
 players = NodePath("ObjectsSort/Players")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 width = 30
 height = 20
-enemy_types = ExtResource("2_c7fje")
+enemy_types = ExtResource("2_nbhj7")
 MAX_ENEMIES = 1
-item_drop_group = ExtResource("2_ur1yd")
-gear_drop_group = ExtResource("3_hvtat")
+item_drop_group = ExtResource("3_sqiqp")
+gear_drop_group = ExtResource("4_8c7x3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 ignore_rotation = false
 
 [node name="Map" type="Node" parent="."]
-script = ExtResource("2_y54nv")
+script = ExtResource("5_u0aap")
 max_treasure_no = 10
 
 [node name="Background" type="TileMapLayer" parent="."]
 z_index = -5
 tile_set = SubResource("TileSet_c3q0b")
-script = ExtResource("4_3yl0k")
+script = ExtResource("9_ag11o")
 
 [node name="ObjectsSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Players" parent="ObjectsSort" instance=ExtResource("9_1mf7q")]
+[node name="Players" parent="ObjectsSort" instance=ExtResource("10_4bew8")]
 visible = false
 
 [node name="Walls" type="TileMapLayer" parent="ObjectsSort"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_c3q0b")
 collision_visibility_mode = 1
-script = ExtResource("4_kgaeo")
+script = ExtResource("11_jfal0")
 treasure_atlas_coords = Vector2i(1, 5)
 treasure_source_id = 2
 treasure_opened_atlas_coords = Vector2i(2, 5)
@@ -559,11 +559,11 @@ wall_terrain_set = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu") instance=ExtResource("10_qxu4p")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu") instance=ExtResource("12_m8pvk")]
 inventory_menu = NodePath("../InventoryMenu")
 status_menu = NodePath("../StatusOverlay")
 
-[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("12_8eno4")]
+[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("13_h8mub")]
 
-[node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("14_j4ljq")]
+[node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("14_cl6si")]
 visible = false

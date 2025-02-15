@@ -51,25 +51,21 @@ func load_character():
 	_display_skills()
 	_display_items()
 
-	gear.test_path()
 
-func _physics_process(_delta):
-	# Get input
+func _physics_process(delta: float) -> void:
 	if not freeze_movement:
 		var direction = Vector2()
 		direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
 
 		if direction.length():
 			direction = direction.normalized()
-			velocity = direction * speed
+			velocity = direction * speed * delta * 100
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			velocity.y = move_toward(velocity.y, 0, speed)
 
+		get_real_velocity()
 		move_and_slide()
-
-
-
 
 ## MODIFY PROPERTIES
 func update_stats():
@@ -82,8 +78,8 @@ func update_stats():
 	update_derived_stats(current_max)
 
 func update_derived_stats(current_max: Array):
-	hp = (hp/current_max[0]) * max_hp
-	sp = (sp/current_max[1]) * max_sp
+	hp = int((float(hp)/current_max[0]) * max_hp)
+	sp = int((float(sp)/current_max[1]) * max_sp)
 
 func level_up(value):
 	xp += value
@@ -200,11 +196,24 @@ func save() -> CharacterSaveData:
 	save_data.lvl = lvl
 	save_data.alive = alive
 
+	save_data.character_name = character_name
 	save_data.sp = sp
 	save_data.xp = xp
 	save_data.gear = gear.save()
 
 	return save_data
+
+func load_data(data: CharacterSaveData):
+	data = data as PlayerSaveData
+
+	xp = data.xp
+	items.item_group = null
+	gear.player_gear_data = data.gear
+	character_name = data.character_name
+
+	super.load_data(data)
+
+	sp = data.sp
 
 #func _on_detector_object_hit(object_type: Variant) -> void:
 	#print(object_type, ' hit')

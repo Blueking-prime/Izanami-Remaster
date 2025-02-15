@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ujhs0mvtimxh"]
 
-[ext_resource type="Script" path="res://Scenes/player_inventory.gd" id="1_1iyiv"]
+[ext_resource type="Script" path="res://Models/Menus/player_inventory.gd" id="1_1iyiv"]
 
 [node name="PlayerInventory" type="VBoxContainer" node_paths=PackedStringArray("players", "list", "count", "cost", "desc_box_container")]
 anchors_preset = -1

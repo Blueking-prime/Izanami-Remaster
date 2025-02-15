@@ -1,23 +1,23 @@
 [gd_scene load_steps=24 format=3 uid="uid://ot50txi7adq0"]
 
-[ext_resource type="Script" path="res://Scenes/town.gd" id="1_ntvnu"]
-[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_xl0pa"]
-[ext_resource type="Script" path="res://Scenes/church.gd" id="4_ya8nq"]
-[ext_resource type="Script" path="res://Scenes/smithy.gd" id="5_ww4xy"]
-[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="6_0ljby"]
-[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="6_yt5pf"]
-[ext_resource type="Script" path="res://Scenes/apothecary.gd" id="7_4eobs"]
-[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="9_4m3ej"]
-[ext_resource type="Script" path="res://Scenes/dungeon_town.gd" id="10_b283d"]
-[ext_resource type="Script" path="res://Scenes/demonitarium.gd" id="10_frbt0"]
-[ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/Inventory.tscn" id="11_w4wdy"]
-[ext_resource type="Texture2D" uid="uid://dwh8ptd80rs8r" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f0.png" id="12_a23yq"]
-[ext_resource type="Script" path="res://Models/Menus/demonitarium_fights.gd" id="12_va63s"]
-[ext_resource type="Texture2D" uid="uid://cx2uyxlvrhnso" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/imp_idle_anim_f0.png" id="13_808nt"]
-[ext_resource type="Texture2D" uid="uid://dglgyqpiktqx5" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/big_demon_idle_anim_f0.png" id="14_ewnv5"]
-[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="16_sg5ny"]
-[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="17_xgnyn"]
-[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/status_overlay.tscn" id="18_v5rlg"]
+[ext_resource type="Script" path="res://Scenes/Town/town.gd" id="1_wpby1"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_5q81g"]
+[ext_resource type="Script" path="res://Scenes/Town/church.gd" id="3_ysa3r"]
+[ext_resource type="Script" path="res://Scenes/Town/smithy.gd" id="4_hnjkr"]
+[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="5_rbk51"]
+[ext_resource type="Script" path="res://Scenes/Town/apothecary.gd" id="6_7ocav"]
+[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="7_k1mvl"]
+[ext_resource type="Script" path="res://Scenes/Town/dungeon_town.gd" id="8_k31jc"]
+[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="9_tt1ik"]
+[ext_resource type="Script" path="res://Scenes/Town/demonitarium.gd" id="10_h5qir"]
+[ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/Inventory.tscn" id="11_8eh4h"]
+[ext_resource type="Script" path="res://Models/Menus/demonitarium_fights.gd" id="12_8wj1c"]
+[ext_resource type="Texture2D" uid="uid://dwh8ptd80rs8r" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f0.png" id="13_joqh3"]
+[ext_resource type="Texture2D" uid="uid://cx2uyxlvrhnso" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/imp_idle_anim_f0.png" id="14_3bibu"]
+[ext_resource type="Texture2D" uid="uid://dglgyqpiktqx5" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/big_demon_idle_anim_f0.png" id="15_6hsm4"]
+[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="16_4ug66"]
+[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="17_wofi2"]
+[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/status_overlay.tscn" id="18_umf4j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
 radius = 172.491
@@ -35,7 +35,7 @@ radius = 170.012
 radius = 186.218
 
 [node name="Town" type="Node2D" node_paths=PackedStringArray("overlay", "back_button", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "crowley", "kobaneko", "white", "players")]
-script = ExtResource("1_ntvnu")
+script = ExtResource("1_wpby1")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 back_button = NodePath("CanvasLayer/BackButton")
 church = NodePath("Church")
@@ -49,13 +49,13 @@ kobaneko = NodePath("Characters/Kobaneko")
 white = NodePath("Characters/White")
 players = NodePath("Players")
 
-[node name="Players" parent="." instance=ExtResource("3_xl0pa")]
+[node name="Players" parent="." instance=ExtResource("2_5q81g")]
 position = Vector2(1297, 490)
 gold = 500
 
 [node name="Church" type="StaticBody2D" parent="."]
 position = Vector2(957, 821)
-script = ExtResource("4_ya8nq")
+script = ExtResource("3_ysa3r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Church"]
 shape = SubResource("CircleShape2D_7phy7")
@@ -67,8 +67,8 @@ text = "Church"
 
 [node name="Smithy" type="StaticBody2D" parent="."]
 position = Vector2(268, 821)
-script = ExtResource("5_ww4xy")
-stock = ExtResource("6_0ljby")
+script = ExtResource("4_hnjkr")
+stock = ExtResource("5_rbk51")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Smithy"]
 shape = SubResource("CircleShape2D_faye3")
@@ -80,8 +80,8 @@ text = "Smithy"
 
 [node name="Apothecary" type="StaticBody2D" parent="."]
 position = Vector2(957, 264)
-script = ExtResource("7_4eobs")
-stock = ExtResource("6_yt5pf")
+script = ExtResource("6_7ocav")
+stock = ExtResource("7_k1mvl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apothecary"]
 shape = SubResource("CircleShape2D_xjhl4")
@@ -93,15 +93,15 @@ text = "Apothecary"
 
 [node name="Dungeon" type="StaticBody2D" parent="."]
 position = Vector2(1657, 264)
-script = ExtResource("10_b283d")
-dungeon_1_enemies = ExtResource("9_4m3ej")
+script = ExtResource("8_k31jc")
+dungeon_1_enemies = ExtResource("9_tt1ik")
 dungeon_1_levels = 1
-dungeon_1_item_drops = ExtResource("6_yt5pf")
-dungeon_1_gear_drops = ExtResource("6_0ljby")
-dungeon_2_enemies = ExtResource("9_4m3ej")
+dungeon_1_item_drops = ExtResource("7_k1mvl")
+dungeon_1_gear_drops = ExtResource("5_rbk51")
+dungeon_2_enemies = ExtResource("9_tt1ik")
 dungeon_2_levels = 5
-dungeon_2_item_drops = ExtResource("6_yt5pf")
-dungeon_2_gear_drops = ExtResource("6_0ljby")
+dungeon_2_item_drops = ExtResource("7_k1mvl")
+dungeon_2_gear_drops = ExtResource("5_rbk51")
 dungeon_3_levels = 15
 dungeon_4_levels = 30
 dungeon_5_levels = 60
@@ -116,12 +116,11 @@ text = "Dungeon"
 
 [node name="Demonitarium" type="StaticBody2D" parent="." node_paths=PackedStringArray("crowley", "quantity_input", "confirm_button", "demonitarium_display")]
 position = Vector2(268, 264)
-script = ExtResource("10_frbt0")
+script = ExtResource("10_h5qir")
 crowley = NodePath("Crowley")
 quantity_input = NodePath("QuantityInput")
 confirm_button = NodePath("QuantityInput/Button")
 demonitarium_display = NodePath("../CanvasLayer/DemonitariumFights")
-unlocked_demons = ExtResource("9_4m3ej")
 
 [node name="Crowley" type="Node2D" parent="Demonitarium"]
 position = Vector2(-268, -264)
@@ -162,7 +161,7 @@ position = Vector2(1657, 821)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="DemonitariumFights" parent="CanvasLayer" node_paths=PackedStringArray("desc") instance=ExtResource("11_w4wdy")]
+[node name="DemonitariumFights" parent="CanvasLayer" node_paths=PackedStringArray("desc") instance=ExtResource("11_8eh4h")]
 visible = false
 anchor_left = 0.498
 anchor_bottom = 0.619
@@ -170,9 +169,9 @@ offset_left = 3.83997
 offset_top = 98.0
 offset_right = -89.0
 offset_bottom = 4.47998
-script = ExtResource("12_va63s")
+script = ExtResource("12_8wj1c")
 desc = NodePath("Items/Count")
-demon_group = ExtResource("9_4m3ej")
+demon_group = ExtResource("9_tt1ik")
 demons = {}
 
 [node name="Label" parent="CanvasLayer/DemonitariumFights/Heading/MarginContainer/HBoxContainer" index="0"]
@@ -188,11 +187,11 @@ text = "Stats"
 size_flags_stretch_ratio = 2.0
 fixed_icon_size = Vector2i(100, 100)
 item_0/text = "Goblin"
-item_0/icon = ExtResource("12_a23yq")
+item_0/icon = ExtResource("13_joqh3")
 item_1/text = "Imp"
-item_1/icon = ExtResource("13_808nt")
+item_1/icon = ExtResource("14_3bibu")
 item_2/text = "Daemon"
-item_2/icon = ExtResource("14_ewnv5")
+item_2/icon = ExtResource("15_6hsm4")
 
 [node name="Count" parent="CanvasLayer/DemonitariumFights/Items" index="1"]
 size_flags_horizontal = 3
@@ -203,13 +202,13 @@ theme_override_constants/v_separation = 81
 size_flags_horizontal = 1
 theme_override_constants/v_separation = 81
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu") instance=ExtResource("16_sg5ny")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu") instance=ExtResource("16_4ug66")]
 inventory_menu = NodePath("../InventoryMenu")
 status_menu = NodePath("../StatusOverlay")
 
-[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("17_xgnyn")]
+[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("17_wofi2")]
 
-[node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("18_v5rlg")]
+[node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("18_umf4j")]
 visible = false
 
 [node name="BackButton" type="Button" parent="CanvasLayer"]

@@ -11,6 +11,15 @@ var gear_data: Dictionary = {}
 
 # data format: {item_name: [items]}
 
+func load_stock(data: ResourceGroup):
+	inventory_data = {}
+	item_data = {}
+	gear_data = {}
+
+	for i in data.load_all():
+		print(i.name)
+		add_entry(i)
+
 func add_entry(entry: Variant):
 	if entry is Gear:
 		if entry.name in gear_data:

@@ -17,6 +17,8 @@ var inventory: Inventory
 func load_stock() -> void:
 	inventory = get_parent().get_node("../Inventory")
 
+	gear_dict = {'head': null, 'weapon': null, 'body': null}
+
 	if player_gear_data:
 		_curr_gear = player_gear_data.load_all()
 		if inventory:

@@ -5,7 +5,7 @@ extends Node
 @export var confirm_button: Button
 @export var demonitarium_display: Control
 
-@export var unlocked_demons: ResourceGroup
+@export var stock: ResourceGroup
 
 @onready var players: Party = get_parent().players
 @onready var back_button: Button = get_parent().back_button
@@ -58,20 +58,12 @@ func buy_mag():
 
 
 func see_demons():
-	demonitarium_display.show()
-	demonitarium_display.grab_focus()
+	demonitarium_display.demon_group = stock
 	demonitarium_display.players = players
+	demonitarium_display.display_demons()
+	demonitarium_display.show()
+	demonitarium_display.list.grab_focus()
 	Global.show_text_box("Crowley", 'What do you want to fight?', true)
-	#var cost = fights[fight]
-	#var confirm =  await Global.show_text_choice("Crowley", "That will be {cost} yen | Balance: {players.gold}")
-	#if confirm == 0:
-		#if players.gold >= cost:
-			#var enemy
-			##enemy = getattr(enemy_models, fight)()
-			#Global.battle_scene.instantiate()
-			#Global.battle_scene.stuff = [players, [enemy]]
-		#else:
-			#await Global.show_text_box('', "Broke ass n*gga")
 
 
 func talk_to_crowley():

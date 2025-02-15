@@ -7,6 +7,7 @@ class_name Party
 @export var source: String
 @export var battle_sprite_scene: PackedScene
 @export var player_section: Control
+@export var player_scene: PackedScene
 
 @export var gold: int
 @export var mag: int
@@ -23,7 +24,17 @@ var party_panels: Dictionary = {}
 var stored_pos: Vector2
 var sprites: Array = []
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed() and event.as_text_keycode() == 'F':
+		if frozen:
+			unfreeze()
+		else:
+			freeze()
+
 func _ready() -> void:
+	load_party()
+
+func load_party():
 	party = get_children().filter(func(x): if x is Player: return x)
 	for i in party:
 		# Store battle sprites in array to recall
@@ -130,9 +141,33 @@ func save() -> PartySaveData:
 	save_data.mag = mag
 	save_data.inventory_data = inventory.save_stock()
 
-	save_data.position = position
+	save_data.position = leader.position
 
 	for i in party:
 		save_data.players.append(i.save())
 
 	return save_data
+
+func load_state(save_data: PartySaveData):
+	dungeon_level = save_data.dungeon_level
+	gold = save_data.gold
+	mag = save_data.mag
+
+	inventory.load_stock(save_data.inventory_data)
+
+
+	for i in party:
+		remove_child(i)
+		i.queue_free()
+
+	for i in save_data.players:
+		var player: Player = player_scene.instantiate()
+		player.gear.player_gear_data = null
+		player.items.item_group = null
+		add_child(player)
+		player.load_data(i)
+		#player.freeze_movement = true
+		#party[i].load_data(save_data.players[i])
+
+	load_party()
+	leader.position = save_data.position

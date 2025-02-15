@@ -7,7 +7,9 @@ GOALS
 TASKS (WORKABLE)
 - [ ] Add Church menu and implement blessing UI
 - [ ] Add enemies chasing players in dungeon
+- [ ] Disable saving while being chased in dungeon
 - [ ] Add saving and loading games
+- [ ] Add refreshing shop stock
 - [x] Implement weapon skills
 - [x] Add using skills outside of battle
 - [x] Add default target section depending on skill type

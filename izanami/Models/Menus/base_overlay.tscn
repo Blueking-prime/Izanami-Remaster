@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjf7wmor410ps"]
+[gd_scene load_steps=12 format=3 uid="uid://bjf7wmor410ps"]
 
 [ext_resource type="Script" path="res://Models/Menus/base_overlay.gd" id="1_fxe44"]
 [ext_resource type="Texture2D" uid="uid://cya3ku2ta4pme" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/coin_anim_f0.png" id="2_rfrb6"]
@@ -26,6 +26,11 @@ device = -1
 keycode = 86
 unicode = 118
 
+[sub_resource type="InputEventKey" id="InputEventKey_syx00"]
+device = -1
+keycode = 76
+unicode = 108
+
 [sub_resource type="InputEventKey" id="InputEventKey_hpakh"]
 device = -1
 keycode = 87
@@ -46,6 +51,7 @@ inventory_key = SubResource("InputEventKey_0qrx2")
 settings_key = SubResource("InputEventKey_b8x87")
 status_key = SubResource("InputEventKey_yeuch")
 save_key = SubResource("InputEventKey_vy2cn")
+load_key = SubResource("InputEventKey_syx00")
 switch_key = SubResource("InputEventKey_hpakh")
 
 [node name="StatusOverlay" type="PanelContainer" parent="."]
@@ -161,7 +167,12 @@ icon = ExtResource("3_6kcpy")
 layout_mode = 2
 text = "Save"
 
+[node name="LoadButton" type="Button" parent="MenuButtons"]
+layout_mode = 2
+text = "Load"
+
 [connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
 [connection signal="pressed" from="MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="MenuButtons/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MenuButtons/LoadButton" to="." method="_on_load_button_pressed"]
