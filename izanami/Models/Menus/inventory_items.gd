@@ -15,7 +15,6 @@ var selected_item_name: String
 
 func _ready() -> void:
 	Global.description_box_parent = desc_box_container
-	load_stock()
 
 func load_stock():
 	players = Global.player_party

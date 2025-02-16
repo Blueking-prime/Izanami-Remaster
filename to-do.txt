@@ -10,6 +10,7 @@ TASKS (WORKABLE)
 - [ ] Disable saving while being chased in dungeon
 - [ ] Add saving and loading games
 - [ ] Add refreshing shop stock
+- [ ] Fix save and load buttons not working
 - [x] Implement weapon skills
 - [x] Add using skills outside of battle
 - [x] Add default target section depending on skill type

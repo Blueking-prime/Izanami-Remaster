@@ -72,13 +72,8 @@ func _update_total_stats():
 	for i in stats: stats[i] = 0
 
 	for i in gear_dict:
-		if gear_dict[i]: for j in stats: stats[j] += gear_dict[i].stats[j]
-
-func test_path():
-	for i in gear_dict:
-		if gear_dict[i]:
-			print(gear_dict[i])
-			print(gear_dict[i].path)
+		if gear_dict[i]: for j in stats:
+			stats[j] += gear_dict[i].stats[j]
 
 func save() -> ResourceGroup:
 	var saved_gear: ResourceGroup = ResourceGroup.new()

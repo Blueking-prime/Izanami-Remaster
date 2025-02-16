@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name PlayerDetector
+
 ## DUNGEON SIGNALs
 signal hit_chest(coords)
 signal hit_enemy(coords)

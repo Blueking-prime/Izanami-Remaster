@@ -17,7 +17,6 @@ func load_stock(data: ResourceGroup):
 	gear_data = {}
 
 	for i in data.load_all():
-		print(i.name)
 		add_entry(i)
 
 func add_entry(entry: Variant):
@@ -75,10 +74,8 @@ func save_stock() -> ResourceGroup:
 		for j in inventory_data[i]:
 			if j is Gear:
 				if not j.equipped:
-					print("GEAR APPENDED", j.name)
 					save_data.paths.append(j.path)
 				continue
-			print("ITEM APPENDED", j.name)
 			save_data.paths.append(j.resource_path)
 
 	return save_data

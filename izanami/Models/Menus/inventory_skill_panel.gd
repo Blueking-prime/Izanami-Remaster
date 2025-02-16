@@ -25,7 +25,7 @@ func load_stock():
 	if player:
 		nametag.text = player.nametag.text
 		update_listing()
-	if target_selector:
+	if target_selector and not target_selector.item_activated.is_connected(choose_target):
 		target_selector.item_activated.connect(choose_target)
 
 func update_listing():

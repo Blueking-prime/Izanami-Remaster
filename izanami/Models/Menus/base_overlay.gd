@@ -52,6 +52,7 @@ func load_ui_elements():
 	coin_counter.text = str(players.gold)
 	mag_counter.text = str(players.mag)
 
+
 func _on_inventory_button_pressed() -> void:
 	Global.player_party.freeze()
 
@@ -85,4 +86,3 @@ func _on_save_button_pressed() -> void:
 
 func _on_load_button_pressed() -> void:
 	SaveAndLoad.load_game()
-	load_ui_elements()

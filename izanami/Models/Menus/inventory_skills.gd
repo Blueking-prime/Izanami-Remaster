@@ -10,10 +10,10 @@ extends Node
 
 func _ready() -> void:
 	Global.description_box_parent = desc_box_container
-	load_stock()
 
 func load_stock():
 	players = Global.player_party
+	print(players)
 	_clear_data_cards()
 	if players:
 		for i in players.party:

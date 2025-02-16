@@ -51,8 +51,9 @@ func _clear_data_cards():
 	var children = player_container.get_children()
 	if children:
 		for i in children:
-			remove_child(i)
-			i.queue_free()
+			if is_instance_valid(i):
+				remove_child(i)
+				i.queue_free()
 
 
 func _on_exit_button_pressed() -> void:

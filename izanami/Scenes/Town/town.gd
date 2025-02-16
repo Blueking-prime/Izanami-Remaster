@@ -23,13 +23,17 @@ var actions = ['Talk', "Go Somewhere", 'Status']
 var characters = ["Kobaneko", "White"]
 
 func _ready() -> void:
-	load_town()
+	load_scene()
 
 
-func load_town():
+func load_scene():
 	if not Global.player_party:
 		Global.player_party = players
+	else:
+		players = Global.player_party
 
+	#if not players.leader.detector.hit_building.is_connected(_check_building):
+		#print('Connect detector')
 	players.leader.detector.hit_building.connect(_check_building)
 
 	overlay.load_ui_elements()
@@ -62,3 +66,5 @@ func load_data(data: TownSaveData):
 	apothecary.stock = data.apothecary_stock
 	demonitarium.stock = data.demonitarium_stock
 	smithy.stock = data.smithy_stock
+
+	print('Town Data Loaded')

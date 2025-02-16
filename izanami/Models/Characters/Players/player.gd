@@ -4,7 +4,7 @@ class_name Player
 
 ## CHILD NODES
 @export var gear: PlayerGear
-@export var detector: Area2D
+@export var detector: PlayerDetector
 
 @export var skill_menu: SkillMenu
 @export var item_menu: SkillMenu
