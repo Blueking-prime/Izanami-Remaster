@@ -1,5 +1,9 @@
 extends TileMapLayer
 
+class_name DungeonObjects
+
+@onready var map: DungeonMap = get_parent().get_parent().map
+
 @onready var player: Player = get_parent().get_parent().player
 @onready var players: Party = get_parent().get_parent().players
 @onready var enemy_types: ResourceGroup = get_parent().get_parent().enemy_types
@@ -24,9 +28,9 @@ var enemy_nodes
 var width
 var height
 
-@onready var map: Node = $"../../Map"
+var opened_chest_coords: Array = []
 
-func _ready() -> void:
+func render_objects():
 	walls = map.walls
 	chests = map.treasure_tiles
 	enemies = map.enemy_tiles
@@ -45,7 +49,6 @@ func _ready() -> void:
 	_render_exit()
 	_place_enemies()
 	place_player()
-
 
 func place_player():
 	var player_pos = Vector2i(entrance[0] * 16, entrance[1] * 16)
@@ -127,13 +130,20 @@ func _render_exit():
 	)
 
 
-
 func _swap_chest_state(coords):
-		set_cell(
+	set_cell(
 			coords,
 			treasure_opened_source_id,
 			treasure_opened_atlas_coords
 		)
+	opened_chest_coords.append(coords)
 
 func _on_detector_hit_chest(coords) -> void:
 	_swap_chest_state(coords)
+
+
+func save() -> TileMapPattern:
+	return get_pattern(get_used_cells())
+
+func load_data(pattern: TileMapPattern):
+	set_pattern(Vector2i(), pattern)

@@ -1,6 +1,8 @@
 extends TileMapLayer
 
-@onready var map: Node = $"../Map"
+class_name DungeonBackground
+
+@onready var map: DungeonMap = get_parent().map
 
 @export var terrain_set: int
 @export var terrain_id: int
@@ -9,8 +11,7 @@ var walls: Array
 var width
 var height
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func draw_background():
 	width = map.width
 	height = map.height
 	_render_background_floor()

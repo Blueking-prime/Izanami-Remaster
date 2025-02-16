@@ -1,5 +1,7 @@
 extends Node
 
+class_name DungeonMap
+
 @onready var width: int = get_parent().width
 @onready var height: int = get_parent().height
 @onready var enemy_spawn_chance: float = get_parent().enemy_spawn_chance
@@ -23,7 +25,7 @@ var enemy_no
 
 var visited = []
 
-func _ready() -> void:
+func draw_new_map():
 	var check = false
 	while not check:
 		generate_dungeon_layout()
@@ -250,3 +252,29 @@ func display_dungeon():
 
 	for i in dungeon_map:
 		print(i)
+
+func save() -> DungeonMapSaveData:
+	var save_data: DungeonMapSaveData = DungeonMapSaveData.new()
+
+	save_data.dungeon_map = dungeon_map
+	save_data.enemy_no = enemy_no
+	save_data.enemy_tiles = enemy_tiles
+	save_data.filled_coords = filled_coords
+	save_data.start = start
+	save_data.stop = stop
+	save_data.treasure_no = treasure_no
+	save_data.treasure_tiles = treasure_tiles
+	save_data.walls = walls
+
+	return save_data
+
+func load_data(save_data: DungeonMapSaveData):
+	dungeon_map = save_data.dungeon_map
+	enemy_no = save_data.enemy_no
+	enemy_tiles = save_data.enemy_tiles
+	filled_coords = save_data.filled_coords
+	start = save_data.start
+	stop = save_data.stop
+	treasure_no = save_data.treasure_no
+	treasure_tiles = save_data.treasure_tiles
+	walls = save_data.walls

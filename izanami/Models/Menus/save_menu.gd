@@ -11,9 +11,9 @@ class_name SaveMenu
 
 ## WORKING VARIABLES
 var saves: Array[GameSaveData]
+var save_state: bool
 
-func _ready() -> void:
-	load_stock()
+signal item_activated
 
 func load_stock():
 	get_saves()
@@ -36,6 +36,8 @@ func create_save(index = null):
 
 func load_save(index = null):
 	if index:
+		print(index)
+		print(SaveAndLoad.save_files[index])
 		SaveAndLoad.load_save_file(SaveAndLoad.folder_location + SaveAndLoad.save_files[index])
 	else:
 		SaveAndLoad.load_game()
@@ -50,14 +52,30 @@ func update_listing():
 			date.add_item(process_date(i.date))
 			location.add_item(i.scene_data.location)
 
-func process_date(date: String) -> String:
-	return "\n".join(date.split("T"))
+func process_date(date_string: String) -> String:
+	return "\n".join(date_string.split("T"))
 
 func _on_item_activated(index: int) -> void:
-	create_save(index)
+	if save_state:
+		create_save(index)
+	else:
+		load_save(index)
+
 	update_listing()
+	item_activated.emit()
 
 func _on_item_selected(index: int) -> void:
 	list.select(index)
 	date.select(index)
 	location.select(index)
+
+
+func _on_button_pressed() -> void:
+	print(save_state)
+	if save_state:
+		create_save()
+	else:
+		load_save()
+
+	update_listing()
+	item_activated.emit()

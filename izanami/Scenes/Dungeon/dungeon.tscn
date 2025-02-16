@@ -514,8 +514,11 @@ sources/1 = SubResource("TileSetAtlasSource_gx82d")
 sources/2 = SubResource("TileSetAtlasSource_w13t1")
 sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
-[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("players", "overlay")]
+[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "background", "walls", "players", "overlay")]
 script = ExtResource("1_k4ybk")
+map = NodePath("Map")
+background = NodePath("Background")
+walls = NodePath("ObjectsSort/Walls")
 players = NodePath("ObjectsSort/Players")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 width = 30

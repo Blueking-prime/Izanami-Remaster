@@ -8,15 +8,16 @@ var count: int
 func save_game():
 	get_save_files()
 
-	var file_location = folder_location + "save_%d.tres" % [count]
+	var file_location = folder_location + "save_%d.tres" % [count + 1]
 	create_save_file(file_location)
 
 func load_game():
 	get_save_files()
 
-	var file_location = folder_location + save_files.back()
+	if save_files.back():
+		var file_location = folder_location + save_files.back()
 
-	load_save_file(file_location)
+		load_save_file(file_location)
 
 
 ## PROCESS FILE DIRECTORY
@@ -42,10 +43,11 @@ func create_save_file(file_location: String):
 
 func load_save_file(file_location: String):
 	var save_file: GameSaveData = load(file_location)
+	print(file_location, save_file)
 
 	match save_file.scene_data.location:
 		'Town': await load_town()
-		'Dungeon': await load_dungeon()
+		'Dungeon': await load_dungeon(save_file.scene_data)
 
 	if not Global.player_party:
 		load_players()
@@ -68,9 +70,25 @@ func load_town():
 
 	print('Town Loaded')
 
-func load_dungeon():
-	pass
+func load_dungeon(scene_data: DungeonSaveData):
+	if not get_tree().current_scene is Dungeon:
+		get_tree().unload_current_scene()
+		var dungeon: Town = preload("res://Scenes/Dungeon/dungeon.tscn").instantiate()
 
+		dungeon.width = scene_data.width
+		dungeon.height = scene_data.height
+		dungeon.enemy_types = scene_data.enemy_types
+		dungeon.item_drop_group = scene_data.item_drop_group
+		dungeon.gear_drop_group = scene_data.gear_drop_group
+		dungeon.MAX_ENEMIES = scene_data.MAX_ENEMIES
+		dungeon.enemy_spawn_chance = scene_data.enemy_spawn_chance
+		dungeon.treasure_spawn_chance = scene_data.treasure_spawn_chance
+		dungeon.gear_chance = scene_data.gear_chance
+
+		add_sibling(dungeon)
+		get_tree().current_scene = dungeon
+
+	print("Dungeon Loaded")
 
 ## SPAWN NEW PLAYERS ON FRESH LOAD
 func load_players():

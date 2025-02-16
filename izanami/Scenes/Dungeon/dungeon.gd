@@ -11,14 +11,17 @@ var dungeon_sample = [
 ]
 
 ## CHILD NODES
-@onready var map = $Map
-@onready var walls = $ObjectsSort/Walls
+@export var map: DungeonMap
+@export var background: DungeonBackground
+
+@export var walls: DungeonObjects
 @export var players: Party
 @export var overlay: UIOverlay
 
 ## MAP PROPERTIES
 @export var width: int = 8
 @export var height: int = 5
+@export var new_map: bool = true
 @export var enemy_types: ResourceGroup
 @export var MAX_ENEMIES: int = 3
 
@@ -46,8 +49,13 @@ var player: Player:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	load_scene()
+
+func load_scene():
 	if not Global.player_party:
 		Global.player_party = players
+	else:
+		players = Global.player_party
 
 	player_party_setup()
 	_load_items()
@@ -57,10 +65,15 @@ func _ready() -> void:
 	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
 	player.detector.hit_exit.connect(_on_detector_hit_exit)
 
-	map.display_dungeon()
+	if new_map:
+		map.draw_new_map()
+		map.display_dungeon()
+
+		walls.render_objects()
+
+	background.draw_background()
 
 	overlay.load_ui_elements()
-
 
 func player_party_setup():
 	players.show()
@@ -165,3 +178,31 @@ func reset_from_battle():
 	get_node("ObjectsSort/Walls").show()
 	overlay.load_ui_elements()
 	overlay.show()
+
+
+## SAVE AND LOAD LOGIC
+func save() -> DungeonSaveData:
+	var save_data: DungeonSaveData = DungeonSaveData.new()
+
+	save_data.width = width
+	save_data.height = height
+	save_data.enemy_types = enemy_types
+	save_data.item_drop_group = item_drop_group
+	save_data.gear_drop_group = gear_drop_group
+	save_data.MAX_ENEMIES = MAX_ENEMIES
+	save_data.enemy_spawn_chance = enemy_spawn_chance
+	save_data.treasure_spawn_chance = treasure_spawn_chance
+	save_data.gear_chance = gear_chance
+
+	save_data.map_data = map.save()
+	save_data.tile_data = walls.save()
+
+	return save_data
+
+func load_data(data: DungeonSaveData):
+	new_map = false
+	map.load_data(data.map_data)
+	walls.clear()
+	walls.load_data(data.tile_data)
+
+	print('Dungeon data loaded')

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Models/Menus/save_window.gd" id="1_3wlhh"]
 [ext_resource type="Script" path="res://Models/Menus/save_menu.gd" id="1_qjf68"]
 
-[node name="SaveWindow" type="Window"]
+[node name="SaveWindow" type="Window" node_paths=PackedStringArray("save_menu", "confirm_button")]
 title = "Choose Save file"
 initial_position = 2
 size = Vector2i(400, 400)
@@ -15,6 +15,8 @@ min_size = Vector2i(400, 400)
 content_scale_mode = 2
 content_scale_aspect = 3
 script = ExtResource("1_3wlhh")
+save_menu = NodePath("CanvasLayer/SaveMenu")
+confirm_button = NodePath("CanvasLayer/SaveMenu/Button")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -115,10 +117,17 @@ item_0/text = "10"
 item_1/text = "10"
 item_2/text = "420"
 
+[node name="Button" type="Button" parent="CanvasLayer/SaveMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Create New Save"
+
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="item_activated" from="CanvasLayer/SaveMenu" to="." method="_on_close_requested"]
 [connection signal="item_activated" from="CanvasLayer/SaveMenu/Items/List" to="CanvasLayer/SaveMenu" method="_on_item_activated"]
 [connection signal="item_selected" from="CanvasLayer/SaveMenu/Items/List" to="CanvasLayer/SaveMenu" method="_on_item_selected"]
 [connection signal="item_activated" from="CanvasLayer/SaveMenu/Items/Date" to="CanvasLayer/SaveMenu" method="_on_item_activated"]
 [connection signal="item_selected" from="CanvasLayer/SaveMenu/Items/Date" to="CanvasLayer/SaveMenu" method="_on_item_selected"]
 [connection signal="item_activated" from="CanvasLayer/SaveMenu/Items/Location" to="CanvasLayer/SaveMenu" method="_on_item_activated"]
 [connection signal="item_selected" from="CanvasLayer/SaveMenu/Items/Location" to="CanvasLayer/SaveMenu" method="_on_item_selected"]
+[connection signal="pressed" from="CanvasLayer/SaveMenu/Button" to="CanvasLayer/SaveMenu" method="_on_button_pressed"]
