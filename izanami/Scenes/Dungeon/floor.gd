@@ -12,6 +12,7 @@ var width
 var height
 
 func draw_background():
+	clear()
 	width = map.width
 	height = map.height
 	_render_background_floor()

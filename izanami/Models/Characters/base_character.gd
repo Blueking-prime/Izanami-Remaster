@@ -159,6 +159,7 @@ func save() -> CharacterSaveData:
 	save_data.lvl = lvl
 	save_data.alive = alive
 	save_data.position = position
+	save_data.scene_file_path = scene_file_path
 
 	return save_data
 

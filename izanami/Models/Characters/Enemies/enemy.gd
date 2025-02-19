@@ -27,7 +27,3 @@ func exp_drop():
 		sum += stats[i]
 
 	return sum * 9
-
-func die():
-	#hide()
-	super.die()

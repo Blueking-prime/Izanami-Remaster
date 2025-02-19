@@ -13,7 +13,6 @@ class_name UIOverlay
 @export var inventory_menu: InventoryMenu
 @export var settings_menu: Control
 @export var status_menu: StatusOverlay
-@export var save_window: SaveWindow
 
 @export var inventory_key: InputEventKey
 @export var settings_key: InputEventKey
@@ -82,10 +81,10 @@ func _on_status_button_pressed() -> void:
 
 
 func _on_save_button_pressed() -> void:
-	save_window.save_state = true
-	save_window.load_window()
+	SaveAndLoad.save_window.save_state = true
+	SaveAndLoad.save_window.load_window()
 
 
 func _on_load_button_pressed() -> void:
-	save_window.save_state = false
-	save_window.load_window()
+	SaveAndLoad.save_window.save_state = false
+	SaveAndLoad.save_window.load_window()

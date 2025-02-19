@@ -40,8 +40,6 @@ func render_objects():
 	width = map.width
 	#print('walls = ', walls)
 
-	player.detector.hit_chest.connect(_on_detector_hit_chest)
-
 	_render_treasure_chests()
 	_render_inner_walls()
 	_render_outer_walls()
@@ -49,6 +47,12 @@ func render_objects():
 	_render_exit()
 	_place_enemies()
 	place_player()
+
+	set_connections()
+
+func set_connections():
+	if is_instance_valid(player):
+		player.detector.hit_chest.connect(_on_detector_hit_chest)
 
 func place_player():
 	var player_pos = Vector2i(entrance[0] * 16, entrance[1] * 16)
@@ -145,5 +149,27 @@ func _on_detector_hit_chest(coords) -> void:
 func save() -> TileMapPattern:
 	return get_pattern(get_used_cells())
 
-func load_data(pattern: TileMapPattern):
+func load_data(data: DungeonSaveData):
+	load_tiles(data.tile_data)
+	load_enemies(data.enemy_data)
+	set_connections()
+
+func save_enemies() -> Array[CharacterSaveData]:
+	var enemy_data: Array[CharacterSaveData] = []
+	for i in enemy_nodes:
+		enemy_data.append(i.save())
+	return enemy_data
+
+func load_tiles(pattern: TileMapPattern):
 	set_pattern(Vector2i(), pattern)
+
+func load_enemies(enemy_data: Array[CharacterSaveData]):
+	if enemy_nodes: for i in enemy_nodes:
+		remove_child(i)
+		i.queue_free()
+
+	for i in enemy_data:
+		var enemy: Enemy = load(i.scene_file_path).instantiate()
+		enemy.load_data(i)
+		enemy.dungeon_display()
+		add_child(enemy)

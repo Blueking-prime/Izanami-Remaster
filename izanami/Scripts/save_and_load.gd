@@ -5,6 +5,8 @@ extends Node
 var save_files: Array
 var count: int
 
+@export var save_window: SaveWindow
+
 func save_game():
 	get_save_files()
 
@@ -64,7 +66,7 @@ func load_save_file(file_location: String):
 func load_town():
 	if not get_tree().current_scene is Town:
 		get_tree().unload_current_scene()
-		var town: Town = preload("res://Scenes/Town/town.tscn").instantiate()
+		var town: Town = Global.town_scene.instantiate()
 		add_sibling(town)
 		get_tree().current_scene = town
 
@@ -73,7 +75,7 @@ func load_town():
 func load_dungeon(scene_data: DungeonSaveData):
 	if not get_tree().current_scene is Dungeon:
 		get_tree().unload_current_scene()
-		var dungeon: Town = preload("res://Scenes/Dungeon/dungeon.tscn").instantiate()
+		var dungeon: Dungeon = Global.dungeon_scene.instantiate()
 
 		dungeon.width = scene_data.width
 		dungeon.height = scene_data.height

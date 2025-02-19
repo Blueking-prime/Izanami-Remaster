@@ -13,10 +13,12 @@ var dungeon_sample = [
 ## CHILD NODES
 @export var map: DungeonMap
 @export var background: DungeonBackground
-
 @export var walls: DungeonObjects
+
 @export var players: Party
+
 @export var overlay: UIOverlay
+@export var camera: Camera2D
 
 ## MAP PROPERTIES
 @export var width: int = 8
@@ -75,6 +77,9 @@ func load_scene():
 
 	overlay.load_ui_elements()
 
+	camera.players = players
+	camera.init_camera()
+
 func player_party_setup():
 	players.show()
 	for i in players.party:
@@ -108,6 +113,9 @@ func load_town():
 	town.add_child(players)
 	add_sibling(town)
 	get_tree().current_scene = town
+
+	player.position = Vector2(1657, 264 + 90)
+
 	print(get_tree().current_scene)
 
 	print('Town Loaded')
@@ -196,6 +204,7 @@ func save() -> DungeonSaveData:
 
 	save_data.map_data = map.save()
 	save_data.tile_data = walls.save()
+	save_data.enemy_data = walls.save_enemies()
 
 	return save_data
 
@@ -203,6 +212,6 @@ func load_data(data: DungeonSaveData):
 	new_map = false
 	map.load_data(data.map_data)
 	walls.clear()
-	walls.load_data(data.tile_data)
+	walls.load_data(data)
 
 	print('Dungeon data loaded')

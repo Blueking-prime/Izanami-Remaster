@@ -38,6 +38,7 @@ var active_selection
 var freeze_movement: bool = false
 
 ## SIGNALS
+signal moved
 #signal hit_chest
 #signal hit_enemy
 #signal hit_exit
@@ -66,6 +67,7 @@ func _physics_process(delta: float) -> void:
 
 		get_real_velocity()
 		move_and_slide()
+		moved.emit()
 
 ## MODIFY PROPERTIES
 func update_stats():

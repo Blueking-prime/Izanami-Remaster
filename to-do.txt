@@ -8,9 +8,9 @@ TASKS (WORKABLE)
 - [ ] Add Church menu and implement blessing UI
 - [ ] Add enemies chasing players in dungeon
 - [ ] Disable saving while being chased in dungeon
-- [ ] Add saving and loading games
+- [x] Add saving and loading games
 - [ ] Add refreshing shop stock
-- [ ] Fix save and load buttons not working
+- [x] Fix save and load buttons not working
 - [ ] Convert map data to use vector2 for coordinates
 - [x] Implement weapon skills
 - [x] Add using skills outside of battle

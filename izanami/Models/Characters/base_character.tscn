@@ -9,10 +9,10 @@
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="7_eqn43"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
+custom_solver_bias = 1.0
 radius = 7.0
 
 [node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "nametag", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
-position = Vector2(241, 131)
 script = ExtResource("1_e6dxp")
 skills = NodePath("Skills")
 items = NodePath("Items")

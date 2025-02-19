@@ -16,3 +16,4 @@ class_name DungeonSaveData
 
 @export var map_data: DungeonMapSaveData
 @export var tile_data: TileMapPattern
+@export var enemy_data: Array[CharacterSaveData]
