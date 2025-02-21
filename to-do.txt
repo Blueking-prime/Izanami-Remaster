@@ -4,10 +4,14 @@ GOALS
 - [ ] Flesh out status effects
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
+BUG FIXES
+- [ ] Fix loading scene crashing using button
 TASKS (WORKABLE)
 - [ ] Add Church menu and implement blessing UI
 - [ ] Add enemies chasing players in dungeon
 - [ ] Disable saving while being chased in dungeon
+- [ ] Implement main menu
+- [ ] Change item menus to accommodate scrolling
 - [x] Add saving and loading games
 - [ ] Add refreshing shop stock
 - [x] Fix save and load buttons not working

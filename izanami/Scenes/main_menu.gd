@@ -1,6 +1,8 @@
 extends Node
 
 @export var load_button: Button
+@export var settings_menu: Settings
+@export var canvas_layer: CanvasLayer
 
 func _ready() -> void:
 	SaveAndLoad.get_save_files()
@@ -13,10 +15,14 @@ func _on_load_pressed() -> void:
 
 func _on_new_pressed() -> void:
 	## Go to new game scene
-	SaveAndLoad.load_town()
+	SaveAndLoad.call_deferred("load_town")
 
 func _on_settings_pressed() -> void:
-	pass # Replace with function body.
+	canvas_layer.hide()
+	settings_menu.show()
+
+func _on_settings_exit() -> void:
+	canvas_layer.show()
 
 func _on_quit_pressed() -> void:
-	get_tree().quit()
+	get_tree().call_deferred("quit")

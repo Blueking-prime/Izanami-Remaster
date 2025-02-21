@@ -14,33 +14,27 @@ class_name UIOverlay
 @export var settings_menu: Control
 @export var status_menu: StatusOverlay
 
-@export var inventory_key: InputEventKey
-@export var settings_key: InputEventKey
-@export var status_key: InputEventKey
-@export var save_key: InputEventKey
-@export var load_key: InputEventKey
-@export var quit_key: InputEventKey
-
-@export var switch_key: InputEventKey
-
 
 var players: Party
 var curr_menu: Control
 var menu_list: Array
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.pressed:
-			match event.keycode:
-				inventory_key.keycode: _on_inventory_button_pressed()
-				settings_key.keycode: _on_settings_button_pressed()
-				status_key.keycode: _on_status_button_pressed()
-				save_key.keycode: _on_save_button_pressed()
-				load_key.keycode: _on_load_button_pressed()
-				quit_key.keycode: _on_quit_button_pressed()
-				switch_key.keycode: status_menu._on_switch_button_pressed()
-		if event.is_action_pressed("ui_cancel"):
-			_clear_visible_menus()
+	if event.is_action_pressed("inventory_key"):
+		_on_inventory_button_pressed()
+	elif event.is_action_pressed("status_key"):
+		_on_status_button_pressed()
+	elif event.is_action_pressed("settings_key"):
+		_on_settings_button_pressed()
+	elif event.is_action_pressed("save_key"):
+		_on_save_button_pressed()
+	elif event.is_action_pressed("load_key"):
+		_on_load_button_pressed()
+	elif event.is_action_pressed("quit_key"):
+		_on_quit_button_pressed()
+
+	elif event.is_action_pressed("switch_leader_key"):
+		status_menu._on_switch_button_pressed()
 
 func _clear_visible_menus():
 	for i in menu_list:
@@ -94,4 +88,4 @@ func _on_load_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	## Request confirmation
-	Global.load_main_menu()
+	Global.call_deferred("load_main_menu")

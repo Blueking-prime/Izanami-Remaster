@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkfyiyro88x3q"]
+[gd_scene load_steps=5 format=3 uid="uid://bkfyiyro88x3q"]
 
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_j5w4h"]
+[ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/Menus/settings.tscn" id="2_ognit"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yoqpr"]
 font_size = 300
@@ -8,9 +9,14 @@ font_size = 300
 [sub_resource type="LabelSettings" id="LabelSettings_evq3c"]
 font_size = 50
 
-[node name="MainMenu" type="Node" node_paths=PackedStringArray("load_button")]
+[node name="MainMenu" type="Node" node_paths=PackedStringArray("load_button", "settings_menu", "canvas_layer")]
 script = ExtResource("1_j5w4h")
 load_button = NodePath("CanvasLayer/VBoxContainer/Load")
+settings_menu = NodePath("Settings")
+canvas_layer = NodePath("CanvasLayer")
+
+[node name="Settings" parent="." instance=ExtResource("2_ognit")]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -81,6 +87,7 @@ label_settings = SubResource("LabelSettings_evq3c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="exit" from="Settings" to="." method="_on_settings_exit"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/New" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
