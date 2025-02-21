@@ -7,6 +7,7 @@ extends Node
 @onready var dungeon_scene: PackedScene = preload("res://Scenes/Dungeon/dungeon.tscn")
 @onready var battle_scene: PackedScene = preload("res://Scenes/Battle/battle.tscn")
 @onready var town_scene: PackedScene = preload("res://Scenes/Town/town.tscn")
+@onready var main_menu_scene: PackedScene = preload("res://Scenes/main_menu.tscn")
 
 var player_party: Party
 
@@ -233,6 +234,12 @@ func show_shop_menu(players: Party, stock: ResourceGroup):
 	shop_inventory_pane.load_stock()
 	player_inventory_pane.load_stock()
 
+
+func load_main_menu():
+	var main_menu = main_menu_scene.instantiate()
+	get_tree().unload_current_scene()
+	add_sibling(main_menu)
+	get_tree().current_scene = main_menu
 
 ## FUNCTON TESTS
 func rand_spread_test():
