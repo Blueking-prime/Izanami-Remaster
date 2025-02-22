@@ -5,14 +5,18 @@ GOALS
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
 BUG FIXES
-- [ ] Fix loading scene crashing using button
+- [x] Fix loading scene crashing using button
+- [ ] Prevent duplicate key assignment
 TASKS (WORKABLE)
 - [ ] Add Church menu and implement blessing UI
-- [ ] Add enemies chasing players in dungeon
-- [ ] Disable saving while being chased in dungeon
-- [ ] Implement main menu
+- [x] Add enemies chasing players in dungeon
+- [x] Disable saving while being chased in dungeon
+- [x] Implement main menu
 - [ ] Change item menus to accommodate scrolling
 - [x] Add saving and loading games
+- [x] Implement dynamic keybinds
+- [ ] implement graphics settings
+- [ ] Implement accessibility settings
 - [ ] Add refreshing shop stock
 - [x] Fix save and load buttons not working
 - [ ] Convert map data to use vector2 for coordinates

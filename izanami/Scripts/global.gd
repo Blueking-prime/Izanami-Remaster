@@ -1,8 +1,8 @@
 extends Node
 
-@onready var text_box_scene: PackedScene = preload("res://Models/Menus/text_box.tscn")
-@onready var description_box_scene: PackedScene = preload("res://Models/Menus/description_box.tscn")
-@onready var shop_menu_scene: PackedScene = preload("res://Models/Menus/shop_menu.tscn")
+@onready var text_box_scene: PackedScene = preload("res://Models/Menus/DialogBoxes/text_box.tscn")
+@onready var description_box_scene: PackedScene = preload("res://Models/Menus/DialogBoxes/description_box.tscn")
+@onready var shop_menu_scene: PackedScene = preload("res://Models/Menus/ShopMenus/shop_menu.tscn")
 
 @onready var dungeon_scene: PackedScene = preload("res://Scenes/Dungeon/dungeon.tscn")
 @onready var battle_scene: PackedScene = preload("res://Scenes/Battle/battle.tscn")

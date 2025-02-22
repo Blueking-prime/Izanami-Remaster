@@ -77,8 +77,9 @@ func _on_status_button_pressed() -> void:
 
 
 func _on_save_button_pressed() -> void:
-	SaveAndLoad.save_window.save_state = true
-	SaveAndLoad.save_window.load_window()
+	if not Global.player_party.chased:
+		SaveAndLoad.save_window.save_state = true
+		SaveAndLoad.save_window.load_window()
 
 
 func _on_load_button_pressed() -> void:

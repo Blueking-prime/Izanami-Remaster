@@ -1,4 +1,4 @@
-extends Node
+extends VBoxContainer
 
 @export var skill_menu_card_scene: PackedScene
 

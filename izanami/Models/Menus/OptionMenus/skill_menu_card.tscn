@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://0hx0wuw1wgpb"]
+
+[ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_skill_panel.gd" id="1_p4bdc"]
+[ext_resource type="PackedScene" uid="uid://d0825mxmc6hd1" path="res://Models/Menus/OptionMenus/option_menu.tscn" id="2_3knlf"]
+
+[node name="Skills" type="VBoxContainer" node_paths=PackedStringArray("options", "nametag")]
+offset_right = 192.0
+offset_bottom = 143.0
+size_flags_horizontal = 3
+focus_mode = 2
+script = ExtResource("1_p4bdc")
+options = NodePath("HBoxContainer/OptionMenu/Options")
+nametag = NodePath("Player")
+
+[node name="Player" type="Label" parent="."]
+layout_mode = 2
+text = "Player"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionMenu" parent="HBoxContainer" instance=ExtResource("2_3knlf")]
+layout_mode = 2
+
+[node name="Q1Label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer" index="1"]
+text = "Cost"
+
+[node name="Q2label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer" index="2"]
+visible = false
+
+[editable path="HBoxContainer/OptionMenu"]
+[editable path="HBoxContainer/OptionMenu/Options"]
+[editable path="HBoxContainer/OptionMenu/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]

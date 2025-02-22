@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=3 uid="uid://sjo686i6woks"]
+
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/option.gd" id="1_mr27p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2aei"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Option" type="Button" node_paths=PackedStringArray("option_name", "quantity_1", "quantity_2", "quantity_3", "quantity_4", "quantity_5")]
+custom_minimum_size = Vector2(0, 35)
+offset_right = 322.0
+offset_bottom = 35.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_g2aei")
+script = ExtResource("1_mr27p")
+option_name = NodePath("MarginContainer/HBoxContainer/Name")
+quantity_1 = NodePath("MarginContainer/HBoxContainer/Quantity1")
+quantity_2 = NodePath("MarginContainer/HBoxContainer/Quantity2")
+quantity_3 = NodePath("MarginContainer/HBoxContainer/Quantity3")
+quantity_4 = NodePath("MarginContainer/HBoxContainer/Quantity4")
+quantity_5 = NodePath("MarginContainer/HBoxContainer/Quantity5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 5.0
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quantity1" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quantity2" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quantity3" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quantity4" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quantity5" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

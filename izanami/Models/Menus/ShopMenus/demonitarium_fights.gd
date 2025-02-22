@@ -1,9 +1,4 @@
-extends Node
-
-## CHILD NODES
-@export var list: ItemList
-@export var desc: ItemList
-@export var cost: ItemList
+extends OptionMenu
 
 ## EXTERNAL PARAMETERS
 #@export var desc_box_container: BoxContainer
@@ -41,14 +36,15 @@ func display_demons():
 		update_listing()
 
 func update_listing():
-	list.clear()
-	desc.clear()
-	cost.clear()
+	options.clear()
 
 	for i in demons:
-		list.add_item(i, demons[i].sprite_texture)
-		desc.add_item(_process_desc_text(demons[i]))
-		cost.add_item(str(demons[i].price))
+		options.add_icon_item(
+			demons[i].sprite_texture,
+			i,
+			_process_desc_text(demons[i]),
+			str(demons[i].price)
+		)
 
 func _process_desc_text(entry: Dictionary) -> String:
 	var desc_text = ''
@@ -80,7 +76,7 @@ func _process_desc_text(entry: Dictionary) -> String:
 	#return demons[demon_name]
 
 func fight_entry(id: int):
-	var demon = demons[list.get_item_text(id)]
+	var demon = demons[options.get_item_text(id)]
 	if not _check_price(demon):
 		return
 
@@ -100,8 +96,3 @@ func _on_item_activated(index: int) -> void:
 		fight_entry(index)
 	else:
 		Global.show_text_box("Crowley", 'What do you want to fight?', true)
-
-func _on_item_selected(index: int) -> void:
-	list.select(index)
-	desc.select(index)
-	cost.select(index)

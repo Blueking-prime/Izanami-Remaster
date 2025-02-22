@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4saveptihd08"]
 
-[ext_resource type="Script" path="res://Models/Menus/skill_list.gd" id="1_o5fhg"]
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/skill_list.gd" id="1_o5fhg"]
 
 [node name="SkillList" type="HBoxContainer" node_paths=PackedStringArray("list", "cost")]
 offset_right = 131.0

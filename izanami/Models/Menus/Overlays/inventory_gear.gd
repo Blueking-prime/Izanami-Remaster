@@ -1,13 +1,9 @@
-extends Node
-
-## CHILD NODES
-@export var list: ItemList
-@export var count: ItemList
-@export var target_selector: EquipTargetSelector
+extends OptionMenu
 
 ## EXTERNAL PARAMETERS
 @export var players: Party
 @export var desc_box_container: BoxContainer
+@export var target_selector: Options
 
 ## WORKING VARIABLES
 var inventory: Inventory
@@ -23,21 +19,22 @@ func load_stock():
 	update_listing()
 
 func update_listing():
-	list.clear()
-	count.clear()
+	options.clear()
 
 	if inventory:
 		for i in inventory.gear_data:
-			list.add_item(i)
-			count.add_item(str(len(inventory.gear_data[i])))
+			options.add_item(
+				i,
+				str(len(inventory.gear_data[i]))
+			)
 
 func show_target_selector():
 	target_selector.clear()
 	for i in players.party:
-		target_selector.add_item(i)
+		target_selector.add_item(i.character_name)
 
 	target_selector.show()
-	target_selector.player_list.grab_focus()
+	target_selector.grab_focus()
 
 func choose_target(index: int):
 	if players.party[index].gear.check_equipped(selected_gear):
@@ -48,14 +45,12 @@ func choose_target(index: int):
 
 
 func _on_item_activated(index: int) -> void:
-	selected_gear = inventory.get_entry_by_name(list.get_item_text(index))
+	selected_gear = inventory.get_entry_by_name(options.get_item_text(index))
 	_on_item_selected(index)
 	show_target_selector()
 
 
 func _on_item_selected(index: int) -> void:
-	list.select(index)
-	count.select(index)
-	var item = inventory.get_entry_by_name(list.get_item_text(index))
+	var item = inventory.get_entry_by_name(options.get_item_text(index))
 	if item:
 		Global.show_description(item)

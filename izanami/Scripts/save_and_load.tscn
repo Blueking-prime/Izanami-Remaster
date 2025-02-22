@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b08k8go4h38wa"]
 
 [ext_resource type="Script" path="res://Scripts/save_and_load.gd" id="1_i2xsw"]
-[ext_resource type="Script" path="res://Models/Menus/save_window.gd" id="2_njto7"]
-[ext_resource type="Script" path="res://Models/Menus/save_menu.gd" id="3_w2t4k"]
+[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/save_window.gd" id="2_njto7"]
+[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/save_menu.gd" id="3_w2t4k"]
 
 [node name="SaveAndLoad" type="Node" node_paths=PackedStringArray("save_window")]
 script = ExtResource("1_i2xsw")

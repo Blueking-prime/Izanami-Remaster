@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
 [ext_resource type="Script" path="res://Scenes/Battle/battle_turn_actions.gd" id="5_jqv44"]
 [ext_resource type="Script" path="res://Scenes/Battle/battle_actions.gd" id="6_mlml3"]
-[ext_resource type="PackedScene" uid="uid://c4saveptihd08" path="res://Models/Menus/skill_list.tscn" id="11_0n3v4"]
+[ext_resource type="PackedScene" uid="uid://c4saveptihd08" path="res://Models/Menus/OptionMenus/skill_list.tscn" id="11_0n3v4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hqfu"]
 border_color = Color(0.8, 0.8, 0.8, 0)

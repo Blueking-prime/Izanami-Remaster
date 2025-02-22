@@ -3,8 +3,7 @@ extends Node
 class_name InventorySkillCard
 
 ## CHILD NODES
-@export var list: ItemList
-@export var count: ItemList
+@export var options: Options
 @export var nametag: Label
 
 ## EXTERNAL PARAMETERS
@@ -29,13 +28,14 @@ func load_stock():
 		target_selector.item_activated.connect(choose_target)
 
 func update_listing():
-	list.clear()
-	count.clear()
+	options.clear()
 
 	if player.skills:
 		for i in player.skills.get_skills():
-			list.add_item(i.name)
-			count.add_item(str(i.cost))
+			options.add_item(
+				i.name,
+				str(i.cost)
+			)
 
 func show_target_selector():
 	target_selector.clear()
@@ -62,8 +62,6 @@ func _on_item_activated(index: int) -> void:
 	_on_item_selected(index)
 
 func _on_item_selected(index: int) -> void:
-	list.select(index)
-	count.select(index)
 	var skill: Skill = player.skills.get_skills()[index]
 	if skill:
 		Global.show_description(skill)

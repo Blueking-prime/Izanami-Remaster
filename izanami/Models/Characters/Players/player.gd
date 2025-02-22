@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 
 		if direction.length():
 			direction = direction.normalized()
-			velocity = direction * speed * delta * 100
+			velocity = direction * speed * delta * 1000
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			velocity.y = move_toward(velocity.y, 0, speed)

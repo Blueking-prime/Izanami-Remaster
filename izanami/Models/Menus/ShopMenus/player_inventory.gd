@@ -1,11 +1,6 @@
-extends Node
+extends OptionMenu
 
 class_name PlayerInventoryMenu
-
-## CHILD NODES
-@export var list: ItemList
-@export var count: ItemList
-@export var cost: ItemList
 
 ## EXTERNAL PARAMETERS
 @export var players: Party
@@ -15,7 +10,6 @@ class_name PlayerInventoryMenu
 ## WORKING VARIABLES
 var gold
 var inventory
-
 
 func _ready() -> void:
 	Global.description_box_parent = desc_box_container
@@ -29,22 +23,21 @@ func load_stock():
 
 
 func update_listing():
-	list.clear()
-	count.clear()
-	cost.clear()
-
+	options.clear()
 	if inventory:
 		for i in inventory.inventory_data:
-			list.add_item(i)
-			count.add_item(str(len(inventory.inventory_data[i])))
-			cost.add_item(str(inventory.get_entry_by_name(i).price))
+			options.add_item(
+				i,
+				str(len(inventory.inventory_data[i])),
+				str(inventory.get_entry_by_name(i).price),
+			)
 
 func add_entry(entry: Variant):
 	inventory.add_entry(entry)
 	update_listing()
 
 func transfer_item(id: int):
-	var item = inventory.get_entry_by_name(list.get_item_text(id))
+	var item = inventory.get_entry_by_name(options.get_item_text(id))
 	if 'equipped' in item:
 		if item.equipped:
 			print("Can't sell equipped items")
@@ -59,7 +52,4 @@ func _on_item_activated(index: int) -> void:
 	update_listing()
 
 func _on_item_selected(index: int) -> void:
-	list.select(index)
-	count.select(index)
-	cost.select(index)
-	Global.show_description(inventory.get_entry_by_name(list.get_item_text(index)))
+	Global.show_description(inventory.get_entry_by_name(options.get_item_text(index)))

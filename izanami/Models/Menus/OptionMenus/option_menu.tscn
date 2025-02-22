@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0825mxmc6hd1"]
+
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/option_menu.gd" id="1_ds5no"]
+[ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_vyclo"]
+
+[node name="OptionMenu" type="VBoxContainer" node_paths=PackedStringArray("heading_name", "heading_q1", "heading_q2", "options")]
+offset_right = 291.0
+offset_bottom = 260.0
+script = ExtResource("1_ds5no")
+heading_name = NodePath("Heading/MarginContainer/HBoxContainer/NameLabel")
+heading_q1 = NodePath("Heading/MarginContainer/HBoxContainer/Q1Label")
+heading_q2 = NodePath("Heading/MarginContainer/HBoxContainer/Q2label")
+options = NodePath("Options")
+
+[node name="Heading" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Heading"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Heading/MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Heading/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "Name"
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Q1Label" type="Label" parent="Heading/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Q1"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Q2label" type="Label" parent="Heading/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Q2"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Options" parent="." instance=ExtResource("1_vyclo")]
+layout_mode = 2
+
+[editable path="Options"]
+[editable path="Options/PanelContainer/MarginContainer/VBoxContainer/Option"]

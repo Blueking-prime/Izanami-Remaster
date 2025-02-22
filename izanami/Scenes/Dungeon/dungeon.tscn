@@ -12,9 +12,9 @@
 [ext_resource type="Script" path="res://Scenes/Dungeon/floor.gd" id="9_ag11o"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="10_4bew8"]
 [ext_resource type="Script" path="res://Scenes/Dungeon/walls.gd" id="11_jfal0"]
-[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="12_m8pvk"]
-[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="13_h8mub"]
-[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/status_overlay.tscn" id="14_cl6si"]
+[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/Overlays/base_overlay.tscn" id="12_m8pvk"]
+[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/Overlays/inventory_menu.tscn" id="13_h8mub"]
+[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/Overlays/status_overlay.tscn" id="14_cl6si"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aepm2"]
 texture = ExtResource("6_waojl")
@@ -523,17 +523,17 @@ sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
 [node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "background", "walls", "players", "overlay", "camera")]
 script = ExtResource("1_k4ybk")
-width = 30
-height = 20
-enemy_types = ExtResource("2_nbhj7")
-item_drop_group = ExtResource("3_sqiqp")
-gear_drop_group = ExtResource("4_8c7x3")
 map = NodePath("Map")
 background = NodePath("Background")
 walls = NodePath("ObjectsSort/Walls")
 players = NodePath("ObjectsSort/Players")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 camera = NodePath("Camera2D")
+width = 30
+height = 20
+enemy_types = ExtResource("2_nbhj7")
+item_drop_group = ExtResource("3_sqiqp")
+gear_drop_group = ExtResource("4_8c7x3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

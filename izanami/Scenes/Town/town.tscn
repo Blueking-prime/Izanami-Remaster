@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=21 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/Town/town.gd" id="1_wpby1"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_5q81g"]
@@ -10,14 +10,11 @@
 [ext_resource type="Script" path="res://Scenes/Town/dungeon_town.gd" id="8_k31jc"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="9_tt1ik"]
 [ext_resource type="Script" path="res://Scenes/Town/demonitarium.gd" id="10_h5qir"]
-[ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/Inventory.tscn" id="11_8eh4h"]
-[ext_resource type="Script" path="res://Models/Menus/demonitarium_fights.gd" id="12_8wj1c"]
-[ext_resource type="Texture2D" uid="uid://dwh8ptd80rs8r" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f0.png" id="13_joqh3"]
-[ext_resource type="Texture2D" uid="uid://cx2uyxlvrhnso" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/imp_idle_anim_f0.png" id="14_3bibu"]
-[ext_resource type="Texture2D" uid="uid://dglgyqpiktqx5" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/big_demon_idle_anim_f0.png" id="15_6hsm4"]
-[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/base_overlay.tscn" id="16_4ug66"]
-[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/inventory_menu.tscn" id="17_wofi2"]
-[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/status_overlay.tscn" id="18_umf4j"]
+[ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="11_8eh4h"]
+[ext_resource type="Script" path="res://Models/Menus/ShopMenus/demonitarium_fights.gd" id="12_8wj1c"]
+[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/Overlays/base_overlay.tscn" id="16_4ug66"]
+[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/Overlays/inventory_menu.tscn" id="17_wofi2"]
+[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/Overlays/status_overlay.tscn" id="18_umf4j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
 radius = 172.491
@@ -161,8 +158,7 @@ position = Vector2(1657, 821)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="DemonitariumFights" parent="CanvasLayer" node_paths=PackedStringArray("desc") instance=ExtResource("11_8eh4h")]
-visible = false
+[node name="DemonitariumFights" parent="CanvasLayer" instance=ExtResource("11_8eh4h")]
 anchor_left = 0.498
 anchor_bottom = 0.619
 offset_left = 3.83997
@@ -170,37 +166,8 @@ offset_top = 98.0
 offset_right = -89.0
 offset_bottom = 4.47998
 script = ExtResource("12_8wj1c")
-desc = NodePath("Items/Count")
 demon_group = ExtResource("9_tt1ik")
 demons = {}
-
-[node name="Label" parent="CanvasLayer/DemonitariumFights/Heading/MarginContainer/HBoxContainer" index="0"]
-size_flags_stretch_ratio = 2.0
-horizontal_alignment = 1
-
-[node name="Label2" parent="CanvasLayer/DemonitariumFights/Heading/MarginContainer/HBoxContainer" index="1"]
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
-text = "Stats"
-
-[node name="List" parent="CanvasLayer/DemonitariumFights/Items" index="0"]
-size_flags_stretch_ratio = 2.0
-fixed_icon_size = Vector2i(100, 100)
-item_0/text = "Goblin"
-item_0/icon = ExtResource("13_joqh3")
-item_1/text = "Imp"
-item_1/icon = ExtResource("14_3bibu")
-item_2/text = "Daemon"
-item_2/icon = ExtResource("15_6hsm4")
-
-[node name="Count" parent="CanvasLayer/DemonitariumFights/Items" index="1"]
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
-theme_override_constants/v_separation = 81
-
-[node name="Cost" parent="CanvasLayer/DemonitariumFights/Items" index="2"]
-size_flags_horizontal = 1
-theme_override_constants/v_separation = 81
 
 [node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu") instance=ExtResource("16_4ug66")]
 inventory_menu = NodePath("../InventoryMenu")
@@ -220,3 +187,5 @@ offset_bottom = 60.0
 text = "Back"
 
 [editable path="CanvasLayer/DemonitariumFights"]
+[editable path="CanvasLayer/DemonitariumFights/Options"]
+[editable path="CanvasLayer/DemonitariumFights/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]

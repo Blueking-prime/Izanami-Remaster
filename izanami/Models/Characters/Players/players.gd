@@ -19,6 +19,7 @@ var party: Array = []
 var leader: Player
 var index: int = 0
 var frozen: bool = false
+var chased: bool = false
 
 var party_panels: Dictionary = {}
 var stored_pos: Vector2
