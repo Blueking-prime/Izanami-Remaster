@@ -31,7 +31,13 @@ func update_listing():
 func show_target_selector():
 	target_selector.clear()
 	for i in players.party:
-		target_selector.add_item(i.character_name)
+		target_selector.add_icon_item(
+			i.battle_texture.texture,
+			i.character_name,
+			i.gear.gear_dict.head.name if i.gear.gear_dict.head else ' ',
+			i.gear.gear_dict.body.name if i.gear.gear_dict.body else ' ',
+			i.gear.gear_dict.weapon.name if i.gear.gear_dict.weapon else ' ',
+		)
 
 	target_selector.show()
 	target_selector.grab_focus()

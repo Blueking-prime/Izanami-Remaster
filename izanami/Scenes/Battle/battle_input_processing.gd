@@ -3,7 +3,7 @@ extends Node
 class_name BattleInput
 
 @export var choice: Control
-@export var skill_panel: SkillMenu
+@export var skill_panel: Options
 @export var dummy_control: Control
 @export var desc_box: Control
 @export var dummy_option: Button

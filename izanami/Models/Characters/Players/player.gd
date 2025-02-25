@@ -6,8 +6,8 @@ class_name Player
 @export var gear: PlayerGear
 @export var detector: PlayerDetector
 
-@export var skill_menu: SkillMenu
-@export var item_menu: SkillMenu
+@export var skill_menu: Options
+@export var item_menu: Options
 
 
 ## DYNAMIC PROPERTIES
@@ -125,14 +125,13 @@ func consume_sp(value: float):
 func _display_skills():
 	skill_menu.clear()
 	for i in get_skills():
-		skill_menu.list.add_item(i.name)
-		skill_menu.cost.add_item(str(i.cost))
+		skill_menu.add_item(i.name, str(i.cost))
 
 func show_skill_menu():
 	skill_menu.show()
 	skill_menu.item_selected.connect(_on_skill_list_selected)
 	_display_skills()
-	skill_menu.list.grab_focus()
+	skill_menu.grab_focus()
 
 func _on_skill_list_selected(index: int) -> void:
 	Global.show_description(get_skills()[index])
@@ -144,14 +143,13 @@ func _display_items():
 	item_menu.clear()
 	var _items = get_items()
 	for i in _items:
-		item_menu.list.add_item(i)
-		item_menu.cost.add_item(str(len(_items[i])))
+		item_menu.add_item(i, str(len(_items[i])))
 
 func show_item_menu():
 	item_menu.show()
 	item_menu.item_selected.connect(_on_item_list_selected)
 	_display_items()
-	item_menu.list.grab_focus()
+	item_menu.grab_focus()
 
 func use_item(item_name, _target):
 	if item_name is int:

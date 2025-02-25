@@ -2,6 +2,8 @@ extends Button
 
 class_name Option
 
+@export var container: MarginContainer
+
 @export var option_name: Label
 @export var quantity_1: Label
 @export var quantity_2: Label

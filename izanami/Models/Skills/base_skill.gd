@@ -19,7 +19,7 @@ extends Resource
 @export var desc: String
 @export var type: StringName
 
-func action(obj: Base_Character, target: Variant):
+func action(obj: Base_Character, target: Variant) -> bool:
 	var stat_total = 0
 
 	if obj.status_effect == 'Exhausted':

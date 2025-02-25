@@ -1,29 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4saveptihd08"]
+[gd_scene load_steps=2 format=3 uid="uid://fncughi5ndxs"]
 
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/skill_list.gd" id="1_o5fhg"]
+[ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_dhhl0"]
 
-[node name="SkillList" type="HBoxContainer" node_paths=PackedStringArray("list", "cost")]
-offset_right = 131.0
-offset_bottom = 89.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-script = ExtResource("1_o5fhg")
-list = NodePath("List")
-cost = NodePath("Cost")
-
-[node name="List" type="ItemList" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 7.0
-auto_height = true
-
-[node name="Cost" type="ItemList" parent="."]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[connection signal="item_activated" from="List" to="." method="_on_item_activated"]
-[connection signal="item_selected" from="List" to="." method="_on_item_selected"]
-[connection signal="item_activated" from="Cost" to="." method="_on_item_activated"]
-[connection signal="item_selected" from="Cost" to="." method="_on_item_selected"]
+[node name="SkillList" instance=ExtResource("1_dhhl0")]
+option_scene = null

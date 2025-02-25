@@ -10,7 +10,7 @@ class_name InventorySkillCard
 @export var players: Party
 @export var player: Player
 @export var desc_box_container: BoxContainer
-@export var target_selector: TargetSelector
+@export var target_selector: Options
 
 ## WORKING VARIABLES
 var selected_skill_index: int
@@ -40,7 +40,10 @@ func update_listing():
 func show_target_selector():
 	target_selector.clear()
 	for i in players.party:
-		target_selector.add_item(i)
+		target_selector.add_icon_item(
+			i.battle_texture.texture,
+			i.character_name,
+		)
 
 	target_selector.show()
 	target_selector.grab_focus()

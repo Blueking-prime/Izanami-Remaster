@@ -1,11 +1,6 @@
-extends Node
+extends OptionMenu
 
 class_name ShopInventoryMenu
-
-## CHILD NODES
-@export var list: ItemList
-@export var count: ItemList
-@export var cost: ItemList
 
 ## EXTERNAL PARAMETERS
 @export var desc_box_container: BoxContainer
@@ -36,13 +31,14 @@ func load_stock():
 		update_listing()
 
 func update_listing():
-	list.clear()
-	count.clear()
-	cost.clear()
+	options.clear()
+
 	for i in inventory:
-		list.add_item(i)
-		count.add_item(str(len(inventory[i])))
-		cost.add_item(str(_get_item(i).price))
+		options.add_item(
+			i,
+			str(len(inventory[i])),
+			str(_get_item(i).price)
+		)
 
 func add_entry(entry: Variant):
 	if entry.name in inventory:
@@ -61,7 +57,7 @@ func _get_item(item: String):
 	return inventory[item][0]
 
 func transfer_item(id: int):
-	var item_name = list.get_item_text(id)
+	var item_name = options.get_item_text(id)
 	var item = _get_item(item_name)
 	if not _check_cost(item):
 		return
@@ -82,7 +78,4 @@ func _on_item_activated(index: int) -> void:
 	update_listing()
 
 func _on_item_selected(index: int) -> void:
-	list.select(index)
-	count.select(index)
-	cost.select(index)
-	Global.show_description(_get_item(list.get_item_text(index)))
+	Global.show_description(_get_item(options.get_item_text(index)))

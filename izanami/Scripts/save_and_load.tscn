@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b08k8go4h38wa"]
+[gd_scene load_steps=5 format=3 uid="uid://b08k8go4h38wa"]
 
 [ext_resource type="Script" path="res://Scripts/save_and_load.gd" id="1_i2xsw"]
 [ext_resource type="Script" path="res://Models/Menus/DialogBoxes/save_window.gd" id="2_njto7"]
+[ext_resource type="PackedScene" uid="uid://d0825mxmc6hd1" path="res://Models/Menus/OptionMenus/option_menu.tscn" id="3_ixggn"]
 [ext_resource type="Script" path="res://Models/Menus/DialogBoxes/save_menu.gd" id="3_w2t4k"]
 
 [node name="SaveAndLoad" type="Node" node_paths=PackedStringArray("save_window")]
@@ -27,99 +28,22 @@ confirm_button = NodePath("CanvasLayer/SaveMenu/Button")
 [node name="CanvasLayer" type="CanvasLayer" parent="SaveWindow"]
 follow_viewport_enabled = true
 
-[node name="SaveMenu" type="VBoxContainer" parent="SaveWindow/CanvasLayer" node_paths=PackedStringArray("list", "date", "location")]
+[node name="SaveMenu" parent="SaveWindow/CanvasLayer" instance=ExtResource("3_ixggn")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
 script = ExtResource("3_w2t4k")
-list = NodePath("Items/List")
-date = NodePath("Items/Date")
-location = NodePath("Items/Location")
 
-[node name="Heading" type="PanelContainer" parent="SaveWindow/CanvasLayer/SaveMenu"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="SaveWindow/CanvasLayer/SaveMenu/Heading"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SaveWindow/CanvasLayer/SaveMenu/Heading/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="SaveWindow/CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-text = "File"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="SaveWindow/CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 6
+[node name="Q1Label" parent="SaveWindow/CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer" index="1"]
 text = "Date"
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 162
 
-[node name="Label3" type="Label" parent="SaveWindow/CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Location"
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 162
-
-[node name="Items" type="HBoxContainer" parent="SaveWindow/CanvasLayer/SaveMenu"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="List" type="ItemList" parent="SaveWindow/CanvasLayer/SaveMenu/Items"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-theme_override_constants/v_separation = 43
-max_text_lines = 2
-item_count = 3
-icon_mode = 0
-item_0/text = "Leaf"
-item_1/text = "Razor"
-item_2/text = "Excalihuh?"
-
-[node name="Date" type="ItemList" parent="SaveWindow/CanvasLayer/SaveMenu/Items"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/v_separation = 20
-max_text_lines = 2
-item_count = 3
-fixed_column_width = 100
-icon_mode = 0
-item_0/text = "1"
-item_1/text = "1"
-item_2/text = "1"
-
-[node name="Location" type="ItemList" parent="SaveWindow/CanvasLayer/SaveMenu/Items"]
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/v_separation = 43
-max_text_lines = 2
-item_count = 3
-icon_mode = 0
-item_0/text = "10"
-item_1/text = "10"
-item_2/text = "420"
+[node name="Q2label" parent="SaveWindow/CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer" index="2"]
+visible = false
+text = ""
 
 [node name="Button" type="Button" parent="SaveWindow/CanvasLayer/SaveMenu"]
 layout_mode = 2
@@ -128,10 +52,9 @@ text = "Create New Save"
 
 [connection signal="close_requested" from="SaveWindow" to="SaveWindow" method="_on_close_requested"]
 [connection signal="item_activated" from="SaveWindow/CanvasLayer/SaveMenu" to="SaveWindow" method="_on_close_requested"]
-[connection signal="item_activated" from="SaveWindow/CanvasLayer/SaveMenu/Items/List" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_item_activated"]
-[connection signal="item_selected" from="SaveWindow/CanvasLayer/SaveMenu/Items/List" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_item_selected"]
-[connection signal="item_activated" from="SaveWindow/CanvasLayer/SaveMenu/Items/Date" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_item_activated"]
-[connection signal="item_selected" from="SaveWindow/CanvasLayer/SaveMenu/Items/Date" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_item_selected"]
-[connection signal="item_activated" from="SaveWindow/CanvasLayer/SaveMenu/Items/Location" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_item_activated"]
-[connection signal="item_selected" from="SaveWindow/CanvasLayer/SaveMenu/Items/Location" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_item_selected"]
+[connection signal="item_activated" from="SaveWindow/CanvasLayer/SaveMenu/Options" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_item_activated"]
 [connection signal="pressed" from="SaveWindow/CanvasLayer/SaveMenu/Button" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_button_pressed"]
+
+[editable path="SaveWindow/CanvasLayer/SaveMenu"]
+[editable path="SaveWindow/CanvasLayer/SaveMenu/Options"]
+[editable path="SaveWindow/CanvasLayer/SaveMenu/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]

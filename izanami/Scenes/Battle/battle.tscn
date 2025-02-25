@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
 [ext_resource type="Script" path="res://Scenes/Battle/battle_turn_actions.gd" id="5_jqv44"]
 [ext_resource type="Script" path="res://Scenes/Battle/battle_actions.gd" id="6_mlml3"]
-[ext_resource type="PackedScene" uid="uid://c4saveptihd08" path="res://Models/Menus/OptionMenus/skill_list.tscn" id="11_0n3v4"]
+[ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="11_bvqio"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hqfu"]
 border_color = Color(0.8, 0.8, 0.8, 0)
@@ -30,13 +30,13 @@ process_actions = NodePath("Actions")
 script = ExtResource("3_dbox5")
 player_section = NodePath("../CanvasLayer/ActorContainer/PlayerSection")
 choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
-skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillList")
+skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
 desc_box_parent = NodePath("../CanvasLayer/ActionBoxUI/VBox")
 
 [node name="Input" type="Node" parent="." node_paths=PackedStringArray("choice", "skill_panel", "dummy_control", "desc_box", "dummy_option")]
 script = ExtResource("4_1gqnq")
 choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
-skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillList")
+skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
 dummy_control = NodePath("../DummyControl")
 desc_box = NodePath("../CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
 dummy_option = NodePath("../CanvasLayer/ActionBoxUI/DummyOption")
@@ -159,8 +159,9 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Run"
 
-[node name="SkillList" parent="CanvasLayer/ActionBoxUI/VBox" instance=ExtResource("11_0n3v4")]
+[node name="SkillPanel" parent="CanvasLayer/ActionBoxUI/VBox" instance=ExtResource("11_bvqio")]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="DescriptionPanel" type="PanelContainer" parent="CanvasLayer/ActionBoxUI/VBox"]
 layout_mode = 2
@@ -209,5 +210,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Items" to="Input" method="_on_items_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Guard" to="Input" method="_on_guard_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Run" to="Input" method="_on_run_pressed"]
-[connection signal="item_activated" from="CanvasLayer/ActionBoxUI/VBox/SkillList" to="Input" method="_on_skill_panel_item_activated"]
-[connection signal="item_selected" from="CanvasLayer/ActionBoxUI/VBox/SkillList" to="Input" method="_on_skill_panel_item_selected"]
+[connection signal="item_activated" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="Input" method="_on_skill_panel_item_activated"]
+[connection signal="item_selected" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="Input" method="_on_skill_panel_item_selected"]

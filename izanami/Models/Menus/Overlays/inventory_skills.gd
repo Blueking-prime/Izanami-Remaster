@@ -5,7 +5,7 @@ extends VBoxContainer
 ## EXTERNAL PARAMETERS
 @export var players: Party
 @export var desc_box_container: BoxContainer
-@export var target_selector: TargetSelector
+@export var target_selector: Options
 
 
 func _ready() -> void:

@@ -159,6 +159,7 @@ position = Vector2(1657, 821)
 follow_viewport_enabled = true
 
 [node name="DemonitariumFights" parent="CanvasLayer" instance=ExtResource("11_8eh4h")]
+visible = false
 anchor_left = 0.498
 anchor_bottom = 0.619
 offset_left = 3.83997

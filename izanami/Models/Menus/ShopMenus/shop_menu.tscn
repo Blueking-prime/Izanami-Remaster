@@ -16,9 +16,6 @@ offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
 [node name="Players" parent="." instance=ExtResource("1_84uve")]
 visible = false
 position = Vector2(667, 190)

@@ -1,4 +1,4 @@
-extends ScrollContainer
+extends Node
 
 class_name Options
 

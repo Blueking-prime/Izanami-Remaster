@@ -1,11 +1,6 @@
-extends Node
+extends OptionMenu
 
 class_name SaveMenu
-
-## CHILD NODES
-@export var list: ItemList
-@export var date: ItemList
-@export var location: ItemList
 
 ## EXTERNAL PARAMETERS
 
@@ -43,17 +38,17 @@ func load_save(index = null):
 		SaveAndLoad.load_game()
 
 func update_listing():
-	list.clear()
-	date.clear()
-	location.clear()
+	options.clear()
 
 	if saves: for i in saves:
-			list.add_item(i.name)
-			date.add_item(process_date(i.date))
-			location.add_item(i.scene_data.location)
+		options.add_item(
+			i.name,
+			process_date(i.date),
+			(i.scene_data.location).lpad(30, '\t')
+		)
 
 func process_date(date_string: String) -> String:
-	return "\n".join(date_string.split("T"))
+	return " ".join(date_string.split("T"))
 
 func _on_item_activated(index: int) -> void:
 	print(index)
@@ -64,11 +59,6 @@ func _on_item_activated(index: int) -> void:
 
 	update_listing()
 	item_activated.emit()
-
-func _on_item_selected(index: int) -> void:
-	list.select(index)
-	date.select(index)
-	location.select(index)
 
 
 func _on_button_pressed() -> void:

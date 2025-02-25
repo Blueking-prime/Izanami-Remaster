@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b06gp60lhyyxx"]
+[gd_scene load_steps=9 format=3 uid="uid://b06gp60lhyyxx"]
 
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_menu.gd" id="1_mfe14"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="1_ty00r"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_skills.gd" id="3_2pvlo"]
 [ext_resource type="PackedScene" uid="uid://0hx0wuw1wgpb" path="res://Models/Menus/OptionMenus/skill_menu_card.tscn" id="3_b5xgx"]
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_gear.gd" id="3_dtbst"]
-[ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="7_niw4j"]
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="7_hc3fu"]
+[ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="8_5pjv8"]
 
 [node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("skills_menu", "items_menu", "gear_menu", "misc_menu", "tab_container")]
 visible = false
@@ -35,20 +36,22 @@ text = "Exit"
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
-offset_left = 103.0
+offset_left = 444.0
 offset_top = 95.0
-offset_right = 864.0
+offset_right = 1209.0
 offset_bottom = 981.0
 focus_mode = 2
-current_tab = 0
+current_tab = 2
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 
-[node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("desc_box_container")]
+[node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector")]
+visible = false
 layout_mode = 2
 script = ExtResource("3_2pvlo")
 skill_menu_card_scene = ExtResource("3_b5xgx")
 desc_box_container = NodePath("../../BoxContainer")
+target_selector = NodePath("../../SkillTargetSelector")
 metadata/_tab_index = 0
 
 [node name="SkillCard" parent="TabContainer/Skills" instance=ExtResource("3_b5xgx")]
@@ -64,13 +67,19 @@ desc_box_container = NodePath("../../BoxContainer")
 target_selector = NodePath("../../ItemTargetSelector")
 metadata/_tab_index = 1
 
-[node name="Gear" parent="TabContainer" node_paths=PackedStringArray("desc_box_container") instance=ExtResource("1_ty00r")]
+[node name="Q2label" parent="TabContainer/Items/Heading/MarginContainer/HBoxContainer" index="2"]
 visible = false
+
+[node name="Gear" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector") instance=ExtResource("1_ty00r")]
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("3_dtbst")
 desc_box_container = NodePath("../../BoxContainer")
+target_selector = NodePath("../../EquipTargetSelector")
 metadata/_tab_index = 2
+
+[node name="Q2label" parent="TabContainer/Gear/Heading/MarginContainer/HBoxContainer" index="2"]
+visible = false
 
 [node name="Misc" parent="TabContainer" instance=ExtResource("1_ty00r")]
 visible = false
@@ -86,36 +95,111 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -186.0
+offset_left = 368.0
 offset_right = 856.0
 offset_bottom = 441.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="EquipTargetSelector" parent="." instance=ExtResource("7_niw4j")]
+[node name="EquipTargetSelector" type="BoxContainer" parent="." node_paths=PackedStringArray("button_container")]
 visible = false
 layout_mode = 0
 offset_left = 1006.0
 offset_top = 131.0
 offset_right = 1728.0
-offset_bottom = 171.0
+offset_bottom = 176.0
+size_flags_vertical = 3
+script = ExtResource("7_hc3fu")
+button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
+option_scene = ExtResource("8_5pjv8")
 
-[node name="ItemTargetSelector" parent="." instance=ExtResource("7_niw4j")]
-visible = false
-layout_mode = 0
-offset_left = 1006.0
-offset_top = 131.0
-offset_right = 1728.0
-offset_bottom = 171.0
+[node name="PanelContainer" type="PanelContainer" parent="EquipTargetSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="SkillTargetSelector" parent="." instance=ExtResource("7_niw4j")]
+[node name="MarginContainer" type="MarginContainer" parent="EquipTargetSelector/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EquipTargetSelector/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Option" parent="EquipTargetSelector/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_5pjv8")]
+layout_mode = 2
+
+[node name="ItemTargetSelector" type="BoxContainer" parent="." node_paths=PackedStringArray("button_container")]
 visible = false
 layout_mode = 0
 offset_left = 1006.0
 offset_top = 131.0
 offset_right = 1728.0
-offset_bottom = 171.0
+offset_bottom = 176.0
+size_flags_vertical = 3
+script = ExtResource("7_hc3fu")
+button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
+option_scene = ExtResource("8_5pjv8")
+
+[node name="PanelContainer" type="PanelContainer" parent="ItemTargetSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemTargetSelector/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemTargetSelector/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Option" parent="ItemTargetSelector/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_5pjv8")]
+layout_mode = 2
+
+[node name="SkillTargetSelector" type="BoxContainer" parent="." node_paths=PackedStringArray("button_container")]
+visible = false
+layout_mode = 0
+offset_left = 1006.0
+offset_top = 131.0
+offset_right = 1728.0
+offset_bottom = 176.0
+size_flags_vertical = 3
+script = ExtResource("7_hc3fu")
+button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
+option_scene = ExtResource("8_5pjv8")
+
+[node name="PanelContainer" type="PanelContainer" parent="SkillTargetSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="SkillTargetSelector/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillTargetSelector/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Option" parent="SkillTargetSelector/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_5pjv8")]
+layout_mode = 2
 
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="item_activated" from="EquipTargetSelector" to="TabContainer/Gear" method="choose_target"]
