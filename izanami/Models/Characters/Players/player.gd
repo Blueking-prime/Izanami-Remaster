@@ -9,7 +9,6 @@ class_name Player
 @export var skill_menu: Options
 @export var item_menu: Options
 
-
 ## DYNAMIC PROPERTIES
 @export var max_sp: int:
 	get():
@@ -170,19 +169,6 @@ func reset_menu():
 	if is_instance_valid(Global.description_box):
 		Global.description_box.queue_free()
 
-
-## END OF TURN EFFECTS
-func restore():
-	sp += stats['END']
-	if sp > max_sp:
-		sp = max_sp
-
-func status():
-	super.status()
-	if sp < 0:
-		status_effect = 'EnExhaust'
-	if status_effect == 'EnExhaust':
-		sp -= max_sp / 4
 
 func die():
 	print('And so you fall, your journey never to be completed')

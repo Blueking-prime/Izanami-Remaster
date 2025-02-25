@@ -46,6 +46,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quantity1" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
@@ -55,6 +56,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quantity2" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
@@ -63,6 +65,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quantity3" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
@@ -71,6 +74,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quantity4" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
@@ -79,6 +83,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quantity5" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1

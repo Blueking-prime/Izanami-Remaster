@@ -5,6 +5,7 @@ extends CharacterBody2D
 ## CHILD NODES
 @export var skills: CharacterSkills
 @export var items: CharacterItems
+@export var statuses: CharacterStatuses
 
 @export var nametag: Label
 
@@ -43,14 +44,15 @@ var stats: Dictionary = base_stats.duplicate()
 
 @export var ATK: float = 1
 @export var DEF: float = 1
-@export var status_effect: StringName = 'null'
 @export var alive: bool = true
 @export var lvl: int = 1
 @export var ally: int
 
+var stunned: bool = false
 
 func _ready() -> void:
 	load_character()
+	statuses.test()
 
 func load_character():
 	#stats = base_stats
@@ -143,10 +145,6 @@ func heal(value: float):
 	print(' %s healed %f HP' % [character_name, value])
 	if hp > max_hp:
 		hp = max_hp
-
-func status():
-	if status_effect == 'Toxin':
-		damage(max_hp / 7)
 
 func die():
 	print('%s is dead' % [character_name])

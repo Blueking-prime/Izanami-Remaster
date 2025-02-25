@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drei8wtrpbio6"]
+[gd_scene load_steps=13 format=3 uid="uid://drei8wtrpbio6"]
 
 [ext_resource type="Script" path="res://Models/Characters/base_character.gd" id="1_e6dxp"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_ar764"]
@@ -7,15 +7,20 @@
 [ext_resource type="Resource" uid="uid://byhbhthmfcq2e" path="res://all_skills.tres" id="5_ehjd2"]
 [ext_resource type="Script" path="res://Scripts/items.gd" id="6_4tgcu"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="7_eqn43"]
+[ext_resource type="Script" path="res://Models/Characters/statuses.gd" id="8_hvm8g"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/toxin.gd" id="9_tto21"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/en_exhaust.gd" id="10_ku8jv"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/restore.gd" id="11_kun65"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 custom_solver_bias = 1.0
 radius = 7.0
 
-[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "nametag", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
+[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "nametag", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
 script = ExtResource("1_e6dxp")
 skills = NodePath("Skills")
 items = NodePath("Items")
+statuses = NodePath("Statuses")
 nametag = NodePath("BattleSprite/VBox/NameTag")
 hp_bar = NodePath("BattleSprite/VBox/HPBar")
 hp_bar_text = NodePath("BattleSprite/VBox/HPBar/HPBarText")
@@ -59,5 +64,11 @@ skill_group = ExtResource("5_ehjd2")
 [node name="Items" type="Node" parent="."]
 script = ExtResource("6_4tgcu")
 item_group = ExtResource("7_eqn43")
+
+[node name="Statuses" type="Node" parent="."]
+script = ExtResource("8_hvm8g")
+test_effect = ExtResource("9_tto21")
+en_exhaust = ExtResource("10_ku8jv")
+restore = ExtResource("11_kun65")
 
 [editable path="BattleSprite"]

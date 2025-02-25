@@ -28,12 +28,14 @@ func act():
 	if not actor.alive:
 		advance_actor()
 		return
-	if actor.status_effect == 'Stunned':
-		print('%s is stunned' % [actor.name])
+
+	actor.statuses.status()
+	if actor.stunned:
+		print('%s is stunned' % [actor.character_name])
 		advance_actor()
 		return
 
-	print(actor.name)
+	print(actor.character_name)
 	actor.status()
 	#actor.focus()
 	if is_instance_of(actor, Enemy):

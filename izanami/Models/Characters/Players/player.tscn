@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqykicfu0u1ug"]
+[gd_scene load_steps=11 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="5_yd6jm"]
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="6_ahy4h"]
 [ext_resource type="Script" path="res://Scripts/detector.gd" id="6_g43wq"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/en_exhaust.gd" id="8_kp0f1"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/restore.gd" id="9_kojam"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mmjfn"]
 radius = 9.0
@@ -56,6 +58,10 @@ script = ExtResource("6_g43wq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0"]
 shape = SubResource("CircleShape2D_mmjfn")
+
+[node name="Statuses" parent="." index="7"]
+en_exhaust = ExtResource("8_kp0f1")
+restore = ExtResource("9_kojam")
 
 [connection signal="item_selected" from="Skills/SkillList" to="." method="_on_skill_list_selected"]
 [connection signal="item_selected" from="Items/ItemList" to="." method="_on_item_list_selected"]

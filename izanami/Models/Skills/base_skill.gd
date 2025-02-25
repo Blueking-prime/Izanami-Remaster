@@ -3,21 +3,28 @@ class_name Skill
 extends Resource
 
 @export var name: StringName
+
 @export var stats: Array[StringName] = []
 @export var stat_multiplier: int = 1
-@export var cost: int = 0
-@export var boost: Array = [1, 1]
-@export var flavour_text: String = ''
 @export var lvl_requirement: int = 1
-@export var crit_chance: float = 0.2
-@export var crit_mult: int = 2
-@export var status_effect: StringName
-@export var accuracy: float = 1
-@export var value: int = 0
-@export var aoe: bool = false
-@export var targetable: bool = true
+
+@export var cost: int = 0
+
+@export var flavour_text: String = ''
 @export var desc: String
 @export var type: StringName
+
+@export var crit_chance: float = 0.2
+@export var crit_mult: int = 2
+
+@export var status_effect: Script
+@export var effect_duration: int = 3
+@export var accuracy: float = 1
+
+@export var aoe: bool = false
+@export var targetable: bool = true
+
+var value: int
 
 func action(obj: Base_Character, target: Variant) -> bool:
 	var stat_total = 0
@@ -43,19 +50,20 @@ func action(obj: Base_Character, target: Variant) -> bool:
 	else:
 		value = stat_total * stat_multiplier
 
-	obj.ATK *= boost[0]
-	obj.DEF *= boost[1]
-
 	if status_effect:
 		if aoe:
 			for i in target:
 				if Global.rand_chance(accuracy):
-					i.status_effect = status_effect
+					var status: Status = status_effect.new()
+					status.duration = effect_duration
+					i.statuses.add_status(status)
 				else:
 					print('Miss!')
 		else:
 			if Global.rand_chance(accuracy):
-				target.status_effect = status_effect
+				var status: Status = status_effect.new()
+				status.duration = effect_duration
+				target.statuses.add_status(status)
 			else:
 				print('Miss!')
 	return true
