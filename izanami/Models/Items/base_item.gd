@@ -6,8 +6,8 @@ extends Resource
 @export var offensive: bool
 @export var type: StringName
 @export var value: int = 0
-@export var boost: Array = [1, 1]
-@export var status_effect: StringName
+@export var status_effect: Script
+@export var effect_duration: int
 @export var accuracy: float = 1
 @export var desc: String
 @export var price: int = 0
@@ -21,7 +21,7 @@ func use(target):
 	else:
 		use_on_target(target)
 
-func use_on_target(target):
+func use_on_target(target: Base_Character):
 	match type:
 		'buff': use_buff(target)
 		'heal': use_heal(target)
@@ -29,18 +29,18 @@ func use_on_target(target):
 		'cleanse': use_cleanse(target)
 
 
-func use_buff(target):
-	target.ATK *= boost[0]
-	target.DEF *= boost[1]
+func use_buff(target: Base_Character):
+	var status: Status = status_effect.new()
+	status.duration = effect_duration
+	target.statuses.add_status(status)
 
-func use_heal(target):
+func use_heal(target: Base_Character):
 	target.heal(value)
 
-func use_damage(target):
+func use_damage(target: Base_Character):
 	target.damage(value)
 
-func use_cleanse(target):
-	if target.status_effect == status_effect:
-		target.status_effect = 'null'
-	else:
-		print('No effect')
+func use_cleanse(target: Base_Character):
+	for i in target.statuses.status_effects:
+		if i.get_script() == status_effect:
+			target.statuses.status_effects.erase(i)
