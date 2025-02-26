@@ -7,12 +7,16 @@ GOALS
 BUG FIXES
 - [x] Fix loading scene crashing using button
 - [ ] Prevent duplicate key assignment
+- [x] Fix spawning in wall after load
 TASKS (WORKABLE)
 - [ ] Add Church menu and implement blessing UI
+- [ ] Add "escape" to church
+- [x] Fix battle not ending first turn after all enemies are dead
+- [x] Fix excess exp earning after battle
 - [x] Add enemies chasing players in dungeon
 - [x] Disable saving while being chased in dungeon
 - [x] Implement main menu
-- [ ] Change item menus to accommodate scrolling
+- [x] Change item menus to accommodate scrolling
 - [x] Add saving and loading games
 - [x] Implement dynamic keybinds
 - [ ] implement graphics settings

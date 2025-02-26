@@ -1,6 +1,6 @@
 extends Status
 
 func trigger(victim: Base_Character):
-	victim.stunned = true
+	victim.statuses.stunned = true
 
 	super.trigger(victim)

@@ -29,7 +29,7 @@ var value: int
 func action(obj: Base_Character, target: Variant) -> bool:
 	var stat_total = 0
 
-	if obj.status_effect == 'Exhausted':
+	if obj.statuses.exhausted:
 		return false
 
 	if 'sp' in obj:

@@ -8,16 +8,19 @@ class_name CharacterStatuses
 @export var en_exhaust: Script
 @export var restore: Script
 
+var stunned: bool = false
+var exhausted: bool = false
+
 func test():
-	print(test_effect)
-	for i in 3:
-		add_status(test_effect.new())
-	print(status_effects)
-	for i in 10:
-		print(get_parent().hp)
-		await get_tree().create_timer(3).timeout
-		trigger_status()
-		expire_status()
+	#print(test_effect)
+	#for i in 3:
+		#add_status(test_effect.new())
+	#print(status_effects)
+	#for i in 10:
+		#print(get_parent().hp)
+		#await get_tree().create_timer(3).timeout
+		#trigger_status()
+		#expire_status()
 	pass
 
 func status():
@@ -28,7 +31,8 @@ func status():
 
 
 func reset_status():
-	get_parent().stunned = false
+	stunned = false
+	exhausted = false
 	get_parent().ATK = 1
 	get_parent().DEF = 1
 

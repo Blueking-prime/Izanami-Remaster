@@ -1,0 +1,20 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcxmyev8jvlgh"]
+
+[ext_resource type="Script" path="res://Scripts/global.gd" id="1_u8o3i"]
+[ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/DialogBoxes/text_box.tscn" id="2_imufx"]
+[ext_resource type="PackedScene" uid="uid://ot50txi7adq0" path="res://Scenes/Town/town.tscn" id="2_pafky"]
+[ext_resource type="PackedScene" uid="uid://cyi5epemnot1x" path="res://Models/Menus/DialogBoxes/description_box.tscn" id="3_qpouy"]
+[ext_resource type="PackedScene" uid="uid://ck8bsrl8idlci" path="res://Scenes/Dungeon/dungeon.tscn" id="3_sy3id"]
+[ext_resource type="PackedScene" uid="uid://deahjbvovxuvn" path="res://Scenes/Battle/battle.tscn" id="4_cg2fd"]
+[ext_resource type="PackedScene" uid="uid://bnbjoofilujw1" path="res://Models/Menus/ShopMenus/shop_menu.tscn" id="4_xxefv"]
+[ext_resource type="PackedScene" uid="uid://bkfyiyro88x3q" path="res://Scenes/main_menu.tscn" id="5_o7tui"]
+
+[node name="Global" type="Node"]
+script = ExtResource("1_u8o3i")
+text_box_scene = ExtResource("2_imufx")
+description_box_scene = ExtResource("3_qpouy")
+shop_menu_scene = ExtResource("4_xxefv")
+town_scene = ExtResource("2_pafky")
+dungeon_scene = ExtResource("3_sy3id")
+battle_scene = ExtResource("4_cg2fd")
+main_menu_scene = ExtResource("5_o7tui")

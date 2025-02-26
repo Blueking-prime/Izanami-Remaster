@@ -90,3 +90,10 @@ func _on_load_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	## Request confirmation
 	Global.call_deferred("load_main_menu")
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		set_process_input(true)
+	else:
+		set_process_input(false)

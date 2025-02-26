@@ -139,6 +139,7 @@ text = "Load (L)"
 layout_mode = 2
 text = "Quit (Q)"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
 [connection signal="pressed" from="MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]

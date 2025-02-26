@@ -30,7 +30,7 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 SaveAndLoad="*res://Scripts/save_and_load.tscn"
-Global="*res://Scripts/global.gd"
+Global="*res://Scripts/global.tscn"
 Checks="*res://Scripts/checks.gd"
 
 [debug]
@@ -124,6 +124,11 @@ switch_leader_key={
 quit_key={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":81,"physical_keycode":0,"key_label":0,"unicode":113,"location":0,"echo":false,"script":null)
+]
+}
+test={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":96,"physical_keycode":0,"key_label":0,"unicode":96,"location":0,"echo":false,"script":null)
 ]
 }
 

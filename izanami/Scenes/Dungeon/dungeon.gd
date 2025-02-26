@@ -103,7 +103,7 @@ func exit_dungeon():
 		print('No')
 
 func load_town():
-	var town = preload("res://Scenes/Town/town.tscn").instantiate()
+	var town = Global.town_scene.instantiate()
 	print(town)
 	var town_players = town.get_node("Players")
 	town.remove_child(town_players)

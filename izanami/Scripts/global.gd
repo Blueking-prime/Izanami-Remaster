@@ -1,13 +1,13 @@
 extends Node
 
-@onready var text_box_scene: PackedScene = preload("res://Models/Menus/DialogBoxes/text_box.tscn")
-@onready var description_box_scene: PackedScene = preload("res://Models/Menus/DialogBoxes/description_box.tscn")
-@onready var shop_menu_scene: PackedScene = preload("res://Models/Menus/ShopMenus/shop_menu.tscn")
+@export var text_box_scene: PackedScene
+@export var description_box_scene: PackedScene
+@export var shop_menu_scene: PackedScene
 
-@onready var dungeon_scene: PackedScene = preload("res://Scenes/Dungeon/dungeon.tscn")
-@onready var battle_scene: PackedScene = preload("res://Scenes/Battle/battle.tscn")
-@onready var town_scene: PackedScene = preload("res://Scenes/Town/town.tscn")
-@onready var main_menu_scene: PackedScene = preload("res://Scenes/main_menu.tscn")
+@export var town_scene: PackedScene
+@export var dungeon_scene: PackedScene
+@export var battle_scene: PackedScene
+@export var main_menu_scene: PackedScene
 
 var player_party: Party
 
@@ -85,7 +85,7 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 
 
 ## UI ELEMENTS
-func show_text_choice(speaker: String, prompt: String, choices: Array[String] = ['Yes', 'No']) -> int:
+func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No']) -> int:
 	if is_instance_valid(text_box):
 		text_box.queue_free()
 

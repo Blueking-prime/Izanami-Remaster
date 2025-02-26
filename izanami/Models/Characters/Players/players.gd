@@ -70,6 +70,17 @@ func battle_reset():
 	unfreeze()
 
 	revert_menu()
+
+	var valid_sprites := []
+	for i in sprites:
+		print(i)
+		if is_instance_valid(i):
+			print(i)
+			valid_sprites.append(i)
+#
+	sprites = valid_sprites
+	#print(sprites)
+
 	revert_sprites()
 
 	leader.show()

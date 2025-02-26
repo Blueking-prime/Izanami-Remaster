@@ -48,8 +48,6 @@ var stats: Dictionary = base_stats.duplicate()
 @export var lvl: int = 1
 @export var ally: int
 
-var stunned: bool = false
-
 func _ready() -> void:
 	load_character()
 	statuses.test()

@@ -49,6 +49,7 @@ func render_objects():
 	place_player()
 
 	set_connections()
+	check_collisions()
 
 func set_connections():
 	if is_instance_valid(player):
@@ -154,6 +155,9 @@ func load_data(data: DungeonSaveData):
 	load_enemies(data.enemy_data)
 	set_connections()
 
+	await get_tree().create_timer(0.1).timeout
+	check_collisions()
+
 func save_enemies() -> Array[CharacterSaveData]:
 	var enemy_data: Array[CharacterSaveData] = []
 	for i in enemy_nodes:
@@ -173,3 +177,17 @@ func load_enemies(enemy_data: Array[CharacterSaveData]):
 		enemy.load_data(i)
 		enemy.dungeon_display()
 		add_child(enemy)
+
+func check_collisions():
+	Global.player_party.leader.hitbox.check_overlap(self)
+	for i in enemy_nodes:
+		i.hitbox.check_overlap(self)
+
+func center() -> Vector2i:
+	return get_used_rect().get_center()
+
+
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("test"):
+		#print("prrsss")
+		#check_collisions()

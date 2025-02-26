@@ -16,6 +16,7 @@ func load_window():
 		confirm_button.text = "Load Last Save"
 	save_menu.save_state = save_state
 	save_menu.load_stock()
+
 	show()
 
 func _on_close_requested() -> void:

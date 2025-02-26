@@ -42,7 +42,6 @@ signal moved
 #signal hit_enemy
 #signal hit_exit
 
-
 func load_character():
 	ally = 1
 	sp = max_sp

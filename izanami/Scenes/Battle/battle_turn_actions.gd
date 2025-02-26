@@ -30,13 +30,12 @@ func act():
 		return
 
 	actor.statuses.status()
-	if actor.stunned:
+	if actor.statuses.stunned:
 		print('%s is stunned' % [actor.character_name])
 		advance_actor()
 		return
 
 	print(actor.character_name)
-	actor.status()
 	#actor.focus()
 	if is_instance_of(actor, Enemy):
 		enemy_attack_script_placeholder()
@@ -50,6 +49,11 @@ func advance_actor():
 	process_input.reset_target()
 	actor.unset_acting()
 
+	#Check if enemies were one-shot basically
+	if check_if_enemies_all_dead():
+		kill_enemies()
+		end_battle()
+
 	idx += 1
 	if idx >= actors.size():
 		end_turn()
@@ -57,12 +61,7 @@ func advance_actor():
 	actor = turn_order[idx]
 	act()
 
-func end_turn():
-	idx = 0
-	turncount += 1
-	for i in player_array:
-		i.restore()
-
+func kill_enemies():
 	for i in enemy_array:
 		if not i.alive:
 			get_parent().earned_exp += i.exp_drop()
@@ -71,10 +70,26 @@ func end_turn():
 			actors.erase(i)
 			i.queue_free()
 
+func check_if_enemies_all_dead():
+	for i in enemy_array:
+		if i.alive:
+			return false
+	return true
+
+
+func end_turn():
+	idx = 0
+	turncount += 1
+
+	kill_enemies()
+
 	if not len(enemy_array):
-		setup.exit_battle("win", get_parent().earned_exp)
+		end_battle()
 
 	turncount_label.text = str(turncount)
+
+func end_battle():
+	setup.exit_battle("win", get_parent().earned_exp)
 
 func enemy_attack_script_placeholder():
 	var target_player = randi_range(0, player_array.size() - 1)
