@@ -17,6 +17,7 @@ extends Resource
 @export var crit_chance: float = 0.2
 @export var crit_mult: int = 2
 
+@export var boost: Vector2 = Vector2(1, 1)
 @export var status_effect: Script
 @export var effect_duration: int = 3
 @export var accuracy: float = 1
@@ -42,6 +43,9 @@ func action(obj: Base_Character, target: Variant) -> bool:
 	for stat in obj.stats:
 		if stat in stats:
 			stat_total += obj.stats[stat]
+
+	obj.ATK *= boost.x
+	obj.DEF *= boost.y
 
 	print(stat_total)
 	if Global.rand_chance(crit_chance):

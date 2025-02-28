@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwog7gcp0q7bl"]
+
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_d2kvc"]
+
+[node name="Onmyoji" instance=ExtResource("1_d2kvc")]
+speed = 50
+root_stats = {
+"AGI": 1,
+"END": 1,
+"GUI": 1,
+"INT": 4,
+"STR": 1,
+"WIS": 4
+}
+level_stats = ["INT"]
+desc = "“A mystic class that channels the dark energy of the underworld.”"
+
+[editable path="BattleSprite"]

@@ -37,8 +37,9 @@ func act():
 
 	print(actor.character_name)
 	#actor.focus()
-	if is_instance_of(actor, Enemy):
-		enemy_attack_script_placeholder()
+	if actor is Enemy:
+		await actor.battle_ai(player_array, enemy_array)
+		advance_actor()
 	else:
 		current_player = actor
 		process_input.show_choice()
@@ -65,6 +66,7 @@ func kill_enemies():
 	for i in enemy_array:
 		if not i.alive:
 			get_parent().earned_exp += i.exp_drop()
+			get_parent().earned_gold += i.gold_drop()
 			enemy_array.erase(i)
 			turn_order.erase(i)
 			actors.erase(i)
@@ -91,17 +93,17 @@ func end_turn():
 func end_battle():
 	setup.exit_battle("win", get_parent().earned_exp)
 
-func enemy_attack_script_placeholder():
-	var target_player = randi_range(0, player_array.size() - 1)
-	var skill_id = randi_range(0, actor.get_skills().size() - 1)
-	#player_array[target_player].focus()
-	if actor.get_skills()[skill_id].aoe:
-		actor.use_skill(skill_id, player_array)
-	else:
-		actor.use_skill(skill_id, player_array[target_player])
-	print('from ', actor.name)
-	#player_array[target_player].unfocus()
-	advance_actor()
+#func enemy_attack_script_placeholder():
+	#var target_player = randi_range(0, player_array.size() - 1)
+	#var skill_id = randi_range(0, actor.get_skills().size() - 1)
+	##player_array[target_player].focus()
+	#if actor.get_skills()[skill_id].aoe:
+		#actor.use_skill(skill_id, player_array)
+	#else:
+		#actor.use_skill(skill_id, player_array[target_player])
+	#print('from ', actor.name)
+	##player_array[target_player].unfocus()
+	#advance_actor()
 
 #
 #func _on_battle_ready() -> void:

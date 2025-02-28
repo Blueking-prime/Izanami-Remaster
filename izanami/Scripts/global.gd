@@ -22,8 +22,8 @@ signal next
 signal sell(condition)
 
 ## ALGORITHMS
-func rand_coord(width: int, height: int):
-	return [randi_range(0, width - 1), randi_range(0, height - 1)]
+func rand_coord(width: int, height: int) -> Vector2i:
+	return Vector2i(randi_range(0, width - 1), randi_range(0, height - 1))
 
 
 func rand_spread(chance: float, limit: int):
@@ -40,17 +40,15 @@ func rand_chance(chance: float):
 		return false
 
 
-func path(start: Array, goal: Array, walls: Array, width: int, height: int, visited: Array = []):
+func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []):
 
 	if start in walls:
 		return false
 
-	var x = start[0]
-	var y = start[1]
-	var l = [x - 1, y]
-	var r = [x + 1, y]
-	var u = [x, y - 1]
-	var d = [x, y + 1]
+	var l = start + Vector2i.LEFT
+	var r = start + Vector2i.RIGHT
+	var u = start + Vector2i.UP
+	var d = start + Vector2i.DOWN
 
 	# Check if goal is next to path
 	if start == goal or u == goal or d == goal or l == goal or r == goal:
@@ -58,7 +56,7 @@ func path(start: Array, goal: Array, walls: Array, width: int, height: int, visi
 
 
 	# If (x,y) is a valid node
-	if (y >= 0 and y < height) and (x >= 0 and x < width):
+	if (start.y >= 0 and start.y < height) and (start.x >= 0 and start.x < width):
 		if start in visited:
 			return false
 		else:

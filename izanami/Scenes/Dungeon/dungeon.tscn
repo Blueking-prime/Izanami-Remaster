@@ -536,6 +536,7 @@ item_drop_group = ExtResource("3_sqiqp")
 gear_drop_group = ExtResource("4_8c7x3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 editor_draw_limits = true

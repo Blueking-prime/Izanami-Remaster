@@ -13,17 +13,17 @@ class_name DungeonMap
 @export var max_treasure_no: int = 5
 @export var upscale_factor: int = 2
 
-var start = []
-var stop = []
-var filled_coords = []
-var dungeon_map = []
-var walls = []
-var treasure_tiles = []
-var enemy_tiles = []
-var treasure_no
-var enemy_no
+var start: Vector2i
+var stop: Vector2i
+var filled_coords: Array[Vector2i] = []
+var dungeon_map: Array[Array] = []
+var walls: Array[Vector2i] = []
+var treasure_tiles: Array[Vector2i] = []
+var enemy_tiles: Array[Vector2i] = []
+var treasure_no: int
+var enemy_no: int
 
-var visited = []
+var visited: Array[Vector2i] = []
 
 func draw_new_map():
 	var check = false
@@ -47,31 +47,30 @@ func upscale():
 			row.append('-')
 		new_dungeon_map.append(row)
 
-	var new_walls = []
-	var new_treasure_tiles = []
-	var new_enemy_tiles = []
-	var new_start = [start[0] * 2, start[1] * 2]
-	var new_stop = [stop[0] * 2, stop[1] * 2]
+	var new_walls: Array[Vector2i] = []
+	var new_treasure_tiles: Array[Vector2i] = []
+	var new_enemy_tiles: Array[Vector2i] = []
 
 	# [p] = [p0][pl]
 	#       [p2][p3]
 
 	for y in range(height):
 		for x in range(width):
-			if [x, y] in walls:
-				new_walls.append([2 * x,     2 * y])
-				new_walls.append([2 * x + 1, 2 * y])
-				new_walls.append([2 * x,     2 * y + 1])
-				new_walls.append([2 * x + 1, 2 * y + 1])
+			var coord: Vector2i = Vector2i(x, y)
+			if coord in walls:
+				new_walls.append(coord * upscale_factor)
+				new_walls.append(coord * upscale_factor + Vector2i.RIGHT)
+				new_walls.append(coord * upscale_factor + Vector2i.DOWN)
+				new_walls.append(coord * upscale_factor + Vector2i(1, 1))
 
-			if [x,y] in treasure_tiles:
-				new_treasure_tiles.append([2 * x, 2 * y])
+			if coord in treasure_tiles:
+				new_treasure_tiles.append(coord * upscale_factor)
 
-			if [x,y] in enemy_tiles:
-				new_enemy_tiles.append([2 * x, 2 * y])
+			if coord in enemy_tiles:
+				new_enemy_tiles.append(coord * upscale_factor)
 
-	width *= 2
-	height *= 2
+	width *= upscale_factor
+	height *= upscale_factor
 
 	filled_coords = []
 	filled_coords.append_array(new_enemy_tiles)
@@ -82,14 +81,14 @@ func upscale():
 	treasure_tiles = new_treasure_tiles
 	enemy_tiles = new_enemy_tiles
 
-	start = new_start
-	stop = new_stop
+	start *= upscale_factor
+	stop *= upscale_factor
 
-func get_empty_tiles():
-	var tiles = []
+func get_empty_tiles() -> Array[Vector2i]:
+	var tiles: Array[Vector2i] = []
 	for i in width:
 		for j in height:
-			tiles.append([i, j])
+			tiles.append(Vector2i(i, j))
 
 	return tiles
 
@@ -103,27 +102,24 @@ func _fill_gaps():
 		if tile in visited:
 			continue
 
-		var new_visits = []
+		var new_visits: Array[Vector2i] = []
 		if not Global.path(start, tile, walls, width, height, new_visits):
 			walls.append(tile)
 			visited.append_array(new_visits)
 
-func _pad_tile(tile_set):
-	var x
-	var y
-	var surrounding_tiles = []
+func _pad_tile(tile_set: Array[Vector2i]):
+	var surrounding_tiles: Array[Vector2i] = []
 	for coord in tile_set:
-		x = coord[0]
-		y = coord[1]
 		surrounding_tiles = [
-			[x - 1, y],
-			[x + 1, y],
-			[x, y - 1],
-			[x, y + 1],
-			[x - 1, y + 1],
-			[x - 1, y - 1],
-			[x + 1, y + 1],
-			[x + 1, y - 1],
+			coord + Vector2i.LEFT,
+			coord + Vector2i.RIGHT,
+			coord + Vector2i.UP,
+			coord + Vector2i.DOWN,
+
+			coord + Vector2i.LEFT + Vector2i.DOWN,
+			coord + Vector2i.LEFT + Vector2i.UP,
+			coord + Vector2i.RIGHT + Vector2i.DOWN,
+			coord + Vector2i.RIGHT + Vector2i.UP,
 		]
 		for i in surrounding_tiles:
 			if i in walls:
@@ -154,22 +150,20 @@ func generate_dungeon_layout():
 func generate_treasure_tiles():
 	treasure_no = 1 + Global.rand_spread(treasure_spawn_chance, max_treasure_no)
 	treasure_tiles = []
-	var i = 0
-	var coord
-	while i < treasure_no:
+	var coord: Vector2i
+	for i in treasure_no:
 		coord = Global.rand_coord(width, height)
 		if coord in filled_coords:
 			continue
 		treasure_tiles.append(coord)
 		filled_coords.append(coord)
-		i += 1
 
 func generate_walls():
 	walls = []
-	var cur_coord = []
-	var coord = []
-	var wall_chance
-	var chance
+	var cur_coord: Vector2i
+	var coord: Vector2i
+	var wall_chance: int
+	var chance: float
 	for i in range(width + 1):
 		for j in range(height + 1):
 			if i == 0 or j == 0 or i == width or j == height:
@@ -177,12 +171,12 @@ func generate_walls():
 			else:
 				chance = 0.2
 
-			cur_coord = [i, j]
+			cur_coord = Vector2i(i, j)
 			if cur_coord not in filled_coords:
 				wall_chance = Global.rand_spread(chance, height/2)
 				for k in range(wall_chance):
-					coord = [i, j + k]
-					if coord in filled_coords or coord[1] > height:
+					coord = Vector2i(i, j + k)
+					if coord in filled_coords or coord.y > height:
 						break
 					else:
 						walls.append(coord)
@@ -191,21 +185,19 @@ func generate_walls():
 func spawn_enemy_tiles_floor():
 	enemy_no = Global.rand_spread(enemy_spawn_chance, width * height - len(filled_coords))
 	enemy_tiles = []
-	var i = 0
-	var coord
-	while i < enemy_no:
+	var coord: Vector2i
+	for i in enemy_no:
 		coord = Global.rand_coord(width, height)
 		if coord in filled_coords:
 			continue
-		if coord[0] < 1:
-			coord[0] = 1
-		if coord[1] < 1:
-			coord[1] = 1
+		if coord.x < 1:
+			coord.x = 1
+		if coord.y < 1:
+			coord.y = 1
 		enemy_tiles.append(coord)
 		filled_coords.append(coord)
-		i += 1
 
-func verify_dungeon():
+func verify_dungeon() -> bool:
 	if not Global.path(start, stop, walls, width, height, visited):
 		return false
 
@@ -215,7 +207,7 @@ func verify_dungeon():
 			continue
 
 		# Else path trace from start to this point and add new path to existing paths
-		var new_visits = []
+		var new_visits: Array[Vector2i] = []
 		if not Global.path(start, i, walls, width, height, new_visits):
 			return false
 		visited.append_array(new_visits)
@@ -232,23 +224,23 @@ func display_dungeon():
 		dungeon_map.append(row)
 
 	# Start
-	dungeon_map[start[1]][start[0]] = '*'
+	dungeon_map[start.y][start.x] = '*'
 
 	# Stop
-	dungeon_map[stop[1]][stop[0]] = legend[1]
+	dungeon_map[stop.y][stop.x] = legend[1]
 
 	# Player_pos
 	#player_pos = get_parent().player_pos
-	#dungeon_map[player_pos[1]][player_pos[0]] = legend[2]
+	#dungeon_map[player_pos.y][player_pos.x] = legend[2]
 
 	for i in treasure_tiles:
-		dungeon_map[i[1]][i[0]] = legend[3]
+		dungeon_map[i.y][i.x] = legend[3]
 
 	for i in walls:
-		dungeon_map[i[1]][i[0]] = legend[4]
+		dungeon_map[i.y][i.x] = legend[4]
 
 	for i in enemy_tiles:
-		dungeon_map[i[1]][i[0]] = legend[5]
+		dungeon_map[i.y][i.x] = legend[5]
 
 	for i in dungeon_map:
 		print(i)

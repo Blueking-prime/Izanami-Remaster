@@ -17,6 +17,7 @@ class_name Battle
 @export var process_actions: BattleActions
 
 var earned_exp: int
+var earned_gold: int
 
 ## RETURN LOCATIONS
 var dungeon: Dungeon

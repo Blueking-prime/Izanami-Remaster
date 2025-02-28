@@ -7,7 +7,6 @@ class_name DungeonBackground
 @export var terrain_set: int
 @export var terrain_id: int
 
-var walls: Array
 var width
 var height
 
@@ -19,13 +18,14 @@ func draw_background():
 
 func _render_background_floor():
 	var all_tiles = []
-	for y in range(-2, height + 2):
-		for x in range(-2, width + 2):
+	for y in range(-5, height + 5):
+		for x in range(-5, width + 5):
+			var coord = Vector2i(x, y)
 			all_tiles.append_array([
-				Vector2i(2 * x,     2 * y),
-				Vector2i(2 * x,     2 * y + 1),
-				Vector2i(2 * x + 1, 2 * y),
-				Vector2i(2 * x + 1, 2 * y + 1)
-				])
+				coord * 2,
+				coord * 2 + Vector2i.LEFT,
+				coord * 2 + Vector2i.DOWN,
+				coord * 2 + Vector2i.LEFT + Vector2i.DOWN,
+			])
 
 	set_cells_terrain_connect(all_tiles, terrain_set, terrain_id)

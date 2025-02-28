@@ -13,6 +13,7 @@ script = ExtResource("2_43wjv")
 atk_lines = []
 element = &""
 speed = 15
+heal_threshold = 0.8
 character_name = "Enemy"
 
 [node name="BattleSprite" parent="." index="0"]

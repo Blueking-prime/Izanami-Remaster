@@ -19,14 +19,14 @@ class_name DungeonObjects
 @export var wall_terrain_set: int
 @export var wall_terrain: int
 
-var walls: Array
-var chests: Array
-var enemies: Array
-var entrance: Array
-var exit: Array
-var enemy_nodes
-var width
-var height
+var walls: Array[Vector2i]
+var chests: Array[Vector2i]
+var enemies: Array[Vector2i]
+var entrance: Vector2i
+var exit: Vector2i
+var enemy_nodes: Array = []
+var width: int
+var height: int
 
 var opened_chest_coords: Array = []
 
@@ -49,6 +49,8 @@ func render_objects():
 	place_player()
 
 	set_connections()
+
+	await get_tree().create_timer(0.1).timeout
 	check_collisions()
 
 func set_connections():
@@ -56,7 +58,7 @@ func set_connections():
 		player.detector.hit_chest.connect(_on_detector_hit_chest)
 
 func place_player():
-	var player_pos = Vector2i(entrance[0] * 16, entrance[1] * 16)
+	var player_pos = entrance * 16
 	if player_pos.x <= 0:
 		player_pos.x = 16
 	if player_pos.y <= 0:
@@ -73,12 +75,12 @@ func _place_enemies():
 
 		add_child(enemy)
 		enemy.dungeon_display()
-		enemy.position = Vector2i(2*16*coord[0], 2*16*coord[1])
+		enemy.position = coord * 2 * 16
 
 	enemy_nodes = get_children()
 
 func _render_outer_walls():
-	var outer_walls = []
+	var outer_walls: Array[Vector2i] = []
 	for i in range(-1, 2 * height):
 		outer_walls.append_array([
 			Vector2i(-1       , i),
@@ -97,39 +99,35 @@ func _render_outer_walls():
 	set_cells_terrain_connect(outer_walls, wall_terrain_set, wall_terrain, false)
 
 func _render_inner_walls():
-	var walls_vector_array = []
-	var x
-	var y
+	var walls_vector_array: Array[Vector2i] = []
 	for coord in walls:
-		x = coord[0]
-		y = coord[1]
 		walls_vector_array.append_array([
-				Vector2i(2 * x,     2 * y),
-				Vector2i(2 * x,     2 * y + 1),
-				Vector2i(2 * x + 1, 2 * y),
-				Vector2i(2 * x + 1, 2 * y + 1)
-				])
+				coord * 2,
+				coord * 2 + Vector2i.LEFT,
+				coord * 2 + Vector2i.DOWN,
+				coord * 2 + Vector2i.LEFT + Vector2i.DOWN,
+			])
 
 	set_cells_terrain_connect(walls_vector_array, wall_terrain_set, wall_terrain, false)
 
 func _render_treasure_chests():
 	for coord in chests:
 		set_cell(
-			Vector2i(2 * coord[0], 2 * coord[1]),
+			coord * 2,
 			treasure_source_id,
 			treasure_atlas_coords
 		)
 
 func _render_entrance():
 	set_cell(
-		Vector2i(2 * entrance[0] + 1, 2 * entrance[1] + 1),
+		entrance * 2 + Vector2i(1, 1),
 		entrance_source_id,
 		entrance_atlas_coords
 	)
 
 func _render_exit():
 	set_cell(
-		Vector2i(2 * exit[0] + 1, 2 * exit[1] + 1),
+		exit * 2 + Vector2i(1, 1),
 		exit_source_id,
 		exit_atlas_coords
 	)
@@ -180,7 +178,9 @@ func load_enemies(enemy_data: Array[CharacterSaveData]):
 
 func check_collisions():
 	Global.player_party.leader.hitbox.check_overlap(self)
+	print(enemy_nodes)
 	for i in enemy_nodes:
+		print(i)
 		i.hitbox.check_overlap(self)
 
 func center() -> Vector2i:

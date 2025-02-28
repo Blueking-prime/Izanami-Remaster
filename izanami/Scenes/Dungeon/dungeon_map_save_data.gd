@@ -2,8 +2,8 @@ extends Resource
 
 class_name DungeonMapSaveData
 
-@export var start: Array = []
-@export var stop: Array = []
+@export var start: Vector2i
+@export var stop: Vector2i
 @export var filled_coords: Array = []
 @export var dungeon_map: Array = []
 @export var walls: Array = []

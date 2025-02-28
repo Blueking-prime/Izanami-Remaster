@@ -3,6 +3,8 @@ extends Node
 class_name CharacterStatuses
 
 @export var status_effects: Array[Status]
+@export var status_effects_scripts: Array[Script]
+
 @export var test_effect: Script
 
 @export var en_exhaust: Script
@@ -50,6 +52,8 @@ func expire_status():
 	for i in status_effects:
 		if i.elapsed >= i.duration:
 			status_effects.erase(i)
+			status_effects_scripts.erase(i.get_script())
 
 func add_status(status: Status):
 	status_effects.append(status)
+	status_effects_scripts.append(status.get_script())
