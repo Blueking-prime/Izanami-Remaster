@@ -1,8 +1,6 @@
-extends Status
-
-@export var DEF: float
+extends StatusBuff
 
 func trigger(victim: Base_Character):
-	victim.DEF += DEF
+	victim.DEF += magnitude
 
 	super.trigger(victim)

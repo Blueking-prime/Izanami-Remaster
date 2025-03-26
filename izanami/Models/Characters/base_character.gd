@@ -32,6 +32,16 @@ var stats: Dictionary = base_stats.duplicate()
 @export var level_stats: Array = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
 @export var desc: String
 
+@export var resistances: Dictionary = {
+	'Physical':	0,
+	'Fire':		0,
+	'Water':	0,
+	'Wind':		0,
+	'Dark':		0,
+	'Light':	0,
+	'Blood':	0,
+}
+
 @export var max_hp: int:
 	get():
 		return (stats['END'] * 10) + (stats['WIS'] * 3) + (lvl * 15)

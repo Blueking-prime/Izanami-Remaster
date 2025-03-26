@@ -3,7 +3,6 @@ class_name Enemy
 extends Base_Character
 
 @export var atk_lines: Array = []
-@export var element: StringName
 @export var speed: int
 
 @export var heal_threshold: float = 0.8

@@ -21,6 +21,7 @@ var textbox_response: int
 signal next
 signal sell(condition)
 
+
 ## ALGORITHMS
 func rand_coord(width: int, height: int) -> Vector2i:
 	return Vector2i(randi_range(0, width - 1), randi_range(0, height - 1))

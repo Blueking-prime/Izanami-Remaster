@@ -10,6 +10,20 @@ class_name CharacterStatuses
 @export var en_exhaust: Script
 @export var restore: Script
 
+## Gives character resistance to elemental trait
+@export var resistances: Dictionary = {
+	'Physical':	0,
+	'Fire':		0,
+	'Water':	0,
+	'Wind':		0,
+	'Dark':		0,
+	'Light':	0,
+	'Blood':	0,
+}
+
+## Gives all character skills elemental trait
+@export var enchantment: StringName
+
 var stunned: bool = false
 var exhausted: bool = false
 
@@ -35,6 +49,9 @@ func status():
 func reset_status():
 	stunned = false
 	exhausted = false
+	enchantment = ''
+	for i in resistances: resistances[i] = 0
+
 	get_parent().ATK = 1
 	get_parent().DEF = 1
 
@@ -54,6 +71,10 @@ func expire_status():
 			status_effects.erase(i)
 			status_effects_scripts.erase(i.get_script())
 
-func add_status(status: Status):
-	status_effects.append(status)
-	status_effects_scripts.append(status.get_script())
+func add_status(_status: Status):
+	if _status is not StatusBuff and _status.get_script() in status_effects_scripts:
+		print('No effect!')
+		return
+
+	status_effects.append(_status)
+	status_effects_scripts.append(_status.get_script())
