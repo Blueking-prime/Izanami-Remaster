@@ -47,6 +47,10 @@ func action(obj: Base_Character, target: Variant) -> bool:
 func act(obj: Base_Character, target: Base_Character):
 	target = target as Base_Character
 
+	if target.statuses.counterstance:
+		target.statuses.counterstance = false
+		target = obj
+
 	var el
 	if element != '':
 		el = element

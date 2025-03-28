@@ -26,6 +26,7 @@ class_name CharacterStatuses
 
 var stunned: bool = false
 var exhausted: bool = false
+var counterstance: bool = false
 
 func test():
 	#print(test_effect)
@@ -68,8 +69,7 @@ func trigger_status():
 func expire_status():
 	for i in status_effects:
 		if i.elapsed >= i.duration:
-			status_effects.erase(i)
-			status_effects_scripts.erase(i.get_script())
+			remove_status(i)
 
 func add_status(_status: Status):
 	if _status is not StatusBuff and _status.get_script() in status_effects_scripts:
@@ -78,3 +78,7 @@ func add_status(_status: Status):
 
 	status_effects.append(_status)
 	status_effects_scripts.append(_status.get_script())
+
+func remove_status(_status: Status):
+	status_effects.erase(_status)
+	status_effects_scripts.erase(_status.get_script())
