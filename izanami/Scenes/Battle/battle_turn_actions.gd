@@ -64,7 +64,9 @@ func advance_actor():
 
 func kill_enemies():
 	for i in enemy_array:
+		print(i.character_name, i.alive)
 		if not i.alive:
+			print(i, ' should die')
 			get_parent().earned_exp += i.exp_drop()
 			get_parent().earned_gold += i.gold_drop()
 			enemy_array.erase(i)

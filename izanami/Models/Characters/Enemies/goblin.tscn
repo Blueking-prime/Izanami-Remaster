@@ -7,7 +7,6 @@
 position = Vector2(239, 72)
 script = ExtResource("2_gx3q5")
 enemy_atk_lines = ["The Goblin slashes at you with its claws and you take"]
-enemy_element = &"Fire"
 enemy_stats = {
 "AGI": 0,
 "END": 2,
@@ -16,6 +15,18 @@ enemy_stats = {
 "STR": 1,
 "WIS": 0
 }
+enemy_resistances = {
+"Blood": 0,
+"Dark": 0,
+"Fire": -0.5,
+"Light": -0.5,
+"Physical": 0,
+"Water": 0,
+"Wind": 0
+}
 character_name = "Goblin"
+
+[node name="Statuses" parent="." index="6"]
+low = null
 
 [editable path="BattleSprite"]

@@ -13,14 +13,15 @@ var player: Player
 func action():
 	print('path: action')
 	player = process_turns.current_player
-	print(player, ' is acting')
+	print(player.character_name, ' is acting')
+	print(process_input.flag)
 	#print(player.stats)
 	match process_input.flag:
-		'Attack': use_basic_attack()
-		'Skills': use_skills()
-		'Items': use_items()
-		'Guard': use_guard()
-		'Run': use_run()
+		'Attack': await use_basic_attack()
+		'Skills': await use_skills()
+		'Items': await use_items()
+		'Guard': await use_guard()
+		'Run': await use_run()
 
 	process_input.flag = ''
 

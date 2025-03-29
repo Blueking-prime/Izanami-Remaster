@@ -9,6 +9,7 @@ class_name CharacterStatuses
 
 @export var en_exhaust: Script
 @export var restore: Script
+@export var low: Script
 
 ## Gives character resistance to elemental trait
 @export var resistances: Dictionary = {
@@ -27,6 +28,7 @@ class_name CharacterStatuses
 var stunned: bool = false
 var exhausted: bool = false
 var counterstance: bool = false
+var low_health: bool  = false
 
 func test():
 	#print(test_effect)
@@ -50,6 +52,7 @@ func status():
 func reset_status():
 	stunned = false
 	exhausted = false
+	low_health = false
 	enchantment = ''
 	for i in resistances: resistances[i] = 0
 
@@ -61,9 +64,12 @@ func auto_ailment():
 		add_status(restore.new())
 		if get_parent().sp < 0:
 			add_status(en_exhaust.new())
+	if get_parent().hp < get_parent().max_hp * 0.3:
+		add_status(low.new())
 
 func trigger_status():
 	for i in status_effects:
+		print(i.desc, ' proced')
 		i.trigger(get_parent())
 
 func expire_status():

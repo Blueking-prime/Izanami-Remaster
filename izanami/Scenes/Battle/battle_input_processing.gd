@@ -181,6 +181,10 @@ func _on_skill_panel_item_activated(idx: int) -> void:
 		var skill: Skill = process_turns.current_player.get_skills()[process_turns.current_player.active_selection]
 		if skill.aoe:
 			aoe_check = true
+		if skill.universal:
+			process_actions.target = process_turns.actors
+			process_actions.action()
+			return
 		if not skill.targetable:
 			process_actions.target = process_turns.current_player
 			process_actions.action()
@@ -193,6 +197,11 @@ func _on_skill_panel_item_activated(idx: int) -> void:
 		var item: Item = process_turns.current_player.items.get_item(skill_panel.list.get_item_text(idx))
 		if item.aoe:
 			aoe_check = true
+		if item.universal:
+			process_actions.target = process_turns.actors
+			process_actions.action()
+			return
+
 		offense = item.offensive
 
 	if aoe_check:

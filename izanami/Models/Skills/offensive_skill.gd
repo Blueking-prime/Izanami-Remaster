@@ -51,6 +51,8 @@ func act(obj: Base_Character, target: Base_Character):
 		target.statuses.counterstance = false
 		target = obj
 
+	#print('act begin value = ', value)
+
 	var el
 	if element != '':
 		el = element
@@ -61,9 +63,16 @@ func act(obj: Base_Character, target: Base_Character):
 		value *= (1 - target.resistances[el])
 		value *= (1 - target.statuses.resistances[el])
 
+	#print('act resist value = ', value)
+
 	if status_modifier:
 		if status_modifier in target.statuses.status_effects_scripts:
 			value *= status_effectiveness
 
+	#print('act staus value = ', value)
+
 	value *= obj.ATK
+
+	#print('act final value = ', value)
+
 	target.damage(value)

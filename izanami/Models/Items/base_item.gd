@@ -8,14 +8,15 @@ extends Resource
 @export var value: int = 0
 @export var status_effect: Script
 @export var effect_duration: int
-@export var accuracy: float = 1
+@export var effect_chance: float = 1
 @export var desc: String
 @export var price: int = 0
 @export var aoe: bool = false
+@export var universal: bool = false
 @export var element: StringName
 
 func use(target):
-	if aoe:
+	if aoe or universal:
 		for i in target:
 			use_on_target(i)
 	else:
@@ -30,9 +31,12 @@ func use_on_target(target: Base_Character):
 
 
 func use_buff(target: Base_Character):
-	var status: Status = status_effect.new()
-	status.duration = effect_duration
-	target.statuses.add_status(status)
+	if Global.rand_chance(effect_chance):
+		var status: Status = status_effect.new()
+		status.duration = effect_duration
+		target.statuses.add_status(status)
+	else:
+		print('Miss on ', target.character_name)
 
 func use_heal(target: Base_Character):
 	target.heal(value)

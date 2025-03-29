@@ -1,9 +1,9 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Immortal'
+	desc = 'Low'
 
 func trigger(victim: Base_Character):
-	victim.DEF = (2 ** 32)
+	victim.statuses.low_health = true
 
 	super.trigger(victim)

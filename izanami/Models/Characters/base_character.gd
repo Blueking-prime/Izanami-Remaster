@@ -123,6 +123,7 @@ func get_skills():
 
 func use_skill(skill_id, _target):
 	var skill: Skill = get_skills()[skill_id]
+	print(skill, _target)
 	skill.action(self, _target)
 
 

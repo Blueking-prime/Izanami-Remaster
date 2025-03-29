@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://drei8wtrpbio6"]
+[gd_scene load_steps=15 format=3 uid="uid://drei8wtrpbio6"]
 
 [ext_resource type="Script" path="res://Models/Characters/base_character.gd" id="1_e6dxp"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_ar764"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Models/Statuses/Effects/toxin.gd" id="9_tto21"]
 [ext_resource type="Script" path="res://Models/Statuses/Effects/en_exhaust.gd" id="10_ku8jv"]
 [ext_resource type="Script" path="res://Models/Statuses/Effects/restore.gd" id="11_kun65"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/low.gd" id="13_1fnnn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 custom_solver_bias = 1.0
@@ -72,5 +73,6 @@ script = ExtResource("8_hvm8g")
 test_effect = ExtResource("9_tto21")
 en_exhaust = ExtResource("10_ku8jv")
 restore = ExtResource("11_kun65")
+low = ExtResource("13_1fnnn")
 
 [editable path="BattleSprite"]

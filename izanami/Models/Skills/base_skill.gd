@@ -19,7 +19,7 @@ extends Resource
 @export var rank: int = 0
 
 ## Stamina Cost to use skill
-@export var sp_cost: int = 0
+@export var cost: int = 0
 ## Health Cost to use skill (in percentage of max HP)
 @export var hp_cost: float
 
@@ -33,7 +33,7 @@ extends Resource
 ## Chance for a skill to be a crit
 @export var crit_chance: Array[float] = [0.2, 0.2, 0.2]
 ## If skill is a crit, the base value is multiplied by this
-@export var crit_mult: Array[int] = [2, 2, 2]
+@export var crit_mult: Array[float] = [2, 2, 2]
 
 ## Effect on users ATK and DEF attributes respectively (multiplicative)
 @export var boost: Array[Vector2] = [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
@@ -67,18 +67,19 @@ func action(obj: Base_Character, target: Variant) -> bool:
 
 	if not Global.rand_chance(accuracy[rank]): return false
 
-	var condidtion_check = false
-	for i in conditions:
-		if i in target.statuses.status_effects_scripts:
-			condidtion_check = true
-			break
+	if conditions:
+		var condidtion_check = false
+		for i in conditions:
+			if i in target.statuses.status_effects_scripts:
+				condidtion_check = true
+				break
 
-	if not condidtion_check: return false
+		if not condidtion_check: return false
 
 	if obj.statuses.exhausted: return false
 
 	if 'sp' in obj:
-		if not obj.consume_sp(sp_cost):
+		if not obj.consume_sp(cost):
 			return false
 
 	if hp_cost:
@@ -97,6 +98,7 @@ func action(obj: Base_Character, target: Variant) -> bool:
 	value = stat_total * stat_multiplier[rank]
 
 	if Global.rand_chance(crit_chance[rank]):
+		print('CRIT!')
 		value *= crit_mult[rank]
 
 	if status_effect:
@@ -105,6 +107,8 @@ func action(obj: Base_Character, target: Variant) -> bool:
 				_apply_status(obj, i)
 		else:
 			_apply_status(obj, target)
+
+	#print('base value = ', value)
 	return true
 
 func _apply_status(obj: Base_Character, target: Base_Character):

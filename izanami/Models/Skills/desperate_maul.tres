@@ -1,29 +1,31 @@
-[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=2 format=3 uid="uid://blo1mx1pvjnu5"]
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=3 format=3 uid="uid://3ok4qy6snqj0"]
 
-[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_ggc18"]
+[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_g2k2v"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/toxin.gd" id="2_iviwg"]
 
 [resource]
-script = ExtResource("1_ggc18")
-element = &""
+script = ExtResource("1_g2k2v")
+element = &"Physical"
 status_effectiveness = 1.5
-multi_hit = false
-multi_hit_max = 1
+multi_hit = true
+multi_hit_max = 5
 multi_hit_chance = 0.5
-name = &"Strong Strike"
+name = &"Desperate Maul"
 stats = Array[StringName]([&"STR"])
-stat_multiplier = Array[float]([1.0, 1.0, 1.0])
+stat_multiplier = Array[float]([0.5, 0.5, 0.5])
 lvl_requirement = 1
 conditions = Array[Script]([])
 accuracy = Array[float]([1.0, 1.0, 1.0])
 rank = 0
-cost = 0
+cost = 35
 hp_cost = 0.0
-flavour_text = "You spend your pent up energy and swing with gusto"
-desc = ""
+flavour_text = ""
+desc = "Deal STR/2 (Multihit up to 5); 40% chance to Poison"
 type = &""
 crit_chance = Array[float]([0.2, 0.2, 0.2])
 crit_mult = Array[float]([2.0, 2.0, 2.0])
 boost = Array[Vector2]([Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)])
+status_effect = ExtResource("2_iviwg")
 effect_duration = Array[int]([3, 3, 3])
 effect_magnitude = Array[float]([])
 effect_mag_stats = Array[StringName]([])

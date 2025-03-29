@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=6 format=3 uid="uid://vg2i2lo8ismg"]
+
+[ext_resource type="Script" path="res://Models/Statuses/Effects/toxin.gd" id="1_uslxv"]
+[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_xyrly"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/stun.gd" id="2_56x7y"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/death.gd" id="2_kwll3"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/seal.gd" id="3_swdek"]
+
+[resource]
+script = ExtResource("1_xyrly")
+element = &""
+status_effectiveness = 1.5
+multi_hit = false
+multi_hit_max = 1
+multi_hit_chance = 0.5
+name = &"Feng Shui Assasination"
+stats = Array[StringName]([&"AGI"])
+stat_multiplier = Array[float]([1.0, 1.0, 1.0])
+lvl_requirement = 1
+conditions = Array[Script]([ExtResource("1_uslxv"), ExtResource("2_56x7y"), ExtResource("3_swdek")])
+accuracy = Array[float]([1.0, 1.0, 1.0])
+rank = 0
+cost = 40
+hp_cost = 0.0
+flavour_text = ""
+desc = "If target is poisoned, paralyzed or sealed; deal 40 AGI Phys Damage and 5-10-15% chance to instantly kill; Cure Target"
+type = &""
+crit_chance = Array[float]([0.2, 0.2, 0.2])
+crit_mult = Array[float]([2.0, 2.0, 2.0])
+boost = Array[Vector2]([Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)])
+status_effect = ExtResource("2_kwll3")
+effect_duration = Array[int]([1, 1, 1])
+effect_magnitude = Array[float]([])
+effect_mag_stats = Array[StringName]([])
+effect_chance = Array[float]([1.0, 0.05, 0.1, 0.15])
+aoe = false
+universal = false
+random_target = false
+target_no = 1
+targetable = true

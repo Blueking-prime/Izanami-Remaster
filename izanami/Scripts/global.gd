@@ -181,22 +181,25 @@ func show_description(object: Resource) -> void:
 	else:
 		if object is Item:
 			type.text = 'Item'
+			effect_chance.text = str(object.effect_chance * 100) + '%'
 		if object is Skill:
 			type.text = 'Skill'
 			cost.show()
 			cost.text = str(object.cost)
+			effect_chance.text = str(object.effect_chance[object.rank] * 100) + '%'
 
 		if object.value != 0:
 			value.text = str(object.value)
 		elif object.status_effect:
-			value.text = object.status_effect
+			value.text = object.status_effect.new().desc
 		else:
 			value.hide()
 
 		subtype.text = object.type
-		effect_chance.text = str(object.accuracy * 100) + '%'
 		if object.aoe:
 			target_scope.text = 'AOE'
+		if object.universal:
+			target_scope.text = 'Universal'
 		else:
 			target_scope.text = "Single"
 		weapon_status.hide()
@@ -204,7 +207,7 @@ func show_description(object: Resource) -> void:
 	if 'price' in object:
 		sell_price.text = '#' + str(object.price)
 	elif object is Skill:
-		sell_price.text = str(object.crit_chance * 100) + '%'
+		sell_price.text = str(object.crit_chance[object.rank] * 100) + '%'
 	else:
 		sell_price.hide()
 

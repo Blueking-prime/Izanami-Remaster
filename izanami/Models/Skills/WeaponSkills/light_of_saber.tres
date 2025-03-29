@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_v1vyu")
-element = &"Holy"
+element = &"Light"
 status_effectiveness = 1.5
 multi_hit = false
 multi_hit_max = 1
@@ -16,13 +16,13 @@ lvl_requirement = 25
 conditions = Array[Script]([])
 accuracy = Array[float]([1.0, 1.0, 1.0])
 rank = 0
-sp_cost = 0
+cost = 30
 hp_cost = 0.0
 flavour_text = "A beam of holy ligh erupts from your blade"
 desc = "A holy beam. You feel like you've seen this somewhere"
 type = &""
-crit_chance = Array[float]([0.2, 0.2, 0.2])
-crit_mult = Array[int]([2, 2, 2])
+crit_chance = Array[float]([0.2, 0.3, 0.4])
+crit_mult = Array[float]([2.0, 2.0, 2.0])
 boost = Array[Vector2]([Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)])
 effect_duration = Array[int]([3, 3, 3])
 effect_magnitude = Array[float]([])
