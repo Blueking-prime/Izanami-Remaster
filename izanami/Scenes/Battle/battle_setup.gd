@@ -6,6 +6,7 @@ class_name BattleSetup
 @export var choice: Control
 @export var skill_panel: Control
 @export var desc_box_parent: Control
+@export var action_log: Label
 
 @onready var players: Party = get_parent().players
 @onready var enemies = get_parent().enemies
@@ -20,6 +21,8 @@ class_name BattleSetup
 
 func actor_setup():
 	Global.description_box_parent = desc_box_parent
+	Global.action_log = action_log
+
 	enemies.load_enemies()
 	_player_party_setup()
 

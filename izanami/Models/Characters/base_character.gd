@@ -49,7 +49,7 @@ var stats: Dictionary = base_stats.duplicate()
 @export var hp: int:
 	set(value):
 		hp = value
-		#print(hp, ' ', value, ' ', max_hp)
+		#Global.print_to_log(hp, ' ', value, ' ', max_hp)
 		_update_hp_bar()
 
 @export var ATK: float = 1
@@ -64,7 +64,7 @@ func _ready() -> void:
 
 func load_character():
 	#stats = base_stats
-	#print(base_stats, ' ', stats)
+	#Global.print_to_log(base_stats, ' ', stats)
 	update_stats()
 	hp = max_hp
 	#pointer.set_position(Vector2(0, -130))
@@ -76,13 +76,13 @@ func load_character():
 		#pointer.set_texture(load("res://Assets/right_arrow.svg"))
 	#else:
 		#pointer.set_texture(load("res://Assets/left_arrow.svg"))
-	#print(name, pointer.position)
-	#print(hp)
-	#print("ROOT STATS", root_stats)
-	#print("BASE STATS", base_stats)
-	#print("STATS", stats)
-	#print(skills.get_skills())
-	#print(skills.get_skills()[1].action(self, self))
+	#Global.print_to_log(name, pointer.position)
+	#Global.print_to_log(hp)
+	#Global.print_to_log("ROOT STATS", root_stats)
+	#Global.print_to_log("BASE STATS", base_stats)
+	#Global.print_to_log("STATS", stats)
+	#Global.print_to_log(skills.get_skills())
+	#Global.print_to_log(skills.get_skills()[1].action(self, self))
 
 func _update_hp_bar():
 	if hp_bar:
@@ -123,7 +123,6 @@ func get_skills():
 
 func use_skill(skill_id, _target):
 	var skill: Skill = get_skills()[skill_id]
-	print(skill, _target)
 	skill.action(self, _target)
 
 
@@ -138,11 +137,11 @@ func use_item(item_name, _target):
 
 func guard():
 	DEF *= 2
-	print('%s braces for impact' % [character_name])
+	Global.print_to_log('%s braces for impact' % [character_name])
 
 func damage(value: float):
 	value /= DEF
-	print('%s takes %f damage!' % [character_name, value])
+	Global.print_to_log('%s takes %f damage!' % [character_name, value])
 	if value < hp:
 		hp -= value
 	else:
@@ -151,12 +150,12 @@ func damage(value: float):
 
 func heal(value: float):
 	hp += value
-	print(' %s healed %f HP' % [character_name, value])
+	Global.print_to_log(' %s healed %f HP' % [character_name, value])
 	if hp > max_hp:
 		hp = max_hp
 
 func die():
-	print('%s is dead' % [character_name])
+	Global.print_to_log('%s is dead' % [character_name])
 	alive = false
 
 func save() -> CharacterSaveData:

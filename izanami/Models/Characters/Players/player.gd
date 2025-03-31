@@ -83,14 +83,14 @@ func update_derived_stats(current_max: Array):
 
 func level_up(value):
 	xp += value
-	print(name, " gained ", xp, "EXP")
+	Global.print_to_log(character_name + " gained " + str(xp) + "EXP")
 	if xp < level_up_xp:
 		return
 
 	if lvl >= level_cap:
 		return
 
-	print(name, " leveled up!")
+	Global.print_to_log(character_name + " leveled up!")
 
 	xp -= level_up_xp
 	lvl += 1
@@ -110,12 +110,12 @@ func _update_sp_bar():
 		sp_bar_text.text = str(sp, ' / ', max_sp)
 
 func consume_sp(value: float):
-	#print('sp', sp)
+	#Global.print_to_log('sp', sp)
 	if sp <= 0:
-		print('Out of SP')
+		Global.print_to_log('Out of SP')
 		return false
 	sp -= value
-	#print('sp ', sp)
+	#Global.print_to_log('sp ', sp)
 	return true
 
 
@@ -151,12 +151,12 @@ func show_item_menu():
 
 func use_item(item_name, _target):
 	if item_name is int:
-		item_name = item_menu.list.get_item_text(active_selection)
+		item_name = item_menu.get_item_text(active_selection)
 	super.use_item(item_name, _target)
 	_display_items()
 
 func _on_item_list_selected(index: int) -> void:
-	Global.show_description(items.get_item(item_menu.list.get_item_text(index)))
+	Global.show_description(items.get_item(item_menu.get_item_text(index)))
 	Global.description_box.size_flags_stretch_ratio = 2
 
 
@@ -170,7 +170,7 @@ func reset_menu():
 
 
 func die():
-	print('And so you fall, your journey never to be completed')
+	Global.print_to_log('And so you fall, your journey never to be completed')
 	super.die()
 ## Add death screen and shit
 
@@ -201,5 +201,5 @@ func load_data(data: CharacterSaveData):
 	sp = data.sp
 
 #func _on_detector_object_hit(object_type: Variant) -> void:
-	#print(object_type, ' hit')
+	#Global.print_to_log(object_type, ' hit')
 	#emit_signal('object_hit', object_type)

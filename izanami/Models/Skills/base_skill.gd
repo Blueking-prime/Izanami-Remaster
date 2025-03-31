@@ -86,7 +86,7 @@ func action(obj: Base_Character, target: Variant) -> bool:
 		obj.damage(obj.max_hp * hp_cost)
 
 	if flavour_text != '':
-		print(flavour_text)
+		Global.print_to_log(flavour_text)
 
 	for stat in obj.stats:
 		if stat in stats:
@@ -98,7 +98,7 @@ func action(obj: Base_Character, target: Variant) -> bool:
 	value = stat_total * stat_multiplier[rank]
 
 	if Global.rand_chance(crit_chance[rank]):
-		print('CRIT!')
+		Global.print_to_log('CRIT!')
 		value *= crit_mult[rank]
 
 	if status_effect:
@@ -108,7 +108,7 @@ func action(obj: Base_Character, target: Variant) -> bool:
 		else:
 			_apply_status(obj, target)
 
-	#print('base value = ', value)
+	#Global.print_to_log('base value = ', value)
 	return true
 
 func _apply_status(obj: Base_Character, target: Base_Character):
@@ -128,7 +128,7 @@ func _apply_status(obj: Base_Character, target: Base_Character):
 
 		target.statuses.add_status(status)
 	else:
-		print('Miss on ' + target.character_name + '!')
+		Global.print_to_log('Miss on ' + target.character_name + '!')
 
 
 #func rand_chance(chance: float) -> bool:

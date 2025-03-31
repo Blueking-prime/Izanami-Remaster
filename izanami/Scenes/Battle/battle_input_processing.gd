@@ -85,6 +85,7 @@ func _set_target_by_index(event: InputEvent):
 
 func _cancel_targetting():
 	process_turns.current_player.reset_menu()
+	skill_panel.hide()
 	show_choice()
 	reset_target()
 
@@ -95,7 +96,6 @@ func switch_focus(x, y):
 	process_turns.actors[x].target()
 
 func switch_focus_aoe():
-	print('switched: ', target_group)
 	if target_group == process_turns.enemy_array:
 		target_group = process_turns.player_array
 	else:
@@ -115,6 +115,7 @@ func start_choosing():
 
 	process_turns.actors[index].target()
 	process_actions.target = process_turns.actors[index]
+
 func start_choosing_aoe():
 	targetting = true
 	aoe_targetting = true
@@ -139,8 +140,14 @@ func reset_target():
 
 func show_choice():
 	targetting = false
+	choice.show()
+	skill_panel.hide()
 	#choice.find_child("Attack").grab_focus()
 	dummy_option.grab_focus()
+
+func show_options():
+	skill_panel.grab_focus()
+	choice.hide()
 
 func _release_focus():
 	dummy_control.grab_focus()
@@ -155,10 +162,12 @@ func _on_attack_pressed() -> void:
 func _on_skills_pressed() -> void:
 	flag = 'Skills'
 	process_turns.current_player.show_skill_menu()
+	show_options()
 
 func _on_items_pressed() -> void:
 	flag = 'Items'
 	process_turns.current_player.show_item_menu()
+	show_options()
 
 func _on_guard_pressed() -> void:
 	flag = 'Guard'

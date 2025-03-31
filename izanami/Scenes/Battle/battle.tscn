@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://deahjbvovxuvn"]
+[gd_scene load_steps=14 format=3 uid="uid://deahjbvovxuvn"]
 
 [ext_resource type="Script" path="res://Scenes/Battle/battle.gd" id="1_ivyfm"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_a6unq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="3_x5jg1"]
 [ext_resource type="Script" path="res://Scenes/Battle/battle_input_processing.gd" id="4_1gqnq"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="4_5t7r8"]
+[ext_resource type="Script" path="res://Scenes/Battle/battle_key_processing.gd" id="5_6gl7k"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="5_6mwjl"]
 [ext_resource type="Script" path="res://Scenes/Battle/battle_turn_actions.gd" id="5_jqv44"]
 [ext_resource type="Script" path="res://Scenes/Battle/battle_actions.gd" id="6_mlml3"]
@@ -26,12 +27,13 @@ process_input = NodePath("Input")
 process_turns = NodePath("Turns")
 process_actions = NodePath("Actions")
 
-[node name="Setup" type="Node" parent="." node_paths=PackedStringArray("player_section", "choice", "skill_panel", "desc_box_parent")]
+[node name="Setup" type="Node" parent="." node_paths=PackedStringArray("player_section", "choice", "skill_panel", "desc_box_parent", "action_log")]
 script = ExtResource("3_dbox5")
 player_section = NodePath("../CanvasLayer/ActorContainer/PlayerSection")
 choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
 skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
 desc_box_parent = NodePath("../CanvasLayer/ActionBoxUI/VBox")
+action_log = NodePath("../CanvasLayer/ActionBoxUI/VBox/LogPanel/ScrollContainer/MarginContainer/LogText")
 
 [node name="Input" type="Node" parent="." node_paths=PackedStringArray("choice", "skill_panel", "dummy_control", "desc_box", "dummy_option")]
 script = ExtResource("4_1gqnq")
@@ -40,6 +42,10 @@ skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
 dummy_control = NodePath("../DummyControl")
 desc_box = NodePath("../CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
 dummy_option = NodePath("../CanvasLayer/ActionBoxUI/DummyOption")
+
+[node name="KeyProcessing" type="Node" parent="Input" node_paths=PackedStringArray("log_panel")]
+script = ExtResource("5_6gl7k")
+log_panel = NodePath("../../CanvasLayer/ActionBoxUI/VBox/LogPanel")
 
 [node name="Turns" type="Node" parent="." node_paths=PackedStringArray("turncount_label")]
 script = ExtResource("5_jqv44")
@@ -129,6 +135,29 @@ flat = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
+[node name="LogPanel" type="PanelContainer" parent="CanvasLayer/ActionBoxUI/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ActionBoxUI/VBox/LogPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ActionBoxUI/VBox/LogPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LogText" type="Label" parent="CanvasLayer/ActionBoxUI/VBox/LogPanel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="Actions" type="VBoxContainer" parent="CanvasLayer/ActionBoxUI/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -160,6 +189,7 @@ size_flags_vertical = 3
 text = "Run"
 
 [node name="SkillPanel" parent="CanvasLayer/ActionBoxUI/VBox" instance=ExtResource("11_bvqio")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 

@@ -2,6 +2,8 @@ extends Node
 
 class_name CharacterStatuses
 
+@export var icon_handler: CharacterStatusIconHandler
+
 @export var status_effects: Array[Status]
 @export var status_effects_scripts: Array[Script]
 
@@ -31,12 +33,12 @@ var counterstance: bool = false
 var low_health: bool  = false
 
 func test():
-	#print(test_effect)
+	#Global.print_to_log(test_effect)
 	#for i in 3:
 		#add_status(test_effect.new())
-	#print(status_effects)
+	#Global.print_to_log(status_effects)
 	#for i in 10:
-		#print(get_parent().hp)
+		#Global.print_to_log(get_parent().hp)
 		#await get_tree().create_timer(3).timeout
 		#trigger_status()
 		#expire_status()
@@ -69,7 +71,7 @@ func auto_ailment():
 
 func trigger_status():
 	for i in status_effects:
-		print(i.desc, ' proced')
+		Global.print_to_log(i.desc + ' proced')
 		i.trigger(get_parent())
 
 func expire_status():
@@ -79,7 +81,7 @@ func expire_status():
 
 func add_status(_status: Status):
 	if _status is not StatusBuff and _status.get_script() in status_effects_scripts:
-		print('No effect!')
+		Global.print_to_log('No effect!')
 		return
 
 	status_effects.append(_status)

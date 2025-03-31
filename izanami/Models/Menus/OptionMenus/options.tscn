@@ -7,6 +7,7 @@
 offset_right = 286.0
 offset_bottom = 221.0
 size_flags_vertical = 3
+focus_mode = 2
 follow_focus = true
 script = ExtResource("1_ikhej")
 button_container = NodePath("PanelContainer/MarginContainer/OptionContainer")

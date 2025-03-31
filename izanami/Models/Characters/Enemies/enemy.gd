@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func use_skill(skill_id, _target):
-	print(atk_lines[randi_range(0, atk_lines.size() - 1)])
+	Global.print_to_log(atk_lines[randi_range(0, atk_lines.size() - 1)])
 	super.use_skill(skill_id,_target)
 
 
@@ -48,7 +48,7 @@ func battle_ai(player_array: Array, enemy_array: Array):
 				target_actor = target_array.reduce(func(a, b): return a if a.hp < b.hp else b)
 
 		use_skill(skill_id, target_actor)
-	print('from ', character_name)
+	Global.print_to_log('from ' + character_name)
 
 func gold_drop():
 	var sum = 0

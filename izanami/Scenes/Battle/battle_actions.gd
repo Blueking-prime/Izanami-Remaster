@@ -11,11 +11,8 @@ var player: Player
 
 ## TURN FUNCTIONS
 func action():
-	print('path: action')
 	player = process_turns.current_player
-	print(player.character_name, ' is acting')
-	print(process_input.flag)
-	#print(player.stats)
+	Global.print_to_log(player.character_name + ' is acting')
 	match process_input.flag:
 		'Attack': await use_basic_attack()
 		'Skills': await use_skills()
@@ -36,22 +33,26 @@ func action():
 ## ACTION MENU FUNCTIONS
 func use_basic_attack():
 	player.use_skill(0, target)
+	await get_tree().create_timer(1).timeout
 
 func use_skills():
 	player.use_skill(player.active_selection, target)
+	await get_tree().create_timer(1).timeout
 
 func use_items():
 	player.use_item(player.active_selection, target)
+	await get_tree().create_timer(1).timeout
 
 func use_guard():
 	player.guard()
+	await get_tree().create_timer(1).timeout
 
 func use_run():
 	if Global.rand_chance(player.stats['AGI'] / _calc_enemy_speed()):
-		print('You escaped')
+		Global.print_to_log('You escaped')
 		setup.exit_battle("run", 0)
 	else:
-		print('You failed to escape')
+		Global.print_to_log('You failed to escape')
 
 ## AUX FUNCTIONS
 func _calc_enemy_speed() -> int:

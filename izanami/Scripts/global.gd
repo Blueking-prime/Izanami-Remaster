@@ -15,6 +15,7 @@ var description_box_parent: Node
 var description_box: Control
 var shop_menu: Control
 var text_box: Control
+var action_log: Label
 
 var textbox_response: int
 
@@ -131,6 +132,13 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 	if not persist:
 		await next
 		text_box.queue_free()
+
+
+func print_to_log(text: Variant):
+	if text is String:
+		action_log.text += '\n' + text
+	else :
+		action_log.text += '\n' + str(text)
 
 
 func show_description(object: Resource) -> void:
