@@ -3,6 +3,7 @@ extends MarginContainer
 class_name BattleSprite
 
 @export var nametag: Label
+@export var status_icons: GridContainer
 @export var battle_sprite: TextureRect
 @export var pointer: TextureRect
 @export var indicator: TextureRect

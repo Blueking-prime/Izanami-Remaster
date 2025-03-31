@@ -53,6 +53,7 @@ enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg", "res:
 [global_group]
 
 rebinds=""
+status_icons=""
 
 [godot_resource_groups]
 

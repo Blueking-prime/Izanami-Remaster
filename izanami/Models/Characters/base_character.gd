@@ -9,6 +9,8 @@ extends CharacterBody2D
 
 @export var nametag: Label
 
+@export var status_icons: GridContainer
+
 @export var hp_bar: ProgressBar
 @export var hp_bar_text: Label
 @export var sp_bar: ProgressBar

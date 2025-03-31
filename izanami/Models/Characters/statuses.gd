@@ -86,7 +86,11 @@ func add_status(_status: Status):
 
 	status_effects.append(_status)
 	status_effects_scripts.append(_status.get_script())
+	if _status.get_script() not in [restore]:
+		icon_handler.add_icon(_status)
 
 func remove_status(_status: Status):
+	icon_handler.remove_icon(_status)
+
 	status_effects.erase(_status)
 	status_effects_scripts.erase(_status.get_script())

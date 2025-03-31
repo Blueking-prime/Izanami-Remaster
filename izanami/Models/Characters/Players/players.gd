@@ -96,6 +96,7 @@ func place_characters_in_battle():
 		sprite.sp_bar_text.text = str(i.sp) + ' / ' + str(i.max_sp)
 
 		i.nametag = sprite.nametag
+		i.status_icons = sprite.status_icons
 		i.hp_bar = sprite.hp_bar
 		i.hp_bar_text = sprite.hp_bar_text
 		i.sp_bar = sprite.sp_bar

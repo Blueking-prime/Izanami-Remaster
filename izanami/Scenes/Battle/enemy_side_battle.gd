@@ -48,6 +48,7 @@ func place_charscters():
 		sprite.nametag.text = i.battle_sprite.nametag.text
 		sprite.hp_bar_text.text = str(i.hp) + ' / ' + str(i.max_hp)
 
+		i.status_icons = sprite.status_icons
 		i.nametag = sprite.nametag
 		i.hp_bar = sprite.hp_bar
 		i.hp_bar_text = sprite.hp_bar_text

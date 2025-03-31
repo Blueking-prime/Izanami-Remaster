@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="2_1pw31"]
 [ext_resource type="Texture2D" uid="uid://dhk5om5486n8k" path="res://Assets/down-arrow-svgrepo-com.svg" id="3_j4uhy"]
 
-[node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "battle_sprite", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text")]
+[node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "status_icons", "battle_sprite", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text")]
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -12,6 +12,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 50
 script = ExtResource("1_o83ir")
 nametag = NodePath("VBox/NameTag")
+status_icons = NodePath("VBox/StatusIcons")
 battle_sprite = NodePath("VBox/BattleSprite")
 pointer = NodePath("VBox/BattleSprite/Pointer")
 indicator = NodePath("VBox/BattleSprite/Indicator")
@@ -24,6 +25,11 @@ sp_bar_text = NodePath("VBox/SPBar/SPBarText")
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+
+[node name="StatusIcons" type="GridContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 6
 
 [node name="NameTag" type="Label" parent="VBox"]
 layout_mode = 2
