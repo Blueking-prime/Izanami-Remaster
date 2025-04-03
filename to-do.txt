@@ -10,7 +10,7 @@ BUG FIXES
 - [x] Fix loading scene crashing using button
 - [x] Fix spawning in wall after load
 TASKS (WORKABLE)
-- [ ] Convert map data to use vector2 for coordinates
+- [X] Convert map data to use vector2 for coordinates
 - [ ] implement graphics settings
 - [ ] Implement accessibility settings
 - [x] Add "escape" to church

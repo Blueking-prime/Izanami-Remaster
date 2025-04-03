@@ -46,7 +46,11 @@ var stats: Dictionary = base_stats.duplicate()
 
 @export var max_hp: int:
 	get():
-		return (stats['END'] * 10) + (stats['WIS'] * 3) + (lvl * 15)
+		var _max_hp = (stats['END'] * 10) + (stats['WIS'] * 3) + (lvl * 15)
+		if _max_hp > 0:
+			return _max_hp
+		else:
+			return 1
 
 @export var hp: int:
 	set(value):

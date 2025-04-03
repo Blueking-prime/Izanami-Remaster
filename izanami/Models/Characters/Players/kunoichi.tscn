@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cekw612a8vovg"]
+
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_5ywah"]
+[ext_resource type="Resource" uid="uid://tro4amab83rb" path="res://Models/Skills/SkillGroups/kunoichi_skills.tres" id="2_yqrun"]
+
+[node name="Kunoichi" instance=ExtResource("1_5ywah")]
+classname = &"Kunoichi"
+root_stats = {
+"AGI": 4,
+"END": 1,
+"GUI": 4,
+"INT": 1,
+"STR": 1,
+"WIS": 1
+}
+level_stats = ["GUI", "AGI"]
+desc = ""
+
+[node name="Gear" parent="." index="3"]
+player_gear_data = null
+
+[node name="Skills" parent="." index="4"]
+skill_group = ExtResource("2_yqrun")
+
+[node name="Items" parent="." index="5"]
+item_group = null
+
+[editable path="BattleSprite"]

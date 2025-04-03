@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=4 format=3 uid="uid://rmfmtgyn4ykr"]
+
+[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_rj1j2"]
+[ext_resource type="Script" path="res://Models/Statuses/Buffs/Runes/flare_rune.gd" id="1_y32uf"]
+[ext_resource type="Script" path="res://Models/Statuses/Buffs/Runes/rune.gd" id="2_n5ku3"]
+
+[resource]
+script = ExtResource("1_rj1j2")
+element = &""
+status_effectiveness = 1.5
+multi_hit = false
+multi_hit_max = 1
+multi_hit_chance = 0.5
+name = &"Diazone Wheel"
+stats = Array[StringName]([&"STR", &"INT"])
+stat_multiplier = Array[float]([1.0, 2.0, 3.0])
+lvl_requirement = 1
+conditions = Array[Script]([ExtResource("1_y32uf"), ExtResource("2_n5ku3")])
+accuracy = Array[float]([1.0, 1.0, 1.0])
+rank = 0
+cost = 0
+hp_cost = 0.0
+flavour_text = ""
+desc = "Deal 10-20-30 Pot AOE (INT+STR) of your current Rune"
+type = &""
+crit_chance = Array[float]([0.2, 0.2, 0.2])
+crit_mult = Array[float]([2.0, 2.0, 2.0])
+boost = Array[Vector2]([Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)])
+effect_duration = Array[int]([3, 3, 3])
+effect_magnitude = Array[float]([])
+effect_mag_stats = Array[StringName]([])
+effect_chance = Array[float]([1.0, 1.0, 1.0])
+aoe = true
+universal = false
+random_target = false
+target_no = 1
+targetable = true

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://c1sq61kgkmx03"]
+
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_u81xv"]
+
+[resource]
+script = ExtResource("1_u81xv")
+base_folder = "res://Models/Skills/Doctor"
+includes = Array[String]([])
+excludes = Array[String]([])
+paths = Array[String]([])
