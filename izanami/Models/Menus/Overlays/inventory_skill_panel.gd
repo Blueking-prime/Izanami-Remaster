@@ -41,7 +41,7 @@ func show_target_selector():
 	target_selector.clear()
 	for i in players.party:
 		target_selector.add_icon_item(
-			i.battle_texture.texture,
+			i.battle_sprite_texture.texture,
 			i.character_name,
 		)
 

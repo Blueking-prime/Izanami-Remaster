@@ -26,7 +26,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionMenu" type="VBoxContainer" parent="HBoxContainer" node_paths=PackedStringArray("heading_name", "heading_q1", "heading_q2", "options")]
+[node name="OptionMenu" type="VBoxContainer" parent="HBoxContainer" node_paths=PackedStringArray("heading_name", "heading_q1", "heading_q2")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 10.0
@@ -34,7 +34,6 @@ script = ExtResource("2_58jsb")
 heading_name = NodePath("Heading/MarginContainer/HBoxContainer/NameLabel")
 heading_q1 = NodePath("Heading/MarginContainer/HBoxContainer/Q1Label")
 heading_q2 = NodePath("Heading/MarginContainer/HBoxContainer/Q2label")
-options = NodePath("")
 
 [node name="Heading" type="PanelContainer" parent="HBoxContainer/OptionMenu"]
 layout_mode = 2
@@ -74,9 +73,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 162
 
-[node name="Options" type="BoxContainer" parent="HBoxContainer/OptionMenu" node_paths=PackedStringArray("button_container")]
+[node name="Options" type="ScrollContainer" parent="HBoxContainer/OptionMenu" node_paths=PackedStringArray("button_container")]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 script = ExtResource("3_1pypf")
 button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
 option_scene = ExtResource("4_0lnjb")

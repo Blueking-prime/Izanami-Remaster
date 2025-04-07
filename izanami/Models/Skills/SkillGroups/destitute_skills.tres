@@ -7,4 +7,4 @@ script = ExtResource("1_mutc2")
 base_folder = "res://Models/Skills/Destitute"
 includes = Array[String]([])
 excludes = Array[String]([])
-paths = Array[String]([])
+paths = Array[String](["res://Models/Skills/Destitute/desperate_maul.tres", "res://Models/Skills/Destitute/wild_slash.tres"])

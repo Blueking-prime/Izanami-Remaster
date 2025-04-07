@@ -57,4 +57,3 @@ text = "Create New Save"
 
 [editable path="SaveWindow/CanvasLayer/SaveMenu"]
 [editable path="SaveWindow/CanvasLayer/SaveMenu/Options"]
-[editable path="SaveWindow/CanvasLayer/SaveMenu/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]

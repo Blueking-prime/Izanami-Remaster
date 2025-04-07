@@ -31,10 +31,10 @@ desc = "A named shade"
 [node name="BattleSprite" parent="." index="0"]
 visible = false
 
-[node name="BattleSprite" parent="BattleSprite/VBox" index="1"]
+[node name="BattleSprite" parent="BattleSprite/VBox" index="2"]
 texture = ExtResource("5_yd6jm")
 
-[node name="SPBar" parent="BattleSprite/VBox" index="3"]
+[node name="SPBar" parent="BattleSprite/VBox" index="4"]
 visible = true
 
 [node name="DungeonSprite" parent="." index="1"]

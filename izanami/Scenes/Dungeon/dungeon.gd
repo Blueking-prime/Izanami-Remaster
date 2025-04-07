@@ -188,6 +188,12 @@ func reset_from_battle():
 	overlay.show()
 
 
+func size() -> Vector2:
+	return walls.get_used_rect().size
+
+func center() -> Vector2:
+	return walls.center()
+
 ## SAVE AND LOAD LOGIC
 func save() -> DungeonSaveData:
 	var save_data: DungeonSaveData = DungeonSaveData.new()

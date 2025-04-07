@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://twvv0wexmurt"]
 
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="1_ikhej"]
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="1_i7pai"]
 [ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="1_s55kt"]
 
 [node name="Options" type="ScrollContainer" node_paths=PackedStringArray("button_container")]
@@ -9,7 +9,7 @@ offset_bottom = 221.0
 size_flags_vertical = 3
 focus_mode = 2
 follow_focus = true
-script = ExtResource("1_ikhej")
+script = ExtResource("1_i7pai")
 button_container = NodePath("PanelContainer/MarginContainer/OptionContainer")
 option_scene = ExtResource("1_s55kt")
 

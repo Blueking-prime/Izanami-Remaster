@@ -7,4 +7,4 @@ script = ExtResource("1_12qky")
 base_folder = "res://Models/Skills/Kunoichi"
 includes = Array[String]([])
 excludes = Array[String]([])
-paths = Array[String]([])
+paths = Array[String](["res://Models/Skills/Kunoichi/feng_shui_assasination.tres"])

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_w8ja1")
-base_folder = ""
+base_folder = "res://Models/Skills/Maken"
 includes = Array[String]([])
 excludes = Array[String]([])
-paths = Array[String]([])
+paths = Array[String](["res://Models/Skills/Maken/diazone_wheel.tres"])

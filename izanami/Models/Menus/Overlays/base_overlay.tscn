@@ -127,6 +127,12 @@ size_flags_vertical = 3
 text = "Inventory (I)"
 icon = ExtResource("3_6kcpy")
 
+[node name="MapButton" type="Button" parent="MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Map (M)"
+icon = ExtResource("3_6kcpy")
+
 [node name="SaveButton" type="Button" parent="MenuButtons"]
 layout_mode = 2
 text = "Save (V)"
@@ -143,6 +149,7 @@ text = "Quit (Q)"
 [connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
 [connection signal="pressed" from="MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="MenuButtons/MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="MenuButtons/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="MenuButtons/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]

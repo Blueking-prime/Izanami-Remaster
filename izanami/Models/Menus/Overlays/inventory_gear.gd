@@ -32,7 +32,7 @@ func show_target_selector():
 	target_selector.clear()
 	for i in players.party:
 		target_selector.add_icon_item(
-			i.battle_texture.texture,
+			i.battle_sprite_texture.texture,
 			i.character_name,
 			i.gear.gear_dict.head.name if i.gear.gear_dict.head else ' ',
 			i.gear.gear_dict.body.name if i.gear.gear_dict.body else ' ',

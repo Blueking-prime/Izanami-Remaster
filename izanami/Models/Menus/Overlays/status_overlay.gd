@@ -43,7 +43,6 @@ func create_card(player: Player):
 		else: card[slot].text = ''
 
 	card.description.text = player.desc
-	card.status_effect.text = player.status_effect
 
 	player_container.add_child(card)
 

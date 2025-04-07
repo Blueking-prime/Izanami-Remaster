@@ -14,6 +14,7 @@ class_name UIOverlay
 @export var settings_menu: Control
 @export var status_menu: StatusOverlay
 
+@export var map: Map
 
 var players: Party
 var curr_menu: Control
@@ -32,6 +33,9 @@ func _input(event: InputEvent) -> void:
 		_on_load_button_pressed()
 	elif event.is_action_pressed("quit_key"):
 		_on_quit_button_pressed()
+	elif event.is_action_pressed("map_key"):
+		_on_map_button_pressed()
+
 
 	elif event.is_action_pressed("switch_leader_key"):
 		status_menu._on_switch_button_pressed()
@@ -47,6 +51,7 @@ func load_ui_elements():
 	player_status.display_player_data()
 	coin_counter.text = str(players.gold)
 	mag_counter.text = str(players.mag)
+	map.setup_map()
 
 
 func _on_inventory_button_pressed() -> void:
@@ -75,7 +80,6 @@ func _on_status_button_pressed() -> void:
 		_clear_visible_menus()
 		status_menu.show()
 
-
 func _on_save_button_pressed() -> void:
 	if not Global.player_party.chased:
 		SaveAndLoad.save_window.save_state = true
@@ -97,3 +101,13 @@ func _on_visibility_changed() -> void:
 		set_process_input(true)
 	else:
 		set_process_input(false)
+
+
+func _on_map_button_pressed() -> void:
+	Global.player_party.freeze()
+
+	map.setup_map()
+	if map.visible:
+		map.hide_map()
+	else:
+		map.show_map()

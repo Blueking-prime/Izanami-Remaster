@@ -102,7 +102,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="EquipTargetSelector" type="BoxContainer" parent="." node_paths=PackedStringArray("button_container")]
+[node name="EquipTargetSelector" type="ScrollContainer" parent="." node_paths=PackedStringArray("button_container")]
 visible = false
 layout_mode = 0
 offset_left = 1006.0
@@ -110,6 +110,8 @@ offset_top = 131.0
 offset_right = 1728.0
 offset_bottom = 176.0
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 script = ExtResource("7_hc3fu")
 button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
 option_scene = ExtResource("8_5pjv8")
@@ -135,7 +137,7 @@ theme_override_constants/separation = 0
 [node name="Option" parent="EquipTargetSelector/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_5pjv8")]
 layout_mode = 2
 
-[node name="ItemTargetSelector" type="BoxContainer" parent="." node_paths=PackedStringArray("button_container")]
+[node name="ItemTargetSelector" type="ScrollContainer" parent="." node_paths=PackedStringArray("button_container")]
 visible = false
 layout_mode = 0
 offset_left = 1006.0
@@ -143,6 +145,8 @@ offset_top = 131.0
 offset_right = 1728.0
 offset_bottom = 176.0
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 script = ExtResource("7_hc3fu")
 button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
 option_scene = ExtResource("8_5pjv8")
@@ -168,7 +172,7 @@ theme_override_constants/separation = 0
 [node name="Option" parent="ItemTargetSelector/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_5pjv8")]
 layout_mode = 2
 
-[node name="SkillTargetSelector" type="BoxContainer" parent="." node_paths=PackedStringArray("button_container")]
+[node name="SkillTargetSelector" type="ScrollContainer" parent="." node_paths=PackedStringArray("button_container")]
 visible = false
 layout_mode = 0
 offset_left = 1006.0
@@ -176,6 +180,8 @@ offset_top = 131.0
 offset_right = 1728.0
 offset_bottom = 176.0
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 script = ExtResource("7_hc3fu")
 button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
 option_scene = ExtResource("8_5pjv8")
@@ -207,10 +213,7 @@ layout_mode = 2
 
 [editable path="TabContainer/Items"]
 [editable path="TabContainer/Items/Options"]
-[editable path="TabContainer/Items/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]
 [editable path="TabContainer/Gear"]
 [editable path="TabContainer/Gear/Options"]
-[editable path="TabContainer/Gear/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]
 [editable path="TabContainer/Misc"]
 [editable path="TabContainer/Misc/Options"]
-[editable path="TabContainer/Misc/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]
