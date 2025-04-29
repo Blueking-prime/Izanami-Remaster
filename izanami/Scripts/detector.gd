@@ -28,7 +28,7 @@ func _update_tile_collision(mask):
 	if mask in checked_masks:
 		var sig = 'hit_' + mask.to_lower()
 		emit_signal(sig, collided_tile_coords)
-		print(sig, collided_tile_coords)
+		#print(sig, collided_tile_coords)
 
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:

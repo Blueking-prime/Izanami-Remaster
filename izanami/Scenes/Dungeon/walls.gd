@@ -2,11 +2,11 @@ extends TileMapLayer
 
 class_name DungeonObjects
 
-@onready var map: DungeonMap = get_parent().get_parent().map
+@onready var map: DungeonMap = get_parent().get_parent().get_parent().map
 
-@onready var player: Player = get_parent().get_parent().player
-@onready var players: Party = get_parent().get_parent().players
-@onready var enemy_types: ResourceGroup = get_parent().get_parent().enemy_types
+@onready var player: Player = get_parent().get_parent().get_parent().player
+@onready var players: Party = get_parent().get_parent().get_parent().players
+@onready var enemy_types: ResourceGroup = get_parent().get_parent().get_parent().enemy_types
 
 @export var treasure_atlas_coords: Vector2i
 @export var treasure_source_id: int
@@ -187,9 +187,7 @@ func load_enemies(enemy_data: Array[CharacterSaveData]):
 
 func check_collisions():
 	Global.player_party.leader.hitbox.check_overlap(self)
-	print(enemy_nodes)
 	for i in enemy_nodes:
-		print(i)
 		i.hitbox.check_overlap(self)
 
 func center() -> Vector2i:

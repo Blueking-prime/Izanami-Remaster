@@ -2,24 +2,43 @@ class_name Enemy
 
 extends Base_Character
 
+@export var nav_agent: NavigationAgent2D
+@export var path_switch_timer: Timer
+
 @export var atk_lines: Array = []
 @export var speed: int
+@export var freeze: bool = false
 
 @export var heal_threshold: float = 0.8
 
 var player: Player
 var chase_player: bool = false
+var target_position: Vector2
 
 func  _ready() -> void:
 	ally = -1
 	super()
+	_on_navigation_agent_2d_navigation_finished()
 
 func _physics_process(delta: float) -> void:
+	if freeze:
+		return
+
+	var direction = Vector2()
+
 	if chase_player:
 		if not Global.player_party.chased: Global.player_party.chased = true
+		target_position = player.global_position
 
-		velocity = position.direction_to(player.global_position) * speed * delta * 1000
-		move_and_slide()
+	nav_agent.target_position = target_position
+
+	direction = nav_agent.get_next_path_position() - global_position
+	direction = direction.normalized()
+
+	velocity = direction * speed * delta * 1000
+	#velocity = position.direction_to(player.global_position) * speed * delta * 1000
+
+	move_and_slide()
 
 func use_skill(skill_id, _target):
 	Global.print_to_log(atk_lines[randi_range(0, atk_lines.size() - 1)])
@@ -67,3 +86,12 @@ func exp_drop():
 		sum += stats[i]
 
 	return sum * 9
+
+
+func _on_navigation_agent_2d_navigation_finished() -> void:
+	target_position = Vector2(randi_range(0, 1000), randi_range(0, 1000))
+	path_switch_timer.start()
+
+
+func _on_path_switch_timer_timeout() -> void:
+	target_position = Vector2(randi_range(0, 1000), randi_range(0, 1000))

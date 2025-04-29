@@ -8,6 +8,7 @@ GOALS
 - [ ] Add status effect icons
 
 BUG FIXES
+- [ ] Fix enemies sometimes mimicking player movement and thus stopping random walk
 - [x] Fix dungeon camera offset (Test by inspecting party node)
 - [x] Prevent duplicate key assignment
 - [x] Fix loading scene crashing using button
@@ -25,7 +26,7 @@ TASKS (WORKABLE)
 - [ ] Add character creator screen
 - [x] Add function to change the background for CGs
 - [x] Add option to disable escaping from forced battles
-- [ ] Add enemy random walk pattern
+- [x] Add enemy random walk pattern
 - [x] Add animation delay to combat
 - [ ] Add POT variable to skill descriptions (or add rank and let them figure it out)
 - [ ] Add status ailments to overlay

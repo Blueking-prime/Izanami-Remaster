@@ -35,10 +35,10 @@ func get_overlaps() -> Array:
 
 func check() -> bool:
 	var colliders: Array = []
-	print(get_overlaps())
+	#print(get_overlaps())
 	for i in get_overlaps():
 		colliders.append(i.collider)
-	print(get_parent(), colliders)
+	#print(get_parent(), colliders)
 	if detect_mask in colliders:
 		return true
 	else:

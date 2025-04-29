@@ -8,10 +8,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_uk6gu"]
 radius = 95.021
 
-[node name="Enemy" instance=ExtResource("1_m7q0y")]
+[node name="Enemy" node_paths=PackedStringArray("nav_agent", "path_switch_timer") instance=ExtResource("1_m7q0y")]
 script = ExtResource("2_43wjv")
+nav_agent = NodePath("NavigationAgent2D")
+path_switch_timer = NodePath("PathSwitchTimer")
 atk_lines = []
 speed = 15
+freeze = false
 heal_threshold = 0.8
 character_name = "Enemy"
 
@@ -33,7 +36,20 @@ script = ExtResource("4_wf7g7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0"]
 shape = SubResource("CircleShape2D_uk6gu")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
+path_postprocessing = 1
+simplify_path = true
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="PathSwitchTimer" type="Timer" parent="." index="8"]
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+
 [connection signal="body_shape_entered" from="Detector" to="Detector" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Detector" to="Detector" method="_on_body_shape_exited"]
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="timeout" from="PathSwitchTimer" to="." method="_on_path_switch_timer_timeout"]
 
 [editable path="BattleSprite"]

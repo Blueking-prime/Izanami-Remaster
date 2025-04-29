@@ -16,6 +16,7 @@ var dungeon_sample = [
 @export var walls: DungeonObjects
 
 @export var players: Party
+@export var navigation_region: NavigationRegion2D
 
 @export var overlay: UIOverlay
 @export var camera: Camera2D
@@ -79,6 +80,22 @@ func load_scene():
 
 	camera.players = players
 	camera.init_camera()
+
+	setup_navigation_region()
+
+func setup_navigation_region():
+	var vertices = PackedVector2Array([
+		Vector2(0, 0),
+		Vector2(0, height)     * 2 * map.upscale_factor * 16,
+		Vector2(width, height) * 2 * map.upscale_factor * 16,
+		Vector2(width, 0)      * 2 * map.upscale_factor * 16
+	])
+
+	navigation_region.navigation_polygon.clear_outlines()
+	navigation_region.navigation_polygon.add_outline(vertices)
+	NavigationServer2D.bake_from_source_geometry_data(navigation_region.navigation_polygon, NavigationMeshSourceGeometryData2D.new());
+
+	navigation_region.bake_navigation_polygon()
 
 func player_party_setup():
 	players.show()
@@ -162,6 +179,8 @@ func _on_detector_hit_chest(coords) -> void:
 func initiate_battle():
 	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, MAX_ENEMIES)
 	overlay.hide()
+	for i in walls.enemy_nodes:
+		if is_instance_valid(i): i.freeze = true
 
 	var battle: Battle = Global.battle_scene.instantiate()
 	battle.no_of_enemies = no_of_enemies
@@ -170,7 +189,7 @@ func initiate_battle():
 	battle.enemy_group = enemy_types
 	#player.in_battle = true
 	get_node("Background").hide()
-	get_node("ObjectsSort/Walls").hide()
+	get_node("ObjectsSort/NavRegion/Walls").hide()
 	call_deferred("add_sibling", battle)
 
 
@@ -183,9 +202,12 @@ func _on_detector_hit_enemy(body: Enemy) -> void:
 
 func reset_from_battle():
 	get_node("Background").show()
-	get_node("ObjectsSort/Walls").show()
+	get_node("ObjectsSort/NavRegion/Walls").show()
 	overlay.load_ui_elements()
 	overlay.show()
+	for i in walls.enemy_nodes:
+		if is_instance_valid(i): i.freeze = false
+
 
 
 func size() -> Vector2:

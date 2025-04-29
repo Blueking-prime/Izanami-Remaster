@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ck8bsrl8idlci"]
+[gd_scene load_steps=22 format=3 uid="uid://ck8bsrl8idlci"]
 
 [ext_resource type="Script" path="res://Scenes/Dungeon/dungeon.gd" id="1_k4ybk"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="2_nbhj7"]
@@ -522,12 +522,18 @@ sources/1 = SubResource("TileSetAtlasSource_gx82d")
 sources/2 = SubResource("TileSetAtlasSource_w13t1")
 sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
-[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "background", "walls", "players", "overlay", "camera")]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x5j8p"]
+vertices = PackedVector2Array(2231.75, -91.1406, 2198.23, 1303.16, -128.844, 1342.82, -107.141, -124.852)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-117, -135, -139, 1353, 2208, 1313, 2242, -101)])
+
+[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "background", "walls", "players", "navigation_region", "overlay", "camera")]
 script = ExtResource("1_k4ybk")
 map = NodePath("Map")
 background = NodePath("Background")
-walls = NodePath("ObjectsSort/Walls")
+walls = NodePath("ObjectsSort/NavRegion/Walls")
 players = NodePath("ObjectsSort/Players")
+navigation_region = NodePath("ObjectsSort/NavRegion")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 camera = NodePath("Camera2D")
 width = 30
@@ -561,7 +567,10 @@ y_sort_enabled = true
 [node name="Players" parent="ObjectsSort" instance=ExtResource("10_4bew8")]
 visible = false
 
-[node name="Walls" type="TileMapLayer" parent="ObjectsSort"]
+[node name="NavRegion" type="NavigationRegion2D" parent="ObjectsSort"]
+navigation_polygon = SubResource("NavigationPolygon_x5j8p")
+
+[node name="Walls" type="TileMapLayer" parent="ObjectsSort/NavRegion"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_c3q0b")
 collision_visibility_mode = 1
