@@ -13,6 +13,7 @@ var player_party: Party
 
 var description_box_parent: Node
 var description_box: Control
+var background_texture: TextureRect
 var shop_menu: Control
 var text_box: Control
 var action_log: Label
@@ -132,6 +133,20 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 	if not persist:
 		await next
 		text_box.queue_free()
+
+func change_background(texture: Texture2D):
+	if texture:
+		if not is_instance_valid(background_texture):
+			background_texture = TextureRect.new()
+			background_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			background_texture.set_anchors_preset(Control.PRESET_FULL_RECT)
+			get_tree().current_scene.get_child(-1).get_child(0).add_sibling(background_texture)
+
+		background_texture.texture = texture
+	else:
+		if is_instance_valid(background_texture):
+			get_tree().current_scene.get_child(-1).remove_child(background_texture)
+			background_texture.queue_free()
 
 
 func print_to_log(text: Variant):

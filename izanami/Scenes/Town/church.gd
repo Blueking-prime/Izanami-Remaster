@@ -29,9 +29,9 @@ func process_status():
 	cost = 0
 	text_ = ''
 	for i in players.party:
-		if i.hp < i.max_hp:
+		if i.hp < i.max_hp and i is Player:
 			cost += i.lvl * 5
-			text_ += '%s -> HP : %d/%d | Status Effect : %s\n' % [i.name, i.hp, i.max_hp, i.status_effect]
+			text_ += '%s -> HP : %d/%d | Status Effect : %s\n' % [i.name, i.hp, i.max_hp, str(i.statuses.status_effects)]
 
 func display_status():
 	# Replace with dedicated UI

@@ -36,6 +36,8 @@ func battle_ai(player_array: Array, enemy_array: Array):
 
 	if skill.aoe:
 		use_skill(skill_id, target_array)
+		await get_tree().create_timer(1).timeout
+
 
 	else:
 		var target_actor = target_array[randi_range(0, target_array.size() - 1)]
@@ -48,6 +50,8 @@ func battle_ai(player_array: Array, enemy_array: Array):
 				target_actor = target_array.reduce(func(a, b): return a if a.hp < b.hp else b)
 
 		use_skill(skill_id, target_actor)
+		await get_tree().create_timer(1).timeout
+
 	Global.print_to_log('from ' + character_name)
 
 func gold_drop():

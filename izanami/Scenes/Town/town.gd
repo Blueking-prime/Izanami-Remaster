@@ -4,6 +4,7 @@ class_name Town
 
 @export var overlay: UIOverlay
 @export var back_button: Button
+@export var camera: Camera2D
 
 @export var church: Node
 @export var smithy: Node
@@ -36,6 +37,8 @@ func load_scene():
 		#print('Connect detector')
 	players.leader.detector.hit_building.connect(_check_building)
 
+	camera.players = players
+	camera.init_camera()
 	overlay.load_ui_elements()
 
 
@@ -52,6 +55,18 @@ func _check_building(node: Variant):
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("ui_end"):
 		#func_church()
+
+
+func size() -> Vector2:
+	# return walls.get_used_rect().size
+	# Replace with above when tilemap is created
+	return Vector2(100, 100)
+
+func center() -> Vector2:
+	#return walls.center()
+	# Replace with above when tilemap is created
+	return Vector2(500, 500)
+
 
 func save() -> TownSaveData:
 	var save_data: TownSaveData = TownSaveData.new()

@@ -175,6 +175,9 @@ func _on_guard_pressed() -> void:
 	process_actions.action()
 
 func _on_run_pressed() -> void:
+	if get_parent().forced:
+		Global.print_to_log('You cannot run!')
+		return
 	flag = 'Run'
 	_release_focus()
 	process_actions.action()

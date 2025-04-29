@@ -82,18 +82,27 @@ func _place_enemies():
 func _render_outer_walls():
 	var outer_walls: Array[Vector2i] = []
 	for i in range(-1, 2 * height):
+		var wall_block_left
 		outer_walls.append_array([
-			Vector2i(-1       , i),
-			Vector2i(-1       , i + 1),
-			Vector2i(2 * width, i),
-			Vector2i(2 * width, i + 1)
+			Vector2i(0            , i),
+			Vector2i(0            , i + 1),
+			Vector2i(-1           , i),
+			Vector2i(-1           , i + 1),
+			Vector2i(2 * width - 1, i),
+			Vector2i(2 * width - 1, i + 1),
+			Vector2i(2 * width    , i),
+			Vector2i(2 * width    , i + 1),
 		])
 	for i in range(-1, 2 * width):
 		outer_walls.append_array([
 			Vector2i(i    , -1),
 			Vector2i(i + 1, -1),
+			Vector2i(i    , 0),
+			Vector2i(i + 1, 0),
 			Vector2i(i    , 2 * height),
-			Vector2i(i + 1, 2 * height)
+			Vector2i(i + 1, 2 * height),
+			Vector2i(i    , 2 * height - 1),
+			Vector2i(i + 1, 2 * height - 1),
 		])
 
 	set_cells_terrain_connect(outer_walls, wall_terrain_set, wall_terrain, false)

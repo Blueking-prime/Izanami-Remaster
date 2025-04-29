@@ -544,7 +544,6 @@ editor_draw_drag_margin = true
 script = ExtResource("5_8o3tw")
 
 [node name="OverMap" type="Camera2D" parent="."]
-anchor_mode = 0
 enabled = false
 
 [node name="Map" type="Node" parent="."]

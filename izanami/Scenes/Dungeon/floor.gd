@@ -18,8 +18,8 @@ func draw_background():
 
 func _render_background_floor():
 	var all_tiles = []
-	for y in range(-5, height + 5):
-		for x in range(-5, width + 5):
+	for y in height:
+		for x in width:
 			var coord = Vector2i(x, y)
 			all_tiles.append_array([
 				coord * 2,

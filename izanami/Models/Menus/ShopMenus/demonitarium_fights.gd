@@ -28,7 +28,6 @@ func display_demons():
 			demons.get_or_add(enemy.name, {
 				'scene'			: i,
 				'stats'			: enemy.stats,
-				'element'		: enemy.element,
 				'sprite_texture': enemy.battle_sprite.battle_sprite.texture,
 				'lvl'			: enemy.lvl,
 				'price'			: enemy.stats.values().reduce(func(accum, x): return accum + (10 * x), 10)
@@ -53,7 +52,7 @@ func _process_desc_text(entry: Dictionary) -> String:
 
 	desc_text += '\n'
 
-	desc_text += str(entry.element) + '\n'
+	#desc_text += str(entry.element) + '\n'
 
 	desc_text += str(entry.lvl)
 

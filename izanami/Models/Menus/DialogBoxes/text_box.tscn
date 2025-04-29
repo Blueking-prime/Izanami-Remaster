@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://s3bvhf5ano50"]
 
 [node name="TextBox" type="PanelContainer"]
+z_index = 10
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.715

@@ -20,7 +20,7 @@ visible = false
 offset_top = -165.5
 offset_bottom = 165.5
 
-[node name="BattleSprite" parent="BattleSprite/VBox" index="1"]
+[node name="BattleSprite" parent="BattleSprite/VBox" index="2"]
 texture = ExtResource("3_l2v3y")
 
 [node name="DungeonSprite" parent="." index="1"]

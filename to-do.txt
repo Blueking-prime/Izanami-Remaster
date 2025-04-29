@@ -8,7 +8,7 @@ GOALS
 - [ ] Add status effect icons
 
 BUG FIXES
-- [ ] Fix dungeon camera offset (Test by inspecting party node)
+- [x] Fix dungeon camera offset (Test by inspecting party node)
 - [x] Prevent duplicate key assignment
 - [x] Fix loading scene crashing using button
 - [x] Fix spawning in wall after load
@@ -20,21 +20,24 @@ BUG FIXES
 - [x] Fix enemy name bugs
 
 TASKS (WORKABLE)
-- [ ] Implement accessibility settings
-- [ ] implement graphics settings
-- [ ] Add POT variable to skill descriptions (or add rank and let them figure it out)
 - [ ] Add skill upgrade menu
-- [ ] Add status ailments to overlay
-- [ ] Add status effect icons and hover to describe status
-- [ ] Add enemy random walk pattern
-- [ ] Add animation delay to combat
-- [ ] Change dungeon background to void and expand outer wall thickness
-- [ ] Remove overlay on camera
-- [ ] Add loading screens
-- [ ] Add function to change the background for CGs
 - [ ] Add adding and removing party members
 - [ ] Add character creator screen
-- [ ] Add option to disable escaping from battles
+- [x] Add function to change the background for CGs
+- [x] Add option to disable escaping from forced battles
+- [ ] Add enemy random walk pattern
+- [x] Add animation delay to combat
+- [ ] Add POT variable to skill descriptions (or add rank and let them figure it out)
+- [ ] Add status ailments to overlay
+- [ ] Add status effect icons and hover to describe status
+- [ ] Add option to have fixed dungeon floor layout 
+- [x] Change dungeon background to void and expand outer wall thickness
+- [x] Remove overlay on camera
+- [ ] Remove overlay on cutscene
+- [ ] Add loading screens
+- [ ] Set up warning box and confirmation box
+- [ ] Implement accessibility settings
+- [ ] implement graphics settings
 - [X] Convert map data to use vector2 for coordinates
 - [x] Add "escape" to church
 - [x] Add enemies chasing players in dungeon
