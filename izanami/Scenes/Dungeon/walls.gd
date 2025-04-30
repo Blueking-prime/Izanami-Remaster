@@ -82,7 +82,7 @@ func _place_enemies():
 func _render_outer_walls():
 	var outer_walls: Array[Vector2i] = []
 	for i in range(-1, 2 * height):
-		var wall_block_left
+		#var wall_block_left
 		outer_walls.append_array([
 			Vector2i(0            , i),
 			Vector2i(0            , i + 1),

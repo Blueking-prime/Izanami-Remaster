@@ -8,6 +8,7 @@ class_name Party
 @export var battle_sprite_scene: PackedScene
 @export var player_section: Control
 @export var player_scene: PackedScene
+@export var camera: Camera2D
 
 @export var gold: int
 @export var mag: int
@@ -36,14 +37,31 @@ func _ready() -> void:
 	load_party()
 
 func load_party():
-	party = get_children().filter(func(x): if x is Player: return x)
+	party = get_children().filter(func(x): if x is Player and is_instance_valid(x): return x)
 	for i in party:
 		# Store battle sprites in array to recall
 		sprites.append(i.battle_sprite)
 		i.hide()
-	leader = party[0]
-	leader.show()
 
+	if not leader or leader not in party:
+		leader = party[0]
+
+	leader.show()
+	#if camera: camera.init_camera()
+
+func add_to_party(player: Player):
+	add_child(player)
+	load_party()
+	player.gear.load_stock()
+
+func remove_from_party(player: Player):
+	# Add locked party members
+	if len(party) < 2:
+		print("Can't remove, party too small")
+		return
+	remove_child(player)
+	load_party()
+	player.gear.inventory = null
 
 ## BATTLE SCENE
 func battle_setup():
@@ -84,7 +102,6 @@ func battle_reset():
 	revert_sprites()
 
 	leader.show()
-
 
 func place_characters_in_battle():
 	for i in party:
@@ -136,6 +153,7 @@ func level_up(xp: int):
 	for i in party:
 		i.level_up(xp)
 
+# MOVEMENT HANDLING
 func freeze():
 	frozen = true
 	for i in party:
@@ -146,6 +164,7 @@ func unfreeze():
 	for i in party:
 		i.freeze_movement = false
 
+# SAVING AND LOADING
 func save() -> PartySaveData:
 	var save_data = PartySaveData.new()
 

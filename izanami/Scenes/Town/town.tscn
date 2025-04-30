@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=26 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/Town/town.gd" id="1_wpby1"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_5q81g"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://4u3w4pkmtm4h" path="res://Models/Menus/Overlays/map.tscn" id="17_5fa41"]
 [ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/Overlays/inventory_menu.tscn" id="17_wofi2"]
 [ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/Overlays/status_overlay.tscn" id="18_umf4j"]
+[ext_resource type="Script" path="res://Scenes/Town/test.gd" id="18_y17gc"]
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="19_ttql0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7phy7"]
 radius = 172.491
@@ -33,7 +35,10 @@ radius = 170.012
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cilw"]
 radius = 186.218
 
-[node name="Town" type="Node2D" node_paths=PackedStringArray("overlay", "back_button", "camera", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "crowley", "kobaneko", "white", "players")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bb3d0"]
+radius = 34.0147
+
+[node name="Town" type="Node2D" node_paths=PackedStringArray("overlay", "back_button", "camera", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "test", "crowley", "kobaneko", "white", "players")]
 script = ExtResource("1_wpby1")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 back_button = NodePath("CanvasLayer/BackButton")
@@ -44,6 +49,7 @@ apothecary = NodePath("Apothecary")
 dungeon = NodePath("Dungeon")
 demonitarium = NodePath("Demonitarium")
 palace = NodePath("Palace")
+test = NodePath("Test")
 crowley = NodePath("Demonitarium/Crowley")
 kobaneko = NodePath("Characters/Kobaneko")
 white = NodePath("Characters/White")
@@ -167,6 +173,17 @@ position = Vector2(1657, 821)
 [node name="Kobaneko" type="Node2D" parent="Characters"]
 
 [node name="White" type="Node2D" parent="Characters"]
+
+[node name="Test" type="StaticBody2D" parent="." node_paths=PackedStringArray("test_player")]
+position = Vector2(1468, 490)
+script = ExtResource("18_y17gc")
+test_player = NodePath("Player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Test"]
+shape = SubResource("CircleShape2D_bb3d0")
+
+[node name="Player" parent="Test" instance=ExtResource("19_ttql0")]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -12,6 +12,7 @@ class_name Town
 @export var dungeon: Node
 @export var demonitarium: Node
 @export var palace: Node
+@export var test: Node
 
 @export var crowley: Node
 @export var kobaneko: Node
@@ -51,6 +52,7 @@ func _check_building(node: Variant):
 		apothecary: await apothecary.main()
 		demonitarium: await demonitarium.main()
 		palace: await palace.main()
+		test: await test.main()
 
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("ui_end"):

@@ -37,7 +37,7 @@ position = Vector2(163, 0)
 classname = &"Elf"
 character_name = "P2"
 
-[node name="BattleSprite" parent="Player2/BattleSprite/VBox" index="1"]
+[node name="BattleSprite" parent="Player2/BattleSprite/VBox" index="2"]
 texture = ExtResource("7_442t2")
 
 [node name="DungeonSprite" parent="Player2" index="1"]

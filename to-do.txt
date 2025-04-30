@@ -22,7 +22,7 @@ BUG FIXES
 
 TASKS (WORKABLE)
 - [ ] Add skill upgrade menu
-- [ ] Add adding and removing party members
+- [x] Add adding and removing party members
 - [ ] Add character creator screen
 - [x] Add function to change the background for CGs
 - [x] Add option to disable escaping from forced battles
