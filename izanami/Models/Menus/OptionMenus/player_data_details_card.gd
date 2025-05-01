@@ -1,12 +1,9 @@
 extends PanelContainer
 
-class_name PlayerStatusCard
+class_name PlayerDetailsCard
 
-@export var nametag: Label
+@export var namefield: TextEdit
 @export var classname: Label
-
-@export var leader_icon: Control
-@export var icon: TextureRect
 
 @export var hpbar: ProgressBar
 @export var hpbar_text: Label
@@ -24,15 +21,9 @@ class_name PlayerStatusCard
 @export var body: Label
 @export var weapon: Label
 
-@export var description: Label
-
-@export var status_effect: Label
-
 @export var select_button: Button
 
-@export var extra_details_card: Control
-
-signal selected(node: PlayerStatusCard)
+signal selected(node: PlayerDetailsCard)
 
 func _on_button_pressed() -> void:
 	selected.emit(self)

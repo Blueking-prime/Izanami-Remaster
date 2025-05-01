@@ -175,6 +175,7 @@ position = Vector2(1657, 821)
 [node name="White" type="Node2D" parent="Characters"]
 
 [node name="Test" type="StaticBody2D" parent="." node_paths=PackedStringArray("test_player")]
+visible = false
 position = Vector2(1468, 490)
 script = ExtResource("18_y17gc")
 test_player = NodePath("Player")

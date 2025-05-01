@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://vxxdyg18tnqq"]
+
+[ext_resource type="Script" path="res://Models/Menus/Overlays/character_select.gd" id="1_kal2b"]
+[ext_resource type="PackedScene" uid="uid://c4jo6wqiakv6r" path="res://Models/Menus/OptionMenus/player_data_status_card.tscn" id="2_04xmx"]
+[ext_resource type="PackedScene" uid="uid://ckiwa6lyvqgds" path="res://Models/Characters/Players/destitute.tscn" id="2_jeb3m"]
+[ext_resource type="PackedScene" uid="uid://ckvlq77lwkf6g" path="res://Models/Characters/Players/doctor.tscn" id="3_x4rs5"]
+[ext_resource type="PackedScene" uid="uid://cekw612a8vovg" path="res://Models/Characters/Players/kunoichi.tscn" id="4_dgbw1"]
+[ext_resource type="PackedScene" uid="uid://djrcrookt0uto" path="res://Models/Characters/Players/maken.tscn" id="5_kjg8s"]
+[ext_resource type="PackedScene" uid="uid://df5fx0ke74ny7" path="res://Models/Characters/Players/ronin.tscn" id="6_iocr8"]
+[ext_resource type="PackedScene" uid="uid://cshuei3rcvrpb" path="res://Models/Characters/Players/scion.tscn" id="7_881no"]
+[ext_resource type="PackedScene" uid="uid://b4jilrknh2vja" path="res://Models/Characters/Players/shinobi.tscn" id="8_13ikf"]
+[ext_resource type="PackedScene" uid="uid://byjs8yxdcn2dv" path="res://Models/Menus/OptionMenus/player_data_details_card.tscn" id="10_hf6va"]
+
+[node name="CharacterSelect" type="Panel" node_paths=PackedStringArray("player_container", "player_node_container", "back_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kal2b")
+player_status_card_scene = ExtResource("2_04xmx")
+player_details_card_scene = ExtResource("10_hf6va")
+player_container = NodePath("ScrollContainer/HBoxContainer")
+player_node_container = NodePath("Classes")
+back_button = NodePath("BackButton")
+available_class_scenes = Array[PackedScene]([ExtResource("2_jeb3m"), ExtResource("3_x4rs5"), ExtResource("4_dgbw1"), ExtResource("5_kjg8s"), ExtResource("6_iocr8"), ExtResource("7_881no"), ExtResource("8_13ikf")])
+metadata/_edit_horizontal_guides_ = [-86.0]
+
+[node name="BackButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 150.0
+offset_bottom = 76.0
+text = "Back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -908.0
+offset_top = -335.0
+offset_right = 911.0
+offset_bottom = 335.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="PlayersStatus" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_04xmx")]
+layout_mode = 2
+
+[node name="Nametag" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer/TitleBox" index="0"]
+visible = false
+
+[node name="BARS" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="3"]
+visible = false
+
+[node name="HPBar" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="4"]
+visible = false
+
+[node name="SPBar" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="5"]
+visible = false
+
+[node name="STATSECTION" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="6"]
+visible = false
+
+[node name="StatsBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="7"]
+visible = false
+
+[node name="GEAR" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="8"]
+visible = false
+
+[node name="GearBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="9"]
+visible = false
+
+[node name="StatusBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="13"]
+visible = false
+
+[node name="Button" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="14"]
+visible = true
+
+[node name="PlayersDetails" parent="ScrollContainer/HBoxContainer" instance=ExtResource("10_hf6va")]
+layout_mode = 2
+
+[node name="Classes" type="Node" parent="."]
+
+[connection signal="pressed" from="BackButton" to="." method="_on_button_pressed"]
+
+[editable path="ScrollContainer/HBoxContainer/PlayersStatus"]

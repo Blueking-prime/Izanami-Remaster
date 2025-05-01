@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bs1rilljov5l4"]
 
-[ext_resource type="PackedScene" uid="uid://c4jo6wqiakv6r" path="res://Models/Menus/OptionMenus/players_data_status_card.tscn" id="1_4u0sc"]
+[ext_resource type="PackedScene" uid="uid://c4jo6wqiakv6r" path="res://Models/Menus/OptionMenus/player_data_status_card.tscn" id="1_4u0sc"]
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="1_75570"]
 [ext_resource type="Script" path="res://Models/Menus/Overlays/status_overlay.gd" id="1_b1odg"]
 [ext_resource type="Script" path="res://Models/Menus/DialogBoxes/heal_target_selector.gd" id="3_qmtvu"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4jo6wqiakv6r"]
 
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/player_data_status_card.gd" id="1_m8hd1"]
-[ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="2_pg2bh"]
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/player_data_status_card.gd" id="1_3dfbo"]
+[ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="2_acqo4"]
 
-[node name="PlayersStatus" type="PanelContainer" node_paths=PackedStringArray("nametag", "classname", "leader_icon", "icon", "hpbar", "hpbar_text", "spbar", "spbar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "description", "status_effect")]
-script = ExtResource("1_m8hd1")
+[node name="PlayersStatus" type="PanelContainer" node_paths=PackedStringArray("nametag", "classname", "leader_icon", "icon", "hpbar", "hpbar_text", "spbar", "spbar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "description", "status_effect", "select_button")]
+script = ExtResource("1_3dfbo")
 nametag = NodePath("MarginContainer/VBoxContainer/TitleBox/Nametag")
 classname = NodePath("MarginContainer/VBoxContainer/TitleBox/Class")
 leader_icon = NodePath("MarginContainer/VBoxContainer/TextureRect/LeaderTag")
@@ -24,6 +24,7 @@ body = NodePath("MarginContainer/VBoxContainer/GearBox/Gear/Label5")
 weapon = NodePath("MarginContainer/VBoxContainer/GearBox/Gear/Label6")
 description = NodePath("MarginContainer/VBoxContainer/DescBox/Description")
 status_effect = NodePath("MarginContainer/VBoxContainer/StatusBox/StatusEffect")
+select_button = NodePath("MarginContainer/VBoxContainer/Button")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -33,6 +34,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -58,7 +60,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
-texture = ExtResource("2_pg2bh")
+texture = ExtResource("2_acqo4")
 stretch_mode = 5
 
 [node name="LeaderTag" type="Label" parent="MarginContainer/VBoxContainer/TextureRect"]
@@ -303,10 +305,14 @@ size_flags_vertical = 6
 text = "Desc:"
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer/DescBox"]
+custom_minimum_size = Vector2(200, 150)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 size_flags_vertical = 6
+size_flags_stretch_ratio = 3.0
 text = "A named shade"
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="STATUSEFFECT" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -324,3 +330,10 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "None
 "
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Choose"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

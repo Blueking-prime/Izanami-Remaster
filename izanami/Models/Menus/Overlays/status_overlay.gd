@@ -51,7 +51,7 @@ func _clear_data_cards():
 	if children:
 		for i in children:
 			if is_instance_valid(i):
-				remove_child(i)
+				if is_ancestor_of(i): remove_child(i)
 				i.queue_free()
 
 
@@ -70,6 +70,7 @@ func show_target_selector():
 
 func choose_target(index: int):
 	players.leader = players.party[index]
+	players.load_party()
 	load_menu()
 	target_selector.hide()
 
