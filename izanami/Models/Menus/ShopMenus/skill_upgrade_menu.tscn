@@ -1,0 +1,137 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlt58862gge0u"]
+
+[ext_resource type="Script" path="res://Models/Menus/ShopMenus/skill_upgrade_menu.gd" id="1_sm2qp"]
+[ext_resource type="PackedScene" uid="uid://pgejhcs3y7ql" path="res://Models/Menus/OptionMenus/skill_upgrade_card.tscn" id="2_ehlhe"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_462p7"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Players" parent="." instance=ExtResource("3_462p7")]
+
+[node name="PanelContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.665
+anchor_right = 1.0
+anchor_bottom = 0.667
+offset_left = -0.160034
+offset_top = 78.0
+offset_right = -87.0
+offset_bottom = -6.10352e-05
+grow_horizontal = 0
+
+[node name="Heading" type="PanelContainer" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Heading"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Heading/MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "Player"
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Q1Label" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Rank"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Q2label" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "SkillCost"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SkillUpgradePanel" type="VBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("players", "desc_box_container", "desc_box_conatiner_next", "confrim_button")]
+layout_mode = 2
+script = ExtResource("1_sm2qp")
+skill_upgrade_card_scene = ExtResource("2_ehlhe")
+players = NodePath("../../../../Players")
+desc_box_container = NodePath("../../../../BoxContainer")
+desc_box_conatiner_next = NodePath("../../../../BoxContainer2")
+confrim_button = NodePath("../../../../ConfirmButton")
+metadata/_tab_index = 1
+
+[node name="Skills" parent="PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel" instance=ExtResource("2_ehlhe")]
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -812.0
+offset_top = -452.0
+offset_right = -86.0
+offset_bottom = -147.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BoxContainer2" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -812.0
+offset_top = -97.0
+offset_right = -86.0
+offset_bottom = 255.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -147.0
+offset_right = 256.0
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Confirm Upgrade"
+
+[connection signal="pressed" from="ConfirmButton" to="PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel" method="upgrade_skill"]

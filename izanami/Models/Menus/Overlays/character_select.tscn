@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vxxdyg18tnqq"]
+[gd_scene load_steps=12 format=3 uid="uid://vxxdyg18tnqq"]
 
 [ext_resource type="Script" path="res://Models/Menus/Overlays/character_select.gd" id="1_kal2b"]
 [ext_resource type="PackedScene" uid="uid://c4jo6wqiakv6r" path="res://Models/Menus/OptionMenus/player_data_status_card.tscn" id="2_04xmx"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cshuei3rcvrpb" path="res://Models/Characters/Players/scion.tscn" id="7_881no"]
 [ext_resource type="PackedScene" uid="uid://b4jilrknh2vja" path="res://Models/Characters/Players/shinobi.tscn" id="8_13ikf"]
 [ext_resource type="PackedScene" uid="uid://byjs8yxdcn2dv" path="res://Models/Menus/OptionMenus/player_data_details_card.tscn" id="10_hf6va"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="11_b1lsy"]
 
 [node name="CharacterSelect" type="Panel" node_paths=PackedStringArray("player_container", "player_node_container", "back_button")]
 anchors_preset = 15
@@ -20,10 +21,11 @@ grow_vertical = 2
 script = ExtResource("1_kal2b")
 player_status_card_scene = ExtResource("2_04xmx")
 player_details_card_scene = ExtResource("10_hf6va")
+available_class_scenes = Array[PackedScene]([ExtResource("2_jeb3m"), ExtResource("3_x4rs5"), ExtResource("4_dgbw1"), ExtResource("5_kjg8s"), ExtResource("6_iocr8"), ExtResource("7_881no"), ExtResource("8_13ikf")])
+player_party_scene = ExtResource("11_b1lsy")
 player_container = NodePath("ScrollContainer/HBoxContainer")
 player_node_container = NodePath("Classes")
 back_button = NodePath("BackButton")
-available_class_scenes = Array[PackedScene]([ExtResource("2_jeb3m"), ExtResource("3_x4rs5"), ExtResource("4_dgbw1"), ExtResource("5_kjg8s"), ExtResource("6_iocr8"), ExtResource("7_881no"), ExtResource("8_13ikf")])
 metadata/_edit_horizontal_guides_ = [-86.0]
 
 [node name="BackButton" type="Button" parent="."]

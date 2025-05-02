@@ -21,9 +21,11 @@ BUG FIXES
 - [x] Fix enemy name bugs
 
 TASKS (WORKABLE)
-- [ ] Add skill upgrade menu
+- [x] Add skill upgrade menu
+- [ ] Add descriptions to upgrade skills
 - [x] Add adding and removing party members
 - [x] Add character creator screen
+- [ ] Add warping between towns
 - [x] Add function to change the background for CGs
 - [x] Add option to disable escaping from forced battles
 - [x] Add enemy random walk pattern

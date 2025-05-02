@@ -43,10 +43,10 @@ func load_party():
 		sprites.append(i.battle_sprite)
 		i.hide()
 
-	if not leader or leader not in party:
+	if len(party) and (not leader or leader not in party):
 		leader = party[0]
 
-	leader.show()
+	if leader: leader.show()
 	#if camera: camera.init_camera()
 
 func add_to_party(player: Player):

@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://0hx0wuw1wgpb"]
+[gd_scene load_steps=5 format=3 uid="uid://pgejhcs3y7ql"]
 
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/inventory_skill_panel.gd" id="1_p4bdc"]
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/option_menu.gd" id="2_58jsb"]
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="3_1pypf"]
-[ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="4_0lnjb"]
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/skill_upgrade_card.gd" id="1_t36vu"]
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/option_menu.gd" id="2_3yg8k"]
+[ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="3_usy28"]
+[ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="4_ktt7j"]
 
 [node name="Skills" type="VBoxContainer" node_paths=PackedStringArray("options", "nametag")]
 offset_right = 192.0
 offset_bottom = 143.0
 size_flags_horizontal = 3
 focus_mode = 2
-script = ExtResource("1_p4bdc")
+script = ExtResource("1_t36vu")
 options = NodePath("HBoxContainer/OptionMenu/Options")
 nametag = NodePath("Player")
 
@@ -30,7 +30,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 10.0
-script = ExtResource("2_58jsb")
+script = ExtResource("2_3yg8k")
 heading_name = NodePath("Heading/MarginContainer/HBoxContainer/NameLabel")
 heading_q1 = NodePath("Heading/MarginContainer/HBoxContainer/Q1Label")
 heading_q2 = NodePath("Heading/MarginContainer/HBoxContainer/Q2label")
@@ -59,7 +59,7 @@ justification_flags = 162
 [node name="Q1Label" type="Label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Cost"
+text = "Rank"
 horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 162
@@ -78,9 +78,9 @@ layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 0
-script = ExtResource("3_1pypf")
+script = ExtResource("3_usy28")
 button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
-option_scene = ExtResource("4_0lnjb")
+option_scene = ExtResource("4_ktt7j")
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/OptionMenu/Options"]
 layout_mode = 2
@@ -100,7 +100,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="Option" parent="HBoxContainer/OptionMenu/Options/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_0lnjb")]
+[node name="Option" parent="HBoxContainer/OptionMenu/Options/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_ktt7j")]
 layout_mode = 2
 
 [connection signal="item_activated" from="HBoxContainer/OptionMenu/Options" to="." method="_on_item_activated"]

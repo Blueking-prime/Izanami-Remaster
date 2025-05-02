@@ -4,17 +4,22 @@ class_name CharacterSelector
 
 @export var player_status_card_scene: PackedScene
 @export var player_details_card_scene: PackedScene
+@export var available_class_scenes: Array[PackedScene]
+@export var player_party_scene: PackedScene
 
 @export var player_container: HBoxContainer
 @export var player_node_container: Node
 @export var back_button: Button
 
-@export var available_class_scenes: Array[PackedScene]
 @export var available_classes: Array[Player]
 
 @export var player_party: Party
 
 func _ready() -> void:
+	if not Global.player_party:
+		Global.player_party = player_party_scene.instantiate()
+
+	player_party = Global.player_party
 	load_menu()
 
 func load_menu():
@@ -101,9 +106,13 @@ func confirm_choice(card: PlayerDetailsCard):
 			player = i
 
 	player.character_name = card.namefield.text
-	remove_child(player)
+	player_node_container.remove_child(player)
 	player_party.add_to_party(player)
 	player_party.load_party()
+
+	print(player_party)
+	print(player_party.get_children())
+	hide()
 
 func _on_button_pressed() -> void:
 	back_button.hide()
