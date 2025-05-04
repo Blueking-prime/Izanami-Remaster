@@ -9,10 +9,12 @@ extends Node
 @export var battle_scene: PackedScene
 @export var main_menu_scene: PackedScene
 
+@export var loading_screen: AnimatedTexture
+
 var player_party: Party
 
 var description_box_parent: Node
-var description_box: Control
+var description_box: DescriptionBox
 var background_texture: TextureRect
 var shop_menu: Control
 var text_box: Control
@@ -134,20 +136,25 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 		await next
 		text_box.queue_free()
 
-func change_background(texture: Texture2D):
+func change_background(texture: Texture2D, global: bool = false):
 	if texture:
 		if not is_instance_valid(background_texture):
 			background_texture = TextureRect.new()
 			background_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			background_texture.set_anchors_preset(Control.PRESET_FULL_RECT)
-			get_tree().current_scene.get_child(-1).get_child(0).add_sibling(background_texture)
+			if not global:
+				get_tree().current_scene.get_child(-1).get_child(0).add_sibling(background_texture)
+			else:
+				get_tree().root.add_child(background_texture)
 
 		background_texture.texture = texture
 	else:
 		if is_instance_valid(background_texture):
-			get_tree().current_scene.get_child(-1).remove_child(background_texture)
+			if not global:
+				get_tree().current_scene.get_child(-1).remove_child(background_texture)
+			else :
+				get_tree().root.remove_child(background_texture)
 			background_texture.queue_free()
-
 
 func print_to_log(text: Variant):
 	if text is String:
@@ -167,18 +174,6 @@ func show_description(object: Resource) -> void:
 	else:
 		get_tree().get_current_scene().get_child(-1).add_child(description_box)
 
-	var type: Label = description_box.get_node("Margin/Vbox/Hbox/Type")
-	var element: Label = description_box.get_node("Margin/Vbox/Hbox/Element")
-	var value: Label = description_box.get_node("Margin/Vbox/Hbox/Vbox/Value")
-	var effect_chance: Label = description_box.get_node("Margin/Vbox/Hbox/Vbox/EffectChance")
-	var description: Label = description_box.get_node("Margin/Vbox/Description")
-	var subtype: Label = description_box.get_node("Margin/Vbox/Hbox2/Subtype")
-	var target_scope: Label = description_box.get_node("Margin/Vbox/Hbox2/TargetScope")
-	var sell_price: Label = description_box.get_node("Margin/Vbox/Hbox2/SellPrice")
-	var weapon_status: Label = description_box.get_node("Margin/Vbox/Hbox2/WeaponStatus")
-	var cost: Label = description_box.get_node("Margin/Vbox/Hbox2/Cost")
-	var stats: Label = description_box.get_node("Margin/Vbox/Hbox/Stats")
-
 	if 'stats' in object:
 		var stats_string = ''
 		for i in object.stats:
@@ -187,56 +182,59 @@ func show_description(object: Resource) -> void:
 					stats_string += i + ': ' + str(object.stats[i]) + ' '
 			else:
 				stats_string += i + ' '
-		stats.text = stats_string
+		description_box.stats.text = stats_string
 	else:
-		stats.hide()
+		description_box.stats.hide()
 
-	cost.hide()
+	description_box.cost.hide()
 
 	if object is Gear:
-		type.text = 'Gear'
-		subtype.text = object.slot
+		description_box.type.text = 'Gear'
+		description_box.subtype.text = object.slot
 		if object.equipped:
-			weapon_status.show()
-		effect_chance.hide()
-		target_scope.hide()
-		value.hide()
+			description_box.weapon_status.show()
+		description_box.effect_chance.hide()
+		description_box.target_scope.hide()
+		description_box.value.hide()
 	else:
 		if object is Item:
-			type.text = 'Item'
-			effect_chance.text = str(object.effect_chance * 100) + '%'
+			description_box.type.text = 'Item'
+			description_box.effect_chance.text = str(object.effect_chance * 100) + '%'
 		if object is Skill:
-			type.text = 'Skill'
-			cost.show()
-			cost.text = str(object.cost)
-			effect_chance.text = str(object.effect_chance[object.rank] * 100) + '%'
+			description_box.type.text = 'Skill'
+			description_box.cost.show()
+			description_box.cost.text = str(object.cost)
+			description_box.effect_chance.text = str(object.effect_chance[object.rank] * 100) + '%'
+			if object.rank > 0:
+				description_box.rank.text = '+'.repeat(object.rank)
+				description_box.rank.show()
 
 		if object.value != 0:
-			value.text = str(object.value)
+			description_box.value.text = str(object.value)
 		elif object.status_effect:
-			value.text = object.status_effect.new().desc
+			description_box.value.text = object.status_effect.new().desc
 		else:
-			value.hide()
+			description_box.value.hide()
 
-		subtype.text = object.type
+		description_box.subtype.text = object.type
 		if object.aoe:
-			target_scope.text = 'AOE'
+			description_box.target_scope.text = 'AOE'
 		if object.universal:
-			target_scope.text = 'Universal'
+			description_box.target_scope.text = 'Universal'
 		else:
-			target_scope.text = "Single"
-		weapon_status.hide()
+			description_box.target_scope.text = "Single"
+		description_box.weapon_status.hide()
 
 	if 'price' in object:
-		sell_price.text = '#' + str(object.price)
+		description_box.sell_price.text = '#' + str(object.price)
 	elif object is Skill:
-		sell_price.text = str(object.crit_chance[object.rank] * 100) + '%'
+		description_box.sell_price.text = str(object.crit_chance[object.rank] * 100) + '%'
 	else:
-		sell_price.hide()
+		description_box.sell_price.hide()
 
 	if 'element' in object:
-		element.text = object.element
-	description.text = object.desc
+		description_box.element.text = object.element
+	description_box.description.text = object.desc
 
 
 func show_shop_menu(players: Party, stock: ResourceGroup):

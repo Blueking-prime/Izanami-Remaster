@@ -26,19 +26,9 @@ classname = &"Knight"
 character_name = "P1"
 lvl = 10
 
-[node name="Statuses" parent="Player" index="7"]
-low = null
-
 [node name="Player2" parent="." instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
+position = Vector2(21, 0)
 classname = &"Knight"
 character_name = "P1"
 lvl = 10
-
-[node name="Statuses" parent="Player2" index="7"]
-low = null
-
-[editable path="Player"]
-[editable path="Player/BattleSprite"]
-[editable path="Player2"]
-[editable path="Player2/BattleSprite"]

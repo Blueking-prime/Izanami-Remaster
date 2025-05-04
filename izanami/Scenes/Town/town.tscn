@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=28 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/Town/town.gd" id="1_wpby1"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_5q81g"]
@@ -10,7 +10,9 @@
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://all_items.tres" id="7_k1mvl"]
 [ext_resource type="Script" path="res://Scenes/Town/dungeon_town.gd" id="8_k31jc"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="9_tt1ik"]
+[ext_resource type="Script" path="res://Scenes/Dungeon/dungeon_save_data.gd" id="10_dxb7f"]
 [ext_resource type="Script" path="res://Scenes/Town/demonitarium.gd" id="10_h5qir"]
+[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="11_6gf2o"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="11_8eh4h"]
 [ext_resource type="Script" path="res://Models/Menus/ShopMenus/demonitarium_fights.gd" id="12_8wj1c"]
 [ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/Overlays/base_overlay.tscn" id="16_4ug66"]
@@ -66,7 +68,7 @@ script = ExtResource("2_gpcba")
 enabled = false
 
 [node name="Players" parent="." instance=ExtResource("2_5q81g")]
-position = Vector2(1297, 490)
+position = Vector2(1298, 490)
 gold = 500
 
 [node name="Church" type="StaticBody2D" parent="."]
@@ -110,17 +112,18 @@ text = "Apothecary"
 [node name="Dungeon" type="StaticBody2D" parent="."]
 position = Vector2(1657, 264)
 script = ExtResource("8_k31jc")
-dungeon_1_enemies = ExtResource("9_tt1ik")
-dungeon_1_levels = 1
-dungeon_1_item_drops = ExtResource("7_k1mvl")
-dungeon_1_gear_drops = ExtResource("5_rbk51")
-dungeon_2_enemies = ExtResource("9_tt1ik")
-dungeon_2_levels = 5
-dungeon_2_item_drops = ExtResource("7_k1mvl")
-dungeon_2_gear_drops = ExtResource("5_rbk51")
-dungeon_3_levels = 15
-dungeon_4_levels = 30
-dungeon_5_levels = 60
+no_of_floors = 2
+dungeon_dimensions = Array[Vector2]([Vector2(10, 10), Vector2(15, 15)])
+dungeon_fixed = Array[bool]([false, false])
+dungeon_data = Array[ExtResource("10_dxb7f")]([null, null])
+dungeon_enemies = Array[ExtResource("11_6gf2o")]([ExtResource("9_tt1ik"), ExtResource("9_tt1ik")])
+dungeon_levels = Array[int]([1, 5])
+dungeon_item_drops = Array[ExtResource("11_6gf2o")]([ExtResource("7_k1mvl"), ExtResource("7_k1mvl")])
+dungeon_gear_drops = Array[ExtResource("11_6gf2o")]([ExtResource("5_rbk51"), ExtResource("5_rbk51")])
+dungeon_MAX_ENEMIES = Array[int]([1, 2])
+dungeon_enemy_spawn_chance = Array[float]([0.8, 0.8])
+dungeon_treasure_spawn_chance = Array[float]([0.2, 0.2])
+dungeon_gear_chance = Array[float]([0.5, 0.5])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dungeon"]
 shape = SubResource("CircleShape2D_f7ftm")

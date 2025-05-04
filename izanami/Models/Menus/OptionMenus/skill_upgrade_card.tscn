@@ -103,7 +103,6 @@ theme_override_constants/separation = 0
 [node name="Option" parent="HBoxContainer/OptionMenu/Options/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_ktt7j")]
 layout_mode = 2
 
-[connection signal="item_activated" from="HBoxContainer/OptionMenu/Options" to="." method="_on_item_activated"]
 [connection signal="item_selected" from="HBoxContainer/OptionMenu/Options" to="." method="_on_item_selected"]
 
 [editable path="HBoxContainer/OptionMenu/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]

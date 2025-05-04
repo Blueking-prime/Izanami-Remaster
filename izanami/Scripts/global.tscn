@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcxmyev8jvlgh"]
+[gd_scene load_steps=10 format=3 uid="uid://bcxmyev8jvlgh"]
 
 [ext_resource type="Script" path="res://Scripts/global.gd" id="1_u8o3i"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/DialogBoxes/text_box.tscn" id="2_imufx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://deahjbvovxuvn" path="res://Scenes/Battle/battle.tscn" id="4_cg2fd"]
 [ext_resource type="PackedScene" uid="uid://bnbjoofilujw1" path="res://Models/Menus/ShopMenus/shop_menu.tscn" id="4_xxefv"]
 [ext_resource type="PackedScene" uid="uid://bkfyiyro88x3q" path="res://Scenes/main_menu.tscn" id="5_o7tui"]
+[ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/new_animated_texture.tres" id="9_egmmm"]
 
 [node name="Global" type="Node"]
 script = ExtResource("1_u8o3i")
@@ -18,3 +19,4 @@ town_scene = ExtResource("2_pafky")
 dungeon_scene = ExtResource("3_sy3id")
 battle_scene = ExtResource("4_cg2fd")
 main_menu_scene = ExtResource("5_o7tui")
+loading_screen = ExtResource("9_egmmm")

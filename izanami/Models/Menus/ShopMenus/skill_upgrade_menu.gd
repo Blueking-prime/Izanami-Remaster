@@ -5,7 +5,6 @@ extends VBoxContainer
 ## EXTERNAL PARAMETERS
 @export var players: Party
 @export var desc_box_container: BoxContainer
-@export var desc_box_conatiner_next: BoxContainer
 @export var confrim_button: Button
 
 var skill_id: int
@@ -27,7 +26,6 @@ func load_stock():
 func create_card(player: Player):
 	var card: SkillUpgradeCard = skill_upgrade_card_scene.instantiate()
 	card.desc_box_container = desc_box_container
-	card.desc_box_conatiner_next = desc_box_conatiner_next
 	card.player = player
 	card.confirm_button = confrim_button
 	card.load_stock()

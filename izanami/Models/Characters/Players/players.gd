@@ -12,7 +12,7 @@ class_name Party
 
 @export var gold: int
 @export var mag: int
-@export var dungeon_level: int = 1
+@export var dungeon_level: int = 0
 
 @export var inventory: Inventory
 

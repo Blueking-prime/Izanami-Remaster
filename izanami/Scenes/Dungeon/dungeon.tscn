@@ -523,9 +523,6 @@ sources/2 = SubResource("TileSetAtlasSource_w13t1")
 sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x5j8p"]
-vertices = PackedVector2Array(2231.75, -91.1406, 2198.23, 1303.16, -128.844, 1342.82, -107.141, -124.852)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-117, -135, -139, 1353, 2208, 1313, 2242, -101)])
 
 [node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "background", "walls", "players", "navigation_region", "overlay", "camera")]
 script = ExtResource("1_k4ybk")

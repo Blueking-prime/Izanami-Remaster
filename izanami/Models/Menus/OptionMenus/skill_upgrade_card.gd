@@ -9,7 +9,6 @@ class_name SkillUpgradeCard
 ## EXTERNAL PARAMETERS
 @export var player: Player
 @export var desc_box_container: BoxContainer
-@export var desc_box_conatiner_next: BoxContainer
 @export var confirm_button: Button
 
 func _ready() -> void:
@@ -18,9 +17,7 @@ func _ready() -> void:
 	load_stock()
 
 func load_stock():
-	print(player)
 	if player:
-		print(player.get_skills())
 		nametag.text = player.nametag.text
 		update_listing()
 
@@ -38,23 +35,11 @@ func update_listing():
 func rank_indicator(rank: int) -> String:
 	return '⬤'.repeat(rank) + '◯'.repeat(2 - rank)
 
-func _on_item_activated(index: int) -> void:
-	_on_item_selected(index)
-
 func _on_item_selected(index: int) -> void:
 	var skill: Skill = player.skills.get_skills()[index]
 	get_parent().skill_id = index
 	get_parent().current_player = player
 	if skill:
-		show_desc(skill)
+		Global.show_description(skill)
 
 	confirm_button.show()
-
-func show_desc(skill: Skill):
-	var dupe_skill: Skill = skill.duplicate()
-	dupe_skill.rank += 1
-
-	Global.show_description(skill)
-	Global.description_box_parent = desc_box_conatiner_next
-	Global.show_description(dupe_skill)
-	Global.description_box_parent = desc_box_container

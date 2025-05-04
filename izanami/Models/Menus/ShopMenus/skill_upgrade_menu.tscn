@@ -75,13 +75,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SkillUpgradePanel" type="VBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("players", "desc_box_container", "desc_box_conatiner_next", "confrim_button")]
+[node name="SkillUpgradePanel" type="VBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("players", "desc_box_container", "confrim_button")]
 layout_mode = 2
 script = ExtResource("1_sm2qp")
 skill_upgrade_card_scene = ExtResource("2_ehlhe")
 players = NodePath("../../../../Players")
 desc_box_container = NodePath("../../../../BoxContainer")
-desc_box_conatiner_next = NodePath("../../../../BoxContainer2")
 confrim_button = NodePath("../../../../ConfirmButton")
 metadata/_tab_index = 1
 
@@ -95,25 +94,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -812.0
-offset_top = -452.0
-offset_right = -86.0
-offset_bottom = -147.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="BoxContainer2" type="BoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -812.0
+offset_left = -840.0
 offset_top = -97.0
-offset_right = -86.0
-offset_bottom = 255.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1

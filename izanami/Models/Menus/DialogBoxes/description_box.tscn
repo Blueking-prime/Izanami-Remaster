@@ -1,10 +1,25 @@
-[gd_scene format=3 uid="uid://cyi5epemnot1x"]
+[gd_scene load_steps=2 format=3 uid="uid://cyi5epemnot1x"]
 
-[node name="DescriptionBox" type="PanelContainer"]
+[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/description_box.gd" id="1_ie52s"]
+
+[node name="DescriptionBox" type="PanelContainer" node_paths=PackedStringArray("type", "element", "value", "effect_chance", "description", "subtype", "target_scope", "sell_price", "weapon_status", "cost", "stats", "rank")]
 offset_right = 582.0
 offset_bottom = 373.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_ie52s")
+type = NodePath("Margin/Vbox/Hbox/Type")
+element = NodePath("Margin/Vbox/Hbox/Element")
+value = NodePath("Margin/Vbox/Hbox/Vbox/Value")
+effect_chance = NodePath("Margin/Vbox/Hbox/Vbox/EffectChance")
+description = NodePath("Margin/Vbox/Description")
+subtype = NodePath("Margin/Vbox/Hbox2/Subtype")
+target_scope = NodePath("Margin/Vbox/Hbox2/TargetScope")
+sell_price = NodePath("Margin/Vbox/Hbox2/SellPrice")
+weapon_status = NodePath("Margin/Vbox/Hbox2/WeaponStatus")
+cost = NodePath("Margin/Vbox/Hbox2/Cost")
+stats = NodePath("Margin/Vbox/Hbox/Stats")
+rank = NodePath("Margin/Vbox/Hbox/Rank")
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -29,6 +44,12 @@ vertical_alignment = 1
 [node name="Element" type="Label" parent="Margin/Vbox/Hbox"]
 layout_mode = 2
 text = "Trait"
+vertical_alignment = 1
+
+[node name="Rank" type="Label" parent="Margin/Vbox/Hbox"]
+visible = false
+layout_mode = 2
+text = "Rank"
 vertical_alignment = 1
 
 [node name="Spacer" type="Control" parent="Margin/Vbox/Hbox"]

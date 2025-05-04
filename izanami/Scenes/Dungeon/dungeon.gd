@@ -55,6 +55,7 @@ func _ready() -> void:
 	load_scene()
 
 func load_scene():
+	Global.change_background(Global.loading_screen, true)
 	if not Global.player_party:
 		Global.player_party = players
 	else:
@@ -82,6 +83,8 @@ func load_scene():
 	camera.init_camera()
 
 	setup_navigation_region()
+
+	Global.change_background(null, true)
 
 func setup_navigation_region():
 	var vertices = PackedVector2Array([
@@ -114,20 +117,21 @@ func exit_dungeon():
 	players.unfreeze()
 	if x == 0:
 		print('Yes')
+		players.dungeon_level += 1
 		load_town()
 		queue_free()
 	elif x == 1:
 		print('No')
 
 func load_town():
-	var town = Global.town_scene.instantiate()
+	var town: Town = Global.town_scene.instantiate()
 	print(town)
 	var town_players = town.get_node("Players")
 	town.remove_child(town_players)
 	town.players = players
 
 	get_node('ObjectsSort').remove_child(players)
-	town.add_child(players)
+	town.camera.add_sibling(players)
 	add_sibling(town)
 	get_tree().current_scene = town
 
