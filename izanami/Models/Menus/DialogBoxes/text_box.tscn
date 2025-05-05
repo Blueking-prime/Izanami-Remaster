@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://s3bvhf5ano50"]
+[gd_scene load_steps=3 format=3 uid="uid://s3bvhf5ano50"]
 
-[node name="TextBox" type="PanelContainer"]
+[ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_gnfuy"]
+[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/text_box.gd" id="1_krbbq"]
+
+[node name="TextBox" type="PanelContainer" node_paths=PackedStringArray("title", "text", "spacer", "options")]
 z_index = 10
 anchors_preset = -1
 anchor_left = 0.5
@@ -13,6 +16,11 @@ offset_right = 871.0
 offset_bottom = 0.23999
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("1_krbbq")
+title = NodePath("Margin/VBox/Title")
+text = NodePath("Margin/VBox/Text")
+spacer = NodePath("Margin/VBox/Control")
+options = NodePath("Margin/VBox/Options")
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -41,12 +49,6 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Options" type="ItemList" parent="Margin/VBox"]
+[node name="Options" parent="Margin/VBox" instance=ExtResource("1_gnfuy")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-auto_height = true
-item_count = 3
-item_0/text = "Leaf"
-item_1/text = "Razor"
-item_2/text = "Excalihuh?"
+horizontal_scroll_mode = 0

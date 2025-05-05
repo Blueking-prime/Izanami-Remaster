@@ -4,8 +4,6 @@ extends Node
 
 @onready var overlay: UIOverlay = get_parent().overlay
 
-var dungeon: Dungeon
-
 @export var no_of_floors: int
 
 @export var dungeon_dimensions: Array[Vector2]
@@ -20,10 +18,17 @@ var dungeon: Dungeon
 @export var dungeon_treasure_spawn_chance: Array[float]
 @export var dungeon_gear_chance: Array[float]
 
+var dungeon: Dungeon
+var dungeon_floor: int
+
 func main():
 	players.freeze()
+	var choices = []
+	for i in no_of_floors:
+		choices.append(str(i + 1))
 
-	await Global.show_text_box('System', "You are travelling to Dungeon Level %s" % [str(players.dungeon_level) if players.dungeon_level < no_of_floors else 'Endless'])
+	dungeon_floor = await Global.show_text_choice('System', 'Select dungeon floor', choices)
+
 	var confirm = await Global.show_text_choice("System", "Confirm: ")
 
 	players.unfreeze()
@@ -38,19 +43,19 @@ func main():
 		overlay.show()
 
 func set_dungeon_level():
-	if players.dungeon_level < no_of_floors:
-		if dungeon_fixed[players.dungeon_level]:
-			dungeon.load_data(dungeon_data[players.dungeon_level])
+	if dungeon_floor < no_of_floors:
+		if dungeon_fixed[dungeon_floor]:
+			dungeon.load_data(dungeon_data[dungeon_floor])
 		else:
-			dungeon.width = dungeon_dimensions[players.dungeon_level].x
-			dungeon.height = dungeon_dimensions[players.dungeon_level].y
-			dungeon.enemy_types = dungeon_enemies[players.dungeon_level]
-			dungeon.item_drop_group = dungeon_item_drops[players.dungeon_level]
-			dungeon.gear_drop_group = dungeon_gear_drops[players.dungeon_level]
-			dungeon.MAX_ENEMIES = dungeon_MAX_ENEMIES[players.dungeon_level]
-			dungeon.enemy_spawn_chance = dungeon_enemy_spawn_chance[players.dungeon_level]
-			dungeon.treasure_spawn_chance = dungeon_treasure_spawn_chance[players.dungeon_level]
-			dungeon.gear_chance = dungeon_gear_chance[players.dungeon_level]
+			dungeon.width = dungeon_dimensions[dungeon_floor].x
+			dungeon.height = dungeon_dimensions[dungeon_floor].y
+			dungeon.enemy_types = dungeon_enemies[dungeon_floor]
+			dungeon.item_drop_group = dungeon_item_drops[dungeon_floor]
+			dungeon.gear_drop_group = dungeon_gear_drops[dungeon_floor]
+			dungeon.MAX_ENEMIES = dungeon_MAX_ENEMIES[dungeon_floor]
+			dungeon.enemy_spawn_chance = dungeon_enemy_spawn_chance[dungeon_floor]
+			dungeon.treasure_spawn_chance = dungeon_treasure_spawn_chance[dungeon_floor]
+			dungeon.gear_chance = dungeon_gear_chance[dungeon_floor]
 	else:
 		dungeon.width = 8
 		dungeon.height = 5
@@ -68,6 +73,3 @@ func load_dungeon():
 	dungeon.get_node('ObjectsSort').add_child(players)
 	get_parent().add_sibling(dungeon)
 	get_tree().current_scene = dungeon
-
-# Figure out howto load this after floor four
-#battle(players, [enemy_models.Gigas()])

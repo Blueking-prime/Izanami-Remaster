@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://drei8wtrpbio6"]
+[gd_scene load_steps=17 format=3 uid="uid://drei8wtrpbio6"]
 
 [ext_resource type="Script" path="res://Models/Characters/base_character.gd" id="1_e6dxp"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_ar764"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Models/Statuses/Effects/restore.gd" id="11_kun65"]
 [ext_resource type="Script" path="res://Models/Statuses/Effects/low.gd" id="13_1fnnn"]
 [ext_resource type="Script" path="res://Models/Characters/status_icon_handler.gd" id="14_2mtdu"]
+[ext_resource type="PackedScene" uid="uid://cg6blmcotgqs7" path="res://Models/Menus/Overlays/status_effect_icon.tscn" id="15_66upe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 custom_solver_bias = 1.0
@@ -80,5 +81,6 @@ low = ExtResource("13_1fnnn")
 
 [node name="StatusIconHandler" type="Node" parent="Statuses"]
 script = ExtResource("14_2mtdu")
+icon_scene = ExtResource("15_66upe")
 
 [editable path="BattleSprite"]

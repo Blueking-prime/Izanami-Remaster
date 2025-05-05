@@ -17,7 +17,7 @@ var description_box_parent: Node
 var description_box: DescriptionBox
 var background_texture: TextureRect
 var shop_menu: Control
-var text_box: Control
+var text_box: TextBox
 var action_log: Label
 
 var textbox_response: int
@@ -94,22 +94,18 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 
 	text_box = text_box_scene.instantiate()
 
-	get_tree().get_current_scene().get_child(-1).add_child(text_box)
+	get_tree().get_current_scene().get_node('CanvasLayer').add_child(text_box)
 
-	var title: Label = text_box.get_node("Margin/VBox/Title")
-	var text: Label = text_box.get_node("Margin/VBox/Text")
-	var options: ItemList = text_box.get_node("Margin/VBox/Options")
+	text_box.title.text = speaker
+	text_box.text.text = prompt
 
-	title.text = speaker
-	text.text = prompt
-
-	options.clear()
+	text_box.options.clear()
 	for i in choices:
-		options.add_item(i)
+		text_box.options.add_item(i)
 
-	options.item_activated.connect(_on_option_selected)
-	options.grab_focus()
-	await options.item_activated
+	text_box.options.item_activated.connect(_on_option_selected)
+	text_box.options.grab_focus()
+	await text_box.options.item_activated
 
 	text_box.queue_free()
 
@@ -122,15 +118,13 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 
 	text_box = text_box_scene.instantiate()
 
-	get_tree().get_current_scene().get_child(-1).add_child(text_box)
+	get_tree().get_current_scene().get_node('CanvasLayer').add_child(text_box)
 
-	var title: Label = text_box.get_node("Margin/VBox/Title")
-	var text: Label = text_box.get_node("Margin/VBox/Text")
-	text_box.get_node("Margin/VBox/Options").hide()
-	text_box.get_node("Margin/VBox/Control").hide()
+	text_box.spacer.hide()
+	text_box.options.hide()
 
-	title.text = speaker
-	text.text = prompt
+	text_box.title.text = speaker
+	text_box.text.text = prompt
 
 	if not persist:
 		await next
@@ -143,7 +137,7 @@ func change_background(texture: Texture2D, global: bool = false):
 			background_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			background_texture.set_anchors_preset(Control.PRESET_FULL_RECT)
 			if not global:
-				get_tree().current_scene.get_child(-1).get_child(0).add_sibling(background_texture)
+				get_tree().current_scene.get_node('CanvasLayer').get_child(0).add_sibling(background_texture)
 			else:
 				get_tree().root.add_child(background_texture)
 
@@ -151,16 +145,10 @@ func change_background(texture: Texture2D, global: bool = false):
 	else:
 		if is_instance_valid(background_texture):
 			if not global:
-				get_tree().current_scene.get_child(-1).remove_child(background_texture)
+				get_tree().current_scene.get_node('CanvasLayer').remove_child(background_texture)
 			else :
 				get_tree().root.remove_child(background_texture)
 			background_texture.queue_free()
-
-func print_to_log(text: Variant):
-	if text is String:
-		action_log.text += '\n' + text
-	else :
-		action_log.text += '\n' + str(text)
 
 
 func show_description(object: Resource) -> void:
@@ -172,7 +160,7 @@ func show_description(object: Resource) -> void:
 	if description_box_parent:
 		description_box_parent.add_child(description_box)
 	else:
-		get_tree().get_current_scene().get_child(-1).add_child(description_box)
+		get_tree().get_current_scene().get_node('CanvasLayer').add_child(description_box)
 
 	if 'stats' in object:
 		var stats_string = ''
@@ -243,19 +231,15 @@ func show_shop_menu(players: Party, stock: ResourceGroup):
 
 	shop_menu = shop_menu_scene.instantiate()
 
-	get_tree().get_current_scene().get_child(-1).add_child(shop_menu)
+	get_tree().get_current_scene().get_node('CanvasLayer').add_child(shop_menu)
 
-	var shop_inventory_pane: ShopInventoryMenu = shop_menu.get_node("CanvasLayer/ShopInventory")
-	var player_inventory_pane: PlayerInventoryMenu = shop_menu.get_node("CanvasLayer/PlayerInventory")
-	var exit_button: Button = shop_menu.get_node("CanvasLayer/ExitButton")
+	shop_menu.shop_inventory.item_group = stock
+	shop_menu.player_inventory.players = players
 
-	shop_inventory_pane.item_group = stock
-	player_inventory_pane.players = players
+	shop_menu.exit_button.pressed.connect(_on_shop_exit)
 
-	exit_button.pressed.connect(_on_shop_exit)
-
-	shop_inventory_pane.load_stock()
-	player_inventory_pane.load_stock()
+	shop_menu.shop_inventory.load_stock()
+	shop_menu.player_inventory.load_stock()
 
 
 func load_main_menu():
@@ -263,6 +247,33 @@ func load_main_menu():
 	get_tree().unload_current_scene()
 	add_sibling(main_menu)
 	get_tree().current_scene = main_menu
+
+
+## GENERAL FUNCTIONS
+func print_to_log(text: Variant):
+	if text is String:
+		action_log.text += '\n' + text
+	else :
+		action_log.text += '\n' + str(text)
+
+func warp(current_scene: Node, destination_scene: PackedScene):
+	var town: Town = destination_scene.instantiate()
+	var town_players = town.get_node("Players")
+	town.remove_child(town_players)
+	town.players = player_party
+
+	get_tree().current_scene.remove_child(player_party)
+	town.camera.add_sibling(player_party)
+	add_sibling(town)
+	get_tree().current_scene = town
+
+	player_party.leader.global_position = town.entrance
+
+	current_scene.queue_free()
+
+	print(get_tree().current_scene)
+
+	print('Town Loaded')
 
 ## FUNCTON TESTS
 func rand_spread_test():

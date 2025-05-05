@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Town
 
+@export var entrance: Vector2
+
 @export var overlay: UIOverlay
 @export var back_button: Button
 @export var camera: Camera2D

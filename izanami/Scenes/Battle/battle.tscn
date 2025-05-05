@@ -56,6 +56,7 @@ script = ExtResource("6_mlml3")
 
 [node name="Players" parent="." instance=ExtResource("2_a6unq")]
 visible = false
+position = Vector2(910, 229)
 
 [node name="Enemies" type="Node2D" parent="." node_paths=PackedStringArray("enemy_section")]
 visible = false

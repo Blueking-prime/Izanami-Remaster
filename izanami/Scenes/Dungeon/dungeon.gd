@@ -122,6 +122,7 @@ func exit_dungeon():
 		queue_free()
 	elif x == 1:
 		print('No')
+		unfreeze_enemies()
 
 func load_town():
 	var town: Town = Global.town_scene.instantiate()
@@ -143,7 +144,7 @@ func load_town():
 
 
 func _on_detector_hit_exit(coords) -> void:
-	print(coords)
+	freeze_enemies()
 	exit_dungeon()
 
 
@@ -174,17 +175,13 @@ func collect_treasure():
 
 
 func _on_detector_hit_chest(coords) -> void:
-	print(coords)
 	collect_treasure()
-
 
 
 ## BATTLE LOGIC
 func initiate_battle():
 	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, MAX_ENEMIES)
 	overlay.hide()
-	for i in walls.enemy_nodes:
-		if is_instance_valid(i): i.freeze = true
 
 	var battle: Battle = Global.battle_scene.instantiate()
 	battle.no_of_enemies = no_of_enemies
@@ -192,26 +189,32 @@ func initiate_battle():
 	battle.players = players
 	battle.enemy_group = enemy_types
 	#player.in_battle = true
-	get_node("Background").hide()
-	get_node("ObjectsSort/NavRegion/Walls").hide()
+	background.hide()
+	walls.hide()
 	call_deferred("add_sibling", battle)
+
+func freeze_enemies():
+	for i in walls.enemy_nodes:
+		if is_instance_valid(i): i.freeze = true
+
+func unfreeze_enemies():
+	for i in walls.enemy_nodes:
+		if is_instance_valid(i): i.freeze = false
 
 
 func _on_detector_hit_enemy(body: Enemy) -> void:
-	print(body)
+	freeze_enemies()
 	#! USE scene_file_path TO REMEMBERWHAT NODE TO LOAD
 	initiate_battle()
 	body.queue_free()
 
 
 func reset_from_battle():
-	get_node("Background").show()
-	get_node("ObjectsSort/NavRegion/Walls").show()
+	background.show()
+	walls.show()
 	overlay.load_ui_elements()
 	overlay.show()
-	for i in walls.enemy_nodes:
-		if is_instance_valid(i): i.freeze = false
-
+	unfreeze_enemies()
 
 
 func size() -> Vector2:

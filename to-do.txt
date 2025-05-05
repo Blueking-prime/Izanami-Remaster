@@ -9,6 +9,7 @@ GOALS
 
 BUG FIXES
 - [ ] Fix enemies sometimes mimicking player movement and thus stopping random walk (This may have something to do with avoidance)
+- [ ] Prevent input during guard and run (non-targetting and enemy action) animation in battle
 - [x] Fix dungeon camera offset (Test by inspecting party node)
 - [x] Prevent duplicate key assignment
 - [x] Fix loading scene crashing using button
@@ -24,15 +25,18 @@ TASKS (WORKABLE)
 - [x] Add skill upgrade menu
 - [x] Add adding and removing party members
 - [x] Add character creator screen
-- [ ] Add warping between towns
-- [ ] Add option to select dungeon level
+- [x] Add warping between towns
+- [ ] Implement Overworld
+- [ ] Add skill upgrade and warp menus to demonitarium
+- [ ] Make demonitarium menus spawn from node and make node seperate scene
+- [x] Add option to select dungeon level
+- [x] Change texbox item list to option menu
 - [x] Add function to change the background for CGs
 - [x] Add option to disable escaping from forced battles
 - [x] Add enemy random walk pattern
 - [x] Add animation delay to combat
 - [X] Add POT variable to skill descriptions (or add rank and let them figure it out)
-- [ ] Add status ailments to overlay
-- [ ] Add status effect icons and hover to describe status
+- [x] Add status effect icons and hover to describe status
 - [x] Add option to have fixed dungeon floor layout 
 - [x] Change dungeon background to void and expand outer wall thickness
 - [x] Remove overlay on camera

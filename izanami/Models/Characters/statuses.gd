@@ -73,11 +73,20 @@ func trigger_status():
 	for i in status_effects:
 		Global.print_to_log(i.desc + ' proced')
 		i.trigger(get_parent())
+		icon_handler.tick_icon(i)
+
+	print(get_parent().status_icons.get_children())
+	print("icon created")
+
 
 func expire_status():
 	for i in status_effects:
 		if i.elapsed >= i.duration:
 			remove_status(i)
+
+	print(get_parent().status_icons.get_children())
+	print("icon created")
+
 
 func add_status(_status: Status):
 	if _status is not StatusBuff and _status.get_script() in status_effects_scripts:
