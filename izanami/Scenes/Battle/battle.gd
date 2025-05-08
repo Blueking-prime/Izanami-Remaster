@@ -16,6 +16,7 @@ class_name Battle
 @export var process_input: BattleInput
 @export var process_turns: BattleTurns
 @export var process_actions: BattleActions
+@export var canvas_layer: CanvasLayer
 
 var earned_exp: int
 var earned_gold: int

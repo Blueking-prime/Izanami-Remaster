@@ -94,7 +94,7 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 
 	text_box = text_box_scene.instantiate()
 
-	get_tree().get_current_scene().get_node('CanvasLayer').add_child(text_box)
+	get_tree().get_current_scene().canvas_layer.add_child(text_box)
 
 	text_box.title.text = speaker
 	text_box.text.text = prompt
@@ -118,7 +118,7 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 
 	text_box = text_box_scene.instantiate()
 
-	get_tree().get_current_scene().get_node('CanvasLayer').add_child(text_box)
+	get_tree().get_current_scene().canvas_layer.add_child(text_box)
 
 	text_box.spacer.hide()
 	text_box.options.hide()
@@ -137,7 +137,7 @@ func change_background(texture: Texture2D, global: bool = false):
 			background_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			background_texture.set_anchors_preset(Control.PRESET_FULL_RECT)
 			if not global:
-				get_tree().current_scene.get_node('CanvasLayer').get_child(0).add_sibling(background_texture)
+				get_tree().current_scene.canvas_layer.get_child(0).add_sibling(background_texture)
 			else:
 				get_tree().root.add_child(background_texture)
 
@@ -145,7 +145,7 @@ func change_background(texture: Texture2D, global: bool = false):
 	else:
 		if is_instance_valid(background_texture):
 			if not global:
-				get_tree().current_scene.get_node('CanvasLayer').remove_child(background_texture)
+				get_tree().current_scene.canvas_layer.remove_child(background_texture)
 			else :
 				get_tree().root.remove_child(background_texture)
 			background_texture.queue_free()
@@ -160,7 +160,7 @@ func show_description(object: Resource) -> void:
 	if description_box_parent:
 		description_box_parent.add_child(description_box)
 	else:
-		get_tree().get_current_scene().get_node('CanvasLayer').add_child(description_box)
+		get_tree().get_current_scene().canvas_layer.add_child(description_box)
 
 	if 'stats' in object:
 		var stats_string = ''
@@ -231,7 +231,7 @@ func show_shop_menu(players: Party, stock: ResourceGroup):
 
 	shop_menu = shop_menu_scene.instantiate()
 
-	get_tree().get_current_scene().get_node('CanvasLayer').add_child(shop_menu)
+	get_tree().get_current_scene().canvas_layer.add_child(shop_menu)
 
 	shop_menu.shop_inventory.item_group = stock
 	shop_menu.player_inventory.players = players
@@ -257,17 +257,17 @@ func print_to_log(text: Variant):
 		action_log.text += '\n' + str(text)
 
 func warp(current_scene: Node, destination_scene: PackedScene):
-	var town: Town = destination_scene.instantiate()
-	var town_players = town.get_node("Players")
-	town.remove_child(town_players)
-	town.players = player_party
+	var destination = destination_scene.instantiate()
+	destination.remove_child(destination.tile_map.get_node("Players"))
+	destination.players = player_party
 
-	get_tree().current_scene.remove_child(player_party)
-	town.camera.add_sibling(player_party)
-	add_sibling(town)
-	get_tree().current_scene = town
+	player_party.get_parent().remove_child(player_party)
 
-	player_party.leader.global_position = town.entrance
+	destination.tile_map.add_child(player_party)
+	add_sibling(destination)
+	get_tree().current_scene = destination
+
+	player_party.leader.global_position = destination.entrance
 
 	current_scene.queue_free()
 

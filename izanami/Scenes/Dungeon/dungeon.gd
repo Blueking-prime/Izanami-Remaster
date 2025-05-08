@@ -20,6 +20,7 @@ var dungeon_sample = [
 
 @export var overlay: UIOverlay
 @export var camera: Camera2D
+@export var canvas_layer: CanvasLayer
 
 ## MAP PROPERTIES
 @export var width: int = 8
@@ -119,29 +120,12 @@ func exit_dungeon():
 		print('Yes')
 		players.dungeon_level += 1
 		load_town()
-		queue_free()
 	elif x == 1:
 		print('No')
 		unfreeze_enemies()
 
 func load_town():
-	var town: Town = Global.town_scene.instantiate()
-	print(town)
-	var town_players = town.get_node("Players")
-	town.remove_child(town_players)
-	town.players = players
-
-	get_node('ObjectsSort').remove_child(players)
-	town.camera.add_sibling(players)
-	add_sibling(town)
-	get_tree().current_scene = town
-
-	player.position = Vector2(1657, 264 + 90)
-
-	print(get_tree().current_scene)
-
-	print('Town Loaded')
-
+	Global.warp(self, Global.town_scene)
 
 func _on_detector_hit_exit(coords) -> void:
 	freeze_enemies()

@@ -524,7 +524,7 @@ sources/0 = SubResource("TileSetAtlasSource_aepm2")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x5j8p"]
 
-[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "background", "walls", "players", "navigation_region", "overlay", "camera")]
+[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "background", "walls", "players", "navigation_region", "overlay", "camera", "canvas_layer")]
 script = ExtResource("1_k4ybk")
 map = NodePath("Map")
 background = NodePath("Background")
@@ -533,6 +533,7 @@ players = NodePath("ObjectsSort/Players")
 navigation_region = NodePath("ObjectsSort/NavRegion")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 camera = NodePath("Camera2D")
+canvas_layer = NodePath("CanvasLayer")
 width = 30
 height = 20
 enemy_types = ExtResource("2_nbhj7")

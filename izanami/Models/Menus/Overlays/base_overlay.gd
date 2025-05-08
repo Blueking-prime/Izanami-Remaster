@@ -34,7 +34,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("quit_key"):
 		_on_quit_button_pressed()
 	elif event.is_action_pressed("map_key"):
-		_on_map_button_pressed()
+		if map: _on_map_button_pressed()
 
 
 	elif event.is_action_pressed("switch_leader_key"):
@@ -51,7 +51,7 @@ func load_ui_elements():
 	player_status.display_player_data()
 	coin_counter.text = str(players.gold)
 	mag_counter.text = str(players.mag)
-	map.setup_map()
+	if map: map.setup_map()
 
 
 func _on_inventory_button_pressed() -> void:

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://pgejhcs3y7ql" path="res://Models/Menus/OptionMenus/skill_upgrade_card.tscn" id="2_ehlhe"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_462p7"]
 
-[node name="Control" type="Control"]
+[node name="SkillUpgradeMenus" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

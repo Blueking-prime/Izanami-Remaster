@@ -27,8 +27,11 @@ TASKS (WORKABLE)
 - [x] Add character creator screen
 - [x] Add warping between towns
 - [ ] Implement Overworld
-- [ ] Add skill upgrade and warp menus to demonitarium
-- [ ] Make demonitarium menus spawn from node and make node seperate scene
+- [x] Add skill upgrade and warp menus to demonitarium
+- [x] Make demonitarium menus spawn from node and make node seperate scene
+- [ ] Implement demonitarium loader
+- [ ] Add warp point handler
+- [ ] Consider replacing all player party calls with references to Global player party
 - [x] Add option to select dungeon level
 - [x] Change texbox item list to option menu
 - [x] Add function to change the background for CGs

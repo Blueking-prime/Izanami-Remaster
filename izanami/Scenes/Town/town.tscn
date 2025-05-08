@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ot50txi7adq0"]
+[gd_scene load_steps=26 format=3 uid="uid://ot50txi7adq0"]
 
 [ext_resource type="Script" path="res://Scenes/Town/town.gd" id="1_wpby1"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_5q81g"]
@@ -13,8 +13,7 @@
 [ext_resource type="Script" path="res://Scenes/Dungeon/dungeon_save_data.gd" id="10_dxb7f"]
 [ext_resource type="Script" path="res://Scenes/Town/demonitarium.gd" id="10_h5qir"]
 [ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="11_6gf2o"]
-[ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="11_8eh4h"]
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/demonitarium_fights.gd" id="12_8wj1c"]
+[ext_resource type="PackedScene" uid="uid://bb3vup8ncigjf" path="res://Scenes/Town/Demonitarium/demonitarium.tscn" id="14_k4n1q"]
 [ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/Overlays/base_overlay.tscn" id="16_4ug66"]
 [ext_resource type="PackedScene" uid="uid://4u3w4pkmtm4h" path="res://Models/Menus/Overlays/map.tscn" id="17_5fa41"]
 [ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/Overlays/inventory_menu.tscn" id="17_wofi2"]
@@ -33,18 +32,20 @@ radius = 177.902
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7ftm"]
 radius = 170.012
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7cilw"]
-radius = 186.218
+[sub_resource type="CircleShape2D" id="CircleShape2D_frau5"]
+radius = 183.096
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bb3d0"]
 radius = 34.0147
 
-[node name="Town" type="Node2D" node_paths=PackedStringArray("overlay", "back_button", "camera", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "test", "crowley", "kobaneko", "white", "players")]
+[node name="Town" type="Node2D" node_paths=PackedStringArray("canvas_layer", "overlay", "back_button", "camera", "tile_map", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "test", "players")]
 script = ExtResource("1_wpby1")
 entrance = Vector2(1500, 700)
+canvas_layer = NodePath("CanvasLayer")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 back_button = NodePath("CanvasLayer/BackButton")
 camera = NodePath("Camera2D")
+tile_map = NodePath("TileMapLayer")
 church = NodePath("Church")
 smithy = NodePath("Smithy")
 apothecary = NodePath("Apothecary")
@@ -52,9 +53,6 @@ dungeon = NodePath("Dungeon")
 demonitarium = NodePath("Demonitarium")
 palace = NodePath("Palace")
 test = NodePath("Test")
-crowley = NodePath("Demonitarium/Crowley")
-kobaneko = NodePath("Characters/Kobaneko")
-white = NodePath("Characters/White")
 players = NodePath("Players")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -66,6 +64,8 @@ script = ExtResource("2_gpcba")
 
 [node name="OverMap" type="Camera2D" parent="."]
 enabled = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
 
 [node name="Players" parent="." instance=ExtResource("2_5q81g")]
 position = Vector2(1298, 490)
@@ -133,38 +133,16 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Dungeon"
 
-[node name="Demonitarium" type="StaticBody2D" parent="." node_paths=PackedStringArray("crowley", "quantity_input", "confirm_button", "demonitarium_display")]
+[node name="Demonitarium" type="StaticBody2D" parent="."]
 position = Vector2(268, 264)
 script = ExtResource("10_h5qir")
-crowley = NodePath("Crowley")
-quantity_input = NodePath("QuantityInput")
-confirm_button = NodePath("QuantityInput/Button")
-demonitarium_display = NodePath("../CanvasLayer/DemonitariumFights")
-
-[node name="Crowley" type="Node2D" parent="Demonitarium"]
-position = Vector2(-268, -264)
-
-[node name="QuantityInput" type="SpinBox" parent="Demonitarium"]
-visible = false
-offset_left = 420.0
-offset_top = 212.0
-offset_right = 551.0
-offset_bottom = 291.0
-max_value = 99.0
-rounded = true
-
-[node name="Button" type="Button" parent="Demonitarium/QuantityInput"]
-layout_mode = 0
-offset_left = 131.0
-offset_right = 241.0
-offset_bottom = 79.0
-text = "Confirm"
+demonitarium_scene = ExtResource("14_k4n1q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Demonitarium"]
-shape = SubResource("CircleShape2D_7cilw")
+shape = SubResource("CircleShape2D_frau5")
 
 [node name="Label" type="Label" parent="Demonitarium"]
-offset_right = 40.0
+offset_right = 71.0
 offset_bottom = 23.0
 text = "Demonitarium"
 
@@ -185,18 +163,6 @@ script = ExtResource("18_y17gc")
 shape = SubResource("CircleShape2D_bb3d0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="DemonitariumFights" parent="CanvasLayer" instance=ExtResource("11_8eh4h")]
-visible = false
-anchor_left = 0.498
-anchor_bottom = 0.619
-offset_left = 3.83997
-offset_top = 98.0
-offset_right = -89.0
-offset_bottom = 4.47998
-script = ExtResource("12_8wj1c")
-demon_group = ExtResource("9_tt1ik")
-demons = {}
 
 [node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu", "map") instance=ExtResource("16_4ug66")]
 inventory_menu = NodePath("../InventoryMenu")
@@ -219,6 +185,3 @@ text = "Back"
 [node name="Map" parent="CanvasLayer" node_paths=PackedStringArray("map_camera") instance=ExtResource("17_5fa41")]
 visible = false
 map_camera = NodePath("../../OverMap")
-
-[editable path="CanvasLayer/DemonitariumFights"]
-[editable path="CanvasLayer/DemonitariumFights/Options"]

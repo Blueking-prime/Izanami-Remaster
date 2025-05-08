@@ -4,9 +4,11 @@ class_name Town
 
 @export var entrance: Vector2
 
+@export var canvas_layer: CanvasLayer
 @export var overlay: UIOverlay
 @export var back_button: Button
 @export var camera: Camera2D
+@export var tile_map: TileMapLayer
 
 @export var church: Node
 @export var smithy: Node
@@ -15,10 +17,6 @@ class_name Town
 @export var demonitarium: Node
 @export var palace: Node
 @export var test: Node
-
-@export var crowley: Node
-@export var kobaneko: Node
-@export var white: Node
 
 @export var players: Party
 
