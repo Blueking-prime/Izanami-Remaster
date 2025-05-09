@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlt58862gge0u"]
+[gd_scene load_steps=3 format=3 uid="uid://dlt58862gge0u"]
 
 [ext_resource type="Script" path="res://Models/Menus/ShopMenus/skill_upgrade_menu.gd" id="1_sm2qp"]
 [ext_resource type="PackedScene" uid="uid://pgejhcs3y7ql" path="res://Models/Menus/OptionMenus/skill_upgrade_card.tscn" id="2_ehlhe"]
-[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="3_462p7"]
 
 [node name="SkillUpgradeMenus" type="Control"]
 layout_mode = 3
@@ -11,8 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Players" parent="." instance=ExtResource("3_462p7")]
 
 [node name="PanelContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -79,7 +76,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 script = ExtResource("1_sm2qp")
 skill_upgrade_card_scene = ExtResource("2_ehlhe")
-players = NodePath("../../../../Players")
+players = NodePath("")
 desc_box_container = NodePath("../../../../BoxContainer")
 confrim_button = NodePath("../../../../ConfirmButton")
 metadata/_tab_index = 1

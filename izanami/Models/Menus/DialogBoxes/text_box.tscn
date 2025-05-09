@@ -51,4 +51,4 @@ layout_mode = 2
 
 [node name="Options" parent="Margin/VBox" instance=ExtResource("1_gnfuy")]
 layout_mode = 2
-horizontal_scroll_mode = 0
+vertical_scroll_mode = 0

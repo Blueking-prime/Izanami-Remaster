@@ -26,3 +26,5 @@ func buy_mag():
 
 	quantity_input.hide()
 	confirm_button.hide()
+
+	await get_parent().choose_option()

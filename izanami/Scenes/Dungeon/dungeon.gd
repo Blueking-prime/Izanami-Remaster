@@ -127,7 +127,7 @@ func exit_dungeon():
 func load_town():
 	Global.warp(self, Global.town_scene)
 
-func _on_detector_hit_exit(coords) -> void:
+func _on_detector_hit_exit(_coords) -> void:
 	freeze_enemies()
 	exit_dungeon()
 
@@ -158,7 +158,7 @@ func collect_treasure():
 	print("You got %s!" % [drop.name])
 
 
-func _on_detector_hit_chest(coords) -> void:
+func _on_detector_hit_chest(_coords) -> void:
 	collect_treasure()
 
 

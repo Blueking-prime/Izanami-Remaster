@@ -30,5 +30,5 @@ lvl = 10
 y_sort_enabled = true
 position = Vector2(21, 0)
 classname = &"Knight"
-character_name = "P1"
+character_name = "P2"
 lvl = 10

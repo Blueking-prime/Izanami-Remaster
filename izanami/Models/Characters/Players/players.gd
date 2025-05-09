@@ -42,12 +42,28 @@ func load_party():
 		# Store battle sprites in array to recall
 		sprites.append(i.battle_sprite)
 		i.hide()
+		i.detector.monitoring = false
 
 	if len(party) and (not leader or leader not in party):
 		leader = party[0]
 
-	if leader: leader.show()
+	if leader:
+		leader.show()
+		leader.detector.monitoring = true
 	#if camera: camera.init_camera()
+
+func switch_leader(_index: int):
+	if party[_index] == leader: return
+
+	for i in leader.detector.get_signal_list():
+		for j in leader.detector.get_signal_connection_list(i.name):
+			leader.detector.disconnect(i.name, j.callable)
+			party[_index].detector.connect(i.name, j.callable, j.flags)
+
+	leader = party[_index]
+	#for i in leader.detector.get_signal_list():
+		#for j in leader.detector.get_signal_connection_list(i.name):
+			#print(leader, j)
 
 func add_to_party(player: Player):
 	add_child(player)
@@ -59,6 +75,13 @@ func remove_from_party(player: Player):
 	if len(party) < 2:
 		print("Can't remove, party too small")
 		return
+
+	if player == leader:
+		if player == party[0]:
+			switch_leader(1)
+		else:
+			switch_leader(0)
+
 	remove_child(player)
 	load_party()
 	player.gear.inventory = null

@@ -30,6 +30,7 @@ TASKS (WORKABLE)
 - [x] Add skill upgrade and warp menus to demonitarium
 - [x] Make demonitarium menus spawn from node and make node seperate scene
 - [ ] Implement demonitarium loader
+- [ ] Implement demonitarium saving
 - [ ] Add warp point handler
 - [ ] Consider replacing all player party calls with references to Global player party
 - [x] Add option to select dungeon level

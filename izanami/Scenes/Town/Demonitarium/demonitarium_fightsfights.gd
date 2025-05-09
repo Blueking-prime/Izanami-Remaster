@@ -12,7 +12,7 @@ func see_demons():
 	demonitarium_display.players = Global.player_party
 	demonitarium_display.display_demons()
 	demonitarium_display.show()
-	demonitarium_display.list.grab_focus()
+	demonitarium_display.options.grab_focus()
 	Global.show_text_box("Crowley", 'What do you want to fight?', true)
 
 

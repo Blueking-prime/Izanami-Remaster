@@ -28,13 +28,13 @@ warp_points = NodePath("WarpPoints")
 canvas_layer = NodePath("CanvasLayer")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 tile_map = NodePath("TileMapLayer")
-players = NodePath("CanvasLayer/SKillUpgradeMenu/Players")
 entrance = Vector2(1500, 700)
+players = NodePath("Players")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
 
 [node name="Players" parent="." instance=ExtResource("2_t8gmq")]
 position = Vector2(499, 236)
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
 
 [node name="Counter" type="StaticBody2D" parent="." node_paths=PackedStringArray("fights", "upgrades", "mag", "crowley", "back_button")]
 position = Vector2(960, 108)
@@ -91,14 +91,6 @@ status_menu = NodePath("../StatusOverlay")
 [node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("7_uql5o")]
 visible = false
 
-[node name="BackButton" type="Button" parent="CanvasLayer"]
-visible = false
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 87.0
-offset_bottom = 60.0
-text = "Back"
-
 [node name="QuantityInput" type="SpinBox" parent="CanvasLayer"]
 visible = false
 offset_left = 420.0
@@ -129,6 +121,14 @@ demons = {}
 
 [node name="SKillUpgradeMenu" parent="CanvasLayer" instance=ExtResource("13_4wr0j")]
 visible = false
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 87.0
+offset_bottom = 60.0
+text = "Back"
 
 [connection signal="fight_demon" from="CanvasLayer/DemonitariumFights" to="Counter/Fights" method="fight_enemy"]
 
