@@ -14,17 +14,17 @@ func _input(event: InputEvent) -> void:
 
 func setup_map():
 	scene = get_tree().current_scene
+	if scene:
+		var map_size: Vector2 = scene.size() * 8
+		var screen_size: Vector2 = get_viewport().size
 
-	var map_size: Vector2 = scene.size() * 8
-	var screen_size: Vector2 = get_viewport().size
+		var map_scale = map_size / screen_size
 
-	var map_scale = map_size / screen_size
+		map_camera.zoom.x = min(map_size.x, map_scale.y) * 0.8
+		map_camera.zoom.y = map_camera.zoom.x
 
-	map_camera.zoom.x = min(map_size.x, map_scale.y) * 0.8
-	map_camera.zoom.y = map_camera.zoom.x
-
-	map_camera.position = scene.center() * 16
-	print(map_camera.zoom)
+		map_camera.position = scene.center() * 16
+		print(map_camera.zoom)
 
 func show_map():
 	Global.player_party.freeze()

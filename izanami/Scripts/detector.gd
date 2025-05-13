@@ -38,3 +38,12 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 		hit_enemy.emit(body)
 	if body is StaticBody2D:
 		hit_building.emit(body)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is WarpPoint:
+		Global.player_party.freeze()
+		var confirm = await Global.show_text_choice("Crowley", "Go to %s" % [area.destination])
+		Global.player_party.unfreeze()
+		if confirm == 0:
+			Global.warp(get_tree().current_scene, area.destination_scene)

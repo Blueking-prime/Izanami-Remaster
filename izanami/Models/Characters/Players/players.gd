@@ -38,11 +38,13 @@ func _ready() -> void:
 
 func load_party():
 	party = get_children().filter(func(x): if x is Player and is_instance_valid(x): return x)
+	sprites.clear()
 	for i in party:
 		# Store battle sprites in array to recall
 		sprites.append(i.battle_sprite)
 		i.hide()
 		i.detector.monitoring = false
+		i.hitbox.disabled = true
 
 	if len(party) and (not leader or leader not in party):
 		leader = party[0]
@@ -50,6 +52,7 @@ func load_party():
 	if leader:
 		leader.show()
 		leader.detector.monitoring = true
+		leader.hitbox.disabled = false
 	#if camera: camera.init_camera()
 
 func switch_leader(_index: int):
@@ -57,16 +60,19 @@ func switch_leader(_index: int):
 
 	for i in leader.detector.get_signal_list():
 		for j in leader.detector.get_signal_connection_list(i.name):
+			print(j)
 			leader.detector.disconnect(i.name, j.callable)
 			party[_index].detector.connect(i.name, j.callable, j.flags)
 
 	leader = party[_index]
+	load_party()
 	#for i in leader.detector.get_signal_list():
 		#for j in leader.detector.get_signal_connection_list(i.name):
 			#print(leader, j)
 
 func add_to_party(player: Player):
 	add_child(player)
+	#player.global_position.x += 20 * len(party) # Offset the player to prevent overlap
 	load_party()
 	player.gear.load_stock()
 
@@ -219,7 +225,7 @@ func load_state(save_data: PartySaveData):
 		var player: Player = player_scene.instantiate()
 		player.gear.player_gear_data = null
 		player.items.item_group = null
-		add_child(player)
+		add_to_party(player)
 		player.load_data(i)
 		#player.freeze_movement = true
 		#party[i].load_data(save_data.players[i])

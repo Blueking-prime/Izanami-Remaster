@@ -69,7 +69,7 @@ func show_target_selector():
 	target_selector.player_list.grab_focus()
 
 func choose_target(index: int):
-	players.leader = players.party[index]
+	players.switch_leader(index)
 	players.load_party()
 	load_menu()
 	target_selector.hide()

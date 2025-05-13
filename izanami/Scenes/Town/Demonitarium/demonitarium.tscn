@@ -4,15 +4,15 @@
 [ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_counter.gd" id="2_8qk1p"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_t8gmq"]
 [ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_upgrades.gd" id="3_hcmgh"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_warp_points.gd" id="3_w7gyv"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="4_2oy5b"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_fightsfights.gd" id="4_nsu74"]
+[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_fights.gd" id="4_nsu74"]
 [ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/Overlays/base_overlay.tscn" id="5_jxloa"]
 [ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_mag.gd" id="5_w238o"]
 [ext_resource type="Script" path="res://Models/Menus/ShopMenus/demonitarium_fights.gd" id="5_yqv2h"]
 [ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/Overlays/inventory_menu.tscn" id="6_j8oaf"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="6_xawud"]
 [ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/Overlays/status_overlay.tscn" id="7_uql5o"]
+[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/warppoint.gd" id="8_njc30"]
 [ext_resource type="PackedScene" uid="uid://dlt58862gge0u" path="res://Models/Menus/ShopMenus/skill_upgrade_menu.tscn" id="13_4wr0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5fbu"]
@@ -66,10 +66,11 @@ confirm_button = NodePath("../../CanvasLayer/QuantityInput/Button")
 
 [node name="WarpPoints" type="Node2D" parent="."]
 position = Vector2(1628, 320)
-script = ExtResource("3_w7gyv")
 
 [node name="Enugu" type="Area2D" parent="WarpPoints"]
 position = Vector2(120, 127)
+script = ExtResource("8_njc30")
+destination = "Enugu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WarpPoints/Enugu"]
 shape = SubResource("CircleShape2D_mhaa2")

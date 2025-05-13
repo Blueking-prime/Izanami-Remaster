@@ -6,6 +6,7 @@ extends Node
 
 @export var town_scene: PackedScene
 @export var dungeon_scene: PackedScene
+@export var demonitarium_scene: PackedScene
 @export var battle_scene: PackedScene
 @export var main_menu_scene: PackedScene
 
@@ -129,6 +130,7 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 	if not persist:
 		await next
 		text_box.queue_free()
+
 
 func change_background(texture: Texture2D, global: bool = false):
 	if texture:
@@ -256,20 +258,21 @@ func print_to_log(text: Variant):
 	else :
 		action_log.text += '\n' + str(text)
 
+
 func warp(current_scene: Node, destination_scene: PackedScene):
 	var destination = destination_scene.instantiate()
-	destination.remove_child(destination.tile_map.get_node("Players"))
+
+	destination.remove_child(destination.players)
+	current_scene.remove_child(Global.player_party)
+
 	destination.players = player_party
+	destination.tile_map.add_sibling(player_party)
 
-	player_party.get_parent().remove_child(player_party)
-
-	destination.tile_map.add_child(player_party)
-	add_sibling(destination)
+	current_scene.add_sibling(destination)
 	get_tree().current_scene = destination
+	current_scene.queue_free()
 
 	player_party.leader.global_position = destination.entrance
-
-	current_scene.queue_free()
 
 	print(get_tree().current_scene)
 

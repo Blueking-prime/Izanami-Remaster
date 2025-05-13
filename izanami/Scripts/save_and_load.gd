@@ -49,6 +49,7 @@ func load_save_file(file_location: String):
 
 	match save_file.scene_data.location:
 		'Town': await load_town()
+		'Demonitarium': await load_demonitarium()
 		'Dungeon': await load_dungeon(save_file.scene_data)
 
 	if not Global.player_party:
@@ -69,6 +70,15 @@ func load_town():
 		var town: Town = Global.town_scene.instantiate()
 		add_sibling(town)
 		get_tree().current_scene = town
+
+	print('Town Loaded')
+
+func load_demonitarium():
+	if not get_tree().current_scene is Demonitarium:
+		get_tree().unload_current_scene()
+		var demonitarium: Demonitarium = Global.demonitarium_scene.instantiate()
+		add_sibling(demonitarium)
+		get_tree().current_scene = demonitarium
 
 	print('Town Loaded')
 

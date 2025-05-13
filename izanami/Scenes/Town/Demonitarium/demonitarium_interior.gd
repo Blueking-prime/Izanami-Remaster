@@ -30,6 +30,7 @@ func _check_building(node: Variant):
 		counter: await counter.main()
 		warp_points: await warp_points.main()
 
+
 func size() -> Vector2:
 	# return walls.get_used_rect().size
 	# Replace with above when tilemap is created
@@ -41,15 +42,14 @@ func center() -> Vector2:
 	return Vector2(500, 500)
 
 
-func save():
-	#var save_data =
+func save() -> DemonitariumSaveData:
+	var save_data: DemonitariumSaveData = DemonitariumSaveData.new()
 
-	#save_data.demonitarium_stock = counter.stock
+	save_data.demonitarium_stock = counter.fights.stock
 
-	#return save_data
-	pass
+	return save_data
 
-func load_data(data):
-	counter.stock = data.demonitarium_stock
+func load_data(data: DemonitariumSaveData):
+	counter.fights.stock = data.demonitarium_stock
 
-	print('Town Data Loaded')
+	print('Demonitarium Data Loaded')

@@ -59,6 +59,7 @@ shape = SubResource("CircleShape2D_mmjfn")
 
 [connection signal="item_selected" from="Skills/SkillList" to="." method="_on_skill_list_selected"]
 [connection signal="item_selected" from="Items/ItemList" to="." method="_on_item_list_selected"]
+[connection signal="area_entered" from="Detector" to="Detector" method="_on_area_entered"]
 [connection signal="body_shape_entered" from="Detector" to="Detector" method="_on_body_shape_entered"]
 
 [editable path="BattleSprite"]

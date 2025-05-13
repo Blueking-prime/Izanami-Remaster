@@ -20,7 +20,8 @@ func _ready() -> void:
 	load_stock()
 
 func load_stock():
-	players = Global.player_party
+	if is_instance_valid(Global.player_party):
+		players = Global.player_party
 	if player:
 		nametag.text = player.nametag.text
 		update_listing()

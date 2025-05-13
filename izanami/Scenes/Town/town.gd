@@ -74,14 +74,12 @@ func save() -> TownSaveData:
 	var save_data: TownSaveData = TownSaveData.new()
 
 	save_data.apothecary_stock = apothecary.stock
-	save_data.demonitarium_stock = demonitarium.stock
 	save_data.smithy_stock = smithy.stock
 
 	return save_data
 
 func load_data(data: TownSaveData):
 	apothecary.stock = data.apothecary_stock
-	demonitarium.stock = data.demonitarium_stock
 	smithy.stock = data.smithy_stock
 
 	print('Town Data Loaded')

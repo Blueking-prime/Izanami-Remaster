@@ -22,17 +22,20 @@ BUG FIXES
 - [x] Fix enemy name bugs
 
 TASKS (WORKABLE)
+- [ ] Implement Overworld
+- [ ] Replace all player party calls with references to Global player party
+- [ ] Set up warning box and confirmation box
+- [ ] Implement accessibility settings
+- [ ] implement graphics settings
+- [x] Implement demonitarium saving
 - [x] Add skill upgrade menu
 - [x] Add adding and removing party members
 - [x] Add character creator screen
 - [x] Add warping between towns
-- [ ] Implement Overworld
 - [x] Add skill upgrade and warp menus to demonitarium
 - [x] Make demonitarium menus spawn from node and make node seperate scene
-- [ ] Implement demonitarium loader
-- [ ] Implement demonitarium saving
-- [ ] Add warp point handler
-- [ ] Consider replacing all player party calls with references to Global player party
+- [x] Implement demonitarium loader
+- [x] Add warp point handler
 - [x] Add option to select dungeon level
 - [x] Change texbox item list to option menu
 - [x] Add function to change the background for CGs
@@ -44,12 +47,8 @@ TASKS (WORKABLE)
 - [x] Add option to have fixed dungeon floor layout 
 - [x] Change dungeon background to void and expand outer wall thickness
 - [x] Remove overlay on camera
-- [ ] Remove overlay on cutscene
-- [x] Add loading screens
-- [ ] Set up warning box and confirmation box
-- [ ] Implement accessibility settings
-- [ ] implement graphics settings
 - [X] Convert map data to use vector2 for coordinates
+- [x] Add loading screens
 - [x] Add "escape" to church
 - [x] Add enemies chasing players in dungeon
 - [x] Disable saving while being chased in dungeon
@@ -96,6 +95,7 @@ TASKS (AWAITING IMPLEMENTATION OF OTHER COMPONENTS)
 - [ ] Add refreshing shop stock
 - [ ] Add more terrain options to map generation
 - [ ] Implement cutscenes as functions in special script
+- [ ] Remove overlay on cutscene
 
 OPTIONAL IDEAS
 - [ ] Onmyouji
