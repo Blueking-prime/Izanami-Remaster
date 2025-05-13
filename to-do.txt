@@ -24,9 +24,10 @@ BUG FIXES
 TASKS (WORKABLE)
 - [ ] Implement Overworld
 - [ ] Replace all player party calls with references to Global player party
-- [ ] Set up warning box and confirmation box
+- [ ] Replace all confirmation prompts with pop-up box
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
+- [x] Set up warning box and confirmation box
 - [x] Implement demonitarium saving
 - [x] Add skill upgrade menu
 - [x] Add adding and removing party members

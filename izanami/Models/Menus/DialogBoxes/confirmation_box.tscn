@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://n1fo1vibhwx4"]
+
+[node name="ConfirmationBox" type="ConfirmationDialog"]
+title = "Please Confirm"
+initial_position = 1
+size = Vector2i(500, 200)
+visible = true
+exclusive = false
+always_on_top = true
+popup_window = true
+ok_button_text = "Yes"
+dialog_autowrap = true
+cancel_button_text = "No"

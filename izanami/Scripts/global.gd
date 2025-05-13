@@ -1,6 +1,7 @@
 extends Node
 
 @export var text_box_scene: PackedScene
+@export var confirmation_box_scene: PackedScene
 @export var description_box_scene: PackedScene
 @export var shop_menu_scene: PackedScene
 
@@ -20,10 +21,13 @@ var background_texture: TextureRect
 var shop_menu: Control
 var text_box: TextBox
 var action_log: Label
+var confirmation_box: ConfirmationDialog
 
 var textbox_response: int
+var confrimation_response: bool
 
 signal next
+signal confirmation_box_triggered
 signal sell(condition)
 
 
@@ -130,6 +134,27 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 	if not persist:
 		await next
 		text_box.queue_free()
+
+
+func show_confirmation_box(prompt: String):
+	if is_instance_valid(confirmation_box):
+		confirmation_box.queue_free()
+
+	confirmation_box = confirmation_box_scene.instantiate()
+
+	get_tree().get_current_scene().canvas_layer.add_child(confirmation_box)
+
+	confirmation_box.dialog_text = prompt
+	confirmation_box.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	confirmation_box.get_label().vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+
+	confirmation_box.canceled.connect(_confirmation_box_canceled)
+	confirmation_box.confirmed.connect(_confirmation_box_confirmed)
+
+	await confirmation_box_triggered
+
+	return confrimation_response
+
 
 
 func change_background(texture: Texture2D, global: bool = false):
@@ -290,6 +315,14 @@ func rand_spread_test():
 ## SIGNALS
 func _on_option_selected(index: int):
 	textbox_response = index
+
+func _confirmation_box_confirmed():
+	confrimation_response = true
+	confirmation_box_triggered.emit()
+
+func _confirmation_box_canceled():
+	confrimation_response = false
+	confirmation_box_triggered.emit()
 
 func _on_shop_exit():
 	sell.emit('exit')
