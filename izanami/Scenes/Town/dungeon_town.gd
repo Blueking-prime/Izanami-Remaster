@@ -1,9 +1,5 @@
 extends Node
 
-@onready var players: Party = get_parent().players
-
-@onready var overlay: UIOverlay = get_parent().overlay
-
 @export var no_of_floors: int
 
 @export var dungeon_dimensions: Array[Vector2]
@@ -22,25 +18,25 @@ var dungeon: Dungeon
 var dungeon_floor: int
 
 func main():
-	players.freeze()
+	Global.players.freeze()
 	var choices = []
 	for i in no_of_floors:
 		choices.append(str(i + 1))
 
 	dungeon_floor = await Global.show_text_choice('System', 'Select dungeon floor', choices)
 
-	var confirm = await Global.show_text_choice("System", "Confirm: ")
+	var confirm = await Global.show_confirmation_box("Confirm: ")
 
-	players.unfreeze()
-	if confirm == 0:
+	Global.players.unfreeze()
+	if confirm:
 		Global.change_background(Global.loading_screen, true)
 		dungeon = Global.dungeon_scene.instantiate()
-		dungeon.players = players
+		dungeon.players = Global.players
 		set_dungeon_level()
 		load_dungeon()
 		get_parent().queue_free()
 	else :
-		overlay.show()
+		get_parent().overlay.show()
 
 func set_dungeon_level():
 	if dungeon_floor < no_of_floors:
@@ -69,7 +65,7 @@ func set_dungeon_level():
 	return
 
 func load_dungeon():
-	get_parent().remove_child(players)
-	dungeon.get_node('ObjectsSort').add_child(players)
+	get_parent().remove_child(Global.players)
+	dungeon.add_players(Global.players)
 	get_parent().add_sibling(dungeon)
 	get_tree().current_scene = dungeon

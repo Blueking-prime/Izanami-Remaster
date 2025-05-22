@@ -27,6 +27,8 @@ class_name CharacterStatuses
 ## Gives all character skills elemental trait
 @export var enchantment: StringName
 
+var passive_effects = [restore]
+
 var stunned: bool = false
 var exhausted: bool = false
 var counterstance: bool = false
@@ -73,19 +75,14 @@ func trigger_status():
 	for i in status_effects:
 		Global.print_to_log(i.desc + ' proced')
 		i.trigger(get_parent())
-		icon_handler.tick_icon(i)
-
-	print(get_parent().status_icons.get_children())
-	print("icon created")
+		if i.get_script() not in passive_effects:
+			icon_handler.tick_icon(i)
 
 
 func expire_status():
 	for i in status_effects:
 		if i.elapsed >= i.duration:
 			remove_status(i)
-
-	print(get_parent().status_icons.get_children())
-	print("icon created")
 
 
 func add_status(_status: Status):
@@ -95,7 +92,7 @@ func add_status(_status: Status):
 
 	status_effects.append(_status)
 	status_effects_scripts.append(_status.get_script())
-	if _status.get_script() not in [restore]:
+	if _status.get_script() not in passive_effects:
 		icon_handler.add_icon(_status)
 
 func remove_status(_status: Status):

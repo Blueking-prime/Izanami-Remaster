@@ -13,7 +13,7 @@ extends Node
 
 @export var loading_screen: AnimatedTexture
 
-var player_party: Party
+var players: Party
 
 var description_box_parent: Node
 var description_box: DescriptionBox
@@ -278,26 +278,29 @@ func load_main_menu():
 
 ## GENERAL FUNCTIONS
 func print_to_log(text: Variant):
+	if not action_log: return
+
 	if text is String:
 		action_log.text += '\n' + text
 	else :
 		action_log.text += '\n' + str(text)
 
 
-func warp(current_scene: Node, destination_scene: PackedScene):
-	var destination = destination_scene.instantiate()
+func warp(source: Location, destination_scene: PackedScene):
+	var destination: Location = destination_scene.instantiate()
+	source.add_sibling(destination)
 
-	destination.remove_child(destination.players)
-	current_scene.remove_child(Global.player_party)
+	source.remove_players()
+	destination.add_players(players)
 
-	destination.players = player_party
-	destination.tile_map.add_sibling(player_party)
-
-	current_scene.add_sibling(destination)
+	# Set destination as main scene
 	get_tree().current_scene = destination
-	current_scene.queue_free()
 
-	player_party.leader.global_position = destination.entrance
+	# Reload destination and delete current scene
+	destination.load_scene()
+	source.call_deferred('queue_free')
+
+	players.leader.global_position = destination.entrance
 
 	print(get_tree().current_scene)
 

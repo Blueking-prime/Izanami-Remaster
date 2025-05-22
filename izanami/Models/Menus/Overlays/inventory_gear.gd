@@ -13,7 +13,7 @@ func _ready() -> void:
 	Global.description_box_parent = desc_box_container
 
 func load_stock():
-	players = Global.player_party
+	players = Global.players
 	if players:
 		inventory = players.inventory
 	update_listing()

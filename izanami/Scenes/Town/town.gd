@@ -1,13 +1,8 @@
-extends Node2D
+extends Location
 
 class_name Town
 
-@export var entrance: Vector2
-
-@export var canvas_layer: CanvasLayer
-@export var overlay: UIOverlay
 @export var back_button: Button
-@export var camera: Camera2D
 @export var tile_map: TileMapLayer
 
 @export var church: Node
@@ -18,29 +13,19 @@ class_name Town
 @export var palace: Node
 @export var test: Node
 
-@export var players: Party
-
 var locations = ["Palace", "Church", "Smithy", "Apothecary", "Demonitorium", "Dungeon"]
 var actions = ['Talk', "Go Somewhere", 'Status']
 var characters = ["Kobaneko", "White"]
 
-func _ready() -> void:
-	load_scene()
-
-
 func load_scene():
-	if not Global.player_party:
-		Global.player_party = players
-	else:
-		players = Global.player_party
+	super.load_scene()
 
-	#if not players.leader.detector.hit_building.is_connected(_check_building):
-		#print('Connect detector')
-	players.leader.detector.hit_building.connect(_check_building)
+	if not players.leader.detector.hit_building.is_connected(_check_building):
+		players.leader.detector.hit_building.connect(_check_building)
 
-	camera.players = players
-	camera.init_camera()
-	overlay.load_ui_elements()
+
+func remove_players():
+	remove_child(players)
 
 
 func _check_building(node: Variant):
@@ -60,14 +45,14 @@ func _check_building(node: Variant):
 
 
 func size() -> Vector2:
-	# return walls.get_used_rect().size
+	# return tile_map.get_used_rect().size
 	# Replace with above when tilemap is created
 	return Vector2(100, 100)
 
 func center() -> Vector2:
-	#return walls.center()
+	#return tile_map.center()
 	# Replace with above when tilemap is created
-	return Vector2(500, 500)
+	return Vector2(50, 50)
 
 
 func save() -> TownSaveData:

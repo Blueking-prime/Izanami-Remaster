@@ -1,28 +1,14 @@
-extends Node2D
+extends Location
 
 class_name Demonitarium
 
 @export var counter: DemonitariumCounter
 @export var warp_points: Node2D
-@export var canvas_layer: CanvasLayer
-@export var overlay: UIOverlay
-@export var tile_map: TileMapLayer
-@export var entrance: Vector2
-
-@export var players: Party
-
-func _ready() -> void:
-	load_scene()
 
 func load_scene():
-	if not Global.player_party:
-		Global.player_party = players
-	else:
-		players = Global.player_party
+	super.load_scene()
 
-	Global.player_party.leader.detector.hit_building.connect(_check_building)
-
-	overlay.load_ui_elements()
+	Global.players.leader.detector.hit_building.connect(_check_building)
 
 func _check_building(node: Variant):
 	overlay.hide()

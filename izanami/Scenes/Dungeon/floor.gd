@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-class_name DungeonBackground
+class_name LocationBackground
 
 @onready var map: DungeonMap = get_parent().map
 
@@ -14,12 +14,12 @@ func draw_background():
 	clear()
 	width = map.width
 	height = map.height
-	_render_background_floor()
+	_render_background()
 
-func _render_background_floor():
+func _render_background():
 	var all_tiles = []
-	for y in height:
-		for x in width:
+	for y in height * map.upscale_factor:
+		for x in width * map.upscale_factor:
 			var coord = Vector2i(x, y)
 			all_tiles.append_array([
 				coord * 2,

@@ -1,4 +1,4 @@
-extends Node2D
+extends Location
 
 class_name Dungeon
 
@@ -12,15 +12,8 @@ var dungeon_sample = [
 
 ## CHILD NODES
 @export var map: DungeonMap
-@export var background: DungeonBackground
-@export var walls: DungeonObjects
 
-@export var players: Party
 @export var navigation_region: NavigationRegion2D
-
-@export var overlay: UIOverlay
-@export var camera: Camera2D
-@export var canvas_layer: CanvasLayer
 
 ## MAP PROPERTIES
 @export var width: int = 8
@@ -51,20 +44,12 @@ var player: Player:
 		#return [player.position.x / 16, player.position.y / 16]
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	load_scene()
-
 func load_scene():
 	Global.change_background(Global.loading_screen, true)
-	if not Global.player_party:
-		Global.player_party = players
-	else:
-		players = Global.player_party
 
-	player_party_setup()
+	super.load_scene()
+
 	_load_items()
-	#_load_enemies()
 
 	player.detector.hit_chest.connect(_on_detector_hit_chest)
 	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
@@ -74,14 +59,7 @@ func load_scene():
 		map.draw_new_map()
 		map.display_dungeon()
 
-		walls.render_objects()
-
-	background.draw_background()
-
-	overlay.load_ui_elements()
-
-	camera.players = players
-	camera.init_camera()
+		tilemap.render_objects()
 
 	setup_navigation_region()
 
@@ -101,36 +79,23 @@ func setup_navigation_region():
 
 	navigation_region.bake_navigation_polygon()
 
-func player_party_setup():
-	players.show()
-	for i in players.party:
-		i.dungeon_display()
-		i.hide()
-	player.show()
-	players.unfreeze()
-
-
 ## EXIT LOGIC
 func exit_dungeon():
 	players.freeze()
-	var x = await Global.show_text_choice("System", "Do you want to leave the Dungeon?")
+	var x = await Global.show_confirmation_box("Do you want to leave the Dungeon?")
 
 	players.unfreeze()
-	if x == 0:
-		print('Yes')
+	if x:
 		players.dungeon_level += 1
-		load_town()
-	elif x == 1:
-		print('No')
+		Global.players = players
+		Global.warp(self, Global.town_scene)
+	else :
 		unfreeze_enemies()
 
-func load_town():
-	Global.warp(self, Global.town_scene)
 
 func _on_detector_hit_exit(_coords) -> void:
 	freeze_enemies()
 	exit_dungeon()
-
 
 
 ## TREASURE LOGIC
@@ -174,15 +139,15 @@ func initiate_battle():
 	battle.enemy_group = enemy_types
 	#player.in_battle = true
 	background.hide()
-	walls.hide()
+	tilemap.hide()
 	call_deferred("add_sibling", battle)
 
 func freeze_enemies():
-	for i in walls.enemy_nodes:
+	for i in tilemap.enemy_nodes:
 		if is_instance_valid(i): i.freeze = true
 
 func unfreeze_enemies():
-	for i in walls.enemy_nodes:
+	for i in tilemap.enemy_nodes:
 		if is_instance_valid(i): i.freeze = false
 
 
@@ -195,17 +160,17 @@ func _on_detector_hit_enemy(body: Enemy) -> void:
 
 func reset_from_battle():
 	background.show()
-	walls.show()
+	tilemap.show()
 	overlay.load_ui_elements()
 	overlay.show()
 	unfreeze_enemies()
 
 
 func size() -> Vector2:
-	return walls.get_used_rect().size
+	return tilemap.get_used_rect().size
 
 func center() -> Vector2:
-	return walls.center()
+	return tilemap.center()
 
 ## SAVE AND LOAD LOGIC
 func save() -> DungeonSaveData:
@@ -222,15 +187,15 @@ func save() -> DungeonSaveData:
 	save_data.gear_chance = gear_chance
 
 	save_data.map_data = map.save()
-	save_data.tile_data = walls.save()
-	save_data.enemy_data = walls.save_enemies()
+	save_data.tile_data = tilemap.save()
+	save_data.enemy_data = tilemap.save_enemies()
 
 	return save_data
 
 func load_data(data: DungeonSaveData):
 	new_map = false
 	map.load_data(data.map_data)
-	walls.clear()
-	walls.load_data(data)
+	tilemap.clear()
+	tilemap.load_data(data)
 
 	print('Dungeon data loaded')

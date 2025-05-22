@@ -15,8 +15,8 @@ func _ready() -> void:
 	load_stock()
 
 func load_stock():
-	if Global.player_party:
-		players = Global.player_party
+	if Global.players:
+		players = Global.players
 
 	_clear_data_cards()
 	if players:

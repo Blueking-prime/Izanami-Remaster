@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector2()
 
 	if chase_player:
-		if not Global.player_party.chased: Global.player_party.chased = true
+		if not Global.players.chased: Global.players.chased = true
 		target_position = player.global_position
 
 	nav_agent.target_position = target_position

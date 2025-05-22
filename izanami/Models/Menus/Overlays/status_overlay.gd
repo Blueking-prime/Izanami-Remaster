@@ -10,7 +10,7 @@ class_name StatusOverlay
 var players: Party
 
 func load_menu():
-	players = Global.player_party
+	players = Global.players
 	_clear_data_cards()
 	for i in players.party:
 		create_card(i)
@@ -56,7 +56,7 @@ func _clear_data_cards():
 
 
 func _on_exit_button_pressed() -> void:
-	Global.player_party.unfreeze()
+	Global.players.unfreeze()
 	target_selector.hide()
 	hide()
 

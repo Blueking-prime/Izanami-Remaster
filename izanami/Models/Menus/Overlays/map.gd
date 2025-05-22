@@ -27,11 +27,11 @@ func setup_map():
 		print(map_camera.zoom)
 
 func show_map():
-	Global.player_party.freeze()
+	Global.players.freeze()
 	map_camera.enabled = true
 	map_camera.make_current()
 
-	for i in get_parent().get_children():
+	for i in scene.canvas_layer.get_children():
 		if i.visible:
 			hidden_nodes.append(i)
 			i.hide()
@@ -40,7 +40,7 @@ func show_map():
 
 
 func hide_map():
-	Global.player_party.unfreeze()
+	Global.players.unfreeze()
 	map_camera.enabled = false
 
 	for i in hidden_nodes:

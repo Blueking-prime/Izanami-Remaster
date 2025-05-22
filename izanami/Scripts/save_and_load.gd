@@ -36,7 +36,7 @@ func create_save_file(file_location: String):
 	var save_file:GameSaveData = GameSaveData.new()
 
 	save_file.date = Time.get_datetime_string_from_system()
-	save_file.party_data = Global.player_party.save()
+	save_file.party_data = Global.players.save()
 	save_file.scene_data = get_tree().current_scene.save()
 	print(file_location, save_file)
 
@@ -52,10 +52,10 @@ func load_save_file(file_location: String):
 		'Demonitarium': await load_demonitarium()
 		'Dungeon': await load_dungeon(save_file.scene_data)
 
-	if not Global.player_party:
+	if not Global.players:
 		load_players()
 
-	Global.player_party.load_state(save_file.party_data)
+	Global.players.load_state(save_file.party_data)
 
 	get_tree().current_scene.load_data(save_file.scene_data)
 	get_tree().current_scene.load_scene()
@@ -105,4 +105,4 @@ func load_dungeon(scene_data: DungeonSaveData):
 ## SPAWN NEW PLAYERS ON FRESH LOAD
 func load_players():
 	var players: Party = preload("res://Models/Characters/Players/players.tscn").instantiate()
-	Global.player_party =  players
+	Global.players =  players

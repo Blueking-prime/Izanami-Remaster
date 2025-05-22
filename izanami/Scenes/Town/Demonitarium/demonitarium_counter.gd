@@ -13,7 +13,7 @@ class_name DemonitariumCounter
 var players: Party
 
 func main():
-	players = Global.player_party
+	players = Global.players
 	players.freeze()
 
 	back_button.show()

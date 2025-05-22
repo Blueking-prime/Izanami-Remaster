@@ -186,7 +186,7 @@ func load_enemies(enemy_data: Array[CharacterSaveData]):
 		add_child(enemy)
 
 func check_collisions():
-	Global.player_party.leader.hitbox.check_overlap(self)
+	Global.players.leader.hitbox.check_overlap(self)
 	for i in enemy_nodes:
 		i.hitbox.check_overlap(self)
 

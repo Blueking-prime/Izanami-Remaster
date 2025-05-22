@@ -8,7 +8,7 @@ GOALS
 - [ ] Add status effect icons
 
 BUG FIXES
-- [ ] Fix enemies sometimes mimicking player movement and thus stopping random walk (This may have something to do with avoidance)
+- [ ] Fix enemies sometimes mimicking player movement and thus stopping random walk (This may have something to do with avoidance, or pssibly the narrowness of the navigation triangles)
 - [ ] Prevent input during guard and run (non-targetting and enemy action) animation in battle
 - [x] Fix dungeon camera offset (Test by inspecting party node)
 - [x] Prevent duplicate key assignment
@@ -23,8 +23,9 @@ BUG FIXES
 
 TASKS (WORKABLE)
 - [ ] Implement Overworld
-- [ ] Replace all player party calls with references to Global player party
-- [ ] Replace all confirmation prompts with pop-up box
+- [ ] Convert Loaction into parent scene
+- [x] Replace all player party calls with references to Global player party
+- [x] Replace all confirmation prompts with pop-up box
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
 - [x] Set up warning box and confirmation box

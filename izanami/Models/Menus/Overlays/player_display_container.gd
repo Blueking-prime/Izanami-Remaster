@@ -4,7 +4,7 @@ extends VBoxContainer
 
 func display_player_data():
 	_clear_data_cards()
-	var players: Party = Global.player_party
+	var players: Party = Global.players
 	_spawn_player_card(players.leader)
 	for i in players.party:
 		if i != players.leader:

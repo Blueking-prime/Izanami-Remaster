@@ -21,15 +21,16 @@ size = Vector2(300, 70)
 [sub_resource type="CircleShape2D" id="CircleShape2D_mhaa2"]
 radius = 88.8369
 
-[node name="Demonitarium" type="Node2D" node_paths=PackedStringArray("counter", "warp_points", "canvas_layer", "overlay", "tile_map", "players")]
+[node name="Demonitarium" type="Node2D" node_paths=PackedStringArray("counter", "warp_points", "tilemap", "test_players", "players", "overlay", "canvas_layer")]
 script = ExtResource("1_4tqhu")
 counter = NodePath("Counter")
 warp_points = NodePath("WarpPoints")
-canvas_layer = NodePath("CanvasLayer")
-overlay = NodePath("CanvasLayer/BaseOverlay")
-tile_map = NodePath("TileMapLayer")
 entrance = Vector2(1500, 700)
+tilemap = NodePath("TileMapLayer")
+test_players = NodePath("Players")
 players = NodePath("Players")
+overlay = NodePath("CanvasLayer/BaseOverlay")
+canvas_layer = NodePath("CanvasLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 

@@ -9,7 +9,7 @@ class_name DemonitariumFights
 
 func see_demons():
 	demonitarium_display.demon_group = stock
-	demonitarium_display.players = Global.player_party
+	demonitarium_display.players = Global.players
 	demonitarium_display.display_demons()
 	demonitarium_display.show()
 	demonitarium_display.options.grab_focus()

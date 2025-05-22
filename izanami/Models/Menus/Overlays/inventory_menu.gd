@@ -15,7 +15,7 @@ func load_inventory():
 
 
 func _on_exit_button_pressed() -> void:
-	Global.player_party.unfreeze()
+	Global.players.unfreeze()
 	items_menu.target_selector.hide()
 	gear_menu.target_selector.hide()
 	skills_menu.target_selector.hide()

@@ -46,7 +46,7 @@ func _clear_visible_menus():
 			i._on_exit_button_pressed()
 
 func load_ui_elements():
-	players = Global.player_party
+	players = Global.players
 	menu_list = [inventory_menu, settings_menu, status_menu]
 	player_status.display_player_data()
 	coin_counter.text = str(players.gold)
@@ -55,7 +55,7 @@ func load_ui_elements():
 
 
 func _on_inventory_button_pressed() -> void:
-	Global.player_party.freeze()
+	Global.players.freeze()
 
 	inventory_menu.load_inventory()
 	inventory_menu.tab_container.grab_focus()
@@ -71,7 +71,7 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_status_button_pressed() -> void:
-	Global.player_party.freeze()
+	Global.players.freeze()
 
 	status_menu.load_menu()
 	if status_menu.visible:
@@ -81,7 +81,7 @@ func _on_status_button_pressed() -> void:
 		status_menu.show()
 
 func _on_save_button_pressed() -> void:
-	if not Global.player_party.chased:
+	if not Global.players.chased:
 		SaveAndLoad.save_window.save_state = true
 		SaveAndLoad.save_window.load_window()
 
@@ -104,7 +104,7 @@ func _on_visibility_changed() -> void:
 
 
 func _on_map_button_pressed() -> void:
-	Global.player_party.freeze()
+	Global.players.freeze()
 
 	map.setup_map()
 	if map.visible:

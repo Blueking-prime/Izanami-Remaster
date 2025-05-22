@@ -42,11 +42,11 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is WarpPoint:
-		Global.player_party.freeze()
+		Global.players.freeze()
 		print('frozen')
 		#var confirm = await Global.show_text_choice("Crowley", "Go to %s" % [area.destination])
 		var confirm = await Global.show_confirmation_box("Go to %s" % [area.destination])
-		Global.player_party.unfreeze()
+		Global.players.unfreeze()
 		print('unfrozen')
 		if confirm:
 			Global.warp(get_tree().current_scene, area.destination_scene)
