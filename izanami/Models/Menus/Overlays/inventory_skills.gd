@@ -33,3 +33,8 @@ func _clear_data_cards():
 		for i in children:
 			remove_child(i)
 			i.queue_free()
+
+
+func _on_visibility_changed() -> void:
+	if get_child(0):
+		get_child(0).options.grab_focus()

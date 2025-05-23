@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_gnfuy"]
 [ext_resource type="Script" path="res://Models/Menus/DialogBoxes/text_box.gd" id="1_krbbq"]
 
-[node name="TextBox" type="PanelContainer" node_paths=PackedStringArray("title", "text", "spacer", "options")]
+[node name="TextBox" type="PanelContainer" node_paths=PackedStringArray("title", "title_container", "text", "spacer", "options")]
 z_index = 10
 anchors_preset = -1
 anchor_left = 0.5
@@ -17,13 +17,16 @@ offset_bottom = 0.23999
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_krbbq")
-title = NodePath("Margin/VBox/Title")
+title = NodePath("Margin/VBox/TitleContainer/MarginContainer/Title")
+title_container = NodePath("Margin/VBox/TitleContainer")
 text = NodePath("Margin/VBox/Text")
 spacer = NodePath("Margin/VBox/Control")
 options = NodePath("Margin/VBox/Options")
 
 [node name="Margin" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1200, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -33,7 +36,18 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="Margin/VBox"]
+[node name="TitleContainer" type="PanelContainer" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/VBox/TitleContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Title" type="Label" parent="Margin/VBox/TitleContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Dialogue Box"
@@ -51,4 +65,5 @@ layout_mode = 2
 
 [node name="Options" parent="Margin/VBox" instance=ExtResource("1_gnfuy")]
 layout_mode = 2
+size_flags_vertical = 10
 vertical_scroll_mode = 0

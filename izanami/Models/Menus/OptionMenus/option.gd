@@ -2,21 +2,29 @@ extends Button
 
 class_name Option
 
-@export var container: MarginContainer
+@export var container: HBoxContainer
 
 @export var option_name: Label
-@export var quantity_1: Label
-@export var quantity_2: Label
-@export var quantity_3: Label
-@export var quantity_4: Label
-@export var quantity_5: Label
 
 signal activated(index: int)
 signal selected(index: int)
 
-func _on_pressed() -> void:
-	activated.emit(get_index())
+func add_label(quantity_text: String):
+	var quantity: Label = Label.new()
+
+	quantity.text = quantity_text
+	quantity.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	quantity.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+
+	quantity.size_flags_horizontal = Control.SIZE_SHRINK_END && Control.SIZE_EXPAND
+	quantity.size_flags_vertical = Control.SIZE_FILL
+
+	container.add_child(quantity)
 
 
 func _on_focus_entered() -> void:
 	selected.emit(get_index())
+
+
+func _on_button_down() -> void:
+	activated.emit(get_index())

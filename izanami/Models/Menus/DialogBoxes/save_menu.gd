@@ -43,8 +43,10 @@ func update_listing():
 	if saves: for i in saves:
 		options.add_item(
 			i.name,
-			process_date(i.date),
-			(i.scene_data.location).lpad(30, '\t')
+			[
+				process_date(i.date),
+				(i.scene_data.location).lpad(30, '\t')
+			]
 		)
 
 func process_date(date_string: String) -> String:

@@ -36,8 +36,10 @@ func update_listing():
 	for i in inventory:
 		options.add_item(
 			i,
-			str(len(inventory[i])),
-			str(_get_item(i).price)
+			[
+				str(len(inventory[i])),
+				str(_get_item(i).price)
+			]
 		)
 
 func add_entry(entry: Variant):

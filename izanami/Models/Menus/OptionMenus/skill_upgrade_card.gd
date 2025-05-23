@@ -29,7 +29,7 @@ func update_listing():
 			if i.rank < 2:
 				options.add_item(
 					i.name,
-					rank_indicator(i.rank),
+					[rank_indicator(i.rank),]
 				)
 
 func rank_indicator(rank: int) -> String:

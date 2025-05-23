@@ -93,7 +93,7 @@ func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int
 
 
 ## UI ELEMENTS
-func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No']) -> int:
+func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L') -> int:
 	if is_instance_valid(text_box):
 		text_box.queue_free()
 
@@ -104,12 +104,19 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 	text_box.title.text = speaker
 	text_box.text.text = prompt
 
+	match screen_side:
+		'L': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		'C': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		'R': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_END
+
 	text_box.options.clear()
 	for i in choices:
 		text_box.options.add_item(i)
 
-	text_box.options.item_activated.connect(_on_option_selected)
 	text_box.options.grab_focus()
+
+	text_box.options.item_activated.connect(_on_option_selected)
+
 	await text_box.options.item_activated
 
 	text_box.queue_free()
@@ -117,7 +124,7 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 	return textbox_response
 
 
-func show_text_box(speaker: String, prompt: String, persist: bool = false) -> void:
+func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L') -> void:
 	if is_instance_valid(text_box):
 		text_box.queue_free()
 
@@ -130,6 +137,12 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false) -> vo
 
 	text_box.title.text = speaker
 	text_box.text.text = prompt
+
+	match screen_side:
+		'L': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		'C': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		'R': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_END
+
 
 	if not persist:
 		await next
@@ -252,7 +265,7 @@ func show_description(object: Resource) -> void:
 	description_box.description.text = object.desc
 
 
-func show_shop_menu(players: Party, stock: ResourceGroup):
+func show_shop_menu(_players: Party, stock: ResourceGroup):
 	if is_instance_valid(shop_menu):
 		shop_menu.queue_free()
 
@@ -261,7 +274,7 @@ func show_shop_menu(players: Party, stock: ResourceGroup):
 	get_tree().get_current_scene().canvas_layer.add_child(shop_menu)
 
 	shop_menu.shop_inventory.item_group = stock
-	shop_menu.player_inventory.players = players
+	shop_menu.player_inventory.players = _players
 
 	shop_menu.exit_button.pressed.connect(_on_shop_exit)
 
@@ -337,5 +350,6 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("click"):
 		#print('Mouse Clicked')
 		next.emit()
+
 	if event.is_action_pressed("ui_cancel"):
 		sell.emit('exit')

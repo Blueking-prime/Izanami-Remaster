@@ -40,8 +40,8 @@ func remove_test_players():
 func remove_players():
 	players.get_parent().remove_child(players)
 
-func add_players(players: Party):
-	tilemap.add_sibling(players)
+func add_players(_players: Party):
+	tilemap.add_sibling(_players)
 
 func size():
 	#return tile_map.get_used_rect().size

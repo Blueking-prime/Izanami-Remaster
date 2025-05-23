@@ -6,6 +6,8 @@ class_name Options
 
 @export var option_scene: PackedScene
 
+var first_option: Option
+
 signal item_activated(index: int)
 signal item_selected(index: int)
 
@@ -14,26 +16,13 @@ func clear():
 		button_container.remove_child(i)
 		i.queue_free()
 
-func add_item(option_name: String, quantity_1: String = '', quantity_2: String = '', quantity_3: String = '', quantity_4: String = '', quantity_5: String = '') -> Option:
+func add_item(option_name: String, quantities: Array = []) -> Option:
 	var option: Option = option_scene.instantiate()
 
 	option.option_name.text = option_name
 
-	if quantity_1:
-		option.quantity_1.text = quantity_1
-		option.quantity_1.show()
-	if quantity_2:
-		option.quantity_2.text = quantity_2
-		option.quantity_2.show()
-	if quantity_3:
-		option.quantity_3.text = quantity_3
-		option.quantity_3.show()
-	if quantity_4:
-		option.quantity_4.text = quantity_4
-		option.quantity_4.show()
-	if quantity_5:
-		option.quantity_5.text = quantity_5
-		option.quantity_5.show()
+	for i in quantities:
+		option.add_label(str(i))
 
 	button_container.add_child(option)
 	option.selected.connect(_on_option_selected)
@@ -41,8 +30,8 @@ func add_item(option_name: String, quantity_1: String = '', quantity_2: String =
 
 	return option
 
-func add_icon_item(icon: Texture2D, option_name: String, quantity_1: String = '', quantity_2: String = '', quantity_3: String = '', quantity_4: String = '', quantity_5: String = '') -> Option:
-	var option = add_item(option_name, quantity_1, quantity_2, quantity_3, quantity_4, quantity_5)
+func add_icon_item(icon: Texture2D, option_name: String, quantities: Array = []) -> Option:
+	var option = add_item(option_name, quantities)
 
 	option.icon = icon
 
@@ -56,3 +45,8 @@ func _on_option_selected(index: int):
 
 func _on_option_activated(index: int):
 	item_activated.emit(index)
+
+
+func _on_focus_entered() -> void:
+	if button_container.get_children():
+		button_container.get_child(0).call_deferred('grab_focus')

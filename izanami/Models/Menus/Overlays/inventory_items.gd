@@ -25,7 +25,7 @@ func update_listing():
 		for i in inventory.item_data:
 			options.add_item(
 				i,
-				str(len(inventory.item_data[i]))
+				[str(len(inventory.item_data[i]))]
 			)
 
 func show_target_selector():
@@ -56,3 +56,12 @@ func _on_item_selected(index: int) -> void:
 	var item = inventory.get_entry_by_name(options.get_item_text(index))
 	if item:
 		Global.show_description(item)
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		options.grab_focus()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and target_selector.visible:
+		target_selector.hide()

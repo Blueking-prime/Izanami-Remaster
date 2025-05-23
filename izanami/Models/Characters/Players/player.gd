@@ -127,7 +127,7 @@ func consume_sp(value: float):
 func _display_skills():
 	skill_menu.clear()
 	for i in get_skills():
-		skill_menu.add_item(i.name, str(i.cost))
+		skill_menu.add_item(i.name, [str(i.cost)])
 
 func show_skill_menu():
 	skill_menu.show()
@@ -145,7 +145,7 @@ func _display_items():
 	item_menu.clear()
 	var _items = get_items()
 	for i in _items:
-		item_menu.add_item(i, str(len(_items[i])))
+		item_menu.add_item(i, [str(len(_items[i]))])
 
 func show_item_menu():
 	item_menu.show()

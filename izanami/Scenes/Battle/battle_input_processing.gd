@@ -142,8 +142,7 @@ func show_choice():
 	targetting = false
 	choice.show()
 	skill_panel.hide()
-	#choice.find_child("Attack").grab_focus()
-	dummy_option.grab_focus()
+	choice.get_child(0).call_deferred('grab_focus')
 
 func show_options():
 	skill_panel.grab_focus()

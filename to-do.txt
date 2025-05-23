@@ -10,6 +10,7 @@ GOALS
 BUG FIXES
 - [ ] Fix enemies sometimes mimicking player movement and thus stopping random walk (This may have something to do with avoidance, or pssibly the narrowness of the navigation triangles)
 - [ ] Prevent input during guard and run (non-targetting and enemy action) animation in battle
+- [ ] Fix keyboard focus navigation along tabs in inventory
 - [x] Fix dungeon camera offset (Test by inspecting party node)
 - [x] Prevent duplicate key assignment
 - [x] Fix loading scene crashing using button

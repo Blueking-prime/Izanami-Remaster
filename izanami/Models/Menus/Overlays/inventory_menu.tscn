@@ -29,9 +29,9 @@ offset_left = 30.0
 offset_top = 30.0
 offset_right = 103.0
 offset_bottom = 72.0
-focus_neighbor_right = NodePath("../TabContainer/Items/Items/List")
-focus_neighbor_bottom = NodePath("../TabContainer/Items/Items/List")
-focus_next = NodePath("../TabContainer/Items/Items/List")
+focus_neighbor_right = NodePath("../TabContainer")
+focus_neighbor_bottom = NodePath("../TabContainer")
+focus_next = NodePath("../TabContainer")
 text = "Exit"
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -48,6 +48,11 @@ use_hidden_tabs_for_min_size = true
 [node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector")]
 visible = false
 layout_mode = 2
+focus_neighbor_left = NodePath("../Misc")
+focus_neighbor_right = NodePath("../Items")
+focus_next = NodePath("../Items")
+focus_previous = NodePath("../Misc")
+focus_mode = 2
 script = ExtResource("3_2pvlo")
 skill_menu_card_scene = ExtResource("3_b5xgx")
 desc_box_container = NodePath("../../BoxContainer")
@@ -61,6 +66,7 @@ layout_mode = 2
 [node name="Items" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector") instance=ExtResource("1_ty00r")]
 visible = false
 layout_mode = 2
+focus_neighbor_bottom = NodePath("Options")
 focus_mode = 2
 script = ExtResource("2_miuef")
 desc_box_container = NodePath("../../BoxContainer")
@@ -211,6 +217,9 @@ theme_override_constants/separation = 0
 layout_mode = 2
 
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="visibility_changed" from="TabContainer/Skills" to="TabContainer/Skills" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="TabContainer/Items" to="TabContainer/Items" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="TabContainer/Gear" to="TabContainer/Gear" method="_on_visibility_changed"]
 [connection signal="item_activated" from="EquipTargetSelector" to="TabContainer/Gear" method="choose_target"]
 [connection signal="item_activated" from="ItemTargetSelector" to="TabContainer/Items" method="choose_target"]
 

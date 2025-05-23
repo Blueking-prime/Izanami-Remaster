@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/Overlays/status_overlay.tscn" id="14_cl6si"]
 [ext_resource type="PackedScene" uid="uid://4u3w4pkmtm4h" path="res://Models/Menus/Overlays/map.tscn" id="16_amqih"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aepm2"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hlvrs"]
 texture = ExtResource("6_waojl")
 3:2/0 = 0
 3:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-6.024, -2.008, -4.05537, -3.07106, 4.016, -2.95294, 6.024, -1.96863, 6.024, 2.95294, 3.93725, 3.93725, -4.016, 3.97663, -6, 2.9375)
@@ -26,7 +26,7 @@ texture = ExtResource("6_waojl")
 2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-6.024, -2.008, -4.05537, -3.07106, 4.016, -2.95294, 6.024, -1.96863, 6.024, 2.95294, 3.93725, 3.93725, -4.016, 3.97663, -6, 2.9375)
 2:2/0/custom_data_0 = &"Entrance"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gx82d"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_voso8"]
 texture = ExtResource("7_5kpit")
 1:1/0 = 0
 1:1/0/y_sort_origin = 4
@@ -493,7 +493,7 @@ texture = ExtResource("7_5kpit")
 2:5/0 = 0
 1:5/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w13t1"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arvem"]
 texture = ExtResource("8_b5xp5")
 1:5/size_in_atlas = Vector2i(1, 2)
 1:5/0 = 0
@@ -518,9 +518,9 @@ terrain_set_1/terrain_0/name = "Walls"
 terrain_set_1/terrain_0/color = Color(0.281257, 0.146691, 1, 1)
 custom_data_layer_0/name = "Type"
 custom_data_layer_0/type = 21
-sources/1 = SubResource("TileSetAtlasSource_gx82d")
-sources/2 = SubResource("TileSetAtlasSource_w13t1")
-sources/0 = SubResource("TileSetAtlasSource_aepm2")
+sources/1 = SubResource("TileSetAtlasSource_voso8")
+sources/2 = SubResource("TileSetAtlasSource_arvem")
+sources/0 = SubResource("TileSetAtlasSource_hlvrs")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x5j8p"]
 
@@ -555,10 +555,11 @@ enabled = false
 script = ExtResource("5_u0aap")
 max_treasure_no = 10
 
-[node name="Background" type="TileMapLayer" parent="."]
+[node name="Background" type="TileMapLayer" parent="." node_paths=PackedStringArray("map")]
 z_index = -5
 tile_set = SubResource("TileSet_c3q0b")
 script = ExtResource("9_ag11o")
+map = NodePath("../Map")
 
 [node name="ObjectsSort" type="Node2D" parent="."]
 y_sort_enabled = true

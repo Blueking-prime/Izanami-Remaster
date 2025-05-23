@@ -21,14 +21,7 @@ text = "Quantity"
 [node name="Q2label" parent="Heading/MarginContainer/HBoxContainer" index="2"]
 text = "Cost"
 
-[node name="Quantity1" parent="Options/PanelContainer/MarginContainer/VBoxContainer/Option/MarginContainer/HBoxContainer" index="1"]
-visible = true
-
-[node name="Quantity2" parent="Options/PanelContainer/MarginContainer/VBoxContainer/Option/MarginContainer/HBoxContainer" index="2"]
-visible = true
-
 [connection signal="item_activated" from="Options" to="." method="_on_item_activated"]
 [connection signal="item_selected" from="Options" to="." method="_on_item_selected"]
 
 [editable path="Options"]
-[editable path="Options/PanelContainer/MarginContainer/VBoxContainer/Option"]

@@ -41,8 +41,10 @@ func update_listing():
 		options.add_icon_item(
 			demons[i].sprite_texture,
 			i,
-			_process_desc_text(demons[i]),
-			str(demons[i].price)
+			[
+				_process_desc_text(demons[i]),
+				str(demons[i].price)
+			]
 		)
 
 func _process_desc_text(entry: Dictionary) -> String:

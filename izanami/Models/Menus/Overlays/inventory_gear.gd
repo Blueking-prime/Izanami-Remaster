@@ -25,7 +25,7 @@ func update_listing():
 		for i in inventory.gear_data:
 			options.add_item(
 				i,
-				str(len(inventory.gear_data[i]))
+				[str(len(inventory.gear_data[i]))]
 			)
 
 func show_target_selector():
@@ -34,9 +34,11 @@ func show_target_selector():
 		target_selector.add_icon_item(
 			i.battle_sprite_texture.texture,
 			i.character_name,
-			i.gear.gear_dict.head.name if i.gear.gear_dict.head else ' ',
-			i.gear.gear_dict.body.name if i.gear.gear_dict.body else ' ',
-			i.gear.gear_dict.weapon.name if i.gear.gear_dict.weapon else ' ',
+			[
+				i.gear.gear_dict.head.name if i.gear.gear_dict.head else ' ',
+				i.gear.gear_dict.body.name if i.gear.gear_dict.body else ' ',
+				i.gear.gear_dict.weapon.name if i.gear.gear_dict.weapon else ' '
+			]
 		)
 
 	target_selector.show()
@@ -60,3 +62,12 @@ func _on_item_selected(index: int) -> void:
 	var item = inventory.get_entry_by_name(options.get_item_text(index))
 	if item:
 		Global.show_description(item)
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		options.grab_focus()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and target_selector.visible:
+		target_selector.hide()
