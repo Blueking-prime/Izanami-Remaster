@@ -36,5 +36,5 @@ func _clear_data_cards():
 
 
 func _on_visibility_changed() -> void:
-	if get_child(0):
+	if get_child(0) and visible:
 		get_child(0).options.grab_focus()

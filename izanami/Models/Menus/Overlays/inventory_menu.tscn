@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b06gp60lhyyxx"]
+[gd_scene load_steps=10 format=3 uid="uid://b06gp60lhyyxx"]
 
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_menu.gd" id="1_mfe14"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="1_ty00r"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_gear.gd" id="3_dtbst"]
 [ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="7_hc3fu"]
 [ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="8_5pjv8"]
+[ext_resource type="Script" path="res://Models/Menus/Overlays/menu_switcher.gd" id="9_1lkai"]
 
 [node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("skills_menu", "items_menu", "gear_menu", "misc_menu", "tab_container")]
 visible = false
@@ -23,15 +24,16 @@ gear_menu = NodePath("TabContainer/Gear")
 misc_menu = NodePath("TabContainer/Misc")
 tab_container = NodePath("TabContainer")
 
+[node name="MenuSwitcher" type="Node" parent="." node_paths=PackedStringArray("menu_container")]
+script = ExtResource("9_1lkai")
+menu_container = NodePath("../TabContainer")
+
 [node name="ExitButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 30.0
 offset_right = 103.0
 offset_bottom = 72.0
-focus_neighbor_right = NodePath("../TabContainer")
-focus_neighbor_bottom = NodePath("../TabContainer")
-focus_next = NodePath("../TabContainer")
 text = "Exit"
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -48,10 +50,6 @@ use_hidden_tabs_for_min_size = true
 [node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector")]
 visible = false
 layout_mode = 2
-focus_neighbor_left = NodePath("../Misc")
-focus_neighbor_right = NodePath("../Items")
-focus_next = NodePath("../Items")
-focus_previous = NodePath("../Misc")
 focus_mode = 2
 script = ExtResource("3_2pvlo")
 skill_menu_card_scene = ExtResource("3_b5xgx")

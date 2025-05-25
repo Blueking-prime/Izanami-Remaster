@@ -3,27 +3,70 @@
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_gnfuy"]
 [ext_resource type="Script" path="res://Models/Menus/DialogBoxes/text_box.gd" id="1_krbbq"]
 
-[node name="TextBox" type="PanelContainer" node_paths=PackedStringArray("title", "title_container", "text", "spacer", "options")]
-z_index = 10
+[node name="Control" type="Control" node_paths=PackedStringArray("title", "title_container", "text", "spacer", "options")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_krbbq")
+title = NodePath("VBoxContainer/TitleContainer/MarginContainer/HBoxContainer/Title")
+title_container = NodePath("VBoxContainer/TitleContainer")
+text = NodePath("VBoxContainer/TextBox/Margin/VBox/Text")
+spacer = NodePath("VBoxContainer/TextBox/Margin/VBox/Control")
+options = NodePath("VBoxContainer/TextBox/Margin/VBox/Options")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.715
+anchor_top = 0.739
 anchor_right = 0.5
-anchor_bottom = 0.947
-offset_left = -851.0
-offset_top = -0.200012
-offset_right = 871.0
-offset_bottom = 0.23999
+anchor_bottom = 0.943
+offset_left = -848.0
+offset_top = -0.119995
+offset_right = 843.0
+offset_bottom = -0.440002
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_krbbq")
-title = NodePath("Margin/VBox/TitleContainer/MarginContainer/Title")
-title_container = NodePath("Margin/VBox/TitleContainer")
-text = NodePath("Margin/VBox/Text")
-spacer = NodePath("Margin/VBox/Control")
-options = NodePath("Margin/VBox/Options")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="TitleContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TitleContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/TitleContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Title" type="Label" parent="VBoxContainer/TitleContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Dialogue Box"
+
+[node name="Control2" type="Control" parent="VBoxContainer/TitleContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextBox" type="PanelContainer" parent="VBoxContainer"]
+z_index = 10
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="VBoxContainer/TextBox"]
 custom_minimum_size = Vector2(1200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -32,38 +75,22 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBox" type="VBoxContainer" parent="Margin"]
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/TextBox/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TitleContainer" type="PanelContainer" parent="Margin/VBox"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Margin/VBox/TitleContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Title" type="Label" parent="Margin/VBox/TitleContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Dialogue Box"
-
-[node name="Text" type="Label" parent="Margin/VBox"]
+[node name="Text" type="Label" parent="VBoxContainer/TextBox/Margin/VBox"]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 size_flags_vertical = 1
 text = "Add skill icons Add level cap (maybe) Implement AoE skills and self_targeting skills Flesh out status effects Move battle movement and selection to separate nodeImplement dialog boxesLearn how to move players between scenesMake enemies not spawn on outer rows and columnsMove stats to Stats scriptChange map enemy spawning to reflect contained enemiesFix item usage bug"
 autowrap_mode = 2
 
-[node name="Control" type="Control" parent="Margin/VBox"]
+[node name="Control" type="Control" parent="VBoxContainer/TextBox/Margin/VBox"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Options" parent="Margin/VBox" instance=ExtResource("1_gnfuy")]
+[node name="Options" parent="VBoxContainer/TextBox/Margin/VBox" instance=ExtResource("1_gnfuy")]
 layout_mode = 2
 size_flags_vertical = 10
 vertical_scroll_mode = 0
