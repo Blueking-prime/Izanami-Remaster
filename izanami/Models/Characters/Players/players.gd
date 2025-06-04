@@ -26,12 +26,12 @@ var party_panels: Dictionary = {}
 var stored_pos: Vector2
 var sprites: Array = []
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed() and event.as_text_keycode() == 'F':
-		if frozen:
-			unfreeze()
-		else:
-			freeze()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed('freecam_key'):
+		#if frozen:
+			#unfreeze()
+		#else:
+			#freeze()
 
 func _ready() -> void:
 	load_party()

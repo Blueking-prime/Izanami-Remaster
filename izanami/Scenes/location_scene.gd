@@ -12,6 +12,7 @@ class_name Location
 @export var overlay: UIOverlay
 @export var canvas_layer: CanvasLayer
 @export var camera: Camera2D
+@export var freecam: FreeCam
 
 func _ready() -> void:
 	load_scene()
@@ -30,6 +31,10 @@ func load_scene():
 	if camera:
 		camera.players = players
 		camera.init_camera()
+
+	if freecam:
+		freecam.players = players
+		freecam.setup_map()
 
 	overlay.load_ui_elements()
 

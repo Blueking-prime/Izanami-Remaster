@@ -21,6 +21,7 @@ var dungeon_sample = [
 @export var new_map: bool = true
 @export var enemy_types: ResourceGroup
 @export var MAX_ENEMIES: int = 3
+@export var max_enemy_spawns: int = 10
 
 ## DROPS
 @export var item_drop_group: ResourceGroup

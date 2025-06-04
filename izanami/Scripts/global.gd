@@ -15,6 +15,9 @@ extends Node
 
 var players: Party
 
+var input_type: int
+var dialog_text_log: String
+
 var description_box_parent: Node
 var description_box: DescriptionBox
 var background_texture: TextureRect
@@ -104,6 +107,8 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 	text_box.title.text = speaker
 	text_box.text.text = prompt
 
+	dialog_text_log += speaker + ': ' + prompt + '\n\n'
+
 	match screen_side:
 		'L': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 		'C': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
@@ -118,6 +123,11 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 	text_box.options.item_activated.connect(_on_option_selected)
 
 	await text_box.options.item_activated
+
+	# Add choices to log and capitalize selected choice
+	choices[textbox_response].to_upper()
+	for i in choices:
+		dialog_text_log += i + '\n\n'
 
 	text_box.queue_free()
 
@@ -137,6 +147,8 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false, scree
 
 	text_box.title.text = speaker
 	text_box.text.text = prompt
+
+	dialog_text_log += speaker + ': ' + prompt
 
 	match screen_side:
 		'L': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN

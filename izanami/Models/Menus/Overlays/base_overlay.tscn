@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjf7wmor410ps"]
+[gd_scene load_steps=5 format=3 uid="uid://bjf7wmor410ps"]
 
 [ext_resource type="Script" path="res://Models/Menus/Overlays/base_overlay.gd" id="1_fxe44"]
 [ext_resource type="Texture2D" uid="uid://cya3ku2ta4pme" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/coin_anim_f0.png" id="2_rfrb6"]
 [ext_resource type="Script" path="res://Models/Menus/Overlays/player_display_container.gd" id="2_slhvk"]
-[ext_resource type="Texture2D" uid="uid://bdvitgwmv2ayt" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/coin_anim_f1.png" id="3_6kcpy"]
 [ext_resource type="PackedScene" uid="uid://mmi7n42qt3ph" path="res://Models/Menus/Overlays/player_data.tscn" id="3_446mo"]
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "coin_counter", "mag_counter")]
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "coin_counter", "mag_counter", "button_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +16,7 @@ script = ExtResource("1_fxe44")
 player_status = NodePath("StatusOverlay/MarginContainer/PlayerContainer")
 coin_counter = NodePath("ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 mag_counter = NodePath("ResourceDisplay/MarginContainer/GridContainer/MagCount")
+button_container = NodePath("MenuButtons")
 
 [node name="StatusOverlay" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -109,29 +109,30 @@ offset_bottom = -30.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="FreecamButton" type="Button" parent="MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "FreeCam ( )"
+
 [node name="SettingsButton" type="Button" parent="MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Settings ( )"
-icon = ExtResource("3_6kcpy")
 
 [node name="StatusButton" type="Button" parent="MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Status (S)"
-icon = ExtResource("3_6kcpy")
 
 [node name="InventoryButton" type="Button" parent="MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Inventory (I)"
-icon = ExtResource("3_6kcpy")
 
 [node name="MapButton" type="Button" parent="MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Map (M)"
-icon = ExtResource("3_6kcpy")
 
 [node name="SaveButton" type="Button" parent="MenuButtons"]
 layout_mode = 2
@@ -146,6 +147,7 @@ layout_mode = 2
 text = "Quit (Q)"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="MenuButtons/FreecamButton" to="." method="_on_freecam_button_pressed"]
 [connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
 [connection signal="pressed" from="MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]

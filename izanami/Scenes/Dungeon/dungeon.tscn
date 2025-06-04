@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ck8bsrl8idlci"]
+[gd_scene load_steps=23 format=3 uid="uid://ck8bsrl8idlci"]
 
 [ext_resource type="Script" path="res://Scenes/Dungeon/dungeon.gd" id="1_k4ybk"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="2_nbhj7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_8c7x3"]
 [ext_resource type="Script" path="res://Scripts/camera_script.gd" id="5_8o3tw"]
 [ext_resource type="Script" path="res://Scenes/Dungeon/dungeon_map.gd" id="5_u0aap"]
+[ext_resource type="Script" path="res://Scenes/free_cam.gd" id="6_w8no7"]
 [ext_resource type="Texture2D" uid="uid://cmmt3ba4u5yo7" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="6_waojl"]
 [ext_resource type="Texture2D" uid="uid://jau6vpcqyha4" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_.png" id="7_5kpit"]
 [ext_resource type="Texture2D" uid="uid://bf8ixj6j10mqx" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_ [resources].png" id="8_b5xp5"]
@@ -524,7 +525,7 @@ sources/0 = SubResource("TileSetAtlasSource_hlvrs")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x5j8p"]
 
-[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "navigation_region", "tilemap", "background", "test_players", "players", "overlay", "canvas_layer", "camera")]
+[node name="Dungeon" type="Node2D" node_paths=PackedStringArray("map", "navigation_region", "tilemap", "background", "test_players", "players", "overlay", "canvas_layer", "camera", "freecam")]
 script = ExtResource("1_k4ybk")
 map = NodePath("Map")
 navigation_region = NodePath("ObjectsSort/NavRegion")
@@ -533,6 +534,7 @@ height = 20
 enemy_types = ExtResource("2_nbhj7")
 item_drop_group = ExtResource("3_sqiqp")
 gear_drop_group = ExtResource("4_8c7x3")
+enemy_spawn_chance = 0.9
 tilemap = NodePath("ObjectsSort/NavRegion/Walls")
 background = NodePath("Background")
 test_players = NodePath("ObjectsSort/Players")
@@ -540,6 +542,7 @@ players = NodePath("ObjectsSort/Players")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 canvas_layer = NodePath("CanvasLayer")
 camera = NodePath("Camera2D")
+freecam = NodePath("FreeCam")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -550,6 +553,10 @@ script = ExtResource("5_8o3tw")
 
 [node name="OverMap" type="Camera2D" parent="."]
 enabled = false
+
+[node name="FreeCam" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+script = ExtResource("6_w8no7")
 
 [node name="Map" type="Node" parent="."]
 script = ExtResource("5_u0aap")
@@ -584,10 +591,11 @@ wall_terrain_set = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu", "map") instance=ExtResource("12_m8pvk")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu", "map", "free_cam") instance=ExtResource("12_m8pvk")]
 inventory_menu = NodePath("../InventoryMenu")
 status_menu = NodePath("../StatusOverlay")
 map = NodePath("../Map")
+free_cam = NodePath("../../FreeCam")
 
 [node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("14_cl6si")]
 visible = false

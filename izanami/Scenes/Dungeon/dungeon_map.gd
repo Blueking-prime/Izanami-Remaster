@@ -6,6 +6,7 @@ class_name DungeonMap
 @onready var height: int = get_parent().height
 @onready var enemy_spawn_chance: float = get_parent().enemy_spawn_chance
 @onready var treasure_spawn_chance: float = get_parent().treasure_spawn_chance
+@onready var max_enemy_spawns: int = get_parent().max_enemy_spawns
 
 #@onready var player_pos = get_parent().player_pos
 
@@ -183,7 +184,7 @@ func generate_walls():
 						filled_coords.append(coord)
 
 func spawn_enemy_tiles_floor():
-	enemy_no = Global.rand_spread(enemy_spawn_chance, width * height - len(filled_coords))
+	enemy_no = Global.rand_spread(enemy_spawn_chance, max_enemy_spawns)
 	enemy_tiles = []
 	var coord: Vector2i
 	for i in enemy_no:

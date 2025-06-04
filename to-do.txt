@@ -1,6 +1,7 @@
 Izanami Remaster To-do List
 GOALS
 - [ ] Add controller support
+	- [ ] Add option to switch input map index for input events
 - [ ] Enable Pure mouse and pure keyboard navigation support
 - [ ] Polish UI elements
 - [ ] Include boost info in item and skill description
@@ -29,6 +30,10 @@ TASKS (WORKABLE)
 - [x] Replace all confirmation prompts with pop-up box
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
+- [ ] Add text log and other dialogue text options to textboxes
+- [x] Add enemy spawn cap
+- [x] Add freecam
+- [x] Auto-set input event key hints
 - [x] Set up warning box and confirmation box
 - [x] Implement demonitarium saving
 - [x] Add skill upgrade menu
