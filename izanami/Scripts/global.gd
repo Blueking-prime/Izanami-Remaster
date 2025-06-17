@@ -29,7 +29,11 @@ var confirmation_box: ConfirmationDialog
 var textbox_response: int
 var confrimation_response: bool
 
+var textbox_skip_flag: bool
+var textbox_auto_flag: bool
+
 signal next
+signal pause_timer
 signal confirmation_box_triggered
 signal sell(condition)
 
@@ -96,7 +100,7 @@ func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int
 
 
 ## UI ELEMENTS
-func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L') -> int:
+func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', scroll: bool = true, dialogue: bool = false) -> int:
 	if is_instance_valid(text_box):
 		text_box.queue_free()
 
@@ -105,7 +109,17 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 	get_tree().get_current_scene().canvas_layer.add_child(text_box)
 
 	text_box.title.text = speaker
-	text_box.text.text = prompt
+	if scroll:
+		text_box.text_string = prompt
+		text_box.scroll_text()
+	else:
+		text_box.text.text = prompt
+
+	if not dialogue:
+		text_box.button_panel.hide()
+
+	if textbox_auto_flag:
+		text_box.auto_button.set_pressed_no_signal(true)
 
 	dialog_text_log += speaker + ': ' + prompt + '\n\n'
 
@@ -120,7 +134,9 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 
 	text_box.options.grab_focus()
 
-	text_box.options.item_activated.connect(_on_option_selected)
+	connect_text_box_signals()
+
+	Input.warp_mouse(text_box.global_position)
 
 	await text_box.options.item_activated
 
@@ -134,7 +150,7 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 	return textbox_response
 
 
-func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L') -> void:
+func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', scroll: bool = true,  dialogue: bool = false) -> void:
 	if is_instance_valid(text_box):
 		text_box.queue_free()
 
@@ -146,7 +162,12 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false, scree
 	text_box.options.hide()
 
 	text_box.title.text = speaker
-	text_box.text.text = prompt
+
+	if scroll:
+		text_box.text_string = prompt
+		text_box.scroll_text()
+	else:
+		text_box.text.text = prompt
 
 	dialog_text_log += speaker + ': ' + prompt
 
@@ -155,10 +176,27 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false, scree
 		'C': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		'R': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_END
 
+	if textbox_auto_flag:
+		text_box.auto_button.set_pressed_no_signal(true)
+
+	if not dialogue:
+		text_box.button_panel.hide()
+
+	connect_text_box_signals()
+
+	Input.warp_mouse(text_box.global_position)
 
 	if not persist:
 		await next
 		text_box.queue_free()
+
+func connect_text_box_signals():
+	text_box.options.item_activated.connect(_on_option_selected)
+
+	if text_box.button_panel.visible:
+		text_box.auto_button.toggled.connect(_on_textbox_auto_selected)
+		text_box.log_button.pressed.connect(_on_textbox_log_selected)
+		text_box.skip_button.pressed.connect(_on_textbox_skip_selected)
 
 
 func show_confirmation_box(prompt: String):
@@ -355,13 +393,24 @@ func _confirmation_box_canceled():
 func _on_shop_exit():
 	sell.emit('exit')
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		#print('Enter pressed')
-		next.emit()
-	elif event.is_action_pressed("click"):
-		#print('Mouse Clicked')
-		next.emit()
 
+func _on_textbox_skip_selected():
+	var confirm = await show_confirmation_box('Skip cutscene')
+	if confirm:
+		textbox_skip_flag = true
+
+func _on_textbox_auto_selected(toggled_on: bool):
+	if toggled_on:
+		textbox_auto_flag = true
+		next.emit()
+	else :
+		textbox_auto_flag = false
+		pause_timer.emit()
+
+func _on_textbox_log_selected():
+	pass
+
+
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		sell.emit('exit')

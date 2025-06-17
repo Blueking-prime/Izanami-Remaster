@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsgkr5mkwrndu"]
+
+[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="1_6knxj"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_5vjfa"]
+
+[node name="Dialogue" type="Node" node_paths=PackedStringArray("auto_delay_timer", "players", "canvas_layer")]
+script = ExtResource("1_6knxj")
+auto_delay_timer = NodePath("AutoTimer")
+players = NodePath("Players")
+canvas_layer = NodePath("CanvasLayer")
+
+[node name="Players" parent="." instance=ExtResource("2_5vjfa")]
+
+[node name="AutoTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="timeout" from="AutoTimer" to="." method="_on_auto_timer_timeout"]

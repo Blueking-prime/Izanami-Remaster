@@ -3,20 +3,25 @@
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_gnfuy"]
 [ext_resource type="Script" path="res://Models/Menus/DialogBoxes/text_box.gd" id="1_krbbq"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("title", "title_container", "text", "spacer", "options")]
+[node name="Control" type="Control" node_paths=PackedStringArray("title", "title_container", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "scroll_timer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource("1_krbbq")
 title = NodePath("VBoxContainer/TitleContainer/MarginContainer/HBoxContainer/Title")
 title_container = NodePath("VBoxContainer/TitleContainer")
 text = NodePath("VBoxContainer/TextBox/Margin/VBox/Text")
 spacer = NodePath("VBoxContainer/TextBox/Margin/VBox/Control")
 options = NodePath("VBoxContainer/TextBox/Margin/VBox/Options")
+button_panel = NodePath("VBoxContainer/ButtonsPanel")
+skip_button = NodePath("VBoxContainer/ButtonsPanel/VBoxContainer/SkipButton")
+log_button = NodePath("VBoxContainer/ButtonsPanel/VBoxContainer/LogButton")
+auto_button = NodePath("VBoxContainer/ButtonsPanel/VBoxContainer/AutoButton")
+scroll_timer = NodePath("TextScrollTimer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -94,3 +99,42 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 10
 vertical_scroll_mode = 0
+
+[node name="ButtonsPanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer/ButtonsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Control" type="Control" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="LogButton" type="Button" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+toggle_mode = true
+text = "Log"
+
+[node name="SkipButton" type="Button" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+toggle_mode = true
+text = "Skip"
+
+[node name="AutoButton" type="Button" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+toggle_mode = true
+text = "Auto"
+
+[node name="Control2" type="Control" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="TextScrollTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="gui_input" from="VBoxContainer/TextBox" to="." method="_on_text_box_gui_input"]

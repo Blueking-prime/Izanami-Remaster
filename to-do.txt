@@ -10,6 +10,7 @@ GOALS
 
 BUG FIXES
 - [ ] Fix enemies sometimes mimicking player movement and thus stopping random walk (This may have something to do with avoidance, or pssibly the narrowness of the navigation triangles)
+- [ ] Re-enable enemy collision boxes
 - [ ] Prevent input during guard and run (non-targetting and enemy action) animation in battle
 - [x] Fix keyboard focus navigation along tabs in inventory
 - [x] Fix dungeon camera offset (Test by inspecting party node)
@@ -31,6 +32,11 @@ TASKS (WORKABLE)
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
 - [ ] Add text log and other dialogue text options to textboxes
+	- [ ] Convert text log into queue using push and pop methods
+	- [ ] Implement unskippable choices
+	- [ ] implement fastforwarding
+	- [ ] implement scroll breaks {br}
+	- [x] implement click masking for buttons (or make it only work over the box itself and move the cursor to the box on dialogue start)
 - [x] Add enemy spawn cap
 - [x] Add freecam
 - [x] Auto-set input event key hints
@@ -104,6 +110,7 @@ TASKS (AWAITING IMPLEMENTATION OF OTHER COMPONENTS)
 - [ ] Add more terrain options to map generation
 - [ ] Implement cutscenes as functions in special script
 - [ ] Remove overlay on cutscene
+- [ ] Add global scrollspeed setting
 
 OPTIONAL IDEAS
 - [ ] Onmyouji

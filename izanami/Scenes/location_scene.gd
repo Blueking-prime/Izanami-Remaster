@@ -59,5 +59,5 @@ func center():
 func save():
 	pass
 
-func load_data(data):
+func load_data(_data):
 	pass
