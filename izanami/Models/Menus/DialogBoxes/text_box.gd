@@ -4,7 +4,7 @@ class_name TextBox
 
 @export var title: Label
 @export var title_container: PanelContainer
-@export var text: Label
+@export var text: RichTextLabel
 @export var spacer: Control
 @export var options: Options
 
@@ -13,6 +13,7 @@ class_name TextBox
 @export var skip_button: Button
 @export var log_button: Button
 @export var auto_button: Button
+@export var ffwd_button: Button
 
 @export var scroll_timer: Timer
 
@@ -22,8 +23,11 @@ func scroll_text():
 	scroll_timer.start()
 	text.text = ''
 	for i in text_string.split(' '):
-		text.text += i + ' '
-		await scroll_timer.timeout
+		if i.contains('{br:'):
+			await get_tree().create_timer(i[i.find('{br:') + 4].to_int()).timeout
+		else :
+			text.text += i + ' '
+			await scroll_timer.timeout
 	scroll_timer.stop()
 
 func _input(event: InputEvent) -> void:

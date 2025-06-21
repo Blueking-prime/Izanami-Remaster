@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_gnfuy"]
 [ext_resource type="Script" path="res://Models/Menus/DialogBoxes/text_box.gd" id="1_krbbq"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("title", "title_container", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "scroll_timer")]
+[node name="Control" type="Control" node_paths=PackedStringArray("title", "title_container", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "ffwd_button", "scroll_timer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ button_panel = NodePath("VBoxContainer/ButtonsPanel")
 skip_button = NodePath("VBoxContainer/ButtonsPanel/VBoxContainer/SkipButton")
 log_button = NodePath("VBoxContainer/ButtonsPanel/VBoxContainer/LogButton")
 auto_button = NodePath("VBoxContainer/ButtonsPanel/VBoxContainer/AutoButton")
+ffwd_button = NodePath("VBoxContainer/ButtonsPanel/VBoxContainer/FastForwardButton")
 scroll_timer = NodePath("TextScrollTimer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -84,11 +85,14 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Text" type="Label" parent="VBoxContainer/TextBox/Margin/VBox"]
-custom_minimum_size = Vector2(1, 0)
+[node name="Text" type="RichTextLabel" parent="VBoxContainer/TextBox/Margin/VBox"]
 layout_mode = 2
-size_flags_vertical = 1
-text = "Add skill icons Add level cap (maybe) Implement AoE skills and self_targeting skills Flesh out status effects Move battle movement and selection to separate nodeImplement dialog boxesLearn how to move players between scenesMake enemies not spawn on outer rows and columnsMove stats to Stats scriptChange map enemy spawning to reflect contained enemiesFix item usage bug"
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "Add skill icons Add level cap (maybe) Implement AoE skills and [i]self_targeting[/i] skills Flesh out status effects Move battle movement and selection to separate nodeImplement dialog boxesLearn how to move players between scenesMake enemies not spawn on outer rows and columnsMove stats to Stats scriptChange map enemy spawning to reflect contained enemiesFix item usage bug"
+fit_content = true
+scroll_active = false
 autowrap_mode = 2
 
 [node name="Control" type="Control" parent="VBoxContainer/TextBox/Margin/VBox"]
@@ -121,7 +125,6 @@ text = "Log"
 [node name="SkipButton" type="Button" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
-toggle_mode = true
 text = "Skip"
 
 [node name="AutoButton" type="Button" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
@@ -129,6 +132,12 @@ custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 toggle_mode = true
 text = "Auto"
+
+[node name="FastForwardButton" type="Button" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+toggle_mode = true
+text = "FFWD"
 
 [node name="Control2" type="Control" parent="VBoxContainer/ButtonsPanel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)

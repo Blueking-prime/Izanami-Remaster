@@ -4,6 +4,7 @@ extends Node
 @export var confirmation_box_scene: PackedScene
 @export var description_box_scene: PackedScene
 @export var shop_menu_scene: PackedScene
+@export var text_log_scene: PackedScene
 
 @export var town_scene: PackedScene
 @export var dungeon_scene: PackedScene
@@ -31,6 +32,9 @@ var confrimation_response: bool
 
 var textbox_skip_flag: bool
 var textbox_auto_flag: bool
+var textbox_ffwd_flag: bool
+
+var text_log: TextLog
 
 signal next
 signal pause_timer
@@ -195,7 +199,8 @@ func connect_text_box_signals():
 
 	if text_box.button_panel.visible:
 		text_box.auto_button.toggled.connect(_on_textbox_auto_selected)
-		text_box.log_button.pressed.connect(_on_textbox_log_selected)
+		text_box.ffwd_button.toggled.connect(_on_textbox_ffwd_selected)
+		text_box.log_button.toggled.connect(_on_textbox_log_selected)
 		text_box.skip_button.pressed.connect(_on_textbox_skip_selected)
 
 
@@ -239,6 +244,20 @@ func change_background(texture: Texture2D, global: bool = false):
 			else :
 				get_tree().root.remove_child(background_texture)
 			background_texture.queue_free()
+
+
+func add_to_text_log(dialogue: Array):
+	if not text_log:
+		text_log = text_log_scene.instantiate()
+	text_log.label.append_text(dialogue[0] + '\n')
+	text_log.label.push_indent(1)
+	text_log.label.append_text(dialogue[1] + '\n')
+	if dialogue.size() >= 3:
+		text_log.label.push_list(1, RichTextLabel.LIST_DOTS, true)
+		for i in dialogue[2]:
+			text_log.label.append_text(i + '\n')
+	text_log.label.pop_all()
+	text_log.label.newline()
 
 
 func show_description(object: Resource) -> void:
@@ -398,6 +417,7 @@ func _on_textbox_skip_selected():
 	var confirm = await show_confirmation_box('Skip cutscene')
 	if confirm:
 		textbox_skip_flag = true
+		next.emit()
 
 func _on_textbox_auto_selected(toggled_on: bool):
 	if toggled_on:
@@ -405,10 +425,26 @@ func _on_textbox_auto_selected(toggled_on: bool):
 		next.emit()
 	else :
 		textbox_auto_flag = false
+		textbox_ffwd_flag = false
 		pause_timer.emit()
 
-func _on_textbox_log_selected():
-	pass
+func _on_textbox_ffwd_selected(toggled_on: bool):
+	if toggled_on:
+		textbox_ffwd_flag = true
+		textbox_auto_flag = true
+		next.emit()
+	else :
+		textbox_ffwd_flag = false
+		textbox_auto_flag = false
+		pause_timer.emit()
+
+func _on_textbox_log_selected(toggled_on: bool):
+	if toggled_on:
+		textbox_auto_flag = false
+		textbox_ffwd_flag = false
+		text_log.show()
+	else :
+		text_log.hide()
 
 
 func _input(event: InputEvent) -> void:

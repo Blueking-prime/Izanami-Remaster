@@ -32,11 +32,12 @@ TASKS (WORKABLE)
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
 - [ ] Add text log and other dialogue text options to textboxes
-	- [ ] Convert text log into queue using push and pop methods
-	- [ ] Implement unskippable choices
-	- [ ] implement fastforwarding
-	- [ ] implement scroll breaks {br}
+	- [x] Update textboxes to rich text
+	- [x] Implement unskippable choices
+	- [x] implement fastforwarding
+	- [x] implement scroll breaks {br}
 	- [x] implement click masking for buttons (or make it only work over the box itself and move the cursor to the box on dialogue start)
+	- [ ] Mask text formatters in log
 - [x] Add enemy spawn cap
 - [x] Add freecam
 - [x] Auto-set input event key hints
