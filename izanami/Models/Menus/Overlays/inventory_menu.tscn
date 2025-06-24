@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_menu.gd" id="1_mfe14"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="1_ty00r"]
+[ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_3184o"]
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_items.gd" id="2_miuef"]
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_skills.gd" id="3_2pvlo"]
 [ext_resource type="PackedScene" uid="uid://0hx0wuw1wgpb" path="res://Models/Menus/OptionMenus/skill_menu_card.tscn" id="3_b5xgx"]
 [ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_gear.gd" id="3_dtbst"]
 [ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="7_hc3fu"]
 [ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="8_5pjv8"]
-[ext_resource type="Script" path="res://Models/Menus/Overlays/menu_switcher.gd" id="9_1lkai"]
 
-[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("skills_menu", "items_menu", "gear_menu", "misc_menu", "tab_container")]
+[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("skills_menu", "items_menu", "gear_menu", "misc_menu", "tab_container", "menu_switcher")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,9 +23,9 @@ items_menu = NodePath("TabContainer/Items")
 gear_menu = NodePath("TabContainer/Gear")
 misc_menu = NodePath("TabContainer/Misc")
 tab_container = NodePath("TabContainer")
+menu_switcher = NodePath("MenuSwitcher")
 
-[node name="MenuSwitcher" type="Node" parent="." node_paths=PackedStringArray("menu_container")]
-script = ExtResource("9_1lkai")
+[node name="MenuSwitcher" parent="." node_paths=PackedStringArray("menu_container") instance=ExtResource("2_3184o")]
 menu_container = NodePath("../TabContainer")
 
 [node name="ExitButton" type="Button" parent="."]
@@ -214,6 +214,7 @@ theme_override_constants/separation = 0
 [node name="Option" parent="SkillTargetSelector/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("8_5pjv8")]
 layout_mode = 2
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="visibility_changed" from="TabContainer/Skills" to="TabContainer/Skills" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="TabContainer/Items" to="TabContainer/Items" method="_on_visibility_changed"]

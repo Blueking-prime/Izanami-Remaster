@@ -10,7 +10,7 @@ button = NodePath("Button")
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Inventory"
+text = "Key"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 2

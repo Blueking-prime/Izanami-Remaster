@@ -13,7 +13,7 @@ class_name UIOverlay
 
 ## OVERLAYS
 @export var inventory_menu: InventoryMenu
-@export var settings_menu: Control
+@export var settings_menu: Settings
 @export var status_menu: StatusOverlay
 
 @export var button_container: Container
@@ -58,9 +58,12 @@ func _assign_button_labels():
 		i.text = button_name + ' (' + event_key + ')'
 
 func _clear_visible_menus():
+	var retain_freeze: bool = Global.players.frozen
 	for i in menu_list:
 		if i and i.visible:
 			i._on_exit_button_pressed()
+
+	if retain_freeze: Global.players.freeze()
 
 func load_ui_elements():
 	_assign_button_labels()
@@ -69,6 +72,7 @@ func load_ui_elements():
 	player_status.display_player_data()
 	coin_counter.text = str(players.gold)
 	mag_counter.text = str(players.mag)
+	settings_menu.load_menu()
 	if map: map.setup_map()
 	if free_cam: free_cam.players = players
 
@@ -86,7 +90,15 @@ func _on_inventory_button_pressed() -> void:
 
 
 func _on_settings_button_pressed() -> void:
-	pass # Replace with function body.
+	Global.players.freeze()
+
+	settings_menu.load_menu()
+	if settings_menu.visible:
+		settings_menu._on_exit_button_pressed()
+	else:
+		_clear_visible_menus()
+		settings_menu.show()
+
 
 
 func _on_status_button_pressed() -> void:
@@ -117,9 +129,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		set_process_input(true)
-	else:
-		set_process_input(false)
+		set_process_input(visible)
 
 
 func _on_map_button_pressed() -> void:

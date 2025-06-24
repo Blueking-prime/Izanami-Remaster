@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bahbw57ddd7vt"]
+
+[ext_resource type="Script" path="res://Models/Menus/Overlays/menu_switcher.gd" id="1_vptw3"]
+
+[node name="MenuSwitcher" type="Node" node_paths=PackedStringArray("menu_container")]
+script = ExtResource("1_vptw3")
+menu_container = NodePath("")
