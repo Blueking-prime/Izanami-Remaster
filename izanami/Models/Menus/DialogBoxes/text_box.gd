@@ -22,13 +22,27 @@ var text_string: String
 func scroll_text():
 	scroll_timer.start()
 	text.text = ''
-	for i in text_string.split(' '):
-		if i.contains('{br:'):
-			await get_tree().create_timer(i[i.find('{br:') + 4].to_int()).timeout
-		else :
-			text.text += i + ' '
-			await scroll_timer.timeout
+	for word in text_string.split(' '):
+		for tag in Global.custom_tags.values():
+			var search_result = tag.search(word)
+			if search_result:
+				word = await process_custom_tag(tag, search_result, word)
+			else :
+				continue
+		await scroll_timer.timeout
+		text.text += word + ' '
 	scroll_timer.stop()
+
+func process_custom_tag(tag: RegEx, result: RegExMatch, _text: String) -> String:
+	_text = tag.sub(_text, '')
+	match tag:
+		Global.custom_tags.BR: await _break(result)
+
+	return _text
+
+func _break(result: RegExMatch):
+	await get_tree().create_timer(result.get_string(1).to_int()).timeout
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):

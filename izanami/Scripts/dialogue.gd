@@ -40,7 +40,7 @@ var test_cutscene: Array = [
 	['Speaker 1', 'This is a [b]cutscene[/b] test'],
 	[PLAYER_NAME, 'Is it now?'],
 	[PLAYER_NAME, 'Who\'d have thunk?'],
-	['Speaker 1', 'Well.\n {br:1} Now that we\'re here.\n {br:1} Might as well test out some features'],
+	['Speaker 1', 'Well. \n{br:1}Now that we\'re here. \n{br:1}Might as well test out some features'],
 	[PLAYER_NAME, 'Like what?', ['Unskippable Choice', 'Option 2'], [test_cutscene_choice_1, test_cutscene_choice_2], true],
 	['Speaker 1', 'Well now that we\'re through with that'],
 	['Speaker 1', 'It\'s probably time we end this cutscene'],
@@ -59,7 +59,7 @@ func parse_cutscene(cutscene: Array):
 		Global.add_to_text_log(i)
 
 		if Global.textbox_auto_flag:
-			auto_delay_timer.start(calculate_wait_time(i[1]))
+			auto_delay_timer.start(_calculate_wait_time(i[1]))
 
 		if Global.textbox_ffwd_flag:
 			auto_delay_timer.start(ffwd_speed)
@@ -80,7 +80,7 @@ func parse_cutscene(cutscene: Array):
 				i[0],
 				i[1],
 				i[2],
-				check_screenside(i[0]),
+				_check_screenside(i[0]),
 				scroll,
 				true
 			)
@@ -91,7 +91,7 @@ func parse_cutscene(cutscene: Array):
 				i[0],
 				i[1],
 				false,
-				check_screenside(i[0]),
+				_check_screenside(i[0]),
 				scroll,
 				true
 			)
@@ -100,22 +100,22 @@ func parse_cutscene(cutscene: Array):
 
 func show_cutscene(cutscene: Array):
 	Global.players.freeze()
-	get_tree().get_current_scene().canvas_layer.add_child(Global.text_log)
 
-	parse_cutscene(cutscene)
+	await parse_cutscene(cutscene)
 
 	Global.textbox_skip_flag = false
 	scroll = true
+	Global.text_log.hide()
 
 	get_tree().get_current_scene().canvas_layer.remove_child(Global.text_log)
 
 	Global.players.unfreeze()
 
 
-func calculate_wait_time(text: String):
+func _calculate_wait_time(text: String):
 	return text.split(' ').size() * scroll_speed * 2 + wait_time
 
-func check_screenside(speaker: String) -> String:
+func _check_screenside(speaker: String) -> String:
 	if speaker == PLAYER_NAME:
 		return 'R'
 	else :

@@ -27,17 +27,18 @@ BUG FIXES
 TASKS (WORKABLE)
 - [ ] Implement Overworld
 - [ ] Convert Loaction into parent scene
+- [ ] Implement quest label in UI and add quest markers to map
 - [x] Replace all player party calls with references to Global player party
 - [x] Replace all confirmation prompts with pop-up box
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
-- [ ] Add text log and other dialogue text options to textboxes
+- [x] Add text log and other dialogue text options to textboxes
 	- [x] Update textboxes to rich text
 	- [x] Implement unskippable choices
 	- [x] implement fastforwarding
 	- [x] implement scroll breaks {br}
 	- [x] implement click masking for buttons (or make it only work over the box itself and move the cursor to the box on dialogue start)
-	- [ ] Mask text formatters in log
+	- [x] Mask text formatters in log
 - [x] Add enemy spawn cap
 - [x] Add freecam
 - [x] Auto-set input event key hints

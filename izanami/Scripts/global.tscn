@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcxmyev8jvlgh"]
+[gd_scene load_steps=18 format=3 uid="uid://bcxmyev8jvlgh"]
 
 [ext_resource type="Script" path="res://Scripts/global.gd" id="1_u8o3i"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/DialogBoxes/text_box.tscn" id="2_imufx"]
@@ -12,9 +12,18 @@
 [ext_resource type="PackedScene" uid="uid://c02t3tj4sqc8m" path="res://Models/Menus/Overlays/text_log.tscn" id="6_4il6x"]
 [ext_resource type="PackedScene" uid="uid://bb3vup8ncigjf" path="res://Scenes/Town/Demonitarium/demonitarium.tscn" id="7_gaejl"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/new_animated_texture.tres" id="9_egmmm"]
+[ext_resource type="Script" path="res://Scripts/global_text_processing.gd" id="13_3nkps"]
+[ext_resource type="Script" path="res://Scripts/global_ui_element_display.gd" id="14_qfkbc"]
+[ext_resource type="Script" path="res://Scripts/global_algorithms_logic.gd" id="15_h8mch"]
+[ext_resource type="Script" path="res://Scripts/global_scene_loader.gd" id="16_stni4"]
+[ext_resource type="Script" path="res://Scripts/global_signals.gd" id="17_q1ilv"]
 
-[node name="Global" type="Node"]
+[node name="Global" type="Node" node_paths=PackedStringArray("TEXT", "UI", "ALGORITHMS", "SCENE_LOADER")]
 script = ExtResource("1_u8o3i")
+TEXT = NodePath("TextProcessing")
+UI = NodePath("UIElementDisplay")
+ALGORITHMS = NodePath("AlgorithmsLogic")
+SCENE_LOADER = NodePath("SceneLoader")
 text_box_scene = ExtResource("2_imufx")
 confirmation_box_scene = ExtResource("3_0ya4a")
 description_box_scene = ExtResource("3_qpouy")
@@ -26,3 +35,18 @@ demonitarium_scene = ExtResource("7_gaejl")
 battle_scene = ExtResource("4_cg2fd")
 main_menu_scene = ExtResource("5_o7tui")
 loading_screen = ExtResource("9_egmmm")
+
+[node name="TextProcessing" type="Node" parent="."]
+script = ExtResource("13_3nkps")
+
+[node name="UIElementDisplay" type="Node" parent="."]
+script = ExtResource("14_qfkbc")
+
+[node name="AlgorithmsLogic" type="Node" parent="."]
+script = ExtResource("15_h8mch")
+
+[node name="SceneLoader" type="Node" parent="."]
+script = ExtResource("16_stni4")
+
+[node name="Signals" type="Node" parent="."]
+script = ExtResource("17_q1ilv")

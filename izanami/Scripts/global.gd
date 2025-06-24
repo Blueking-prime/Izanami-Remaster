@@ -1,5 +1,10 @@
 extends Node
 
+@export var TEXT: GlobalTextProcessing
+@export var UI: GlobalUIElements
+@export var ALGORITHMS: GlobalAlgorithms
+@export var SCENE_LOADER: GlobalSceneLoader
+
 @export var text_box_scene: PackedScene
 @export var confirmation_box_scene: PackedScene
 @export var description_box_scene: PackedScene
@@ -16,9 +21,11 @@ extends Node
 
 var players: Party
 
+# FLAGS
 var input_type: int
-var dialog_text_log: String
 
+# WORKING OBJECTS
+var dialog_text_log: String
 var description_box_parent: Node
 var description_box: DescriptionBox
 var background_texture: TextureRect
@@ -26,367 +33,88 @@ var shop_menu: Control
 var text_box: TextBox
 var action_log: Label
 var confirmation_box: ConfirmationDialog
+var text_log: TextLog
 
+# RESPONSES
 var textbox_response: int
 var confrimation_response: bool
 
+# TEXTBOX FLAGS
 var textbox_skip_flag: bool
 var textbox_auto_flag: bool
 var textbox_ffwd_flag: bool
 
-var text_log: TextLog
+#TEXT DISPLAY TAGS
+	# REGEX EXPLANATION #
+	#\{\w+\:?(\w*)\}
+		#\{ matches the character { with index 12310 (7B16 or 1738) literally (case sensitive)
+		#\w matches any word character (equivalent to [a-zA-Z0-9_])
+		#+ matches the previous token between one and unlimited times, as many times as possible, giving back as needed (greedy)
+		#\: matches the character : with index 5810 (3A16 or 728) literally (case sensitive)
+		#? matches the previous token between zero and one times, as many times as possible, giving back as needed (greedy)
+		#1st Capturing Group (\w*)
+		#\w matches any word character (equivalent to [a-zA-Z0-9_])
+		#* matches the previous token between zero and unlimited times, as many times as possible, giving back as needed (greedy)
+		#\} matches the character } with index 12510 (7D16 or 1758) literally (case sensitive)
+var custom_tags: Dictionary = {
+	'BR':  RegEx.create_from_string(r'\{\w+\:?(\w*)\}')
+}
 
+# SIGNALS
 signal next
 signal pause_timer
 signal confirmation_box_triggered
 signal sell(condition)
 
 
+## TEXT PROCESSING
+func add_to_text_log(dialogue: Array):
+	return TEXT.add_to_text_log(dialogue)
+
+func clear_custom_tags(_text: String) -> String:
+	return TEXT.clear_custom_tags(_text)
+
+func print_to_log(text: Variant):
+	return TEXT.print_to_log(text)
+
 ## ALGORITHMS
 func rand_coord(width: int, height: int) -> Vector2i:
-	return Vector2i(randi_range(0, width - 1), randi_range(0, height - 1))
+	return ALGORITHMS.rand_coord(width, height)
 
+func rand_spread(chance: float, limit: int) -> int:
+	return ALGORITHMS.rand_spread(chance, limit)
 
-func rand_spread(chance: float, limit: int):
-	var n = 0
-	while randf() < chance and n < limit:
-		n += 1
-	return n
-
-
-func rand_chance(chance: float):
-	if randf() < chance:
-		return true
-	else:
-		return false
-
+func rand_chance(chance: float) -> bool:
+	return ALGORITHMS.rand_chance(chance)
 
 func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []):
-
-	if start in walls:
-		return false
-
-	var l = start + Vector2i.LEFT
-	var r = start + Vector2i.RIGHT
-	var u = start + Vector2i.UP
-	var d = start + Vector2i.DOWN
-
-	# Check if goal is next to path
-	if start == goal or u == goal or d == goal or l == goal or r == goal:
-		return true
-
-
-	# If (x,y) is a valid node
-	if (start.y >= 0 and start.y < height) and (start.x >= 0 and start.x < width):
-		if start in visited:
-			return false
-		else:
-			visited.append(start)
-
-	# Recurse through all adjacent points
-		var up    = path(u, goal, walls, width, height, visited)
-		if up:
-			return true
-
-		var left  = path(l, goal, walls, width, height, visited)
-		if left:
-			return true
-
-		var down  = path(d, goal, walls, width, height, visited)
-		if down:
-			return true
-
-		var right = path(r, goal, walls, width, height, visited)
-		if right:
-			return true
-
-	return false
-
+	return path(start, goal, walls, width, height, visited)
 
 ## UI ELEMENTS
 func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', scroll: bool = true, dialogue: bool = false) -> int:
-	if is_instance_valid(text_box):
-		text_box.queue_free()
-
-	text_box = text_box_scene.instantiate()
-
-	get_tree().get_current_scene().canvas_layer.add_child(text_box)
-
-	text_box.title.text = speaker
-	if scroll:
-		text_box.text_string = prompt
-		text_box.scroll_text()
-	else:
-		text_box.text.text = prompt
-
-	if not dialogue:
-		text_box.button_panel.hide()
-
-	if textbox_auto_flag:
-		text_box.auto_button.set_pressed_no_signal(true)
-
-	dialog_text_log += speaker + ': ' + prompt + '\n\n'
-
-	match screen_side:
-		'L': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-		'C': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		'R': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_END
-
-	text_box.options.clear()
-	for i in choices:
-		text_box.options.add_item(i)
-
-	text_box.options.grab_focus()
-
-	connect_text_box_signals()
-
-	Input.warp_mouse(text_box.global_position)
-
-	await text_box.options.item_activated
-
-	# Add choices to log and capitalize selected choice
-	choices[textbox_response].to_upper()
-	for i in choices:
-		dialog_text_log += i + '\n\n'
-
-	text_box.queue_free()
-
-	return textbox_response
-
+	return await UI.show_text_choice(speaker, prompt, choices, screen_side, scroll, dialogue)
 
 func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', scroll: bool = true,  dialogue: bool = false) -> void:
-	if is_instance_valid(text_box):
-		text_box.queue_free()
-
-	text_box = text_box_scene.instantiate()
-
-	get_tree().get_current_scene().canvas_layer.add_child(text_box)
-
-	text_box.spacer.hide()
-	text_box.options.hide()
-
-	text_box.title.text = speaker
-
-	if scroll:
-		text_box.text_string = prompt
-		text_box.scroll_text()
-	else:
-		text_box.text.text = prompt
-
-	dialog_text_log += speaker + ': ' + prompt
-
-	match screen_side:
-		'L': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-		'C': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		'R': text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_END
-
-	if textbox_auto_flag:
-		text_box.auto_button.set_pressed_no_signal(true)
-
-	if not dialogue:
-		text_box.button_panel.hide()
-
-	connect_text_box_signals()
-
-	Input.warp_mouse(text_box.global_position)
-
-	if not persist:
-		await next
-		text_box.queue_free()
-
-func connect_text_box_signals():
-	text_box.options.item_activated.connect(_on_option_selected)
-
-	if text_box.button_panel.visible:
-		text_box.auto_button.toggled.connect(_on_textbox_auto_selected)
-		text_box.ffwd_button.toggled.connect(_on_textbox_ffwd_selected)
-		text_box.log_button.toggled.connect(_on_textbox_log_selected)
-		text_box.skip_button.pressed.connect(_on_textbox_skip_selected)
-
+	await UI.show_text_box(speaker, prompt, persist, screen_side, scroll, dialogue)
 
 func show_confirmation_box(prompt: String):
-	if is_instance_valid(confirmation_box):
-		confirmation_box.queue_free()
-
-	confirmation_box = confirmation_box_scene.instantiate()
-
-	get_tree().get_current_scene().canvas_layer.add_child(confirmation_box)
-
-	confirmation_box.dialog_text = prompt
-	confirmation_box.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	confirmation_box.get_label().vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-
-	confirmation_box.canceled.connect(_confirmation_box_canceled)
-	confirmation_box.confirmed.connect(_confirmation_box_confirmed)
-
-	await confirmation_box_triggered
-
-	return confrimation_response
-
-
+	return await UI.show_confirmation_box(prompt)
 
 func change_background(texture: Texture2D, global: bool = false):
-	if texture:
-		if not is_instance_valid(background_texture):
-			background_texture = TextureRect.new()
-			background_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			background_texture.set_anchors_preset(Control.PRESET_FULL_RECT)
-			if not global:
-				get_tree().current_scene.canvas_layer.get_child(0).add_sibling(background_texture)
-			else:
-				get_tree().root.add_child(background_texture)
-
-		background_texture.texture = texture
-	else:
-		if is_instance_valid(background_texture):
-			if not global:
-				get_tree().current_scene.canvas_layer.remove_child(background_texture)
-			else :
-				get_tree().root.remove_child(background_texture)
-			background_texture.queue_free()
-
-
-func add_to_text_log(dialogue: Array):
-	if not text_log:
-		text_log = text_log_scene.instantiate()
-	text_log.label.append_text(dialogue[0] + '\n')
-	text_log.label.push_indent(1)
-	text_log.label.append_text(dialogue[1] + '\n')
-	if dialogue.size() >= 3:
-		text_log.label.push_list(1, RichTextLabel.LIST_DOTS, true)
-		for i in dialogue[2]:
-			text_log.label.append_text(i + '\n')
-	text_log.label.pop_all()
-	text_log.label.newline()
-
+	return UI.change_background(texture, global)
 
 func show_description(object: Resource) -> void:
-	if is_instance_valid(description_box):
-		description_box.queue_free()
-
-	description_box = description_box_scene.instantiate()
-
-	if description_box_parent:
-		description_box_parent.add_child(description_box)
-	else:
-		get_tree().get_current_scene().canvas_layer.add_child(description_box)
-
-	if 'stats' in object:
-		var stats_string = ''
-		for i in object.stats:
-			if object.stats is Dictionary:
-				if object.stats[i] != 0:
-					stats_string += i + ': ' + str(object.stats[i]) + ' '
-			else:
-				stats_string += i + ' '
-		description_box.stats.text = stats_string
-	else:
-		description_box.stats.hide()
-
-	description_box.cost.hide()
-
-	if object is Gear:
-		description_box.type.text = 'Gear'
-		description_box.subtype.text = object.slot
-		if object.equipped:
-			description_box.weapon_status.show()
-		description_box.effect_chance.hide()
-		description_box.target_scope.hide()
-		description_box.value.hide()
-	else:
-		if object is Item:
-			description_box.type.text = 'Item'
-			description_box.effect_chance.text = str(object.effect_chance * 100) + '%'
-		if object is Skill:
-			description_box.type.text = 'Skill'
-			description_box.cost.show()
-			description_box.cost.text = str(object.cost)
-			description_box.effect_chance.text = str(object.effect_chance[object.rank] * 100) + '%'
-			if object.rank > 0:
-				description_box.rank.text = '+'.repeat(object.rank)
-				description_box.rank.show()
-
-		if object.value != 0:
-			description_box.value.text = str(object.value)
-		elif object.status_effect:
-			description_box.value.text = object.status_effect.new().desc
-		else:
-			description_box.value.hide()
-
-		description_box.subtype.text = object.type
-		if object.aoe:
-			description_box.target_scope.text = 'AOE'
-		if object.universal:
-			description_box.target_scope.text = 'Universal'
-		else:
-			description_box.target_scope.text = "Single"
-		description_box.weapon_status.hide()
-
-	if 'price' in object:
-		description_box.sell_price.text = '#' + str(object.price)
-	elif object is Skill:
-		description_box.sell_price.text = str(object.crit_chance[object.rank] * 100) + '%'
-	else:
-		description_box.sell_price.hide()
-
-	if 'element' in object:
-		description_box.element.text = object.element
-	description_box.description.text = object.desc
-
+	return UI.show_description(object)
 
 func show_shop_menu(_players: Party, stock: ResourceGroup):
-	if is_instance_valid(shop_menu):
-		shop_menu.queue_free()
+	return UI.show_shop_menu(_players, stock)
 
-	shop_menu = shop_menu_scene.instantiate()
-
-	get_tree().get_current_scene().canvas_layer.add_child(shop_menu)
-
-	shop_menu.shop_inventory.item_group = stock
-	shop_menu.player_inventory.players = _players
-
-	shop_menu.exit_button.pressed.connect(_on_shop_exit)
-
-	shop_menu.shop_inventory.load_stock()
-	shop_menu.player_inventory.load_stock()
-
+## SCENE LOADERS FUNCTIONS
+func warp(source: Location, destination_scene: PackedScene):
+	return SCENE_LOADER.warp(source, destination_scene)
 
 func load_main_menu():
-	var main_menu = main_menu_scene.instantiate()
-	get_tree().unload_current_scene()
-	add_sibling(main_menu)
-	get_tree().current_scene = main_menu
-
-
-## GENERAL FUNCTIONS
-func print_to_log(text: Variant):
-	if not action_log: return
-
-	if text is String:
-		action_log.text += '\n' + text
-	else :
-		action_log.text += '\n' + str(text)
-
-
-func warp(source: Location, destination_scene: PackedScene):
-	var destination: Location = destination_scene.instantiate()
-	source.add_sibling(destination)
-
-	source.remove_players()
-	destination.add_players(players)
-
-	# Set destination as main scene
-	get_tree().current_scene = destination
-
-	# Reload destination and delete current scene
-	destination.load_scene()
-	source.call_deferred('queue_free')
-
-	players.leader.global_position = destination.entrance
-
-	print(get_tree().current_scene)
-
-	print('Town Loaded')
+	return SCENE_LOADER.load_main_menu()
 
 ## FUNCTON TESTS
 func rand_spread_test():
