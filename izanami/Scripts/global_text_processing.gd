@@ -8,10 +8,10 @@ func add_to_text_log(dialogue: Array):
 	if not get_parent().text_log:
 		get_parent().text_log = get_parent().text_log_scene.instantiate()
 	get_parent().text_log.label.append_text(clear_custom_tags(dialogue[0]) + '\n')
-	get_parent().text_log.label.push_indent(1)
+	get_parent().text_log.label.push_indent(2)
 	get_parent().text_log.label.append_text(clear_custom_tags(dialogue[1]) + '\n')
 	if dialogue.size() >= 3:
-		get_parent().text_log.label.push_list(1, RichTextLabel.LIST_DOTS, true)
+		get_parent().text_log.label.push_list(3, RichTextLabel.LIST_DOTS, true)
 		for i in dialogue[2]:
 			get_parent().text_log.label.append_text(clear_custom_tags(i) + '\n')
 	get_parent().text_log.label.pop_all()
@@ -19,8 +19,7 @@ func add_to_text_log(dialogue: Array):
 
 
 func clear_custom_tags(_text: String) -> String:
-	for i in get_parent().custom_tags.values():
-		_text = i.sub(_text, '', true)
+	_text = get_parent().custom_tags_filter.sub(_text, '', true)
 
 	return _text
 

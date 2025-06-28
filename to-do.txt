@@ -26,6 +26,9 @@ BUG FIXES
 
 TASKS (WORKABLE)
 - [ ] Implement Overworld
+- [x] Mark regex implmentation as general tag format, specify 'br' for break, etc
+- [ ] Add text log to Ui overlay
+- [ ] Move more parameters to checks script
 - [ ] Convert Loaction into parent scene
 - [ ] Implement quest label in UI and add quest markers to map
 - [x] Replace all player party calls with references to Global player party

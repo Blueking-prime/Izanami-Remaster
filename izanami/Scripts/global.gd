@@ -25,7 +25,6 @@ var players: Party
 var input_type: int
 
 # WORKING OBJECTS
-var dialog_text_log: String
 var description_box_parent: Node
 var description_box: DescriptionBox
 var background_texture: TextureRect
@@ -44,21 +43,21 @@ var textbox_skip_flag: bool
 var textbox_auto_flag: bool
 var textbox_ffwd_flag: bool
 
-#TEXT DISPLAY TAGS
-	# REGEX EXPLANATION #
-	#\{\w+\:?(\w*)\}
-		#\{ matches the character { with index 12310 (7B16 or 1738) literally (case sensitive)
-		#\w matches any word character (equivalent to [a-zA-Z0-9_])
-		#+ matches the previous token between one and unlimited times, as many times as possible, giving back as needed (greedy)
-		#\: matches the character : with index 5810 (3A16 or 728) literally (case sensitive)
-		#? matches the previous token between zero and one times, as many times as possible, giving back as needed (greedy)
-		#1st Capturing Group (\w*)
-		#\w matches any word character (equivalent to [a-zA-Z0-9_])
-		#* matches the previous token between zero and unlimited times, as many times as possible, giving back as needed (greedy)
-		#\} matches the character } with index 12510 (7D16 or 1758) literally (case sensitive)
-var custom_tags: Dictionary = {
-	'BR':  RegEx.create_from_string(r'\{\w+\:?(\w*)\}')
-}
+var scroll_state: bool
+
+## REGEX EXPLANATION ##
+#\{(\w+)\:?(\w*)\} should catch all tags in the format {x}, {x:y} where x and y are any arbitrary strings
+	#\{ matches the character { with index 12310 (7B16 or 1738) literally (case sensitive)
+	#1st Capturing Group (\w*)
+	#\w matches any word character (equivalent to [a-zA-Z0-9_])
+	#+ matches the previous token between one and unlimited times, as many times as possible, giving back as needed (greedy)
+	#\: matches the character : with index 5810 (3A16 or 728) literally (case sensitive)
+	#? matches the previous token between zero and one times, as many times as possible, giving back as needed (greedy)
+	#2nd Capturing Group (\w*)
+	#\w matches any word character (equivalent to [a-zA-Z0-9_])
+	#* matches the previous token between zero and unlimited times, as many times as possible, giving back as needed (greedy)
+	#\} matches the character } with index 12510 (7D16 or 1758) literally (case sensitive)
+var custom_tags_filter: RegEx = RegEx.create_from_string(r'\{(\w+)\:?(\w*)\}')
 
 # SIGNALS
 signal next
@@ -91,11 +90,11 @@ func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int
 	return path(start, goal, walls, width, height, visited)
 
 ## UI ELEMENTS
-func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', scroll: bool = true, dialogue: bool = false) -> int:
-	return await UI.show_text_choice(speaker, prompt, choices, screen_side, scroll, dialogue)
+func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int:
+	return await UI.show_text_choice(speaker, prompt, choices, screen_side, dialogue)
 
-func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', scroll: bool = true,  dialogue: bool = false) -> void:
-	await UI.show_text_box(speaker, prompt, persist, screen_side, scroll, dialogue)
+func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', dialogue: bool = false) -> void:
+	await UI.show_text_box(speaker, prompt, persist, screen_side, dialogue)
 
 func show_confirmation_box(prompt: String):
 	return await UI.show_confirmation_box(prompt)
@@ -115,6 +114,9 @@ func warp(source: Location, destination_scene: PackedScene):
 
 func load_main_menu():
 	return SCENE_LOADER.load_main_menu()
+
+func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false):
+	return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
 
 ## FUNCTON TESTS
 func rand_spread_test():
@@ -160,18 +162,30 @@ func _on_textbox_ffwd_selected(toggled_on: bool):
 	if toggled_on:
 		textbox_ffwd_flag = true
 		textbox_auto_flag = true
+		scroll_state = Checks.scroll
+		Checks.scroll = false
 		next.emit()
 	else :
 		textbox_ffwd_flag = false
 		textbox_auto_flag = false
+		Checks.state = scroll_state
 		pause_timer.emit()
 
 func _on_textbox_log_selected(toggled_on: bool):
+	text_box.auto_button.disabled = toggled_on
+	text_box.ffwd_button.disabled = toggled_on
 	if toggled_on:
 		textbox_auto_flag = false
 		textbox_ffwd_flag = false
+
+		text_box.title_container.hide()
+		text_box.text_box.hide()
+
 		text_log.show()
 	else :
+		text_box.title_container.show()
+		text_box.text_box.show()
+
 		text_log.hide()
 
 

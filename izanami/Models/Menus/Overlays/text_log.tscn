@@ -24,7 +24,5 @@ theme_override_constants/margin_bottom = 50
 
 [node name="Label" type="RichTextLabel" parent="MarginContainer"]
 layout_mode = 2
-focus_mode = 2
 bbcode_enabled = true
 scroll_following = true
-selection_enabled = true

@@ -29,3 +29,14 @@ func load_main_menu():
 	get_tree().unload_current_scene()
 	add_sibling(main_menu)
 	get_tree().current_scene = main_menu
+
+
+func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false):
+	if (other_node.get_parent() != parent) or (node.get_parent() != parent):
+		print('Parent node not match')
+		return
+
+	var target_index: int = other_node.get_index()
+	if after: target_index += 1
+
+	parent.move_child(node, target_index)

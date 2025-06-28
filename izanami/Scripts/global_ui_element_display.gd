@@ -2,40 +2,8 @@ extends Node
 
 class_name GlobalUIElements
 
-func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', scroll: bool = true, dialogue: bool = false) -> int:
-	if is_instance_valid(get_parent().text_box):
-		get_parent().text_box.queue_free()
-	if not is_instance_valid(get_parent().text_log):
-		get_parent().text_log = get_parent().text_log_scene.instantiate()
-	if not get_parent().text_log.get_parent():
-		get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_log)
-
-
-	get_parent().text_box = get_parent().text_box_scene.instantiate()
-
-	get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_box)
-
-	get_parent().text_box.title.text = speaker
-	if scroll:
-		get_parent().text_box.text_string = prompt
-		get_parent().text_box.scroll_text()
-	else:
-		get_parent().text_box.text.text = get_parent().clear_custom_tags(prompt)
-
-	if not dialogue:
-		get_parent().text_box.button_panel.hide()
-
-	if get_parent().textbox_auto_flag:
-		get_parent().text_box.auto_button.set_pressed_no_signal(true)
-	if get_parent().text_log.visible:
-		get_parent().text_box.log_button.set_pressed_no_signal(true)
-
-	get_parent().dialog_text_log += speaker + ': ' + prompt + '\n\n'
-
-	match screen_side:
-		'L': get_parent().text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-		'C': get_parent().text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		'R': get_parent().text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_END
+func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int:
+	_create_base_textbox(speaker, prompt, screen_side, dialogue)
 
 	get_parent().text_box.options.clear()
 	for i in choices:
@@ -43,23 +11,25 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 
 	get_parent().text_box.options.grab_focus()
 
-	_connect_text_box_signals()
-
-	Input.warp_mouse(get_parent().text_box.global_position)
-
 	await get_parent().text_box.options.item_activated
-
-	# Add choices to log and capitalize selected choice
-	choices[get_parent().textbox_response].to_upper()
-	for i in choices:
-		get_parent().dialog_text_log += i + '\n\n'
 
 	get_parent().text_box.queue_free()
 
 	return get_parent().textbox_response
 
 
-func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', scroll: bool = true,  dialogue: bool = false) -> void:
+func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', dialogue: bool = false) -> void:
+	_create_base_textbox(speaker, prompt, screen_side, dialogue)
+
+	get_parent().text_box.spacer.hide()
+	get_parent().text_box.options.hide()
+
+	if not persist:
+		await get_parent().next
+		get_parent().text_box.queue_free()
+
+
+func _create_base_textbox(speaker: String, prompt: String, screen_side: String = 'L', dialogue: bool = false) -> void:
 	if is_instance_valid(get_parent().text_box):
 		get_parent().text_box.queue_free()
 	if not is_instance_valid(get_parent().text_log):
@@ -67,44 +37,46 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false, scree
 	if not get_parent().text_log.get_parent():
 		get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_log)
 
-
 	get_parent().text_box = get_parent().text_box_scene.instantiate()
 
 	get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_box)
-
-	get_parent().text_box.spacer.hide()
-	get_parent().text_box.options.hide()
+	get_parent().move_node_to_other_node(get_parent().text_box, get_tree().get_current_scene().canvas_layer, get_parent().text_log)
 
 	get_parent().text_box.title.text = speaker
 
-	if scroll:
+	if Checks.scroll:
 		get_parent().text_box.text_string = prompt
 		get_parent().text_box.scroll_text()
 	else:
 		get_parent().text_box.text.text = get_parent().clear_custom_tags(prompt)
-
-	get_parent().dialog_text_log += speaker + ': ' + prompt
 
 	match screen_side:
 		'L': get_parent().text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 		'C': get_parent().text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		'R': get_parent().text_box.title_container.size_flags_horizontal = Control.SIZE_SHRINK_END
 
-	if get_parent().textbox_auto_flag:
-		get_parent().text_box.auto_button.set_pressed_no_signal(true)
-	if get_parent().text_log.visible:
-		get_parent().text_box.log_button.set_pressed_no_signal(true)
-
 	if not dialogue:
+		get_parent().add_to_text_log([speaker, prompt])
 		get_parent().text_box.button_panel.hide()
 
 	_connect_text_box_signals()
 
-	Input.warp_mouse(get_parent().text_box.global_position)
+	if get_parent().textbox_auto_flag:
+		get_parent().text_box.auto_button.set_pressed_no_signal(true)
+	if get_parent().text_log.visible:
+		get_parent().text_box.log_button.button_pressed = true
 
-	if not persist:
-		await get_parent().next
-		get_parent().text_box.queue_free()
+	#print('MOUSE POSITION: ', get_window().get_mouse_position())
+	#print('GET WINDOW: ', get_window().size)
+	#print('GET VIEWPORT: ', get_viewport().size)
+	#print('DISPLAY SERVER: ', DisplayServer.screen_get_size())
+	#get_window().warp_mouse(
+		#Vector2(
+			#get_window().size.x * 0.5 + (get_parent().text_box.offset_right * 0.9),
+			#get_window().size.y * (get_parent().text_box.anchor_top + get_parent().text_box.anchor_bottom) / 2
+		#)
+	#)
+	#print('UPDATED MOUSE POSITION: ', get_window().get_mouse_position())
 
 
 func show_confirmation_box(prompt: String):

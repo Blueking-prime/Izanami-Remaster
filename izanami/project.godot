@@ -29,9 +29,9 @@ config/icon="res://Assets/icon.svg"
 
 [autoload]
 
+Checks="*res://Scripts/checks.gd"
 SaveAndLoad="*res://Scripts/save_and_load.tscn"
 Global="*res://Scripts/global.tscn"
-Checks="*res://Scripts/checks.gd"
 
 [debug]
 

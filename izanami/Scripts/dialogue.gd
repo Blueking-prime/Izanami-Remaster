@@ -13,14 +13,6 @@ extends Node
 
 var PLAYER_NAME: String = 'Player'
 
-var scroll: bool = true
-
-@export var scroll_speed: float = 0.05
-@export var ffwd_speed: float = 0.3
-@export var wait_time: float = 1
-
-
-
 
 
 var test_cutscene_choice_1: Array = [
@@ -31,8 +23,14 @@ var test_cutscene_choice_1: Array = [
 var test_cutscene_choice_2: Array = [
 	['Speaker 1', 'Nothing really happens on this route'],
 	[PLAYER_NAME, 'You have got to be kidding me'],
-
 ]
+var test_cutscene_choice_3: Array = [
+	['Speaker 1', 'Here is a fat wall of text.\n\n So much good sweet English mmm yes big yap. heavy yap. all the greatest yap that has ever exists.\n DAmn I\'m hungry. should have eaten this morning now I\'m so hungry.\n Man typing a lot of random dialogue is really tough huh? you\'d thibk it\'d be easy with how easy it is to type but actually coming up aiwth a long sequence of words that vaguely(? how do you even spell that) are coherent. I wonder how Josh does all this. crazy movement. Sha i\'m done with all this typing. i ned to find something to eat before i collapse on this PC.'],
+	[PLAYER_NAME, 'Huh?'],
+	['Speaker 1', '...'],
+	[PLAYER_NAME, '...'],
+]
+
 
 var test_cutscene: Array = [
 	['Speaker 1', 'Hello'],
@@ -41,7 +39,7 @@ var test_cutscene: Array = [
 	[PLAYER_NAME, 'Is it now?'],
 	[PLAYER_NAME, 'Who\'d have thunk?'],
 	['Speaker 1', 'Well. \n{br:1}Now that we\'re here. \n{br:1}Might as well test out some features'],
-	[PLAYER_NAME, 'Like what?', ['Unskippable Choice', 'Option 2'], [test_cutscene_choice_1, test_cutscene_choice_2], true],
+	[PLAYER_NAME, 'Like what?', ['Unskippable Choice', 'Option 2', 'Long textbox'], [test_cutscene_choice_1, test_cutscene_choice_2, test_cutscene_choice_3], true],
 	['Speaker 1', 'Well now that we\'re through with that'],
 	['Speaker 1', 'It\'s probably time we end this cutscene'],
 	[PLAYER_NAME, 'I couldn\'t agree more'],
@@ -62,10 +60,8 @@ func parse_cutscene(cutscene: Array):
 			auto_delay_timer.start(_calculate_wait_time(i[1]))
 
 		if Global.textbox_ffwd_flag:
-			auto_delay_timer.start(ffwd_speed)
-			scroll = false
-		else :
-			scroll = true
+			auto_delay_timer.start(Checks.ffwd_speed)
+
 
 		if Global.textbox_skip_flag:
 			if i.size() >= 5 and i[4]:
@@ -81,7 +77,6 @@ func parse_cutscene(cutscene: Array):
 				i[1],
 				i[2],
 				_check_screenside(i[0]),
-				scroll,
 				true
 			)
 			if i.size() >= 4 and i[3] != []:
@@ -92,19 +87,19 @@ func parse_cutscene(cutscene: Array):
 				i[1],
 				false,
 				_check_screenside(i[0]),
-				scroll,
 				true
 			)
 
 		auto_delay_timer.stop()
 
 func show_cutscene(cutscene: Array):
+	var scroll_state: bool = Checks.scroll
 	Global.players.freeze()
 
 	await parse_cutscene(cutscene)
 
 	Global.textbox_skip_flag = false
-	scroll = true
+	Checks.scroll = scroll_state
 	Global.text_log.hide()
 
 	get_tree().get_current_scene().canvas_layer.remove_child(Global.text_log)
@@ -113,7 +108,7 @@ func show_cutscene(cutscene: Array):
 
 
 func _calculate_wait_time(text: String):
-	return text.split(' ').size() * scroll_speed * 2 + wait_time
+	return text.split(' ').size() * Checks.scroll_speed * 2 + Checks.wait_time
 
 func _check_screenside(speaker: String) -> String:
 	if speaker == PLAYER_NAME:
