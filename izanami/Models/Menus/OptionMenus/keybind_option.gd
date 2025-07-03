@@ -20,7 +20,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func get_key_event() -> InputEvent:
-	return InputMap.action_get_events(action_name)[Global.input_type]
+	return InputMap.action_get_events(action_name)[Checks.input_type]
 
 func set_key_text():
 	button.text = 'Unassigned'

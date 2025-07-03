@@ -134,7 +134,7 @@ func start_choosing_aoe():
 func reset_target():
 	index = 0
 	for actor in process_turns.actors:
-		actor.untarget()
+		if is_instance_valid(actor): actor.untarget()
 
 	process_actions.target = null
 

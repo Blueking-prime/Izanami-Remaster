@@ -36,7 +36,6 @@ func _initialize_enemies(from_resource_group: bool):
 		add_child(enemy)
 
 	enemies = get_children()
-	print(enemies)
 	#for i in enemies.size():
 		#enemies[i].name = enemies[i].get_class() + ' ' + str(i)
 

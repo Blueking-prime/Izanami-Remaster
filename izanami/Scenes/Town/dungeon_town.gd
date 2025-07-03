@@ -1,4 +1,6 @@
-extends Node
+extends Node2D
+
+class_name TownDungeon
 
 @export var no_of_floors: int
 
@@ -65,7 +67,7 @@ func set_dungeon_level():
 	return
 
 func load_dungeon():
-	get_parent().remove_child(Global.players)
+	get_parent().objectsort.remove_child(Global.players)
 	dungeon.add_players(Global.players)
 	get_parent().add_sibling(dungeon)
 	get_tree().current_scene = dungeon

@@ -190,9 +190,8 @@ func check_collisions():
 	for i in enemy_nodes:
 		i.hitbox.check_overlap(self)
 
-func center() -> Vector2i:
+func center() -> Vector2:
 	return get_used_rect().get_center()
-
 
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("test"):

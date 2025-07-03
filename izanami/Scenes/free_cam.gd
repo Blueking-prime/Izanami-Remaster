@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 		if direction.length():
 			direction = direction.normalized()
 			position += direction * speed * delta
-			print(position)
 
 func show_cam():
 	Global.players.freeze()

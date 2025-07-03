@@ -34,8 +34,8 @@ func _create_base_textbox(speaker: String, prompt: String, screen_side: String =
 		get_parent().text_box.queue_free()
 	if not is_instance_valid(get_parent().text_log):
 		get_parent().text_log = get_parent().text_log_scene.instantiate()
-	if not get_parent().text_log.get_parent():
-		get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_log)
+
+	add_text_log_to_scene()
 
 	get_parent().text_box = get_parent().text_box_scene.instantiate()
 
@@ -108,7 +108,7 @@ func change_background(texture: Texture2D, global: bool = false):
 			if not global:
 				get_tree().current_scene.canvas_layer.get_child(0).add_sibling(get_parent().background_texture)
 			else:
-				get_tree().root.add_child(get_parent().background_texture)
+				get_tree().root.add_child.call_deferred(get_parent().background_texture)
 
 		get_parent().background_texture.texture = texture
 	else:
@@ -116,7 +116,7 @@ func change_background(texture: Texture2D, global: bool = false):
 			if not global:
 				get_tree().current_scene.canvas_layer.remove_child(get_parent().background_texture)
 			else :
-				get_tree().root.remove_child(get_parent().background_texture)
+				get_tree().root.remove_child.call_deferred(get_parent().background_texture)
 			get_parent().background_texture.queue_free()
 
 
@@ -219,3 +219,7 @@ func _connect_text_box_signals():
 		get_parent().text_box.ffwd_button.toggled.connect(get_parent()._on_textbox_ffwd_selected)
 		get_parent().text_box.log_button.toggled.connect(get_parent()._on_textbox_log_selected)
 		get_parent().text_box.skip_button.pressed.connect(get_parent()._on_textbox_skip_selected)
+
+func add_text_log_to_scene():
+	if not get_parent().text_log.get_parent():
+		get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_log)

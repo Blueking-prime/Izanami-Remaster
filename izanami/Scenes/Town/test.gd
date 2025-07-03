@@ -4,4 +4,7 @@ extends StaticBody2D
 
 func main():
 	#remove_child(test_player)
-	Global.warp(get_parent(), Global.town_scene)
+	print(Global.players.gold)
+
+	get_parent().overlay.load_ui_elements()
+	get_parent().overlay.show()

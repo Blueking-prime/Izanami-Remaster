@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjf7wmor410ps"]
+[gd_scene load_steps=8 format=3 uid="uid://bjf7wmor410ps"]
 
 [ext_resource type="Script" path="res://Models/Menus/Overlays/base_overlay.gd" id="1_fxe44"]
 [ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/Menus/Overlays/settings.tscn" id="2_3jbmj"]
@@ -6,7 +6,15 @@
 [ext_resource type="Script" path="res://Models/Menus/Overlays/player_display_container.gd" id="2_slhvk"]
 [ext_resource type="PackedScene" uid="uid://mmi7n42qt3ph" path="res://Models/Menus/Overlays/player_data.tscn" id="3_446mo"]
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "coin_counter", "mag_counter", "settings_menu", "button_container")]
+[sub_resource type="Gradient" id="Gradient_ffifv"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_61714"]
+gradient = SubResource("Gradient_ffifv")
+width = 30
+height = 30
+fill_from = Vector2(1, 0)
+
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "coin_counter", "mag_counter", "button_container", "settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,15 +25,16 @@ script = ExtResource("1_fxe44")
 player_status = NodePath("StatusOverlay/MarginContainer/PlayerContainer")
 coin_counter = NodePath("ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 mag_counter = NodePath("ResourceDisplay/MarginContainer/GridContainer/MagCount")
+button_container = NodePath("VBoxContainer/MenuButtons")
 settings_menu = NodePath("Settings")
-button_container = NodePath("MenuButtons")
 
 [node name="StatusOverlay" type="PanelContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 30.0
 offset_top = 30.0
-offset_right = 356.0
-offset_bottom = 70.0
+offset_right = 326.0
+offset_bottom = 40.0
 
 [node name="MarginContainer" type="MarginContainer" parent="StatusOverlay"]
 layout_mode = 2
@@ -46,13 +55,13 @@ layout_mode = 2
 
 [node name="ResourceDisplay" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -133.0
+offset_left = -73.0
 offset_top = 30.0
 offset_right = -30.0
-offset_bottom = 126.0
+offset_bottom = 63.0
 grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="ResourceDisplay"]
@@ -83,6 +92,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MagSprite" type="TextureRect" parent="ResourceDisplay/MarginContainer/GridContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_rfrb6")
@@ -90,6 +100,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="MagCount" type="Label" parent="ResourceDisplay/MarginContainer/GridContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -97,67 +108,109 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuButtons" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -131.0
+offset_left = -102.0
+offset_top = -311.0
 offset_right = -30.0
 offset_bottom = -30.0
 grow_horizontal = 0
 grow_vertical = 0
+alignment = 2
 
-[node name="FreecamButton" type="Button" parent="MenuButtons"]
+[node name="MenuButtons" type="VBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 2
+
+[node name="FreecamButton" type="Button" parent="VBoxContainer/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "FreeCam ( )"
+flat = true
+alignment = 2
 
-[node name="SettingsButton" type="Button" parent="MenuButtons"]
+[node name="LogButton" type="Button" parent="VBoxContainer/MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Log ()"
+flat = true
+alignment = 2
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Settings ( )"
+flat = true
+alignment = 2
 
-[node name="StatusButton" type="Button" parent="MenuButtons"]
+[node name="StatusButton" type="Button" parent="VBoxContainer/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Status (S)"
+flat = true
+alignment = 2
 
-[node name="InventoryButton" type="Button" parent="MenuButtons"]
+[node name="InventoryButton" type="Button" parent="VBoxContainer/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Inventory (I)"
+flat = true
+alignment = 2
 
-[node name="MapButton" type="Button" parent="MenuButtons"]
+[node name="MapButton" type="Button" parent="VBoxContainer/MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Map (M)"
+flat = true
+alignment = 2
 
-[node name="SaveButton" type="Button" parent="MenuButtons"]
+[node name="SaveButton" type="Button" parent="VBoxContainer/MenuButtons"]
 layout_mode = 2
 text = "Save (V)"
+flat = true
+alignment = 2
 
-[node name="LoadButton" type="Button" parent="MenuButtons"]
+[node name="LoadButton" type="Button" parent="VBoxContainer/MenuButtons"]
 layout_mode = 2
 text = "Load (L)"
+flat = true
+alignment = 2
 
-[node name="QuitButton" type="Button" parent="MenuButtons"]
+[node name="QuitButton" type="Button" parent="VBoxContainer/MenuButtons"]
 layout_mode = 2
 text = "Quit (Q)"
+flat = true
+alignment = 2
+
+[node name="MenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Menu"
+icon = SubResource("GradientTexture2D_61714")
+flat = true
+alignment = 2
+icon_alignment = 2
 
 [node name="Settings" parent="." instance=ExtResource("2_3jbmj")]
 visible = false
 layout_mode = 1
+offset_top = 30.0
+offset_bottom = 30.0
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="MenuButtons/FreecamButton" to="." method="_on_freecam_button_pressed"]
-[connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
-[connection signal="pressed" from="MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]
-[connection signal="pressed" from="MenuButtons/MapButton" to="." method="_on_map_button_pressed"]
-[connection signal="pressed" from="MenuButtons/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="MenuButtons/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/FreecamButton" to="." method="_on_freecam_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/LogButton" to="." method="_on_log_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/MapButton" to="." method="_on_map_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

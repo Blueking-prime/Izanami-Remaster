@@ -10,8 +10,13 @@ GOALS
 
 BUG FIXES
 - [ ] Fix enemies sometimes mimicking player movement and thus stopping random walk (This may have something to do with avoidance, or pssibly the narrowness of the navigation triangles)
-- [ ] Re-enable enemy collision boxes
-- [ ] Prevent input during guard and run (non-targetting and enemy action) animation in battle
+- [ ] Prevent input during guard and run (non-targeting and enemy action) animation in battle
+- [ ] Fix map key not opening map but able to close map and also map button completely working
+- [ ] Fix shop item layout
+- [ ] Fix inability to click on text choices
+- [ ] Optimize warp function when loading demonitarium
+- [x] Fix/update gold transfer in shops
+- [x] Re-enable enemy collision boxes
 - [x] Fix keyboard focus navigation along tabs in inventory
 - [x] Fix dungeon camera offset (Test by inspecting party node)
 - [x] Prevent duplicate key assignment
@@ -26,19 +31,21 @@ BUG FIXES
 
 TASKS (WORKABLE)
 - [ ] Implement Overworld
-- [x] Mark regex implmentation as general tag format, specify 'br' for break, etc
-- [ ] Add text log to Ui overlay
+- [ ] Implement quests, quest label in UI and add quest markers to map
 - [ ] Move more parameters to checks script
-- [ ] Convert Loaction into parent scene
-- [ ] Implement quest label in UI and add quest markers to map
-- [x] Replace all player party calls with references to Global player party
-- [x] Replace all confirmation prompts with pop-up box
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
+- [ ] Implement universal escape button
+- [ ] Change battle player entries to Global calls
+- [x] Convert Location into parent scene
+- [x] Add text log to Ui overlay
+- [x] Mark regex implementation as general tag format, specify 'br' for break, etc
+- [x] Replace all player party calls with references to Global player party
+- [x] Replace all confirmation prompts with pop-up box
 - [x] Add text log and other dialogue text options to textboxes
 	- [x] Update textboxes to rich text
 	- [x] Implement unskippable choices
-	- [x] implement fastforwarding
+	- [x] implement fast-forwarding
 	- [x] implement scroll breaks {br}
 	- [x] implement click masking for buttons (or make it only work over the box itself and move the cursor to the box on dialogue start)
 	- [x] Mask text formatters in log
@@ -114,8 +121,8 @@ TASKS (AWAITING IMPLEMENTATION OF OTHER COMPONENTS)
 - [ ] Add refreshing shop stock
 - [ ] Add more terrain options to map generation
 - [ ] Implement cutscenes as functions in special script
-- [ ] Remove overlay on cutscene
-- [ ] Add global scrollspeed setting
+- [x] Remove overlay on cutscene
+- [x] Add global scrollspeed setting
 
 OPTIONAL IDEAS
 - [ ] Onmyouji

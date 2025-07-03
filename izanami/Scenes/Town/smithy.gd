@@ -1,19 +1,19 @@
 extends Node2D
 
-@onready var players: Party = get_parent().players
+class_name TownSmithy
 
 @export var stock: ResourceGroup
 
 @onready var overlay: UIOverlay = get_parent().overlay
 
 func main():
-	players.freeze()
+	Global.players.freeze()
 	Global.sell.connect(_sell_parser)
 
 	await Global.show_text_box('', "A wave of heat rolls over you as soon as you step in.")
 	default_text()
 
-	Global.show_shop_menu(players, stock)
+	Global.show_shop_menu(Global.players, stock)
 
 func default_text():
 	Global.show_text_box("Old Smithy", "What would yer like to purchase, adventurer!", true)
@@ -37,7 +37,7 @@ func exit_shop():
 		Global.sell.disconnect(_sell_parser)
 		Global.shop_menu.queue_free()
 		overlay.show()
-		players.unfreeze()
+		Global.players.unfreeze()
 	else:
 		default_text()
 

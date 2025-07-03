@@ -67,8 +67,8 @@ func transfer_item(id: int):
 	remove_item(item)
 
 func _check_cost(item: Variant) -> bool:
-	if item.price <= player_list.gold:
-		player_list.gold -= item.price
+	if item.price <= Global.players.gold:
+		Global.players.gold -= item.price
 		Global.sell.emit('item bought')
 		return true
 	else:

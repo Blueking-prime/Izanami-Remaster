@@ -1,618 +1,78 @@
-[gd_scene load_steps=25 format=3 uid="uid://bb3vup8ncigjf"]
+[gd_scene load_steps=14 format=3 uid="uid://5iv4fsku5g5x"]
 
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_interior.gd" id="1_4tqhu"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_counter.gd" id="2_8qk1p"]
-[ext_resource type="Texture2D" uid="uid://cmmt3ba4u5yo7" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="2_62u5t"]
-[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_t8gmq"]
-[ext_resource type="Texture2D" uid="uid://jau6vpcqyha4" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_.png" id="3_5lrci"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_upgrades.gd" id="3_hcmgh"]
-[ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="4_2oy5b"]
-[ext_resource type="Texture2D" uid="uid://bf8ixj6j10mqx" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_ [resources].png" id="4_dyaut"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_fights.gd" id="4_nsu74"]
-[ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/Overlays/base_overlay.tscn" id="5_jxloa"]
-[ext_resource type="Script" path="res://Scenes/Dungeon/floor.gd" id="5_vbta8"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_mag.gd" id="5_w238o"]
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/demonitarium_fights.gd" id="5_yqv2h"]
-[ext_resource type="PackedScene" uid="uid://b06gp60lhyyxx" path="res://Models/Menus/Overlays/inventory_menu.tscn" id="6_j8oaf"]
-[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="6_xawud"]
-[ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/Menus/Overlays/status_overlay.tscn" id="7_uql5o"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/warppoint.gd" id="8_njc30"]
-[ext_resource type="PackedScene" uid="uid://dlt58862gge0u" path="res://Models/Menus/ShopMenus/skill_upgrade_menu.tscn" id="13_4wr0j"]
+[ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Scenes/location.tscn" id="1_ynqmm"]
+[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_interior.gd" id="2_tp2q5"]
+[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_counter.gd" id="3_yclhr"]
+[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_upgrades.gd" id="4_mvtyy"]
+[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_fights.gd" id="5_eahef"]
+[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="6_xkcin"]
+[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_mag.gd" id="7_88gcs"]
+[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/warppoint.gd" id="8_s3mno"]
+[ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="9_swh6u"]
+[ext_resource type="Script" path="res://Models/Menus/ShopMenus/demonitarium_fights.gd" id="10_l35od"]
+[ext_resource type="PackedScene" uid="uid://dlt58862gge0u" path="res://Models/Menus/ShopMenus/skill_upgrade_menu.tscn" id="11_k077g"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oungf"]
-texture = ExtResource("2_62u5t")
-3:2/0 = 0
-3:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-6.024, -2.008, -4.05537, -3.07106, 4.016, -2.95294, 6.024, -1.96863, 6.024, 2.95294, 3.93725, 3.93725, -4.016, 3.97663, -6, 2.9375)
-3:2/0/custom_data_0 = &"Exit"
-2:2/0 = 0
-2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-6.024, -2.008, -4.05537, -3.07106, 4.016, -2.95294, 6.024, -1.96863, 6.024, 2.95294, 3.93725, 3.93725, -4.016, 3.97663, -6, 2.9375)
-2:2/0/custom_data_0 = &"Entrance"
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3obcd"]
-texture = ExtResource("3_5lrci")
-1:1/0 = 0
-1:1/0/y_sort_origin = 4
-1:1/0/terrain_set = 1
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.71231, 8, 8, 8, 8, 3.8007, 3.71231, 3.8007)
-1:1/0/terrains_peering_bit/bottom_right_corner = 0
-1:1/0/custom_data_0 = &"Wall"
-2:1/0 = 0
-2:1/0/y_sort_origin = 4
-2:1/0/terrain_set = 1
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 3.71231, -8, 8, 8, 8, 8, 3.66812)
-2:1/0/terrains_peering_bit/bottom_right_corner = 0
-2:1/0/terrains_peering_bit/bottom_side = 0
-2:1/0/terrains_peering_bit/bottom_left_corner = 0
-2:1/0/custom_data_0 = &"Wall"
-3:1/0 = 0
-3:1/0/y_sort_origin = 4
-3:1/0/terrain_set = 1
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.71231, 8, -8, 8, -8, 3.8007, -3.71231, 3.8007)
-3:1/0/terrains_peering_bit/bottom_left_corner = 0
-3:1/0/custom_data_0 = &"Wall"
-4:1/0 = 0
-4:1/0/y_sort_origin = 4
-4:1/0/terrain_set = 1
-4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.71231, 8, 8, 8, 8, 3.8007, 3.71231, 3.8007)
-4:1/0/terrains_peering_bit/bottom_right_corner = 0
-4:1/0/custom_data_0 = &"Wall"
-5:1/0 = 0
-5:1/0/y_sort_origin = 4
-5:1/0/terrain_set = 1
-5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.71231, 8, -8, 8, -8, 3.8007, -3.71231, 3.8007)
-5:1/0/terrains_peering_bit/bottom_left_corner = 0
-5:1/0/custom_data_0 = &"Wall"
-6:1/0 = 0
-6:1/0/terrain_set = 1
-6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -3.8007, -3.35876, -3.8007, -3.35876, 8, -8, 8)
-6:1/0/terrains_peering_bit/bottom_left_corner = 0
-6:1/0/terrains_peering_bit/left_side = 0
-6:1/0/terrains_peering_bit/top_left_corner = 0
-6:1/0/terrains_peering_bit/top_side = 0
-6:1/0/terrains_peering_bit/top_right_corner = 0
-6:1/0/custom_data_0 = &"Wall"
-7:1/0 = 0
-7:1/0/terrain_set = 1
-7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, -3.8007, 3.35876, -3.8007, 3.35876, 8, 8, 8)
-7:1/0/terrains_peering_bit/right_side = 0
-7:1/0/terrains_peering_bit/bottom_right_corner = 0
-7:1/0/terrains_peering_bit/top_left_corner = 0
-7:1/0/terrains_peering_bit/top_side = 0
-7:1/0/terrains_peering_bit/top_right_corner = 0
-7:1/0/custom_data_0 = &"Wall"
-8:1/0 = 0
-8:1/0/terrain_set = 0
-8:1/0/terrain = 0
-8:1/0/terrains_peering_bit/right_side = 0
-8:1/0/terrains_peering_bit/bottom_right_corner = 0
-8:1/0/terrains_peering_bit/bottom_side = 0
-8:1/0/terrains_peering_bit/bottom_left_corner = 0
-8:1/0/terrains_peering_bit/left_side = 0
-8:1/0/terrains_peering_bit/top_left_corner = 0
-8:1/0/terrains_peering_bit/top_side = 0
-8:1/0/terrains_peering_bit/top_right_corner = 0
-9:1/0 = 0
-9:1/0/terrain_set = 0
-9:1/0/terrain = 0
-9:1/0/terrains_peering_bit/right_side = 0
-9:1/0/terrains_peering_bit/bottom_right_corner = 0
-9:1/0/terrains_peering_bit/bottom_side = 0
-9:1/0/terrains_peering_bit/bottom_left_corner = 0
-9:1/0/terrains_peering_bit/left_side = 0
-9:1/0/terrains_peering_bit/top_left_corner = 0
-9:1/0/terrains_peering_bit/top_side = 0
-9:1/0/terrains_peering_bit/top_right_corner = 0
-10:1/0 = 0
-10:1/0/terrain_set = 0
-10:1/0/terrain = 0
-10:1/0/terrains_peering_bit/right_side = 0
-10:1/0/terrains_peering_bit/bottom_right_corner = 0
-10:1/0/terrains_peering_bit/bottom_side = 0
-10:1/0/terrains_peering_bit/bottom_left_corner = 0
-10:1/0/terrains_peering_bit/left_side = 0
-10:1/0/terrains_peering_bit/top_left_corner = 0
-10:1/0/terrains_peering_bit/top_side = 0
-10:1/0/terrains_peering_bit/top_right_corner = 0
-11:1/0 = 0
-11:1/0/terrain_set = 0
-11:1/0/terrain = 0
-11:1/0/terrains_peering_bit/right_side = 0
-11:1/0/terrains_peering_bit/bottom_right_corner = 0
-11:1/0/terrains_peering_bit/bottom_side = 0
-11:1/0/terrains_peering_bit/bottom_left_corner = 0
-11:1/0/terrains_peering_bit/left_side = 0
-11:1/0/terrains_peering_bit/top_left_corner = 0
-11:1/0/terrains_peering_bit/top_side = 0
-11:1/0/terrains_peering_bit/top_right_corner = 0
-16:1/0 = 0
-17:1/0 = 0
-18:1/0 = 0
-19:1/0 = 0
-20:1/0 = 0
-1:2/0 = 0
-1:2/0/terrain_set = 1
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.71231, -8, 8, -8, 8, 8, 3.66812, 8)
-1:2/0/terrains_peering_bit/right_side = 0
-1:2/0/terrains_peering_bit/bottom_right_corner = 0
-1:2/0/terrains_peering_bit/top_right_corner = 0
-1:2/0/custom_data_0 = &"Wall"
-2:2/0 = 0
-2:2/0/terrain_set = 1
-2:2/0/terrain = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:2/0/terrains_peering_bit/right_side = 0
-2:2/0/terrains_peering_bit/bottom_right_corner = 0
-2:2/0/terrains_peering_bit/bottom_side = 0
-2:2/0/terrains_peering_bit/bottom_left_corner = 0
-2:2/0/terrains_peering_bit/left_side = 0
-2:2/0/terrains_peering_bit/top_left_corner = 0
-2:2/0/terrains_peering_bit/top_side = 0
-2:2/0/terrains_peering_bit/top_right_corner = 0
-3:2/0 = 0
-3:2/0/terrain_set = 1
-3:2/0/terrain = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:2/0/terrains_peering_bit/right_side = 0
-3:2/0/terrains_peering_bit/bottom_right_corner = 0
-3:2/0/terrains_peering_bit/bottom_side = 0
-3:2/0/terrains_peering_bit/bottom_left_corner = 0
-3:2/0/terrains_peering_bit/left_side = 0
-3:2/0/terrains_peering_bit/top_left_corner = 0
-3:2/0/terrains_peering_bit/top_side = 0
-3:2/0/terrains_peering_bit/top_right_corner = 0
-4:2/0 = 0
-4:2/0/terrain_set = 1
-4:2/0/terrain = 0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:2/0/terrains_peering_bit/right_side = 0
-4:2/0/terrains_peering_bit/bottom_right_corner = 0
-4:2/0/terrains_peering_bit/bottom_side = 0
-4:2/0/terrains_peering_bit/bottom_left_corner = 0
-4:2/0/terrains_peering_bit/left_side = 0
-4:2/0/terrains_peering_bit/top_left_corner = 0
-4:2/0/terrains_peering_bit/top_side = 0
-4:2/0/terrains_peering_bit/top_right_corner = 0
-5:2/0 = 0
-5:2/0/terrain_set = 1
-5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.71231, -8, -8, -8, -8, 8, -3.66812, 8)
-5:2/0/terrains_peering_bit/bottom_left_corner = 0
-5:2/0/terrains_peering_bit/left_side = 0
-5:2/0/terrains_peering_bit/top_left_corner = 0
-5:2/0/custom_data_0 = &"Wall"
-6:2/0 = 0
-6:2/0/y_sort_origin = 4
-6:2/0/terrain_set = 1
-6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, 3.8007, -3.35876, 3.8007, -3.35876, -8, -8, -8)
-6:2/0/terrains_peering_bit/bottom_right_corner = 0
-6:2/0/terrains_peering_bit/bottom_side = 0
-6:2/0/terrains_peering_bit/bottom_left_corner = 0
-6:2/0/terrains_peering_bit/left_side = 0
-6:2/0/terrains_peering_bit/top_left_corner = 0
-6:2/0/custom_data_0 = &"Wall"
-7:2/0 = 0
-7:2/0/y_sort_origin = 4
-7:2/0/terrain_set = 1
-7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, 3.8007, 3.35876, 3.8007, 3.35876, -8, 8, -8)
-7:2/0/terrains_peering_bit/right_side = 0
-7:2/0/terrains_peering_bit/bottom_right_corner = 0
-7:2/0/terrains_peering_bit/bottom_side = 0
-7:2/0/terrains_peering_bit/bottom_left_corner = 0
-7:2/0/terrains_peering_bit/top_right_corner = 0
-7:2/0/custom_data_0 = &"Wall"
-8:2/0 = 0
-8:2/0/terrain_set = 0
-8:2/0/terrain = 0
-8:2/0/terrains_peering_bit/right_side = 0
-8:2/0/terrains_peering_bit/bottom_right_corner = 0
-8:2/0/terrains_peering_bit/bottom_side = 0
-8:2/0/terrains_peering_bit/bottom_left_corner = 0
-8:2/0/terrains_peering_bit/left_side = 0
-8:2/0/terrains_peering_bit/top_left_corner = 0
-8:2/0/terrains_peering_bit/top_side = 0
-8:2/0/terrains_peering_bit/top_right_corner = 0
-9:2/0 = 0
-9:2/0/terrain_set = 0
-9:2/0/terrain = 0
-9:2/0/terrains_peering_bit/right_side = 0
-9:2/0/terrains_peering_bit/bottom_right_corner = 0
-9:2/0/terrains_peering_bit/bottom_side = 0
-9:2/0/terrains_peering_bit/bottom_left_corner = 0
-9:2/0/terrains_peering_bit/left_side = 0
-9:2/0/terrains_peering_bit/top_left_corner = 0
-9:2/0/terrains_peering_bit/top_side = 0
-9:2/0/terrains_peering_bit/top_right_corner = 0
-10:2/0 = 0
-10:2/0/terrain_set = 0
-10:2/0/terrain = 0
-10:2/0/terrains_peering_bit/right_side = 0
-10:2/0/terrains_peering_bit/bottom_right_corner = 0
-10:2/0/terrains_peering_bit/bottom_side = 0
-10:2/0/terrains_peering_bit/bottom_left_corner = 0
-10:2/0/terrains_peering_bit/left_side = 0
-10:2/0/terrains_peering_bit/top_left_corner = 0
-10:2/0/terrains_peering_bit/top_side = 0
-10:2/0/terrains_peering_bit/top_right_corner = 0
-11:2/0 = 0
-11:2/0/terrain_set = 0
-11:2/0/terrain = 0
-11:2/0/terrains_peering_bit/right_side = 0
-11:2/0/terrains_peering_bit/bottom_right_corner = 0
-11:2/0/terrains_peering_bit/bottom_side = 0
-11:2/0/terrains_peering_bit/bottom_left_corner = 0
-11:2/0/terrains_peering_bit/left_side = 0
-11:2/0/terrains_peering_bit/top_left_corner = 0
-11:2/0/terrains_peering_bit/top_side = 0
-11:2/0/terrains_peering_bit/top_right_corner = 0
-16:2/0 = 0
-17:2/0 = 0
-18:2/0 = 0
-19:2/0 = 0
-20:2/0 = 0
-1:3/0 = 0
-1:3/0/terrain_set = 1
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.71231, -8, 8, -8, 8, 8, 3.66812, 8)
-1:3/0/terrains_peering_bit/right_side = 0
-1:3/0/terrains_peering_bit/bottom_right_corner = 0
-1:3/0/terrains_peering_bit/top_right_corner = 0
-1:3/0/custom_data_0 = &"Wall"
-2:3/0 = 0
-2:3/0/terrain_set = 1
-2:3/0/terrain = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:3/0/terrains_peering_bit/right_side = 0
-2:3/0/terrains_peering_bit/bottom_right_corner = 0
-2:3/0/terrains_peering_bit/bottom_side = 0
-2:3/0/terrains_peering_bit/bottom_left_corner = 0
-2:3/0/terrains_peering_bit/left_side = 0
-2:3/0/terrains_peering_bit/top_left_corner = 0
-2:3/0/terrains_peering_bit/top_side = 0
-2:3/0/terrains_peering_bit/top_right_corner = 0
-3:3/0 = 0
-3:3/0/terrain_set = 1
-3:3/0/terrain = 0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:3/0/terrains_peering_bit/right_side = 0
-3:3/0/terrains_peering_bit/bottom_right_corner = 0
-3:3/0/terrains_peering_bit/bottom_side = 0
-3:3/0/terrains_peering_bit/bottom_left_corner = 0
-3:3/0/terrains_peering_bit/left_side = 0
-3:3/0/terrains_peering_bit/top_left_corner = 0
-3:3/0/terrains_peering_bit/top_side = 0
-3:3/0/terrains_peering_bit/top_right_corner = 0
-4:3/0 = 0
-4:3/0/terrain_set = 1
-4:3/0/terrain = 0
-4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:3/0/terrains_peering_bit/right_side = 0
-4:3/0/terrains_peering_bit/bottom_right_corner = 0
-4:3/0/terrains_peering_bit/bottom_side = 0
-4:3/0/terrains_peering_bit/bottom_left_corner = 0
-4:3/0/terrains_peering_bit/left_side = 0
-4:3/0/terrains_peering_bit/top_left_corner = 0
-4:3/0/terrains_peering_bit/top_side = 0
-4:3/0/terrains_peering_bit/top_right_corner = 0
-5:3/0 = 0
-5:3/0/terrain_set = 1
-5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.71231, -8, -8, -8, -8, 8, -3.66812, 8)
-5:3/0/terrains_peering_bit/bottom_left_corner = 0
-5:3/0/terrains_peering_bit/left_side = 0
-5:3/0/terrains_peering_bit/top_left_corner = 0
-5:3/0/custom_data_0 = &"Wall"
-6:3/0 = 0
-7:3/0 = 0
-8:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-10:3/0/terrain_set = 0
-10:3/0/terrain = 0
-10:3/0/terrains_peering_bit/right_side = 0
-10:3/0/terrains_peering_bit/bottom_right_corner = 0
-10:3/0/terrains_peering_bit/bottom_side = 0
-10:3/0/terrains_peering_bit/bottom_left_corner = 0
-10:3/0/terrains_peering_bit/left_side = 0
-10:3/0/terrains_peering_bit/top_left_corner = 0
-10:3/0/terrains_peering_bit/top_side = 0
-10:3/0/terrains_peering_bit/top_right_corner = 0
-11:3/0 = 0
-11:3/0/terrain_set = 0
-11:3/0/terrain = 0
-11:3/0/terrains_peering_bit/right_side = 0
-11:3/0/terrains_peering_bit/bottom_right_corner = 0
-11:3/0/terrains_peering_bit/bottom_side = 0
-11:3/0/terrains_peering_bit/bottom_left_corner = 0
-11:3/0/terrains_peering_bit/left_side = 0
-11:3/0/terrains_peering_bit/top_left_corner = 0
-11:3/0/terrains_peering_bit/top_side = 0
-11:3/0/terrains_peering_bit/top_right_corner = 0
-16:3/0 = 0
-17:3/0 = 0
-18:3/0 = 0
-19:3/0 = 0
-20:3/0 = 0
-1:4/0 = 0
-1:4/0/terrain_set = 1
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.02167, -8, 8, -8, 8, -3.0494, 3.93328, -3.0494)
-1:4/0/terrains_peering_bit/top_right_corner = 0
-1:4/0/custom_data_0 = &"Wall"
-2:4/0 = 0
-2:4/0/terrain_set = 1
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -3.71231, -8, -8, 8, -8, 8, -3.66812)
-2:4/0/terrains_peering_bit/top_left_corner = 0
-2:4/0/terrains_peering_bit/top_side = 0
-2:4/0/terrains_peering_bit/top_right_corner = 0
-2:4/0/custom_data_0 = &"Wall"
-3:4/0 = 0
-3:4/0/terrain_set = 1
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.02167, -8, -8, -8, -8, -3.0494, -3.93328, -3.0494)
-3:4/0/terrains_peering_bit/top_left_corner = 0
-3:4/0/custom_data_0 = &"Wall"
-4:4/0 = 0
-4:4/0/terrain_set = 1
-4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.02167, -8, 8, -8, 8, -3.0494, 3.93328, -3.0494)
-4:4/0/terrains_peering_bit/top_right_corner = 0
-4:4/0/custom_data_0 = &"Wall"
-5:4/0 = 0
-5:4/0/terrain_set = 1
-5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.02167, -8, -8, -8, -8, -3.0494, -3.93328, -3.0494)
-5:4/0/terrains_peering_bit/top_left_corner = 0
-5:4/0/custom_data_0 = &"Wall"
-6:4/0 = 0
-7:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-10:4/0/terrain_set = 0
-10:4/0/terrain = 0
-10:4/0/terrains_peering_bit/right_side = 0
-10:4/0/terrains_peering_bit/bottom_right_corner = 0
-10:4/0/terrains_peering_bit/bottom_side = 0
-10:4/0/terrains_peering_bit/bottom_left_corner = 0
-10:4/0/terrains_peering_bit/left_side = 0
-10:4/0/terrains_peering_bit/top_left_corner = 0
-10:4/0/terrains_peering_bit/top_side = 0
-10:4/0/terrains_peering_bit/top_right_corner = 0
-11:4/0 = 0
-11:4/0/terrain_set = 0
-11:4/0/terrain = 0
-11:4/0/terrains_peering_bit/right_side = 0
-11:4/0/terrains_peering_bit/bottom_right_corner = 0
-11:4/0/terrains_peering_bit/bottom_side = 0
-11:4/0/terrains_peering_bit/bottom_left_corner = 0
-11:4/0/terrains_peering_bit/left_side = 0
-11:4/0/terrains_peering_bit/top_left_corner = 0
-11:4/0/terrains_peering_bit/top_side = 0
-11:4/0/terrains_peering_bit/top_right_corner = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-11:5/0 = 0
-12:5/0 = 0
-13:5/0 = 0
-14:5/0 = 0
-15:5/0 = 0
-16:5/0 = 0
-17:5/0 = 0
-18:5/0 = 0
-19:5/0 = 0
-20:5/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-8:6/0 = 0
-9:6/0 = 0
-10:6/0 = 0
-11:6/0 = 0
-12:6/0 = 0
-13:6/0 = 0
-14:6/0 = 0
-15:6/0 = 0
-16:6/0 = 0
-17:6/0 = 0
-18:6/0 = 0
-19:6/0 = 0
-20:6/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-8:7/0 = 0
-9:7/0 = 0
-11:7/0 = 0
-12:7/0 = 0
-13:7/0 = 0
-14:7/0 = 0
-16:7/0 = 0
-17:7/0 = 0
-18:7/0 = 0
-19:7/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-3:8/0 = 0
-4:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-7:8/0 = 0
-9:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-12:8/0 = 0
-13:8/0 = 0
-14:8/0 = 0
-15:8/0 = 0
-16:8/0 = 0
-17:8/0 = 0
-18:8/0 = 0
-19:8/0 = 0
-20:8/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-3:9/0 = 0
-4:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-7:9/0 = 0
-8:9/0 = 0
-9:9/0 = 0
-10:9/0 = 0
-11:9/0 = 0
-12:9/0 = 0
-13:9/0 = 0
-14:9/0 = 0
-15:9/0 = 0
-16:9/0 = 0
-17:9/0 = 0
-18:9/0 = 0
-19:9/0 = 0
-20:9/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-3:10/0 = 0
-4:10/0 = 0
-6:10/0 = 0
-7:10/0 = 0
-8:10/0 = 0
-9:10/0 = 0
-11:10/0 = 0
-12:10/0 = 0
-13:10/0 = 0
-14:10/0 = 0
-16:10/0 = 0
-17:10/0 = 0
-18:10/0 = 0
-19:10/0 = 0
-8:8/0 = 0
-3:5/0 = 0
-2:5/0 = 0
-1:5/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5bxh2"]
-texture = ExtResource("4_dyaut")
-1:5/size_in_atlas = Vector2i(1, 2)
-1:5/0 = 0
-1:5/0/texture_origin = Vector2i(0, 8)
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.98543, -9.00354, 5.01023, -9.00354, 4.99394, 2.96101, -4.92157, 2.87419)
-1:5/0/custom_data_0 = &"Chest"
-2:5/size_in_atlas = Vector2i(1, 2)
-2:5/0 = 0
-2:5/0/texture_origin = Vector2i(0, 8)
-2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.98543, -9.00354, 5.01023, -9.00354, 4.99394, 2.96101, -4.92157, 2.87419)
-
-[sub_resource type="TileSet" id="TileSet_gyyr0"]
-physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 8
-physics_layer_1/collision_layer = 1
-physics_layer_1/collision_mask = 0
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "Floor"
-terrain_set_0/terrain_0/color = Color(0.5, 0.4375, 0.25, 1)
-terrain_set_1/mode = 0
-terrain_set_1/terrain_0/name = "Walls"
-terrain_set_1/terrain_0/color = Color(0.281257, 0.146691, 1, 1)
-custom_data_layer_0/name = "Type"
-custom_data_layer_0/type = 21
-sources/1 = SubResource("TileSetAtlasSource_3obcd")
-sources/2 = SubResource("TileSetAtlasSource_5bxh2")
-sources/0 = SubResource("TileSetAtlasSource_oungf")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h5fbu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbrf6"]
 size = Vector2(300, 70)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mhaa2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xnnc6"]
 radius = 88.8369
 
-[node name="Demonitarium" type="Node2D" node_paths=PackedStringArray("counter", "warp_points", "tilemap", "background", "test_players", "players", "overlay", "canvas_layer")]
-script = ExtResource("1_4tqhu")
+[node name="Demonitarium" node_paths=PackedStringArray("counter", "warp_points", "tilemap") instance=ExtResource("1_ynqmm")]
+script = ExtResource("2_tp2q5")
 counter = NodePath("Counter")
 warp_points = NodePath("WarpPoints")
-entrance = Vector2(1500, 700)
-tilemap = NodePath("TileMapLayer")
-background = NodePath("Background")
-test_players = NodePath("Players")
-players = NodePath("Players")
-overlay = NodePath("CanvasLayer/BaseOverlay")
-canvas_layer = NodePath("CanvasLayer")
+tilemap = NodePath("ObjectsSort/TileMapLayer")
 
-[node name="Background" type="TileMapLayer" parent="."]
-z_index = -5
-position = Vector2(-480, -270)
-tile_set = SubResource("TileSet_gyyr0")
-script = ExtResource("5_vbta8")
-width = 19
-height = 10
-upscale_factor = 6.0
+[node name="TileMapLayer" type="TileMapLayer" parent="ObjectsSort" index="1"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-
-[node name="Players" parent="." instance=ExtResource("2_t8gmq")]
-position = Vector2(499, 236)
-
-[node name="Counter" type="StaticBody2D" parent="." node_paths=PackedStringArray("fights", "upgrades", "mag", "crowley", "back_button")]
+[node name="Counter" type="StaticBody2D" parent="." index="5" node_paths=PackedStringArray("fights", "upgrades", "mag", "crowley", "back_button")]
 position = Vector2(960, 108)
-script = ExtResource("2_8qk1p")
+script = ExtResource("3_yclhr")
 fights = NodePath("Fights")
 upgrades = NodePath("SkillUpgrades")
 mag = NodePath("Mag")
 crowley = NodePath("Crowley")
 back_button = NodePath("../CanvasLayer/BackButton")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter"]
-shape = SubResource("RectangleShape2D_h5fbu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter" index="0"]
+shape = SubResource("RectangleShape2D_sbrf6")
 
-[node name="SkillUpgrades" type="Node" parent="Counter" node_paths=PackedStringArray("upgrade_menu", "upgrade_panel")]
-script = ExtResource("3_hcmgh")
+[node name="SkillUpgrades" type="Node" parent="Counter" index="1" node_paths=PackedStringArray("upgrade_menu", "upgrade_panel")]
+script = ExtResource("4_mvtyy")
 upgrade_menu = NodePath("../../CanvasLayer/SKillUpgradeMenu")
 upgrade_panel = NodePath("../../CanvasLayer/SKillUpgradeMenu/PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel")
 
-[node name="Fights" type="Node" parent="Counter" node_paths=PackedStringArray("demonitarium_display")]
-script = ExtResource("4_nsu74")
+[node name="Fights" type="Node" parent="Counter" index="2" node_paths=PackedStringArray("demonitarium_display")]
+script = ExtResource("5_eahef")
 demonitarium_display = NodePath("../../CanvasLayer/DemonitariumFights")
+stock = ExtResource("6_xkcin")
 
-[node name="Mag" type="Node" parent="Counter" node_paths=PackedStringArray("quantity_input", "confirm_button")]
-script = ExtResource("5_w238o")
+[node name="Mag" type="Node" parent="Counter" index="3" node_paths=PackedStringArray("quantity_input", "confirm_button")]
+script = ExtResource("7_88gcs")
 quantity_input = NodePath("../../CanvasLayer/QuantityInput")
 confirm_button = NodePath("../../CanvasLayer/QuantityInput/Button")
 
-[node name="Crowley" type="Node2D" parent="Counter"]
+[node name="Crowley" type="Node2D" parent="Counter" index="4"]
 
-[node name="WarpPoints" type="Node2D" parent="."]
+[node name="WarpPoints" type="Node2D" parent="." index="6"]
 position = Vector2(1628, 320)
 
-[node name="Enugu" type="Area2D" parent="WarpPoints"]
+[node name="Enugu" type="Area2D" parent="WarpPoints" index="0"]
 position = Vector2(120, 127)
-script = ExtResource("8_njc30")
+script = ExtResource("8_s3mno")
 destination = "Enugu"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WarpPoints/Enugu"]
-shape = SubResource("CircleShape2D_mhaa2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarpPoints/Enugu" index="0"]
+shape = SubResource("CircleShape2D_xnnc6")
 
-[node name="Label" type="Label" parent="WarpPoints/Enugu"]
+[node name="Label" type="Label" parent="WarpPoints/Enugu" index="1"]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Enugu"
 metadata/_edit_use_anchors_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu") instance=ExtResource("5_jxloa")]
-inventory_menu = NodePath("../InventoryMenu")
-status_menu = NodePath("../StatusOverlay")
-
-[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("6_j8oaf")]
-
-[node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("7_uql5o")]
-visible = false
-
-[node name="QuantityInput" type="SpinBox" parent="CanvasLayer"]
+[node name="QuantityInput" type="SpinBox" parent="CanvasLayer" index="3"]
 visible = false
 offset_left = 420.0
 offset_top = 212.0
@@ -621,14 +81,14 @@ offset_bottom = 291.0
 max_value = 99.0
 rounded = true
 
-[node name="Button" type="Button" parent="CanvasLayer/QuantityInput"]
+[node name="Button" type="Button" parent="CanvasLayer/QuantityInput" index="2"]
 layout_mode = 0
 offset_left = 131.0
 offset_right = 241.0
 offset_bottom = 79.0
 text = "Confirm"
 
-[node name="DemonitariumFights" parent="CanvasLayer" instance=ExtResource("4_2oy5b")]
+[node name="DemonitariumFights" parent="CanvasLayer" index="4" instance=ExtResource("9_swh6u")]
 visible = false
 anchor_left = 0.498
 anchor_bottom = 0.619
@@ -636,22 +96,12 @@ offset_left = 3.83997
 offset_top = 98.0
 offset_right = -89.0
 offset_bottom = 4.47998
-script = ExtResource("5_yqv2h")
-demon_group = ExtResource("6_xawud")
+script = ExtResource("10_l35od")
+demon_group = ExtResource("6_xkcin")
 demons = {}
 
-[node name="SKillUpgradeMenu" parent="CanvasLayer" instance=ExtResource("13_4wr0j")]
+[node name="SKillUpgradeMenu" parent="CanvasLayer" index="5" instance=ExtResource("11_k077g")]
 visible = false
-
-[node name="BackButton" type="Button" parent="CanvasLayer"]
-visible = false
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 87.0
-offset_bottom = 60.0
-text = "Back"
-
-[connection signal="fight_demon" from="CanvasLayer/DemonitariumFights" to="Counter/Fights" method="fight_enemy"]
 
 [editable path="CanvasLayer/DemonitariumFights"]
 [editable path="CanvasLayer/DemonitariumFights/Options"]

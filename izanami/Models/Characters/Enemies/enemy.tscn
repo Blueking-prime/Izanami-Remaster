@@ -30,9 +30,6 @@ texture = ExtResource("3_l2v3y")
 scale = Vector2(1, 1)
 texture = ExtResource("3_l2v3y")
 
-[node name="Hitbox" parent="." index="2"]
-disabled = true
-
 [node name="Detector" type="Area2D" parent="." index="5"]
 script = ExtResource("4_wf7g7")
 

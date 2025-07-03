@@ -24,12 +24,8 @@ func tick_icon(status: Status):
 func remove_icon(status: Status):
 	if not status in status_icons: return
 
-	var icon: StatusEffectIcon = status_icons[status]
-
-	get_parent().get_parent().status_icons.remove_child(icon)
+	get_parent().get_parent().status_icons.remove_child(status_icons[status])
 	status_icons.erase(status)
-	icon.queue_free()
-
 
 func clear_icons():
 	for i in get_parent().get_parent().status_icons.get_children():

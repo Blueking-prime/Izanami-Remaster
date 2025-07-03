@@ -21,8 +21,6 @@ extends Node
 
 var players: Party
 
-# FLAGS
-var input_type: int
 
 # WORKING OBJECTS
 var description_box_parent: Node
@@ -87,7 +85,7 @@ func rand_chance(chance: float) -> bool:
 	return ALGORITHMS.rand_chance(chance)
 
 func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []):
-	return path(start, goal, walls, width, height, visited)
+	return ALGORITHMS.path(start, goal, walls, width, height, visited)
 
 ## UI ELEMENTS
 func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int:
@@ -107,6 +105,9 @@ func show_description(object: Resource) -> void:
 
 func show_shop_menu(_players: Party, stock: ResourceGroup):
 	return UI.show_shop_menu(_players, stock)
+
+func add_text_log_to_scene():
+	return UI.add_text_log_to_scene()
 
 ## SCENE LOADERS FUNCTIONS
 func warp(source: Location, destination_scene: PackedScene):

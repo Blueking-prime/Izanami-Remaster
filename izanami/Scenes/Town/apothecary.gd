@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var players: Party = get_parent().players
+class_name TownApothecary
 
 @export var stock: ResourceGroup
 
@@ -8,14 +8,14 @@ extends Node2D
 
 
 func main():
-	players.freeze()
+	Global.players.freeze()
 
 	Global.sell.connect(_sell_parser)
 
 	await Global.show_text_box('', "An indescribable miasma rises out as you open the door, the smell of ginseng, rabbit foot and other unknowable reagents")
 	default_text()
 
-	Global.show_shop_menu(players, stock)
+	Global.show_shop_menu(Global.players, stock)
 
 func default_text():
 	Global.show_text_box("Lenarr, the Alchemist", "What would you like to purchase, adventurer!", true)
@@ -33,8 +33,9 @@ func exit_shop():
 	if confirm == 0:
 		Global.sell.disconnect(_sell_parser)
 		Global.shop_menu.queue_free()
+		overlay.load_ui_elements()
 		overlay.show()
-		players.unfreeze()
+		Global.players.unfreeze()
 	else:
 		default_text()
 

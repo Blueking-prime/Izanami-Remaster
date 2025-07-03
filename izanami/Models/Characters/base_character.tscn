@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Models/Statuses/Effects/toxin.gd" id="9_tto21"]
 [ext_resource type="Script" path="res://Models/Statuses/Effects/en_exhaust.gd" id="10_ku8jv"]
 [ext_resource type="Script" path="res://Models/Statuses/Effects/restore.gd" id="11_kun65"]
-[ext_resource type="Script" path="res://Models/Statuses/Effects/low.gd" id="13_1fnnn"]
+[ext_resource type="Script" path="res://Models/Statuses/Effects/low_health.gd" id="13_1fnnn"]
 [ext_resource type="Script" path="res://Models/Characters/status_icon_handler.gd" id="14_2mtdu"]
 [ext_resource type="PackedScene" uid="uid://cg6blmcotgqs7" path="res://Models/Menus/Overlays/status_effect_icon.tscn" id="15_66upe"]
 
@@ -77,7 +77,7 @@ icon_handler = NodePath("StatusIconHandler")
 test_effect = ExtResource("9_tto21")
 en_exhaust = ExtResource("10_ku8jv")
 restore = ExtResource("11_kun65")
-low = ExtResource("13_1fnnn")
+low_health = ExtResource("13_1fnnn")
 
 [node name="StatusIconHandler" type="Node" parent="Statuses"]
 script = ExtResource("14_2mtdu")

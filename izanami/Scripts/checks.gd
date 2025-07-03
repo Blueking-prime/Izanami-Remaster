@@ -6,7 +6,7 @@ extends Node
 @export var scroll_speed: float = 0.05
 @export var ffwd_speed: float = 0.3
 @export var wait_time: float = 1
-
+@export var input_type: int = 0
 
 var refresh_shops: bool = false
 

@@ -17,12 +17,12 @@ func _check_building(node: Variant):
 		warp_points: await warp_points.main()
 
 
-func size() -> Vector2:
+func size():
 	# return walls.get_used_rect().size
 	# Replace with above when tilemap is created
 	return Vector2(100, 100)
 
-func center() -> Vector2:
+func center():
 	#return walls.center()
 	# Replace with above when tilemap is created
 	return Vector2(500, 500)

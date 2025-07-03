@@ -13,7 +13,7 @@ func load_menu():
 func _on_exit_button_pressed() -> void:
 	exit.emit()
 	hide()
-	if Global.players: Global.players.unfreeze()
+	if is_instance_valid(Global.players): Global.players.unfreeze()
 
 func _on_visibility_changed() -> void:
 	menu_switcher.set_process_input(visible)

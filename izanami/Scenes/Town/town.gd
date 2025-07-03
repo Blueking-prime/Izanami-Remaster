@@ -5,11 +5,11 @@ class_name Town
 @export var back_button: Button
 @export var tile_map: TileMapLayer
 
-@export var church: Node
-@export var smithy: Node
-@export var apothecary: Node
-@export var dungeon: Node
-@export var demonitarium: Node
+@export var church: TownChurch
+@export var smithy: TownSmithy
+@export var apothecary: TownApothecary
+@export var dungeon: TownDungeon
+@export var demonitarium: TownDemonitarium
 @export var palace: Node
 @export var test: Node
 
@@ -25,7 +25,7 @@ func load_scene():
 
 
 func remove_players():
-	remove_child(players)
+	objectsort.remove_child(players)
 
 
 func _check_building(node: Variant):

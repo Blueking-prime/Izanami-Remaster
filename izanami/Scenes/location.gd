@@ -7,11 +7,12 @@ class_name Location
 @export var background: LocationBackground
 
 @export var test_players: Party
+@export var objectsort: Node
 @export var players: Party
 
 @export var overlay: UIOverlay
 @export var canvas_layer: CanvasLayer
-@export var camera: Camera2D
+@export var camera: PlayerCam
 @export var freecam: FreeCam
 
 func _ready() -> void:
@@ -21,7 +22,8 @@ func load_scene():
 	if not Global.players:
 		Global.players = players
 	else:
-		remove_child(test_players)
+		if is_instance_valid(test_players):
+			objectsort.remove_child(test_players)
 		test_players.queue_free()
 
 		players = Global.players
@@ -48,13 +50,17 @@ func remove_players():
 func add_players(_players: Party):
 	tilemap.add_sibling(_players)
 
-func size():
-	#return tile_map.get_used_rect().size
-	pass
+func size() -> Vector2:
+	if tilemap:
+		return tilemap.get_used_rect().size
+	else :
+		return Vector2(1000, 1000)
 
-func center():
-	#return tile_map.center()
-	pass
+func center() -> Vector2:
+	if tilemap:
+		return tilemap.get_used_rect().get_center()
+	else :
+		return Vector2(500, 500)
 
 func save():
 	pass

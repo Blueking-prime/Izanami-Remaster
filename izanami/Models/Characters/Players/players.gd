@@ -60,7 +60,6 @@ func switch_leader(_index: int):
 
 	for i in leader.detector.get_signal_list():
 		for j in leader.detector.get_signal_connection_list(i.name):
-			print(j)
 			leader.detector.disconnect(i.name, j.callable)
 			party[_index].detector.connect(i.name, j.callable, j.flags)
 
@@ -113,6 +112,7 @@ func battle_reset():
 	for i in party:
 		i.dungeon_display()
 		i.hide()
+		i.statuses.clear_status_all()
 
 	unfreeze()
 
@@ -120,9 +120,7 @@ func battle_reset():
 
 	var valid_sprites := []
 	for i in sprites:
-		print(i)
 		if is_instance_valid(i):
-			print(i)
 			valid_sprites.append(i)
 #
 	sprites = valid_sprites

@@ -141,6 +141,8 @@ func initiate_battle():
 	#player.in_battle = true
 	background.hide()
 	tilemap.hide()
+	# Slight delay to allow game finich cleaning up resources after previous battle
+	#await get_tree().create_timer(1).timeout
 	call_deferred("add_sibling", battle)
 
 func freeze_enemies():
@@ -154,6 +156,7 @@ func unfreeze_enemies():
 
 func _on_detector_hit_enemy(body: Enemy) -> void:
 	freeze_enemies()
+	Global.players.leader.hitbox.disabled = true
 	#! USE scene_file_path TO REMEMBERWHAT NODE TO LOAD
 	initiate_battle()
 	body.queue_free()
@@ -164,14 +167,9 @@ func reset_from_battle():
 	tilemap.show()
 	overlay.load_ui_elements()
 	overlay.show()
+	Global.players.leader.hitbox.disabled = false
 	unfreeze_enemies()
 
-
-func size() -> Vector2:
-	return tilemap.get_used_rect().size
-
-func center() -> Vector2:
-	return tilemap.center()
 
 ## SAVE AND LOAD LOGIC
 func save() -> DungeonSaveData:

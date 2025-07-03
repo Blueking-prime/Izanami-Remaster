@@ -11,7 +11,7 @@ class_name CharacterStatuses
 
 @export var en_exhaust: Script
 @export var restore: Script
-@export var low: Script
+@export var low_health: Script
 
 ## Gives character resistance to elemental trait
 @export var resistances: Dictionary = {
@@ -32,7 +32,7 @@ var passive_effects = [restore]
 var stunned: bool = false
 var exhausted: bool = false
 var counterstance: bool = false
-var low_health: bool  = false
+var hp_low: bool  = false
 
 func test():
 	#Global.print_to_log(test_effect)
@@ -52,11 +52,19 @@ func status():
 	trigger_status()
 	expire_status()
 
+func clear_status_all():
+	reset_status()
+	for i in status_effects:
+		remove_status(i)
+
+	icon_handler.clear_icons()
+	status_effects = []
+	status_effects_scripts = []
 
 func reset_status():
 	stunned = false
 	exhausted = false
-	low_health = false
+	hp_low = false
 	enchantment = ''
 	for i in resistances: resistances[i] = 0
 
@@ -69,7 +77,7 @@ func auto_ailment():
 		if get_parent().sp < 0:
 			add_status(en_exhaust.new())
 	if get_parent().hp < get_parent().max_hp * 0.3:
-		add_status(low.new())
+		add_status(low_health.new())
 
 func trigger_status():
 	for i in status_effects:

@@ -45,13 +45,6 @@ var test_cutscene: Array = [
 	[PLAYER_NAME, 'I couldn\'t agree more'],
 ]
 
-
-func _ready() -> void:
-	Global.players = players
-	Global.pause_timer.connect(_on_pause_timeout)
-
-	show_cutscene(test_cutscene)
-
 func parse_cutscene(cutscene: Array):
 	for i in cutscene:
 		Global.add_to_text_log(i)
@@ -94,6 +87,7 @@ func parse_cutscene(cutscene: Array):
 
 func show_cutscene(cutscene: Array):
 	var scroll_state: bool = Checks.scroll
+	Global.pause_timer.connect(_on_pause_timeout)
 	Global.players.freeze()
 
 	await parse_cutscene(cutscene)
