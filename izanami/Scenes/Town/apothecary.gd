@@ -15,7 +15,7 @@ func main():
 	await Global.show_text_box('', "An indescribable miasma rises out as you open the door, the smell of ginseng, rabbit foot and other unknowable reagents")
 	default_text()
 
-	Global.show_shop_menu(Global.players, stock)
+	Global.show_shop_menu(stock)
 
 func default_text():
 	Global.show_text_box("Lenarr, the Alchemist", "What would you like to purchase, adventurer!", true)
@@ -33,6 +33,7 @@ func exit_shop():
 	if confirm == 0:
 		Global.sell.disconnect(_sell_parser)
 		Global.shop_menu.queue_free()
+		Global.exit_button.hide()
 		overlay.load_ui_elements()
 		overlay.show()
 		Global.players.unfreeze()

@@ -16,6 +16,7 @@ func add_label(quantity_text: String):
 	quantity.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	quantity.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
+	quantity.custom_minimum_size.x = 50
 	quantity.size_flags_horizontal = Control.SIZE_SHRINK_END && Control.SIZE_EXPAND
 	quantity.size_flags_vertical = Control.SIZE_FILL
 

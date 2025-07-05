@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/DialogBoxes/text_box.tscn" id="4_08oii"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_b5lik"]
 
-[node name="ShopMenu" type="Control" node_paths=PackedStringArray("player_inventory", "shop_inventory", "exit_button")]
+[node name="ShopMenu" type="Control" node_paths=PackedStringArray("player_inventory", "shop_inventory")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,18 +19,17 @@ grow_vertical = 2
 script = ExtResource("1_2fhb6")
 player_inventory = NodePath("PlayerInventory")
 shop_inventory = NodePath("ShopInventory")
-exit_button = NodePath("ExitButton")
 
 [node name="Players" parent="." instance=ExtResource("1_84uve")]
 visible = false
 position = Vector2(667, 190)
 gold = 100
 
-[node name="PlayerInventory" parent="." node_paths=PackedStringArray("players", "desc_box_container") instance=ExtResource("2_3k3hf")]
+[node name="PlayerInventory" parent="." node_paths=PackedStringArray("test_players", "desc_box_container") instance=ExtResource("2_3k3hf")]
 layout_mode = 1
 offset_left = -7.0
 offset_right = -90.0
-players = NodePath("../Players")
+test_players = NodePath("../Players")
 desc_box_container = NodePath("../Description Box")
 
 [node name="ShopInventory" parent="." node_paths=PackedStringArray("desc_box_container") instance=ExtResource("2_3k3hf")]
@@ -65,11 +64,3 @@ offset_left = -854.0
 offset_top = -1289.2
 offset_right = 868.0
 offset_bottom = 0.239929
-
-[node name="ExitButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 25.0
-offset_right = 106.0
-offset_bottom = 68.0
-text = "Exit"

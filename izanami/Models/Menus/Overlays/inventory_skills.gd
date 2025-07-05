@@ -3,7 +3,6 @@ extends VBoxContainer
 @export var skill_menu_card_scene: PackedScene
 
 ## EXTERNAL PARAMETERS
-@export var players: Party
 @export var desc_box_container: BoxContainer
 @export var target_selector: Options
 
@@ -12,10 +11,9 @@ func _ready() -> void:
 	Global.description_box_parent = desc_box_container
 
 func load_stock():
-	players = Global.players
 	_clear_data_cards()
-	if players:
-		for i in players.party:
+	if Global.players:
+		for i in Global.players.party:
 			create_card(i)
 
 func create_card(player: Player):

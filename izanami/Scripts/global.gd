@@ -25,12 +25,14 @@ var players: Party
 # WORKING OBJECTS
 var description_box_parent: Node
 var description_box: DescriptionBox
+var root_canvas_layer: CanvasLayer
 var background_texture: TextureRect
 var shop_menu: Control
 var text_box: TextBox
 var action_log: Label
 var confirmation_box: ConfirmationDialog
 var text_log: TextLog
+var exit_button: Button
 
 # RESPONSES
 var textbox_response: int
@@ -62,6 +64,7 @@ signal next
 signal pause_timer
 signal confirmation_box_triggered
 signal sell(condition)
+signal exit_signal
 
 
 ## TEXT PROCESSING
@@ -103,15 +106,15 @@ func change_background(texture: Texture2D, global: bool = false):
 func show_description(object: Resource) -> void:
 	return UI.show_description(object)
 
-func show_shop_menu(_players: Party, stock: ResourceGroup):
-	return UI.show_shop_menu(_players, stock)
+func show_shop_menu(stock: ResourceGroup):
+	return UI.show_shop_menu(stock)
 
 func add_text_log_to_scene():
 	return UI.add_text_log_to_scene()
 
 ## SCENE LOADERS FUNCTIONS
 func warp(source: Location, destination_scene: PackedScene):
-	return SCENE_LOADER.warp(source, destination_scene)
+	return await SCENE_LOADER.warp(source, destination_scene)
 
 func load_main_menu():
 	return SCENE_LOADER.load_main_menu()
@@ -119,6 +122,8 @@ func load_main_menu():
 func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false):
 	return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
 
+func push_back_player(centre: Vector2, distance: float):
+	return SCENE_LOADER.push_back_player(centre, distance)
 ## FUNCTON TESTS
 func rand_spread_test():
 	var n
@@ -142,6 +147,7 @@ func _confirmation_box_canceled():
 
 func _on_shop_exit():
 	sell.emit('exit')
+	exit_signal.emit()
 
 
 func _on_textbox_skip_selected():
@@ -193,3 +199,4 @@ func _on_textbox_log_selected(toggled_on: bool):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		sell.emit('exit')
+		exit_signal.emit()

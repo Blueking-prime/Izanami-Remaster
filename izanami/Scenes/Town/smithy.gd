@@ -13,7 +13,7 @@ func main():
 	await Global.show_text_box('', "A wave of heat rolls over you as soon as you step in.")
 	default_text()
 
-	Global.show_shop_menu(Global.players, stock)
+	Global.show_shop_menu(stock)
 
 func default_text():
 	Global.show_text_box("Old Smithy", "What would yer like to purchase, adventurer!", true)
@@ -36,6 +36,7 @@ func exit_shop():
 	if confirm == 0:
 		Global.sell.disconnect(_sell_parser)
 		Global.shop_menu.queue_free()
+		Global.exit_button.hide()
 		overlay.show()
 		Global.players.unfreeze()
 	else:

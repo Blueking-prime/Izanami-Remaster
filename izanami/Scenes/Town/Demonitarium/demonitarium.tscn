@@ -26,14 +26,13 @@ tilemap = NodePath("ObjectsSort/TileMapLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ObjectsSort" index="1"]
 
-[node name="Counter" type="StaticBody2D" parent="." index="5" node_paths=PackedStringArray("fights", "upgrades", "mag", "crowley", "back_button")]
+[node name="Counter" type="StaticBody2D" parent="." index="5" node_paths=PackedStringArray("fights", "upgrades", "mag", "crowley")]
 position = Vector2(960, 108)
 script = ExtResource("3_yclhr")
 fights = NodePath("Fights")
 upgrades = NodePath("SkillUpgrades")
 mag = NodePath("Mag")
 crowley = NodePath("Crowley")
-back_button = NodePath("../CanvasLayer/BackButton")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Counter" index="0"]
 shape = SubResource("RectangleShape2D_sbrf6")

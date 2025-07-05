@@ -16,11 +16,10 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hqfu"]
 border_color = Color(0.8, 0.8, 0.8, 0)
 
-[node name="Battle" type="Node" node_paths=PackedStringArray("players", "enemies", "setup", "process_input", "process_turns", "process_actions", "canvas_layer")]
+[node name="Battle" type="Node" node_paths=PackedStringArray("enemies", "setup", "process_input", "process_turns", "process_actions", "canvas_layer")]
 script = ExtResource("1_ivyfm")
 no_of_enemies = 2
 enemy_group = ExtResource("5_6mwjl")
-players = NodePath("Players")
 enemies = NodePath("Enemies")
 setup = NodePath("Setup")
 process_input = NodePath("Input")

@@ -5,9 +5,12 @@
 
 [node name="Control" type="Control" node_paths=PackedStringArray("title", "title_container", "text_box", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "ffwd_button", "scroll_timer")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.69
+anchor_right = 0.5
+anchor_bottom = 0.93
+offset_left = -850.0
+offset_right = 850.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -27,17 +30,11 @@ scroll_timer = NodePath("TextScrollTimer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.69
-anchor_right = 0.5
-anchor_bottom = 0.93
-offset_left = -850.0
-offset_top = -0.119995
-offset_right = 850.0
-offset_bottom = -0.440002
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 alignment = 2
 
 [node name="TitleContainer" type="PanelContainer" parent="VBoxContainer"]

@@ -20,13 +20,8 @@ var characters = ["Kobaneko", "White"]
 func load_scene():
 	super.load_scene()
 
-	if not players.leader.detector.hit_building.is_connected(_check_building):
-		players.leader.detector.hit_building.connect(_check_building)
-
-
-func remove_players():
-	objectsort.remove_child(players)
-
+	if not Global.players.leader.detector.hit_building.is_connected(_check_building):
+		Global.players.leader.detector.hit_building.connect(_check_building)
 
 func _check_building(node: Variant):
 	overlay.hide()

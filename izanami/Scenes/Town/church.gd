@@ -5,14 +5,11 @@ class_name TownChurch
 var cost: int = 0
 var text_: String
 
-@onready var back_button: Button = get_parent().back_button
 @onready var overlay: UIOverlay = get_parent().overlay
 
 func main():
 	Global.players.freeze()
 
-	back_button.show()
-	back_button.pressed.connect(exit_shop)
 	Global.sell.connect(_sell_parser)
 
 	process_status()
@@ -67,7 +64,7 @@ func exit_shop():
 	if Global.text_box:
 		Global.text_box.queue_free()
 	Global.sell.disconnect(_sell_parser)
-	back_button.hide()
+	Global.exit_button.hide()
 	overlay.show()
 	Global.players.unfreeze()
 

@@ -1,7 +1,6 @@
 extends OptionMenu
 
 ## EXTERNAL PARAMETERS
-@export var players: Party
 @export var desc_box_container: BoxContainer
 @export var target_selector: Options
 
@@ -13,9 +12,8 @@ func _ready() -> void:
 	Global.description_box_parent = desc_box_container
 
 func load_stock():
-	players = Global.players
-	if players:
-		inventory = players.inventory
+	if Global.players:
+		inventory = Global.players.inventory
 	update_listing()
 
 func update_listing():
@@ -30,7 +28,7 @@ func update_listing():
 
 func show_target_selector():
 	target_selector.clear()
-	for i in players.party:
+	for i in Global.players.party:
 		target_selector.add_icon_item(
 			i.battle_sprite_texture.texture,
 			i.character_name
@@ -39,14 +37,14 @@ func show_target_selector():
 	target_selector.grab_focus()
 
 func choose_target(index: int):
-	players.leader.use_item(selected_item_name, players.party[index])
+	Global.players.leader.use_item(selected_item_name, Global.players.party[index])
 	target_selector.hide()
 	update_listing()
 
 func _on_item_activated(index: int) -> void:
 	selected_item_name = options.get_item_text(index)
 	if inventory.get_entry_by_name(selected_item_name).aoe:
-		players.leader.use_item(selected_item_name, players.party)
+		Global.players.leader.use_item(selected_item_name, Global.players.party)
 		update_listing()
 	else:
 		show_target_selector()

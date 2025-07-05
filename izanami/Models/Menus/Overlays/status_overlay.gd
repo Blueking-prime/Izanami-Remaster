@@ -7,12 +7,9 @@ class_name StatusOverlay
 @export var player_container: HBoxContainer
 @export var target_selector:TargetSelector
 
-var players: Party
-
 func load_menu():
-	players = Global.players
 	_clear_data_cards()
-	for i in players.party:
+	for i in Global.players.party:
 		create_card(i)
 
 func create_card(player: Player):
@@ -22,7 +19,7 @@ func create_card(player: Player):
 	card.classname.text = player.classname
 	card.icon.texture = player.battle_sprite_texture.texture
 
-	if player == players.leader:
+	if player == Global.players.leader:
 		card.leader_icon.show()
 
 	card.hpbar.value = player.hp_bar.value
@@ -51,26 +48,28 @@ func _clear_data_cards():
 	if children:
 		for i in children:
 			if is_instance_valid(i):
-				if is_ancestor_of(i): remove_child(i)
+				i.get_parent().remove_child(i)
 				i.queue_free()
 
 
 func _on_exit_button_pressed() -> void:
+	Global.exit_signal.disconnect(_on_exit_button_pressed)
+	Global.exit_button.hide()
 	Global.players.unfreeze()
 	target_selector.hide()
 	hide()
 
 func show_target_selector():
 	target_selector.clear()
-	for i in players.party:
+	for i in Global.players.party:
 		target_selector.add_item(i)
 
 	target_selector.show()
 	target_selector.player_list.grab_focus()
 
 func choose_target(index: int):
-	players.switch_leader(index)
-	players.load_party()
+	Global.players.switch_leader(index)
+	Global.players.load_party()
 	load_menu()
 	target_selector.hide()
 
@@ -80,3 +79,8 @@ func _on_switch_button_pressed() -> void:
 			target_selector.hide()
 		else:
 			show_target_selector()
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		if not Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)

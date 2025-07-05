@@ -4,8 +4,6 @@ class_name DungeonObjects
 
 @onready var map: DungeonMap = get_parent().get_parent().get_parent().map
 
-@onready var player: Player = get_parent().get_parent().get_parent().player
-@onready var players: Party = get_parent().get_parent().get_parent().players
 @onready var enemy_types: ResourceGroup = get_parent().get_parent().get_parent().enemy_types
 
 @export var treasure_atlas_coords: Vector2i
@@ -18,6 +16,10 @@ class_name DungeonObjects
 @export var exit_source_id: int
 @export var wall_terrain_set: int
 @export var wall_terrain: int
+
+var player: Player:
+	get():
+		return Global.players.leader
 
 var walls: Array[Vector2i]
 var chests: Array[Vector2i]
@@ -64,7 +66,7 @@ func place_player():
 	if player_pos.y <= 0:
 		player_pos.y = 16
 
-	players.position = player_pos
+	Global.players.position = player_pos
 	player.position = player_pos
 
 func _place_enemies():

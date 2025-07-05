@@ -19,7 +19,6 @@ class_name UIOverlay
 @export var map: Map
 @export var free_cam: FreeCam
 
-var players: Party
 var curr_menu: Control
 var menu_list: Array
 
@@ -71,15 +70,12 @@ func update_coin_counter():
 
 func load_ui_elements():
 	_assign_button_labels()
-	players = Global.players
 	menu_list = [inventory_menu, settings_menu, status_menu]
 	player_status.display_player_data()
 	update_coin_counter()
-	mag_counter.text = str(players.mag)
+	mag_counter.text = str(Global.players.mag)
 	settings_menu.load_menu()
 	if map: map.setup_map()
-	if free_cam: free_cam.players = players
-
 
 func _on_inventory_button_pressed() -> void:
 	Global.players.freeze()
@@ -91,6 +87,7 @@ func _on_inventory_button_pressed() -> void:
 	else:
 		_clear_visible_menus()
 		inventory_menu.show()
+		Global.exit_button.show()
 
 func _on_settings_button_pressed() -> void:
 	Global.players.freeze()
@@ -101,6 +98,8 @@ func _on_settings_button_pressed() -> void:
 	else:
 		_clear_visible_menus()
 		settings_menu.show()
+		Global.exit_button.show()
+
 
 func _on_status_button_pressed() -> void:
 	Global.players.freeze()
@@ -111,6 +110,7 @@ func _on_status_button_pressed() -> void:
 	else:
 		_clear_visible_menus()
 		status_menu.show()
+		Global.exit_button.show()
 
 func _on_save_button_pressed() -> void:
 	if not Global.players.chased:

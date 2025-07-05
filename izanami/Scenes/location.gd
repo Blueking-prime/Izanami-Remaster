@@ -8,47 +8,42 @@ class_name Location
 
 @export var test_players: Party
 @export var objectsort: Node
-@export var players: Party
+
+@export var camera: PlayerCam
+@export var freecam: FreeCam
 
 @export var overlay: UIOverlay
 @export var canvas_layer: CanvasLayer
-@export var camera: PlayerCam
-@export var freecam: FreeCam
+@export var exit_button: Button
 
 func _ready() -> void:
 	load_scene()
 
 func load_scene():
 	if not Global.players:
-		Global.players = players
+		Global.players = test_players
+		test_players = null
 	else:
-		if is_instance_valid(test_players):
-			objectsort.remove_child(test_players)
-		test_players.queue_free()
-
-		players = Global.players
+		_remove_test_players()
 
 	if background: background.draw_background()
 
-	if camera:
-		camera.players = players
-		camera.init_camera()
+	if camera: camera.init_camera()
 
-	if freecam:
-		freecam.players = players
-		freecam.setup_map()
+	if freecam: freecam.setup_map()
+
+	Global.exit_button = exit_button
+	if not Global.exit_button.pressed.is_connected(Global._on_shop_exit): Global.exit_button.pressed.connect(Global._on_shop_exit)
 
 	overlay.load_ui_elements()
 
-
-func remove_test_players():
-	test_players.get_parent().remove_child(test_players)
-
-func remove_players():
-	players.get_parent().remove_child(players)
+func _remove_test_players():
+	if is_instance_valid(test_players):
+		objectsort.remove_child(test_players)
+		test_players.queue_free()
 
 func add_players(_players: Party):
-	tilemap.add_sibling(_players)
+	objectsort.add_child(_players)
 
 func size() -> Vector2:
 	if tilemap:

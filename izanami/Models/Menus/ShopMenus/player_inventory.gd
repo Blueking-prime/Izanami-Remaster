@@ -3,16 +3,21 @@ extends OptionMenu
 class_name PlayerInventoryMenu
 
 ## EXTERNAL PARAMETERS
-@export var players: Party
+@export var test_players: Party
 @export var desc_box_container: BoxContainer
 @onready var shop_list: ShopInventoryMenu = $"../ShopInventory"
 
 func _ready() -> void:
 	Global.description_box_parent = desc_box_container
-	if not Global.players: Global.players = players
 	load_stock()
 
 func load_stock():
+	if not Global.players:
+		Global.players = test_players
+	else:
+		if is_instance_valid(test_players):
+			get_parent().remove_child.call_deferred(test_players)
+			test_players.queue_free()
 	update_listing()
 
 

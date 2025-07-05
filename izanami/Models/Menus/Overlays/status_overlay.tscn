@@ -16,14 +16,6 @@ player_status_card_scene = ExtResource("1_4u0sc")
 player_container = NodePath("HBoxContainer")
 target_selector = NodePath("TargetSelector")
 
-[node name="ExitButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 103.0
-offset_bottom = 72.0
-text = "Exit"
-
 [node name="SwitchButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -83,7 +75,7 @@ item_count = 1
 item_0/text = "Leader"
 item_0/icon = ExtResource("1_75570")
 
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="SwitchButton" to="." method="_on_switch_button_pressed"]
 [connection signal="item_activated" from="TargetSelector" to="." method="choose_target"]
 [connection signal="item_activated" from="TargetSelector/Player" to="TargetSelector" method="_on_player_item_activated"]

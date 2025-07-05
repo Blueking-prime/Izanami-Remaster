@@ -22,6 +22,7 @@ var dungeon_sample = [
 @export var enemy_types: ResourceGroup
 @export var MAX_ENEMIES: int = 3
 @export var max_enemy_spawns: int = 10
+@export var dungeon_name: String = 'test'
 
 ## DROPS
 @export var item_drop_group: ResourceGroup
@@ -37,7 +38,7 @@ var _item_drops = []
 ## WORKING VARIABLES
 var player: Player:
 	get():
-		return players.leader
+		return Global.players.leader
 
 
 #var player_pos: Array:
@@ -82,13 +83,12 @@ func setup_navigation_region():
 
 ## EXIT LOGIC
 func exit_dungeon():
-	players.freeze()
+	Global.players.freeze()
 	var x = await Global.show_confirmation_box("Do you want to leave the Dungeon?")
 
-	players.unfreeze()
+	Global.players.unfreeze()
 	if x:
-		players.dungeon_level += 1
-		Global.players = players
+		Checks.dungeon_levels[dungeon_name] += 1
 		Global.warp(self, Global.town_scene)
 	else :
 		unfreeze_enemies()
@@ -120,7 +120,7 @@ func collect_treasure():
 	drop = x[index]
 
 	print(drop)
-	players.inventory.add_entry(drop)
+	Global.players.inventory.add_entry(drop)
 	print("You got %s!" % [drop.name])
 
 
@@ -136,7 +136,6 @@ func initiate_battle():
 	var battle: Battle = Global.battle_scene.instantiate()
 	battle.no_of_enemies = no_of_enemies
 	battle.dungeon = self
-	battle.players = players
 	battle.enemy_group = enemy_types
 	#player.in_battle = true
 	background.hide()

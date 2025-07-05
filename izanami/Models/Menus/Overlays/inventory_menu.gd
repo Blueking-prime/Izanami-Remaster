@@ -18,13 +18,16 @@ func load_inventory():
 	gear_menu.load_stock()
 	menu_switcher.set_process_input(visible)
 
-
 func _on_exit_button_pressed() -> void:
-	Global.players.unfreeze()
+	Global.exit_signal.disconnect(_on_exit_button_pressed)
 	items_menu.target_selector.hide()
 	gear_menu.target_selector.hide()
 	skills_menu.target_selector.hide()
+	Global.exit_button.hide()
+	Global.players.unfreeze()
 	hide()
 
 func _on_visibility_changed() -> void:
 	menu_switcher.set_process_input(visible)
+	if visible:
+		if not Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)

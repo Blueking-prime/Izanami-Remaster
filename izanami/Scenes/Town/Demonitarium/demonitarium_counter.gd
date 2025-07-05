@@ -7,18 +7,11 @@ class_name DemonitariumCounter
 @export var mag: Node
 
 @export var crowley: Node
-
-@export var back_button: Button
-
-var players: Party
-
 func main():
-	players = Global.players
-	players.freeze()
+	Global.players.freeze()
 
-	back_button.show()
+	Global.exit_button.show()
 	Global.sell.connect(_sell_parser)
-	back_button.pressed.connect(exit_shop)
 
 	await Global.show_text_box('', "Unholy sigils paint the walls and howling creatures cackle from cages hanging precariously overhead")
 	await Global.show_text_box("Crowley", "Test your skills, adventurer... Anything you carve out is yours.")
@@ -43,8 +36,8 @@ func exit_shop():
 		fights.demonitarium_display.hide()
 		upgrades.upgrade_menu.hide()
 		mag.quantity_input.hide()
-		back_button.hide()
-		players.unfreeze()
+		Global.exit_button.hide()
+		Global.players.unfreeze()
 		get_parent().overlay.show()
 	else:
 		await choose_option()

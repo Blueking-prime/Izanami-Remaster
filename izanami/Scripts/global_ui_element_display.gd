@@ -108,7 +108,9 @@ func change_background(texture: Texture2D, global: bool = false):
 			if not global:
 				get_tree().current_scene.canvas_layer.get_child(0).add_sibling(get_parent().background_texture)
 			else:
-				get_tree().root.add_child.call_deferred(get_parent().background_texture)
+				get_parent().root_canvas_layer = CanvasLayer.new()
+				get_tree().root.add_child.call_deferred(get_parent().root_canvas_layer)
+				get_parent().root_canvas_layer.add_child.call_deferred(get_parent().background_texture)
 
 		get_parent().background_texture.texture = texture
 	else:
@@ -116,8 +118,10 @@ func change_background(texture: Texture2D, global: bool = false):
 			if not global:
 				get_tree().current_scene.canvas_layer.remove_child(get_parent().background_texture)
 			else :
-				get_tree().root.remove_child.call_deferred(get_parent().background_texture)
+				get_parent().root_canvas_layer.remove_child(get_parent().background_texture)
+				get_tree().root.remove_child.call_deferred(get_parent().root_canvas_layer)
 			get_parent().background_texture.queue_free()
+			get_parent().root_canvas_layer.queue_free()
 
 
 func show_description(object: Resource) -> void:
@@ -194,7 +198,7 @@ func show_description(object: Resource) -> void:
 	get_parent().description_box.description.text = object.desc
 
 
-func show_shop_menu(_players: Party, stock: ResourceGroup):
+func show_shop_menu(stock: ResourceGroup):
 	if is_instance_valid(get_parent().shop_menu):
 		get_parent().shop_menu.queue_free()
 
@@ -202,13 +206,18 @@ func show_shop_menu(_players: Party, stock: ResourceGroup):
 
 	get_tree().get_current_scene().canvas_layer.add_child(get_parent().shop_menu)
 
-	get_parent().shop_menu.shop_inventory.item_group = stock
-	get_parent().shop_menu.player_inventory.players = _players
+	get_parent().move_node_to_other_node(
+		get_parent().shop_menu,
+		get_tree().get_current_scene().canvas_layer,
+		get_parent().exit_button
+	)
 
-	get_parent().shop_menu.exit_button.pressed.connect(get_parent()._on_shop_exit)
+	get_parent().shop_menu.shop_inventory.item_group = stock
 
 	get_parent().shop_menu.shop_inventory.load_stock()
 	get_parent().shop_menu.player_inventory.load_stock()
+
+	get_parent().exit_button.show()
 
 
 func _connect_text_box_signals():

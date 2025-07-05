@@ -8,24 +8,14 @@ class_name Demonitarium
 func load_scene():
 	super.load_scene()
 
-	Global.players.leader.detector.hit_building.connect(_check_building)
+	if not Global.players.leader.detector.hit_building.is_connected(_check_building):
+		Global.players.leader.detector.hit_building.connect(_check_building)
 
 func _check_building(node: Variant):
 	overlay.hide()
 	match node:
 		counter: await counter.main()
 		warp_points: await warp_points.main()
-
-
-func size():
-	# return walls.get_used_rect().size
-	# Replace with above when tilemap is created
-	return Vector2(100, 100)
-
-func center():
-	#return walls.center()
-	# Replace with above when tilemap is created
-	return Vector2(500, 500)
 
 
 func save() -> DemonitariumSaveData:

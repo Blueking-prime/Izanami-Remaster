@@ -4,6 +4,7 @@ class_name TownDungeon
 
 @export var no_of_floors: int
 
+@export var dungeon_title: String
 @export var dungeon_dimensions: Array[Vector2]
 @export var dungeon_fixed: Array[bool]
 @export var dungeon_data: Array[DungeonSaveData]
@@ -21,8 +22,12 @@ var dungeon_floor: int
 
 func main():
 	Global.players.freeze()
+	Global.exit_button.show()
+
+	if not Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)
+
 	var choices = []
-	for i in no_of_floors:
+	for i in Checks.dungeon_levels[dungeon_title.to_lower()]:
 		choices.append(str(i + 1))
 
 	dungeon_floor = await Global.show_text_choice('System', 'Select dungeon floor', choices)
@@ -38,7 +43,7 @@ func main():
 		load_dungeon()
 		get_parent().queue_free()
 	else :
-		get_parent().overlay.show()
+		_on_exit_button_pressed()
 
 func set_dungeon_level():
 	if dungeon_floor < no_of_floors:
@@ -71,3 +76,11 @@ func load_dungeon():
 	dungeon.add_players(Global.players)
 	get_parent().add_sibling(dungeon)
 	get_tree().current_scene = dungeon
+
+func _on_exit_button_pressed():
+	if is_instance_valid(Global.text_box):
+		Global.text_box.queue_free()
+	Global.exit_signal.disconnect(_on_exit_button_pressed)
+	Global.exit_button.hide()
+	Global.players.unfreeze()
+	get_parent().overlay.show()
