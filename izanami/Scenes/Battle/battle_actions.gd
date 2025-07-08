@@ -7,12 +7,10 @@ class_name BattleActions
 @onready var setup: BattleSetup = get_parent().setup
 
 var target
-var player: Player
 
 ## TURN FUNCTIONS
 func action():
-	player = process_turns.current_player
-	Global.print_to_log(player.character_name + ' is acting')
+	Global.print_to_log(process_turns.current_player.character_name + ' is acting')
 	match process_input.flag:
 		'Attack': await use_basic_attack()
 		'Skills': await use_skills()
@@ -24,7 +22,7 @@ func action():
 
 	process_input.targetting = false
 	process_input.aoe_targetting = false
-	player.reset_menu()
+	process_turns.current_player.reset_menu()
 	process_input.desc_box.show()
 	process_turns.advance_actor()
 
@@ -32,25 +30,25 @@ func action():
 
 ## ACTION MENU FUNCTIONS
 func use_basic_attack():
-	player.use_skill(0, target)
+	process_turns.current_player.use_skill(0, target)
 	await get_tree().create_timer(1).timeout
 
 func use_skills():
-	player.use_skill(player.active_selection, target)
+	process_turns.current_player.use_skill(process_turns.current_player.active_selection, target)
 	await get_tree().create_timer(1).timeout
 
 func use_items():
-	player.use_item(player.active_selection, target)
+	process_turns.current_player.use_item(process_turns.current_player.active_selection, target)
 	await get_tree().create_timer(1).timeout
 
 func use_guard():
-	player.guard()
+	process_turns.current_player.guard()
 	await get_tree().create_timer(1).timeout
 
 func use_run():
-	if Global.rand_chance(player.stats['AGI'] / _calc_enemy_speed()):
+	if Global.rand_chance(process_turns.current_player.stats['AGI'] / _calc_enemy_speed()):
 		Global.print_to_log('You escaped')
-		setup.exit_battle("run", 0)
+		setup.exit_battle("run")
 	else:
 		Global.print_to_log('You failed to escape')
 

@@ -21,8 +21,9 @@ func  _ready() -> void:
 	_on_navigation_agent_2d_navigation_finished()
 
 func _physics_process(delta: float) -> void:
-	if freeze:
-		return
+	if freeze: return
+
+	if not NavigationServer2D.map_get_iteration_id(nav_agent.get_navigation_map()): return
 
 	var direction = Vector2()
 
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	direction = direction.normalized()
 
 	velocity = direction * speed * delta * 1000
+	#print(velocity.length())
 	#velocity = position.direction_to(player.global_position) * speed * delta * 1000
 
 	move_and_slide()

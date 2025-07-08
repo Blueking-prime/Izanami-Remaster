@@ -8,7 +8,7 @@ class_name Battle
 @export var forced: bool = false
 @export var enemy_group: ResourceGroup
 @export var enemy_set: Array
-@export var players: Party
+@export var test_players: Party
 @export var enemies: BattleEnemies
 
 ## CHILD NODES
@@ -28,6 +28,13 @@ var demonitarium: Node
 
 
 func _ready() -> void:
+	if Global.players:
+		if is_instance_valid(test_players):
+			remove_child(test_players)
+			test_players.queue_free()
+	else :
+		Global.players =test_players
+
 	setup.actor_setup()
 	#print(turn_order)
 	process_turns.act()

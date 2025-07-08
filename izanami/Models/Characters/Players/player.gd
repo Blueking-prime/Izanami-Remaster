@@ -131,7 +131,7 @@ func _display_skills():
 
 func show_skill_menu():
 	skill_menu.show()
-	skill_menu.item_selected.connect(_on_skill_list_selected)
+	if not skill_menu.item_selected.is_connected(_on_skill_list_selected): skill_menu.item_selected.connect(_on_skill_list_selected)
 	_display_skills()
 	skill_menu.grab_focus()
 
@@ -149,7 +149,7 @@ func _display_items():
 
 func show_item_menu():
 	item_menu.show()
-	item_menu.item_selected.connect(_on_item_list_selected)
+	if not item_menu.item_selected.is_connected(_on_item_list_selected): item_menu.item_selected.connect(_on_item_list_selected)
 	_display_items()
 	item_menu.grab_focus()
 

@@ -13,7 +13,8 @@ BUG FIXES
 - [ ] Prevent input during guard and run (non-targeting and enemy action) animation in battle
 - [ ] Fix map key not opening map but able to close map and also map button completely working
 - [ ] Fix inventory skill menu grab focus
-- [ ] Fix escape unfreezing player even when no menu open
+- [x] Fix gold not increasing after battle
+- [x] Fix escape unfreezing player even when no menu open
 - [x] Fix inability to click on text choices
 - [x] Fix shop item layout
 - [x] Optimize warp function when loading demonitarium
@@ -37,10 +38,10 @@ TASKS (WORKABLE)
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
 - [ ] Add exiting dungeon from entrance
-- [ ] implement setting enemy levels in dungeons
-- [ ] Change battle player entries to Global calls
 - [ ] Move camera to player node
 	- [x] Change background scene to display on viewport
+- [x] implement setting enemy levels in dungeons
+- [x] Change battle player entries to Global calls
 - [x] Implement universal escape button
 - [x] Move more parameters to checks script
 - [x] Change null checks to also check node validity
@@ -184,3 +185,4 @@ OST
 - [ ] Forced battle theme
 - [ ] Dungeon theme
 - [ ] Town/faction themes
+

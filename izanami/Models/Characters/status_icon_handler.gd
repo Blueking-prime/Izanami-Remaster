@@ -30,4 +30,3 @@ func remove_icon(status: Status):
 func clear_icons():
 	for i in get_parent().get_parent().status_icons.get_children():
 		get_parent().get_parent().status_icons.remove_child(i)
-		i.queue_free()

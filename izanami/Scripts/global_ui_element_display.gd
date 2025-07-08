@@ -118,7 +118,7 @@ func change_background(texture: Texture2D, global: bool = false):
 			if not global:
 				get_tree().current_scene.canvas_layer.remove_child(get_parent().background_texture)
 			else :
-				get_parent().root_canvas_layer.remove_child(get_parent().background_texture)
+				#get_parent().root_canvas_layer.remove_child(get_parent().background_texture)
 				get_tree().root.remove_child.call_deferred(get_parent().root_canvas_layer)
 			get_parent().background_texture.queue_free()
 			get_parent().root_canvas_layer.queue_free()

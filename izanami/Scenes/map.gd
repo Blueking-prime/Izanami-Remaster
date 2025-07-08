@@ -19,8 +19,9 @@ func setup_map():
 
 		var map_scale = map_size / screen_size
 
-		zoom.x = min(map_size.x, map_scale.y) * 0.8
-		zoom.y = zoom.x
+		if not map_size and not map_scale:
+			zoom.x = min(map_size.x, map_scale.y) * 0.8
+			zoom.y = zoom.x
 
 		position = scene.center() * 16
 

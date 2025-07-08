@@ -75,7 +75,6 @@ func load_ui_elements():
 	update_coin_counter()
 	mag_counter.text = str(Global.players.mag)
 	settings_menu.load_menu()
-	if map: map.setup_map()
 
 func _on_inventory_button_pressed() -> void:
 	Global.players.freeze()

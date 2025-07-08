@@ -38,7 +38,6 @@ func main():
 	if confirm:
 		Global.change_background(Global.loading_screen, true)
 		dungeon = Global.dungeon_scene.instantiate()
-		dungeon.players = Global.players
 		set_dungeon_level()
 		load_dungeon()
 		get_parent().queue_free()

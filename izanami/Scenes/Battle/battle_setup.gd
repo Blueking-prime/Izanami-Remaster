@@ -8,9 +8,6 @@ class_name BattleSetup
 @export var desc_box_parent: Control
 @export var action_log: Label
 
-@onready var players: Party = get_parent().players
-@onready var enemies = get_parent().enemies
-
 @onready var process_turns: BattleTurns = get_parent().process_turns
 
 ## RETURN LOCATIONS
@@ -23,12 +20,12 @@ func actor_setup():
 	Global.description_box_parent = desc_box_parent
 	Global.action_log = action_log
 
-	enemies.load_enemies()
+	get_parent().enemies.load_enemies()
 	_player_party_setup()
 
 	# Create actor arrays
-	process_turns.player_array = players.party
-	process_turns.enemy_array = enemies.enemies
+	process_turns.player_array = Global.players.party
+	process_turns.enemy_array = get_parent().enemies.enemies
 	process_turns.actors = process_turns.player_array + process_turns.enemy_array
 
 	# Duplicate array and set turn order according to speed
@@ -37,19 +34,26 @@ func actor_setup():
 
 
 func _player_party_setup():
-	players.player_section = player_section
-	players.action_menu = choice
-	players.skill_panel = skill_panel
-	players.battle_setup()
+	Global.players.player_section = player_section
+	Global.players.action_menu = choice
+	Global.players.skill_panel = skill_panel
+	Global.players.battle_setup()
 
 
-func exit_battle(exit_type: StringName, earned_exp: int):
-	print(earned_exp, ": EARNED")
+func exit_battle(exit_type: StringName):
 	if exit_type == "run":
-		pass
-	elif exit_type == "win":
-		players.level_up(earned_exp)
+		get_parent().earned_exp /= 2
+		get_parent().earned_gold = 0
+	#elif exit_type == "win":
+		#get_parent().earned_exp
+		#get_parent().earned_gold
 
+	Global.players.level_up(get_parent().earned_exp)
+	Global.players.gold += get_parent().earned_gold
+
+
+	print(get_parent().earned_exp, "XP: EARNED")
+	print(get_parent().earned_gold, "G: EARNED")
 	# Prepare return scene
 	if dungeon:
 		dungeon.reset_from_battle()
@@ -58,5 +62,5 @@ func exit_battle(exit_type: StringName, earned_exp: int):
 	elif demonitarium:
 		demonitarium.reset_from_battle()
 
-	players.battle_reset()
+	Global.players.battle_reset()
 	get_parent().queue_free()

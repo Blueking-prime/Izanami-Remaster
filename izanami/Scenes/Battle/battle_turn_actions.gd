@@ -93,7 +93,7 @@ func end_turn():
 	turncount_label.text = str(turncount)
 
 func end_battle():
-	setup.exit_battle("win", get_parent().earned_exp)
+	setup.exit_battle("win")
 
 #func enemy_attack_script_placeholder():
 	#var target_player = randi_range(0, player_array.size() - 1)

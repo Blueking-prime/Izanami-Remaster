@@ -14,6 +14,7 @@ var dungeon_sample = [
 @export var map: DungeonMap
 
 @export var navigation_region: NavigationRegion2D
+@export var enemy_display: DungeonEnemyDisplay
 
 ## MAP PROPERTIES
 @export var width: int = 8
@@ -22,6 +23,7 @@ var dungeon_sample = [
 @export var enemy_types: ResourceGroup
 @export var MAX_ENEMIES: int = 3
 @export var max_enemy_spawns: int = 10
+@export var enemy_level: int = 1
 @export var dungeon_name: String = 'test'
 
 ## DROPS
@@ -64,6 +66,7 @@ func load_scene():
 		tilemap.render_objects()
 
 	setup_navigation_region()
+	enemy_display.update_display()
 
 	Global.change_background(null, true)
 
@@ -137,6 +140,7 @@ func initiate_battle():
 	battle.no_of_enemies = no_of_enemies
 	battle.dungeon = self
 	battle.enemy_group = enemy_types
+	battle.enemy_level = enemy_level
 	#player.in_battle = true
 	background.hide()
 	tilemap.hide()
@@ -155,6 +159,7 @@ func unfreeze_enemies():
 
 func _on_detector_hit_enemy(body: Enemy) -> void:
 	freeze_enemies()
+	await get_tree().create_timer(0.5).timeout
 	Global.players.leader.hitbox.disabled = true
 	#! USE scene_file_path TO REMEMBERWHAT NODE TO LOAD
 	initiate_battle()
@@ -165,6 +170,7 @@ func reset_from_battle():
 	background.show()
 	tilemap.show()
 	overlay.load_ui_elements()
+	enemy_display.update_display()
 	overlay.show()
 	Global.players.leader.hitbox.disabled = false
 	unfreeze_enemies()
