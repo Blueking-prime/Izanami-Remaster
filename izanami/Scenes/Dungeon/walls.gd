@@ -2,9 +2,22 @@ extends TileMapLayer
 
 class_name DungeonObjects
 
-@onready var map: DungeonMap = get_parent().get_parent().get_parent().map
 
-@onready var enemy_types: ResourceGroup = get_parent().get_parent().get_parent().enemy_types
+@onready var root_node: Dungeon:
+	get():
+		return get_parent().get_parent()
+
+@onready var map: DungeonMap:
+	get():
+		return root_node.map
+
+@onready var enemy_types: ResourceGroup:
+	get():
+		return root_node.enemy_types
+
+var player: Player:
+	get():
+		return Global.players.leader
 
 @export var treasure_atlas_coords: Vector2i
 @export var treasure_source_id: int
@@ -16,10 +29,9 @@ class_name DungeonObjects
 @export var exit_source_id: int
 @export var wall_terrain_set: int
 @export var wall_terrain: int
+@export var floor_terrain_set: int
+@export var floor_terrain: int
 
-var player: Player:
-	get():
-		return Global.players.leader
 
 var walls: Array[Vector2i]
 var chests: Array[Vector2i]
@@ -29,6 +41,7 @@ var exit: Vector2i
 var enemy_nodes: Array = []
 var width: int
 var height: int
+var upscale_factor: float
 
 var opened_chest_coords: Array = []
 
@@ -42,22 +55,28 @@ func render_objects():
 	width = map.width
 	#print('walls = ', walls)
 
+	_render_background()
 	_render_treasure_chests()
 	_render_inner_walls()
 	_render_outer_walls()
 	_render_entrance()
 	_render_exit()
 	_place_enemies()
+	root_node.freeze_enemies()
+
 	place_player()
 
 	set_connections()
 
 	await get_tree().create_timer(0.1).timeout
+	root_node.unfreeze_enemies()
+
 	check_collisions()
 
 func set_connections():
 	if is_instance_valid(player):
 		player.detector.hit_chest.connect(_on_detector_hit_chest)
+
 
 func place_player():
 	var player_pos = entrance * 16
@@ -78,8 +97,25 @@ func _place_enemies():
 		add_child(enemy)
 		enemy.dungeon_display()
 		enemy.position = coord * 2 * 16
+		enemy.map_size = root_node.size()
+		print(enemy.map_size)
 
 	enemy_nodes = get_children()
+
+
+func _render_background():
+	var all_tiles = []
+	for y in height:
+		for x in width:
+			var coord = Vector2i(x, y)
+			all_tiles.append_array([
+				coord * 2,
+				coord * 2 + Vector2i.LEFT,
+				coord * 2 + Vector2i.DOWN,
+				coord * 2 + Vector2i.LEFT + Vector2i.DOWN,
+			])
+
+	set_cells_terrain_connect(all_tiles, floor_terrain_set, floor_terrain)
 
 func _render_outer_walls():
 	var outer_walls: Array[Vector2i] = []
@@ -193,8 +229,9 @@ func check_collisions():
 		i.hitbox.check_overlap(self)
 
 func center() -> Vector2:
-	return get_used_rect().get_center()
+	return root_node.center()
 
+#Test
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
 		print(Global.players.gold)

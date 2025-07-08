@@ -557,6 +557,7 @@ upscale_factor = 6.0
 y_sort_enabled = true
 
 [node name="Players" parent="ObjectsSort" instance=ExtResource("8_kxce6")]
+z_index = 0
 gold = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

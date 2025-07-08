@@ -171,6 +171,7 @@ zoom_reset={
 [layer_names]
 
 2d_physics/layer_1="Walls"
+2d_navigation/layer_1="Floor"
 2d_physics/layer_2="Chests"
 2d_physics/layer_3="Entry/Exit"
 2d_physics/layer_4="Player"

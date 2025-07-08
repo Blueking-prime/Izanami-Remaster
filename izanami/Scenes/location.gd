@@ -47,13 +47,13 @@ func add_players(_players: Party):
 
 func size() -> Vector2:
 	if tilemap:
-		return tilemap.get_used_rect().size
+		return tilemap.get_used_rect().size  * 16
 	else :
 		return Vector2(1000, 1000)
 
 func center() -> Vector2:
 	if tilemap:
-		return tilemap.get_used_rect().get_center()
+		return tilemap.get_used_rect().get_center() * 16
 	else :
 		return Vector2(500, 500)
 

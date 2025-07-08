@@ -13,7 +13,7 @@ var dungeon_sample = [
 ## CHILD NODES
 @export var map: DungeonMap
 
-@export var navigation_region: NavigationRegion2D
+#@export var navigation_region: NavigationRegion2D
 @export var enemy_display: DungeonEnemyDisplay
 
 ## MAP PROPERTIES
@@ -65,24 +65,24 @@ func load_scene():
 
 		tilemap.render_objects()
 
-	setup_navigation_region()
+	#setup_navigation_region()
 	enemy_display.update_display()
 
 	Global.change_background(null, true)
 
-func setup_navigation_region():
-	var vertices = PackedVector2Array([
-		Vector2(0, 0),
-		Vector2(0, height)     * 2 * map.upscale_factor * 16,
-		Vector2(width, height) * 2 * map.upscale_factor * 16,
-		Vector2(width, 0)      * 2 * map.upscale_factor * 16
-	])
-
-	navigation_region.navigation_polygon.clear_outlines()
-	navigation_region.navigation_polygon.add_outline(vertices)
-	NavigationServer2D.bake_from_source_geometry_data(navigation_region.navigation_polygon, NavigationMeshSourceGeometryData2D.new());
-
-	navigation_region.bake_navigation_polygon()
+#func setup_navigation_region():
+	#var vertices = PackedVector2Array([
+		#Vector2(0, 0),
+		#Vector2(0, height)     * 2 * map.upscale_factor * 16,
+		#Vector2(width, height) * 2 * map.upscale_factor * 16,
+		#Vector2(width, 0)      * 2 * map.upscale_factor * 16
+	#])
+#
+	#navigation_region.navigation_polygon.clear_outlines()
+	#navigation_region.navigation_polygon.add_outline(vertices)
+	#NavigationServer2D.bake_from_source_geometry_data(navigation_region.navigation_polygon, NavigationMeshSourceGeometryData2D.new());
+#
+	#navigation_region.bake_navigation_polygon()
 
 ## EXIT LOGIC
 func exit_dungeon():
@@ -159,6 +159,8 @@ func unfreeze_enemies():
 
 func _on_detector_hit_enemy(body: Enemy) -> void:
 	freeze_enemies()
+	Global.players.freeze()
+	Global.push_back_player(body.global_position, 1)
 	await get_tree().create_timer(0.5).timeout
 	Global.players.leader.hitbox.disabled = true
 	#! USE scene_file_path TO REMEMBERWHAT NODE TO LOAD

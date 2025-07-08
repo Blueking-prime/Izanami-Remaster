@@ -18,7 +18,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 custom_solver_bias = 1.0
-radius = 7.0
+radius = 8.0
 
 [node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "nametag", "status_icons", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
 script = ExtResource("1_e6dxp")

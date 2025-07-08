@@ -19,7 +19,7 @@ func add_icon(status: Status):
 	get_parent().get_parent().status_icons.add_child(icon)
 
 func tick_icon(status: Status):
-	status_icons[status].counter.text = str(status.duration - status.elapsed)
+	if is_instance_valid(status_icons[status]):	status_icons[status].counter.text = str(status.duration - status.elapsed)
 
 func remove_icon(status: Status):
 	if not status in status_icons: return
