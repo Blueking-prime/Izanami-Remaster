@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+class_name PlayerDataDisplay
+
 @export var data_card_scene: PackedScene
 
 func display_player_data():

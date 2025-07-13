@@ -56,20 +56,28 @@ func load_character():
 
 
 func _physics_process(delta: float) -> void:
-	if not freeze_movement:
-		var direction = Vector2()
-		direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
+	if is_instance_valid(Global.players) and self != Global.players.leader: return
 
-		if direction.length():
-			direction = direction.normalized()
-			velocity = direction * speed * delta * 1000
-		else:
-			velocity.x = move_toward(velocity.x, 0, speed)
-			velocity.y = move_toward(velocity.y, 0, speed)
+	if freeze_movement: return
 
-		get_real_velocity()
-		move_and_slide()
+	var direction = Vector2()
+	direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
+
+	var init_pos = global_position
+
+	if direction.length():
+		direction = direction.normalized()
+		velocity = direction * speed * delta * 1000
+		#print(character_name, ': ', global_position)
 		moved.emit()
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.y = move_toward(velocity.y, 0, speed)
+
+	get_real_velocity()
+	move_and_slide()
+
+	if init_pos != global_position: moved.emit()
 
 ## MODIFY PROPERTIES
 func update_stats():
@@ -171,7 +179,6 @@ func reset_menu():
 	active_selection = null
 	if is_instance_valid(Global.description_box):
 		Global.description_box.queue_free()
-
 
 func die():
 	Global.print_to_log('And so you fall, your journey never to be completed')

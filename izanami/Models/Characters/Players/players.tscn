@@ -11,8 +11,12 @@
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_m2oad")
+source = null
 battle_sprite_scene = ExtResource("2_blcr2")
 player_scene = ExtResource("2_eydhy")
+gold = null
+mag = null
+dungeon_level = null
 inventory = NodePath("Inventory")
 
 [node name="Inventory" type="Node" parent="."]

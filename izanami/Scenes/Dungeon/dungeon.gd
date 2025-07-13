@@ -58,10 +58,11 @@ func load_scene():
 	player.detector.hit_chest.connect(_on_detector_hit_chest)
 	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
 	player.detector.hit_exit.connect(_on_detector_hit_exit)
+	player.detector.hit_entrance.connect(_on_detector_hit_entrance)
 
 	if new_map:
 		map.draw_new_map()
-		map.display_dungeon()
+		#map.display_dungeon()
 
 		tilemap.render_objects()
 
@@ -85,21 +86,25 @@ func load_scene():
 	#navigation_region.bake_navigation_polygon()
 
 ## EXIT LOGIC
-func exit_dungeon():
+func exit_dungeon(completed: bool):
 	Global.players.freeze()
+
 	var x = await Global.show_confirmation_box("Do you want to leave the Dungeon?")
 
 	Global.players.unfreeze()
 	if x:
-		Checks.dungeon_levels[dungeon_name] += 1
+		if completed: Checks.dungeon_levels[dungeon_name] += 1
 		Global.warp(self, Global.town_scene)
 	else :
 		unfreeze_enemies()
 
+func _on_detector_hit_entrance(_coords):
+	freeze_enemies()
+	exit_dungeon(false)
 
 func _on_detector_hit_exit(_coords) -> void:
 	freeze_enemies()
-	exit_dungeon()
+	exit_dungeon(true)
 
 
 ## TREASURE LOGIC

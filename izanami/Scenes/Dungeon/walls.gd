@@ -41,7 +41,7 @@ var exit: Vector2i
 var enemy_nodes: Array = []
 var width: int
 var height: int
-var upscale_factor: float
+var upscale_factor: int
 
 var opened_chest_coords: Array = []
 
@@ -53,6 +53,7 @@ func render_objects():
 	exit = map.stop
 	height = map.height
 	width = map.width
+	upscale_factor = map.upscale_factor
 	#print('walls = ', walls)
 
 	_render_background()
@@ -60,7 +61,7 @@ func render_objects():
 	_render_inner_walls()
 	_render_outer_walls()
 	_render_entrance()
-	_render_exit()
+	#_render_exit()
 	_place_enemies()
 	root_node.freeze_enemies()
 
@@ -72,6 +73,7 @@ func render_objects():
 	root_node.unfreeze_enemies()
 
 	check_collisions()
+	root_node._on_map_loaded()
 
 func set_connections():
 	if is_instance_valid(player):
@@ -79,11 +81,11 @@ func set_connections():
 
 
 func place_player():
-	var player_pos = entrance * 16
+	var player_pos = entrance * Location.TILEMAP_CELL_SIZE
 	if player_pos.x <= 0:
-		player_pos.x = 16
+		player_pos.x = Location.TILEMAP_CELL_SIZE
 	if player_pos.y <= 0:
-		player_pos.y = 16
+		player_pos.y = Location.TILEMAP_CELL_SIZE
 
 	Global.players.position = player_pos
 	player.position = player_pos
@@ -96,7 +98,7 @@ func _place_enemies():
 
 		add_child(enemy)
 		enemy.dungeon_display()
-		enemy.position = coord * 2 * 16
+		enemy.position = coord * upscale_factor * Location.TILEMAP_CELL_SIZE
 		enemy.map_size = root_node.size()
 		print(enemy.map_size)
 
@@ -109,38 +111,38 @@ func _render_background():
 		for x in width:
 			var coord = Vector2i(x, y)
 			all_tiles.append_array([
-				coord * 2,
-				coord * 2 + Vector2i.LEFT,
-				coord * 2 + Vector2i.DOWN,
-				coord * 2 + Vector2i.LEFT + Vector2i.DOWN,
+				coord * upscale_factor,
+				coord * upscale_factor + Vector2i.LEFT,
+				coord * upscale_factor + Vector2i.DOWN,
+				coord * upscale_factor + Vector2i.LEFT + Vector2i.DOWN,
 			])
 
 	set_cells_terrain_connect(all_tiles, floor_terrain_set, floor_terrain)
 
 func _render_outer_walls():
 	var outer_walls: Array[Vector2i] = []
-	for i in range(-1, 2 * height):
+	for i in range(-1, upscale_factor * height):
 		#var wall_block_left
 		outer_walls.append_array([
 			Vector2i(0            , i),
 			Vector2i(0            , i + 1),
 			Vector2i(-1           , i),
 			Vector2i(-1           , i + 1),
-			Vector2i(2 * width - 1, i),
-			Vector2i(2 * width - 1, i + 1),
-			Vector2i(2 * width    , i),
-			Vector2i(2 * width    , i + 1),
+			Vector2i(upscale_factor * width - 1, i),
+			Vector2i(upscale_factor * width - 1, i + 1),
+			Vector2i(upscale_factor * width    , i),
+			Vector2i(upscale_factor * width    , i + 1),
 		])
-	for i in range(-1, 2 * width):
+	for i in range(-1, upscale_factor * width):
 		outer_walls.append_array([
 			Vector2i(i    , -1),
 			Vector2i(i + 1, -1),
 			Vector2i(i    , 0),
 			Vector2i(i + 1, 0),
-			Vector2i(i    , 2 * height),
-			Vector2i(i + 1, 2 * height),
-			Vector2i(i    , 2 * height - 1),
-			Vector2i(i + 1, 2 * height - 1),
+			Vector2i(i    , upscale_factor * height),
+			Vector2i(i + 1, upscale_factor * height),
+			Vector2i(i    , upscale_factor * height - 1),
+			Vector2i(i + 1, upscale_factor * height - 1),
 		])
 
 	set_cells_terrain_connect(outer_walls, wall_terrain_set, wall_terrain, false)
@@ -149,10 +151,10 @@ func _render_inner_walls():
 	var walls_vector_array: Array[Vector2i] = []
 	for coord in walls:
 		walls_vector_array.append_array([
-				coord * 2,
-				coord * 2 + Vector2i.LEFT,
-				coord * 2 + Vector2i.DOWN,
-				coord * 2 + Vector2i.LEFT + Vector2i.DOWN,
+				coord * upscale_factor,
+				coord * upscale_factor + Vector2i.LEFT,
+				coord * upscale_factor + Vector2i.DOWN,
+				coord * upscale_factor + Vector2i.LEFT + Vector2i.DOWN,
 			])
 
 	set_cells_terrain_connect(walls_vector_array, wall_terrain_set, wall_terrain, false)
@@ -160,21 +162,21 @@ func _render_inner_walls():
 func _render_treasure_chests():
 	for coord in chests:
 		set_cell(
-			coord * 2,
+			coord * upscale_factor,
 			treasure_source_id,
 			treasure_atlas_coords
 		)
 
 func _render_entrance():
 	set_cell(
-		entrance * 2 + Vector2i(1, 1),
+		entrance * upscale_factor + Vector2i(1, 1),
 		entrance_source_id,
 		entrance_atlas_coords
 	)
 
 func _render_exit():
 	set_cell(
-		exit * 2 + Vector2i(1, 1),
+		exit * upscale_factor + Vector2i(1, 1),
 		exit_source_id,
 		exit_atlas_coords
 	)
@@ -232,6 +234,6 @@ func center() -> Vector2:
 	return root_node.center()
 
 #Test
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("test"):
-		print(Global.players.gold)
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("test"):
+		#_render_exit()

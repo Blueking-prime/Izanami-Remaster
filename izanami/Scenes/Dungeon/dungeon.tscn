@@ -597,7 +597,7 @@ texture = ExtResource("6_yeqgk")
 
 [sub_resource type="TileSet" id="TileSet_84xvj"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 24
+physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 2
 physics_layer_1/collision_mask = 0
 physics_layer_2/collision_layer = 4
@@ -629,7 +629,7 @@ enemy_level = 1
 dungeon_name = "test"
 item_drop_group = ExtResource("4_1cpbm")
 gear_drop_group = ExtResource("5_uay2u")
-enemy_spawn_chance = 1.0
+enemy_spawn_chance = 0.0
 treasure_spawn_chance = 0.2
 gear_chance = 0.5
 tilemap = NodePath("ObjectsSort/Walls")

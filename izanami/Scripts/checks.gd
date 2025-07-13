@@ -10,8 +10,10 @@ extends Node
 
 var refresh_shops: bool = false
 
-var dungeon_levels: Dictionary = {
-	'test' = 2
+var dungeons: Dictionary = {
+	'test': {
+		'level': 2
+	}
 }
 
 ## Menu persistance

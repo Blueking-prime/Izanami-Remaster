@@ -3,18 +3,19 @@ GOALS
 - [ ] Add controller support
 	- [x] Add option to switch input map index for input events
 - [ ] Enable Pure mouse and pure keyboard navigation support
+- [ ] Remove magic numbers
 - [ ] Polish UI elements
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
 - [ ] Add status effect icons
 
 BUG FIXES
+- [ ] Figure out object sorting
 - [ ] Prevent input during guard and run (non-targeting and enemy action) animation in battle
-- [ ] Fix map key not opening map but able to close map and also map button completely working
 - [ ] Fix inventory skill menu grab focus
 - [ ] Fix dungeon sprite not displaying after battle exit (Might have to do with status icon crash or maybe battle sprite is misbehaving again. try to create supe in sprite creation function. Could also be variable name conflict)
-- [ ] Figure out object sorting
 - [ ] improve navigation performance
+- [x] Fix map key not opening map but able to close map and also map button completely working
 - [x] Fix enemies sometimes mimicking player movement and thus stopping random walk (This may have something to do with avoidance, or pssibly the narrowness of the navigation triangles) [It was avoidance aparaently]
 - [x] Fix gold not increasing after battle
 - [x] Fix escape unfreezing player even when no menu open
@@ -40,10 +41,16 @@ TASKS (WORKABLE)
 - [ ] Implement quests, quest label in UI and add quest markers to map
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
-- [ ] Add exiting dungeon from entrance
-- [ ] Move camera to player node
-- [ ] Add max camera boundary to prevent showing void
-- [ ] Switch all collision checks to use collision masks
+= [ ] Optimize player data card updating
+- [ ] Replace save option in dungeon with autosave on floor transition
+- [ ] Make exit send to next level of dungeon
+- [ ] Sectionalize dungeon map generation to increase size of generated map
+- [ ] Switch to DSU for map path confirmation
+- [ ] improve map zoomout logic calculation
+- [x] Switch all collision checks to use collision masks
+- [x] Add exiting dungeon from entrance
+- [/] Move camera to player node
+- [x] Add max camera boundary to prevent showing void
 - [x] Change background scene to display on viewport
 - [x] implement setting enemy levels in dungeons
 - [x] Change battle player entries to Global calls

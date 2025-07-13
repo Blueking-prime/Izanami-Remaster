@@ -2,9 +2,6 @@ extends Location
 
 class_name Town
 
-@export var back_button: Button
-@export var tile_map: TileMapLayer
-
 @export var church: TownChurch
 @export var smithy: TownSmithy
 @export var apothecary: TownApothecary

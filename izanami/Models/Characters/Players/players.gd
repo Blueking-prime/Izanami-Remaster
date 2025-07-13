@@ -46,6 +46,7 @@ func load_party():
 		i.detector.monitoring = false
 		i.hitbox.disabled = true
 
+	#Checks if there are nodes in the party array, and then checks if there is no leader or if the current leader has been removed from the party
 	if len(party) and (not leader or leader not in party):
 		leader = party[0]
 
@@ -58,16 +59,39 @@ func load_party():
 func switch_leader(_index: int):
 	if party[_index] == leader: return
 
-	for i in leader.detector.get_signal_list():
-		for j in leader.detector.get_signal_connection_list(i.name):
-			leader.detector.disconnect(i.name, j.callable)
-			party[_index].detector.connect(i.name, j.callable, j.flags)
-
-	leader = party[_index]
-	load_party()
 	#for i in leader.detector.get_signal_list():
 		#for j in leader.detector.get_signal_connection_list(i.name):
-			#print(leader, j)
+			#print(leader.character_name, j)
+	#for i in leader.get_signal_list():
+		#for j in leader.get_signal_connection_list(i.name):
+			#print(leader.character_name, j)
+
+	var old_leader = leader
+	leader = party[_index]
+
+	# Transfer signal connections on old leader to new leader
+	for i in old_leader.get_signal_list():
+		for j in old_leader.get_signal_connection_list(i.name):
+			old_leader.disconnect(i.name, j.callable)
+			party[_index].connect(i.name, j.callable, j.flags)
+
+	# Transfer signal connections on old leader's detector to new leader
+	for i in old_leader.detector.get_signal_list():
+		for j in old_leader.detector.get_signal_connection_list(i.name):
+			old_leader.detector.disconnect(i.name, j.callable)
+			party[_index].detector.connect(i.name, j.callable, j.flags)
+
+	#for i in leader.detector.get_signal_list():
+		#for j in leader.detector.get_signal_connection_list(i.name):
+			#print(leader.character_name, j)
+	#for i in leader.get_signal_list():
+		#for j in leader.get_signal_connection_list(i.name):
+			#print(leader.character_name, j)
+
+	leader.global_position = old_leader.global_position
+	old_leader.global_position += Vector2.ONE * 20
+
+	load_party()
 
 func add_to_party(player: Player):
 	add_child(player)
@@ -90,6 +114,14 @@ func remove_from_party(player: Player):
 	remove_child(player)
 	load_party()
 	player.gear.inventory = null
+
+func warp_players(area: WarpPoint):
+		freeze()
+		var confirm = await Global.show_confirmation_box("Go to %s" % [area.destination])
+		unfreeze()
+		if confirm:
+			Global.warp(get_tree().current_scene, area.destination_scene)
+
 
 ## BATTLE SCENE
 func battle_setup():

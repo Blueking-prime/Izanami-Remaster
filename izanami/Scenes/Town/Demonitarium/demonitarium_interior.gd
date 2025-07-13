@@ -15,7 +15,7 @@ func _check_building(node: Variant):
 	overlay.hide()
 	match node:
 		counter: await counter.main()
-		warp_points: await warp_points.main()
+		#warp_points: await warp_points.main()
 
 
 func save() -> DemonitariumSaveData:

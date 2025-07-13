@@ -33,9 +33,8 @@ radius = 183.096
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqjfq"]
 radius = 34.0147
 
-[node name="Town" node_paths=PackedStringArray("tile_map", "church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "test", "tilemap") instance=ExtResource("1_xeoqd")]
+[node name="Town" node_paths=PackedStringArray("church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "test", "tilemap") instance=ExtResource("1_xeoqd")]
 script = ExtResource("1_wpby1")
-tile_map = NodePath("ObjectsSort/TileMapLayer")
 church = NodePath("Church")
 smithy = NodePath("Smithy")
 apothecary = NodePath("Apothecary")
@@ -53,6 +52,8 @@ position = Vector2(960, 878)
 
 [node name="Church" type="StaticBody2D" parent="." index="5"]
 position = Vector2(1384, 1080)
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("3_ysa3r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Church" index="0"]
@@ -66,6 +67,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Smithy" type="StaticBody2D" parent="." index="6"]
 position = Vector2(479, 1080)
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("4_hnjkr")
 stock = ExtResource("5_rbk51")
 
@@ -80,6 +83,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Apothecary" type="StaticBody2D" parent="." index="7"]
 position = Vector2(960, 0)
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("6_7ocav")
 stock = ExtResource("7_k1mvl")
 
@@ -94,6 +99,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Dungeon" type="StaticBody2D" parent="." index="8"]
 position = Vector2(1644, 394)
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("8_k31jc")
 no_of_floors = 2
 dungeon_title = "Test"
@@ -120,6 +127,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Demonitarium" type="StaticBody2D" parent="." index="9" node_paths=PackedStringArray("collision_shape")]
 position = Vector2(268, 402)
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("10_h5qir")
 demonitarium_scene = ExtResource("14_k4n1q")
 collision_shape = NodePath("CollisionShape2D")
@@ -144,6 +153,8 @@ position = Vector2(960, 878)
 
 [node name="Test" type="StaticBody2D" parent="." index="12"]
 position = Vector2(960, 540)
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("18_y17gc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Test" index="0"]

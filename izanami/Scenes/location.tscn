@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://d4fsdqxn6alxo"]
 
 [ext_resource type="Script" path="res://Scenes/location.gd" id="1_knc6e"]
-[ext_resource type="Script" path="res://Scripts/camera_script.gd" id="2_16o45"]
+[ext_resource type="Script" path="res://Scripts/player_camera_script.gd" id="2_16o45"]
 [ext_resource type="Script" path="res://Scenes/free_cam.gd" id="3_1ec6t"]
 [ext_resource type="Texture2D" uid="uid://cmmt3ba4u5yo7" path="res://Assets/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="3_glrit"]
 [ext_resource type="PackedScene" uid="uid://bjf7wmor410ps" path="res://Models/Menus/Overlays/base_overlay.tscn" id="3_hxd4o"]
@@ -523,14 +523,15 @@ script = ExtResource("1_knc6e")
 background = NodePath("Background")
 test_players = NodePath("ObjectsSort/Players")
 objectsort = NodePath("ObjectsSort")
-camera = NodePath("PlayerCan")
+camera = NodePath("PlayerCam")
 freecam = NodePath("FreeCam")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 canvas_layer = NodePath("CanvasLayer")
 exit_button = NodePath("CanvasLayer/ExitButton")
 
-[node name="PlayerCan" type="Camera2D" parent="."]
+[node name="PlayerCam" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
@@ -562,10 +563,10 @@ gold = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu", "map", "free_cam") instance=ExtResource("3_hxd4o")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu", "map_cam", "free_cam") instance=ExtResource("3_hxd4o")]
 inventory_menu = NodePath("../InventoryMenu")
 status_menu = NodePath("../StatusOverlay")
-map = NodePath("../../MapCam")
+map_cam = NodePath("../../MapCam")
 free_cam = NodePath("../../FreeCam")
 
 [node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("4_qvqpn")]

@@ -2,8 +2,8 @@ extends Control
 
 class_name UIOverlay
 
-## STATUS OVERLAY
-@export var player_status: Control
+## PLAYER DATA OVERLAY
+@export var player_status: PlayerDataDisplay
 
 ## RESOURCE CONTAINER
 @export var coin_counter: Label
@@ -16,7 +16,7 @@ class_name UIOverlay
 @export var inventory_menu: InventoryMenu
 @export var status_menu: StatusOverlay
 
-@export var map: Map
+@export var map_cam: Map
 @export var free_cam: FreeCam
 
 var curr_menu: Control
@@ -125,13 +125,14 @@ func _on_quit_button_pressed() -> void:
 	Global.call_deferred("load_main_menu")
 
 func _on_map_button_pressed() -> void:
-	if map:
+	if map_cam:
 		Global.players.freeze()
-		map.setup_map()
-		if map.enabled:
-			map.hide_map()
+		map_cam.setup_map()
+
+		if map_cam.is_current():
+			map_cam.hide_map()
 		else:
-			map.show_map()
+			map_cam.show_map()
 
 func _on_freecam_button_pressed() -> void:
 	if free_cam:

@@ -2,12 +2,15 @@ extends Area2D
 
 class_name EnemyDetector
 
-func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if body is Player:
+const PLAYER_COLLISION_LAYER: int = 4
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.get_collision_layer_value(PLAYER_COLLISION_LAYER):
 		get_parent().player = body
 		get_parent().chase_player = true
 
-func _on_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if body is Player:
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.get_collision_layer_value(PLAYER_COLLISION_LAYER):
 		get_parent().chase_player = false
 		get_parent().player = null

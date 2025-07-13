@@ -27,7 +27,7 @@ func main():
 	if not Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)
 
 	var choices = []
-	for i in Checks.dungeon_levels[dungeon_title.to_lower()]:
+	for i in Checks.dungeons[dungeon_title.to_lower()].level:
 		choices.append(str(i + 1))
 
 	dungeon_floor = await Global.show_text_choice('System', 'Select dungeon floor', choices)
