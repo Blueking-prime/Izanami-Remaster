@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cyon8uinblkc1"]
+[gd_scene load_steps=36 format=3 uid="uid://cyon8uinblkc1"]
 
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Scenes/location.tscn" id="1_pweoc"]
 [ext_resource type="Script" path="res://Scenes/Dungeon/dungeon.gd" id="2_g8y5j"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://bf8ixj6j10mqx" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_ [resources].png" id="6_yeqgk"]
 [ext_resource type="Script" path="res://Scenes/Dungeon/walls.gd" id="7_ifcpk"]
 [ext_resource type="Script" path="res://Scenes/Dungeon/dungeon_enemy_display.gd" id="11_co7ba"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i4n0c"]
+noise_type = 0
+frequency = 0.1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wq0ci"]
 texture = ExtResource("4_g0sm2")
@@ -636,6 +640,7 @@ tilemap = NodePath("ObjectsSort/Walls")
 
 [node name="Map" type="Node" parent="." index="3"]
 script = ExtResource("3_kk8fo")
+noise_map = SubResource("FastNoiseLite_i4n0c")
 max_treasure_no = 10
 
 [node name="Background" parent="." index="4"]

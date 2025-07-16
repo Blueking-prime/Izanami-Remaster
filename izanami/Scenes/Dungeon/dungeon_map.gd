@@ -10,6 +10,7 @@ class_name DungeonMap
 
 #@onready var player_pos = get_parent().player_pos
 
+@export var noise_map: FastNoiseLite
 @export var legend: Array = ['I', 'O', '*', 'T', '█', 'E']
 @export var max_treasure_no: int = 5
 @export var upscale_factor: int = 2
@@ -27,12 +28,14 @@ var enemy_no: int
 var visited: Array[Vector2i] = []
 
 func draw_new_map():
-	var check = false
-	while not check:
-		generate_dungeon_layout()
-		check = verify_dungeon()
-
+	#var check = false
+	#while not check:
+		#generate_dungeon_layout()
+		#check = verify_dungeon()
 	_fill_gaps()
+
+	gererate_dungeon_layout_noise()
+	_fill_gaps_noise()
 
 	upscale()
 
@@ -147,6 +150,57 @@ func generate_dungeon_layout():
 
 	width += 1
 	height += 1
+
+func get_valid_point(constraint: float = 0) -> Vector2i:
+	var point = Global.rand_coord(width, height)
+
+	var count = 0
+	while true:
+		print('Point: ', point, ' ', filled_coords, ' ', Global.path_checker.call(start, point, constraint), ' ', noise_map.get_noise_2dv(point))
+		if point not in filled_coords and Global.path_checker.call(start, point, constraint):
+			break
+		point = Global.rand_coord(width, height)
+		count += 1
+		if count >= 1024:
+			print('Stack 1024')
+			#get_tree().call_deferred("quit")
+
+	filled_coords.append(point)
+
+	return point
+
+func gererate_dungeon_layout_noise():
+	#noise_map.seed = randi()
+	Global.create_dsu_checker(noise_map, height, width)
+
+	treasure_no = 1 + Global.rand_spread(treasure_spawn_chance, max_treasure_no)
+	enemy_no = Global.rand_spread(enemy_spawn_chance, max_enemy_spawns)
+
+	filled_coords = []
+	treasure_tiles = []
+	enemy_tiles = []
+
+	start = Global.rand_coord(width, height)
+	while noise_map.get_noise_2dv(start) < 0:
+		start = Global.rand_coord(width, height)
+	print('Start found')
+
+	stop = get_valid_point()
+	print('Stop found')
+
+	for i in treasure_no: treasure_tiles.append(get_valid_point())
+	print('Treasures found')
+
+	for i in enemy_no: enemy_tiles.append(get_valid_point(0.2))
+	print('Enemies found')
+
+func _fill_gaps_noise():
+	var tiles = get_empty_tiles()
+
+	# Replace inaccesible areas with walls
+	for i in tiles:
+		if not Global.path_checker.call(start, i):
+			walls.append(i)
 
 func generate_treasure_tiles():
 	treasure_no = 1 + Global.rand_spread(treasure_spawn_chance, max_treasure_no)

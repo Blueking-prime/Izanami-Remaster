@@ -34,6 +34,8 @@ var confirmation_box: ConfirmationDialog
 var text_log: TextLog
 var exit_button: Button
 
+var path_checker: Callable
+
 # RESPONSES
 var textbox_response: int
 var confrimation_response: bool
@@ -78,6 +80,9 @@ func print_to_log(text: Variant):
 	return TEXT.print_to_log(text)
 
 ## ALGORITHMS
+func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int):
+	return ALGORITHMS.create_dsu_checker(noise_map, height, width)
+
 func rand_coord(width: int, height: int) -> Vector2i:
 	return ALGORITHMS.rand_coord(width, height)
 

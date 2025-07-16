@@ -62,7 +62,7 @@ func load_scene():
 
 	if new_map:
 		map.draw_new_map()
-		#map.display_dungeon()
+		map.display_dungeon()
 
 		tilemap.render_objects()
 
