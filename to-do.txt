@@ -11,10 +11,10 @@ GOALS
 
 BUG FIXES
 - [ ] Figure out object sorting
-- [ ] Prevent input during guard and run (non-targeting and enemy action) animation in battle
-- [ ] Fix inventory skill menu grab focus
 - [ ] Fix dungeon sprite not displaying after battle exit (Might have to do with status icon crash or maybe battle sprite is misbehaving again. try to create supe in sprite creation function. Could also be variable name conflict)
 - [ ] improve navigation performance
+- [x] Fix inventory skill menu grab focus
+- [x] Prevent input during guard and run (non-targeting and enemy action) animation in battle
 - [x] Fix map key not opening map but able to close map and also map button completely working
 - [x] Fix enemies sometimes mimicking player movement and thus stopping random walk (This may have something to do with avoidance, or pssibly the narrowness of the navigation triangles) [It was avoidance aparaently]
 - [x] Fix gold not increasing after battle

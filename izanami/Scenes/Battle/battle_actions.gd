@@ -11,6 +11,7 @@ var target
 ## TURN FUNCTIONS
 func action():
 	Global.print_to_log(process_turns.current_player.character_name + ' is acting')
+	process_input.input_disabled = true
 	match process_input.flag:
 		'Attack': await use_basic_attack()
 		'Skills': await use_skills()

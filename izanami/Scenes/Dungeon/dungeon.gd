@@ -49,7 +49,7 @@ var player: Player:
 
 
 func load_scene():
-	var start_time = Time.get_ticks_msec()
+	#var start_time = Time.get_ticks_msec()
 	#print('Preload ', start_time)
 	Global.change_background(Global.loading_screen, true)
 

@@ -19,6 +19,12 @@ var flag: StringName
 var aoe_targetting: bool = false
 var target_group: Array = []
 var offense: bool = true
+var input_disabled: bool = false
+
+func toggle_option_selectable(state: bool):
+	for i in choice.get_children():
+		if i is Button:
+			i.disabled = not state
 
 ## TARGETTING
 func _left_press():
@@ -120,6 +126,7 @@ func reset_target():
 	process_actions.target = null
 
 func show_choice():
+	toggle_option_selectable(true)
 	targetting = false
 	choice.show()
 	skill_panel.hide()
@@ -135,28 +142,37 @@ func _release_focus():
 
 ## ACTION MENU SIGNAL PROCESSORS
 func _on_attack_pressed() -> void:
+	toggle_option_selectable(false)
 	flag = 'Attack'
 	_release_focus()
 	start_choosing()
 
 func _on_skills_pressed() -> void:
+	toggle_option_selectable(false)
 	flag = 'Skills'
 	process_turns.current_player.show_skill_menu()
 	show_options()
 
 func _on_items_pressed() -> void:
+	toggle_option_selectable(false)
 	flag = 'Items'
 	process_turns.current_player.show_item_menu()
 	show_options()
 
 func _on_guard_pressed() -> void:
+	toggle_option_selectable(false)
 	flag = 'Guard'
 	_release_focus()
 	process_actions.action()
 
 func _on_run_pressed() -> void:
+	toggle_option_selectable(false)
 	if get_parent().forced:
 		Global.print_to_log('You cannot run!')
+		return
+	var confirm = await  Global.show_confirmation_box("Do you want to run?")
+	if not confirm:
+		toggle_option_selectable(true)
 		return
 	flag = 'Run'
 	_release_focus()
@@ -204,3 +220,8 @@ func _on_skill_panel_item_activated(idx: int) -> void:
 func _on_skill_panel_item_selected(_index: int) -> void:
 	if desc_box.visible:
 		desc_box.hide()
+
+
+func _on_skill_panel_hidden() -> void:
+	if not desc_box.visible and not skill_panel.visible:
+		desc_box.show()

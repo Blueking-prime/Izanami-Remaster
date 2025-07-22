@@ -35,12 +35,14 @@ func act():
 		advance_actor()
 		return
 
-	print(actor.character_name)
+	#print(actor.character_name)
 	#actor.focus()
 	if actor is Enemy:
+		process_input.input_disabled = true
 		await actor.battle_ai(player_array, enemy_array)
 		advance_actor()
 	else:
+		process_input.input_disabled = false
 		current_player = actor
 		process_input.show_choice()
 

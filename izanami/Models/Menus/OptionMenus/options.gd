@@ -7,6 +7,7 @@ class_name Options
 @export var option_scene: PackedScene
 
 var first_option: Option
+var last_focused_option: Option
 
 signal item_activated(index: int)
 signal item_selected(index: int)
@@ -25,8 +26,11 @@ func add_item(option_name: String, quantities: Array = []) -> Option:
 		option.add_label(str(i))
 
 	button_container.add_child(option)
+	option.root_menu = self
+
 	option.selected.connect(_on_option_selected)
 	option.activated.connect(_on_option_activated)
+	option.focus_lost.connect(_on_option_focus_lost)
 
 	return option
 
@@ -46,7 +50,31 @@ func _on_option_selected(index: int):
 func _on_option_activated(index: int):
 	item_activated.emit(index)
 
+func _on_option_focus_lost(option: Node):
+	last_focused_option = option
 
 func _on_focus_entered() -> void:
 	if button_container.get_children():
 		button_container.get_child(0).call_deferred('grab_focus')
+
+
+func _input(event: InputEvent) -> void:
+	if not visible: return
+
+	var current_focus = get_viewport().gui_get_focus_owner()
+	if not is_instance_valid(current_focus): return
+	if current_focus is not Option: return
+	if button_container != current_focus.get_parent(): return
+
+	var curr_index = current_focus.get_index()
+
+	if event.is_action_pressed("ui_down"):
+		if curr_index + 1 < button_container.get_child_count():
+			button_container.get_child(curr_index + 1).call_deferred('grab_focus')
+		else :
+			button_container.get_child(0).call_deferred('grab_focus')
+	if event.is_action_pressed("ui_up"):
+		if curr_index - 1 >= 0:
+			button_container.get_child(curr_index - 1).call_deferred('grab_focus')
+		else :
+			button_container.get_child(-1).call_deferred('grab_focus')

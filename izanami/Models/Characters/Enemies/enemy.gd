@@ -25,7 +25,7 @@ func  _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if freeze: return
 
-	#if not NavigationServer2D.map_get_iteration_id(nav_agent.get_navigation_map()): return
+	if not NavigationServer2D.map_get_iteration_id(nav_agent.get_navigation_map()): return
 
 	if chase_player:
 		if not Global.players.chased: Global.players.chased = true
