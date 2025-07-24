@@ -92,6 +92,9 @@ func rand_spread(chance: float, limit: int) -> int:
 func rand_chance(chance: float) -> bool:
 	return ALGORITHMS.rand_chance(chance)
 
+func set_seed(_seed: int = 0):
+	return ALGORITHMS.set_seed(_seed)
+
 func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []):
 	return ALGORITHMS.path(start, goal, walls, width, height, visited)
 

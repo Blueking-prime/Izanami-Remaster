@@ -13,8 +13,11 @@ class_name DungeonMap
 @export var noise_map: FastNoiseLite
 @export var legend: Array = ['I', 'O', '*', 'T', '█', 'E']
 @export var max_treasure_no: int = 5
+
 @export var upscale_factor: int = 2
-@export var wall_layer_steps: float = 0.2
+@export var path_noise_cutoff: float = 0
+@export var enemy_noise_cutoff: float
+@export var wall_layer_steps: float = abs(path_noise_cutoff * 2) if path_noise_cutoff else 0.2
 @export var max_layers: int = 4
 
 var start: Vector2i
@@ -40,7 +43,8 @@ func draw_new_map():
 	gererate_dungeon_layout_noise()
 	_fill_gaps_noise()
 
-	#upscale()
+	if upscale_factor > 1:
+		upscale()
 
 	_pad_tile(treasure_tiles)
 	_pad_tile([start, stop])
@@ -62,12 +66,13 @@ func upscale():
 	# [p] = [p0][pl]
 	#       [p2][p3]
 
+	wall_layer_steps *= upscale_factor
+
 	for y in range(height):
 		for x in range(width):
 			var coord: Vector2i = Vector2i(x, y)
-			for i in walls.keys():
-				if coord in walls[i]:
-					_upscale_wall(coord, new_walls.get_or_add(i, []))
+			if coord in walls[0]:
+				_upscale_wall(coord, new_walls)
 
 			if coord in treasure_tiles:
 				new_treasure_tiles.append(coord * upscale_factor)
@@ -89,11 +94,19 @@ func upscale():
 	start *= upscale_factor
 	stop *= upscale_factor
 
-func _upscale_wall(coord: Vector2i, store_array: Array):
-	store_array.append(coord * upscale_factor)
-	store_array.append(coord * upscale_factor + Vector2i.RIGHT)
-	store_array.append(coord * upscale_factor + Vector2i.DOWN)
-	store_array.append(coord * upscale_factor + Vector2i(1, 1))
+func _upscale_wall(coord: Vector2i, store_array: Dictionary):
+	var coord_1 = coord * upscale_factor
+	_generate_walls_layered(store_array, coord_1, noise_map.get_noise_2dv(coord_1 / upscale_factor))
+	var coord_2 = coord * upscale_factor + Vector2i.RIGHT
+	_generate_walls_layered(store_array, coord_2, noise_map.get_noise_2dv(coord_2 / upscale_factor))
+	var coord_3 = coord * upscale_factor + Vector2i.DOWN
+	_generate_walls_layered(store_array, coord_3, noise_map.get_noise_2dv(coord_3 / upscale_factor))
+	var coord_4 = coord * upscale_factor + Vector2i(1, 1)
+	_generate_walls_layered(store_array, coord_4, noise_map.get_noise_2dv(coord_4 / upscale_factor))
+	#store_array.append(coord * upscale_factor)
+	#store_array.append(coord * upscale_factor + Vector2i.RIGHT)
+	#store_array.append(coord * upscale_factor + Vector2i.DOWN)
+	#store_array.append(coord * upscale_factor + Vector2i(1, 1))
 
 
 func get_empty_tiles() -> Array[Vector2i]:
@@ -105,7 +118,7 @@ func get_empty_tiles() -> Array[Vector2i]:
 	for i in tiles:
 		if i.x >= width or i.y >= height:
 			print('Error tile: ',i)
-	print('Total tiles',tiles.size())
+	#print('Total tiles',tiles.size())
 	return tiles
 
 func _pad_tile(tile_set: Array[Vector2i]):
@@ -128,13 +141,13 @@ func _pad_tile(tile_set: Array[Vector2i]):
 					walls[j].erase(i)
 
 # Map geeration logic using noise
-func get_valid_point(constraint: float = 0) -> Vector2i:
+func get_valid_point(_cutoff: float = path_noise_cutoff) -> Vector2i:
 	var point = Global.rand_coord(width, height)
 
 	var count = 0
 	while true:
-		#print('Point: ', point, ' ', filled_coords, ' ', Global.path_checker.call(start, point, constraint), ' ', noise_map.get_noise_2dv(point))
-		if point not in filled_coords and Global.path_checker.call(start, point, constraint):
+		#print('Point: ', point, ' ', filled_coords, ' ', Global.path_checker.call(start, point, _cutoff), ' ', noise_map.get_noise_2dv(point))
+		if point not in filled_coords and Global.path_checker.call(start, point, _cutoff):
 			break
 		point = Global.rand_coord(width, height)
 		count += 1
@@ -169,11 +182,19 @@ func gererate_dungeon_layout_noise():
 	for i in treasure_no: treasure_tiles.append(get_valid_point())
 	#print('Treasures found')
 
-	for i in enemy_no: enemy_tiles.append(get_valid_point(0.2))
+	for i in enemy_no: enemy_tiles.append(get_valid_point(enemy_noise_cutoff + path_noise_cutoff))
 	#print('Enemies found')
 
 	width += 1
 	height += 1
+
+func _generate_walls_layered(store_array: Dictionary, coord: Vector2i, noise_value: float):
+	var layer = 0
+	var count = 0
+	while layer >= -1 and layer >= noise_value and count < max_layers:
+		store_array.get_or_add(count, []).append(coord)
+		layer -= wall_layer_steps
+		count += 1
 
 func _fill_gaps_noise():
 	var tiles = get_empty_tiles()
@@ -182,13 +203,8 @@ func _fill_gaps_noise():
 	for i in tiles:
 		var data = noise_map.get_noise_2dv(i)
 		##if not Global.path_checker.call(start, i):
-		if data < 0:
-			var layer = 0
-			var count = 0
-			while layer >= -1 and layer >= data and count < max_layers:
-				walls.get_or_add(count, []).append(i)
-				layer -= wall_layer_steps
-				count += 1
+		if data < path_noise_cutoff:
+			_generate_walls_layered(walls, i, data)
 
 		#if noise_map.get_noise_2dv(i):
 		##if not Global.path_checker.call(start, i):

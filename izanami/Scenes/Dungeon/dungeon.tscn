@@ -646,11 +646,16 @@ gear_chance = 0.5
 tilemap = NodePath("ObjectsSort/Walls")
 map_camera = NodePath("MapCam")
 
+[node name="FreeCam" parent="." index="2"]
+zoom_min = Vector2(0.5, 0.5)
+
 [node name="Map" type="Node" parent="." index="3"]
 script = ExtResource("3_kk8fo")
 noise_map = SubResource("FastNoiseLite_i4n0c")
 max_treasure_no = 10
 upscale_factor = 1
+path_noise_cutoff = -0.2
+enemy_noise_cutoff = 0.2
 wall_layer_steps = 0.3
 
 [node name="Background" parent="." index="4"]

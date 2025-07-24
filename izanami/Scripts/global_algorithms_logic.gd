@@ -52,8 +52,8 @@ func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int):
 					dsu.union(index1, index2)
 
 	# Step 2: Return a fast checker function
-	var checker: Callable = func (start: Vector2i, end: Vector2i, constraint: float = 0):
-		if (noise_map.get_noise_2dv(start) < constraint) or (noise_map.get_noise_2dv(end) < constraint):
+	var checker: Callable = func (start: Vector2i, end: Vector2i, cutoff: float = 0):
+		if (noise_map.get_noise_2dv(start) < cutoff) or (noise_map.get_noise_2dv(end) < cutoff):
 			return false
 		var start_index = start.y * width + start.x
 		var end_index = end.y * width + end.x
@@ -77,6 +77,17 @@ func rand_chance(chance: float) -> bool:
 		return true
 	else:
 		return false
+
+func set_seed(_seed: int = 0):
+	if not _seed:
+		if is_instance_valid(get_parent().players):
+			for i in get_parent().players.leader.character_name:
+				i = i as String
+				_seed *= i.unicode_at(0)
+		else :
+			_seed = Time.get_ticks_usec()
+	seed(_seed)
+	Checks._seed = _seed
 
 
 func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []):

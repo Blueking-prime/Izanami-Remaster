@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/detector.gd" id="6_g43wq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mmjfn"]
+radius = 9.48683
 
 [node name="Player" node_paths=PackedStringArray("gear", "detector", "skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
 collision_layer = 8

@@ -60,8 +60,8 @@ func render_objects():
 
 	_render_background()
 	_render_treasure_chests()
-	_render_inner_walls()
 	_render_outer_walls()
+	_render_inner_walls()
 	_render_entrance()
 	for i in wall_upper_layers:
 		i.render_objects()
@@ -92,8 +92,8 @@ func place_player():
 	if player_pos.y <= 0:
 		player_pos.y = Location.TILEMAP_CELL_SIZE
 
-	Global.players.position = player_pos
-	player.position = player_pos
+	Global.players.global_position = player_pos
+	player.global_position = player_pos
 
 func _place_enemies():
 	var enemy_set = enemy_types.load_all()
@@ -239,6 +239,6 @@ func center() -> Vector2:
 	return root_node.center()
 
 #Test
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("test"):
-		#_render_exit()
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("test"):
+		print("Player is at", player.global_position)

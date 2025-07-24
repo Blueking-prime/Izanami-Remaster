@@ -4,9 +4,9 @@ class_name FreeCam
 
 @export var speed: int = 500
 
-@export var zoom_step: Vector2 = Vector2(0.1, 0.1)
 @export var zoom_max: Vector2 = Vector2(4, 4)
-@export var zoom_min: Vector2 = zoom_step
+@export var zoom_min: Vector2 = Vector2(0.1, 0.1)
+@export var zoom_step: Vector2 = zoom_min
 
 var initial_zoom: Vector2
 

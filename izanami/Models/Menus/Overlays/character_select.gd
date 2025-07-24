@@ -109,7 +109,7 @@ func confirm_choice(card: PlayerDetailsCard):
 	player_node_container.remove_child(player)
 	player_party.add_to_party(player)
 	player_party.load_party()
-
+	Global.set_seed()
 	print(player_party)
 	print(player_party.get_children())
 	hide()

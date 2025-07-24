@@ -1,5 +1,8 @@
 extends Node
 
+
+@export var _seed: int = 0
+
 #// SETTINGS FLAGS //#
 # Text settings
 @export var scroll: bool = true
@@ -21,3 +24,9 @@ var inventory_tab: int = 0
 var battle_option: int = 0
 var skill_option: int = 0
 var item_option: int = 0
+
+func save():
+	pass
+
+func load():
+	pass

@@ -35,18 +35,6 @@ func _check_building(node: Variant):
 	#if event.is_action_pressed("ui_end"):
 		#func_church()
 
-
-func size() -> Vector2:
-	# return tile_map.get_used_rect().size
-	# Replace with above when tilemap is created
-	return Vector2(100, 100)
-
-func center() -> Vector2:
-	#return tile_map.center()
-	# Replace with above when tilemap is created
-	return Vector2(50, 50)
-
-
 func save() -> TownSaveData:
 	var save_data: TownSaveData = TownSaveData.new()
 

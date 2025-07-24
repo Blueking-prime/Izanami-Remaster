@@ -13,13 +13,16 @@ func setup_map():
 	if scene:
 		var map_size: Vector2 = scene.size()
 		var screen_size: Vector2 = get_viewport().size
-
 		var map_scale = map_size / screen_size
+		#print('Map Size: ', map_size)
+		#print('Screen Size: ', screen_size)
+		#print('Map Scale: ', map_scale)
 
 		if map_size and map_scale:
 			zoom.x = min(map_size.x, map_scale.y) * map_zoom_factor
 			zoom.y = zoom.x
 
+		#print('Zoom: ', zoom)
 		position = scene.center()
 
 func show_map():
