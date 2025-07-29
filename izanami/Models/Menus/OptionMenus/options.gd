@@ -7,7 +7,6 @@ class_name Options
 @export var option_scene: PackedScene
 
 var first_option: Option
-var last_focused_option: Option
 
 signal item_activated(index: int)
 signal item_selected(index: int)
@@ -30,7 +29,6 @@ func add_item(option_name: String, quantities: Array = []) -> Option:
 
 	option.selected.connect(_on_option_selected)
 	option.activated.connect(_on_option_activated)
-	option.focus_lost.connect(_on_option_focus_lost)
 
 	return option
 
@@ -49,9 +47,6 @@ func _on_option_selected(index: int):
 
 func _on_option_activated(index: int):
 	item_activated.emit(index)
-
-func _on_option_focus_lost(option: Node):
-	last_focused_option = option
 
 func _on_focus_entered() -> void:
 	if button_container.get_children():

@@ -20,6 +20,7 @@ extends CharacterBody2D
 @export var indicator: TextureRect
 @export var battle_sprite_texture: TextureRect
 
+@export var original_battle_sprite_control: BattleSprite
 @export var battle_sprite: BattleSprite
 @export var dungeon_sprite: Sprite2D
 @export var hitbox: CollisionShape2D
@@ -114,6 +115,70 @@ func target():
 
 func untarget():
 	pointer.hide()
+
+
+func assign_ui_element_to_character(ui_object: Control):
+	if 'nametag' in ui_object and is_instance_valid(ui_object.nametag):
+		ui_object.nametag.text = nametag.text
+		nametag = ui_object.nametag
+
+	if 'status_icons' in ui_object and is_instance_valid(ui_object.status_icons):
+		status_icons = ui_object.status_icons
+
+	if 'battle_sprite_texture' in ui_object and is_instance_valid(ui_object.battle_sprite_texture):
+		ui_object.battle_sprite_texture.texture = battle_sprite_texture.texture
+		battle_sprite_texture = ui_object.battle_sprite_texture
+
+	if 'dungeon_sprite_texture' in ui_object and is_instance_valid(ui_object.dungeon_sprite_texture):
+		#ui_object.dungeon_sprite_texture as Sprite2D
+		ui_object.dungeon_sprite_texture.texture = dungeon_sprite.texture
+		dungeon_sprite = ui_object.dungeon_sprite
+
+	if 'pointer' in ui_object and is_instance_valid(ui_object.pointer):
+		pointer = ui_object.pointer
+
+	if 'indicator' in ui_object and is_instance_valid(ui_object.indicator):
+		indicator = ui_object.indicator
+
+	if 'hp_bar' in ui_object and is_instance_valid(ui_object.hp_bar):
+		ui_object.hp_bar.value = hp_bar.value
+		hp_bar = ui_object.hp_bar
+
+	if 'hp_bar_text' in ui_object and is_instance_valid(ui_object.hp_bar_text):
+		ui_object.hp_bar_text.text = hp_bar_text.text
+		hp_bar_text = ui_object.hp_bar_text
+
+	if 'sp_bar' in ui_object and is_instance_valid(ui_object.sp_bar):
+		ui_object.sp_bar.value = sp_bar.value
+		sp_bar = ui_object.sp_bar
+
+	if 'sp_bar_text' in ui_object and is_instance_valid(ui_object.sp_bar_text):
+		ui_object.sp_bar_text.text = sp_bar_text.text
+		sp_bar_text = ui_object.sp_bar_text
+
+func reset_ui_elements():
+	battle_sprite = original_battle_sprite_control
+
+	original_battle_sprite_control.nametag.text = nametag.text
+	nametag = original_battle_sprite_control.nametag
+
+	status_icons = original_battle_sprite_control.status_icons
+
+	original_battle_sprite_control.battle_sprite_texture.texture = battle_sprite_texture.texture
+	battle_sprite_texture = original_battle_sprite_control.battle_sprite_texture
+
+	pointer = original_battle_sprite_control.pointer
+	indicator = original_battle_sprite_control.indicator
+
+	original_battle_sprite_control.hp_bar.value = hp_bar.value
+	hp_bar = original_battle_sprite_control.hp_bar
+	original_battle_sprite_control.hp_bar_text.text = hp_bar_text.text
+	hp_bar_text = original_battle_sprite_control.hp_bar_text
+
+	original_battle_sprite_control.sp_bar.value = sp_bar.value
+	sp_bar = original_battle_sprite_control.sp_bar
+	original_battle_sprite_control.sp_bar_text.text = sp_bar_text.text
+	sp_bar_text = original_battle_sprite_control.sp_bar_text
 
 
 func update_stats():

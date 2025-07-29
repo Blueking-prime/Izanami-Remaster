@@ -10,7 +10,6 @@ var root_menu: Options
 
 signal activated(index: int)
 signal selected(index: int)
-signal focus_lost(node: Node)
 
 func add_label(quantity_text: String):
 	var quantity: Label = Label.new()
@@ -32,7 +31,3 @@ func _on_focus_entered() -> void:
 
 func _on_button_down() -> void:
 	activated.emit(get_index())
-
-
-func _on_focus_exited() -> void:
-	focus_lost.emit(self)

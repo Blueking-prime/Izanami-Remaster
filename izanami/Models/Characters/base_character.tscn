@@ -20,7 +20,7 @@
 custom_solver_bias = 1.0
 radius = 8.0
 
-[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "nametag", "status_icons", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "battle_sprite", "dungeon_sprite", "hitbox")]
+[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "nametag", "status_icons", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "original_battle_sprite_control", "battle_sprite", "dungeon_sprite", "hitbox")]
 script = ExtResource("1_e6dxp")
 skills = NodePath("Skills")
 items = NodePath("Items")
@@ -34,6 +34,7 @@ sp_bar_text = NodePath("BattleSprite/VBox/SPBar/SPBarText")
 pointer = NodePath("BattleSprite/VBox/BattleSprite/Pointer")
 indicator = NodePath("BattleSprite/VBox/BattleSprite/Indicator")
 battle_sprite_texture = NodePath("BattleSprite/VBox/BattleSprite")
+original_battle_sprite_control = NodePath("BattleSprite")
 battle_sprite = NodePath("BattleSprite")
 dungeon_sprite = NodePath("DungeonSprite")
 hitbox = NodePath("Hitbox")

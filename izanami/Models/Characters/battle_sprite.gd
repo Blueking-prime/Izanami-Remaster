@@ -4,7 +4,7 @@ class_name BattleSprite
 
 @export var nametag: Label
 @export var status_icons: GridContainer
-@export var battle_sprite: TextureRect
+@export var battle_sprite_texture: TextureRect
 @export var pointer: TextureRect
 @export var indicator: TextureRect
 @export var hp_bar: ProgressBar

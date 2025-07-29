@@ -2,6 +2,7 @@ extends HBoxContainer
 
 class_name PlayerDataCard
 
+@export var player: Player
 @export var sprite: TextureRect
 @export var nametag: Label
 @export var hp_bar: ProgressBar

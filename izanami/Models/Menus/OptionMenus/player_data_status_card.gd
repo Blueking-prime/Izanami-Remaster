@@ -32,6 +32,8 @@ class_name PlayerStatusCard
 
 @export var extra_details_card: Control
 
+@export var player: Player
+
 signal selected(node: PlayerStatusCard)
 
 func _on_button_pressed() -> void:

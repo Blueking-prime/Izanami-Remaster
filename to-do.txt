@@ -41,13 +41,14 @@ TASKS (WORKABLE)
 - [ ] Implement quests, quest label in UI and add quest markers to map
 - [ ] Implement accessibility settings
 - [ ] implement graphics settings
-= [ ] Optimize player data card updating
 - [ ] Replace save option in dungeon with autosave on floor transition
 - [ ] Make exit send to next level of dungeon
 - [ ] Sectionalize dungeon map generation to increase size of generated map
 - [ ] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering
 - [ ] Add water/lava in dungeons
 - [ ] Add saving and loading checks data
+- [x] Change logic for assigning dynamic UI elements to player function.
+= [x] Optimize player data card updating
 - [x] improve map zoomout logic calculation
 - [x] Finetune noise parameters and change renderer to accomodate  noise geenration
 - [x] Switch to DSU for map path confirmation
