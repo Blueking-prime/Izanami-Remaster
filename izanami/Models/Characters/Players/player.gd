@@ -137,7 +137,8 @@ func _display_skills():
 	for i in get_skills():
 		skill_menu.add_item(i.name, [str(i.cost)])
 
-func show_skill_menu():
+func show_skill_menu(menu: Options):
+	skill_menu = menu
 	skill_menu.show()
 	if not skill_menu.item_selected.is_connected(_on_skill_list_selected): skill_menu.item_selected.connect(_on_skill_list_selected)
 	_display_skills()
@@ -155,7 +156,8 @@ func _display_items():
 	for i in _items:
 		item_menu.add_item(i, [str(len(_items[i]))])
 
-func show_item_menu():
+func show_item_menu(menu: Options):
+	item_menu = menu
 	item_menu.show()
 	if not item_menu.item_selected.is_connected(_on_item_list_selected): item_menu.item_selected.connect(_on_item_list_selected)
 	_display_items()

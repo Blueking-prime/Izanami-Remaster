@@ -36,13 +36,18 @@ skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
 desc_box_parent = NodePath("../CanvasLayer/ActionBoxUI/VBox")
 action_log = NodePath("../CanvasLayer/ActionBoxUI/VBox/LogPanel/ScrollContainer/MarginContainer/LogText")
 
-[node name="Input" type="Node" parent="." node_paths=PackedStringArray("choice", "skill_panel", "dummy_control", "desc_box", "dummy_option")]
+[node name="Input" type="Node" parent="." node_paths=PackedStringArray("choice", "skill_panel", "dummy_control", "desc_box", "dummy_option", "attack_button", "skills_button", "items_button", "guard_button", "run_button")]
 script = ExtResource("4_1gqnq")
 choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
 skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
 dummy_control = NodePath("../DummyControl")
 desc_box = NodePath("../CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
 dummy_option = NodePath("../CanvasLayer/ActionBoxUI/DummyOption")
+attack_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Attack")
+skills_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Skills")
+items_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Items")
+guard_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Guard")
+run_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Run")
 
 [node name="KeyProcessing" type="Node" parent="Input" node_paths=PackedStringArray("log_panel")]
 script = ExtResource("5_6gl7k")

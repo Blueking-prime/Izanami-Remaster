@@ -21,9 +21,31 @@ var dungeons: Dictionary = {
 
 ## Menu persistance
 var inventory_tab: int = 0
-var battle_option: int = 0
-var skill_option: int = 0
-var item_option: int = 0
+var battle_option: Dictionary = {}
+var skill_option: Dictionary = {}
+var item_option: Dictionary = {}
+
+## PERSISTENCE HANDLING
+func set_action_persistence(_key: Variant, _id: int):
+	if _key in battle_option:
+		battle_option[_key] = _id
+	else :
+		battle_option.get_or_add(_key, _id)
+
+func set_skill_persistence(_key: Variant, _id: int):
+	if _key in skill_option:
+		skill_option[_key] = _id
+	else :
+		skill_option.get_or_add(_key, _id)
+
+func set_item_persistence(_key: Variant, _id: int):
+	if _key in item_option:
+		item_option[_key] = _id
+	else :
+		item_option.get_or_add(_key, _id)
+
+func clean_persistence():
+	pass
 
 func save():
 	pass

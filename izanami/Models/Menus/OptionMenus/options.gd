@@ -39,8 +39,23 @@ func add_icon_item(icon: Texture2D, option_name: String, quantities: Array = [])
 
 	return option
 
+func get_item_option(index: int) -> Option:
+	if index < button_container.get_child_count():
+		return button_container.get_child(index)
+	else :
+		return button_container.get_child(-1)
+
 func get_item_text(index: int) -> String:
-	return button_container.get_child(index).option_name.text
+	return get_item_option(index).option_name.text
+
+func disable():
+	for i in button_container.get_children():
+		i.disabled = true
+
+func enable():
+	for i in button_container.get_children():
+		i.disabled = false
+
 
 func _on_option_selected(index: int):
 	item_selected.emit(index)

@@ -8,10 +8,29 @@ class_name BattleInput
 @export var desc_box: Control
 @export var dummy_option: Button
 
+@export var attack_button: Button
+@export var skills_button: Button
+@export var items_button: Button
+@export var guard_button: Button
+@export var run_button: Button
 
 @onready var setup: BattleSetup = get_parent().setup
 @onready var process_turns: BattleTurns = get_parent().process_turns
 @onready var process_actions: BattleActions = get_parent().process_actions
+
+var current_player: Player:
+	get():
+		return process_turns.current_player
+
+var target:
+	get():
+		return process_actions.target
+	set(arg):
+		process_actions.target = arg
+
+var actors: Array:
+	get():
+		return process_turns.actors
 
 var targetting: bool = false
 var index: int = 0
@@ -35,19 +54,19 @@ func _left_press():
 			index -= 1
 			switch_focus(index, index + 1)
 		else:
-			index = process_turns.actors.size() - 1
+			index = actors.size() - 1
 			switch_focus(index, 0)
 
 func _right_press():
 	if aoe_targetting:
 		switch_focus_aoe()
 	else:
-		if index < process_turns.actors.size() - 1:
+		if index < actors.size() - 1:
 			index += 1
 			switch_focus(index, index - 1)
 		else:
 			index = 0
-			switch_focus(index, process_turns.actors.size() - 1)
+			switch_focus(index, actors.size() - 1)
 
 func _up_or_down_press():
 	if aoe_targetting:
@@ -65,22 +84,21 @@ func _set_target_by_index(event: InputEvent):
 	if not aoe_targetting:
 		var key = int(event.as_text().trim_prefix('Kp ')) - 1
 		print(key)
-		if key < process_turns.actors.size():
+		if key < actors.size():
 			switch_focus(key, index)
 			index = key
 
-
 func _cancel_targetting():
-	process_turns.current_player.reset_menu()
+	current_player.reset_menu()
 	skill_panel.hide()
 	show_choice()
 	reset_target()
 
 ## TARGET FOCUS FUNCTIONS
 func switch_focus(x, y):
-	process_turns.actors[y].untarget()
-	process_actions.target = process_turns.actors[x]
-	process_turns.actors[x].target()
+	actors[y].untarget()
+	target = actors[x]
+	actors[x].target()
 
 func switch_focus_aoe():
 	if target_group == process_turns.enemy_array:
@@ -92,7 +110,7 @@ func switch_focus_aoe():
 	for i in target_group:
 		i.target()
 
-	process_actions.target = target_group
+	target = target_group
 
 func start_choosing():
 	targetting = true
@@ -100,8 +118,8 @@ func start_choosing():
 	if offense:
 		index = process_turns.player_array.size()
 
-	process_turns.actors[index].target()
-	process_actions.target = process_turns.actors[index]
+	actors[index].target()
+	target = actors[index]
 
 func start_choosing_aoe():
 	targetting = true
@@ -116,24 +134,37 @@ func start_choosing_aoe():
 	for i in target_group:
 		i.target()
 
-	process_actions.target = target_group
+	target = target_group
 
 func reset_target():
 	index = 0
-	for actor in process_turns.actors:
+	for actor in actors:
 		if is_instance_valid(actor): actor.untarget()
 
-	process_actions.target = null
+	target = null
 
 func show_choice():
 	toggle_option_selectable(true)
 	targetting = false
 	choice.show()
 	skill_panel.hide()
-	choice.get_child(0).call_deferred('grab_focus')
+	if current_player in Checks.battle_option:
+		choice.get_child(Checks.battle_option[current_player]).call_deferred('grab_focus')
+	else:
+		choice.get_child(0).call_deferred('grab_focus')
 
 func show_options():
+	skill_panel.enable()
 	skill_panel.grab_focus()
+	print(current_player)
+	match flag:
+		'Items':
+			if current_player in Checks.item_option:
+				skill_panel.get_item_option(Checks.item_option[current_player]).call_deferred('grab_focus')
+		'Skills':
+			if current_player in Checks.skill_option:
+				skill_panel.get_item_option(Checks.skill_option[current_player]).call_deferred('grab_focus')
+
 	choice.hide()
 
 func _release_focus():
@@ -144,24 +175,28 @@ func _release_focus():
 func _on_attack_pressed() -> void:
 	toggle_option_selectable(false)
 	flag = 'Attack'
+	Checks.set_action_persistence(current_player, attack_button.get_index())
 	_release_focus()
 	start_choosing()
 
 func _on_skills_pressed() -> void:
 	toggle_option_selectable(false)
 	flag = 'Skills'
-	process_turns.current_player.show_skill_menu()
+	Checks.set_action_persistence(current_player, skills_button.get_index())
+	current_player.show_skill_menu(skill_panel)
 	show_options()
 
 func _on_items_pressed() -> void:
 	toggle_option_selectable(false)
 	flag = 'Items'
-	process_turns.current_player.show_item_menu()
+	Checks.set_action_persistence(current_player, items_button.get_index())
+	current_player.show_item_menu(skill_panel)
 	show_options()
 
 func _on_guard_pressed() -> void:
 	toggle_option_selectable(false)
 	flag = 'Guard'
+	Checks.set_action_persistence(current_player, guard_button.get_index())
 	_release_focus()
 	process_actions.action()
 
@@ -175,6 +210,7 @@ func _on_run_pressed() -> void:
 		toggle_option_selectable(true)
 		return
 	flag = 'Run'
+	Checks.set_action_persistence(current_player, run_button.get_index())
 	_release_focus()
 	process_actions.action()
 
@@ -182,19 +218,21 @@ func _on_run_pressed() -> void:
 ## SIGNALS
 func _on_skill_panel_item_activated(idx: int) -> void:
 	_release_focus()
-	process_turns.current_player.active_selection = idx
+	current_player.active_selection = idx
+	skill_panel.disable()
 
 	var aoe_check: bool = false
 	if flag == 'Skills':
-		var skill: Skill = process_turns.current_player.get_skills()[process_turns.current_player.active_selection]
+		Checks.set_skill_persistence(current_player, idx)
+		var skill: Skill = current_player.get_skills()[current_player.active_selection]
 		if skill.aoe:
 			aoe_check = true
 		if skill.universal:
-			process_actions.target = process_turns.actors
+			target = actors
 			process_actions.action()
 			return
 		if not skill.targetable:
-			process_actions.target = process_turns.current_player
+			target = current_player
 			process_actions.action()
 			return
 		if skill is Offensive_Skill:
@@ -202,11 +240,12 @@ func _on_skill_panel_item_activated(idx: int) -> void:
 		if skill is Heal_Skill:
 			offense = false
 	if flag == 'Items':
-		var item: Item = process_turns.current_player.items.get_item(skill_panel.list.get_item_text(idx))
+		Checks.set_item_persistence(current_player, idx)
+		var item: Item = current_player.items.get_item(skill_panel.get_item_text(idx))
 		if item.aoe:
 			aoe_check = true
 		if item.universal:
-			process_actions.target = process_turns.actors
+			target = actors
 			process_actions.action()
 			return
 

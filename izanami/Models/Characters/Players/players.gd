@@ -166,38 +166,40 @@ func place_characters_in_battle():
 	for i in party:
 		var sprite: BattleSprite = battle_sprite_scene.instantiate()
 
-		sprite.battle_sprite.texture = i.battle_sprite_texture.texture
-		sprite.nametag.text = i.battle_sprite.nametag.text
-		sprite.hp_bar_text.text = str(i.hp) + ' / ' + str(i.max_hp)
-		sprite.sp_bar_text.text = str(i.sp) + ' / ' + str(i.max_sp)
-
-		i.nametag = sprite.nametag
-		i.status_icons = sprite.status_icons
-		i.hp_bar = sprite.hp_bar
-		i.hp_bar_text = sprite.hp_bar_text
-		i.sp_bar = sprite.sp_bar
-		i.sp_bar_text = sprite.sp_bar_text
-		i.pointer = sprite.pointer
-		i.indicator = sprite.indicator
-		i.battle_sprite_texture = sprite.battle_sprite
-
-		i.battle_sprite = sprite
+		#sprite.battle_sprite.texture = i.battle_sprite_texture.texture
+		#sprite.nametag.text = i.battle_sprite.nametag.text
+		#sprite.hp_bar_text.text = str(i.hp) + ' / ' + str(i.max_hp)
+		#sprite.sp_bar_text.text = str(i.sp) + ' / ' + str(i.max_sp)
+#
+		#i.nametag = sprite.nametag
+		#i.status_icons = sprite.status_icons
+		#i.hp_bar = sprite.hp_bar
+		#i.hp_bar_text = sprite.hp_bar_text
+		#i.sp_bar = sprite.sp_bar
+		#i.sp_bar_text = sprite.sp_bar_text
+		#i.pointer = sprite.pointer
+		#i.indicator = sprite.indicator
+		#i.battle_sprite_texture = sprite.battle_sprite
+#
+		#i.battle_sprite = sprite
+		i.assign_ui_element_to_character(sprite)
 
 		player_section.add_child(sprite)
 
 		i.battle_display()
 
 func revert_sprites():
-	for i in len(party):
-		party[i].battle_sprite = sprites[i]
-		party[i].pointer = sprites[i].pointer
-		party[i].indicator = sprites[i].indicator
+	for i in party:
+		i.reset_ui_elements()
+		#party[i].battle_sprite = sprites[i]
+		#party[i].pointer = sprites[i].pointer
+		#party[i].indicator = sprites[i].indicator
 
 func place_menu():
 	for i in party:
 		party_panels.get_or_add(i, [i.item_menu, i.skill_menu])
-		i.item_menu = skill_panel
-		i.skill_menu = skill_panel
+		#i.item_menu = skill_panel
+		#i.skill_menu = skill_panel
 
 func revert_menu():
 	for i in party:

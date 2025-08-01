@@ -45,7 +45,7 @@ func action(obj: Base_Character, target: Variant) -> bool:
 	return true
 
 func act(obj: Base_Character, target: Base_Character):
-	target = target as Base_Character
+	#target = target as Base_Character
 
 	if target.statuses.counterstance:
 		target.statuses.counterstance = false

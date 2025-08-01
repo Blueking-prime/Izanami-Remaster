@@ -24,6 +24,7 @@ func action():
 	process_input.targetting = false
 	process_input.aoe_targetting = false
 	process_turns.current_player.reset_menu()
+	Global.players.revert_menu()
 	process_input.desc_box.show()
 	process_turns.advance_actor()
 

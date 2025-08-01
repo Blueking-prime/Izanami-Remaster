@@ -13,6 +13,7 @@ BUG FIXES
 - [ ] Figure out object sorting
 - [ ] Fix dungeon sprite not displaying after battle exit (Might have to do with status icon crash or maybe battle sprite is misbehaving again. try to create supe in sprite creation function. Could also be variable name conflict)
 - [ ] improve navigation performance
+- [x] Fix always searching item list fro description even when skill menu displayed
 - [x] Fix inventory skill menu grab focus
 - [x] Prevent input during guard and run (non-targeting and enemy action) animation in battle
 - [x] Fix map key not opening map but able to close map and also map button completely working
@@ -47,6 +48,8 @@ TASKS (WORKABLE)
 - [ ] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering
 - [ ] Add water/lava in dungeons
 - [ ] Add saving and loading checks data
+- [x] Apply sprite assignment logic changes to battle scene
+- [x] Implement Persistence toggles for inventory menu
 - [x] Change logic for assigning dynamic UI elements to player function.
 = [x] Optimize player data card updating
 - [x] improve map zoomout logic calculation
