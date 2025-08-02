@@ -65,6 +65,7 @@ func _on_item_selected(index: int) -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		options.grab_focus()
+		Checks.inventory_tab = get_index()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and target_selector.visible:

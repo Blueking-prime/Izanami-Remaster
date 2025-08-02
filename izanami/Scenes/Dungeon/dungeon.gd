@@ -12,6 +12,7 @@ var dungeon_sample = [
 
 ## CHILD NODES
 @export var map: DungeonMap
+@export var wall_layers: Node2D
 
 #@export var navigation_region: NavigationRegion2D
 @export var enemy_display: DungeonEnemyDisplay
@@ -158,7 +159,7 @@ func initiate_battle():
 	battle.enemy_level = enemy_level
 	#player.in_battle = true
 	background.hide()
-	tilemap.hide()
+	objectsort.hide()
 	# Slight delay to allow game finich cleaning up resources after previous battle
 	#await get_tree().create_timer(1).timeout
 	call_deferred("add_sibling", battle)
@@ -185,7 +186,7 @@ func _on_detector_hit_enemy(body: Enemy) -> void:
 
 func reset_from_battle():
 	background.show()
-	tilemap.show()
+	objectsort.show()
 	overlay.load_ui_elements()
 	enemy_display.update_display()
 	overlay.show()

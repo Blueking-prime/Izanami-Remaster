@@ -13,6 +13,8 @@ BUG FIXES
 - [ ] Figure out object sorting
 - [ ] Fix dungeon sprite not displaying after battle exit (Might have to do with status icon crash or maybe battle sprite is misbehaving again. try to create supe in sprite creation function. Could also be variable name conflict)
 - [ ] improve navigation performance
+- [ ] Fix enemies not moving
+- [x] Fix camera inverting if map amaller than viewport
 - [x] Fix always searching item list fro description even when skill menu displayed
 - [x] Fix inventory skill menu grab focus
 - [x] Prevent input during guard and run (non-targeting and enemy action) animation in battle

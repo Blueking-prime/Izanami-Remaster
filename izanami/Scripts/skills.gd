@@ -30,4 +30,5 @@ func update_skills() -> void:
 
 
 func get_skills() -> Array:
+	_skills.sort_custom(func (x: Skill,y: Skill): return x.name < y.name)
 	return _skills

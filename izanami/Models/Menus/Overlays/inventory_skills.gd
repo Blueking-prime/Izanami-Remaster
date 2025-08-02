@@ -36,6 +36,7 @@ func _clear_data_cards():
 func _on_visibility_changed() -> void:
 	if get_child(0) and visible:
 		get_child(0).options.grab_focus()
+		Checks.inventory_tab = get_index()
 
 
 func _input(event: InputEvent) -> void:

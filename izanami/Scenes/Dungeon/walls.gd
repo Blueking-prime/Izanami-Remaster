@@ -5,7 +5,7 @@ class_name DungeonObjects
 
 @onready var root_node: Dungeon:
 	get():
-		return get_parent().get_parent()
+		return get_parent().get_parent().get_parent()
 
 @onready var map: DungeonMap:
 	get():

@@ -87,7 +87,7 @@ func set_seed(_seed: int = 0):
 		else :
 			_seed = Time.get_ticks_usec()
 	seed(_seed)
-	Checks._seed = _seed
+	Checks.custom_seed = _seed
 
 
 func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []):

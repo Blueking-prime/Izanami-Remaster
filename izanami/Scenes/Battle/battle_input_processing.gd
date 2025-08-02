@@ -260,7 +260,6 @@ func _on_skill_panel_item_selected(_index: int) -> void:
 	if desc_box.visible:
 		desc_box.hide()
 
-
 func _on_skill_panel_hidden() -> void:
 	if not desc_box.visible and not skill_panel.visible:
 		desc_box.show()

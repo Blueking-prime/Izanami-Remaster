@@ -71,12 +71,16 @@ func switch_leader(_index: int):
 
 	# Transfer signal connections on old leader to new leader
 	for i in old_leader.get_signal_list():
+		if i in party[_index].get_signal_list(): continue
+
 		for j in old_leader.get_signal_connection_list(i.name):
 			old_leader.disconnect(i.name, j.callable)
 			party[_index].connect(i.name, j.callable, j.flags)
 
 	# Transfer signal connections on old leader's detector to new leader
 	for i in old_leader.detector.get_signal_list():
+		if i in party[_index].detector.get_signal_list(): continue
+
 		for j in old_leader.detector.get_signal_connection_list(i.name):
 			old_leader.detector.disconnect(i.name, j.callable)
 			party[_index].detector.connect(i.name, j.callable, j.flags)

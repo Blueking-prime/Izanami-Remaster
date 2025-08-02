@@ -96,6 +96,8 @@ func show_confirmation_box(prompt: String):
 
 	await get_parent().confirmation_box_triggered
 
+	get_parent().confirmation_box.hide()
+
 	return get_parent().confrimation_response
 
 

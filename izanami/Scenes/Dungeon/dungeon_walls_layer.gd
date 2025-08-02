@@ -5,7 +5,7 @@ class_name DungeonWallsLayer
 
 @onready var root_node: Dungeon:
 	get():
-		return get_parent().get_parent()
+		return get_parent().get_parent().get_parent()
 
 @onready var map: DungeonMap:
 	get():
@@ -30,7 +30,37 @@ func render_objects():
 	upscale_factor = map.upscale_factor
 	#print('walls = ', walls)
 
+	_render_outer_walls()
 	_render_walls()
+
+
+func _render_outer_walls():
+	var outer_walls: Array[Vector2i] = []
+	for i in range(-1, upscale_factor * height):
+		#var wall_block_left
+		outer_walls.append_array([
+			Vector2i(0            , i),
+			Vector2i(0            , i + 1),
+			Vector2i(-1           , i),
+			Vector2i(-1           , i + 1),
+			Vector2i(upscale_factor * width - 1, i),
+			Vector2i(upscale_factor * width - 1, i + 1),
+			Vector2i(upscale_factor * width    , i),
+			Vector2i(upscale_factor * width    , i + 1),
+		])
+	for i in range(-1, upscale_factor * width):
+		outer_walls.append_array([
+			Vector2i(i    , -1),
+			Vector2i(i + 1, -1),
+			Vector2i(i    , 0),
+			Vector2i(i + 1, 0),
+			Vector2i(i    , upscale_factor * height),
+			Vector2i(i + 1, upscale_factor * height),
+			Vector2i(i    , upscale_factor * height - 1),
+			Vector2i(i + 1, upscale_factor * height - 1),
+		])
+
+	set_cells_terrain_connect(outer_walls, wall_terrain_set, wall_terrain, false)
 
 
 func _render_walls():

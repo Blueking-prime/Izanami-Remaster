@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 @export var nametag: Label
 
-@export var status_icons: GridContainer
+@export var status_icon_container: GridContainer
 
 @export var hp_bar: ProgressBar
 @export var hp_bar_text: Label
@@ -123,7 +123,7 @@ func assign_ui_element_to_character(ui_object: Control):
 		nametag = ui_object.nametag
 
 	if 'status_icons' in ui_object and is_instance_valid(ui_object.status_icons):
-		status_icons = ui_object.status_icons
+		status_icon_container = ui_object.status_icons
 
 	if 'battle_sprite_texture' in ui_object and is_instance_valid(ui_object.battle_sprite_texture):
 		ui_object.battle_sprite_texture.texture = battle_sprite_texture.texture
@@ -162,7 +162,7 @@ func reset_ui_elements():
 	original_battle_sprite_control.nametag.text = nametag.text
 	nametag = original_battle_sprite_control.nametag
 
-	status_icons = original_battle_sprite_control.status_icons
+	status_icon_container = original_battle_sprite_control.status_icons
 
 	original_battle_sprite_control.battle_sprite_texture.texture = battle_sprite_texture.texture
 	battle_sprite_texture = original_battle_sprite_control.battle_sprite_texture

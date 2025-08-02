@@ -1,7 +1,7 @@
 extends Node
 
 
-@export var _seed: int = 0
+@export var custom_seed: int = 0
 
 #// SETTINGS FLAGS //#
 # Text settings
@@ -45,7 +45,17 @@ func set_item_persistence(_key: Variant, _id: int):
 		item_option.get_or_add(_key, _id)
 
 func clean_persistence():
-	pass
+	for i in battle_option:
+		if i not in Global.players.party:
+			battle_option.erase(i)
+
+	for i in skill_option:
+		if i not in Global.players.party:
+			skill_option.erase(i)
+
+	for i in item_option:
+		if i not in Global.players.party:
+			item_option.erase(i)
 
 func save():
 	pass

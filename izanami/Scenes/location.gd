@@ -58,14 +58,14 @@ func size() -> Vector2:
 		var _size: Vector2 = tilemap.get_used_rect().size  * TILEMAP_CELL_SIZE
 		if _size: return _size
 
-	return Vector2(1000, 1000)
+	return Vector2(2000, 1000)
 
 func center() -> Vector2:
 	if tilemap:
 		var _center: Vector2 = tilemap.get_used_rect().get_center() * TILEMAP_CELL_SIZE
 		if _center: return _center
 
-	return Vector2(500, 500)
+	return size() / 2
 
 func _on_map_loaded():
 	if camera: camera.init_camera()

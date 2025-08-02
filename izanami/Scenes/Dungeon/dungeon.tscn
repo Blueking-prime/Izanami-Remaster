@@ -626,12 +626,13 @@ sources/1 = SubResource("TileSetAtlasSource_p70xp")
 sources/2 = SubResource("TileSetAtlasSource_hedow")
 sources/0 = SubResource("TileSetAtlasSource_wq0ci")
 
-[node name="Dungeon" node_paths=PackedStringArray("map", "enemy_display", "tilemap", "map_camera") instance=ExtResource("1_pweoc")]
+[node name="Dungeon" node_paths=PackedStringArray("map", "wall_layers", "enemy_display", "tilemap", "map_camera") instance=ExtResource("1_pweoc")]
 script = ExtResource("2_g8y5j")
 map = NodePath("Map")
+wall_layers = NodePath("ObjectsSort/WallLayers")
 enemy_display = NodePath("CanvasLayer/EnemyDisplay")
-width = 60
-height = 40
+width = 64
+height = 36
 new_map = true
 enemy_types = ExtResource("3_khi17")
 MAX_ENEMIES = 3
@@ -640,10 +641,10 @@ enemy_level = 1
 dungeon_name = "test"
 item_drop_group = ExtResource("4_1cpbm")
 gear_drop_group = ExtResource("5_uay2u")
-enemy_spawn_chance = 0.0
+enemy_spawn_chance = 1.0
 treasure_spawn_chance = 0.2
 gear_chance = 0.5
-tilemap = NodePath("ObjectsSort/Walls")
+tilemap = NodePath("ObjectsSort/WallLayers/Walls")
 map_camera = NodePath("MapCam")
 
 [node name="FreeCam" parent="." index="2"]
@@ -664,7 +665,9 @@ visible = false
 [node name="ObjectsSort" parent="." index="5"]
 y_sort_enabled = false
 
-[node name="Walls" type="TileMapLayer" parent="ObjectsSort" index="0" node_paths=PackedStringArray("wall_upper_layers")]
+[node name="WallLayers" type="Node2D" parent="ObjectsSort" index="0"]
+
+[node name="Walls" type="TileMapLayer" parent="ObjectsSort/WallLayers" index="0" node_paths=PackedStringArray("wall_upper_layers")]
 tile_set = SubResource("TileSet_84xvj")
 collision_visibility_mode = 1
 script = ExtResource("7_ifcpk")
@@ -677,7 +680,7 @@ entrance_atlas_coords = Vector2i(2, 2)
 exit_atlas_coords = Vector2i(3, 2)
 wall_terrain_set = 1
 
-[node name="Walls2" type="TileMapLayer" parent="ObjectsSort" index="1"]
+[node name="Walls2" type="TileMapLayer" parent="ObjectsSort/WallLayers" index="1"]
 tile_set = SubResource("TileSet_84xvj")
 collision_enabled = false
 navigation_enabled = false
@@ -685,7 +688,7 @@ script = ExtResource("11_ov8ex")
 wall_terrain_set = 1
 layer = 1
 
-[node name="Walls3" type="TileMapLayer" parent="ObjectsSort" index="2"]
+[node name="Walls3" type="TileMapLayer" parent="ObjectsSort/WallLayers" index="2"]
 tile_set = SubResource("TileSet_84xvj")
 collision_enabled = false
 navigation_enabled = false
@@ -693,7 +696,7 @@ script = ExtResource("11_ov8ex")
 wall_terrain_set = 1
 layer = 2
 
-[node name="Walls4" type="TileMapLayer" parent="ObjectsSort" index="3"]
+[node name="Walls4" type="TileMapLayer" parent="ObjectsSort/WallLayers" index="3"]
 tile_set = SubResource("TileSet_84xvj")
 collision_enabled = false
 navigation_enabled = false

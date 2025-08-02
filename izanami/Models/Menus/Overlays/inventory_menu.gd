@@ -31,3 +31,4 @@ func _on_visibility_changed() -> void:
 	menu_switcher.set_process_input(visible)
 	if visible:
 		if not Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)
+		tab_container.get_child(Checks.inventory_tab).show()

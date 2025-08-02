@@ -21,7 +21,7 @@ func display_player_data():
 func _get_card_holders() -> Dictionary:
 	var card_holder_list = {}
 	for i in get_children():
-		card_holder_list.get_or_add(i.player, i)
+		if i is PlayerDataCard:	card_holder_list.get_or_add(i.player, i)
 	return card_holder_list
 
 
