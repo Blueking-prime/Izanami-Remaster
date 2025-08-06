@@ -4,6 +4,7 @@ extends Base_Character
 
 @export var nav_agent: NavigationAgent2D
 @export var path_switch_timer: Timer
+@export var detector: EnemyDetector
 
 @export var atk_lines: Array = []
 @export var speed: int
@@ -33,8 +34,8 @@ func _physics_process(delta: float) -> void:
 
 	nav_agent.target_position = target_position
 
-
 	var direction = to_local(nav_agent.get_next_path_position()).normalized()
+	#print(direction)
 
 	var intended_velocity = direction * speed * delta * 1000
 	#print("OG: ",intended_velocity.length())

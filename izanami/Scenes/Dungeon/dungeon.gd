@@ -43,6 +43,7 @@ var player: Player:
 	get():
 		return Global.players.leader
 
+var boss_enemy: Enemy
 
 #var player_pos: Array:
 	#get():
@@ -77,6 +78,7 @@ func load_scene():
 
 	#setup_navigation_region()
 	enemy_display.update_display()
+	overlay.save_enabled = false
 
 	Global.change_background(null, true)
 	#print('Final time ', (start_time - Time.get_ticks_msec()) * -1)
@@ -96,6 +98,11 @@ func load_scene():
 #
 	#navigation_region.bake_navigation_polygon()
 
+func set_boss(enemy: Enemy):
+	boss_enemy = enemy
+	boss_enemy.detector.change_colour()
+
+
 ## EXIT LOGIC
 func exit_dungeon(completed: bool):
 	Global.players.freeze()
@@ -104,7 +111,7 @@ func exit_dungeon(completed: bool):
 
 	Global.players.unfreeze()
 	if x:
-		if completed: Checks.dungeon_levels[dungeon_name] += 1
+		if completed: Checks.dungeons[dungeon_name].levels += 1
 		Global.warp(self, Global.town_scene)
 	else :
 		unfreeze_enemies()
@@ -148,7 +155,7 @@ func _on_detector_hit_chest(_coords) -> void:
 
 
 ## BATTLE LOGIC
-func initiate_battle():
+func initiate_battle(forced: bool):
 	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, MAX_ENEMIES)
 	overlay.hide()
 
@@ -157,6 +164,7 @@ func initiate_battle():
 	battle.dungeon = self
 	battle.enemy_group = enemy_types
 	battle.enemy_level = enemy_level
+	battle.forced = forced
 	#player.in_battle = true
 	background.hide()
 	objectsort.hide()
@@ -166,31 +174,41 @@ func initiate_battle():
 
 func freeze_enemies():
 	for i in tilemap.enemy_nodes:
-		if is_instance_valid(i): i.freeze = true
+		if is_instance_valid(i):
+			i.freeze = true
+			#i.hitbox.set_deferred('disabled', true)
 
 func unfreeze_enemies():
 	for i in tilemap.enemy_nodes:
-		if is_instance_valid(i): i.freeze = false
+		if is_instance_valid(i):
+			i.freeze = false
+			#i.hitbox.disabled = false
+
 
 
 func _on_detector_hit_enemy(body: Enemy) -> void:
+	Global.players.battle_collision()
 	freeze_enemies()
-	Global.players.freeze()
-	Global.push_back_player(body.global_position, 1)
+	#Global.push_back_player(body.global_position, 1)
 	await get_tree().create_timer(0.5).timeout
-	Global.players.leader.hitbox.disabled = true
 	#! USE scene_file_path TO REMEMBERWHAT NODE TO LOAD
-	initiate_battle()
-	body.queue_free()
+	if body == boss_enemy:
+		initiate_battle(true)
+		tilemap._render_exit()
+	else :
+		initiate_battle(false)
+	if is_instance_valid(body):	body.queue_free()
+	#Global.players.battle_reset()
+	#reset_from_battle()
 
 
 func reset_from_battle():
-	background.show()
+	#background.show()
 	objectsort.show()
 	overlay.load_ui_elements()
 	enemy_display.update_display()
 	overlay.show()
-	Global.players.leader.hitbox.disabled = false
+	Global.players.reset_battle_collision()
 	unfreeze_enemies()
 
 

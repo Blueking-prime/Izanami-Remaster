@@ -16,9 +16,17 @@ class_name DungeonMap
 
 @export var upscale_factor: int = 2
 @export var path_noise_cutoff: float = 0
+@export var wall_layer_multiplier: float = 2
+@export var wall_layer_steps_default: float = 0.2
 @export var enemy_noise_cutoff: float
-@export var wall_layer_steps: float = abs(path_noise_cutoff * 2) if path_noise_cutoff else 0.2
 @export var max_layers: int = 4
+
+var wall_layer_steps: float:
+	get():
+		if path_noise_cutoff:
+			return abs(path_noise_cutoff * wall_layer_multiplier)
+		else:
+			return wall_layer_steps_default
 
 var start: Vector2i
 var stop: Vector2i

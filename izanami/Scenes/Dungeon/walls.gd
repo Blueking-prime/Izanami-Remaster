@@ -108,6 +108,9 @@ func _place_enemies():
 		print(enemy.map_size)
 
 	enemy_nodes = get_children()
+	if not root_node.boss_enemy:
+		root_node.set_boss(enemy_nodes.pick_random())
+
 
 
 func _render_background():

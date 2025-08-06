@@ -4,6 +4,9 @@ class_name EnemyDetector
 
 const PLAYER_COLLISION_LAYER: int = 4
 
+func change_colour():
+	$CollisionShape2D.debug_color = Color(40, 10, 90)
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.get_collision_layer_value(PLAYER_COLLISION_LAYER):
 		get_parent().player = body

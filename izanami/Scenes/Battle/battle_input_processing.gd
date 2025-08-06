@@ -204,6 +204,7 @@ func _on_run_pressed() -> void:
 	toggle_option_selectable(false)
 	if get_parent().forced:
 		Global.print_to_log('You cannot run!')
+		toggle_option_selectable(true)
 		return
 	var confirm = await  Global.show_confirmation_box("Do you want to run?")
 	if not confirm:

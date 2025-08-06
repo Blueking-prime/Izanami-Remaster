@@ -128,9 +128,21 @@ func warp_players(area: WarpPoint):
 
 
 ## BATTLE SCENE
+func battle_collision():
+	freeze()
+	leader.hitbox.set_deferred('disabled', true)
+	leader.detector.set_deferred('monitoring', false)
+	leader.detector.set_deferred('monitorable', false)
+
+func reset_battle_collision():
+	leader.hitbox.set_deferred('disabled', false)
+	leader.detector.set_deferred('monitoring', true)
+	leader.detector.set_deferred('monitorable', true)
+
+
 func battle_setup():
 	stored_pos = leader.position
-	z_index += 1
+	#z_index += 1
 
 	#for i in party:
 		#i.show()
@@ -143,7 +155,7 @@ func battle_setup():
 
 func battle_reset():
 	leader.position = stored_pos
-	z_index -= 1
+	#z_index -= 1
 
 	for i in party:
 		i.dungeon_display()
@@ -207,8 +219,9 @@ func place_menu():
 
 func revert_menu():
 	for i in party:
-		i.item_menu = party_panels[i][0]
-		i.skill_menu = party_panels[i][1]
+		if party_panels.has(i):
+			i.item_menu = party_panels[i][0]
+			i.skill_menu = party_panels[i][1]
 
 func place_ui():
 	pass

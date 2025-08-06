@@ -21,6 +21,7 @@ class_name UIOverlay
 
 var curr_menu: Control
 var menu_list: Array
+var save_enabled: bool = true
 
 
 func _input(event: InputEvent) -> void:
@@ -112,9 +113,12 @@ func _on_status_button_pressed() -> void:
 		Global.exit_button.show()
 
 func _on_save_button_pressed() -> void:
-	if not Global.players.chased:
-		SaveAndLoad.save_window.save_state = true
-		SaveAndLoad.save_window.load_window()
+	if not save_enabled: return
+	#if Global.players.chased:
+		#Global.show_text_box('', 'You cannot save now, you\'re being chased')
+		#return
+	SaveAndLoad.save_window.save_state = true
+	SaveAndLoad.save_window.load_window()
 
 func _on_load_button_pressed() -> void:
 	SaveAndLoad.save_window.save_state = false

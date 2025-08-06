@@ -655,9 +655,9 @@ script = ExtResource("3_kk8fo")
 noise_map = SubResource("FastNoiseLite_i4n0c")
 max_treasure_no = 10
 upscale_factor = 1
-path_noise_cutoff = -0.2
+path_noise_cutoff = -0.3
+wall_layer_multiplier = 1.5
 enemy_noise_cutoff = 0.2
-wall_layer_steps = 0.3
 
 [node name="Background" parent="." index="4"]
 visible = false
