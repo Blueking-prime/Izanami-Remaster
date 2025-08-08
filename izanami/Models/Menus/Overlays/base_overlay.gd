@@ -45,6 +45,8 @@ func _input(event: InputEvent) -> void:
 		_on_map_button_pressed()
 	elif event.is_action_pressed('freecam_key'):
 		_on_freecam_button_pressed()
+	elif event.is_action_pressed('ui_key'):
+		_on_ui_button_pressed()
 
 	elif event.is_action_pressed("switch_leader_key"):
 		status_menu._on_switch_button_pressed()
@@ -164,6 +166,11 @@ func _on_log_button_pressed() -> void:
 			_clear_visible_menus()
 			Global.text_log.show()
 
+func _on_ui_button_pressed() -> void:
+	if visible:
+		hide()
+	else:
+		show()
 
 func _on_visibility_changed() -> void:
 	if visible:

@@ -69,7 +69,7 @@ signal sell(condition)
 signal exit_signal
 
 
-## TEXT PROCESSING
+#region Text Processing
 func add_to_text_log(dialogue: Array):
 	return TEXT.add_to_text_log(dialogue)
 
@@ -78,10 +78,11 @@ func clear_custom_tags(_text: String) -> String:
 
 func print_to_log(text: Variant):
 	return TEXT.print_to_log(text)
+#endregion
 
-## ALGORITHMS
-func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int):
-	return ALGORITHMS.create_dsu_checker(noise_map, height, width)
+#region Algorithms
+func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int, constraint: float):
+	return ALGORITHMS.create_dsu_checker(noise_map, height, width, constraint)
 
 func rand_coord(width: int, height: int) -> Vector2i:
 	return ALGORITHMS.rand_coord(width, height)
@@ -97,8 +98,9 @@ func set_seed(_seed: int = 0):
 
 func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []):
 	return ALGORITHMS.path(start, goal, walls, width, height, visited)
+#endregion
 
-## UI ELEMENTS
+#region UIElements
 func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int:
 	return await UI.show_text_choice(speaker, prompt, choices, screen_side, dialogue)
 
@@ -120,7 +122,9 @@ func show_shop_menu(stock: ResourceGroup):
 func add_text_log_to_scene():
 	return UI.add_text_log_to_scene()
 
-## SCENE LOADERS FUNCTIONS
+#endregion
+
+#region SceneLoader
 func warp(source: Location, destination_scene: PackedScene):
 	return await SCENE_LOADER.warp(source, destination_scene)
 
@@ -132,6 +136,8 @@ func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: 
 
 func push_back_player(centre: Vector2, distance: float):
 	return SCENE_LOADER.push_back_player(centre, distance)
+#endregion
+
 ## FUNCTON TESTS
 func rand_spread_test():
 	var n

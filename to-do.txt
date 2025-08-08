@@ -50,6 +50,7 @@ TASKS (WORKABLE)
 - [ ] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering
 - [ ] Add water/lava in dungeons
 - [ ] Add saving and loading checks data
+- [ ] Implementt quests menu
 - [x] Apply sprite assignment logic changes to battle scene
 - [x] Implement Persistence toggles for inventory menu
 - [x] Change logic for assigning dynamic UI elements to player function.

@@ -170,7 +170,7 @@ func get_valid_point(_cutoff: float = path_noise_cutoff) -> Vector2i:
 func gererate_dungeon_layout_noise():
 	#noise_map.seed = randi()
 	noise_map.frequency *= upscale_factor
-	Global.create_dsu_checker(noise_map, height, width)
+	Global.create_dsu_checker(noise_map, height, width, path_noise_cutoff)
 
 	treasure_no = 1 + Global.rand_spread(treasure_spawn_chance, max_treasure_no)
 	enemy_no = Global.rand_spread(enemy_spawn_chance, max_enemy_spawns)

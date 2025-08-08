@@ -31,7 +31,7 @@ class DSU:
 		if root_i != root_j:
 			self.parent[root_i] = root_j
 
-func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int):
+func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int, constraint: float):
 	"""Processes the grid and returns a function to check connectivity."""
 	if not noise_map: return
 
@@ -40,14 +40,14 @@ func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int):
 	# Step 1: Pre-process the noise_map to union all adjacent open spaces
 	for y in range(height):
 		for x in range(width):
-			if noise_map.get_noise_2d(x, y) >= 0:
+			if noise_map.get_noise_2d(x, y) >= constraint:
 				var index1 = y * width + x
 				# Union with the node to the yight
-				if x + 1 < width and noise_map.get_noise_2d(x + 1, y) >= 0:
+				if x + 1 < width and noise_map.get_noise_2d(x + 1, y) >= constraint:
 					var index2 = y * width + (x + 1)
 					dsu.union(index1, index2)
 				# Union with the node below
-				if y + 1 < height and noise_map.get_noise_2d(x, y + 1) >= 0:
+				if y + 1 < height and noise_map.get_noise_2d(x, y + 1) >= constraint:
 					var index2 = (y + 1) * width + x
 					dsu.union(index1, index2)
 

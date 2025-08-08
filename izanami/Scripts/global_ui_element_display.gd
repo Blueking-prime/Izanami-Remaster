@@ -2,6 +2,13 @@ extends Node
 
 class_name GlobalUIElements
 
+#func show_ui():
+	#if get_tree().current_scene is Location:
+		#if get_tree().current_scene.overlay.visible:
+			#get_tree().current_scene.overlay.hide()
+		#else:
+			#get_tree().current_scene.overlay.show()
+
 func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int:
 	_create_base_textbox(speaker, prompt, screen_side, dialogue)
 
