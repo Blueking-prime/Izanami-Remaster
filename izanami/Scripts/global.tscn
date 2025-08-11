@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcxmyev8jvlgh"]
+[gd_scene load_steps=19 format=3 uid="uid://bcxmyev8jvlgh"]
 
 [ext_resource type="Script" path="res://Scripts/global.gd" id="1_u8o3i"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/DialogBoxes/text_box.tscn" id="2_imufx"]
@@ -17,13 +17,15 @@
 [ext_resource type="Script" path="res://Scripts/global_algorithms_logic.gd" id="15_h8mch"]
 [ext_resource type="Script" path="res://Scripts/global_scene_loader.gd" id="16_stni4"]
 [ext_resource type="Script" path="res://Scripts/global_signals.gd" id="17_q1ilv"]
+[ext_resource type="Script" path="res://Scripts/quests.gd" id="18_d5lpp"]
 
-[node name="Global" type="Node" node_paths=PackedStringArray("TEXT", "UI", "ALGORITHMS", "SCENE_LOADER")]
+[node name="Global" type="Node" node_paths=PackedStringArray("TEXT", "UI", "ALGORITHMS", "SCENE_LOADER", "QUESTS")]
 script = ExtResource("1_u8o3i")
 TEXT = NodePath("TextProcessing")
 UI = NodePath("UIElementDisplay")
 ALGORITHMS = NodePath("AlgorithmsLogic")
 SCENE_LOADER = NodePath("SceneLoader")
+QUESTS = NodePath("Quests")
 text_box_scene = ExtResource("2_imufx")
 confirmation_box_scene = ExtResource("3_0ya4a")
 description_box_scene = ExtResource("3_qpouy")
@@ -50,3 +52,6 @@ script = ExtResource("16_stni4")
 
 [node name="Signals" type="Node" parent="."]
 script = ExtResource("17_q1ilv")
+
+[node name="Quests" type="Node" parent="."]
+script = ExtResource("18_d5lpp")

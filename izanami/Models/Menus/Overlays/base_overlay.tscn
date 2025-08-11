@@ -16,7 +16,7 @@ width = 30
 height = 30
 fill_from = Vector2(1, 0)
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "coin_counter", "mag_counter", "button_container", "settings_menu")]
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quests", "coin_counter", "mag_counter", "button_container", "settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fxe44")
 player_status = NodePath("PlayerDataOverlay/StatusOverlay/MarginContainer/PlayerContainer")
+quests = NodePath("InfoPanel/Quests")
 coin_counter = NodePath("PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 mag_counter = NodePath("PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer/MagCount")
 button_container = NodePath("Buttons/MenuButtons")

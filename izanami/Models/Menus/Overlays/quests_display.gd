@@ -6,46 +6,27 @@ class_name QuestsDisplay
 @export var objective_cointainer: VBoxContainer
 
 var displayed_objectives: Dictionary
-var current_quest: Quest
+var currently_displayed_quest: Global.Quest
 
-# Temp Quest Structure
-class Quest:
-	var title: StringName
-	var objectives: Array[Objective]
-	var completed: bool = false
+func update_quest(quest: Global.Quest):
+	if not quest or quest.completed:
+		default_display()
+		return
 
-	class Objective:
-		var title: String
-		var flag: StringName
-		var value: Variant
-
-		func _init(_title: String, _flag: StringName, _value: Variant) -> void:
-			self.title = _title
-			if Checks.get(_flag):
-				self.flag = _flag
-				self.value = Checks.get(_flag)
-			else :
-				assert(false, '%s not contained in Checks' % [_flag])
-
-	func _init(_title: String, _objectives: Array) -> void:
-		self.title = _title
-		self.objectives = _objectives
-
-	func refresh_flags():
-		for i in self.objectives:
-			i.value = Checks.get(i.flag)
-
-func update_quest(quest: Quest):
-	if not quest.title == current_quest.title:
-		current_quest = quest
+	if not currently_displayed_quest or (quest.title != currently_displayed_quest.title):
+		currently_displayed_quest = quest
+		title.text = currently_displayed_quest.title
 		_clear_objectives()
 
 	_get_displayed_objectives()
-	current_quest.refresh_flags()
+	currently_displayed_quest.refresh_flags()
 
 	update_objectives(quest.objectives)
 
-func update_objectives(objectives: Array[Quest.Objective]):
+func update_objectives(objectives: Array[Global.Quest.Objective]):
+	if not objectives.is_empty():
+		$Objectives.show()
+
 	for i in objectives:
 		if i.title in displayed_objectives.keys():
 			if i.value:
@@ -55,8 +36,7 @@ func update_objectives(objectives: Array[Quest.Objective]):
 			if not i.value:
 				display_objective(i)
 
-
-func display_objective(objective: Quest.Objective):
+func display_objective(objective: Global.Quest.Objective):
 	var objective_label: Label = Label.new()
 	objective_label.text = '- ' + objective.title
 
@@ -69,7 +49,11 @@ func _get_displayed_objectives():
 			displayed_objectives.get_or_add(i.text.trim_prefix('- '), i)
 
 func _clear_objectives():
+	$Objectives.hide()
 	for i in objective_cointainer.get_children():
-		if is_instance_valid(i):
-			objective_cointainer.remove_child(i)
-			i.queue_free()
+		objective_cointainer.remove_child(i)
+		if is_instance_valid(i): i.queue_free()
+
+func default_display():
+	title.text = 'No active Quest'
+	_clear_objectives()

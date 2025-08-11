@@ -4,6 +4,7 @@ extends Node
 @export var UI: GlobalUIElements
 @export var ALGORITHMS: GlobalAlgorithms
 @export var SCENE_LOADER: GlobalSceneLoader
+@export var QUESTS: GlobalQuests
 
 @export var text_box_scene: PackedScene
 @export var confirmation_box_scene: PackedScene
@@ -47,7 +48,8 @@ var textbox_ffwd_flag: bool
 
 var scroll_state: bool
 
-## REGEX EXPLANATION ##
+
+#region REGEX EXplanation
 #\{(\w+)\:?(\w*)\} should catch all tags in the format {x}, {x:y} where x and y are any arbitrary strings
 	#\{ matches the character { with index 12310 (7B16 or 1738) literally (case sensitive)
 	#1st Capturing Group (\w*)
@@ -59,6 +61,7 @@ var scroll_state: bool
 	#\w matches any word character (equivalent to [a-zA-Z0-9_])
 	#* matches the previous token between zero and unlimited times, as many times as possible, giving back as needed (greedy)
 	#\} matches the character } with index 12510 (7D16 or 1758) literally (case sensitive)
+#endregion
 var custom_tags_filter: RegEx = RegEx.create_from_string(r'\{(\w+)\:?(\w*)\}')
 
 # SIGNALS
@@ -68,6 +71,8 @@ signal confirmation_box_triggered
 signal sell(condition)
 signal exit_signal
 
+class Quest extends GlobalQuests.Quest:
+	pass
 
 #region Text Processing
 func add_to_text_log(dialogue: Array):
@@ -138,6 +143,10 @@ func push_back_player(centre: Vector2, distance: float):
 	return SCENE_LOADER.push_back_player(centre, distance)
 #endregion
 
+#region Quests
+func update_quests():
+	return QUESTS.update_quests()
+#endregion
 ## FUNCTON TESTS
 func rand_spread_test():
 	var n

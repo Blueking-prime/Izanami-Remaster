@@ -1,17 +1,35 @@
 extends Node
 
-
 @export var custom_seed: int = 0
+
+var current_quest: Global.Quest
+var refresh_shops: bool = false
+
+
+#region QUESTS
+var apothecary_visit: bool = false:
+	set(arg): apothecary_visit = _set_flag(arg)
+var smithy_buy: bool = false:
+	set(arg): smithy_buy = _set_flag(arg)
+var test_return: bool = false:
+	set(arg): test_return = _set_flag(arg)
+
+func _set_flag(arg):
+	if arg:
+		Global.update_quests()
+	return arg
+#endregion
 
 #// SETTINGS FLAGS //#
 # Text settings
+#region TEXT SETTINGS
 @export var scroll: bool = true
 @export var scroll_speed: float = 0.05
 @export var ffwd_speed: float = 0.3
 @export var wait_time: float = 1
 @export var input_type: int = 0
+#endregion
 
-var refresh_shops: bool = false
 
 var dungeons: Dictionary = {
 	'test': {
@@ -19,13 +37,13 @@ var dungeons: Dictionary = {
 	}
 }
 
+#region PERSISTENCE HANDLING
 ## Menu persistance
 var inventory_tab: int = 0
 var battle_option: Dictionary = {}
 var skill_option: Dictionary = {}
 var item_option: Dictionary = {}
 
-## PERSISTENCE HANDLING
 func set_action_persistence(_key: Variant, _id: int):
 	if _key in battle_option:
 		battle_option[_key] = _id
@@ -45,6 +63,7 @@ func set_item_persistence(_key: Variant, _id: int):
 		item_option.get_or_add(_key, _id)
 
 func clean_persistence():
+#endregion
 	for i in battle_option:
 		if i not in Global.players.party:
 			battle_option.erase(i)

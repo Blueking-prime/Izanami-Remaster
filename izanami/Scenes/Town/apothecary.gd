@@ -8,6 +8,7 @@ class_name TownApothecary
 
 
 func main():
+	Checks.apothecary_visit = true
 	Global.players.freeze()
 
 	Global.sell.connect(_sell_parser)
@@ -48,9 +49,9 @@ func low_funds():
 ## SIGNALS
 func _sell_parser(condition: String):
 	if condition == 'item sold':
-		buy_item()
-	if condition == 'item bought':
 		sell_item()
+	if condition == 'item bought':
+		buy_item()
 	if condition == 'low funds':
 		low_funds()
 	if condition == 'exit':

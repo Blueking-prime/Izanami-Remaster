@@ -2,19 +2,21 @@ extends Control
 
 class_name UIOverlay
 
-## PLAYER DATA OVERLAY
+#region OVERLAYS
 @export var player_status: PlayerDataDisplay
-
-## RESOURCE CONTAINER
+@export var quests: QuestsDisplay
 @export var coin_counter: Label
 @export var mag_counter: Label
+#endregion
 
 @export var button_container: Container
 
-## OVERLAYS
+
+#region MENUS
 @export var settings_menu: Settings
 @export var inventory_menu: InventoryMenu
 @export var status_menu: StatusOverlay
+#endregion
 
 @export var map_cam: Map
 @export var free_cam: FreeCam
@@ -78,6 +80,7 @@ func load_ui_elements():
 	update_coin_counter()
 	mag_counter.text = str(Global.players.mag)
 	settings_menu.load_menu()
+	quests.update_quest(Checks.current_quest)
 
 func _on_inventory_button_pressed() -> void:
 	Global.players.freeze()

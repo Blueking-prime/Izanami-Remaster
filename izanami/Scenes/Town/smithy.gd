@@ -26,7 +26,7 @@ func equip_new_gear():
 
 ## ADD COMMENT ON PURCHASE TRIGGER
 func buy_item():
-	pass
+	Checks.smithy_buy = true
 
 func sell_item():
 	pass
@@ -50,9 +50,9 @@ func low_funds():
 ## SIGNALS
 func _sell_parser(condition: String):
 	if condition == 'item sold':
-		buy_item()
-	if condition == 'item bought':
 		sell_item()
+	if condition == 'item bought':
+		buy_item()
 	if condition == 'low funds':
 		low_funds()
 	if condition == 'exit':
