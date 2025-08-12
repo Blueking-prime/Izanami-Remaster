@@ -6,9 +6,9 @@ class_name QuestsDisplay
 @export var objective_cointainer: VBoxContainer
 
 var displayed_objectives: Dictionary
-var currently_displayed_quest: Global.Quest
+var currently_displayed_quest: GlobalQuests.Quest
 
-func update_quest(quest: Global.Quest):
+func update_quest(quest: GlobalQuests.Quest):
 	if not quest or quest.completed:
 		default_display()
 		return
@@ -23,7 +23,7 @@ func update_quest(quest: Global.Quest):
 
 	update_objectives(quest.objectives)
 
-func update_objectives(objectives: Array[Global.Quest.Objective]):
+func update_objectives(objectives: Array):
 	if not objectives.is_empty():
 		$Objectives.show()
 
@@ -36,7 +36,7 @@ func update_objectives(objectives: Array[Global.Quest.Objective]):
 			if not i.value:
 				display_objective(i)
 
-func display_objective(objective: Global.Quest.Objective):
+func display_objective(objective: GlobalQuests.Quest.Objective):
 	var objective_label: Label = Label.new()
 	objective_label.text = '- ' + objective.title
 

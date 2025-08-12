@@ -2,17 +2,21 @@ extends Node
 
 @export var custom_seed: int = 0
 
-var current_quest: Global.Quest
+var current_quest: GlobalQuests.Quest
 var refresh_shops: bool = false
 
 
 #region QUESTS
+var completed_quests: Array
+
 var apothecary_visit: bool = false:
 	set(arg): apothecary_visit = _set_flag(arg)
 var smithy_buy: bool = false:
 	set(arg): smithy_buy = _set_flag(arg)
 var test_return: bool = false:
 	set(arg): test_return = _set_flag(arg)
+var meander: bool = false:
+	set(arg): meander = _set_flag(arg)
 
 func _set_flag(arg):
 	if arg:
@@ -40,6 +44,7 @@ var dungeons: Dictionary = {
 #region PERSISTENCE HANDLING
 ## Menu persistance
 var inventory_tab: int = 0
+var quests_tab: int = 0
 var battle_option: Dictionary = {}
 var skill_option: Dictionary = {}
 var item_option: Dictionary = {}

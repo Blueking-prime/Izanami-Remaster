@@ -2,19 +2,26 @@ extends StaticBody2D
 
 @export var test_scene: PackedScene
 
+var quest = GlobalQuests.Quest.new('Test Quest', [
+	GlobalQuests.Quest.Objective.new('Go to Apothecary', 'apothecary_visit'),
+	GlobalQuests.Quest.Objective.new('Buy at Smithy', 'smithy_buy'),
+	GlobalQuests.Quest.Objective.new('Return to Test site', 'test_return'),
+])
+var quest_2 = GlobalQuests.Quest.new('Test 2 Quest', [
+	GlobalQuests.Quest.Objective.new('Walk round map', 'meander'),
+])
+
 func main():
-	var quest = Global.Quest.new('Test Quest', [
-		Global.Quest.Objective.new('Go to Apothecary', 'apothecary_visit'),
-		Global.Quest.Objective.new('Buy at Smithy', 'smithy_buy'),
-		Global.Quest.Objective.new('Return to Test site', 'test_return'),
-	])
+
 	#remove_child(test_player)
 	#print(Global.players.gold)
-	if Checks.current_quest and Checks.current_quest.title == quest.title:
+	if quest in Global.active_quest_list:
+		if quest_2 not in Global.active_quest_list:
+			Global.add_quest(quest_2)
 		Checks.test_return = true
 		print('Flag set')
 	else :
-		Checks.current_quest = quest
+		Global.add_quest(quest)
 
 	print(Checks.current_quest.title, Checks.current_quest)
 

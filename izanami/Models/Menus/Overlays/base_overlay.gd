@@ -4,7 +4,7 @@ class_name UIOverlay
 
 #region OVERLAYS
 @export var player_status: PlayerDataDisplay
-@export var quests: QuestsDisplay
+@export var quest_display: QuestsDisplay
 @export var coin_counter: Label
 @export var mag_counter: Label
 #endregion
@@ -16,6 +16,7 @@ class_name UIOverlay
 @export var settings_menu: Settings
 @export var inventory_menu: InventoryMenu
 @export var status_menu: StatusOverlay
+@export var quests_menu: QuestMenu
 #endregion
 
 @export var map_cam: Map
@@ -25,6 +26,9 @@ var curr_menu: Control
 var menu_list: Array
 var save_enabled: bool = true
 
+var current_quest: GlobalQuests.Quest:
+	get():
+		return Checks.current_quest
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory_key"):
@@ -33,6 +37,8 @@ func _input(event: InputEvent) -> void:
 		_on_status_button_pressed()
 	elif event.is_action_pressed("settings_key"):
 		_on_settings_button_pressed()
+	elif event.is_action_pressed("quests_key"):
+		_on_quests_button_pressed()
 	elif event.is_action_pressed("save_key"):
 		_on_save_button_pressed()
 	elif event.is_action_pressed("load_key"):
@@ -75,12 +81,13 @@ func update_coin_counter():
 
 func load_ui_elements():
 	_assign_button_labels()
-	menu_list = [inventory_menu, settings_menu, status_menu]
+	menu_list = [inventory_menu, settings_menu, status_menu, quests_menu]
 	player_status.display_player_data()
 	update_coin_counter()
 	mag_counter.text = str(Global.players.mag)
 	settings_menu.load_menu()
-	quests.update_quest(Checks.current_quest)
+	quests_menu.load_menu()
+	quest_display.update_quest(current_quest)
 
 func _on_inventory_button_pressed() -> void:
 	Global.players.freeze()
@@ -168,6 +175,17 @@ func _on_log_button_pressed() -> void:
 			Global.players.freeze()
 			_clear_visible_menus()
 			Global.text_log.show()
+
+func _on_quests_button_pressed() -> void:
+	Global.players.freeze()
+
+	quests_menu.load_menu()
+	if quests_menu.visible:
+		quests_menu._on_exit_button_pressed()
+	else:
+		_clear_visible_menus()
+		quests_menu.show()
+		Global.exit_button.show()
 
 func _on_ui_button_pressed() -> void:
 	if visible:

@@ -35,9 +35,35 @@ class Quest:
 		if check:
 			completed = check
 
+func load_quests():
+	pass
+
+func add_quest(quest: Quest):
+	if quest not in get_parent().active_quest_list:
+		get_parent().active_quest_list.append(quest)
+	if not Checks.current_quest:
+		set_active_quest(quest)
+
+func set_active_quest(quest: Quest, update: bool = true):
+	Checks.current_quest = quest
+	if update:
+		update_quests()
 
 func update_quests():
-	Checks.current_quest.refresh_flags()
+	for i in get_parent().active_quest_list:
+		i.refresh_flags()
+		if i.completed:
+			if i == Checks.current_quest:
+				_set_new_curent_quest()
+			Checks.completed_quests.append(i)
+			get_parent().active_quest_list.erase(i)
+
 	if get_tree().current_scene is Location:
-		get_tree().current_scene.overlay.quests.update_quest(Checks.current_quest)
+		get_tree().current_scene.overlay.quest_display.update_quest(Checks.current_quest)
 	#print('Refreshed')
+
+func _set_new_curent_quest():
+	if get_parent().active_quest_list.back():
+		set_active_quest(get_parent().active_quest_list.back(), false)
+	else :
+		set_active_quest(null, false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4fsdqxn6alxo"]
+[gd_scene load_steps=18 format=3 uid="uid://d4fsdqxn6alxo"]
 
 [ext_resource type="Script" path="res://Scenes/location.gd" id="1_knc6e"]
 [ext_resource type="Script" path="res://Scripts/player_camera_script.gd" id="2_16o45"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bf8ixj6j10mqx" path="res://Assets/fantasy_ [version 2 (2).0]/cave_/cave_ [resources].png" id="5_vvxsa"]
 [ext_resource type="Script" path="res://Scenes/Dungeon/floor.gd" id="6_iv1rf"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="8_kxce6"]
+[ext_resource type="PackedScene" uid="uid://11siwvu70ak7" path="res://Models/Menus/Overlays/quest_menu.tscn" id="13_m8nc8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kcgp0"]
 texture = ExtResource("3_glrit")
@@ -563,15 +564,19 @@ gold = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu", "map_cam", "free_cam") instance=ExtResource("3_hxd4o")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "status_menu", "quests_menu", "map_cam", "free_cam") instance=ExtResource("3_hxd4o")]
 inventory_menu = NodePath("../InventoryMenu")
 status_menu = NodePath("../StatusOverlay")
+quests_menu = NodePath("../QuestMenu")
 map_cam = NodePath("../../MapCam")
 free_cam = NodePath("../../FreeCam")
 
 [node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("4_qvqpn")]
 
 [node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("5_g4neh")]
+visible = false
+
+[node name="QuestMenu" parent="CanvasLayer" instance=ExtResource("13_m8nc8")]
 visible = false
 
 [node name="ExitButton" type="Button" parent="CanvasLayer"]

@@ -16,7 +16,7 @@ width = 30
 height = 30
 fill_from = Vector2(1, 0)
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quests", "coin_counter", "mag_counter", "button_container", "settings_menu")]
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quest_display", "coin_counter", "mag_counter", "button_container", "settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fxe44")
 player_status = NodePath("PlayerDataOverlay/StatusOverlay/MarginContainer/PlayerContainer")
-quests = NodePath("InfoPanel/Quests")
+quest_display = NodePath("InfoPanel/Quests")
 coin_counter = NodePath("PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 mag_counter = NodePath("PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer/MagCount")
 button_container = NodePath("Buttons/MenuButtons")
@@ -153,6 +153,13 @@ alignment = 2
 layout_mode = 2
 size_flags_vertical = 3
 text = "Settings ( )"
+flat = true
+alignment = 2
+
+[node name="QuestsButton" type="Button" parent="Buttons/MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quests ( )"
 flat = true
 alignment = 2
 
@@ -299,6 +306,7 @@ offset_bottom = 30.0
 [connection signal="pressed" from="Buttons/MenuButtons/LogButton" to="." method="_on_log_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/UIButton" to="." method="_on_ui_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/QuestsButton" to="." method="_on_quests_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/MapButton" to="." method="_on_map_button_pressed"]

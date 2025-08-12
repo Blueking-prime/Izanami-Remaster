@@ -31,12 +31,12 @@ confirmation_box_scene = ExtResource("3_0ya4a")
 description_box_scene = ExtResource("3_qpouy")
 shop_menu_scene = ExtResource("4_xxefv")
 text_log_scene = ExtResource("6_4il6x")
+loading_screen = ExtResource("9_egmmm")
 town_scene = ExtResource("2_pafky")
 dungeon_scene = ExtResource("3_sy3id")
 demonitarium_scene = ExtResource("7_gaejl")
 battle_scene = ExtResource("4_cg2fd")
 main_menu_scene = ExtResource("5_o7tui")
-loading_screen = ExtResource("9_egmmm")
 
 [node name="TextProcessing" type="Node" parent="."]
 script = ExtResource("13_3nkps")

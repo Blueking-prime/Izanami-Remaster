@@ -1,24 +1,27 @@
 extends Node
 
+@export_category("Sub Nodes")
 @export var TEXT: GlobalTextProcessing
 @export var UI: GlobalUIElements
 @export var ALGORITHMS: GlobalAlgorithms
 @export var SCENE_LOADER: GlobalSceneLoader
 @export var QUESTS: GlobalQuests
 
+@export_category("UI Asset Scenes")
 @export var text_box_scene: PackedScene
 @export var confirmation_box_scene: PackedScene
 @export var description_box_scene: PackedScene
 @export var shop_menu_scene: PackedScene
 @export var text_log_scene: PackedScene
+@export var loading_screen: AnimatedTexture
 
+@export_category("Game Scenes")
 @export var town_scene: PackedScene
 @export var dungeon_scene: PackedScene
 @export var demonitarium_scene: PackedScene
 @export var battle_scene: PackedScene
 @export var main_menu_scene: PackedScene
 
-@export var loading_screen: AnimatedTexture
 
 var players: Party
 
@@ -48,6 +51,7 @@ var textbox_ffwd_flag: bool
 
 var scroll_state: bool
 
+var active_quest_list: Array[GlobalQuests.Quest]
 
 #region REGEX EXplanation
 #\{(\w+)\:?(\w*)\} should catch all tags in the format {x}, {x:y} where x and y are any arbitrary strings
@@ -71,8 +75,6 @@ signal confirmation_box_triggered
 signal sell(condition)
 signal exit_signal
 
-class Quest extends GlobalQuests.Quest:
-	pass
 
 #region Text Processing
 func add_to_text_log(dialogue: Array):
@@ -144,9 +146,16 @@ func push_back_player(centre: Vector2, distance: float):
 #endregion
 
 #region Quests
+func add_quest(quest: GlobalQuests.Quest):
+	return QUESTS.add_quest(quest)
+
+func set_active_quest(quest: GlobalQuests.Quest, update: bool = true):
+	return QUESTS.set_active_quest(quest, update)
+
 func update_quests():
 	return QUESTS.update_quests()
 #endregion
+
 ## FUNCTON TESTS
 func rand_spread_test():
 	var n
