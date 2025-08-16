@@ -1,16 +1,16 @@
 [gd_scene load_steps=10 format=3 uid="uid://b06gp60lhyyxx"]
 
-[ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_menu.gd" id="1_mfe14"]
+[ext_resource type="Script" uid="uid://bsqavk0ykxgyq" path="res://Models/Menus/Overlays/inventory_menu.gd" id="1_mfe14"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="1_ty00r"]
 [ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_3184o"]
-[ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_items.gd" id="2_miuef"]
-[ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_skills.gd" id="3_2pvlo"]
+[ext_resource type="Script" uid="uid://bs1fu3rfdjscx" path="res://Models/Menus/Overlays/inventory_items.gd" id="2_miuef"]
+[ext_resource type="Script" uid="uid://ceokvbo311by8" path="res://Models/Menus/Overlays/inventory_skills.gd" id="3_2pvlo"]
 [ext_resource type="PackedScene" uid="uid://0hx0wuw1wgpb" path="res://Models/Menus/OptionMenus/skill_menu_card.tscn" id="3_b5xgx"]
-[ext_resource type="Script" path="res://Models/Menus/Overlays/inventory_gear.gd" id="3_dtbst"]
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="7_hc3fu"]
+[ext_resource type="Script" uid="uid://dhsm8mq4h1rd6" path="res://Models/Menus/Overlays/inventory_gear.gd" id="3_dtbst"]
+[ext_resource type="Script" uid="uid://f1v50hh28kbl" path="res://Models/Menus/OptionMenus/options.gd" id="7_hc3fu"]
 [ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="8_5pjv8"]
 
-[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("skills_menu", "items_menu", "gear_menu", "misc_menu", "tab_container", "menu_switcher")]
+[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("skills_menu", "items_menu", "gear_menu", "misc_menu", "tab_container", "menu_switcher", "desc_box_container")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +24,7 @@ gear_menu = NodePath("TabContainer/Gear")
 misc_menu = NodePath("TabContainer/Misc")
 tab_container = NodePath("TabContainer")
 menu_switcher = NodePath("MenuSwitcher")
+desc_box_container = NodePath("BoxContainer")
 
 [node name="MenuSwitcher" parent="." node_paths=PackedStringArray("menu_container") instance=ExtResource("2_3184o")]
 menu_container = NodePath("../TabContainer")
@@ -39,13 +40,12 @@ current_tab = 2
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 
-[node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector")]
+[node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("target_selector")]
 visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("3_2pvlo")
 skill_menu_card_scene = ExtResource("3_b5xgx")
-desc_box_container = NodePath("../../BoxContainer")
 target_selector = NodePath("../../SkillTargetSelector")
 metadata/_tab_index = 0
 
@@ -53,24 +53,22 @@ metadata/_tab_index = 0
 visible = false
 layout_mode = 2
 
-[node name="Items" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector") instance=ExtResource("1_ty00r")]
+[node name="Items" parent="TabContainer" node_paths=PackedStringArray("target_selector") instance=ExtResource("1_ty00r")]
 visible = false
 layout_mode = 2
 focus_neighbor_bottom = NodePath("Options")
 focus_mode = 2
 script = ExtResource("2_miuef")
-desc_box_container = NodePath("../../BoxContainer")
 target_selector = NodePath("../../ItemTargetSelector")
 metadata/_tab_index = 1
 
 [node name="Q2label" parent="TabContainer/Items/Heading/MarginContainer/HBoxContainer" index="2"]
 visible = false
 
-[node name="Gear" parent="TabContainer" node_paths=PackedStringArray("desc_box_container", "target_selector") instance=ExtResource("1_ty00r")]
+[node name="Gear" parent="TabContainer" node_paths=PackedStringArray("target_selector") instance=ExtResource("1_ty00r")]
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("3_dtbst")
-desc_box_container = NodePath("../../BoxContainer")
 target_selector = NodePath("../../EquipTargetSelector")
 metadata/_tab_index = 2
 

@@ -101,5 +101,12 @@ func _on_switch_button_pressed() -> void:
 
 
 func _on_visibility_changed() -> void:
+	Audio.quiet(visible)
+	Audio.play_show_menu_sfx(visible)
 	if visible:
+		Global.players.freeze()
 		if not Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)
+		Global.exit_button.show()
+	else:
+		if is_instance_valid(Global.exit_button): Global.exit_button.hide()
+		if is_instance_valid(Global.players): Global.players.unfreeze()

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://buw6s7v2076je"]
 
-[ext_resource type="Script" path="res://Models/Items/base_item.gd" id="1_g3uao"]
+[ext_resource type="Script" uid="uid://c5y0lyfesygvd" path="res://Models/Items/base_item.gd" id="1_g3uao"]
 
 [resource]
 resource_local_to_scene = true
@@ -9,10 +9,10 @@ name = &"Leaf"
 offensive = false
 type = &"heal"
 value = 20
-boost = [1, 1]
-status_effect = &""
-accuracy = 1.0
+effect_duration = 0
+effect_chance = 1.0
 desc = "A revitalizing leaf. Heals a single target."
 price = 10
 aoe = false
+universal = false
 element = &""

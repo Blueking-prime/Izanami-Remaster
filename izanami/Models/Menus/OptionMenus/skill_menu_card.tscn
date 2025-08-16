@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0hx0wuw1wgpb"]
 
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/inventory_skill_panel.gd" id="1_p4bdc"]
+[ext_resource type="Script" uid="uid://bifvorxvijgmj" path="res://Models/Menus/OptionMenus/inventory_skill_panel.gd" id="1_p4bdc"]
 [ext_resource type="PackedScene" uid="uid://d0825mxmc6hd1" path="res://Models/Menus/OptionMenus/option_menu.tscn" id="2_xpor8"]
 
 [node name="Skills" type="VBoxContainer" node_paths=PackedStringArray("options", "nametag")]

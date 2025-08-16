@@ -35,7 +35,6 @@ func fight_enemy(enemy_scene):
 
 func reset_from_battle():
 	Global.player_party.freeze()
-	get_parent().overlay.load_ui_elements()
 	await Global.show_text_box('Crowley', 'Oh! So you survived?')
 	get_parent().back_button.show()
 	Global.sell.connect(get_parent()._sell_parser)

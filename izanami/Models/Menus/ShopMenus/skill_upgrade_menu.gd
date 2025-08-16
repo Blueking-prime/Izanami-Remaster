@@ -1,49 +1,27 @@
-extends VBoxContainer
+extends Control
 
-@export var skill_upgrade_card_scene: PackedScene
+class_name SKillUpgradeMenu
 
-## EXTERNAL PARAMETERS
-@export var players: Party
+@export var shop_handler: Node
+@export var skills_menu: InventorySkillMenu
 @export var desc_box_container: BoxContainer
-@export var confrim_button: Button
 
-var skill_id: int
-var current_player: Player
+func load_menu():
+	skills_menu.load_stock()
 
-func _ready() -> void:
-	Global.description_box_parent = desc_box_container
-	load_stock()
+func _on_exit_button_pressed() -> void:
+	if is_instance_valid(Global.description_box) and Global.description_box: Global.description_box.hide()
+	hide()
+	await shop_handler.choose_option()
 
-func load_stock():
-	if Global.players:
-		players = Global.players
-
-	_clear_data_cards()
-	if players:
-		for i in players.party:
-			create_card(i)
-
-func create_card(player: Player):
-	var card: SkillUpgradeCard = skill_upgrade_card_scene.instantiate()
-	card.desc_box_container = desc_box_container
-	card.player = player
-	card.confirm_button = confrim_button
-	card.load_stock()
-
-	add_child(card)
-
-func _clear_data_cards():
-	var children = get_children()
-	if children:
-		for i in children:
-			remove_child(i)
-			i.queue_free()
-
-func upgrade_skill():
-	var skill: Skill = current_player.skills.get_skills()[skill_id]
-	if skill:
-		# Deduct Currency
-		skill.rank += 1
-
-	confrim_button.hide()
-	load_stock()
+func _on_visibility_changed() -> void:
+	#Music.quiet(visible)
+	if visible:
+		Global.players.freeze()
+		if not Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)
+		Global.exit_button.show()
+		Global.description_box_parent = desc_box_container
+		print(Global.description_box_parent)
+	else :
+		if Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.disconnect(_on_exit_button_pressed)
+		if is_instance_valid(Global.exit_button): Global.exit_button.hide()

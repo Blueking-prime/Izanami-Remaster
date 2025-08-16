@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://d1ojuriup7dgc"]
+
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_58ui7"]
+
+[resource]
+script = ExtResource("1_58ui7")
+base_folder = "res://Models/Characters/Enemies"
+includes = Array[String](["*.tscn"])
+excludes = Array[String](["enemy.tscn"])
+paths = Array[String](["res://Models/Characters/Enemies/goblin.tscn", "res://Models/Characters/Enemies/imp.tscn"])

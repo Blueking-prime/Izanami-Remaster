@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://co458jxngt4el"]
 
-[ext_resource type="Script" path="res://Models/Menus/Overlays/settings.gd" id="1_ewfq3"]
+[ext_resource type="Script" uid="uid://cacgmstsgbr24" path="res://Models/Menus/Overlays/settings.gd" id="1_ewfq3"]
 [ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_16b2c"]
 [ext_resource type="PackedScene" uid="uid://b2sson3f02peq" path="res://Models/Menus/OptionMenus/keybind_option.tscn" id="2_f5xb2"]
 
-[node name="Settings" type="Control" node_paths=PackedStringArray("exit_button", "menu_switcher")]
+[node name="Settings" type="Control" node_paths=PackedStringArray("exit_button", "tab_container", "menu_switcher")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ewfq3")
 exit_button = NodePath("ExitButton")
+tab_container = NodePath("TabContainer")
 menu_switcher = NodePath("MenuSwitcher")
 
 [node name="MenuSwitcher" parent="." node_paths=PackedStringArray("menu_container") instance=ExtResource("2_16b2c")]

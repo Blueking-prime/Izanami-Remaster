@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnbjoofilujw1"]
 
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/shop_menu.gd" id="1_2fhb6"]
+[ext_resource type="Script" uid="uid://c2p1vt3lqu82f" path="res://Models/Menus/ShopMenus/shop_menu.gd" id="1_2fhb6"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="1_84uve"]
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/shop_inventory.gd" id="1_to4xg"]
+[ext_resource type="Script" uid="uid://0o3sgn7nnpsp" path="res://Models/Menus/ShopMenus/shop_inventory.gd" id="1_to4xg"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="2_3k3hf"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/DialogBoxes/text_box.tscn" id="4_08oii"]
-[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://all_gear.tres" id="4_b5lik"]
+[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="4_b5lik"]
 
 [node name="ShopMenu" type="Control" node_paths=PackedStringArray("player_inventory", "shop_inventory")]
 layout_mode = 3

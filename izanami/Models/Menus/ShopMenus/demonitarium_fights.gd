@@ -1,5 +1,7 @@
 extends OptionMenu
 
+class_name DemonitariumFightsUI
+
 ## EXTERNAL PARAMETERS
 #@export var desc_box_container: BoxContainer
 @export var players: Party
@@ -28,7 +30,7 @@ func display_demons():
 			demons.get_or_add(enemy.name, {
 				'scene'			: i,
 				'stats'			: enemy.stats,
-				'sprite_texture': enemy.battle_sprite.battle_sprite.texture,
+				'sprite_texture': enemy.battle_sprite_texture.texture,
 				'lvl'			: enemy.lvl,
 				'price'			: enemy.stats.values().reduce(func(accum, x): return accum + (10 * x), 10)
 			})

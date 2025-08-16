@@ -1,0 +1,38 @@
+[gd_scene load_steps=12 format=3 uid="uid://clxn4t2xy1j4d"]
+
+[ext_resource type="Script" uid="uid://c3c6gj5a6gjug" path="res://Scripts/audio.gd" id="1_j1oi5"]
+[ext_resource type="Script" uid="uid://bdtpn47r88w0i" path="res://Scripts/audio_bgm.gd" id="2_e2x4e"]
+[ext_resource type="AudioStream" uid="uid://dloga3a4rvkut" path="res://Configs/bgm_interactive_stream.tres" id="2_l7o61"]
+[ext_resource type="Script" uid="uid://dfsxmi6w2sacu" path="res://Scripts/audio_sfx.gd" id="4_kuo6t"]
+[ext_resource type="AudioStream" uid="uid://dme5acv8b5mqy" path="res://Assets/SFX/750431__rescopicsound__ui-alert-menu-modern-interface-pop-up-large.mp3" id="5_2xcx1"]
+[ext_resource type="AudioStream" uid="uid://cfkjsiw60y8w6" path="res://Assets/SFX/537033__fivebrosstopmosyt__ui-menu-close-2.wav" id="6_2xcb3"]
+[ext_resource type="AudioStream" uid="uid://i16h2he3kfgf" path="res://Assets/SFX/770202__yuugfr1a__modern-ui-decline.wav" id="7_e8mlg"]
+[ext_resource type="AudioStream" uid="uid://cu8v5jm1m6pj3" path="res://Assets/SFX/370849__cabled_mess__clack_minimal-ui-sounds.wav" id="8_xmquj"]
+[ext_resource type="AudioStream" uid="uid://b24w2ivtii12r" path="res://Assets/SFX/750427__rescopicsound__ui-alert-menu-modern-interface-confirm-medium.mp3" id="9_72p5r"]
+[ext_resource type="AudioStream" uid="uid://cj8n4it2k1hkt" path="res://Assets/SFX/403010__inspectorj__ui-confirmation-alert-b2.wav" id="10_q7gx4"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_kuo6t"]
+
+[node name="Audio" type="Node" node_paths=PackedStringArray("BGM", "SFX")]
+script = ExtResource("1_j1oi5")
+BGM = NodePath("BGMPlayer")
+SFX = NodePath("SFXPlayer")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l7o61")
+autoplay = true
+bus = &"BGM"
+script = ExtResource("2_e2x4e")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_kuo6t")
+autoplay = true
+max_polyphony = 10
+bus = &"SFX"
+script = ExtResource("4_kuo6t")
+show_menu_sfx = ExtResource("5_2xcx1")
+hide_menu_sfx = ExtResource("6_2xcb3")
+exit_menu_sfx = ExtResource("7_e8mlg")
+select_option_sfx = ExtResource("8_xmquj")
+activate_option_sfx = ExtResource("9_72p5r")
+choose_confrim_sfx = ExtResource("10_q7gx4")

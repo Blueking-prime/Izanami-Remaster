@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://byjs8yxdcn2dv"]
 
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/player_data_details_card.gd" id="1_54x7v"]
+[ext_resource type="Script" uid="uid://cec62gf0wm47s" path="res://Models/Menus/OptionMenus/player_data_details_card.gd" id="1_54x7v"]
 
 [node name="PlayerDetails" type="PanelContainer" node_paths=PackedStringArray("namefield", "classname", "hpbar", "hpbar_text", "spbar", "spbar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "select_button")]
 offset_right = 553.0

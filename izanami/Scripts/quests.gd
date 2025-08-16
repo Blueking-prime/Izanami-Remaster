@@ -58,9 +58,9 @@ func update_quests():
 			Checks.completed_quests.append(i)
 			get_parent().active_quest_list.erase(i)
 
-	if get_tree().current_scene is Location:
-		get_tree().current_scene.overlay.quest_display.update_quest(Checks.current_quest)
+	get_parent().quests_changed.emit()
 	#print('Refreshed')
+
 
 func _set_new_curent_quest():
 	if get_parent().active_quest_list.back():

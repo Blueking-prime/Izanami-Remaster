@@ -19,12 +19,12 @@ func main():
 		if quest_2 not in Global.active_quest_list:
 			Global.add_quest(quest_2)
 		Checks.test_return = true
-		print('Flag set')
+		#print('Flag set')
 	else :
 		Global.add_quest(quest)
 
-	print(Checks.current_quest.title, Checks.current_quest)
+	#print(Checks.current_quest.title, Checks.current_quest)
 
-	print('Reload')
+	#print('Reload')
 	get_parent().overlay.load_ui_elements()
 	get_parent().overlay.show()

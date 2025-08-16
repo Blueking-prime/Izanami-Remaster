@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ujhs0mvtimxh"]
 
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/player_inventory.gd" id="1_1iyiv"]
+[ext_resource type="Script" uid="uid://cmhw6ayteikxl" path="res://Models/Menus/ShopMenus/player_inventory.gd" id="1_1iyiv"]
 [ext_resource type="PackedScene" uid="uid://d0825mxmc6hd1" path="res://Models/Menus/OptionMenus/option_menu.tscn" id="1_47eld"]
 
 [node name="PlayerInventory" instance=ExtResource("1_47eld")]

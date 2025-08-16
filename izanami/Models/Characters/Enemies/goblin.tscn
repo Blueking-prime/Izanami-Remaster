@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dr3i0j0rl2a7g"]
 
 [ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_adh4s"]
-[ext_resource type="Script" path="res://Models/Characters/Enemies/goblin.gd" id="2_gx3q5"]
+[ext_resource type="Script" uid="uid://ckaixm5hjxvt0" path="res://Models/Characters/Enemies/goblin.gd" id="2_gx3q5"]
 
 [node name="Goblin" instance=ExtResource("1_adh4s")]
 position = Vector2(239, 72)

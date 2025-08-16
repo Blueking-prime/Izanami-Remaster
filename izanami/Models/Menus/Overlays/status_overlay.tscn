@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bs1rilljov5l4"]
 
 [ext_resource type="PackedScene" uid="uid://c4jo6wqiakv6r" path="res://Models/Menus/OptionMenus/player_data_status_card.tscn" id="1_4u0sc"]
-[ext_resource type="Script" path="res://Models/Menus/Overlays/status_overlay.gd" id="1_b1odg"]
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="5_7lsxn"]
+[ext_resource type="Script" uid="uid://dip4xblr5ao72" path="res://Models/Menus/Overlays/status_overlay.gd" id="1_b1odg"]
+[ext_resource type="Script" uid="uid://f1v50hh28kbl" path="res://Models/Menus/OptionMenus/options.gd" id="5_7lsxn"]
 [ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="6_i4pqh"]
 
 [node name="StatusOverlay" type="Panel" node_paths=PackedStringArray("player_container", "target_selector")]

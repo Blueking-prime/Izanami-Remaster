@@ -22,6 +22,8 @@ const TILEMAP_CELL_SIZE: int = 16
 func _ready() -> void:
 	load_scene()
 
+	if get_tree().current_scene == self: connect_signals()
+
 func load_scene():
 	if not Global.players:
 		Global.players = test_players
@@ -43,15 +45,24 @@ func load_scene():
 	Global.exit_button = exit_button
 	if not Global.exit_button.pressed.is_connected(Global._on_shop_exit): Global.exit_button.pressed.connect(Global._on_shop_exit)
 
+	Audio.call_deferred('set_background_music')
+
 	overlay.load_ui_elements()
+
+func connect_signals(): pass
+
+func disconnect_signals(): pass
 
 func _remove_test_players():
 	if is_instance_valid(test_players):
 		objectsort.remove_child(test_players)
 		test_players.queue_free()
 
-func add_players(_players: Party):
-	objectsort.add_child(_players)
+func add_players():
+	objectsort.add_child(Global.players)
+
+func remove_players():
+	objectsort.remove_child(Global.players)
 
 func size() -> Vector2:
 	if tilemap:
@@ -74,6 +85,13 @@ func _on_map_loaded():
 
 	overlay.load_ui_elements()
 
+func reset_from_battle():
+	if get_tree().current_scene != self:
+		get_tree().current_scene = self
+	Audio.call_deferred('set_background_music')
+	overlay.load_ui_elements()
+	Global.players.reset_battle_collision()
+	overlay.show()
 
 func save():
 	pass

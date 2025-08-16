@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjf7wmor410ps"]
+[gd_scene load_steps=11 format=3 uid="uid://bjf7wmor410ps"]
 
-[ext_resource type="Script" path="res://Models/Menus/Overlays/base_overlay.gd" id="1_fxe44"]
+[ext_resource type="Script" uid="uid://c1ojwvbieb55k" path="res://Models/Menus/Overlays/base_overlay.gd" id="1_fxe44"]
 [ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/Menus/Overlays/settings.tscn" id="2_3jbmj"]
 [ext_resource type="Texture2D" uid="uid://cya3ku2ta4pme" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/coin_anim_f0.png" id="2_rfrb6"]
-[ext_resource type="Script" path="res://Models/Menus/Overlays/player_display_container.gd" id="2_slhvk"]
+[ext_resource type="Script" uid="uid://j834r556e8m6" path="res://Models/Menus/Overlays/player_display_container.gd" id="2_slhvk"]
 [ext_resource type="PackedScene" uid="uid://mmi7n42qt3ph" path="res://Models/Menus/Overlays/player_data.tscn" id="3_446mo"]
-[ext_resource type="Script" path="res://Models/Menus/Overlays/quests_display.gd" id="5_1x7n3"]
+[ext_resource type="Script" uid="uid://lgmdupsehdrc" path="res://Models/Menus/Overlays/quests_display.gd" id="5_1x7n3"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/new_animated_texture.tres" id="5_8ecp3"]
+[ext_resource type="Script" uid="uid://b1j2o20mmu7vg" path="res://Models/Menus/Overlays/music_display.gd" id="6_62x73"]
 
 [sub_resource type="Gradient" id="Gradient_ffifv"]
 
@@ -16,7 +17,7 @@ width = 30
 height = 30
 fill_from = Vector2(1, 0)
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quest_display", "coin_counter", "mag_counter", "button_container", "settings_menu")]
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quest_display", "music_display", "coin_counter", "mag_counter", "button_container", "settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +27,7 @@ grow_vertical = 2
 script = ExtResource("1_fxe44")
 player_status = NodePath("PlayerDataOverlay/StatusOverlay/MarginContainer/PlayerContainer")
 quest_display = NodePath("InfoPanel/Quests")
+music_display = NodePath("InfoPanel/Music")
 coin_counter = NodePath("PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 mag_counter = NodePath("PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer/MagCount")
 button_container = NodePath("Buttons/MenuButtons")
@@ -263,7 +265,7 @@ layout_mode = 2
 layout_mode = 2
 text = "- Objective"
 
-[node name="Audio" type="PanelContainer" parent="InfoPanel"]
+[node name="Music" type="PanelContainer" parent="InfoPanel" node_paths=PackedStringArray("text_label")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -273,25 +275,27 @@ offset_top = 20.0
 offset_right = -20.0
 offset_bottom = 70.0
 grow_horizontal = 0
+script = ExtResource("6_62x73")
+text_label = NodePath("MarginContainer/HBoxContainer/Label")
 
-[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Audio"]
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Music"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InfoPanel/Audio/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InfoPanel/Music/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="InfoPanel/Audio/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="InfoPanel/Music/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_8ecp3")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="InfoPanel/Audio/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="InfoPanel/Music/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Current Track"
 

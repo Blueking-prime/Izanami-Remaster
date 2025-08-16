@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://s3bvhf5ano50"]
 
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_gnfuy"]
-[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/text_box.gd" id="1_krbbq"]
+[ext_resource type="Script" uid="uid://cpcnyphsrlyr6" path="res://Models/Menus/DialogBoxes/text_box.gd" id="1_krbbq"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("title", "title_container", "text_box", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "ffwd_button", "scroll_timer")]
 layout_mode = 3

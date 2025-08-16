@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Gear" load_steps=3 format=3 uid="uid://cjouv3j60hvag"]
 
-[ext_resource type="Script" path="res://Models/Skills/base_skill.gd" id="1_rh3i3"]
-[ext_resource type="Script" path="res://Models/Gear/base_gear.gd" id="2_rl6ry"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_rh3i3"]
+[ext_resource type="Script" uid="uid://pf3b8db5kr8t" path="res://Models/Gear/base_gear.gd" id="2_rl6ry"]
 
 [resource]
 script = ExtResource("2_rl6ry")
@@ -20,3 +20,4 @@ price = 30
 equipped = false
 skills = Array[ExtResource("1_rh3i3")]([])
 element = &"Wood"
+path = null

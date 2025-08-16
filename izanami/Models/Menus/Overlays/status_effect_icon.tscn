@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cg6blmcotgqs7"]
 
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="1_bewby"]
-[ext_resource type="Script" path="res://Models/Menus/Overlays/status_effect_icon.gd" id="2_gnp15"]
+[ext_resource type="Script" uid="uid://cmfdojklyhj1w" path="res://Models/Menus/Overlays/status_effect_icon.gd" id="2_gnp15"]
 
 [node name="StatusEffectIcon" type="TextureRect" node_paths=PackedStringArray("counter", "effect_name")]
 size_flags_horizontal = 3

@@ -4,29 +4,39 @@ class_name GlobalSceneLoader
 
 
 func warp(source: Location, destination_scene: PackedScene):
-	get_parent().change_background(get_parent().loading_screen, true)
+	#get_parent().change_background(get_parent().loading_screen, true)
+
+	Global.players.freeze()
+	source.hide()
+	source.disconnect_signals()
+
+	get_parent().players.leader.global_position = Vector2i.ZERO
+
 	var destination: Location = destination_scene.instantiate()
+	destination.hide()
 	source.add_sibling.call_deferred(destination)
 
-	get_parent().players.get_parent().remove_child(get_parent().players)
-	destination.add_players(get_parent().players)
+	source.call_deferred('remove_players')
+	destination.call_deferred('add_players')
 
-	await get_tree().create_timer(3).timeout
-	Global.players.unfreeze()
-	# Set destination as main scene
-	get_tree().current_scene = destination
+	#await get_tree().create_timer(1).timeout
 
-	# Reload destination and delete current scene
-	#destination.load_scene()
-	if is_instance_valid(source):
-		source.call_deferred('queue_free')
+	get_tree().set_deferred('current_scene', destination)
+	if is_instance_valid(source): source.call_deferred('queue_free')
+
+	Audio.call_deferred('set_background_music')
+
+	#await get_tree().create_timer(1).timeout
 
 	get_parent().players.leader.global_position = destination.entrance
 
-	print(get_tree().current_scene)
+	destination.call_deferred('connect_signals')
 
-	print('Town Loaded')
-	get_parent().change_background(null, true)
+	print(destination.get_script().get_global_name(), ' Loaded')
+	destination.show()
+	Global.players.call_deferred('unfreeze')
+
+	#get_parent().change_background(null, true)
 
 
 func load_main_menu():

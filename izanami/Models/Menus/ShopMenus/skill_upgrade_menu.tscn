@@ -1,15 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlt58862gge0u"]
+[gd_scene load_steps=4 format=3 uid="uid://dlt58862gge0u"]
 
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/skill_upgrade_menu.gd" id="1_sm2qp"]
-[ext_resource type="PackedScene" uid="uid://pgejhcs3y7ql" path="res://Models/Menus/OptionMenus/skill_upgrade_card.tscn" id="2_ehlhe"]
+[ext_resource type="Script" uid="uid://ceokvbo311by8" path="res://Models/Menus/Overlays/inventory_skills.gd" id="1_b2fm3"]
+[ext_resource type="Script" uid="uid://cpeakabaih3s6" path="res://Models/Menus/ShopMenus/skill_upgrade_menu.gd" id="1_sm2qp"]
+[ext_resource type="PackedScene" uid="uid://bp8hjbvduev5m" path="res://Models/Menus/OptionMenus/skill_upgrade_card.tscn" id="2_ehlhe"]
 
-[node name="SkillUpgradeMenus" type="Control"]
+[node name="SkillUpgradeMenus" type="Control" node_paths=PackedStringArray("skills_menu", "desc_box_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sm2qp")
+skills_menu = NodePath("PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel")
+desc_box_container = NodePath("BoxContainer")
 
 [node name="PanelContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -72,13 +76,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SkillUpgradePanel" type="VBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer" node_paths=PackedStringArray("players", "desc_box_container", "confrim_button")]
+[node name="SkillUpgradePanel" type="VBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-script = ExtResource("1_sm2qp")
-skill_upgrade_card_scene = ExtResource("2_ehlhe")
-players = NodePath("")
-desc_box_container = NodePath("../../../../BoxContainer")
-confrim_button = NodePath("../../../../ConfirmButton")
+script = ExtResource("1_b2fm3")
+skill_menu_card_scene = ExtResource("2_ehlhe")
 metadata/_tab_index = 1
 
 [node name="Skills" parent="PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel" instance=ExtResource("2_ehlhe")]
@@ -114,4 +115,5 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Confirm Upgrade"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ConfirmButton" to="PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel" method="upgrade_skill"]

@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://11siwvu70ak7"]
 
-[ext_resource type="Script" path="res://Models/Menus/Overlays/quest_menu.gd" id="1_cod0v"]
+[ext_resource type="Script" uid="uid://bpro3bpsmtw05" path="res://Models/Menus/Overlays/quest_menu.gd" id="1_cod0v"]
 [ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_6m2fi"]
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/active_quests.gd" id="4_65ixt"]
+[ext_resource type="Script" uid="uid://vggqrpcrq0ai" path="res://Models/Menus/ShopMenus/active_quests.gd" id="4_65ixt"]
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="5_6qcnh"]
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/completed_quests.gd" id="5_vxv28"]
+[ext_resource type="Script" uid="uid://dfmxwvhcd52h1" path="res://Models/Menus/ShopMenus/completed_quests.gd" id="5_vxv28"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="5_ysctb"]
 
-[node name="QuestMenu" type="Panel" node_paths=PackedStringArray("active_menu", "completed_menu", "tab_container", "menu_switcher")]
+[node name="QuestMenu" type="Panel" node_paths=PackedStringArray("active_menu", "completed_menu", "tab_container", "menu_switcher", "desc_box_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,6 +18,7 @@ active_menu = NodePath("TabContainer/Active")
 completed_menu = NodePath("TabContainer/Completed")
 tab_container = NodePath("TabContainer")
 menu_switcher = NodePath("MenuSwitcher")
+desc_box_container = NodePath("BoxContainer")
 
 [node name="MenuSwitcher" parent="." node_paths=PackedStringArray("menu_container") instance=ExtResource("2_6m2fi")]
 menu_container = NodePath("../TabContainer")

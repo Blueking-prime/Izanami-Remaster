@@ -7,7 +7,7 @@ extends Node
 @export var SCENE_LOADER: GlobalSceneLoader
 @export var QUESTS: GlobalQuests
 
-@export_category("UI Asset Scenes")
+@export_category("UI Assets")
 @export var text_box_scene: PackedScene
 @export var confirmation_box_scene: PackedScene
 @export var description_box_scene: PackedScene
@@ -74,7 +74,7 @@ signal pause_timer
 signal confirmation_box_triggered
 signal sell(condition)
 signal exit_signal
-
+signal quests_changed
 
 #region Text Processing
 func add_to_text_log(dialogue: Array):
@@ -232,3 +232,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		sell.emit('exit')
 		exit_signal.emit()
+		Audio.play_exit_menu_sfx()
+	if event.is_action_pressed('test'):
+		print(get_tree().current_scene)

@@ -1,15 +1,12 @@
 extends OptionMenu
 
 ## EXTERNAL PARAMETERS
-@export var desc_box_container: BoxContainer
 @export var target_selector: Options
 
 ## WORKING VARIABLES
 var inventory: Inventory
 var selected_item_name: String
 
-func _ready() -> void:
-	Global.description_box_parent = desc_box_container
 
 func load_stock():
 	if Global.players:
@@ -58,6 +55,7 @@ func _on_item_selected(index: int) -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
+		Audio.play_switch_menu_sfx()
 		options.grab_focus()
 		Checks.inventory_tab = get_index()
 

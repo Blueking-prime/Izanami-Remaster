@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 class_name InventorySkillCard
 
@@ -7,21 +7,13 @@ class_name InventorySkillCard
 @export var nametag: Label
 
 ## EXTERNAL PARAMETERS
-@export var players: Party
 @export var player: Player
-@export var desc_box_container: BoxContainer
 @export var target_selector: Options
 
 ## WORKING VARIABLES
 var selected_skill_index: int
 
-func _ready() -> void:
-	Global.description_box_parent = desc_box_container
-	load_stock()
-
 func load_stock():
-	if is_instance_valid(Global.players):
-		players = Global.players
 	if player:
 		nametag.text = player.nametag.text
 		update_listing()
@@ -40,7 +32,7 @@ func update_listing():
 
 func show_target_selector():
 	target_selector.clear()
-	for i in players.party:
+	for i in Global.players.party:
 		target_selector.add_icon_item(
 			i.battle_sprite_texture.texture,
 			i.character_name,
@@ -50,15 +42,14 @@ func show_target_selector():
 	target_selector.grab_focus()
 
 func choose_target(index: int):
-	player.use_skill(selected_skill_index, players.party[index])
+	player.use_skill(selected_skill_index, Global.players.party[index])
 	target_selector.hide()
-
 
 func _on_item_activated(index: int) -> void:
 	selected_skill_index = index
 	var skill: Skill = player.skills.get_skills()[index]
 	if skill.aoe:
-		player.use_skill(index, players.party)
+		player.use_skill(index, Global.players.party)
 	elif not skill.targetable:
 		player.use_skill(index, player)
 	else:

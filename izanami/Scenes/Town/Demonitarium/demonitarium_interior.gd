@@ -5,11 +5,14 @@ class_name Demonitarium
 @export var counter: DemonitariumCounter
 @export var warp_points: Node2D
 
-func load_scene():
-	super.load_scene()
 
+func connect_signals():
 	if not Global.players.leader.detector.hit_building.is_connected(_check_building):
 		Global.players.leader.detector.hit_building.connect(_check_building)
+
+func disconnect_signals():
+	if Global.players.leader.detector.hit_building.is_connected(_check_building):
+		Global.players.leader.detector.hit_building.disconnect(_check_building)
 
 func _check_building(node: Variant):
 	overlay.hide()
@@ -17,6 +20,9 @@ func _check_building(node: Variant):
 		counter: await counter.main()
 		#warp_points: await warp_points.main()
 
+func reset_from_battle():
+	super.reset_from_battle()
+	counter.fights.reset_from_battle()
 
 func save() -> DemonitariumSaveData:
 	var save_data: DemonitariumSaveData = DemonitariumSaveData.new()

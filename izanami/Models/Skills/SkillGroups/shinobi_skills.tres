@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://d1iv4ftmi0jov"]
 
-[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_abotj"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_abotj"]
 
 [resource]
 script = ExtResource("1_abotj")

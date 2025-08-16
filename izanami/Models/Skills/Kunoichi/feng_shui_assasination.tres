@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Offensive_Skill" load_steps=6 format=3 uid="uid://vg2i2lo8ismg"]
 
-[ext_resource type="Script" path="res://Models/Statuses/Effects/toxin.gd" id="1_uslxv"]
-[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_xyrly"]
-[ext_resource type="Script" path="res://Models/Statuses/Effects/stun.gd" id="2_56x7y"]
-[ext_resource type="Script" path="res://Models/Statuses/Effects/death.gd" id="2_kwll3"]
-[ext_resource type="Script" path="res://Models/Statuses/Effects/seal.gd" id="3_swdek"]
+[ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="1_uslxv"]
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_xyrly"]
+[ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="2_56x7y"]
+[ext_resource type="Script" uid="uid://cv1bwrjnw3l1n" path="res://Models/Statuses/Effects/death.gd" id="2_kwll3"]
+[ext_resource type="Script" uid="uid://12tt5alqdiul" path="res://Models/Statuses/Effects/seal.gd" id="3_swdek"]
 
 [resource]
 script = ExtResource("1_xyrly")

@@ -12,6 +12,7 @@ GOALS
 BUG FIXES
 - [ ] Figure out object sorting
 - [ ] improve navigation performance
+- [ ] Fix loading screen crashing
 - [x] Fix dungeon sprite not displaying after battle exit (Might have to do with status icon crash or maybe battle sprite is misbehaving again. try to create supe in sprite creation function. Could also be variable name conflict)
 - [x] Fix enemies not moving
 - [x] Fix camera inverting if map amaller than viewport
@@ -50,7 +51,13 @@ TASKS (WORKABLE)
 - [ ] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering
 - [ ] Add water/lava in dungeons
 - [ ] Add saving and loading checks data
-- [ ] Implementt quests menu
+- [ ] Implement way to display that a skill has been upgraded
+- [ ] Remove sell exit signal and replace with exit signal
+- [ ] Move base overlay input processing dedicated node
+- [x] Change quest display to use signals instead of direct calls
+- [x] Update demonatrium menus an functions with QoL like focus grabbing
+- [x] Create Menu base class
+- [x] Implement quests menu
 - [x] Apply sprite assignment logic changes to battle scene
 - [x] Implement Persistence toggles for inventory menu
 - [x] Change logic for assigning dynamic UI elements to player function.

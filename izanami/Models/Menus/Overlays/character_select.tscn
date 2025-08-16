@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://vxxdyg18tnqq"]
 
-[ext_resource type="Script" path="res://Models/Menus/Overlays/character_select.gd" id="1_kal2b"]
+[ext_resource type="Script" uid="uid://c26o6fwfamrgr" path="res://Models/Menus/Overlays/character_select.gd" id="1_kal2b"]
 [ext_resource type="PackedScene" uid="uid://c4jo6wqiakv6r" path="res://Models/Menus/OptionMenus/player_data_status_card.tscn" id="2_04xmx"]
 [ext_resource type="PackedScene" uid="uid://ckiwa6lyvqgds" path="res://Models/Characters/Players/destitute.tscn" id="2_jeb3m"]
 [ext_resource type="PackedScene" uid="uid://ckvlq77lwkf6g" path="res://Models/Characters/Players/doctor.tscn" id="3_x4rs5"]

@@ -1,108 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://pgejhcs3y7ql"]
+[gd_scene load_steps=3 format=3 uid="uid://bp8hjbvduev5m"]
 
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/skill_upgrade_card.gd" id="1_t36vu"]
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/option_menu.gd" id="2_3yg8k"]
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/options.gd" id="3_usy28"]
-[ext_resource type="PackedScene" uid="uid://sjo686i6woks" path="res://Models/Menus/OptionMenus/option.tscn" id="4_ktt7j"]
+[ext_resource type="PackedScene" uid="uid://0hx0wuw1wgpb" path="res://Models/Menus/OptionMenus/skill_menu_card.tscn" id="1_n2yfg"]
+[ext_resource type="Script" uid="uid://oo8om82vwfop" path="res://Models/Menus/OptionMenus/skill_upgrade_card.gd" id="1_t36vu"]
 
-[node name="Skills" type="VBoxContainer" node_paths=PackedStringArray("options", "nametag")]
-offset_right = 192.0
-offset_bottom = 143.0
-size_flags_horizontal = 3
-focus_mode = 2
+[node name="Skills" instance=ExtResource("1_n2yfg")]
 script = ExtResource("1_t36vu")
-options = NodePath("HBoxContainer/OptionMenu/Options")
-nametag = NodePath("Player")
 
-[node name="Player" type="Label" parent="."]
-layout_mode = 2
-text = "Player"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Control" type="Control" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OptionMenu" type="VBoxContainer" parent="HBoxContainer" node_paths=PackedStringArray("heading_name", "heading_q1", "heading_q2")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 10.0
-script = ExtResource("2_3yg8k")
-heading_name = NodePath("Heading/MarginContainer/HBoxContainer/NameLabel")
-heading_q1 = NodePath("Heading/MarginContainer/HBoxContainer/Q1Label")
-heading_q2 = NodePath("Heading/MarginContainer/HBoxContainer/Q2label")
-
-[node name="Heading" type="PanelContainer" parent="HBoxContainer/OptionMenu"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/OptionMenu/Heading"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/OptionMenu/Heading/MarginContainer"]
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
-text = "Name"
-vertical_alignment = 1
-justification_flags = 162
-
-[node name="Q1Label" type="Label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
+[node name="Q1Label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer" index="1"]
 text = "Rank"
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 162
 
-[node name="Q2label" type="Label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Q2"
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 162
-
-[node name="Options" type="ScrollContainer" parent="HBoxContainer/OptionMenu" node_paths=PackedStringArray("button_container")]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 0
-script = ExtResource("3_usy28")
-button_container = NodePath("PanelContainer/MarginContainer/VBoxContainer")
-option_scene = ExtResource("4_ktt7j")
-
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/OptionMenu/Options"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/OptionMenu/Options/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/OptionMenu/Options/PanelContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="Option" parent="HBoxContainer/OptionMenu/Options/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_ktt7j")]
-layout_mode = 2
-
-[connection signal="item_selected" from="HBoxContainer/OptionMenu/Options" to="." method="_on_item_selected"]
-
-[editable path="HBoxContainer/OptionMenu/Options/PanelContainer/MarginContainer/VBoxContainer/Option"]
+[editable path="HBoxContainer/OptionMenu"]
+[editable path="HBoxContainer/OptionMenu/Options"]

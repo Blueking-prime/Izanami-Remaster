@@ -1,14 +1,11 @@
 extends VBoxContainer
 
+class_name InventorySkillMenu
+
 @export var skill_menu_card_scene: PackedScene
 
 ## EXTERNAL PARAMETERS
-@export var desc_box_container: BoxContainer
 @export var target_selector: Options
-
-
-func _ready() -> void:
-	Global.description_box_parent = desc_box_container
 
 func load_stock():
 	_clear_data_cards()
@@ -16,14 +13,14 @@ func load_stock():
 		for i in Global.players.party:
 			create_card(i)
 
-func create_card(player: Player):
+func create_card(player: Player) -> InventorySkillCard:
 	var card: InventorySkillCard = skill_menu_card_scene.instantiate()
-	card.desc_box_container = desc_box_container
 	card.target_selector = target_selector
 	card.player = player
 	card.load_stock()
 
 	add_child(card)
+	return card
 
 func _clear_data_cards():
 	var children = get_children()
@@ -35,8 +32,9 @@ func _clear_data_cards():
 
 func _on_visibility_changed() -> void:
 	if get_child(0) and visible:
-		get_child(0).options.grab_focus()
-		Checks.inventory_tab = get_index()
+		Audio.play_switch_menu_sfx()
+		if get_child(0).options.is_inside_tree(): get_child(0).options.grab_focus()
+		if get_parent() is TabContainer: Checks.inventory_tab = get_index()
 
 
 func _input(event: InputEvent) -> void:

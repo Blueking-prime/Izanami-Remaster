@@ -7,21 +7,27 @@ class_name QuestsDisplay
 
 var displayed_objectives: Dictionary
 var currently_displayed_quest: GlobalQuests.Quest
+var currently_selected_quest: GlobalQuests.Quest:
+	get(): return Checks.current_quest
 
-func update_quest(quest: GlobalQuests.Quest):
-	if not quest or quest.completed:
+func connect_signals():
+	if not Global.quests_changed.is_connected(_on_quests_updated):
+		Global.quests_changed.connect(_on_quests_updated)
+
+func update_quest():
+	if not currently_selected_quest or currently_selected_quest.completed:
 		default_display()
 		return
 
-	if not currently_displayed_quest or (quest.title != currently_displayed_quest.title):
-		currently_displayed_quest = quest
+	if not currently_displayed_quest or (currently_selected_quest.title != currently_displayed_quest.title):
+		currently_displayed_quest = currently_selected_quest
 		title.text = currently_displayed_quest.title
 		_clear_objectives()
 
 	_get_displayed_objectives()
 	currently_displayed_quest.refresh_flags()
 
-	update_objectives(quest.objectives)
+	update_objectives(currently_selected_quest.objectives)
 
 func update_objectives(objectives: Array):
 	if not objectives.is_empty():
@@ -57,3 +63,6 @@ func _clear_objectives():
 func default_display():
 	title.text = 'No active Quest'
 	_clear_objectives()
+
+func _on_quests_updated() -> void:
+	update_quest()

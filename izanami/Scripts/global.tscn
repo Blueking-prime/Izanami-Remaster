@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bcxmyev8jvlgh"]
 
-[ext_resource type="Script" path="res://Scripts/global.gd" id="1_u8o3i"]
+[ext_resource type="Script" uid="uid://ty13w3ttw1d5" path="res://Scripts/global.gd" id="1_u8o3i"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/DialogBoxes/text_box.tscn" id="2_imufx"]
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Scenes/Town/town.tscn" id="2_pafky"]
 [ext_resource type="PackedScene" uid="uid://n1fo1vibhwx4" path="res://Models/Menus/DialogBoxes/confirmation_box.tscn" id="3_0ya4a"]
@@ -12,12 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://c02t3tj4sqc8m" path="res://Models/Menus/Overlays/text_log.tscn" id="6_4il6x"]
 [ext_resource type="PackedScene" uid="uid://5iv4fsku5g5x" path="res://Scenes/Town/Demonitarium/demonitarium.tscn" id="7_gaejl"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/new_animated_texture.tres" id="9_egmmm"]
-[ext_resource type="Script" path="res://Scripts/global_text_processing.gd" id="13_3nkps"]
-[ext_resource type="Script" path="res://Scripts/global_ui_element_display.gd" id="14_qfkbc"]
-[ext_resource type="Script" path="res://Scripts/global_algorithms_logic.gd" id="15_h8mch"]
-[ext_resource type="Script" path="res://Scripts/global_scene_loader.gd" id="16_stni4"]
-[ext_resource type="Script" path="res://Scripts/global_signals.gd" id="17_q1ilv"]
-[ext_resource type="Script" path="res://Scripts/quests.gd" id="18_d5lpp"]
+[ext_resource type="Script" uid="uid://ofb7uvb1rtv6" path="res://Scripts/global_text_processing.gd" id="13_3nkps"]
+[ext_resource type="Script" uid="uid://cd2eu0m3h1bvx" path="res://Scripts/global_ui_element_display.gd" id="14_qfkbc"]
+[ext_resource type="Script" uid="uid://b3m6b5kdj6465" path="res://Scripts/global_algorithms_logic.gd" id="15_h8mch"]
+[ext_resource type="Script" uid="uid://mqelb8bjj3q5" path="res://Scripts/global_scene_loader.gd" id="16_stni4"]
+[ext_resource type="Script" uid="uid://yfqq50vhchf6" path="res://Scripts/global_signals.gd" id="17_q1ilv"]
+[ext_resource type="Script" uid="uid://1j3u4tj6q6pv" path="res://Scripts/quests.gd" id="18_d5lpp"]
 
 [node name="Global" type="Node" node_paths=PackedStringArray("TEXT", "UI", "ALGORITHMS", "SCENE_LOADER", "QUESTS")]
 script = ExtResource("1_u8o3i")

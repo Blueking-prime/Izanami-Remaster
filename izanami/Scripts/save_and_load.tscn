@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b08k8go4h38wa"]
 
-[ext_resource type="Script" path="res://Scripts/save_and_load.gd" id="1_i2xsw"]
-[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/save_window.gd" id="2_njto7"]
+[ext_resource type="Script" uid="uid://frflbaljo2le" path="res://Scripts/save_and_load.gd" id="1_i2xsw"]
+[ext_resource type="Script" uid="uid://dr754lkjq7vh3" path="res://Models/Menus/DialogBoxes/save_window.gd" id="2_njto7"]
 [ext_resource type="PackedScene" uid="uid://d0825mxmc6hd1" path="res://Models/Menus/OptionMenus/option_menu.tscn" id="3_ixggn"]
-[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/save_menu.gd" id="3_w2t4k"]
+[ext_resource type="Script" uid="uid://bb81wm8jro8dj" path="res://Models/Menus/DialogBoxes/save_menu.gd" id="3_w2t4k"]
 
 [node name="SaveAndLoad" type="Node" node_paths=PackedStringArray("save_window")]
 script = ExtResource("1_i2xsw")

@@ -1,0 +1,47 @@
+[gd_resource type="AudioStreamInteractive" load_steps=6 format=3 uid="uid://dloga3a4rvkut"]
+
+[ext_resource type="AudioStream" uid="uid://cjplisiwdq7pk" path="res://Assets/Music/ByeByeBrain320bit(chosic.com).mp3" id="1_h2cl3"]
+[ext_resource type="AudioStream" uid="uid://cpknlmdxo4oel" path="res://Assets/Music/peritune-spook4(chosic.com).mp3" id="2_u8mv6"]
+[ext_resource type="AudioStream" uid="uid://dvnamqc1wnw4n" path="res://Assets/Music/Simulacra-chosic.com_.mp3" id="3_6nda1"]
+[ext_resource type="AudioStream" uid="uid://cjic146q1073n" path="res://Assets/Music/Powerful-Trap-(chosic.com).mp3" id="4_wmqu8"]
+[ext_resource type="AudioStream" uid="uid://djeykste1ukbx" path="res://Assets/Music/Thunder-Unison-Action-Dramatic-Epic-Music-chosic.com_.mp3" id="5_qcs0i"]
+
+[resource]
+clip_count = 5
+clip_0/name = &"town_bgm"
+clip_0/stream = ExtResource("1_h2cl3")
+clip_0/auto_advance = 0
+clip_1/name = &"demonitarium_bgm"
+clip_1/stream = ExtResource("2_u8mv6")
+clip_1/auto_advance = 0
+clip_2/name = &"dungeon_bgm"
+clip_2/stream = ExtResource("3_6nda1")
+clip_2/auto_advance = 0
+clip_3/name = &"battle_bgm"
+clip_3/stream = ExtResource("4_wmqu8")
+clip_3/auto_advance = 0
+clip_4/name = &"main_menu_bgm"
+clip_4/stream = ExtResource("5_qcs0i")
+clip_4/auto_advance = 0
+initial_clip = 4
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(-1, 3): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"hold_previous": true,
+"to_time": 1
+},
+Vector2i(3, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 2
+}
+}

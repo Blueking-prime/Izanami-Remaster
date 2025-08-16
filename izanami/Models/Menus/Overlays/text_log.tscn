@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c02t3tj4sqc8m"]
 
-[ext_resource type="Script" path="res://Models/Menus/Overlays/text_log.gd" id="1_tsoc3"]
+[ext_resource type="Script" uid="uid://qauewdtrmksw" path="res://Models/Menus/Overlays/text_log.gd" id="1_tsoc3"]
 
 [node name="TextLog" type="PanelContainer" node_paths=PackedStringArray("label")]
 visible = false

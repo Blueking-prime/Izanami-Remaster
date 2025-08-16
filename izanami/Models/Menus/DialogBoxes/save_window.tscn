@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://co115f1ruqr4s"]
 
-[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/save_window.gd" id="1_3wlhh"]
-[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/save_menu.gd" id="1_qjf68"]
+[ext_resource type="Script" uid="uid://dr754lkjq7vh3" path="res://Models/Menus/DialogBoxes/save_window.gd" id="1_3wlhh"]
+[ext_resource type="Script" uid="uid://bb81wm8jro8dj" path="res://Models/Menus/DialogBoxes/save_menu.gd" id="1_qjf68"]
 
 [node name="SaveWindow" type="Window" node_paths=PackedStringArray("save_menu", "confirm_button")]
 title = "Choose Save file"

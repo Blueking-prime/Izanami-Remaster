@@ -1,25 +1,6 @@
-extends Node
+extends InventorySkillCard
 
 class_name SkillUpgradeCard
-
-## CHILD NODES
-@export var options: Options
-@export var nametag: Label
-
-## EXTERNAL PARAMETERS
-@export var player: Player
-@export var desc_box_container: BoxContainer
-@export var confirm_button: Button
-
-func _ready() -> void:
-	Global.description_box_parent = desc_box_container
-	# Figure out how to display desc box for upgraded skill
-	load_stock()
-
-func load_stock():
-	if player:
-		nametag.text = player.nametag.text
-		update_listing()
 
 func update_listing():
 	options.clear()
@@ -35,11 +16,19 @@ func update_listing():
 func rank_indicator(rank: int) -> String:
 	return '⬤'.repeat(rank) + '◯'.repeat(2 - rank)
 
-func _on_item_selected(index: int) -> void:
-	var skill: Skill = player.skills.get_skills()[index]
-	get_parent().skill_id = index
-	get_parent().current_player = player
+func upgrade_skill(skill_id: int):
+	var skill: Skill = player.skills.get_skills()[skill_id]
 	if skill:
-		Global.show_description(skill)
+		# Deduct Currency
+		skill.rank += 1
 
-	confirm_button.show()
+	load_stock()
+
+
+func _on_item_activated(index: int) -> void:
+	_on_item_selected(index)
+	var skill: Skill = player.skills.get_skills()[index]
+	var confirm = await Global.show_confirmation_box('Upgrade %s' % [skill.name])
+	if confirm:
+		upgrade_skill(index)
+	_on_item_selected(index)

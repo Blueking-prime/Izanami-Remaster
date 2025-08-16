@@ -61,17 +61,11 @@ func load_scene():
 
 	_load_items()
 
-	player.detector.hit_chest.connect(_on_detector_hit_chest)
-	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
-	player.detector.hit_exit.connect(_on_detector_hit_exit)
-	player.detector.hit_entrance.connect(_on_detector_hit_entrance)
-
 	#print('Pre map create ', (start_time - Time.get_ticks_msec()) * -1)
 
 	if new_map:
 		map.draw_new_map()
 		#map.display_dungeon()
-
 		#print('Pre map render ', (start_time - Time.get_ticks_msec()) * -1)
 
 		tilemap.render_objects()
@@ -82,6 +76,19 @@ func load_scene():
 
 	Global.change_background(null, true)
 	#print('Final time ', (start_time - Time.get_ticks_msec()) * -1)
+
+func connect_signals():
+	print('Dungeon sig connected')
+	player.detector.hit_chest.connect(_on_detector_hit_chest)
+	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
+	player.detector.hit_exit.connect(_on_detector_hit_exit)
+	player.detector.hit_entrance.connect(_on_detector_hit_entrance)
+
+func disconnect_signals():
+	player.detector.hit_chest.disconnect(_on_detector_hit_chest)
+	player.detector.hit_enemy.disconnect(_on_detector_hit_enemy)
+	player.detector.hit_exit.disconnect(_on_detector_hit_exit)
+	player.detector.hit_entrance.disconnect(_on_detector_hit_entrance)
 
 
 #func setup_navigation_region():
@@ -204,11 +211,9 @@ func _on_detector_hit_enemy(body: Enemy) -> void:
 
 func reset_from_battle():
 	#background.show()
+	super.reset_from_battle()
 	objectsort.show()
-	overlay.load_ui_elements()
 	enemy_display.update_display()
-	overlay.show()
-	Global.players.reset_battle_collision()
 	unfreeze_enemies()
 
 

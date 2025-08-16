@@ -108,7 +108,7 @@ func _place_enemies():
 		print(enemy.map_size)
 
 	enemy_nodes = get_children()
-	if not root_node.boss_enemy:
+	if not root_node.boss_enemy and not enemy_nodes.is_empty():
 		root_node.set_boss(enemy_nodes.pick_random())
 
 

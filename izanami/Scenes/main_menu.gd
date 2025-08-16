@@ -1,5 +1,7 @@
 extends Node
 
+class_name MainMenu
+
 @export var load_button: Button
 @export var settings_menu: Settings
 @export var canvas_layer: CanvasLayer

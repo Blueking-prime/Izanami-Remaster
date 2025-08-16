@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cyi5epemnot1x"]
 
-[ext_resource type="Script" path="res://Models/Menus/DialogBoxes/description_box.gd" id="1_ie52s"]
+[ext_resource type="Script" uid="uid://cf08u8fibntsr" path="res://Models/Menus/DialogBoxes/description_box.gd" id="1_ie52s"]
 
 [node name="DescriptionBox" type="PanelContainer" node_paths=PackedStringArray("type", "element", "value", "effect_chance", "description", "subtype", "target_scope", "sell_price", "weapon_status", "cost", "stats", "rank")]
 offset_right = 582.0

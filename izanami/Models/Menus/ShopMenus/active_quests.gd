@@ -69,7 +69,7 @@ func _on_item_selected(index: int) -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		options.grab_focus()
+		if options.is_inside_tree(): options.grab_focus()
 		Checks.quests_tab = get_index()
 	else :
 		objective_list.hide()

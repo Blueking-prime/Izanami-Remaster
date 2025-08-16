@@ -5,6 +5,7 @@ class_name UIOverlay
 #region OVERLAYS
 @export var player_status: PlayerDataDisplay
 @export var quest_display: QuestsDisplay
+@export var music_display: MusicDisplay
 @export var coin_counter: Label
 @export var mag_counter: Label
 #endregion
@@ -15,9 +16,9 @@ class_name UIOverlay
 #region MENUS
 @export var settings_menu: Settings
 @export var inventory_menu: InventoryMenu
-@export var status_menu: StatusOverlay
 @export var quests_menu: QuestMenu
 #endregion
+@export var status_menu: StatusOverlay
 
 @export var map_cam: Map
 @export var free_cam: FreeCam
@@ -25,10 +26,6 @@ class_name UIOverlay
 var curr_menu: Control
 var menu_list: Array
 var save_enabled: bool = true
-
-var current_quest: GlobalQuests.Quest:
-	get():
-		return Checks.current_quest
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory_key"):
@@ -87,42 +84,40 @@ func load_ui_elements():
 	mag_counter.text = str(Global.players.mag)
 	settings_menu.load_menu()
 	quests_menu.load_menu()
-	quest_display.update_quest(current_quest)
+	quest_display.connect_signals()
+	quest_display.update_quest()
+	music_display.connect_signals()
+	music_display.update_track()
+
+
+#region Menus
+func _on_menu_opened(menu: OverlayMenu) -> void:
+	menu.load_menu()
+
+	if menu.visible:
+		menu._on_exit_button_pressed()
+	else :
+		_clear_visible_menus()
+		menu.show()
 
 func _on_inventory_button_pressed() -> void:
-	Global.players.freeze()
-
-	inventory_menu.load_inventory()
-	inventory_menu.tab_container.grab_focus()
-	if inventory_menu.visible:
-		inventory_menu._on_exit_button_pressed()
-	else:
-		_clear_visible_menus()
-		inventory_menu.show()
-		Global.exit_button.show()
+	_on_menu_opened(inventory_menu)
+	if inventory_menu.visible: inventory_menu.tab_container.grab_focus()
 
 func _on_settings_button_pressed() -> void:
-	Global.players.freeze()
+	_on_menu_opened(settings_menu)
 
-	settings_menu.load_menu()
-	if settings_menu.visible:
-		settings_menu._on_exit_button_pressed()
-	else:
-		_clear_visible_menus()
-		settings_menu.show()
-		Global.exit_button.show()
-
+func _on_quests_button_pressed() -> void:
+	_on_menu_opened(quests_menu)
 
 func _on_status_button_pressed() -> void:
-	Global.players.freeze()
-
 	status_menu.load_menu()
 	if status_menu.visible:
 		status_menu._on_exit_button_pressed()
 	else:
 		_clear_visible_menus()
 		status_menu.show()
-		Global.exit_button.show()
+#endregion
 
 func _on_save_button_pressed() -> void:
 	if not save_enabled: return
@@ -175,17 +170,6 @@ func _on_log_button_pressed() -> void:
 			Global.players.freeze()
 			_clear_visible_menus()
 			Global.text_log.show()
-
-func _on_quests_button_pressed() -> void:
-	Global.players.freeze()
-
-	quests_menu.load_menu()
-	if quests_menu.visible:
-		quests_menu._on_exit_button_pressed()
-	else:
-		_clear_visible_menus()
-		quests_menu.show()
-		Global.exit_button.show()
 
 func _on_ui_button_pressed() -> void:
 	if visible:

@@ -13,7 +13,7 @@ class_name BattleSetup
 ## RETURN LOCATIONS
 @onready var dungeon: Dungeon = get_parent().dungeon
 @onready var town: Town = get_parent().town
-@onready var demonitarium: Node = get_parent().demonitarium
+@onready var demonitarium: Demonitarium = get_parent().demonitarium
 
 
 func actor_setup():
@@ -31,6 +31,9 @@ func actor_setup():
 	# Duplicate array and set turn order according to speed
 	process_turns.turn_order = process_turns.actors.slice(0)
 	process_turns.turn_order.sort_custom(func(a, b): return a.stats['AGI'] > b.stats['AGI'])
+
+	get_tree().current_scene = get_parent()
+	Audio.call_deferred('set_background_music')
 
 
 func _player_party_setup():

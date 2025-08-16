@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c48q05igs31np"]
 
-[ext_resource type="Script" path="res://Models/Items/base_item.gd" id="1_jwad1"]
+[ext_resource type="Script" uid="uid://c5y0lyfesygvd" path="res://Models/Items/base_item.gd" id="1_jwad1"]
 
 [resource]
 resource_local_to_scene = true
@@ -9,10 +9,10 @@ name = &"Razor"
 offensive = true
 type = &"damage"
 value = 20
-boost = [1, 1]
-status_effect = &""
-accuracy = 1.0
+effect_duration = 0
+effect_chance = 1.0
 desc = "A sharp razor blade. Cuts a single target."
 price = 10
 aoe = true
+universal = false
 element = &""

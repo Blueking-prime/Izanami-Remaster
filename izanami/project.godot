@@ -24,14 +24,19 @@ resources_spreadsheet_view/resource_cell_label_mode=1
 
 config/name="Izanami"
 run/main_scene="res://Scenes/main_menu.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://Configs/default_bus_layout.tres"
 
 [autoload]
 
 Checks="*res://Scripts/checks.gd"
 SaveAndLoad="*res://Scripts/save_and_load.tscn"
 Global="*res://Scripts/global.tscn"
+Audio="*res://Scripts/audio.tscn"
 Dialogue="*res://Scripts/dialogue.tscn"
 
 [debug]

@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://5iv4fsku5g5x"]
 
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Scenes/location.tscn" id="1_ynqmm"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_interior.gd" id="2_tp2q5"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_counter.gd" id="3_yclhr"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_upgrades.gd" id="4_mvtyy"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_fights.gd" id="5_eahef"]
-[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://all_enemies.tres" id="6_xkcin"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/demonitarium_mag.gd" id="7_88gcs"]
-[ext_resource type="Script" path="res://Scenes/Town/Demonitarium/warppoint.gd" id="8_s3mno"]
+[ext_resource type="Script" uid="uid://cxx7lassxd8wx" path="res://Scenes/Town/Demonitarium/demonitarium_interior.gd" id="2_tp2q5"]
+[ext_resource type="Script" uid="uid://d4k148f5wltcw" path="res://Scenes/Town/Demonitarium/demonitarium_counter.gd" id="3_yclhr"]
+[ext_resource type="Script" uid="uid://csyec5oqhni8b" path="res://Scenes/Town/Demonitarium/demonitarium_upgrades.gd" id="4_mvtyy"]
+[ext_resource type="Script" uid="uid://ld1ypj1eypg3" path="res://Scenes/Town/Demonitarium/demonitarium_fights.gd" id="5_eahef"]
+[ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://Configs/all_enemies.tres" id="6_xkcin"]
+[ext_resource type="Script" uid="uid://dgtk2ys57t7r2" path="res://Scenes/Town/Demonitarium/demonitarium_mag.gd" id="7_88gcs"]
+[ext_resource type="Script" uid="uid://bvixjyjqfnhpa" path="res://Scenes/Town/Demonitarium/warppoint.gd" id="8_s3mno"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/Menus/ShopMenus/Inventory.tscn" id="9_swh6u"]
-[ext_resource type="Script" path="res://Models/Menus/ShopMenus/demonitarium_fights.gd" id="10_l35od"]
+[ext_resource type="Script" uid="uid://dvgxlecxg5mg1" path="res://Models/Menus/ShopMenus/demonitarium_fights.gd" id="10_l35od"]
 [ext_resource type="PackedScene" uid="uid://dlt58862gge0u" path="res://Models/Menus/ShopMenus/skill_upgrade_menu.tscn" id="11_k077g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbrf6"]
@@ -39,10 +39,9 @@ crowley = NodePath("Crowley")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Counter" index="0"]
 shape = SubResource("RectangleShape2D_sbrf6")
 
-[node name="SkillUpgrades" type="Node" parent="Counter" index="1" node_paths=PackedStringArray("upgrade_menu", "upgrade_panel")]
+[node name="SkillUpgrades" type="Node" parent="Counter" index="1" node_paths=PackedStringArray("upgrade_menu")]
 script = ExtResource("4_mvtyy")
 upgrade_menu = NodePath("../../CanvasLayer/SKillUpgradeMenu")
-upgrade_panel = NodePath("../../CanvasLayer/SKillUpgradeMenu/PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel")
 
 [node name="Fights" type="Node" parent="Counter" index="2" node_paths=PackedStringArray("demonitarium_display")]
 script = ExtResource("5_eahef")
@@ -103,9 +102,9 @@ script = ExtResource("10_l35od")
 demon_group = ExtResource("6_xkcin")
 demons = {}
 
-[node name="SKillUpgradeMenu" parent="CanvasLayer" index="5" instance=ExtResource("11_k077g")]
+[node name="SKillUpgradeMenu" parent="CanvasLayer" index="5" node_paths=PackedStringArray("shop_handler") instance=ExtResource("11_k077g")]
 visible = false
+shop_handler = NodePath("../../Counter/SkillUpgrades")
 
 [editable path="CanvasLayer/DemonitariumFights"]
 [editable path="CanvasLayer/DemonitariumFights/Options"]
-[editable path="CanvasLayer/SKillUpgradeMenu"]

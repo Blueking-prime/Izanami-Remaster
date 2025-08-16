@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2sson3f02peq"]
 
-[ext_resource type="Script" path="res://Models/Menus/OptionMenus/keybind_option.gd" id="1_wndy2"]
+[ext_resource type="Script" uid="uid://cttcpgaa4aek2" path="res://Models/Menus/OptionMenus/keybind_option.gd" id="1_wndy2"]
 
 [node name="KeybindOption" type="HBoxContainer" node_paths=PackedStringArray("label", "button") groups=["rebinds"]]
 script = ExtResource("1_wndy2")

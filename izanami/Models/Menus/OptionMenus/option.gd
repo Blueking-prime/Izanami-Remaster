@@ -27,7 +27,9 @@ func add_label(quantity_text: String):
 
 func _on_focus_entered() -> void:
 	selected.emit(get_index())
+	Audio.play_select_option_sfx()
 
 
 func _on_button_down() -> void:
 	activated.emit(get_index())
+	Audio.play_activate_option_sfx()

@@ -71,10 +71,12 @@ func set_dungeon_level():
 	return
 
 func load_dungeon():
-	get_parent().objectsort.remove_child(Global.players)
-	dungeon.add_players(Global.players)
+	get_parent().disconnect_signals()
+	get_parent().remove_players()
+	dungeon.add_players()
 	get_parent().add_sibling(dungeon)
 	get_tree().current_scene = dungeon
+	dungeon.connect_signals()
 
 func _on_exit_button_pressed():
 	if is_instance_valid(Global.text_box):

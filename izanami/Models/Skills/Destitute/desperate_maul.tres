@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Offensive_Skill" load_steps=3 format=3 uid="uid://3ok4qy6snqj0"]
 
-[ext_resource type="Script" path="res://Models/Skills/offensive_skill.gd" id="1_g2k2v"]
-[ext_resource type="Script" path="res://Models/Statuses/Effects/toxin.gd" id="2_iviwg"]
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_g2k2v"]
+[ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="2_iviwg"]
 
 [resource]
 script = ExtResource("1_g2k2v")
