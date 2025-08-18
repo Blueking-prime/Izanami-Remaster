@@ -53,7 +53,8 @@ TASKS (WORKABLE)
 - [ ] Add saving and loading checks data
 - [ ] Implement way to display that a skill has been upgraded
 - [ ] Remove sell exit signal and replace with exit signal
-- [ ] Move base overlay input processing dedicated node
+- [ ] Optimize item and skill usage using custom ientifiers
+- [x] Move base overlay input processing dedicated node
 - [x] Change quest display to use signals instead of direct calls
 - [x] Update demonatrium menus an functions with QoL like focus grabbing
 - [x] Create Menu base class
@@ -168,7 +169,7 @@ OPTIONAL IDEAS
 - [ ] Onmyouji
 - [ ] Crit Chaining
 	If you crit 3 times in a row you enter a heightened state where your crit chance is higher and skills cost less SP and gain multi trigger chance, exited when you don't crit.
-
+- [ ] Custom music
 
 VISUAL ASSETS
 - [ ] Overworld

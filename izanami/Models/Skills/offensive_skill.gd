@@ -22,6 +22,7 @@ func  _init() -> void:
 
 func action(obj: Base_Character, target: Variant) -> bool:
 	if not super.action(obj, target): return false
+	obj.audio.play_attack_sfx()
 	if aoe or universal:
 		if random_target:
 			var target_indexes = []

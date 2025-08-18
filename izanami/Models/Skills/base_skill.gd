@@ -102,6 +102,7 @@ func action(obj: Base_Character, target: Variant) -> bool:
 		value *= crit_mult[rank]
 
 	if status_effect:
+		obj.audio.play_support_sfx()
 		if aoe:
 			for i in target:
 				_apply_status(obj, i)
@@ -127,6 +128,7 @@ func _apply_status(obj: Base_Character, target: Base_Character):
 				status.magnitude *= mag_stat_total
 
 		target.statuses.add_status(status)
+		target.audio.play_status_sfx()
 	else:
 		Global.print_to_log('Miss on ' + target.character_name + '!')
 

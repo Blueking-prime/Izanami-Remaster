@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://drei8wtrpbio6"]
+[gd_scene load_steps=23 format=3 uid="uid://drei8wtrpbio6"]
 
 [ext_resource type="Script" uid="uid://bh4xox2dcbnl5" path="res://Models/Characters/base_character.gd" id="1_e6dxp"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_ar764"]
@@ -15,16 +15,25 @@
 [ext_resource type="Script" uid="uid://c47hansax6v55" path="res://Models/Statuses/Effects/low_health.gd" id="13_1fnnn"]
 [ext_resource type="Script" uid="uid://7rbt3o8pwygn" path="res://Models/Characters/status_icon_handler.gd" id="14_2mtdu"]
 [ext_resource type="PackedScene" uid="uid://cg6blmcotgqs7" path="res://Models/Menus/Overlays/status_effect_icon.tscn" id="15_66upe"]
+[ext_resource type="Script" uid="uid://cstcwrrj0jmf4" path="res://Models/Characters/audio_player.gd" id="16_4vh7u"]
+[ext_resource type="AudioStream" uid="uid://dny4ntxb8opf5" path="res://Assets/SFX/166294__fantozzi__mco_walk_i02.wav" id="17_py730"]
+[ext_resource type="AudioStream" uid="uid://cw457ki0nwohy" path="res://Assets/SFX/585255__lesaucisson__swoosh-3-double.mp3" id="18_8vnn5"]
+[ext_resource type="AudioStream" uid="uid://x8hyo8a6mdcq" path="res://Assets/SFX/406271__anthousai__hit-wooden-03.wav" id="19_hncbh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 custom_solver_bias = 1.0
 radius = 8.0
 
-[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "nametag", "status_icon_container", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "original_battle_sprite_control", "battle_sprite", "dungeon_sprite", "hitbox")]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_4vh7u"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ldu8x"]
+
+[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "audio", "nametag", "status_icon_container", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "original_battle_sprite_control", "battle_sprite", "dungeon_sprite", "hitbox")]
 script = ExtResource("1_e6dxp")
 skills = NodePath("Skills")
 items = NodePath("Items")
 statuses = NodePath("Statuses")
+audio = NodePath("AudioPlayer")
 nametag = NodePath("BattleSprite/VBox/NameTag")
 status_icon_container = NodePath("BattleSprite/VBox/StatusIcons")
 hp_bar = NodePath("BattleSprite/VBox/HPBar")
@@ -83,5 +92,23 @@ low_health = ExtResource("13_1fnnn")
 [node name="StatusIconHandler" type="Node" parent="Statuses"]
 script = ExtResource("14_2mtdu")
 icon_scene = ExtResource("15_66upe")
+
+[node name="AudioPlayer" type="Node2D" parent="." node_paths=PackedStringArray("local", "global")]
+script = ExtResource("16_4vh7u")
+walk_sfx = ExtResource("17_py730")
+attack_sfx = ExtResource("18_8vnn5")
+damage_sfx = ExtResource("19_hncbh")
+local = NodePath("Local")
+global = NodePath("Global")
+
+[node name="Local" type="AudioStreamPlayer2D" parent="AudioPlayer"]
+stream = SubResource("AudioStreamPolyphonic_4vh7u")
+max_polyphony = 10
+bus = &"CharacterSFX"
+
+[node name="Global" type="AudioStreamPlayer" parent="AudioPlayer"]
+stream = SubResource("AudioStreamPolyphonic_ldu8x")
+
+[connection signal="state_changed" from="." to="AudioPlayer" method="_on_state_changed"]
 
 [editable path="BattleSprite"]

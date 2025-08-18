@@ -11,6 +11,7 @@ class_name UIOverlay
 #endregion
 
 @export var button_container: Container
+@export var input_processing: Node
 
 
 #region MENUS
@@ -26,35 +27,6 @@ class_name UIOverlay
 var curr_menu: Control
 var menu_list: Array
 var save_enabled: bool = true
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("inventory_key"):
-		_on_inventory_button_pressed()
-	elif event.is_action_pressed("status_key"):
-		_on_status_button_pressed()
-	elif event.is_action_pressed("settings_key"):
-		_on_settings_button_pressed()
-	elif event.is_action_pressed("quests_key"):
-		_on_quests_button_pressed()
-	elif event.is_action_pressed("save_key"):
-		_on_save_button_pressed()
-	elif event.is_action_pressed("load_key"):
-		_on_load_button_pressed()
-	elif event.is_action_pressed("quit_key"):
-		_on_quit_button_pressed()
-	elif event.is_action_pressed('menu_key'):
-		_on_menu_button_pressed()
-	elif event.is_action_pressed("log_key"):
-		_on_log_button_pressed()
-	elif event.is_action_pressed("map_key"):
-		_on_map_button_pressed()
-	elif event.is_action_pressed('freecam_key'):
-		_on_freecam_button_pressed()
-	elif event.is_action_pressed('ui_key'):
-		_on_ui_button_pressed()
-
-	elif event.is_action_pressed("switch_leader_key"):
-		status_menu._on_switch_button_pressed()
 
 func _get_key_event_keycode(action_name: String):
 	return char(InputMap.action_get_events(action_name)[Checks.input_type].keycode)
@@ -179,4 +151,4 @@ func _on_ui_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		set_process_input(visible)
+		input_processing.set_process_input(visible)

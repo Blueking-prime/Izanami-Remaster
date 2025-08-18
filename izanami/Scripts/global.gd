@@ -77,83 +77,41 @@ signal exit_signal
 signal quests_changed
 
 #region Text Processing
-func add_to_text_log(dialogue: Array):
-	return TEXT.add_to_text_log(dialogue)
-
-func clear_custom_tags(_text: String) -> String:
-	return TEXT.clear_custom_tags(_text)
-
-func print_to_log(text: Variant):
-	return TEXT.print_to_log(text)
+func add_to_text_log(dialogue: Array): return TEXT.add_to_text_log(dialogue)
+func clear_custom_tags(_text: String) -> String: return TEXT.clear_custom_tags(_text)
+func print_to_log(text: Variant): return TEXT.print_to_log(text)
 #endregion
 
 #region Algorithms
-func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int, constraint: float):
-	return ALGORITHMS.create_dsu_checker(noise_map, height, width, constraint)
-
-func rand_coord(width: int, height: int) -> Vector2i:
-	return ALGORITHMS.rand_coord(width, height)
-
-func rand_spread(chance: float, limit: int) -> int:
-	return ALGORITHMS.rand_spread(chance, limit)
-
-func rand_chance(chance: float) -> bool:
-	return ALGORITHMS.rand_chance(chance)
-
-func set_seed(_seed: int = 0):
-	return ALGORITHMS.set_seed(_seed)
-
-func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []):
-	return ALGORITHMS.path(start, goal, walls, width, height, visited)
+func create_dsu_checker(noise_map: FastNoiseLite, height: int, width: int, constraint: float): return ALGORITHMS.create_dsu_checker(noise_map, height, width, constraint)
+func rand_coord(width: int, height: int) -> Vector2i: return ALGORITHMS.rand_coord(width, height)
+func rand_spread(chance: float, limit: int) -> int: return ALGORITHMS.rand_spread(chance, limit)
+func rand_chance(chance: float) -> bool: return ALGORITHMS.rand_chance(chance)
+func set_seed(_seed: int = 0): return ALGORITHMS.set_seed(_seed)
+func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int, visited: Array = []): return ALGORITHMS.path(start, goal, walls, width, height, visited)
 #endregion
 
 #region UIElements
-func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int:
-	return await UI.show_text_choice(speaker, prompt, choices, screen_side, dialogue)
-
-func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', dialogue: bool = false) -> void:
-	await UI.show_text_box(speaker, prompt, persist, screen_side, dialogue)
-
-func show_confirmation_box(prompt: String):
-	return await UI.show_confirmation_box(prompt)
-
-func change_background(texture: Texture2D, global: bool = false):
-	return UI.change_background(texture, global)
-
-func show_description(object: Resource) -> void:
-	return UI.show_description(object)
-
-func show_shop_menu(stock: ResourceGroup):
-	return UI.show_shop_menu(stock)
-
-func add_text_log_to_scene():
-	return UI.add_text_log_to_scene()
-
+func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int: return await UI.show_text_choice(speaker, prompt, choices, screen_side, dialogue)
+func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', dialogue: bool = false) -> void: await UI.show_text_box(speaker, prompt, persist, screen_side, dialogue)
+func show_confirmation_box(prompt: String): return await UI.show_confirmation_box(prompt)
+func change_background(texture: Texture2D, global: bool = false): return UI.change_background(texture, global)
+func show_description(object: Resource) -> void: return UI.show_description(object)
+func show_shop_menu(stock: ResourceGroup): return UI.show_shop_menu(stock)
+func add_text_log_to_scene(): return UI.add_text_log_to_scene()
 #endregion
 
 #region SceneLoader
-func warp(source: Location, destination_scene: PackedScene):
-	return await SCENE_LOADER.warp(source, destination_scene)
-
-func load_main_menu():
-	return SCENE_LOADER.load_main_menu()
-
-func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false):
-	return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
-
-func push_back_player(centre: Vector2, distance: float):
-	return SCENE_LOADER.push_back_player(centre, distance)
+func warp(source: Location, destination_scene: PackedScene): return await SCENE_LOADER.warp(source, destination_scene)
+func load_main_menu(): return SCENE_LOADER.load_main_menu()
+func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false): return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
+func push_back_player(centre: Vector2, distance: float): return SCENE_LOADER.push_back_player(centre, distance)
 #endregion
 
 #region Quests
-func add_quest(quest: GlobalQuests.Quest):
-	return QUESTS.add_quest(quest)
-
-func set_active_quest(quest: GlobalQuests.Quest, update: bool = true):
-	return QUESTS.set_active_quest(quest, update)
-
-func update_quests():
-	return QUESTS.update_quests()
+func add_quest(quest: GlobalQuests.Quest): return QUESTS.add_quest(quest)
+func set_active_quest(quest: GlobalQuests.Quest, update: bool = true): return QUESTS.set_active_quest(quest, update)
+func update_quests(): return QUESTS.update_quests()
 #endregion
 
 ## FUNCTON TESTS
@@ -234,4 +192,4 @@ func _input(event: InputEvent) -> void:
 		exit_signal.emit()
 		Audio.play_exit_menu_sfx()
 	if event.is_action_pressed('test'):
-		print(get_tree().current_scene)
+		players.leader.audio.play_attack_sfx()

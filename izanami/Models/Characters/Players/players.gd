@@ -45,6 +45,7 @@ func load_party():
 		i.hide()
 		i.detector.monitoring = false
 		i.hitbox.disabled = true
+		#i.listener.clear_current()
 
 	#Checks if there are nodes in the party array, and then checks if there is no leader or if the current leader has been removed from the party
 	if len(party) and (not leader or leader not in party):
@@ -54,6 +55,7 @@ func load_party():
 		leader.show()
 		leader.detector.monitoring = true
 		leader.hitbox.disabled = false
+		leader.listener.make_current()
 	#if camera: camera.init_camera()
 
 func switch_leader(_index: int):

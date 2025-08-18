@@ -5,6 +5,7 @@ class_name Player
 ## CHILD NODES
 @export var gear: PlayerGear
 @export var detector: PlayerDetector
+@export var listener: AudioListener2D
 
 @export var skill_menu: Options
 @export var item_menu: Options
@@ -58,26 +59,29 @@ func load_character():
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(Global.players) and self != Global.players.leader: return
 
-	if freeze_movement: return
-
-	var direction = Vector2()
-	direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
-
 	var init_pos = global_position
+	if not freeze_movement:
+		var direction = Vector2()
+		direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
 
-	if direction.length():
-		direction = direction.normalized()
-		velocity = direction * speed * delta * 1000
-		#print(character_name, ': ', global_position)
+
+		if direction.length():
+			direction = direction.normalized()
+			velocity = direction * speed * delta * 1000
+			#print(character_name, ': ', global_position)
+			moved.emit()
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.y = move_toward(velocity.y, 0, speed)
+
+		get_real_velocity()
+		move_and_slide()
+
+	if init_pos != global_position:
+		if state != STATES.WALKING: state = STATES.WALKING
 		moved.emit()
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.y = move_toward(velocity.y, 0, speed)
-
-	get_real_velocity()
-	move_and_slide()
-
-	if init_pos != global_position: moved.emit()
+	else :
+		if state != STATES.BATTLE and state != STATES.IDLE: state = STATES.IDLE
 
 ## MODIFY PROPERTIES
 func update_stats():

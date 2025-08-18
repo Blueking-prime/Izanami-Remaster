@@ -27,8 +27,8 @@ script = ExtResource("2_e2x4e")
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPolyphonic_kuo6t")
 autoplay = true
-max_polyphony = 10
-bus = &"SFX"
+max_polyphony = 32
+bus = &"SystemSFX"
 script = ExtResource("4_kuo6t")
 show_menu_sfx = ExtResource("5_2xcx1")
 hide_menu_sfx = ExtResource("6_2xcb3")

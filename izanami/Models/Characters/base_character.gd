@@ -2,13 +2,21 @@ class_name Base_Character
 
 extends CharacterBody2D
 
-## CHILD NODES
+enum STATES {IDLE, WALKING, BATTLE}
+
+@export var state: STATES:
+	set(arg):
+		state = arg
+		state_changed.emit()
+
+@export_category('Handlers')
 @export var skills: CharacterSkills
 @export var items: CharacterItems
 @export var statuses: CharacterStatuses
+@export var audio: CharacterAudio
 
+@export_category('UI')
 @export var nametag: Label
-
 @export var status_icon_container: GridContainer
 
 @export var hp_bar: ProgressBar
@@ -22,11 +30,12 @@ extends CharacterBody2D
 
 @export var original_battle_sprite_control: BattleSprite
 @export var battle_sprite: BattleSprite
+
 @export var dungeon_sprite: Sprite2D
 @export var hitbox: CollisionShape2D
 
 
-## CHARACTER STATS
+@export_category('Character Data')
 @export var character_name: String
 @export var root_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
 var base_stats: Dictionary = root_stats.duplicate()
@@ -64,6 +73,8 @@ var stats: Dictionary = base_stats.duplicate()
 @export var alive: bool = true
 @export var lvl: int = 1
 @export var ally: int
+
+signal state_changed
 
 func _ready() -> void:
 	load_character()
@@ -211,6 +222,7 @@ func guard():
 	Global.print_to_log('%s braces for impact' % [character_name])
 
 func damage(value: float):
+	audio.play_damage_sfx()
 	value /= DEF
 	Global.print_to_log('%s takes %f damage!' % [character_name, value])
 	if value < hp:
@@ -220,12 +232,14 @@ func damage(value: float):
 		die()
 
 func heal(value: float):
+	audio.play_heal_sfx()
 	hp += value
 	Global.print_to_log(' %s healed %f HP' % [character_name, value])
 	if hp > max_hp:
 		hp = max_hp
 
 func die():
+	audio.play_die_sfx()
 	Global.print_to_log('%s is dead' % [character_name])
 	alive = false
 
