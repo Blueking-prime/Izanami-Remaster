@@ -20,7 +20,6 @@ cost = 0
 hp_cost = 0.0
 flavour_text = "You spend your pent up energy and swing with gusto"
 desc = ""
-type = &""
 crit_chance = Array[float]([0.2, 0.2, 0.2])
 crit_mult = Array[float]([2.0, 2.0, 2.0])
 boost = Array[Vector2]([Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)])

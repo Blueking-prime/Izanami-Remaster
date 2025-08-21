@@ -11,7 +11,11 @@ class_name PlayerGear
 }
 
 var _curr_gear: Array
-var inventory: Inventory
+var inventory: Inventory:
+	get():
+		if get_parent().get_parent() is Party: return get_parent().get_parent().inventory
+		else: return null
+
 var resistances: Dictionary[StringName, float] = {
 	'Physical':	0,
 	'Fire':		0,
@@ -24,8 +28,6 @@ var resistances: Dictionary[StringName, float] = {
 
 
 func load_stock() -> void:
-	inventory = get_parent().get_node("../Inventory")
-
 	gear_dict = {'head': null, 'weapon': null, 'body': null}
 
 	if player_gear_data:
@@ -80,6 +82,7 @@ func unequip_gear(slot: String):
 	_update_total_stats()
 	get_parent().update_stats()
 
+
 func _add_enchantments(gear: Gear):
 	if gear.element: get_parent().statuses.enchantment = gear.element
 
@@ -93,9 +96,9 @@ func _remove_enchantments(gear: Gear):
 			if i is Gear and i != gear and i.element == curr_enchantment: return
 		get_parent().statuses.enchantment = ''
 
-
 func _add_resistances(gear: Gear):
 	for i in gear.resistances: resistances[i] += gear.resistances[i]
+
 
 func _update_total_stats():
 	for i in stats: stats[i] = 0

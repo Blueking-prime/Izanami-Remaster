@@ -3,7 +3,7 @@ GOALS
 - [ ] Add controller support
 	- [x] Add option to switch input map index for input events
 - [ ] Enable Pure mouse and pure keyboard navigation support
-- [ ] Remove magic numbers
+- [x] Remove magic numbers
 - [ ] Polish UI elements
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
@@ -44,17 +44,18 @@ TASKS (WORKABLE)
 - [ ] Implement Overworld
 - [ ] Implement quests, quest label in UI and add quest markers to map
 - [ ] Implement accessibility settings
-- [ ] implement graphics settings
+- [ ] Implement graphics settings
+- [ ] Implement audio settings
 - [ ] Replace save option in dungeon with autosave on floor transition
 - [ ] Make exit send to next level of dungeon
 - [ ] Sectionalize dungeon map generation to increase size of generated map
 - [ ] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering
 - [ ] Add water/lava in dungeons
 - [ ] Add saving and loading checks data
-- [ ] Implement way to display that a skill has been upgraded
-- [ ] Remove sell exit signal and replace with exit signal
-- [ ] Optimize item and skill usage using custom ientifiers
 - [ ] Auto GEnerate Overworld from map by reading colour data (maybe interpose with some noise or something)
+- [ ] Implement method to confirm battle input on Mouse
+- [/] Remove sell exit signal and replace with exit signal
+- [x] Optimize item and skill usage
 - [x] Implement gear adding resistances
 - [x] Implement sp recovery function
 - [x] Implement sp recovery in items

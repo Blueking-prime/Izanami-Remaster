@@ -19,6 +19,7 @@ extends Resource
 @export var offensive: bool
 @export var aoe: bool = false
 @export var universal: bool = false
+@export var reuseable: bool = false
 
 func use(target):
 	if aoe or universal:

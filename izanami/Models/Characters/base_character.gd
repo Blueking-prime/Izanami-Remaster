@@ -201,21 +201,18 @@ func update_stats():
 	stats = base_stats.duplicate()
 
 
-func get_skills():
-	return skills.get_skills()
+func get_skills(): return skills.get_skills()
 
 func use_skill(skill_id, _target):
-	var skill: Skill = get_skills()[skill_id]
-	skill.action(self, _target)
+	skills.get_skill(skill_id).action(self, _target)
 
 
-func get_items():
-	return items.get_items()
+func get_items(): return items.get_items()
 
 func use_item(item_name, _target):
 	var item: Item = items.get_item(item_name)
 	item.use(_target)
-	items.remove_item(item)
+	if not item.reuseable: items.remove_item(item)
 
 
 func guard():

@@ -52,6 +52,9 @@ var textbox_ffwd_flag: bool
 var scroll_state: bool
 
 var active_quest_list: Array[GlobalQuests.Quest]
+var current_quest: GlobalQuests.Quest:
+	set(arg): Checks.current_quest = arg
+	get(): return Checks.current_quest
 
 #region REGEX EXplanation
 #\{(\w+)\:?(\w*)\} should catch all tags in the format {x}, {x:y} where x and y are any arbitrary strings
@@ -192,4 +195,4 @@ func _input(event: InputEvent) -> void:
 		exit_signal.emit()
 		Audio.play_exit_menu_sfx()
 	if event.is_action_pressed('test'):
-		players.leader.audio.play_attack_sfx()
+		Checks.save()

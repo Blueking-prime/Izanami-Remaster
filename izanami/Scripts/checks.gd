@@ -68,7 +68,6 @@ func set_item_persistence(_key: Variant, _id: int):
 		item_option.get_or_add(_key, _id)
 
 func clean_persistence():
-#endregion
 	for i in battle_option:
 		if i not in Global.players.party:
 			battle_option.erase(i)
@@ -80,6 +79,7 @@ func clean_persistence():
 	for i in item_option:
 		if i not in Global.players.party:
 			item_option.erase(i)
+#endregion
 
 func save():
 	pass

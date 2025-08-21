@@ -172,8 +172,7 @@ func show_item_menu(menu: Options):
 	item_menu.grab_focus()
 
 func use_item(item_name, _target):
-	if item_name is int:
-		item_name = item_menu.get_item_text(active_selection)
+	if item_name is int: item_name = item_menu.get_item_text(active_selection)
 	super.use_item(item_name, _target)
 	_display_items()
 
