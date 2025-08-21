@@ -6,18 +6,25 @@
 [resource]
 script = ExtResource("1_iyx6m")
 name = "Wool Cap"
-slot = &"head"
-stats = {
-"AGI": 2,
-"END": 3,
-"GUI": 0,
-"INT": 0,
-"STR": 0,
-"WIS": 0
-}
+slot = "head"
 desc = "Only suited for the drippiest of peasants"
 price = 10
-equipped = false
+element = ""
+stats = Dictionary[StringName, int]({
+&"AGI": 2,
+&"END": 3,
+&"GUI": 0,
+&"INT": 0,
+&"STR": 0,
+&"WIS": 0
+})
 skills = Array[ExtResource("1_yoor5")]([])
-element = &""
-path = null
+resistances = Dictionary[StringName, float]({
+&"Blood": 0.0,
+&"Dark": 0.0,
+&"Fire": 0.0,
+&"Light": 0.0,
+&"Physical": 0.0,
+&"Water": 0.0,
+&"Wind": 0.0
+})

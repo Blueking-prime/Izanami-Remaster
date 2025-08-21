@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_iwy8i")
-element = &"Fire"
+element = "Physical"
 status_effectiveness = 1.5
 multi_hit = false
 multi_hit_max = 1
 multi_hit_chance = 0.5
 name = &"Wild Style"
-stats = Array[StringName]([&"STR"])
+stats = 1
 stat_multiplier = Array[float]([1.0, 1.0, 1.0])
 lvl_requirement = 5
 conditions = Array[Script]([])

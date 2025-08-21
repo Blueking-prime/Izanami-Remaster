@@ -21,6 +21,7 @@ class_name Player
 
 @export var sp: int:
 	set(value):
+		if value > max_sp: value = max_sp
 		sp = value
 		_update_sp_bar()
 
@@ -116,6 +117,9 @@ func level_up(value):
 	skills.update_skills()
 	_display_skills()
 
+func restore(value: float):
+	sp += value
+	Global.print_to_log(' %s healed %f HP' % [character_name, value])
 
 
 ## CHILD NODE FUNCTIONS

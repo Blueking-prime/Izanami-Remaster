@@ -5,7 +5,20 @@ extends Resource
 @export var name: StringName
 
 ## Stats the skill scales off
-@export var stats: Array[StringName] = []
+const stat_names: Array[StringName] = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
+var _stats: Array[StringName] = []
+@export_flags("STR", "INT", "WIS", "END", "GUI", "AGI") var stats: int:
+	set(arg):
+		if _stats.is_empty():
+			for i in range(stat_names.size()):
+				var flag_value = 1 << i # Calculate power of 2 for current flag
+				if arg & flag_value: _stats.append(stat_names[i])
+	get():
+		var count: int = 0
+		for i in _stats:
+			count += stat_names.find(i) ^ 2
+		return count
+
 ## Value stats are multiplied by to calculate effect value
 @export var stat_multiplier: Array[float] = [1, 1, 1]
 ## Requirement to unlock skill
@@ -13,7 +26,7 @@ extends Resource
 ## Requirements to activate skill
 @export var conditions: Array[Script]
 ## Chance for skill to land
-@export var accuracy: Array[float] = [1, 1, 1]
+@export_range(0, 1, 0.05) var accuracy: Array[float] = [1, 1, 1]
 
 ## Current Skill rank
 @export var rank: int = 0
@@ -21,17 +34,17 @@ extends Resource
 ## Stamina Cost to use skill
 @export var cost: int = 0
 ## Health Cost to use skill (in percentage of max HP)
-@export var hp_cost: float
+@export_range(0, 1, 0.01) var hp_cost: float
 
 ## Text diaplayed when skill is used
 @export var flavour_text: String = ''
 ## Skill effect descriptor
 @export var desc: String
 ## Type of skill used
-@export var type: StringName
+var type: StringName
 
 ## Chance for a skill to be a crit
-@export var crit_chance: Array[float] = [0.2, 0.2, 0.2]
+@export_range(0, 1, 0.05) var crit_chance: Array[float] = [0.2, 0.2, 0.2]
 ## If skill is a crit, the base value is multiplied by this
 @export var crit_mult: Array[float] = [2, 2, 2]
 
@@ -46,7 +59,7 @@ extends Resource
 ## Stats the effect_magnitude scales off (if applicable)
 @export var effect_mag_stats: Array[StringName] = []
 ## Chance for status effect to land (if applicable)
-@export var effect_chance: Array[float] = [1, 1, 1]
+@export_range(0, 1, 0.05) var effect_chance: Array[float] = [1, 1, 1]
 
 ## Check if skill targets whole team
 @export var aoe: bool = false
@@ -89,7 +102,7 @@ func action(obj: Base_Character, target: Variant) -> bool:
 		Global.print_to_log(flavour_text)
 
 	for stat in obj.stats:
-		if stat in stats:
+		if stat in _stats:
 			stat_total += obj.stats[stat]
 
 	obj.ATK *= boost[rank].x

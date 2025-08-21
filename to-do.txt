@@ -54,6 +54,12 @@ TASKS (WORKABLE)
 - [ ] Implement way to display that a skill has been upgraded
 - [ ] Remove sell exit signal and replace with exit signal
 - [ ] Optimize item and skill usage using custom ientifiers
+- [ ] Auto GEnerate Overworld from map by reading colour data (maybe interpose with some noise or something)
+- [x] Implement gear adding resistances
+- [x] Implement sp recovery function
+- [x] Implement sp recovery in items
+- [x] Add effect magnitudes to items
+- [x] Replace Gear slots with enum
 - [x] Move base overlay input processing dedicated node
 - [x] Change quest display to use signals instead of direct calls
 - [x] Update demonatrium menus an functions with QoL like focus grabbing

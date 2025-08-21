@@ -3,7 +3,7 @@ class_name Offensive_Skill
 extends Skill
 
 ## Element skill is effective against
-@export var element: StringName = ''
+@export_enum('Physical', 'Fire', 'Water', 'Wind', 'Dark', 'Light', 'Blood',) var element: String
 
 ## Ststus effect skill is effective against
 @export var status_modifier: Script
@@ -15,7 +15,7 @@ extends Skill
 ## Max number of additinal hits
 @export var multi_hit_max: int = 1
 ## Chance for additional hits
-@export var multi_hit_chance: float = 0.5
+@export_range(0, 1, 0.01) var multi_hit_chance: float = 0.5
 
 func  _init() -> void:
 	type = 'Offensive Skill'
@@ -63,6 +63,9 @@ func act(obj: Base_Character, target: Base_Character):
 	if el:
 		value *= (1 - target.resistances[el])
 		value *= (1 - target.statuses.resistances[el])
+		if 'gear' in target:
+			value *= (1 - target.gear.resistances[el])
+
 
 	#print('act resist value = ', value)
 

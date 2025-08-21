@@ -519,12 +519,13 @@ sources/1 = SubResource("TileSetAtlasSource_roud6")
 sources/2 = SubResource("TileSetAtlasSource_u75el")
 sources/0 = SubResource("TileSetAtlasSource_kcgp0")
 
-[node name="Location" type="Node2D" node_paths=PackedStringArray("background", "test_players", "objectsort", "camera", "freecam", "overlay", "canvas_layer", "exit_button")]
+[node name="Location" type="Node2D" node_paths=PackedStringArray("background", "test_players", "objectsort", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
 script = ExtResource("1_knc6e")
 background = NodePath("Background")
 test_players = NodePath("ObjectsSort/Players")
 objectsort = NodePath("ObjectsSort")
 camera = NodePath("PlayerCam")
+map_camera = NodePath("MapCam")
 freecam = NodePath("FreeCam")
 overlay = NodePath("CanvasLayer/BaseOverlay")
 canvas_layer = NodePath("CanvasLayer")

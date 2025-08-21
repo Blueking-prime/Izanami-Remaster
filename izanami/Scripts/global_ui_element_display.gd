@@ -150,8 +150,8 @@ func show_description(object: Resource) -> void:
 			if object.stats is Dictionary:
 				if object.stats[i] != 0:
 					stats_string += i + ': ' + str(object.stats[i]) + ' '
-			else:
-				stats_string += i + ' '
+			elif object.stats is int:
+				stats_string = " ".join(object._stats)
 		get_parent().description_box.stats.text = stats_string
 	else:
 		get_parent().description_box.stats.hide()

@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_i4hob")
 sp_recover = false
-hp_recover = false
+hp_recover = true
 name = &"Prayer"
-stats = Array[StringName]([&"GUI"])
+stats = 16
 stat_multiplier = Array[float]([1.0, 1.0, 1.0])
 lvl_requirement = 1
 conditions = Array[Script]([])

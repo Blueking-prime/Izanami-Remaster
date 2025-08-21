@@ -6,13 +6,13 @@
 
 [resource]
 script = ExtResource("1_rj1j2")
-element = &""
+element = ""
 status_effectiveness = 1.5
 multi_hit = false
 multi_hit_max = 1
 multi_hit_chance = 0.5
 name = &"Diazone Wheel"
-stats = Array[StringName]([&"STR", &"INT"])
+stats = 3
 stat_multiplier = Array[float]([1.0, 2.0, 3.0])
 lvl_requirement = 1
 conditions = Array[Script]([ExtResource("1_y32uf"), ExtResource("2_n5ku3")])

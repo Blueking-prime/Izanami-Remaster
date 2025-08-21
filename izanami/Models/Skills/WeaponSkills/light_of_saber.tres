@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_v1vyu")
-element = &"Light"
+element = "Light"
 status_effectiveness = 1.5
 multi_hit = false
 multi_hit_max = 1
 multi_hit_chance = 0.5
 name = &"Light of Saber"
-stats = Array[StringName]([&"GUI", &"WIS", &"STR"])
+stats = 5
 stat_multiplier = Array[float]([1.0, 1.0, 1.0])
 lvl_requirement = 25
 conditions = Array[Script]([])
@@ -20,7 +20,6 @@ cost = 30
 hp_cost = 0.0
 flavour_text = "A beam of holy ligh erupts from your blade"
 desc = "A holy beam. You feel like you've seen this somewhere"
-type = &""
 crit_chance = Array[float]([0.2, 0.3, 0.4])
 crit_mult = Array[float]([2.0, 2.0, 2.0])
 boost = Array[Vector2]([Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)])

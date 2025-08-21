@@ -32,5 +32,5 @@ func action(obj: Base_Character, target: Variant) -> bool:
 func heal(target: Base_Character):
 	if hp_recover:
 		target.heal(value)
-	if sp_recover:
-		target.heal(value / 2)
+	if sp_recover and 'sp' in target:
+		target.restore(value / 2)

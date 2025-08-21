@@ -7,18 +7,25 @@
 [resource]
 script = ExtResource("1_8rp22")
 name = "Excalihuh?"
-slot = &"weapon"
-stats = {
-"AGI": 5,
-"END": 5,
-"GUI": 0,
-"INT": 0,
-"STR": 5,
-"WIS": 0
-}
+slot = "weapon"
 desc = "RESTRICTED COPYRIGHT"
 price = 100
-equipped = false
+element = "Light"
+stats = Dictionary[StringName, int]({
+&"AGI": 5,
+&"END": 5,
+&"GUI": 0,
+&"INT": 0,
+&"STR": 5,
+&"WIS": 0
+})
 skills = Array[ExtResource("1_wd2iy")]([ExtResource("3_gkv74")])
-element = &""
-path = null
+resistances = Dictionary[StringName, float]({
+&"Blood": 0.0,
+&"Dark": 0.0,
+&"Fire": 0.0,
+&"Light": 0.0,
+&"Physical": 0.0,
+&"Water": 0.0,
+&"Wind": 0.0
+})

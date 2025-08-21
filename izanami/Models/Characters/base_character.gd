@@ -37,14 +37,14 @@ enum STATES {IDLE, WALKING, BATTLE}
 
 @export_category('Character Data')
 @export var character_name: String
-@export var root_stats: Dictionary = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
-var base_stats: Dictionary = root_stats.duplicate()
-var stats: Dictionary = base_stats.duplicate()
+@export var root_stats: Dictionary[StringName, int] = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
+var base_stats: Dictionary[StringName, int] = root_stats.duplicate()
+var stats: Dictionary[StringName, int] = base_stats.duplicate()
 
-@export var level_stats: Array = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
+@export var level_stats: Array[StringName] = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
 @export var desc: String
 
-@export var resistances: Dictionary = {
+@export var resistances: Dictionary[StringName, float] = {
 	'Physical':	0,
 	'Fire':		0,
 	'Water':	0,
@@ -64,15 +64,16 @@ var stats: Dictionary = base_stats.duplicate()
 
 @export var hp: int:
 	set(value):
+		if value > max_hp: value = max_hp
 		hp = value
-		#Global.print_to_log(hp, ' ', value, ' ', max_hp)
 		_update_hp_bar()
 
 @export var ATK: float = 1
 @export var DEF: float = 1
-@export var alive: bool = true
 @export var lvl: int = 1
 @export var ally: int
+
+var alive: bool = true
 
 signal state_changed
 
@@ -221,6 +222,7 @@ func guard():
 	DEF *= 2
 	Global.print_to_log('%s braces for impact' % [character_name])
 
+
 func damage(value: float):
 	audio.play_damage_sfx()
 	value /= DEF
@@ -235,13 +237,13 @@ func heal(value: float):
 	audio.play_heal_sfx()
 	hp += value
 	Global.print_to_log(' %s healed %f HP' % [character_name, value])
-	if hp > max_hp:
-		hp = max_hp
+
 
 func die():
 	audio.play_die_sfx()
 	Global.print_to_log('%s is dead' % [character_name])
 	alive = false
+
 
 func save() -> CharacterSaveData:
 	var save_data: CharacterSaveData = CharacterSaveData.new()

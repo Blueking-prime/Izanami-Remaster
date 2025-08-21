@@ -1,8 +1,8 @@
 extends Enemy
 
 @export var enemy_atk_lines: Array = []
-@export var enemy_stats: Dictionary = {"STR": 3, "INT": 3, "WIS": 2, "END": 4, "GUI": 2, "AGI": 2}
-@export var enemy_resistances: Dictionary = {
+@export var enemy_stats: Dictionary[StringName, int] = {"STR": 3, "INT": 3, "WIS": 2, "END": 4, "GUI": 2, "AGI": 2}
+@export var enemy_resistances: Dictionary[StringName, float] = {
 	'Physical':	0,
 	'Fire':		0,
 	'Water':	-0.5,

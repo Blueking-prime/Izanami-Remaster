@@ -5,13 +5,13 @@
 
 [resource]
 script = ExtResource("1_g2k2v")
-element = &"Physical"
+element = ""
 status_effectiveness = 1.5
 multi_hit = true
 multi_hit_max = 5
 multi_hit_chance = 0.5
 name = &"Desperate Maul"
-stats = Array[StringName]([&"STR"])
+stats = 1
 stat_multiplier = Array[float]([0.5, 0.5, 0.5])
 lvl_requirement = 1
 conditions = Array[Script]([])

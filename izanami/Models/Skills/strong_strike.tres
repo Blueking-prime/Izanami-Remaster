@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_ggc18")
-element = &""
+element = "Physical"
 status_effectiveness = 1.5
 multi_hit = false
 multi_hit_max = 1
 multi_hit_chance = 0.5
 name = &"Strong Strike"
-stats = Array[StringName]([&"STR"])
+stats = 1
 stat_multiplier = Array[float]([1.0, 1.0, 1.0])
 lvl_requirement = 1
 conditions = Array[Script]([])

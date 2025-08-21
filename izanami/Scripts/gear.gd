@@ -2,17 +2,26 @@ extends Node
 
 class_name PlayerGear
 
-@export var stats: Dictionary = {"STR": 0, "INT": 0, "WIS": 0, "END": 0, "GUI": 0, "AGI": 0}
+@export var stats: Dictionary[StringName, int] = {"STR": 0, "INT": 0, "WIS": 0, "END": 0, "GUI": 0, "AGI": 0}
 @export var player_gear_data: ResourceGroup
-
-var _curr_gear: Array
-var inventory: Inventory
-
-@export var gear_dict: Dictionary = {
+@export var gear_dict: Dictionary[StringName, Gear] = {
 	'head': null,
 	'weapon': null,
 	'body': null
 }
+
+var _curr_gear: Array
+var inventory: Inventory
+var resistances: Dictionary[StringName, float] = {
+	'Physical':	0,
+	'Fire':		0,
+	'Water':	0,
+	'Wind':		0,
+	'Dark':		0,
+	'Light':	0,
+	'Blood':	0,
+}
+
 
 func load_stock() -> void:
 	inventory = get_parent().get_node("../Inventory")
@@ -50,6 +59,9 @@ func equip_gear(gear: Gear):
 		for i in gear.skills:
 			get_parent().skills.add_skill(i)
 
+	_add_enchantments(gear)
+	_add_resistances(gear)
+
 	_update_total_stats()
 	get_parent().update_stats()
 
@@ -61,12 +73,29 @@ func unequip_gear(slot: String):
 		if gear_dict[slot].skills:
 			for i in gear_dict[slot].skills:
 				get_parent().skills.remove_skill(i)
-
+		_remove_resistances(gear_dict[slot])
+		_remove_enchantments(gear_dict[slot])
 	gear_dict[slot] = null
 
 	_update_total_stats()
 	get_parent().update_stats()
 
+func _add_enchantments(gear: Gear):
+	if gear.element: get_parent().statuses.enchantment = gear.element
+
+func _remove_resistances(gear: Gear):
+	for i in gear.resistances: resistances[i] -= gear.resistances[i]
+
+func _remove_enchantments(gear: Gear):
+	var curr_enchantment: StringName = get_parent().statuses.enchantment
+	if gear.element == curr_enchantment:
+		for i in gear_dict.values():
+			if i is Gear and i != gear and i.element == curr_enchantment: return
+		get_parent().statuses.enchantment = ''
+
+
+func _add_resistances(gear: Gear):
+	for i in gear.resistances: resistances[i] += gear.resistances[i]
 
 func _update_total_stats():
 	for i in stats: stats[i] = 0

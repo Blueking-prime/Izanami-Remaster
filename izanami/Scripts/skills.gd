@@ -4,7 +4,10 @@ class_name CharacterSkills
 
 #@export_dir var skill_location: String
 @export var _all_skills: Array[Skill] = []
-@export var _skills: Array[Skill] = []
+@export var _skills: Array[Skill] = []:
+	set(arg):
+		_skills = arg
+		_skills.sort_custom(func (x: Skill,y: Skill): return x.name < y.name)
 @export var skill_group: ResourceGroup
 
 # Called when the node enters the scene tree for the first time.
@@ -30,5 +33,10 @@ func update_skills() -> void:
 
 
 func get_skills() -> Array:
-	_skills.sort_custom(func (x: Skill,y: Skill): return x.name < y.name)
 	return _skills
+
+func get_skill(index: int) -> Skill:
+	if index < _skills.size():
+		return _skills.get(index)
+	else :
+		return _skills.back()
