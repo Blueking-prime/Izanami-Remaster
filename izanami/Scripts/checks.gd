@@ -82,6 +82,9 @@ func clean_persistence():
 #endregion
 
 func save():
+	#var props = get_script().get_script_property_list()
+	#for prop in props:
+		#print("name: ", prop.name, ", value: ", get(prop.name), ", type: ", prop.type)
 	pass
 
 func load():

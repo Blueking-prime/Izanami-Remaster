@@ -16,21 +16,21 @@ class_name DungeonWallsLayer
 @export var wall_terrain: int
 @export var layer: int
 
-var walls_2: Array
+var walls: Array
 var width: int
 var height: int
 var upscale_factor: int
 
 func render_objects():
 	if not layer in map.walls.keys(): return
-	walls_2 = map.walls[layer]
+	walls = map.walls[layer]
 	#print(walls_2)
 	height = map.height
 	width = map.width
 	upscale_factor = map.upscale_factor
 	#print('walls = ', walls)
 
-	_render_outer_walls()
+	#_render_outer_walls()
 	_render_walls()
 
 
@@ -48,6 +48,7 @@ func _render_outer_walls():
 			Vector2i(upscale_factor * width    , i),
 			Vector2i(upscale_factor * width    , i + 1),
 		])
+
 	for i in range(-1, upscale_factor * width):
 		outer_walls.append_array([
 			Vector2i(i    , -1),
@@ -65,9 +66,10 @@ func _render_outer_walls():
 
 func _render_walls():
 	var walls_vector_array: Array[Vector2i] = []
-	for coord in walls_2:
-		walls_vector_array.append_array([
-				coord * upscale_factor,
+	for coord in walls:
+		walls_vector_array.append(coord * upscale_factor)
+		if upscale_factor > 1:
+			walls_vector_array.append_array([
 				coord * upscale_factor + Vector2i.LEFT,
 				coord * upscale_factor + Vector2i.DOWN,
 				coord * upscale_factor + Vector2i.LEFT + Vector2i.DOWN,

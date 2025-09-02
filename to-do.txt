@@ -50,9 +50,11 @@ TASKS (WORKABLE)
 - [ ] Make exit send to next level of dungeon
 - [ ] Sectionalize dungeon map generation to increase size of generated map
 - [ ] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering
+	- [ ] Remove upscale in map wall tile drawing
 - [ ] Add water/lava in dungeons
 - [ ] Add saving and loading checks data
-- [ ] Auto GEnerate Overworld from map by reading colour data (maybe interpose with some noise or something)
+- [ ] Auto Generate Overworld from map by reading colour data (maybe interpose with some noise or something)
+	- Since map unclean, use image from tileset pattern
 - [ ] Implement method to confirm battle input on Mouse
 - [/] Remove sell exit signal and replace with exit signal
 - [x] Optimize item and skill usage

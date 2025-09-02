@@ -19,6 +19,7 @@ class_name Location
 
 const TILEMAP_CELL_SIZE: int = 16
 
+
 func _ready() -> void:
 	load_scene()
 
@@ -69,7 +70,7 @@ func size() -> Vector2:
 		var _size: Vector2 = tilemap.get_used_rect().size  * TILEMAP_CELL_SIZE
 		if _size: return _size
 
-	return Vector2(2000, 1000)
+	return Vector2(2000, 2000)
 
 func center() -> Vector2:
 	if tilemap:

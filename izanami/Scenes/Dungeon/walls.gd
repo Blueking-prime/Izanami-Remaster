@@ -19,6 +19,7 @@ var player: Player:
 	get():
 		return Global.players.leader
 
+@export var background: LocationBackground
 @export var wall_upper_layers: Array[DungeonWallsLayer]
 
 @export var treasure_atlas_coords: Vector2i
@@ -31,8 +32,6 @@ var player: Player:
 @export var exit_source_id: int
 @export var wall_terrain_set: int
 @export var wall_terrain: int
-@export var floor_terrain_set: int
-@export var floor_terrain: int
 
 
 var walls: Array
@@ -58,7 +57,7 @@ func render_objects():
 	upscale_factor = map.upscale_factor
 	#print('walls = ', walls)
 
-	_render_background()
+	background.draw_background()
 	_render_treasure_chests()
 	_render_outer_walls()
 	_render_inner_walls()
@@ -112,21 +111,6 @@ func _place_enemies():
 		root_node.set_boss(enemy_nodes.pick_random())
 
 
-
-func _render_background():
-	var all_tiles = []
-	for y in height:
-		for x in width:
-			var coord = Vector2i(x, y)
-			all_tiles.append_array([
-				coord * upscale_factor,
-				coord * upscale_factor + Vector2i.LEFT,
-				coord * upscale_factor + Vector2i.DOWN,
-				coord * upscale_factor + Vector2i.LEFT + Vector2i.DOWN,
-			])
-
-	set_cells_terrain_connect(all_tiles, floor_terrain_set, floor_terrain)
-
 func _render_outer_walls():
 	var outer_walls: Array[Vector2i] = []
 	for i in range(-1, upscale_factor * height):
@@ -141,6 +125,7 @@ func _render_outer_walls():
 			Vector2i(upscale_factor * width    , i),
 			Vector2i(upscale_factor * width    , i + 1),
 		])
+
 	for i in range(-1, upscale_factor * width):
 		outer_walls.append_array([
 			Vector2i(i    , -1),
@@ -158,8 +143,9 @@ func _render_outer_walls():
 func _render_inner_walls():
 	var walls_vector_array: Array[Vector2i] = []
 	for coord in walls:
-		walls_vector_array.append_array([
-				coord * upscale_factor,
+		walls_vector_array.append(coord * upscale_factor)
+		if upscale_factor > 1:
+			walls_vector_array.append_array([
 				coord * upscale_factor + Vector2i.LEFT,
 				coord * upscale_factor + Vector2i.DOWN,
 				coord * upscale_factor + Vector2i.LEFT + Vector2i.DOWN,

@@ -46,12 +46,12 @@ entrance = Vector2(960, 878)
 tilemap = NodePath("ObjectsSort/Tilemap")
 
 [node name="Players" parent="ObjectsSort" index="0"]
-position = Vector2(960, 878)
+position = Vector2(965, 1202)
 
 [node name="Tilemap" type="TileMapLayer" parent="ObjectsSort" index="1"]
 
 [node name="Church" type="StaticBody2D" parent="." index="5"]
-position = Vector2(1384, 1080)
+position = Vector2(1384, 1404)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("3_ysa3r")
@@ -66,7 +66,7 @@ text = "Church"
 metadata/_edit_use_anchors_ = true
 
 [node name="Smithy" type="StaticBody2D" parent="." index="6"]
-position = Vector2(479, 1080)
+position = Vector2(479, 1404)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("4_hnjkr")
@@ -82,7 +82,7 @@ text = "Smithy"
 metadata/_edit_use_anchors_ = true
 
 [node name="Apothecary" type="StaticBody2D" parent="." index="7"]
-position = Vector2(960, 0)
+position = Vector2(960, 324)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("6_7ocav")
@@ -98,7 +98,7 @@ text = "Apothecary"
 metadata/_edit_use_anchors_ = true
 
 [node name="Dungeon" type="StaticBody2D" parent="." index="8"]
-position = Vector2(1644, 394)
+position = Vector2(1644, 718)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("8_k31jc")
@@ -126,7 +126,7 @@ text = "Dungeon"
 metadata/_edit_use_anchors_ = true
 
 [node name="Demonitarium" type="StaticBody2D" parent="." index="9" node_paths=PackedStringArray("collision_shape")]
-position = Vector2(268, 402)
+position = Vector2(268, 726)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("10_h5qir")
@@ -143,7 +143,7 @@ text = "Demonitarium"
 metadata/_edit_use_anchors_ = true
 
 [node name="Palace" type="Node2D" parent="." index="10"]
-position = Vector2(960, 878)
+position = Vector2(960, 1202)
 
 [node name="Characters" type="Node" parent="." index="11"]
 
@@ -152,7 +152,7 @@ position = Vector2(960, 878)
 [node name="White" type="Node2D" parent="Characters" index="1"]
 
 [node name="Test" type="StaticBody2D" parent="." index="12"]
-position = Vector2(960, 540)
+position = Vector2(960, 864)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("18_y17gc")
