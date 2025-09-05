@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://chf160oykp0s4"]
+
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_0etsa"]
+
+[resource]
+script = ExtResource("1_0etsa")
+base_folder = "res://Assets/Cutscenes"
+includes = Array[String](["*.json"])
+excludes = Array[String]([])
+paths = Array[String](["res://Assets/Cutscenes/dialogue_sample.json"])
+metadata/_custom_type_script = "uid://kc642r4ntv5s"

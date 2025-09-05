@@ -108,6 +108,7 @@ func add_text_log_to_scene(): return UI.add_text_log_to_scene()
 func warp(source: Location, destination_scene: PackedScene): return await SCENE_LOADER.warp(source, destination_scene)
 func load_main_menu(): return SCENE_LOADER.load_main_menu()
 func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false): return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
+func get_resource(resource_name: String, type: String) -> Resource: return SCENE_LOADER.get_resource(resource_name, type)
 func push_back_player(centre: Vector2, distance: float): return SCENE_LOADER.push_back_player(centre, distance)
 #endregion
 

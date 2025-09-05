@@ -1,0 +1,68 @@
+{
+	"info": {
+		"skippable": true,
+		"characters": ["Speaker 1", "..."]
+	},
+	"main": {
+		"checks": ["chose_path_a", "..."],
+		"flags": {
+			"spoke_to_test": true, "...":"..."
+		},
+		"rewards": [
+			{   "name": "Item A",
+				"type": "Item",
+				"quantity": 1
+			},
+			{
+				"name": "Skill B",
+				"type": "Skill"
+			}
+		],
+		"dialogue": [
+			[
+				"Speaker 1",
+				"Well. \n{br:1}Now that we're here. \n{br:1}Might as well test out some features"
+			],
+			[
+				"PLAYER_NAME",
+				"Choose",
+				[
+					{
+						"name": "Choice A",
+						"checks": ["spoken_to_exam", "..."],
+						"branch": "branch_a"
+					},
+					{
+						"name": "Choice B",
+						"checks": ["..."],
+						"branch": "branch_b"
+					}
+				],
+				true
+			],
+			["..."]
+		]
+	},
+	"branch_a": {
+		"flags": ["..."],
+		"rewards": {},
+		"dialogue": ["..."]
+	},
+	"branch_b": {
+		"flags": ["..."],
+		"rewards": {},
+		"dialogue": ["..."]
+	},
+	"alt_1": {
+		"checks": ["..."],
+		"flags": ["..."],
+		"rewards": {},
+		"dialogue": ["..."]
+	},
+	"alt_2": {
+		"checks": ["..."],
+		"flags": ["..."],
+		"rewards": {},
+		"dialogue": ["..."]
+	}
+}
