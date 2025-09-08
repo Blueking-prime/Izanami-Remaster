@@ -1,8 +1,6 @@
 extends Node
 
-
 class_name GlobalTextProcessing
-
 
 func add_to_text_log(dialogue: Array):
 	if not get_parent().text_log:
@@ -13,7 +11,7 @@ func add_to_text_log(dialogue: Array):
 	if dialogue.size() >= 3:
 		get_parent().text_log.label.push_list(3, RichTextLabel.LIST_DOTS, true)
 		for i in dialogue[2]:
-			get_parent().text_log.label.append_text(clear_custom_tags(i) + '\n')
+			get_parent().text_log.label.append_text(clear_custom_tags(i.name) + '\n')
 	get_parent().text_log.label.pop_all()
 	get_parent().text_log.label.newline()
 

@@ -7,5 +7,5 @@ script = ExtResource("1_0etsa")
 base_folder = "res://Assets/Cutscenes"
 includes = Array[String](["*.json"])
 excludes = Array[String]([])
-paths = Array[String](["res://Assets/Cutscenes/dialogue_sample.json"])
+paths = Array[String](["res://Assets/Cutscenes/dialogue_sample.json", "res://Assets/Cutscenes/test_cutscene.json"])
 metadata/_custom_type_script = "uid://kc642r4ntv5s"

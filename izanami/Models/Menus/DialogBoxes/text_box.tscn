@@ -90,7 +90,7 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 bbcode_enabled = true
-text = "Add skill icons Add level cap (maybe) Implement AoE skills and [i]self_targeting[/i] skills Flesh out status effects Move battle movement and selection to separate nodeImplement dialog boxesLearn how to move players between scenesMake enemies not spawn on outer rows and columnsMove stats to Stats scriptChange map enemy spawning to reflect contained enemiesFix item usage bug"
+text = "Add skill icons Add level cap (maybe) Implement AoE skills and [i]self_targeting[/i] skills Flesh out status effects Move battle movement and selection to separate nodeImplement [color=#FF00F3]dialog boxesLearn how to move[/color] players between scenesMake enemies not spawn on outer rows and columns[font_size=8]Move[/font_size]' stats to Stats scriptChange map enemy spawning to reflect contained enemiesFix item usage bug"
 fit_content = true
 scroll_active = false
 autowrap_mode = 2

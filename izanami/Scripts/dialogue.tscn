@@ -4,9 +4,10 @@
 [ext_resource type="Script" uid="uid://dovvgbt4pnp3g" path="res://Scripts/dialogue_file_reader.gd" id="2_2lf6u"]
 [ext_resource type="Resource" uid="uid://chf160oykp0s4" path="res://Assets/Cutscenes/cutscenes.tres" id="3_yllqs"]
 
-[node name="Dialogue" type="Node" node_paths=PackedStringArray("auto_delay_timer", "canvas_layer")]
+[node name="Dialogue" type="Node" node_paths=PackedStringArray("auto_delay_timer", "file_reader", "canvas_layer")]
 script = ExtResource("1_6knxj")
 auto_delay_timer = NodePath("AutoTimer")
+file_reader = NodePath("FileReader")
 canvas_layer = NodePath("CanvasLayer")
 
 [node name="AutoTimer" type="Timer" parent="."]

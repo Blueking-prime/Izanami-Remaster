@@ -57,19 +57,26 @@ var current_quest: GlobalQuests.Quest:
 	get(): return Checks.current_quest
 
 #region REGEX EXplanation
-#\{(\w+)\:?(\w*)\} should catch all tags in the format {x}, {x:y} where x and y are any arbitrary strings
-	#\{ matches the character { with index 12310 (7B16 or 1738) literally (case sensitive)
-	#1st Capturing Group (\w*)
-	#\w matches any word character (equivalent to [a-zA-Z0-9_])
-	#+ matches the previous token between one and unlimited times, as many times as possible, giving back as needed (greedy)
-	#\: matches the character : with index 5810 (3A16 or 728) literally (case sensitive)
-	#? matches the previous token between zero and one times, as many times as possible, giving back as needed (greedy)
-	#2nd Capturing Group (\w*)
-	#\w matches any word character (equivalent to [a-zA-Z0-9_])
-	#* matches the previous token between zero and unlimited times, as many times as possible, giving back as needed (greedy)
-	#\} matches the character } with index 12510 (7D16 or 1758) literally (case sensitive)
+r'''
+\{(\/?)(\w+)\:?(\w*)\} should catch all tags in the format {x}, {/x} and {x:y} where x and y are any arbitrary strings
+	\{ matches the character { with index 12310 (7B16 or 1738) literally (case sensitive)
+	1st Capturing Group (\/?)
+	\/ matches the character / with index 4710 (2F16 or 578) literally (case sensitive)
+	? matches the previous token between zero and one
+	\w matches any word character (equivalent to [a-zA-Z0-9_])
+	+ matches the previous token between one and unlimited times, as many times as possible, giving back as needed (greedy)
+	\: matches the character : with index 5810 (3A16 or 728) literally (case sensitive)
+	? matches the previous token between zero and one times, as many times as possible, giving back as needed (greedy)
+	3rd Capturing Group (\w*)
+	\w matches any word character (equivalent to [a-zA-Z0-9_])
+	* matches the previous token between zero and unlimited times, as many times as possible, giving back as needed (greedy)
+	\} matches the character } with index 12510 (7D16 or 1758) literally (case sensitive)
+'''
 #endregion
-var custom_tags_filter: RegEx = RegEx.create_from_string(r'\{(\w+)\:?(\w*)\}')
+var custom_tags_filter: RegEx = RegEx.create_from_string(r'\{(\/?)(\w+)\:?(\w*)\}')
+const REGEX_SLASH_GROUP := 1
+const REGEX_TAG_GROUP := 2
+const REGEX_VALUE_GROUP := 3
 
 # SIGNALS
 signal next

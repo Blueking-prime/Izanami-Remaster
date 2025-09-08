@@ -53,9 +53,11 @@ TASKS (WORKABLE)
 	- [ ] Remove upscale in map wall tile drawing
 - [ ] Add water/lava in dungeons
 - [ ] Add saving and loading checks data
-- [ ] Auto Generate Overworld from map by reading colour data (maybe interpose with some noise or something)
-	- Since map unclean, use image from tileset pattern
+- [ ] Change Checks format to custom node
+- [ ] Add tag replacement to textlog and fix text doubling
 - [ ] Implement method to confirm battle input on Mouse
+- [ ] Fix Cutscene first textbox only diplaying first word
+- [x] Auto Generate Overworld from map by reading colour data (maybe interpose with some noise or something)
 - [/] Remove sell exit signal and replace with exit signal
 - [x] Optimize item and skill usage
 - [x] Implement gear adding resistances

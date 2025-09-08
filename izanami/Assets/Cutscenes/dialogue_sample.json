@@ -44,24 +44,24 @@
 		]
 	},
 	"branch_a": {
-		"flags": ["..."],
+		"flags": {},
 		"rewards": {},
 		"dialogue": ["..."]
 	},
 	"branch_b": {
-		"flags": ["..."],
+		"flags": {},
 		"rewards": {},
 		"dialogue": ["..."]
 	},
 	"alt_1": {
 		"checks": ["..."],
-		"flags": ["..."],
+		"flags": {},
 		"rewards": {},
 		"dialogue": ["..."]
 	},
 	"alt_2": {
 		"checks": ["..."],
-		"flags": ["..."],
+		"flags": {},
 		"rewards": {},
 		"dialogue": ["..."]
 	}

@@ -1,0 +1,94 @@
+{
+  "info": {
+	"skippable": true,
+	"characters": ["Speaker 1", "PLAYER_NAME"]
+  },
+  "main": {
+	"checks": ["main_check"],
+	"flags": {"main_flag": true, "another_flag": false},
+	"rewards": [],
+	"dialogue": [
+	  ["Speaker 1", "Hello"],
+	  ["PLAYER_NAME", "Hi"],
+	  ["Speaker 1", "This is a [b]cutscene[/b] test"],
+	  ["PLAYER_NAME", "Is it now?"],
+	  ["PLAYER_NAME", "{gr}Who'd have thunk?{/gr}"],
+	  ["Speaker 1", "Well. \n{br:1}Now that we're here. \n{br:1}Might as well test out some features"],
+	  [
+		"PLAYER_NAME",
+		"Like what?",
+		[
+		  { "name": "Unskippable Choice", "branch": "test_choice_1", "checks": [] },
+		  { "name": "Option 2", "branch": "test_choice_2", "checks": ["hidden_check"] },
+		  { "name": "Long textbox", "branch": "test_choice_3", "checks": [] }
+		]
+	  ],
+	  ["Speaker 1", "Well now that we're through with that"],
+	  ["Speaker 1", "It's probably time we end this cutscene"],
+	  ["PLAYER_NAME", "{sm}I couldn't agree more{/sm} Yeah let's get out of here"]
+
+	]
+  },
+  "alt_1": {
+	"checks": ["alt_flag"],
+	"flags": {},
+	"rewards": [],
+	"dialogue": [
+	  ["Speaker 1", "This is a hidden branch"],
+	  ["PLAYER_NAME", "Only visible with alt_flag"],
+	  ["Speaker 1", "Pretty neat, huh?"]
+	]
+  },
+  "alt_2": {
+	"checks": [],
+	"flags": {},
+	"rewards": [],
+	"dialogue": [
+	  ["Speaker 1", "This is another alternate branch"],
+	  ["PLAYER_NAME", "But this one is always available"],
+	  ["Speaker 1", "Just not very obvious how to get here"]
+	]
+  },
+  "test_choice_1": {
+	"flags": {},
+	"rewards": {},
+	"dialogue": [
+	  ["Speaker 1", "Yes.\nThe next message won't clear even if skipping is enabled"],
+	  [
+		"PLAYER_NAME",
+		"Is that so?",
+		[
+		  { "name": "Yes, Yes it is", "branch": "test_choice_1_empty", "checks": [] }
+		],
+		true
+	  ],
+	  ["Speaker 1", "There you have it"]
+	]
+  },
+  "test_choice_1_empty": {
+	"flags": {},
+	"rewards": {},
+	"dialogue": []
+  },
+  "test_choice_2": {
+	"flags": {},
+	"rewards": {},
+	"dialogue": [
+	  ["Speaker 1", "Nothing really happens on this route"],
+	  ["PLAYER_NAME", "You have got to be kidding me"]
+	]
+  },
+  "test_choice_3": {
+	"flags": {},
+	"rewards": {},
+	"dialogue": [
+	  [
+		"Speaker 1",
+		"Here is a fat wall of text.\n\n So much good sweet English mmm yes big yap. heavy yap. all the greatest yap that has ever exists.\n DAmn I'm hungry. should have eaten this morning now I'm so hungry.\n Man typing a lot of random dialogue is really tough huh? you'd thibk it'd be easy with how easy it is to type but actually coming up aiwth a long sequence of words that vaguely(? how do you even spell that) are coherent. I wonder how Josh does all this. crazy movement. Sha i'm done with all this typing. i ned to find something to eat before i collapse on this PC."
+	  ],
+	  ["PLAYER_NAME", "Huh?"],
+	  ["Speaker 1", "..."],
+	  ["PLAYER_NAME", "..."]
+	]
+  }
+}

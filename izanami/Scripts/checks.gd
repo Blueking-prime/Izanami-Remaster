@@ -5,6 +5,18 @@ extends Node
 var current_quest: GlobalQuests.Quest
 var refresh_shops: bool = false
 
+var main_check: bool = true:
+	set(arg): main_check = _set_flag(arg)
+var main_flag: bool = false:
+	set(arg): main_flag = _set_flag(arg)
+var hidden_flag: bool = false:
+	set(arg): hidden_flag = _set_flag(arg)
+var another_flag: bool = true:
+	set(arg): another_flag = _set_flag(arg)
+var alt_flag: bool = true:
+	set(arg): alt_flag = _set_flag(arg)
+
+
 
 #region QUESTS
 var completed_quests: Array
@@ -32,6 +44,8 @@ func _set_flag(arg):
 @export var ffwd_speed: float = 0.3
 @export var wait_time: float = 1
 @export var input_type: int = 0
+@export var thought_text_colour: Color
+@export var small_text_size: int = 10
 #endregion
 
 

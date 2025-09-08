@@ -57,7 +57,7 @@ func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: 
 	parent.move_child(node, target_index)
 
 
-func get_resource(resource_name: String, type: String) -> Resource:
+func get_resource(_resource_name: String, _type: String) -> Resource:
 	return null
 
 func push_back_player(centre: Vector2, distance: float):
