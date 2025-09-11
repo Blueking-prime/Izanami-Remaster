@@ -15,8 +15,8 @@ var PLAYER_NAME: String = 'Player'
 var cutscene: Dictionary
 
 
-func _ready() -> void:
-	show_cutscene('test_cutscene')
+#func _ready() -> void:
+	#show_cutscene('test_cutscene')
 
 
 func parse_branch(branch: Dictionary):

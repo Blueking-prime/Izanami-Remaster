@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3nogdpgqda7d"]
 
 [ext_resource type="Script" uid="uid://dc1xbnxs1w5ja" path="res://Models/Characters/battle_sprite.gd" id="1_o83ir"]
-[ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/icon.svg" id="2_1pw31"]
-[ext_resource type="Texture2D" uid="uid://dhk5om5486n8k" path="res://Assets/down-arrow-svgrepo-com.svg" id="3_j4uhy"]
+[ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="2_1pw31"]
+[ext_resource type="Texture2D" uid="uid://dhk5om5486n8k" path="res://Assets/Art/down-arrow-svgrepo-com.svg" id="3_j4uhy"]
 
 [node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "status_icons", "battle_sprite_texture", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text")]
 size_flags_horizontal = 3
@@ -79,7 +79,10 @@ flip_v = true
 [node name="HPBar" type="ProgressBar" parent="VBox"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"ProgressBarRed"
 value = 100.0
+rounded = true
 show_percentage = false
 
 [node name="HPBarText" type="Label" parent="VBox/HPBar"]
@@ -96,7 +99,10 @@ vertical_alignment = 1
 [node name="SPBar" type="ProgressBar" parent="VBox"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"ProgressBarGreen"
 value = 100.0
+rounded = true
 show_percentage = false
 
 [node name="SPBarText" type="Label" parent="VBox/SPBar"]

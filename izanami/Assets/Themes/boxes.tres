@@ -1,0 +1,173 @@
+[gd_resource type="Theme" load_steps=22 format=3 uid="uid://b47wjtl3buq82"]
+
+[ext_resource type="Texture2D" uid="uid://bc6qv00ctw0du" path="res://Assets/Art/Blue_Stone_UI_Asset/BlueStoneUI_SpriteSheet.png" id="1_aqin4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w55up"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(64, 144, 48, 16)
+modulate_color = Color(0, 0, 0, 0.4)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2oqrx"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(64, 144, 48, 16)
+modulate_color = Color(3, 3, 3, 0.5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_15bb5"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(64, 144, 48, 16)
+modulate_color = Color(1, 1, 1, 0.764706)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aqin4"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(64, 144, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d1xnc"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(64, 144, 48, 16)
+modulate_color = Color(0.45098, 0.45098, 0.45098, 0.784314)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0n1xd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_15bb5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aqin4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0n1xd"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(320, 212, 128, 41)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4iawa"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(51, 19, 61, 11)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t2gxr"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(115, 19, 61, 11)
+modulate_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qhkp0"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(51, 29, 61, 11)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rn45m"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(115, 30, 61, 10)
+modulate_color = Color(0.75, 0.75, 0.75, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vl8en"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(51, 9, 61, 11)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2e76f"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(115, 9, 61, 11)
+modulate_color = Color(0.75, 0.75, 0.75, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d3yq3"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 10.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+expand_margin_top = 5.0
+region_rect = Rect2(320, 208, 128, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_74tkn"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+region_rect = Rect2(464, 136, 48, 24)
+modulate_color = Color(0, 0, 0, 0.4)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_t2gxr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5smy"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+region_rect = Rect2(464, 136, 48, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u8508"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+region_rect = Rect2(464, 112, 48, 16)
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxTexture_w55up")
+Button/styles/focus = SubResource("StyleBoxTexture_2oqrx")
+Button/styles/hover = SubResource("StyleBoxTexture_15bb5")
+Button/styles/normal = SubResource("StyleBoxTexture_aqin4")
+Button/styles/pressed = SubResource("StyleBoxTexture_d1xnc")
+FlatButton/base_type = &"Button"
+FlatButton/colors/font_color = Color(1, 1, 1, 0.8)
+FlatButton/colors/font_focus_color = Color(10, 10, 10, 1)
+FlatButton/styles/focus = SubResource("StyleBoxEmpty_0n1xd")
+FlatButton/styles/hover = SubResource("StyleBoxEmpty_15bb5")
+FlatButton/styles/pressed = SubResource("StyleBoxEmpty_aqin4")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_0n1xd")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_4iawa")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_t2gxr")
+ProgressBarGreen/base_type = &"ProgressBar"
+ProgressBarGreen/styles/background = SubResource("StyleBoxTexture_qhkp0")
+ProgressBarGreen/styles/fill = SubResource("StyleBoxTexture_rn45m")
+ProgressBarRed/base_type = &"ProgressBar"
+ProgressBarRed/styles/background = SubResource("StyleBoxTexture_vl8en")
+ProgressBarRed/styles/fill = SubResource("StyleBoxTexture_2e76f")
+TabContainer/styles/panel = SubResource("StyleBoxTexture_d3yq3")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxTexture_74tkn")
+TabContainer/styles/tab_focus = SubResource("StyleBoxLine_t2gxr")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_t5smy")
+TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_u8508")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_t5smy")

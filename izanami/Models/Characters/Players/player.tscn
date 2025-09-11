@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d4gw8w33rep3v" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="4_etuff"]
 [ext_resource type="Script" uid="uid://ccecmimg8gv2o" path="res://Scripts/gear.gd" id="5_k34jo"]
-[ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="5_yd6jm"]
+[ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="5_yd6jm"]
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="6_ahy4h"]
 [ext_resource type="Script" uid="uid://c1aqcvo26tkph" path="res://Scripts/detector.gd" id="6_g43wq"]
 

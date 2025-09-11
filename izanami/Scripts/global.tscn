@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bkfyiyro88x3q" path="res://Scenes/main_menu.tscn" id="5_o7tui"]
 [ext_resource type="PackedScene" uid="uid://c02t3tj4sqc8m" path="res://Models/Menus/Overlays/text_log.tscn" id="6_4il6x"]
 [ext_resource type="PackedScene" uid="uid://5iv4fsku5g5x" path="res://Scenes/Town/Demonitarium/demonitarium.tscn" id="7_gaejl"]
-[ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/new_animated_texture.tres" id="9_egmmm"]
+[ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="9_egmmm"]
 [ext_resource type="Script" uid="uid://ofb7uvb1rtv6" path="res://Scripts/global_text_processing.gd" id="13_3nkps"]
 [ext_resource type="Script" uid="uid://cd2eu0m3h1bvx" path="res://Scripts/global_ui_element_display.gd" id="14_qfkbc"]
 [ext_resource type="Script" uid="uid://b3m6b5kdj6465" path="res://Scripts/global_algorithms_logic.gd" id="15_h8mch"]

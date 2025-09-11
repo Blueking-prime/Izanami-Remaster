@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_m7q0y"]
 [ext_resource type="Script" uid="uid://dwbx2bd1vyrhc" path="res://Models/Characters/Enemies/enemy.gd" id="2_43wjv"]
-[ext_resource type="Texture2D" uid="uid://dwh8ptd80rs8r" path="res://Assets/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f0.png" id="3_l2v3y"]
+[ext_resource type="Texture2D" uid="uid://dwh8ptd80rs8r" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f0.png" id="3_l2v3y"]
 [ext_resource type="Script" uid="uid://sjdgi74lsa73" path="res://Models/Characters/Enemies/detector.gd" id="4_wf7g7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uk6gu"]

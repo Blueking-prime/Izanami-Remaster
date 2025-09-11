@@ -126,7 +126,7 @@ func restore(value: float):
 ### SP
 func _update_sp_bar():
 	if sp_bar:
-		sp_bar.value = (sp / max_sp) * 100
+		sp_bar.value = float(sp) / max_sp * 100
 		sp_bar_text.text = str(sp, ' / ', max_sp)
 
 func consume_sp(value: float):

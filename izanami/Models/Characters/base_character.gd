@@ -105,7 +105,7 @@ func load_character():
 
 func _update_hp_bar():
 	if hp_bar:
-		hp_bar.value = (hp / max_hp) * 100
+		hp_bar.value = float(hp) / max_hp * 100
 		hp_bar_text.text = str(hp, ' / ', max_hp)
 
 func dungeon_display():

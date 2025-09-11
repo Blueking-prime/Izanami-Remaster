@@ -25,7 +25,7 @@ resources_spreadsheet_view/resource_cell_label_mode=1
 config/name="Izanami"
 run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://Assets/icon.svg"
+config/icon="res://Assets/Art/icon.svg"
 
 [audio]
 
@@ -66,6 +66,7 @@ auto_rebuild=true
 
 [gui]
 
+theme/custom="uid://b47wjtl3buq82"
 theme/default_font_generate_mipmaps=true
 
 [input]

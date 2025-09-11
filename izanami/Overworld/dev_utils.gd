@@ -2,7 +2,6 @@ extends Node
 
 #@export_flags('Grid:2', 'Image:4', 'Height Map:8') var outputs: int
 @export var texture: Texture2D
-@export var tile_map: TileMapLayer
 @export var noise: Noise
 @export var texture_display: TextureRect
 @export var map_layers: Node2D
@@ -21,6 +20,7 @@ extends Node
 
 @export var wall_steps: int
 @export var noise_multiplier: float
+@export var max_passes: int = 1
 
 var final_noise_texture: Texture2D
 
@@ -109,7 +109,7 @@ func _ready() -> void:
 	_parse_variables()
 	decode_map_data()
 	parse_image_data()
-	draw_result_image()
+	draw_result_image(false)
 	encode_calculated_data()
 
 	#pass
@@ -186,19 +186,23 @@ func get_pixel_value(data: Array) -> float:
 #endregion
 
 #region Interpose map data with noise
-func draw_result_image():
+func draw_result_image(show: bool):
 	for i in calculated_image_data.size():
 		calculated_image_data[i] *= float(noise_data[i]) * noise_multiplier
-		#if calculated_image_data[i] < 0:
-			#calculated_image_data[i] = 0
-		#else:
-		calculated_image_data[i] = snapped(calculated_image_data[i], RESOLUTION)
+		if calculated_image_data[i] < 0:
+			calculated_image_data[i] = - COLOR_MAX
+		else:
+			calculated_image_data[i] = snapped(calculated_image_data[i], wall_steps)
 
-	print(format_data(PackedByteArray(calculated_image_data), 1).slice(0, 50))
-	var data_image = Image.create_from_data(width, height, false, Image.FORMAT_L8, calculated_image_data)
-	#noise.get_image(width, height)
-	final_noise_texture = ImageTexture.create_from_image(data_image)
-	texture_display.texture = final_noise_texture
+	print('Calculated Data: ', format_data((calculated_image_data), 1).slice(0, 50))
+	print('MAX: ', calculated_image_data.max(), 'MIN: ', calculated_image_data.min())
+
+	if show:
+		var data_image = Image.create_from_data(width, height, false, Image.FORMAT_L8, calculated_image_data)
+		#noise.get_image(width, height)
+		final_noise_texture = ImageTexture.create_from_image(data_image)
+		texture_display.texture = final_noise_texture
+		texture_display.show()
 
 
 func format_data(data: Array, format: int):
@@ -219,36 +223,63 @@ func encode_calculated_data():
 			calculated_image_data[i]
 		])
 
-	print('Tiles: ', tiles.slice(0, 50))
+	print('Tiles: ', tiles.slice(0, 500))
 	convert_calculated_data_to_tilemap(tiles)
 
 func convert_calculated_data_to_tilemap(tiles: Array):
-	var walls: Dictionary
+	var walls: Dictionary[int, Array]
+	var water: Array
+	var floor_tiles: Array
 	for i in tiles:
 		var data = i[1]
-		if data >= 0:
+		if data >= 0 and data <= wall_steps:
+			floor_tiles.append(i[0])
+		if data > wall_steps:
 			_generate_walls_layered(walls, i[0], data)
+		if data < 0:
+			water.append(i[0])
 
 	print('Walls:')
 	for i in walls:
 		print(i, ': ', walls[i].slice(0, 50))
 
-	for i in walls:
-		_render_walls(walls[i], map_layers.get_child(i))
+	var count := 0
+	var ignore_empty := false
+	while count < max_passes:
+		count += 1
+		for i in walls:
+			_render_walls(walls[i], map_layers.get_child(i), ignore_empty)
 
-	print('Rendered')
+		_render_water(water, ignore_empty)
+		_render_floor(floor_tiles, ignore_empty)
+
+		print('Rendered: ', count)
+		print('Ignore: ', ignore_empty)
+
+		for i in walls:
+			walls[i].reverse()
+		water.reverse()
+		floor_tiles.reverse()
+
+		ignore_empty = true
+
 
 func _generate_walls_layered(store_array: Dictionary, coord: Vector2i, noise_value: int):
 	var layer = 0
-	var count = 0
+	var count = 2
 	while layer <= 255 and layer <= noise_value and count < map_layers.get_child_count():
 		store_array.get_or_add(count, []).append(coord)
 		layer += wall_steps
 		count += 1
 
-func _render_walls(walls: Array, layer: TileMapLayer):
-	layer.set_cells_terrain_connect(walls, walls_terrain_set, walls_terrain, true)
+func _render_walls(tiles: Array, layer: TileMapLayer, ignore_empty: bool):
+	layer.set_cells_terrain_connect(tiles, walls_terrain_set, walls_terrain, ignore_empty)
 
+func _render_water(tiles: Array, ignore_empty: bool):
+	map_layers.get_child(1).set_cells_terrain_connect(tiles, water_terrain_set, water_terrain, ignore_empty)
+
+func _render_floor(tiles: Array, ignore_empty: bool):
+	map_layers.get_child(0).set_cells_terrain_connect(tiles, floor_terrain_set, floor_terrain, ignore_empty)
 #endregion
 
 
@@ -266,9 +297,9 @@ func create_2d_grid(w: int, h: int) -> Array:
 
 func draw_tilemap_cell_elevation(coords: Vector2i, data: Array):
 	match data.find(data.max()):
-		0: tile_map.set_cell(coords, 1, r_cord)
-		1: tile_map.set_cell(coords, 1, g_cord)
-		2: tile_map.set_cell(coords, 1, b_cord)
+		0: map_layers.get_child(0).set_cell(coords, 1, r_cord)
+		1: map_layers.get_child(0).set_cell(coords, 1, g_cord)
+		2: map_layers.get_child(0).set_cell(coords, 1, b_cord)
 
 func print_max(data: Array):
 	match data.find(data.max()):
