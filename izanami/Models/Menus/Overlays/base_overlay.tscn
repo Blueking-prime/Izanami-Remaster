@@ -14,8 +14,8 @@
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_61714"]
 gradient = SubResource("Gradient_ffifv")
-width = 30
-height = 30
+width = 10
+height = 10
 fill_from = Vector2(1, 0)
 
 [node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quest_display", "music_display", "coin_counter", "mag_counter", "button_container", "input_processing", "settings_menu")]
@@ -39,12 +39,11 @@ settings_menu = NodePath("Settings")
 script = ExtResource("2_rcg7v")
 
 [node name="PlayerDataOverlay" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 103.0
-offset_bottom = 137.0
-theme_override_constants/separation = 20
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
+theme_override_constants/separation = 3
 
 [node name="StatusOverlay" type="PanelContainer" parent="PlayerDataOverlay"]
 layout_mode = 2
@@ -53,18 +52,17 @@ size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/StatusOverlay"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
 [node name="PlayerContainer" type="VBoxContainer" parent="PlayerDataOverlay/StatusOverlay/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
 script = ExtResource("2_slhvk")
 data_card_scene = ExtResource("3_446mo")
 
 [node name="PlayerData" parent="PlayerDataOverlay/StatusOverlay/MarginContainer/PlayerContainer" instance=ExtResource("3_446mo")]
-visible = false
 layout_mode = 2
 
 [node name="ResourceDisplay" type="PanelContainer" parent="PlayerDataOverlay"]
@@ -73,10 +71,10 @@ size_flags_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/ResourceDisplay"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
 [node name="GridContainer" type="GridContainer" parent="PlayerDataOverlay/ResourceDisplay/MarginContainer"]
 layout_mode = 2
@@ -122,16 +120,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -102.0
-offset_top = -311.0
-offset_right = -30.0
-offset_bottom = -30.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
 [node name="MenuButtons" type="VBoxContainer" parent="Buttons"]
-visible = false
 layout_mode = 2
 alignment = 2
 
@@ -230,77 +225,27 @@ flat = true
 alignment = 2
 icon_alignment = 2
 
-[node name="InfoPanel" type="Control" parent="."]
+[node name="InfoPanel" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
+offset_top = 10.0
+offset_right = -10.0
 grow_horizontal = 0
-
-[node name="Quests" type="VBoxContainer" parent="InfoPanel" node_paths=PackedStringArray("title", "objective_cointainer")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -220.0
-offset_top = 120.0
-offset_right = -20.0
-offset_bottom = 210.0
-grow_horizontal = 0
-script = ExtResource("5_1x7n3")
-title = NodePath("Header/MarginContainer/QuestLabel")
-objective_cointainer = NodePath("Objectives/MarginContainer/VBoxContainer")
-
-[node name="Header" type="PanelContainer" parent="InfoPanel/Quests"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Quests/Header"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="QuestLabel" type="Label" parent="InfoPanel/Quests/Header/MarginContainer"]
-layout_mode = 2
-text = "Current Quest"
-
-[node name="Objectives" type="PanelContainer" parent="InfoPanel/Quests"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Quests/Objectives"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel/Quests/Objectives/MarginContainer"]
-layout_mode = 2
-
-[node name="ObjectiveLabel" type="Label" parent="InfoPanel/Quests/Objectives/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "- Objective"
+theme_override_constants/separation = 3
 
 [node name="Music" type="PanelContainer" parent="InfoPanel" node_paths=PackedStringArray("text_label")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -520.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = 70.0
-grow_horizontal = 0
+layout_mode = 2
 script = ExtResource("6_62x73")
 text_label = NodePath("MarginContainer/HBoxContainer/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Music"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="InfoPanel/Music/MarginContainer"]
 layout_mode = 2
@@ -316,11 +261,49 @@ stretch_mode = 5
 layout_mode = 2
 text = "Current Track"
 
+[node name="Quests" type="VBoxContainer" parent="InfoPanel" node_paths=PackedStringArray("title", "objective_cointainer")]
+layout_mode = 2
+theme_override_constants/separation = 3
+script = ExtResource("5_1x7n3")
+title = NodePath("Header/MarginContainer/QuestLabel")
+objective_cointainer = NodePath("Objectives/MarginContainer/VBoxContainer")
+
+[node name="Header" type="PanelContainer" parent="InfoPanel/Quests"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Quests/Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="QuestLabel" type="Label" parent="InfoPanel/Quests/Header/MarginContainer"]
+layout_mode = 2
+text = "Current Quest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Objectives" type="PanelContainer" parent="InfoPanel/Quests"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Quests/Objectives"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel/Quests/Objectives/MarginContainer"]
+layout_mode = 2
+
+[node name="ObjectiveLabel" type="Label" parent="InfoPanel/Quests/Objectives/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "- Objective"
+
 [node name="Settings" parent="." instance=ExtResource("2_3jbmj")]
 visible = false
 layout_mode = 1
-offset_top = 30.0
-offset_bottom = 30.0
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Buttons/MenuButtons/FreecamButton" to="." method="_on_freecam_button_pressed"]

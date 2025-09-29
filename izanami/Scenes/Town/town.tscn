@@ -159,3 +159,7 @@ script = ExtResource("18_y17gc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Test" index="0"]
 shape = SubResource("CircleShape2D_vqjfq")
+
+[node name="ExitButton" parent="CanvasLayer" index="4"]
+offset_right = 30.0
+offset_bottom = 15.0

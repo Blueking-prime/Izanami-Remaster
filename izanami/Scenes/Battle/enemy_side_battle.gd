@@ -2,7 +2,7 @@ extends Node2D
 
 class_name BattleEnemies
 
-@export var enemy_section: Control
+@export var enemy_section: HBoxContainer
 @export var battle_sprite_scene: PackedScene
 
 @onready var no_of_enemies: int = get_parent().no_of_enemies
@@ -14,6 +14,11 @@ var enemies: Array = []
 var sprites = []
 
 func load_enemies() -> void:
+	for i in enemy_section.get_children():
+		enemy_section.remove_child(i)
+		if is_instance_valid(i):
+			i.queue_free()
+
 	if len(enemy_set):
 		_initialize_enemies(false)
 	elif enemy_group:

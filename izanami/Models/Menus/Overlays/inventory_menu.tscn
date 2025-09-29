@@ -31,17 +31,21 @@ menu_container = NodePath("../TabContainer")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
-offset_left = 444.0
-offset_top = 95.0
-offset_right = 1209.0
-offset_bottom = 981.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 2
-current_tab = 2
+current_tab = 0
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 
 [node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("target_selector")]
-visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("3_2pvlo")
@@ -66,6 +70,7 @@ metadata/_tab_index = 1
 visible = false
 
 [node name="Gear" parent="TabContainer" node_paths=PackedStringArray("target_selector") instance=ExtResource("1_ty00r")]
+visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("3_dtbst")

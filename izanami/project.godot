@@ -47,8 +47,8 @@ gdscript/warnings/narrowing_conversion=0
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
@@ -67,6 +67,8 @@ auto_rebuild=true
 [gui]
 
 theme/custom="uid://b47wjtl3buq82"
+theme/default_font_subpixel_positioning=0
+theme/default_font_multichannel_signed_distance_field=true
 theme/default_font_generate_mipmaps=true
 
 [input]
@@ -198,3 +200,6 @@ quests_key={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/decals/filter=0
+textures/light_projectors/filter=0

@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="2_acqo4"]
 
 [node name="PlayersStatus" type="PanelContainer" node_paths=PackedStringArray("nametag", "classname", "leader_icon", "icon", "hpbar", "hpbar_text", "spbar", "spbar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "description", "status_effect", "select_button")]
+offset_right = 121.0
+offset_bottom = 228.0
 script = ExtResource("1_3dfbo")
 nametag = NodePath("MarginContainer/VBoxContainer/TitleBox/Nametag")
 classname = NodePath("MarginContainer/VBoxContainer/TitleBox/Class")
@@ -28,15 +30,15 @@ select_button = NodePath("MarginContainer/VBoxContainer/Button")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 3
 
 [node name="TitleBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -76,9 +78,10 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="HPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_vertical = 1
+theme_type_variation = &"ProgressBarRed"
 show_percentage = false
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HPBar"]
@@ -93,8 +96,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
+theme_type_variation = &"ProgressBarGreen"
 show_percentage = false
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SPBar"]
@@ -121,14 +125,13 @@ size_flags_vertical = 0
 text = "Stats:"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/StatsBox"]
-custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Stats" type="GridContainer" parent="MarginContainer/VBoxContainer/StatsBox"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_constants/h_separation = 10
+theme_override_constants/h_separation = 3
 columns = 6
 
 [node name="Stat" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
@@ -253,7 +256,7 @@ text = "Gear:"
 [node name="Gear" type="GridContainer" parent="MarginContainer/VBoxContainer/GearBox"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_constants/h_separation = 20
+theme_override_constants/h_separation = 3
 columns = 3
 
 [node name="Head" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
@@ -305,10 +308,10 @@ size_flags_vertical = 6
 text = "Desc:"
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer/DescBox"]
-custom_minimum_size = Vector2(200, 150)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
+size_flags_vertical = 1
 size_flags_stretch_ratio = 3.0
 text = "A named shade"
 vertical_alignment = 1

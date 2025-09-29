@@ -29,6 +29,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 10.0
 
+[node name="MarginContainer" parent="HBoxContainer/OptionMenu/Heading" index="0"]
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
 [node name="Q2label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer" index="2"]
 visible = false
 

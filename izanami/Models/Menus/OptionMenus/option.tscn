@@ -6,9 +6,12 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Option" type="Button" node_paths=PackedStringArray("container", "option_name")]
-custom_minimum_size = Vector2(0, 35)
-offset_right = 322.0
-offset_bottom = 35.0
+custom_minimum_size = Vector2(0, 15)
+anchors_preset = -1
+anchor_right = 0.072
+anchor_bottom = 0.042
+offset_right = -0.0800018
+offset_bottom = -0.120001
 theme_override_styles/normal = SubResource("StyleBoxFlat_g2aei")
 script = ExtResource("1_mr27p")
 container = NodePath("MarginContainer/HBoxContainer")
@@ -23,10 +26,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2

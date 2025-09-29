@@ -49,8 +49,8 @@ script = ExtResource("3_kk8fo")
 noise_map = SubResource("FastNoiseLite_i4n0c")
 max_treasure_no = 10
 upscale_factor = 1
-path_noise_cutoff = -0.3
 enemy_noise_cutoff = 0.2
+max_layers = 1
 
 [node name="Background" parent="." index="4" node_paths=PackedStringArray("map")]
 map = NodePath("../Map")
@@ -72,9 +72,10 @@ treasure_opened_atlas_coords = Vector2i(2, 5)
 treasure_opened_source_id = 2
 entrance_atlas_coords = Vector2i(2, 2)
 exit_atlas_coords = Vector2i(3, 2)
-wall_terrain_set = 1
+wall_terrain_set = 2
 
 [node name="Walls2" type="TileMapLayer" parent="ObjectsSort/WallLayers" index="1"]
+visible = false
 tile_set = ExtResource("7_f2ske")
 collision_enabled = false
 navigation_enabled = false
@@ -83,6 +84,7 @@ wall_terrain_set = 1
 layer = 1
 
 [node name="Walls3" type="TileMapLayer" parent="ObjectsSort/WallLayers" index="2"]
+visible = false
 tile_set = ExtResource("7_f2ske")
 collision_enabled = false
 navigation_enabled = false
@@ -91,6 +93,7 @@ wall_terrain_set = 1
 layer = 2
 
 [node name="Walls4" type="TileMapLayer" parent="ObjectsSort/WallLayers" index="3"]
+visible = false
 tile_set = ExtResource("7_f2ske")
 collision_enabled = false
 navigation_enabled = false

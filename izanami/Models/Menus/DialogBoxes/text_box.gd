@@ -3,7 +3,7 @@ extends Control
 class_name TextBox
 
 @export var title: Label
-@export var title_container: PanelContainer
+@export var title_container: HBoxContainer
 @export var text_box: PanelContainer
 @export var text: RichTextLabel
 @export var spacer: Control

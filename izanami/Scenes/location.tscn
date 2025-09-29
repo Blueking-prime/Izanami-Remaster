@@ -532,7 +532,6 @@ canvas_layer = NodePath("CanvasLayer")
 exit_button = NodePath("CanvasLayer/ExitButton")
 
 [node name="PlayerCam" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
@@ -544,7 +543,6 @@ script = ExtResource("3_rgujj")
 scene = NodePath("..")
 
 [node name="FreeCam" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 script = ExtResource("3_1ec6t")
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -581,8 +579,7 @@ visible = false
 
 [node name="ExitButton" type="Button" parent="CanvasLayer"]
 visible = false
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 97.0
-offset_bottom = 70.0
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
 text = "Back"

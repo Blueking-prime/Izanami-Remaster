@@ -4,8 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_16b2c"]
 [ext_resource type="PackedScene" uid="uid://b2sson3f02peq" path="res://Models/Menus/OptionMenus/keybind_option.tscn" id="2_f5xb2"]
 
-[node name="Settings" type="Control" node_paths=PackedStringArray("exit_button", "tab_container", "menu_switcher")]
-layout_mode = 3
+[node name="Settings" type="Panel" node_paths=PackedStringArray("exit_button", "tab_container", "menu_switcher")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,24 +19,21 @@ menu_switcher = NodePath("MenuSwitcher")
 menu_container = NodePath("../TabContainer")
 
 [node name="ExitButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 85.0
-offset_bottom = 61.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
 text = "Exit"
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -816.0
-offset_top = -434.0
-offset_right = 816.0
-offset_bottom = 434.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 current_tab = 1

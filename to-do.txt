@@ -57,6 +57,7 @@ TASKS (WORKABLE)
 - [ ] Add tag replacement to textlog and fix text doubling
 - [ ] Implement method to confirm battle input on Mouse
 - [ ] Fix Cutscene first textbox only diplaying first word
+- [ ] Switch from UI_x for input to seperate movement and UI navigation
 - [x] Auto Generate Overworld from map by reading colour data (maybe interpose with some noise or something)
 - [/] Remove sell exit signal and replace with exit signal
 - [x] Optimize item and skill usage

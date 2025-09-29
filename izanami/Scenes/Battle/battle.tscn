@@ -108,19 +108,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BattleSprite" parent="CanvasLayer/ActorContainer/EnemySection" instance=ExtResource("4_5t7r8")]
-visible = false
 layout_mode = 2
 
 [node name="ActionBoxUI" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = -1
-anchor_left = 0.511
-anchor_top = 0.513
-anchor_right = 0.511
+anchor_top = 0.564
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -830.12
-offset_top = -14.04
-offset_right = 787.88
-offset_bottom = -128.0
+offset_top = -0.0400085
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 10
@@ -209,18 +204,16 @@ size_flags_stretch_ratio = 2.0
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -92.0
-offset_top = 30.0
-offset_right = -33.0
-offset_bottom = 53.0
+offset_top = 10.0
+offset_right = -10.0
 grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Count"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Count/MarginContainer"]
 layout_mode = 2
