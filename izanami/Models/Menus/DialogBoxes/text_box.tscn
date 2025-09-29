@@ -40,7 +40,7 @@ scroll_timer = NodePath("TextScrollTimer")
 layout_mode = 2
 
 [node name="Control" type="Control" parent="HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
@@ -52,9 +52,9 @@ theme_type_variation = &"TextBoxHeader"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/TitleContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 3
+theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
+theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 3
 
 [node name="Title" type="Label" parent="HBoxContainer/TitleContainer/MarginContainer"]
@@ -63,7 +63,7 @@ size_flags_vertical = 1
 text = "Dialogue Box"
 
 [node name="Control2" type="Control" parent="HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 

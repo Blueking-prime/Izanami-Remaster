@@ -4,6 +4,7 @@ extends Node
 
 var current_quest: GlobalQuests.Quest
 var refresh_shops: bool = false
+var player_name: String = 'Magnolia'
 
 var main_check: bool = true:
 	set(arg): main_check = _set_flag(arg)

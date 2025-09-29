@@ -49,6 +49,8 @@ func _create_base_textbox(speaker: String, prompt: String, screen_side: String =
 	get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_box)
 	get_parent().move_node_to_other_node(get_parent().text_box, get_tree().get_current_scene().canvas_layer, get_parent().text_log)
 
+	if speaker == 'PLAYER_NAME' or speaker == '{pl}': speaker = Checks.player_name
+
 	get_parent().text_box.title.text = speaker
 
 	if Checks.scroll:

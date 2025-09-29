@@ -24,7 +24,8 @@ func scroll_text():
 	scroll_timer.start()
 	text.text = ''
 	for word in text_string.split(' '):
-		if scroll_timer.is_stopped(): break
+		#!info: I've lowkey forgotten what this line was supposedto do. but it breaks the first texbox displayed because the timer doesn't start on time. Tbh I don't even remember why this timer is here.
+		#if scroll_timer.is_stopped(): break
 
 		var search_result: Array = Global.custom_tags_filter.search_all(word)
 		if search_result:
@@ -40,6 +41,7 @@ func process_custom_tag(result: Array[RegExMatch], _text: String) -> String:
 			'br': await _break(i)
 			'gr': replacement_text = _whisper(i)
 			'sm': replacement_text = _small(i)
+			'pl': replacement_text = _player()
 
 		_text = Global.custom_tags_filter.sub(_text, replacement_text)
 
@@ -54,11 +56,15 @@ func _whisper(result: RegExMatch) -> String:
 	else :
 		return '[color=#%s]' % [Checks.thought_text_colour.to_html()]
 
-func _small(result: RegExMatch):
+func _small(result: RegExMatch) -> String:
 	if result.get_string(Global.REGEX_SLASH_GROUP):
 		return r'[/font_size]'
 	else :
 		return '[font_size=%d]' % [Checks.small_text_size]
+
+func _player() -> String:
+	return Checks.player_name
+
 
 func _go_next():
 	if Checks.scroll and not scroll_timer.is_stopped():

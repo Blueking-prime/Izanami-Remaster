@@ -5,7 +5,11 @@ class_name GlobalTextProcessing
 func add_to_text_log(dialogue: Array):
 	if not get_parent().text_log:
 		get_parent().text_log = get_parent().text_log_scene.instantiate()
-	get_parent().text_log.label.append_text(clear_custom_tags(dialogue[0]) + '\n')
+
+	var speaker = dialogue[0]
+	if speaker == 'PLAYER_NAME' or speaker == '{pl}': speaker = Checks.player_name
+
+	get_parent().text_log.label.append_text(clear_custom_tags(speaker) + '\n')
 	get_parent().text_log.label.push_indent(2)
 	get_parent().text_log.label.append_text(clear_custom_tags(dialogue[1]) + '\n')
 	if dialogue.size() >= 3:

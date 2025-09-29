@@ -1,9 +1,7 @@
 extends Node
 
 ## INFO ##
-# CUTSCENE SPEAKER TEXT FROMAT:[ SPEAKER, TEXT, CHOICES, UNSKIPPABLE_FLAG ]
-# Place choices above parents as in 'test_cutscene'
-# {br}
+# CUTSCENE SPEAKER TEXT FROMAT:[ SPEAKER, TEXT, CHOICES, UNSKIPPABLE_FLAG, LOOP_OPTIONS_FLAG ]
 
 @export var auto_delay_timer: Timer
 @export var file_reader: CutsceneReader
@@ -15,49 +13,67 @@ var PLAYER_NAME: String = 'Player'
 var cutscene: Dictionary
 
 
-#func _ready() -> void:
-	#show_cutscene('test_cutscene')
+func _ready() -> void:
+	show_cutscene('test_cutscene')
 
 
 func parse_branch(branch: Dictionary):
 	set_flags(branch.flags)
+	var dialogue_length: int = branch.dialogue.size()
+	var current_line: int = 0
+	var selected_choice: int
 
-	for i in branch.dialogue:
-		Global.add_to_text_log(i)
+	while current_line < dialogue_length:
+		var line: Array = branch.dialogue[current_line]
+		Global.add_to_text_log(line)
 
 		if Global.textbox_auto_flag:
-			auto_delay_timer.start(_calculate_wait_time(i[1]))
+			auto_delay_timer.start(_calculate_wait_time(line[1]))
 
 		if Global.textbox_ffwd_flag:
 			auto_delay_timer.start(Checks.ffwd_speed)
 
 
 		if Global.textbox_skip_flag:
-			if i.size() >= 4 and i[3]:
+			if line.size() >= 4 and line[3]:
 				Global.textbox_skip_flag = false
 				pass
 			else :
 				continue
 
 		# Check if text has options
-		if i.size() >= 3 and i[2] != []:
+		if line.size() >= 3 and line[2] != []:
+			var choices: Array = line[2].duplicate()
+			if line.size() >= 5 and line[4] and not line[3]:
+				choices.append({ "name": "Nevermind", "branch": "loop_skip", "checks": [] })
 			var choice := await Global.show_text_choice(
-				i[0], # Speaker
-				i[1], # Prompt
-				get_valid_choices(i[2]),
-				_check_screenside(i[0]),
+				line[0], # Speaker
+				line[1], # Prompt
+				get_valid_choices(choices),
+				_check_screenside(line[0]),
 				true
 			)
-			await parse_branch(cutscene[i[2][choice].branch])
+			choice = parse_valid_choices(choices, get_valid_choices(choices), choice)
+			selected_choice = choice
+			await parse_branch(cutscene[choices[choice].branch])
+			if choices[choice].branch == 'loop_skip':
+				current_line += 1
 		else :
 			await Global.show_text_box(
-				i[0],
-				i[1],
+				line[0],
+				line[1],
 				false,
-				_check_screenside(i[0]),
+				_check_screenside(line[0]),
 				true
 			)
 
+		if line.size() >= 5 and line[4]:
+			if selected_choice < line[2].size():
+				line[2].remove_at(selected_choice)
+			if not get_valid_choices(line[2]).is_empty():
+				continue
+
+		current_line += 1
 		auto_delay_timer.stop()
 
 func show_cutscene(cutscene_name: String):
@@ -109,11 +125,14 @@ func give_rewards(rewards: Array):
 func get_valid_choices(choices: Array) -> Array:
 	return choices.filter(func(x): return check_flags(x.checks)).map(func(x): return x.name)
 
+func parse_valid_choices(choices: Array, names: Array, index: int) -> int:
+	return choices.find_custom(func(x): return x.name == names[index])
+
 func _calculate_wait_time(text: String):
 	return text.split(' ').size() * Checks.scroll_speed * 2 + Checks.wait_time
 
 func _check_screenside(speaker: String) -> String:
-	if speaker == "PLAYER_NAME":
+	if speaker == "PLAYER_NAME" or speaker == '{pl}':
 		return 'R'
 	else :
 		return 'L'
