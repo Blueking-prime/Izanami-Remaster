@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c5qgnil3yfo54"]
+[gd_scene load_steps=22 format=3 uid="uid://c5qgnil3yfo54"]
 
 [ext_resource type="Script" uid="uid://wf61cxsog4sa" path="res://Scenes/Town/town.gd" id="1_wpby1"]
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Scenes/location.tscn" id="1_xeoqd"]
@@ -14,6 +14,9 @@
 [ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="11_6gf2o"]
 [ext_resource type="PackedScene" uid="uid://5iv4fsku5g5x" path="res://Scenes/Town/Demonitarium/demonitarium.tscn" id="14_k4n1q"]
 [ext_resource type="Script" uid="uid://dytjd2yhrw5eb" path="res://Scenes/Town/test.gd" id="18_y17gc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8b2lm"]
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6d4y1"]
 radius = 172.491
@@ -50,7 +53,15 @@ position = Vector2(965, 1202)
 
 [node name="Tilemap" type="TileMapLayer" parent="ObjectsSort" index="1"]
 
-[node name="Church" type="StaticBody2D" parent="." index="5"]
+[node name="Entrance" type="Area2D" parent="." index="5"]
+position = Vector2(960, 1133)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance" index="0"]
+shape = SubResource("CircleShape2D_8b2lm")
+
+[node name="Church" type="StaticBody2D" parent="." index="6"]
 position = Vector2(1384, 1404)
 collision_layer = 32
 collision_mask = 0
@@ -65,7 +76,7 @@ offset_bottom = 23.0
 text = "Church"
 metadata/_edit_use_anchors_ = true
 
-[node name="Smithy" type="StaticBody2D" parent="." index="6"]
+[node name="Smithy" type="StaticBody2D" parent="." index="7"]
 position = Vector2(479, 1404)
 collision_layer = 32
 collision_mask = 0
@@ -81,7 +92,7 @@ offset_bottom = 23.0
 text = "Smithy"
 metadata/_edit_use_anchors_ = true
 
-[node name="Apothecary" type="StaticBody2D" parent="." index="7"]
+[node name="Apothecary" type="StaticBody2D" parent="." index="8"]
 position = Vector2(960, 324)
 collision_layer = 32
 collision_mask = 0
@@ -97,7 +108,7 @@ offset_bottom = 23.0
 text = "Apothecary"
 metadata/_edit_use_anchors_ = true
 
-[node name="Dungeon" type="StaticBody2D" parent="." index="8"]
+[node name="Dungeon" type="StaticBody2D" parent="." index="9"]
 position = Vector2(1644, 718)
 collision_layer = 32
 collision_mask = 0
@@ -125,7 +136,7 @@ offset_bottom = 23.0
 text = "Dungeon"
 metadata/_edit_use_anchors_ = true
 
-[node name="Demonitarium" type="StaticBody2D" parent="." index="9" node_paths=PackedStringArray("collision_shape")]
+[node name="Demonitarium" type="StaticBody2D" parent="." index="10" node_paths=PackedStringArray("collision_shape")]
 position = Vector2(268, 726)
 collision_layer = 32
 collision_mask = 0
@@ -142,16 +153,16 @@ offset_bottom = 23.0
 text = "Demonitarium"
 metadata/_edit_use_anchors_ = true
 
-[node name="Palace" type="Node2D" parent="." index="10"]
+[node name="Palace" type="Node2D" parent="." index="11"]
 position = Vector2(960, 1202)
 
-[node name="Characters" type="Node" parent="." index="11"]
+[node name="Characters" type="Node" parent="." index="12"]
 
 [node name="Kobaneko" type="Node2D" parent="Characters" index="0"]
 
 [node name="White" type="Node2D" parent="Characters" index="1"]
 
-[node name="Test" type="StaticBody2D" parent="." index="12"]
+[node name="Test" type="StaticBody2D" parent="." index="13"]
 position = Vector2(960, 864)
 collision_layer = 32
 collision_mask = 0
@@ -161,6 +172,9 @@ script = ExtResource("18_y17gc")
 shape = SubResource("CircleShape2D_vqjfq")
 
 [node name="ExitButton" parent="CanvasLayer" index="4"]
-anchors_preset = 0
+offset_left = 0.0
+offset_top = 0.0
 offset_right = 30.0
 offset_bottom = 15.0
+
+[connection signal="body_entered" from="Entrance" to="." method="_on_entrance_body_entered"]

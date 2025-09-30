@@ -41,7 +41,6 @@ BUG FIXES
 - [x] Fix enemy name bugs
 
 TASKS (WORKABLE)
-- [ ] Implement Overworld
 - [ ] Implement quests, quest label in UI and add quest markers to map
 - [ ] Implement accessibility settings
 - [ ] Implement graphics settings
@@ -54,10 +53,12 @@ TASKS (WORKABLE)
 - [ ] Add water/lava in dungeons
 - [ ] Add saving and loading checks data
 - [ ] Change Checks format to custom node
-- [ ] Add tag replacement to textlog
-- [ ] Implement method to confirm battle input on Mouse
+- [-] Implement method to confirm battle input on Mouse
 - [ ] Switch from UI_x for input to seperate movement and UI navigation
 - [ ] Implement setting player name in checks file
+- [ ] implement method to prevent removing player character from party
+- [x] Add tag replacement to textlog
+- [x] Implement Overworld
 - [x] Implement {pl} tag
 - [x] Fix Cutscene first textbox only diplaying first word
 - [x] Auto Generate Overworld from map by reading colour data (maybe interpose with some noise or something)

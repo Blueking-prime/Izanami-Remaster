@@ -27,8 +27,10 @@ gold = 100
 
 [node name="PlayerInventory" parent="." node_paths=PackedStringArray("test_players", "desc_box_container") instance=ExtResource("2_3k3hf")]
 layout_mode = 1
-offset_left = -7.0
-offset_right = -90.0
+offset_left = 0.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -0.119995
 test_players = NodePath("../Players")
 desc_box_container = NodePath("../Description Box")
 
@@ -36,8 +38,9 @@ desc_box_container = NodePath("../Description Box")
 layout_mode = 1
 anchor_left = 0.002
 anchor_right = 0.349
-offset_left = 102.16
-offset_right = -3.08002
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 0.0
 script = ExtResource("1_to4xg")
 desc_box_container = NodePath("../Description Box")
 item_group = ExtResource("4_b5lik")

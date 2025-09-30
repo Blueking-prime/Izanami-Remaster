@@ -21,6 +21,7 @@ extends Node
 @export var demonitarium_scene: PackedScene
 @export var battle_scene: PackedScene
 @export var main_menu_scene: PackedScene
+@export var overworld_scene: PackedScene
 
 
 var players: Party
@@ -87,9 +88,10 @@ signal exit_signal
 signal quests_changed
 
 #region Text Processing
-func add_to_text_log(dialogue: Array): return TEXT.add_to_text_log(dialogue)
+func add_to_text_log(dialogue: Array): return await TEXT.add_to_text_log(dialogue)
 func clear_custom_tags(_text: String) -> String: return TEXT.clear_custom_tags(_text)
 func print_to_log(text: Variant): return TEXT.print_to_log(text)
+func process_text_tags(text: String): return await TEXT.process_text_tags(text)
 #endregion
 
 #region Algorithms
@@ -104,7 +106,7 @@ func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int
 #region UIElements
 func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int: return await UI.show_text_choice(speaker, prompt, choices, screen_side, dialogue)
 func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', dialogue: bool = false) -> void: await UI.show_text_box(speaker, prompt, persist, screen_side, dialogue)
-func show_confirmation_box(prompt: String): return await UI.show_confirmation_box(prompt)
+func show_confirmation_box(prompt: String) -> bool: return await UI.show_confirmation_box(prompt)
 func change_background(texture: Texture2D, global: bool = false): return UI.change_background(texture, global)
 func show_description(object: Resource) -> void: return UI.show_description(object)
 func show_shop_menu(stock: ResourceGroup): return UI.show_shop_menu(stock)

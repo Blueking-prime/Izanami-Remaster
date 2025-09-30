@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcxmyev8jvlgh"]
+[gd_scene load_steps=20 format=3 uid="uid://bcxmyev8jvlgh"]
 
 [ext_resource type="Script" uid="uid://ty13w3ttw1d5" path="res://Scripts/global.gd" id="1_u8o3i"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/Menus/DialogBoxes/text_box.tscn" id="2_imufx"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://5iv4fsku5g5x" path="res://Scenes/Town/Demonitarium/demonitarium.tscn" id="7_gaejl"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="9_egmmm"]
 [ext_resource type="Script" uid="uid://ofb7uvb1rtv6" path="res://Scripts/global_text_processing.gd" id="13_3nkps"]
+[ext_resource type="PackedScene" uid="uid://cx24gmgelg67f" path="res://Scenes/overworld.tscn" id="13_aw1uo"]
 [ext_resource type="Script" uid="uid://cd2eu0m3h1bvx" path="res://Scripts/global_ui_element_display.gd" id="14_qfkbc"]
 [ext_resource type="Script" uid="uid://b3m6b5kdj6465" path="res://Scripts/global_algorithms_logic.gd" id="15_h8mch"]
 [ext_resource type="Script" uid="uid://mqelb8bjj3q5" path="res://Scripts/global_scene_loader.gd" id="16_stni4"]
@@ -37,6 +38,7 @@ dungeon_scene = ExtResource("3_sy3id")
 demonitarium_scene = ExtResource("7_gaejl")
 battle_scene = ExtResource("4_cg2fd")
 main_menu_scene = ExtResource("5_o7tui")
+overworld_scene = ExtResource("13_aw1uo")
 
 [node name="TextProcessing" type="Node" parent="."]
 script = ExtResource("13_3nkps")

@@ -48,6 +48,12 @@ script = ExtResource("4_65ixt")
 objective_list = NodePath("../../ObjectivesList")
 metadata/_tab_index = 0
 
+[node name="MarginContainer" parent="TabContainer/Active/Heading" index="0"]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
 [node name="Q1Label" parent="TabContainer/Active/Heading/MarginContainer/HBoxContainer" index="1"]
 visible = false
 
@@ -60,6 +66,12 @@ focus_mode = 2
 script = ExtResource("5_vxv28")
 objective_list = NodePath("../../ObjectivesList")
 metadata/_tab_index = 1
+
+[node name="MarginContainer" parent="TabContainer/Completed/Heading" index="0"]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="Q1Label" parent="TabContainer/Completed/Heading/MarginContainer/HBoxContainer" index="1"]
 visible = false

@@ -53,3 +53,12 @@ func load_data(data: TownSaveData):
 	smithy.stock = data.smithy_stock
 
 	print('Town Data Loaded')
+
+
+func _on_entrance_body_entered(_body: Node2D) -> void:
+	Global.players.freeze()
+	if await Global.show_confirmation_box('Go to overworld?'):
+		print('Entrance')
+		go_to_overworld()
+	else :
+		Global.players.unfreeze()

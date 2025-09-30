@@ -41,11 +41,12 @@ offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
-current_tab = 0
+current_tab = 1
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 
 [node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("target_selector")]
+visible = false
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("3_2pvlo")
@@ -54,11 +55,9 @@ target_selector = NodePath("../../SkillTargetSelector")
 metadata/_tab_index = 0
 
 [node name="SkillCard" parent="TabContainer/Skills" instance=ExtResource("3_b5xgx")]
-visible = false
 layout_mode = 2
 
 [node name="Items" parent="TabContainer" node_paths=PackedStringArray("target_selector") instance=ExtResource("1_ty00r")]
-visible = false
 layout_mode = 2
 focus_neighbor_bottom = NodePath("Options")
 focus_mode = 2

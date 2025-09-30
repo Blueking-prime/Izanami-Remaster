@@ -18,6 +18,13 @@ var alt_flag: bool = true:
 	set(arg): alt_flag = _set_flag(arg)
 
 
+func check_flags(flags: Array) -> bool:
+	return flags.all(func(x): return get(x))
+
+func set_flags(flags: Dictionary):
+	for i in flags:
+		set(i, flags[i])
+
 
 #region QUESTS
 var completed_quests: Array

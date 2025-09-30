@@ -88,7 +88,7 @@ func _create_base_textbox(speaker: String, prompt: String, screen_side: String =
 	#print('UPDATED MOUSE POSITION: ', get_window().get_mouse_position())
 
 
-func show_confirmation_box(prompt: String):
+func show_confirmation_box(prompt: String) -> bool:
 	if is_instance_valid(get_parent().confirmation_box):
 		get_parent().confirmation_box.queue_free()
 

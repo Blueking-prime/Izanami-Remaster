@@ -5,6 +5,7 @@ class_name Location
 @export var entrance: Vector2
 @export var tilemap: TileMapLayer
 @export var background: LocationBackground
+@export var entrance_area: Area2D
 
 @export var test_players: Party
 @export var objectsort: Node
@@ -31,6 +32,10 @@ func load_scene():
 		test_players = null
 	else:
 		_remove_test_players()
+
+	if entrance_area:
+		entrance = entrance_area.global_position
+		entrance += Vector2.UP * entrance_area.get_child(0).shape.radius * 1.2
 
 	if background: background.draw_background()
 
@@ -93,6 +98,12 @@ func reset_from_battle():
 	overlay.load_ui_elements()
 	Global.players.reset_battle_collision()
 	overlay.show()
+
+func go_to_overworld():
+	Global.players.freeze()
+	var overworld: Overworld = Global.overworld_scene.instantiate()
+	overworld.source_location = self
+	add_sibling(overworld)
 
 func save():
 	pass

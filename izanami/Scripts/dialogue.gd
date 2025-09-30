@@ -18,14 +18,14 @@ func _ready() -> void:
 
 
 func parse_branch(branch: Dictionary):
-	set_flags(branch.flags)
+	Checks.set_flags(branch.flags)
 	var dialogue_length: int = branch.dialogue.size()
 	var current_line: int = 0
 	var selected_choice: int
 
 	while current_line < dialogue_length:
 		var line: Array = branch.dialogue[current_line]
-		Global.add_to_text_log(line)
+		await Global.add_to_text_log(line)
 
 		if Global.textbox_auto_flag:
 			auto_delay_timer.start(_calculate_wait_time(line[1]))
@@ -87,12 +87,12 @@ func show_cutscene(cutscene_name: String):
 
 	if not cutscene.is_empty():
 		# Check info
-		if check_flags(cutscene.main.checks):
+		if Checks.check_flags(cutscene.main.checks):
 			await parse_branch(cutscene.main)
 		else:
 			var alt_branch := 1
 			while cutscene.get('alt_' + str(alt_branch), false):
-				if check_flags(cutscene.get('alt_' + str(alt_branch)).checks):
+				if Checks.check_flags(cutscene.get('alt_' + str(alt_branch)).checks):
 					await parse_branch(cutscene.get('alt_' + str(alt_branch)))
 					break
 				alt_branch += 1
@@ -107,13 +107,6 @@ func show_cutscene(cutscene_name: String):
 	if is_instance_valid(Global.players):
 		Global.players.unfreeze()
 
-func check_flags(flags: Array) -> bool:
-	return flags.all(func(x): return Checks.get(x))
-
-func set_flags(flags: Dictionary):
-	for i in flags:
-		Checks.set(i, flags[i])
-
 func give_rewards(rewards: Array):
 	for i in rewards:
 		if i.type == 'Skill':
@@ -123,7 +116,7 @@ func give_rewards(rewards: Array):
 				Global.players.inventory.add_entry(Global.get_resource(i.name, i.type))
 
 func get_valid_choices(choices: Array) -> Array:
-	return choices.filter(func(x): return check_flags(x.checks)).map(func(x): return x.name)
+	return choices.filter(func(x): return Checks.check_flags(x.checks)).map(func(x): return x.name)
 
 func parse_valid_choices(choices: Array, names: Array, index: int) -> int:
 	return choices.find_custom(func(x): return x.name == names[index])

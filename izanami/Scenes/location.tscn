@@ -579,7 +579,6 @@ visible = false
 
 [node name="ExitButton" type="Button" parent="CanvasLayer"]
 visible = false
-anchors_preset = -1
 offset_left = 10.0
 offset_top = 10.0
 text = "Back"
