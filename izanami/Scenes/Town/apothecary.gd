@@ -8,7 +8,7 @@ class_name TownApothecary
 
 
 func main():
-	Checks.apothecary_visit = true
+	Checks.set_flags({'apothecary_visit': true})
 	Global.players.freeze()
 
 	Global.sell.connect(_sell_parser)

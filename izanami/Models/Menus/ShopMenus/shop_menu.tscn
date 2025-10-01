@@ -27,6 +27,7 @@ gold = 100
 
 [node name="PlayerInventory" parent="." node_paths=PackedStringArray("test_players", "desc_box_container") instance=ExtResource("2_3k3hf")]
 layout_mode = 1
+anchor_left = 0.65
 offset_left = 0.0
 offset_top = 30.0
 offset_right = -30.0
@@ -37,7 +38,7 @@ desc_box_container = NodePath("../Description Box")
 [node name="ShopInventory" parent="." node_paths=PackedStringArray("desc_box_container") instance=ExtResource("2_3k3hf")]
 layout_mode = 1
 anchor_left = 0.002
-anchor_right = 0.349
+anchor_right = 0.35
 offset_left = 30.0
 offset_top = 30.0
 offset_right = 0.0
@@ -50,12 +51,12 @@ inventory = {}
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.36
-anchor_top = 0.5
-anchor_right = 0.655
+anchor_top = 0.4
+anchor_right = 0.64
 anchor_bottom = 0.667
-offset_left = -4.20001
-offset_right = -2.6001
-offset_bottom = -0.360046
+offset_left = 0.599991
+offset_right = -2.59998
+offset_bottom = -0.119995
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -63,7 +64,4 @@ alignment = 1
 [node name="TextBox" parent="." instance=ExtResource("4_08oii")]
 visible = false
 layout_mode = 1
-offset_left = -854.0
-offset_top = -1289.2
-offset_right = 868.0
-offset_bottom = 0.239929
+offset_top = 3.83998

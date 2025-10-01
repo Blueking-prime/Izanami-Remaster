@@ -9,16 +9,15 @@ class Quest:
 
 	class Objective:
 		var title: String
-		var flag: StringName
+		var flags: Array[String]
 		var value: Variant
 
-		func _init(_title: String, _flag: StringName) -> void:
+		func _init(_title: String, _flags: Array[String]) -> void:
 			self.title = _title
-			if Checks.get(_flag) != null:
-				self.flag = _flag
-				self.value = Checks.get(_flag)
-			else :
-				assert(false, '%s not contained in Checks' % [_flag])
+			for i in _flags:
+				assert(Checks.get(i) != null, '%s not contained in Checks' % [i])
+			self.flags = _flags
+			self.value = Checks.check_flags(self.flags)
 
 	func _init(_title: String, _objectives: Array) -> void:
 		self.title = _title
@@ -29,11 +28,10 @@ class Quest:
 	func refresh_flags():
 		var check: bool = true
 		for i in self.objectives:
-			i.value = Checks.get(i.flag)
+			i.value = Checks.check_flags(i.flags)
 			if not i.value: check = i.value
 
-		if check:
-			completed = check
+		if check: completed = check
 
 func load_quests():
 	pass

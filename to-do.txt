@@ -5,6 +5,7 @@ GOALS
 - [ ] Enable Pure mouse and pure keyboard navigation support
 - [x] Remove magic numbers
 - [ ] Polish UI elements
+- [ ] Polish navigation
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
 - [ ] Add status effect icons
@@ -41,7 +42,6 @@ BUG FIXES
 - [x] Fix enemy name bugs
 
 TASKS (WORKABLE)
-- [ ] Implement quests, quest label in UI and add quest markers to map
 - [ ] Implement accessibility settings
 - [ ] Implement graphics settings
 - [ ] Implement audio settings
@@ -49,14 +49,14 @@ TASKS (WORKABLE)
 - [ ] Make exit send to next level of dungeon
 - [ ] Sectionalize dungeon map generation to increase size of generated map
 - [ ] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering
-	- [ ] Remove upscale in map wall tile drawing
 - [ ] Add water/lava in dungeons
-- [ ] Add saving and loading checks data
-- [ ] Change Checks format to custom node
-- [-] Implement method to confirm battle input on Mouse
 - [ ] Switch from UI_x for input to seperate movement and UI navigation
-- [ ] Implement setting player name in checks file
-- [ ] implement method to prevent removing player character from party
+- [-] Implement method to confirm battle input on Mouse
+- [x] Add saving and loading checks data
+- [x] Change Checks format to custom node
+- [x] Implement setting player name in checks file
+- [x] implement method to prevent removing player character from party
+- [x] Implement quests, quest label in UI and add quest markers to map
 - [x] Add tag replacement to textlog
 - [x] Implement Overworld
 - [x] Implement {pl} tag

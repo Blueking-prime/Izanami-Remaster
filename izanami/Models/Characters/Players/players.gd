@@ -106,7 +106,9 @@ func add_to_party(player: Player):
 	player.gear.load_stock()
 
 func remove_from_party(player: Player):
-	# Add locked party members
+	if player.lock:
+		print("Can't remove, Locked party Member")
+		return
 	if len(party) < 2:
 		print("Can't remove, party too small")
 		return

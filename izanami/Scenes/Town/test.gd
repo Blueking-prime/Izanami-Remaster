@@ -3,12 +3,12 @@ extends StaticBody2D
 @export var test_scene: PackedScene
 
 var quest = GlobalQuests.Quest.new('Test Quest', [
-	GlobalQuests.Quest.Objective.new('Go to Apothecary', 'apothecary_visit'),
-	GlobalQuests.Quest.Objective.new('Buy at Smithy', 'smithy_buy'),
-	GlobalQuests.Quest.Objective.new('Return to Test site', 'test_return'),
+	GlobalQuests.Quest.Objective.new('Go to Apothecary', ['apothecary_visit']),
+	GlobalQuests.Quest.Objective.new('Buy at Smithy', ['smithy_buy']),
+	GlobalQuests.Quest.Objective.new('Return to Test site', ['test_return']),
 ])
 var quest_2 = GlobalQuests.Quest.new('Test 2 Quest', [
-	GlobalQuests.Quest.Objective.new('Walk round map', 'meander'),
+	GlobalQuests.Quest.Objective.new('Walk round map', ['meander']),
 ])
 
 func main():

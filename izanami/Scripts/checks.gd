@@ -1,60 +1,26 @@
 extends Node
 
-@export var custom_seed: int = 0
 
+@export var flags: Flags
+@export var settings_flags: SettingsFlags
+
+@export var custom_seed: int = 0
 var current_quest: GlobalQuests.Quest
 var refresh_shops: bool = false
 var player_name: String = 'Magnolia'
 
-var main_check: bool = true:
-	set(arg): main_check = _set_flag(arg)
-var main_flag: bool = false:
-	set(arg): main_flag = _set_flag(arg)
-var hidden_flag: bool = false:
-	set(arg): hidden_flag = _set_flag(arg)
-var another_flag: bool = true:
-	set(arg): another_flag = _set_flag(arg)
-var alt_flag: bool = true:
-	set(arg): alt_flag = _set_flag(arg)
-
 
 func check_flags(flags: Array) -> bool:
-	return flags.all(func(x): return get(x))
+	return flags.all(func(x): return flags.get(x))
 
 func set_flags(flags: Dictionary):
 	for i in flags:
-		set(i, flags[i])
+		flags.set(i, flags[i])
+	Global.update_quests()
 
 
 #region QUESTS
 var completed_quests: Array
-
-var apothecary_visit: bool = false:
-	set(arg): apothecary_visit = _set_flag(arg)
-var smithy_buy: bool = false:
-	set(arg): smithy_buy = _set_flag(arg)
-var test_return: bool = false:
-	set(arg): test_return = _set_flag(arg)
-var meander: bool = false:
-	set(arg): meander = _set_flag(arg)
-
-func _set_flag(arg):
-	if arg:
-		Global.update_quests()
-	return arg
-#endregion
-
-#// SETTINGS FLAGS //#
-# Text settings
-#region TEXT SETTINGS
-@export var scroll: bool = true
-@export var scroll_speed: float = 0.05
-@export var ffwd_speed: float = 0.3
-@export var wait_time: float = 1
-@export var input_type: int = 0
-@export var thought_text_colour: Color
-@export var small_text_size: int = 10
-#endregion
 
 
 var dungeons: Dictionary = {
@@ -103,11 +69,27 @@ func clean_persistence():
 			item_option.erase(i)
 #endregion
 
-func save():
-	#var props = get_script().get_script_property_list()
-	#for prop in props:
-		#print("name: ", prop.name, ", value: ", get(prop.name), ", type: ", prop.type)
-	pass
+func save() -> Dictionary:
+	var flag_data: Array = flags.get_script().get_script_property_list()
+	flag_data = flag_data.filter(
+		func(x): return x.name.ends_with('.gd') == false
+	).map(
+		func(x): return {'name': x.name, 'value': flags.get(x.name)}
+	)
 
-func load():
-	pass
+	var settings_data: Array = settings_flags.get_script().get_script_property_list()
+	settings_data = settings_data.filter(
+		func(x): return x.name.ends_with('.gd') == false
+	).map(
+		func(x): return {'name': x.name, 'value': settings_flags.get(x.name)}
+	)
+
+	return {'flag_data': flag_data, 'settings_data': settings_data}
+
+
+func load_checks(save_data: Dictionary):
+	for i in save_data.flag_data:
+		flags.set(i.name, i.value)
+
+	for i in save_data.settings_data:
+		settings_flags.set(i.name, i.value)

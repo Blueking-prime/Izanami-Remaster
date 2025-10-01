@@ -38,6 +38,7 @@ func create_save_file(file_location: String):
 	save_file.date = Time.get_datetime_string_from_system()
 	save_file.party_data = Global.players.save()
 	save_file.scene_data = get_tree().current_scene.save()
+	save_file.game_checks = Checks.save()
 	print(file_location, save_file)
 
 	ResourceSaver.save(save_file, file_location)
@@ -46,6 +47,7 @@ func create_save_file(file_location: String):
 func load_save_file(file_location: String):
 	var save_file: GameSaveData = load(file_location)
 	print(file_location, save_file)
+	Checks.load_checks(save_file.game_checks)
 
 	match save_file.scene_data.location:
 		'Town': await load_town()

@@ -41,6 +41,7 @@ class_name Player
 ## STATES
 var active_selection
 var freeze_movement: bool = false
+var lock: bool = false
 
 ## SIGNALS
 signal moved

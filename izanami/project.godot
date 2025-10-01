@@ -33,7 +33,7 @@ buses/default_bus_layout="res://Configs/default_bus_layout.tres"
 
 [autoload]
 
-Checks="*res://Scripts/checks.gd"
+Checks="*res://Scripts/checks.tscn"
 SaveAndLoad="*res://Scripts/save_and_load.tscn"
 Global="*res://Scripts/global.tscn"
 Audio="*res://Scripts/audio.tscn"

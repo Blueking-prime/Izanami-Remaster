@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://blse2il2lnlc1" path="res://Assets/Art/uNNAMED kATANA.jpg" id="1_l45s6"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="3_4qj6l"]
 [ext_resource type="Script" uid="uid://dlua1l2vyqqje" path="res://Scenes/location_pin.gd" id="4_rmeny"]
-[ext_resource type="Texture2D" uid="uid://dhk5om5486n8k" path="res://Assets/Art/down-arrow-svgrepo-com.svg" id="5_hf0oe"]
+[ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="5_4qj6l"]
 
 [node name="Overworld" type="Node" node_paths=PackedStringArray("map", "player_marker")]
 script = ExtResource("1_6s5ae")
@@ -52,6 +52,5 @@ texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
 
 [node name="PlayerMarker" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(0, -9.53674e-07)
-scale = Vector2(0.02125, 0.035)
-texture = ExtResource("5_hf0oe")
+position = Vector2(-0.085, -0.14)
+texture = ExtResource("5_4qj6l")

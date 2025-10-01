@@ -106,6 +106,8 @@ func confirm_choice(card: PlayerDetailsCard):
 			player = i
 
 	player.character_name = card.namefield.text
+	Checks.player_name = player.character_name
+	player.lock = true
 	player_node_container.remove_child(player)
 	player_party.add_to_party(player)
 	player_party.load_party()
