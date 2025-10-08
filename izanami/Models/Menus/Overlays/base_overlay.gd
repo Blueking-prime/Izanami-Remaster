@@ -29,7 +29,7 @@ var menu_list: Array
 var save_enabled: bool = true
 
 func _get_key_event_keycode(action_name: String):
-	return char(InputMap.action_get_events(action_name)[Checks.input_type].keycode)
+	return char(InputMap.action_get_events(action_name)[Checks.settings_flags.input_type].keycode)
 
 func _assign_button_labels():
 	for i in button_container.get_children():

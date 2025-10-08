@@ -7,14 +7,14 @@ class_name FreeCam
 @export var zoom_max: Vector2 = Vector2(4, 4)
 @export var zoom_min: Vector2 = Vector2(0.1, 0.1)
 @export var zoom_step: Vector2 = zoom_min
-
+@export var limit_navigation: bool = true
 var initial_zoom: Vector2
 
 func setup_map():
 	initial_zoom = zoom
 	position = Global.players.leader.global_position
 
-	if is_instance_valid(get_parent().tilemap):
+	if is_instance_valid(get_parent().tilemap) and limit_navigation:
 		var tilemap_boundary: Rect2 = get_parent().tilemap.get_used_rect()
 		if tilemap_boundary.has_area():
 			limit_left = (tilemap_boundary.position.x + 1) * Location.TILEMAP_CELL_SIZE

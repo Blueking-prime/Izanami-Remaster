@@ -10,12 +10,12 @@ var refresh_shops: bool = false
 var player_name: String = 'Magnolia'
 
 
-func check_flags(flags: Array) -> bool:
-	return flags.all(func(x): return flags.get(x))
+func check_flags(_flags: Array) -> bool:
+	return _flags.all(func(x): return flags.get(x))
 
-func set_flags(flags: Dictionary):
-	for i in flags:
-		flags.set(i, flags[i])
+func set_flags(_flags: Dictionary):
+	for i in _flags:
+		flags.set(i, _flags[i])
 	Global.update_quests()
 
 

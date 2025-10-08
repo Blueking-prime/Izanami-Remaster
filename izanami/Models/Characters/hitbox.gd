@@ -6,7 +6,7 @@ var hitcenter: bool = false
 var detect_mask: Variant
 var query: PhysicsShapeQueryParameters2D
 
-func check_overlap(walls: DungeonObjects):
+func check_overlap(walls: DungeonChunk):
 	detect_mask = walls
 	center = walls.center()
 

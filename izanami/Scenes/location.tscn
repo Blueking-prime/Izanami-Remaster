@@ -551,7 +551,6 @@ tile_set = SubResource("TileSet_5tjxg")
 script = ExtResource("6_iv1rf")
 width = 19
 height = 10
-upscale_factor = 1.0
 
 [node name="ObjectsSort" type="Node2D" parent="."]
 y_sort_enabled = true

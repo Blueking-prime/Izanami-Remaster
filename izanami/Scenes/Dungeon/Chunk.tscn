@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://vssfk8x0qnt2"]
+
+[ext_resource type="TileSet" uid="uid://c50pucj5u271f" path="res://Scenes/Dungeon/dungeon_og_tileset.tres" id="1_fkjy7"]
+[ext_resource type="Script" uid="uid://bjud3qpdsk12e" path="res://Scenes/Dungeon/walls.gd" id="2_d28i2"]
+
+[node name="Walls" type="TileMapLayer"]
+tile_set = ExtResource("1_fkjy7")
+collision_visibility_mode = 1
+script = ExtResource("2_d28i2")
+treasure_atlas_coords = Vector2i(1, 5)
+treasure_source_id = 2
+treasure_opened_atlas_coords = Vector2i(2, 5)
+treasure_opened_source_id = 2
+entrance_atlas_coords = Vector2i(2, 2)
+exit_atlas_coords = Vector2i(3, 2)
+wall_terrain_set = 2

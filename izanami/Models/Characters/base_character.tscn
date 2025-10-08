@@ -22,7 +22,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 custom_solver_bias = 1.0
-radius = 8.0
+radius = 7.0
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_4vh7u"]
 

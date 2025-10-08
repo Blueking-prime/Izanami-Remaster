@@ -2,17 +2,21 @@ extends PanelContainer
 
 class_name DungeonEnemyDisplay
 
+@onready var root_node: Dungeon:
+	get(): return get_parent().get_parent()
+
 @export var container: VBoxContainer
 
 func update_display():
 	_clear_container()
-	for i in get_parent().get_parent().tilemap.enemy_nodes:
-		if not is_instance_valid(i): continue
+	for j in root_node.wall_chunks.chunk_tiles:
+		for i in j.enemy_nodes:
+			if not is_instance_valid(i): continue
 
-		var entry: Label = Label.new()
-		entry.text = i.character_name
+			var entry: Label = Label.new()
+			entry.text = i.character_name
 
-		container.add_child(entry)
+			container.add_child(entry)
 
 	show()
 	if not container.get_children(): hide()

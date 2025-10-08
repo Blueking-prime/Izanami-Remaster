@@ -12,7 +12,7 @@ var dungeon_sample = [
 
 ## CHILD NODES
 @export var map: DungeonMap
-@export var wall_layers: Node2D
+@export var wall_chunks: WallChunkLoader
 
 #@export var navigation_region: NavigationRegion2D
 @export var enemy_display: DungeonEnemyDisplay
@@ -20,6 +20,7 @@ var dungeon_sample = [
 ## MAP PROPERTIES
 @export var width: int = 8
 @export var height: int = 5
+@export var chunk_length: int = 3
 @export var new_map: bool = true
 @export var enemy_types: ResourceGroup
 @export var MAX_ENEMIES: int = 3
@@ -37,6 +38,7 @@ var _item_drops = []
 @export var enemy_spawn_chance: float = 0.8
 @export var treasure_spawn_chance: float = 0.2
 @export var gear_chance: float = 0.5
+@export var max_treasure_no: int = 5
 
 ## WORKING VARIABLES
 var player: Player:
@@ -51,31 +53,31 @@ var boss_enemy: Enemy
 
 
 func load_scene():
-	#var start_time = Time.get_ticks_msec()
-	#print('Preload ', start_time)
+	var start_time = Time.get_ticks_msec()
+	print('Preload ', start_time)
 	Global.change_background(Global.loading_screen, true)
 
 	super.load_scene()
 
-	#print('Post super() ', (start_time - Time.get_ticks_msec()) * -1)
+	print('Post super() ', (start_time - Time.get_ticks_msec()) * -1)
 
 	_load_items()
 
-	#print('Pre map create ', (start_time - Time.get_ticks_msec()) * -1)
+	print('Pre map create ', (start_time - Time.get_ticks_msec()) * -1)
 
-	if new_map:
-		map.draw_new_map()
-		#map.display_dungeon()
-		#print('Pre map render ', (start_time - Time.get_ticks_msec()) * -1)
+	map.draw_new_map()
+	#map.display_dungeon()
+	print('Pre map render ', (start_time - Time.get_ticks_msec()) * -1)
 
-		tilemap.render_objects()
+	background.draw_background()
+	wall_chunks.load_chunks()
 
 	#setup_navigation_region()
 	enemy_display.update_display()
 	overlay.save_enabled = false
 
 	Global.change_background(null, true)
-	#print('Final time ', (start_time - Time.get_ticks_msec()) * -1)
+	print('Final time ', (start_time - Time.get_ticks_msec()) * -1)
 
 func connect_signals():
 	print('Dungeon sig connected')
@@ -180,16 +182,18 @@ func initiate_battle(forced: bool):
 	call_deferred("add_sibling", battle)
 
 func freeze_enemies():
-	for i in tilemap.enemy_nodes:
-		if is_instance_valid(i):
-			i.freeze = true
-			#i.hitbox.set_deferred('disabled', true)
+	for j in wall_chunks.chunk_tiles:
+		for i in j.enemy_nodes:
+			if is_instance_valid(i):
+				i.freeze = true
+				#i.hitbox.set_deferred('disabled', true)
 
 func unfreeze_enemies():
-	for i in tilemap.enemy_nodes:
-		if is_instance_valid(i):
-			i.freeze = false
-			#i.hitbox.disabled = false
+	for j in wall_chunks.chunk_tiles:
+		for i in j.enemy_nodes:
+			if is_instance_valid(i):
+				i.freeze = false
+				#i.hitbox.disabled = false
 
 
 
