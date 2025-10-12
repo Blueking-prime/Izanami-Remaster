@@ -18,7 +18,7 @@ var player: Player:
 		return Global.players.leader
 
 @export var background: LocationBackground
-@export var wall_upper_layers: Array[DungeonWallsLayer]
+# @export var wall_upper_layers: Array[DungeonWallsLayer]
 
 @export var treasure_atlas_coords: Vector2i
 @export var treasure_source_id: int
@@ -45,7 +45,7 @@ var upscale_factor: int
 var opened_chest_coords: Array = []
 
 func render_objects():
-	walls = map.walls[0]
+	# walls = map.walls[0]
 	chests = map.treasure_tiles
 	enemies = map.enemy_tiles
 	entrance = map.start
@@ -60,8 +60,8 @@ func render_objects():
 	_render_outer_walls()
 	_render_inner_walls()
 	_render_entrance()
-	for i in wall_upper_layers:
-		i.render_objects()
+	# for i in wall_upper_layers:
+	# 	i.render_objects()
 
 	#_render_exit()
 	_place_enemies()

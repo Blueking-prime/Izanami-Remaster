@@ -10,13 +10,14 @@ class_name DungeonEnemyDisplay
 func update_display():
 	_clear_container()
 	for j in root_node.wall_chunks.chunk_tiles:
-		for i in j.enemy_nodes:
-			if not is_instance_valid(i): continue
+		if is_instance_valid(j):
+			for i in j.enemy_nodes:
+				if not is_instance_valid(i): continue
 
-			var entry: Label = Label.new()
-			entry.text = i.character_name
+				var entry: Label = Label.new()
+				entry.text = i.character_name
 
-			container.add_child(entry)
+				container.add_child(entry)
 
 	show()
 	if not container.get_children(): hide()

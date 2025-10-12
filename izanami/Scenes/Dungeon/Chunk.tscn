@@ -13,4 +13,6 @@ treasure_opened_atlas_coords = Vector2i(2, 5)
 treasure_opened_source_id = 2
 entrance_atlas_coords = Vector2i(2, 2)
 exit_atlas_coords = Vector2i(3, 2)
+chunk_loader_atlas_coords = Vector2i(10, 1)
+chunk_loader_source_id = 4
 wall_terrain_set = 2

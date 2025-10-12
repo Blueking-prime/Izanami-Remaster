@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyon8uinblkc1"]
+[gd_scene load_steps=12 format=3 uid="uid://cyon8uinblkc1"]
 
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Scenes/location.tscn" id="1_pweoc"]
 [ext_resource type="Script" uid="uid://bec8jnwutx78b" path="res://Scenes/Dungeon/dungeon.gd" id="2_g8y5j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cl1xfi8potiq4" path="res://Scenes/Dungeon/dungeon_map.gd" id="3_kk8fo"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://Configs/all_items.tres" id="4_1cpbm"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="5_uay2u"]
+[ext_resource type="TileSet" uid="uid://c50pucj5u271f" path="res://Scenes/Dungeon/dungeon_og_tileset.tres" id="7_f2ske"]
 [ext_resource type="Script" uid="uid://b75f6fmdm2y1x" path="res://Scenes/Dungeon/wall_chunks.gd" id="7_yj5q6"]
 [ext_resource type="PackedScene" uid="uid://vssfk8x0qnt2" path="res://Scenes/Dungeon/Chunk.tscn" id="8_yjhow"]
 [ext_resource type="Script" uid="uid://6hw0pek0fysd" path="res://Scenes/Dungeon/dungeon_enemy_display.gd" id="11_co7ba"]
@@ -17,10 +18,9 @@ script = ExtResource("2_g8y5j")
 map = NodePath("Map")
 wall_chunks = NodePath("ObjectsSort/WallChunks")
 enemy_display = NodePath("CanvasLayer/EnemyDisplay")
-width = 20
-height = 20
+width = 44
+height = 24
 chunk_length = 3
-new_map = true
 enemy_types = ExtResource("3_khi17")
 MAX_ENEMIES = 3
 max_enemy_spawns = 3
@@ -33,6 +33,9 @@ treasure_spawn_chance = 0.2
 gear_chance = 0.5
 max_treasure_no = 5
 
+[node name="PlayerCam" parent="." index="0"]
+fixed = true
+
 [node name="FreeCam" parent="." index="2"]
 limit_navigation = false
 
@@ -42,7 +45,10 @@ noise_map = SubResource("FastNoiseLite_f2ske")
 path_noise_cutoff = 0.2
 
 [node name="Background" parent="." index="4" node_paths=PackedStringArray("map")]
+tile_set = ExtResource("7_f2ske")
 map = NodePath("../Map")
+terrain_set = 2
+terrain_id = 1
 
 [node name="ObjectsSort" parent="." index="5"]
 y_sort_enabled = false
@@ -52,7 +58,6 @@ script = ExtResource("7_yj5q6")
 chunk_scene = ExtResource("8_yjhow")
 
 [node name="Walls" parent="ObjectsSort/WallChunks" index="0" instance=ExtResource("8_yjhow")]
-visible = false
 
 [node name="EnemyDisplay" type="PanelContainer" parent="CanvasLayer" index="4" node_paths=PackedStringArray("container")]
 anchors_preset = 2

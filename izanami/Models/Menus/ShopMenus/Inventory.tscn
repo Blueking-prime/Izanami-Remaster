@@ -15,9 +15,6 @@ offset_bottom = 0.0
 grow_horizontal = 0
 script = ExtResource("1_1iyiv")
 
-[node name="Heading" parent="." index="0"]
-theme_type_variation = &"InternalPanel"
-
 [node name="Q1Label" parent="Heading/MarginContainer/HBoxContainer" index="1"]
 text = "Quantity"
 

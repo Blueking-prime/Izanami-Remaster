@@ -21,7 +21,6 @@ var dungeon_sample = [
 @export var width: int = 8
 @export var height: int = 5
 @export var chunk_length: int = 3
-@export var new_map: bool = true
 @export var enemy_types: ResourceGroup
 @export var MAX_ENEMIES: int = 3
 @export var max_enemy_spawns: int = 10
@@ -70,7 +69,7 @@ func load_scene():
 	print('Pre map render ', (start_time - Time.get_ticks_msec()) * -1)
 
 	background.draw_background()
-	wall_chunks.load_chunks()
+	wall_chunks.load_chunks(true)
 
 	#setup_navigation_region()
 	enemy_display.update_display()
@@ -85,12 +84,14 @@ func connect_signals():
 	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
 	player.detector.hit_exit.connect(_on_detector_hit_exit)
 	player.detector.hit_entrance.connect(_on_detector_hit_entrance)
+	player.detector.hit_chunk_border.connect(_on_detector_hit_border)
 
 func disconnect_signals():
 	player.detector.hit_chest.disconnect(_on_detector_hit_chest)
 	player.detector.hit_enemy.disconnect(_on_detector_hit_enemy)
 	player.detector.hit_exit.disconnect(_on_detector_hit_exit)
 	player.detector.hit_entrance.disconnect(_on_detector_hit_entrance)
+	player.detector.hit_chunk_border.disconnect(_on_detector_hit_border)
 
 
 #func setup_navigation_region():
@@ -116,20 +117,20 @@ func set_boss(enemy: Enemy):
 func exit_dungeon(completed: bool):
 	Global.players.freeze()
 
-	var x = await Global.show_confirmation_box("Do you want to leave the Dungeon?")
+	var confirm = await Global.show_confirmation_box("Do you want to leave the Dungeon?")
 
 	Global.players.unfreeze()
-	if x:
-		if completed: Checks.dungeons[dungeon_name].levels += 1
+	if confirm:
+		if completed: Checks.dungeons[dungeon_name].level += 1
 		Global.warp(self, Global.town_scene)
 	else :
 		unfreeze_enemies()
 
-func _on_detector_hit_entrance(_coords):
+func _on_detector_hit_entrance():
 	freeze_enemies()
 	exit_dungeon(false)
 
-func _on_detector_hit_exit(_coords) -> void:
+func _on_detector_hit_exit() -> void:
 	freeze_enemies()
 	exit_dungeon(true)
 
@@ -159,7 +160,7 @@ func collect_treasure():
 	print("You got %s!" % [drop.name])
 
 
-func _on_detector_hit_chest(_coords) -> void:
+func _on_detector_hit_chest() -> void:
 	collect_treasure()
 
 
@@ -183,17 +184,19 @@ func initiate_battle(forced: bool):
 
 func freeze_enemies():
 	for j in wall_chunks.chunk_tiles:
-		for i in j.enemy_nodes:
-			if is_instance_valid(i):
-				i.freeze = true
-				#i.hitbox.set_deferred('disabled', true)
+		if is_instance_valid(j):
+			for i in j.enemy_nodes:
+				if is_instance_valid(i):
+					i.freeze = true
+					#i.hitbox.set_deferred('disabled', true)
 
 func unfreeze_enemies():
 	for j in wall_chunks.chunk_tiles:
-		for i in j.enemy_nodes:
-			if is_instance_valid(i):
-				i.freeze = false
-				#i.hitbox.disabled = false
+		if is_instance_valid(j):
+			for i in j.enemy_nodes:
+				if is_instance_valid(i):
+					i.freeze = false
+					#i.hitbox.disabled = false
 
 
 
@@ -212,6 +215,8 @@ func _on_detector_hit_enemy(body: Enemy) -> void:
 	#Global.players.battle_reset()
 	#reset_from_battle()
 
+func _on_detector_hit_border(chunk):
+	wall_chunks.update_player_chunk(chunk)
 
 func reset_from_battle():
 	#background.show()
@@ -242,7 +247,6 @@ func save() -> DungeonSaveData:
 	return save_data
 
 func load_data(data: DungeonSaveData):
-	new_map = false
 	map.load_data(data.map_data)
 	tilemap.clear()
 	tilemap.load_data(data)

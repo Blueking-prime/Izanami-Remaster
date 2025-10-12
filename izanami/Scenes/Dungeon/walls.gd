@@ -22,6 +22,8 @@ var player: Player:
 @export var entrance_source_id: int
 @export var exit_atlas_coords: Vector2i
 @export var exit_source_id: int
+@export var chunk_loader_atlas_coords: Vector2i
+@export var chunk_loader_source_id: int
 @export var wall_terrain_set: int
 @export var wall_terrain: int
 
@@ -33,6 +35,7 @@ var walls: Array[Vector2i]
 var chests: Array[Vector2i]
 var enemies: Array[Vector2i]
 var outer_walls: Array[Vector2i] = []
+var chunk_load_zones: Array[Vector2i] = []
 var enemy_nodes: Array = []
 
 var entrance: Vector2i
@@ -41,27 +44,29 @@ var exit: Vector2i
 var width: int
 var height: int
 var marker: Vector2i
+var rect: Rect2i
 
 var opened_chest_coords: Array = []
 
 func render_objects():
+	height = map.chunk_height
+	width = map.chunk_width
+
 	walls = map.chunks[chunk_no].walls
 	chests = map.chunks[chunk_no].treasure_tiles
 	enemies = map.chunks[chunk_no].enemy_tiles
 	marker = map.chunks[chunk_no].marker
+	rect = Rect2i(marker.x, marker.y, width, height)
 
 	if not map.chunks[chunk_no].start.is_empty():
 		entrance = map.start
 		render_entrance()
-		place_player()
 	if not map.chunks[chunk_no].stop.is_empty():
 		exit = map.stop
 		render_exit()
 	if map.chunks[chunk_no].has('type'):
 		chunk_type = map.chunks[chunk_no].type
 
-	height = map.chunk_height
-	width = map.chunk_width
 
 	render_treasure_chests()
 	render_outer_walls()
@@ -83,15 +88,6 @@ func set_connections():
 	if is_instance_valid(player):
 		player.detector.hit_chest.connect(_on_detector_hit_chest)
 
-func place_player():
-	var player_pos = entrance * Location.TILEMAP_CELL_SIZE
-	if player_pos.x <= 0:
-		player_pos.x = Location.TILEMAP_CELL_SIZE * 2
-	if player_pos.y <= 0:
-		player_pos.y = Location.TILEMAP_CELL_SIZE * 2
-
-	Global.players.global_position = player_pos
-	player.global_position = player_pos
 
 func place_enemies():
 	var enemy_set = enemy_types.load_all()
@@ -113,41 +109,58 @@ func render_treasure_chests():
 	for coord in chests: set_cell(coord, treasure_source_id, treasure_atlas_coords)
 
 func render_entrance():
-	set_cell(entrance + Vector2i(1, 1), entrance_source_id, entrance_atlas_coords)
+	set_cell(entrance, entrance_source_id, entrance_atlas_coords)
 
 func render_exit():
-	set_cell(exit + Vector2i(1, 1), exit_source_id, exit_atlas_coords)
+	set_cell(exit, exit_source_id, exit_atlas_coords)
 
 
 func render_inner_walls():
 	set_cells_terrain_connect(walls, wall_terrain_set, wall_terrain, false)
 
 func render_outer_walls():
-	if chunk_type & DungeonMap.UP: _render_up_walls()
-	if chunk_type & DungeonMap.DOWN: _render_down_walls()
-	if chunk_type & DungeonMap.LEFT: _render_left_walls()
-	if chunk_type & DungeonMap.RIGHT: _render_right_walls()
+	_render_up_edge(chunk_type & DungeonMap.UP)
+	_render_down_edge(chunk_type & DungeonMap.DOWN)
+	_render_left_edge(chunk_type & DungeonMap.LEFT)
+	_render_right_edge(chunk_type & DungeonMap.RIGHT)
 
 	if not outer_walls.is_empty():
 		set_cells_terrain_connect(outer_walls, wall_terrain_set, wall_terrain, false)
 
+	if not chunk_load_zones.is_empty():
+		for i in chunk_load_zones: set_cell(i, chunk_loader_source_id, chunk_loader_atlas_coords)
 
-func _render_up_walls():
-	for i in range(marker.x, marker.x + width + 1):
-		outer_walls.append(Vector2i(i, marker.y))
+func _render_up_edge(border: bool):
+	if border:
+		for i in range(marker.x, marker.x + width + 1):
+			outer_walls.append(Vector2i(i, marker.y))
+	else:
+		for i in range(marker.x, marker.x + width + 1):
+			chunk_load_zones.append(Vector2i(i, marker.y))
 
-func _render_down_walls():
-	for i in range(marker.x, marker.x + width + 1):
-		outer_walls.append(Vector2i(i, marker.y + height))
+func _render_down_edge(border: bool):
+	if border:
+		for i in range(marker.x, marker.x + width + 1):
+			outer_walls.append(Vector2i(i, marker.y + height))
+	else:
+		for i in range(marker.x, marker.x + width + 1):
+			chunk_load_zones.append(Vector2i(i, marker.y + height))
 
-func _render_left_walls():
-	for i in range(marker.y, marker.y + height + 1):
-		outer_walls.append(Vector2i(marker.x, i))
+func _render_left_edge(border: bool):
+	if border:
+		for i in range(marker.y, marker.y + height + 1):
+			outer_walls.append(Vector2i(marker.x, i))
+	else:
+		for i in range(marker.y, marker.y + height + 1):
+			chunk_load_zones.append(Vector2i(marker.x, i))
 
-func _render_right_walls():
-	for i in range(marker.y, marker.y + height + 1):
-		outer_walls.append(Vector2i(marker.x + width, i ))
-
+func _render_right_edge(border: bool):
+	if border:
+		for i in range(marker.y, marker.y + height + 1):
+			outer_walls.append(Vector2i(marker.x + width, i ))
+	else:
+		for i in range(marker.y, marker.y + height + 1):
+			chunk_load_zones.append(Vector2i(marker.x + width, i ))
 
 #func check_collisions():
 	#Global.players.leader.hitbox.check_overlap(self)

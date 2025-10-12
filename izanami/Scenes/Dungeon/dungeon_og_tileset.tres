@@ -1249,6 +1249,9 @@ texture = ExtResource("4_5yqu6")
 11:3/0/terrains_peering_bit/top_left_corner = 0
 11:3/0/terrains_peering_bit/top_side = 0
 11:3/0/custom_data_0 = &"Wall"
+10:1/0 = 0
+10:1/0/physics_layer_3/polygon_0/points = PackedVector2Array(-3.14753, -3.32739, 2.78781, -3.32739, 2.60795, 1.34894, -2.96767, 1.5288)
+10:1/0/custom_data_0 = &"Chunk_Border"
 
 [resource]
 uv_clipping = true
@@ -1258,6 +1261,8 @@ physics_layer_1/collision_layer = 2
 physics_layer_1/collision_mask = 0
 physics_layer_2/collision_layer = 4
 physics_layer_2/collision_mask = 0
+physics_layer_3/collision_layer = 128
+physics_layer_3/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.4375, 0.25, 1)

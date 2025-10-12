@@ -28,6 +28,7 @@ var stop: Vector2i
 var width: int
 var height: int
 
+var markers: Array[Vector2i] = []
 var filled_coords: Array[Vector2i] = []
 var dungeon_map: Array[Array] = []
 var treasure_tiles: Array[Vector2i] = []
@@ -60,7 +61,6 @@ func partition_layout():
 	var w_marks := _marker(width)
 	var h_marks := _marker(height)
 
-	var markers: Array[Vector2i] = []
 	for i in w_marks:
 		for j in h_marks:
 			markers.append(Vector2i(i, j))
@@ -168,7 +168,7 @@ func create_noise_map():
 	height -= 1
 
 	start = Global.rand_coord(width, height)
-	while noise_map.get_noise_2dv(start) < 0:
+	while noise_map.get_noise_2dv(start) < path_noise_cutoff:
 		start = Global.rand_coord(width, height)
 	filled_coords.append(start)
 

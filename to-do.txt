@@ -51,6 +51,8 @@ TASKS (WORKABLE)
 - [ ] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering
 - [ ] Add water/lava in dungeons
 - [ ] Switch from UI_x for input to seperate movement and UI navigation
+- [ ] Make entrance not render on chunk border
+- [ ] Add display for chest drops
 - [-] Implement method to confirm battle input on Mouse
 - [x] Add saving and loading checks data
 - [x] Change Checks format to custom node

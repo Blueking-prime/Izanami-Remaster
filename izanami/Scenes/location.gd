@@ -85,7 +85,7 @@ func center() -> Vector2:
 	return size() / 2
 
 func _on_map_loaded():
-	if camera: camera.init_camera()
+	#if camera: camera.init_camera()
 	if freecam: freecam.setup_map()
 	if map_camera: map_camera.setup_map()
 
