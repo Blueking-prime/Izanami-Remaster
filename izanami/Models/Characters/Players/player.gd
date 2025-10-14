@@ -45,9 +45,6 @@ var lock: bool = false
 
 ## SIGNALS
 signal moved
-#signal hit_chest
-#signal hit_enemy
-#signal hit_exit
 
 func load_character():
 	ally = 1
@@ -70,7 +67,6 @@ func _physics_process(delta: float) -> void:
 		if direction.length():
 			direction = direction.normalized()
 			velocity = direction * speed * delta * 1000
-			#print(character_name, ': ', global_position)
 			moved.emit()
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)

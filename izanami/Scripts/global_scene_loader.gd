@@ -60,8 +60,22 @@ func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: 
 func get_resource(_resource_name: String, _type: String) -> Resource:
 	return null
 
-func push_back_player(centre: Vector2, distance: float):
-	var player_position: Vector2 = Global.players.leader.global_position
-	var direction: Vector2 = centre.direction_to(player_position)
+func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, warp: bool = true):
+	var push_velocity_multiplier: int = 10
+	var player: Player = Global.players.leader
+	var direction: Vector2
 
-	Global.players.leader.global_position += direction * distance
+	if tilemap:
+		direction = centre.direction_to(player.tilemap_position)
+		if not warp: distance *= Location.TILEMAP_CELL_SIZE
+	else:
+		direction = centre.direction_to(player.global_position)
+
+
+	if warp:
+		if tilemap: player.tilemap_position += Vector2i(direction.round()) * distance
+		else: player.global_position += direction * distance
+	else:
+		player.velocity = direction * push_velocity_multiplier * distance
+		player.get_real_velocity()
+		player.move_and_slide()

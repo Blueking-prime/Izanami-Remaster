@@ -15,7 +15,7 @@ class Quest:
 		func _init(_title: String, _flags: Array[String]) -> void:
 			self.title = _title
 			for i in _flags:
-				assert(Checks.get(i) != null, '%s not contained in Checks' % [i])
+				assert(Checks.flags.get(i) != null, '%s not contained in Checks' % [i])
 			self.flags = _flags
 			self.value = Checks.check_flags(self.flags)
 

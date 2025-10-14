@@ -22,6 +22,7 @@ class_name DungeonMap
 @export var legend: Array = ['I', 'O', '*', 'T', '█', 'E']
 @export var path_noise_cutoff: float = 0
 @export var enemy_noise_cutoff: float
+@export var edge_padding: int = 2
 
 var start: Vector2i
 var stop: Vector2i
@@ -66,12 +67,8 @@ func partition_layout():
 			markers.append(Vector2i(i, j))
 
 	var chunk_no := 0
-	print(markers)
 	for i in markers:
 		var chunk_data: Dictionary = {}
-		#print('------------------------------------------------------------')
-		#print(range(i.x, i.x + chunk_width))
-		#print(range(i.y, i.y + chunk_height))
 
 		chunk_data['marker'] = i
 		chunk_data['walls'] = _get_tiles_in_chunk(i, walls)
@@ -82,7 +79,6 @@ func partition_layout():
 		chunk_data['type'] = _get_chunk_type(i)
 		chunks[chunk_no] = chunk_data
 		chunk_no += 1
-		#print(chunk_data)
 
 
 func _get_chunk_type(marker: Vector2i) -> int:
@@ -118,15 +114,26 @@ func _get_valid_point(_cutoff: float = path_noise_cutoff) -> Vector2i:
 	var point = Global.rand_coord(width, height)
 
 	var count := 0
-	while true:
-		if point not in filled_coords and Global.path_checker.call(start, point, _cutoff): break
-		point = Global.rand_coord(width, height)
-		count += 1
-		if count > 1024: break
+	while point in filled_coords \
+		or not Global.path_checker.call(start, point, _cutoff) \
+		or _check_edge_spawn(point):
+			point = Global.rand_coord(width, height)
+			count += 1
+			if count > 1024: break
 
 	filled_coords.append(point)
 
 	return point
+
+func _check_edge_spawn(coords: Vector2i) -> bool:
+	if coords.x % chunk_width \
+		in range(chunk_width - edge_padding, chunk_width) + range(0, edge_padding + 1):
+			return true
+	if coords.y % chunk_height \
+		in range(chunk_height - edge_padding, chunk_height) + range(0, edge_padding + 1):
+			return true
+
+	return false
 
 func _pad_tile(tile_set: Array[Vector2i]):
 	var surrounding_tiles: Array[Vector2i] = []
@@ -168,7 +175,7 @@ func create_noise_map():
 	height -= 1
 
 	start = Global.rand_coord(width, height)
-	while noise_map.get_noise_2dv(start) < path_noise_cutoff:
+	while noise_map.get_noise_2dv(start) < path_noise_cutoff or _check_edge_spawn(start):
 		start = Global.rand_coord(width, height)
 	filled_coords.append(start)
 
@@ -189,5 +196,3 @@ func generate_walls():
 		##if not Global.path_checker.call(start, i):
 		if noise_map.get_noise_2dv(i) < path_noise_cutoff:
 			walls.append(i)
-
-	#print(walls)

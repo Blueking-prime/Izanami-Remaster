@@ -52,21 +52,21 @@ var boss_enemy: Enemy
 
 
 func load_scene():
-	var start_time = Time.get_ticks_msec()
-	print('Preload ', start_time)
+	#var start_time = Time.get_ticks_msec()
+	#print('Preload ', start_time)
 	Global.change_background(Global.loading_screen, true)
 
 	super.load_scene()
 
-	print('Post super() ', (start_time - Time.get_ticks_msec()) * -1)
+	#print('Post super() ', (start_time - Time.get_ticks_msec()) * -1)
 
 	_load_items()
 
-	print('Pre map create ', (start_time - Time.get_ticks_msec()) * -1)
+	#print('Pre map create ', (start_time - Time.get_ticks_msec()) * -1)
 
 	map.draw_new_map()
 	#map.display_dungeon()
-	print('Pre map render ', (start_time - Time.get_ticks_msec()) * -1)
+	#print('Pre map render ', (start_time - Time.get_ticks_msec()) * -1)
 
 	background.draw_background()
 	wall_chunks.load_chunks(true)
@@ -76,22 +76,22 @@ func load_scene():
 	overlay.save_enabled = false
 
 	Global.change_background(null, true)
-	print('Final time ', (start_time - Time.get_ticks_msec()) * -1)
+	#print('Final time ', (start_time - Time.get_ticks_msec()) * -1)
 
 func connect_signals():
 	print('Dungeon sig connected')
 	player.detector.hit_chest.connect(_on_detector_hit_chest)
 	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
 	player.detector.hit_exit.connect(_on_detector_hit_exit)
-	player.detector.hit_entrance.connect(_on_detector_hit_entrance)
-	player.detector.hit_chunk_border.connect(_on_detector_hit_border)
+	player.detector.left_entrance.connect(_on_detector_left_entrance)
+	player.detector.left_chunk_border.connect(_on_detector_hit_border)
 
 func disconnect_signals():
 	player.detector.hit_chest.disconnect(_on_detector_hit_chest)
 	player.detector.hit_enemy.disconnect(_on_detector_hit_enemy)
 	player.detector.hit_exit.disconnect(_on_detector_hit_exit)
 	player.detector.hit_entrance.disconnect(_on_detector_hit_entrance)
-	player.detector.hit_chunk_border.disconnect(_on_detector_hit_border)
+	player.detector.left_chunk_border.disconnect(_on_detector_hit_border)
 
 
 #func setup_navigation_region():
@@ -125,6 +125,10 @@ func exit_dungeon(completed: bool):
 		Global.warp(self, Global.town_scene)
 	else :
 		unfreeze_enemies()
+
+func _on_detector_left_entrance():
+	player.detector.left_entrance.disconnect(_on_detector_left_entrance)
+	player.detector.hit_entrance.connect(_on_detector_hit_entrance)
 
 func _on_detector_hit_entrance():
 	freeze_enemies()

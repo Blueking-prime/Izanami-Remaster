@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cx24gmgelg67f"]
 
 [ext_resource type="Script" uid="uid://k861kiv106ku" path="res://Scenes/overworld.gd" id="1_6s5ae"]
-[ext_resource type="Texture2D" uid="uid://blse2il2lnlc1" path="res://Assets/Art/uNNAMED kATANA.jpg" id="1_l45s6"]
+[ext_resource type="Texture2D" uid="uid://cu7ubd3bg68w" path="res://Assets/Art/uNNAMED kATANA (1).jpg" id="2_4qj6l"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="3_4qj6l"]
 [ext_resource type="Script" uid="uid://dlua1l2vyqqje" path="res://Scenes/location_pin.gd" id="4_rmeny"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="5_4qj6l"]
@@ -19,9 +19,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_l45s6")
+texture = ExtResource("2_4qj6l")
 expand_mode = 3
-stretch_mode = 5
 
 [node name="Pin1" type="Sprite2D" parent="CanvasLayer/TextureRect"]
 visible = false

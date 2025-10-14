@@ -9,7 +9,7 @@ class_name WallChunkLoader
 
 @export var chunk_scene: PackedScene
 
-enum DIRECTION { CENTER, RIGHT, UP, LEFT, DOWN }
+enum DIRECTION { RIGHT, DOWN, LEFT, UP, CENTER}
 var switching: bool = false:
 	set(arg):
 		switching = arg
@@ -33,23 +33,23 @@ func load_chunks(new_map: bool):
 		current_chunk = load_new_chunk(DIRECTION.CENTER, index)
 		root_node.player.tilemap_position = current_chunk.entrance.clamp(
 			Vector2i(2, 2), Vector2i(map.width - 2, map.height -2)
-		) + Vector2i.ONE
+		)
 	else :
 		index = current_chunk.chunk_no
 
 	#load adjacent tiles
 	# Right
 	if index + map.chunk_length < map.chunks.size():
-		load_new_chunk(DIRECTION.RIGHT, index + map.chunk_length)
+		call_deferred('load_new_chunk', DIRECTION.RIGHT, index + map.chunk_length)
 	# Left
 	if index - map.chunk_length >= 0:
-		load_new_chunk(DIRECTION.LEFT, index - map.chunk_length)
+		call_deferred('load_new_chunk', DIRECTION.LEFT, index - map.chunk_length)
 	# Up
 	if index != 0 and index % map.chunk_length != 0:
-		load_new_chunk(DIRECTION.UP, index - 1)
+		call_deferred('load_new_chunk', DIRECTION.UP, index - 1)
 	# Down
 	if index % map.chunk_length != map.chunk_length - 1:
-		load_new_chunk(DIRECTION.DOWN, index + 1)
+		call_deferred('load_new_chunk', DIRECTION.DOWN, index + 1)
 
 	root_node.camera.tilemap_position = current_chunk.rect.get_center()
 
@@ -78,17 +78,28 @@ func update_player_chunk(chunk: DungeonChunk):
 	if switching: return
 
 	switching = true
-	# Keep player from loitering on border
-	Global.push_back_player(chunk.rect.get_center(), - Location.TILEMAP_CELL_SIZE)
-	await get_tree().create_timer(0.1).timeout
 
+	# Keep player from loitering on border
+	Global.players.freeze()
+	root_node.player.detector.left_chunk_border.disconnect(root_node._on_detector_hit_border)
+
+	var direction := _get_chunk_direction(chunk)
+	var target_point: Vector2i = chunk.rect.get_center()
+	if direction % 2:
+		target_point.x = root_node.player.tilemap_position.x
+	else:
+		target_point.y = root_node.player.tilemap_position.y
+
+	Global.push_back_player(target_point, - 2 , true, false)
+
+	# Check if player in target chunk
 	if not confirm_player_location(chunk):
+		root_node.player.detector.left_chunk_border.connect(root_node._on_detector_hit_border)
+		Global.players.unfreeze()
 		switching = false
 		return
 
-
 	for i in chunk_tiles:
-		#print(i)
 		if i != current_chunk and i != chunk:
 			unload_chunk(i)
 
@@ -96,14 +107,15 @@ func update_player_chunk(chunk: DungeonChunk):
 	# Set central node
 	chunk_tiles[DIRECTION.CENTER] = chunk
 	# Gets reverse direction
-	chunk_tiles[_get_reverse_direction(_get_chunk_direction(chunk))] = current_chunk
-
+	chunk_tiles[_get_reverse_direction(direction)] = current_chunk
 	current_chunk = chunk
 
 	await root_node.camera.move_camera(current_chunk.rect.get_center())
 
 	await get_tree().create_timer(0.1).timeout
 
+	root_node.player.detector.left_chunk_border.connect(root_node._on_detector_hit_border)
+	Global.players.unfreeze()
 	switching = false
 	load_chunks(false)
 
@@ -111,7 +123,7 @@ func update_player_chunk(chunk: DungeonChunk):
 func _get_chunk_direction(chunk: DungeonChunk) -> int:
 	var angle := Vector2(current_chunk.rect.get_center()).angle_to_point(chunk.rect.get_center())
 	var direction = 0
-	angle = rad_to_deg(angle) + 45 # Rotateto align quadrants with cardinal directions
+	angle = rad_to_deg(angle) + 45 # Rotate to align quadrants with cardinal directions
 	if angle < 0: angle += 360 # Convert negative angles
 
 	if angle < 90:
@@ -126,12 +138,11 @@ func _get_chunk_direction(chunk: DungeonChunk) -> int:
 	return direction
 
 func _get_reverse_direction(direction: int) -> int:
-	return ((direction - 1) + 2) % 4
+	return (direction + 2) % 4
 
 
 func confirm_player_location(chunk: DungeonChunk) -> bool:
 	if chunk.rect.has_point(root_node.player.tilemap_position):
-		print(chunk.chunk_no)
 		return true
 	else:
 		return false

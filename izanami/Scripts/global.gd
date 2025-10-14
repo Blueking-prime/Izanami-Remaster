@@ -118,7 +118,7 @@ func warp(source: Location, destination_scene: PackedScene): return await SCENE_
 func load_main_menu(): return SCENE_LOADER.load_main_menu()
 func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false): return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
 func get_resource(resource_name: String, type: String) -> Resource: return SCENE_LOADER.get_resource(resource_name, type)
-func push_back_player(centre: Vector2, distance: float): return SCENE_LOADER.push_back_player(centre, distance)
+func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, warp: bool = true): return SCENE_LOADER.push_back_player(centre, distance, tilemap, warp)
 #endregion
 
 #region Quests
@@ -205,4 +205,4 @@ func _input(event: InputEvent) -> void:
 		exit_signal.emit()
 		Audio.play_exit_menu_sfx()
 	if event.is_action_pressed('test'):
-		Checks.save()
+		print('--------------------MOVE----------------------')

@@ -74,7 +74,7 @@ var stats: Dictionary[StringName, int] = base_stats.duplicate()
 @export var ally: int
 
 @export var tilemap_position: Vector2i:
-	get(): return Vector2i((global_position / Location.TILEMAP_CELL_SIZE).round())
+	get(): return Vector2i((global_position / Location.TILEMAP_CELL_SIZE).floor())
 	set(arg): global_position = (arg * Location.TILEMAP_CELL_SIZE) + Vector2i(8, 15)
 
 var alive: bool = true
