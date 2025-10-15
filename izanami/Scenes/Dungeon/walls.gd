@@ -26,13 +26,17 @@ var player: Player:
 @export var chunk_loader_source_id: int
 @export var wall_terrain_set: int
 @export var wall_terrain: int
+@export var empty_tile_terrain_set: int
+@export var empty_tile_terrain: int
+
 
 @export var chunk_no: int = 0
 @export_flags('Up', 'Down', 'Left', 'Right') var chunk_type: int
 
-
+var empty_tiles: Array[Vector2i]
 var walls: Array[Vector2i]
 var chests: Array[Vector2i]
+var opened_chests: Array[Vector2i]
 var enemies: Array[Vector2i]
 var outer_walls: Array[Vector2i] = []
 var chunk_load_zones: Array[Vector2i] = []
@@ -46,14 +50,14 @@ var height: int
 var marker: Vector2i
 var rect: Rect2i
 
-var opened_chest_coords: Array = []
-
 func render_objects():
 	height = map.chunk_height
 	width = map.chunk_width
 
 	walls = map.chunks[chunk_no].walls
+	empty_tiles = map.chunks[chunk_no].empty_tiles
 	chests = map.chunks[chunk_no].treasure_tiles
+	opened_chests = map.chunks[chunk_no].opened_chests
 	enemies = map.chunks[chunk_no].enemy_tiles
 	marker = map.chunks[chunk_no].marker
 	rect = Rect2i(marker.x, marker.y, width, height)
@@ -67,7 +71,7 @@ func render_objects():
 	if map.chunks[chunk_no].has('type'):
 		chunk_type = map.chunks[chunk_no].type
 
-
+	render_empty()
 	render_treasure_chests()
 	render_outer_walls()
 	render_inner_walls()
@@ -98,7 +102,6 @@ func place_enemies():
 		add_child(enemy)
 		enemy.dungeon_display()
 		enemy.position = coord * Location.TILEMAP_CELL_SIZE
-		enemy.map_size = root_node.size()
 
 	enemy_nodes = get_children()
 	#if not root_node.boss_enemy and not enemy_nodes.is_empty():
@@ -107,6 +110,7 @@ func place_enemies():
 
 func render_treasure_chests():
 	for coord in chests: set_cell(coord, treasure_source_id, treasure_atlas_coords)
+	for coord in opened_chests: set_cell(coord, treasure_opened_source_id, treasure_opened_atlas_coords)
 
 func render_entrance():
 	set_cell(entrance, entrance_source_id, entrance_atlas_coords)
@@ -114,6 +118,8 @@ func render_entrance():
 func render_exit():
 	set_cell(exit, exit_source_id, exit_atlas_coords)
 
+func render_empty():
+	set_cells_terrain_connect(empty_tiles, empty_tile_terrain_set, empty_tile_terrain, false)
 
 func render_inner_walls():
 	set_cells_terrain_connect(walls, wall_terrain_set, wall_terrain, false)
@@ -173,3 +179,5 @@ func _render_right_edge(border: bool):
 
 func _on_detector_hit_chest(coords) -> void:
 	set_cell(coords, treasure_opened_source_id, treasure_opened_atlas_coords)
+	map.chunks[chunk_no].opened_chests.append(coords)
+	map.chunks[chunk_no].treasure_tiles.erase(coords)

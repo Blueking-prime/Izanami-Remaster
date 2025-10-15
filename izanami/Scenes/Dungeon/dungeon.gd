@@ -147,24 +147,19 @@ func _load_items():
 
 func collect_treasure():
 	var x
-	var index
 	var drop
 	if Global.rand_chance(gear_chance):
 		x = _gear_drops
 	else:
 		x = _item_drops
 
-	print(x)
+	drop = x[randi_range(0, len(x) - 1)]
 
-	index = randi_range(0, len(x) - 1)
-	drop = x[index]
-
-	print(drop)
 	Global.players.inventory.add_entry(drop)
-	print("You got %s!" % [drop.name])
+	Global.display_in_quick_info_panel("You got %s!" % [drop.name])
 
 
-func _on_detector_hit_chest() -> void:
+func _on_detector_hit_chest(coords) -> void:
 	collect_treasure()
 
 
@@ -231,28 +226,28 @@ func reset_from_battle():
 
 
 ## SAVE AND LOAD LOGIC
-func save() -> DungeonSaveData:
-	var save_data: DungeonSaveData = DungeonSaveData.new()
-
-	save_data.width = width
-	save_data.height = height
-	save_data.enemy_types = enemy_types
-	save_data.item_drop_group = item_drop_group
-	save_data.gear_drop_group = gear_drop_group
-	save_data.MAX_ENEMIES = MAX_ENEMIES
-	save_data.enemy_spawn_chance = enemy_spawn_chance
-	save_data.treasure_spawn_chance = treasure_spawn_chance
-	save_data.gear_chance = gear_chance
-
-	save_data.map_data = map.save()
-	save_data.tile_data = tilemap.save()
-	save_data.enemy_data = tilemap.save_enemies()
-
-	return save_data
-
-func load_data(data: DungeonSaveData):
-	map.load_data(data.map_data)
-	tilemap.clear()
-	tilemap.load_data(data)
-
-	print('Dungeon data loaded')
+#func save() -> DungeonSaveData:
+	#var save_data: DungeonSaveData = DungeonSaveData.new()
+#
+	#save_data.width = width
+	#save_data.height = height
+	#save_data.enemy_types = enemy_types
+	#save_data.item_drop_group = item_drop_group
+	#save_data.gear_drop_group = gear_drop_group
+	#save_data.MAX_ENEMIES = MAX_ENEMIES
+	#save_data.enemy_spawn_chance = enemy_spawn_chance
+	#save_data.treasure_spawn_chance = treasure_spawn_chance
+	#save_data.gear_chance = gear_chance
+#
+	#save_data.map_data = map.save()
+	#save_data.tile_data = tilemap.save()
+	#save_data.enemy_data = tilemap.save_enemies()
+#
+	#return save_data
+#
+#func load_data(data: DungeonSaveData):
+	#map.load_data(data.map_data)
+	#tilemap.clear()
+	#tilemap.load_data(data)
+#
+	#print('Dungeon data loaded')

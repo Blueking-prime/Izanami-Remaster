@@ -12,8 +12,8 @@ GOALS
 
 BUG FIXES
 - [ ] Figure out object sorting
-- [ ] improve navigation performance
 - [ ] Fix loading screen crashing
+- [x] improve navigation performance
 - [x] Fix dungeon sprite not displaying after battle exit (Might have to do with status icon crash or maybe battle sprite is misbehaving again. try to create supe in sprite creation function. Could also be variable name conflict)
 - [x] Fix enemies not moving
 - [x] Fix camera inverting if map amaller than viewport
@@ -45,10 +45,10 @@ TASKS (WORKABLE)
 - [ ] Implement accessibility settings
 - [ ] Implement graphics settings
 - [ ] Implement audio settings
-- [ ] Replace save option in dungeon with autosave on floor transition
-- [ ] Make exit send to next level of dungeon
 - [ ] Add water/lava in dungeons
-- [ ] Add display for chest drops
+- [x] Add display for chest drops
+- [-] Replace save option in dungeon with autosave on floor transition
+- [/] Make exit send to next level of dungeon
 - [/] Switch from UI_x for input to seperate movement and UI navigation
 - [x] Sectionalize dungeon map generation to increase size of generated map
 - [x] Improve upscale function to actually handle more than 2x by sdjusting wall tile padding or remove upscaling entirely from map rendering

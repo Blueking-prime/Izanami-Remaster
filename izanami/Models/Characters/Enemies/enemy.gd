@@ -12,7 +12,7 @@ extends Base_Character
 
 @export var heal_threshold: float = 0.8
 
-@export var map_size: Vector2 = Vector2(1000, 1000)
+@export var map_size: Rect2i =  Rect2i(Vector2i.ZERO, Vector2(1000, 1000))
 
 var player: Player
 var chase_player: bool = false
@@ -21,6 +21,10 @@ var target_position: Vector2
 func  _ready() -> void:
 	ally = -1
 	super()
+	if get_parent() is DungeonChunk:
+		map_size = get_parent().rect
+		map_size.position *= Location.TILEMAP_CELL_SIZE
+		map_size.size *= Location.TILEMAP_CELL_SIZE
 	_on_navigation_agent_2d_navigation_finished()
 
 func _physics_process(delta: float) -> void:
@@ -35,16 +39,9 @@ func _physics_process(delta: float) -> void:
 	nav_agent.target_position = target_position
 
 	var direction = to_local(nav_agent.get_next_path_position()).normalized()
-	#print(direction)
 
 	var intended_velocity = direction * speed * delta * 1000
-	#print("OG: ",intended_velocity.length())
 	nav_agent.set_velocity(intended_velocity)
-	#velocity = direction * speed * delta * 1000
-	#print(velocity.length())
-	#velocity = position.direction_to(player.global_position) * speed * delta * 1000
-
-	#move_and_slide()
 
 func use_skill(skill_id, _target):
 	Global.print_to_log(atk_lines[randi_range(0, atk_lines.size() - 1)])
@@ -95,15 +92,20 @@ func exp_drop():
 
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
-	target_position = Vector2(randi_range(0, map_size.x), randi_range(0, map_size.y))
+	target_position = Vector2(
+		randi_range(map_size.position.x, map_size.end.x),
+		randi_range(map_size.position.y, map_size.end.y)
+	)
 	path_switch_timer.start()
 
 
 func _on_path_switch_timer_timeout() -> void:
-	target_position = Vector2(randi_range(0, map_size.x), randi_range(0, map_size.y))
+	target_position = Vector2(
+		randi_range(map_size.position.x, map_size.end.x),
+		randi_range(map_size.position.y, map_size.end.y)
+	)
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
-	#print("Safe: ",velocity.length())
 	move_and_slide()

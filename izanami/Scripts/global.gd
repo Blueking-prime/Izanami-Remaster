@@ -111,6 +111,7 @@ func change_background(texture: Texture2D, global: bool = false): return UI.chan
 func show_description(object: Resource) -> void: return UI.show_description(object)
 func show_shop_menu(stock: ResourceGroup): return UI.show_shop_menu(stock)
 func add_text_log_to_scene(): return UI.add_text_log_to_scene()
+func display_in_quick_info_panel(text: String): return UI.display_in_quick_info_panel(text)
 #endregion
 
 #region SceneLoader

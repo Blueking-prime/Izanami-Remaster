@@ -8,6 +8,7 @@ class_name UIOverlay
 @export var music_display: MusicDisplay
 @export var coin_counter: Label
 @export var mag_counter: Label
+@export var quick_info: QuickInfoPanel
 #endregion
 
 @export var button_container: Container

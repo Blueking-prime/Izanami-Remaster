@@ -16,3 +16,5 @@ exit_atlas_coords = Vector2i(3, 2)
 chunk_loader_atlas_coords = Vector2i(10, 1)
 chunk_loader_source_id = 4
 wall_terrain_set = 2
+empty_tile_terrain_set = 2
+empty_tile_terrain = 2

@@ -62,6 +62,12 @@ offset_bottom = 182.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Pointer" parent="BattleSprite/VBox/BattleSprite" index="0"]
+visible = false
+
+[node name="Indicator" parent="BattleSprite/VBox/BattleSprite" index="1"]
+visible = false
+
 [node name="SPBar" parent="BattleSprite/VBox" index="4"]
 visible = false
 

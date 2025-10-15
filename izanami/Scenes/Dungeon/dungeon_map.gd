@@ -35,6 +35,7 @@ var dungeon_map: Array[Array] = []
 var treasure_tiles: Array[Vector2i] = []
 var enemy_tiles: Array[Vector2i] = []
 var walls: Array[Vector2i] = []
+var empty_tiles: Array[Vector2i] = []
 
 var treasure_no: int
 var enemy_no: int
@@ -72,7 +73,9 @@ func partition_layout():
 
 		chunk_data['marker'] = i
 		chunk_data['walls'] = _get_tiles_in_chunk(i, walls)
+		chunk_data['empty_tiles'] = _get_tiles_in_chunk(i, empty_tiles)
 		chunk_data['treasure_tiles'] = _get_tiles_in_chunk(i, treasure_tiles)
+		chunk_data['opened_chests'] = _get_tiles_in_chunk(i, [])
 		chunk_data['enemy_tiles'] = _get_tiles_in_chunk(i, enemy_tiles)
 		chunk_data['start'] = _get_tiles_in_chunk(i, [start])
 		chunk_data['stop'] = _get_tiles_in_chunk(i, [stop])
@@ -193,6 +196,7 @@ func create_noise_map():
 func generate_walls():
 	var tiles = _get_empty_tiles()
 	for i in tiles:
-		##if not Global.path_checker.call(start, i):
 		if noise_map.get_noise_2dv(i) < path_noise_cutoff:
 			walls.append(i)
+		elif i not in filled_coords:
+			empty_tiles.append(i)

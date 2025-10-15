@@ -243,3 +243,8 @@ func _connect_text_box_signals():
 func add_text_log_to_scene():
 	if not get_parent().text_log.get_parent():
 		get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_log)
+
+func display_in_quick_info_panel(text: String):
+	var scene = get_tree().get_current_scene()
+	if scene is Location:
+		scene.overlay.quick_info.display_info(text)

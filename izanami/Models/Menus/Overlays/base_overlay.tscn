@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjf7wmor410ps"]
+[gd_scene load_steps=13 format=3 uid="uid://bjf7wmor410ps"]
 
 [ext_resource type="Script" uid="uid://c1ojwvbieb55k" path="res://Models/Menus/Overlays/base_overlay.gd" id="1_fxe44"]
 [ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/Menus/Overlays/settings.tscn" id="2_3jbmj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://lgmdupsehdrc" path="res://Models/Menus/Overlays/quests_display.gd" id="5_1x7n3"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="5_8ecp3"]
 [ext_resource type="Script" uid="uid://b1j2o20mmu7vg" path="res://Models/Menus/Overlays/music_display.gd" id="6_62x73"]
+[ext_resource type="Script" uid="uid://vyg66mlvvh32" path="res://Models/Menus/Overlays/quick_info.gd" id="6_c2u1w"]
 
 [sub_resource type="Gradient" id="Gradient_ffifv"]
 
@@ -18,7 +19,7 @@ width = 10
 height = 10
 fill_from = Vector2(1, 0)
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quest_display", "music_display", "coin_counter", "mag_counter", "button_container", "input_processing", "settings_menu")]
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quest_display", "music_display", "coin_counter", "mag_counter", "quick_info", "button_container", "input_processing", "settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,11 +27,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fxe44")
-player_status = NodePath("PlayerDataOverlay/StatusOverlay/MarginContainer/PlayerContainer")
+player_status = NodePath("PlayerDataOverlay/HBoxContainer/StatusOverlay/MarginContainer/PlayerContainer")
 quest_display = NodePath("InfoPanel/Quests")
 music_display = NodePath("InfoPanel/Music")
-coin_counter = NodePath("PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer/CoinCount")
-mag_counter = NodePath("PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer/MagCount")
+coin_counter = NodePath("PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer/CoinCount")
+mag_counter = NodePath("PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer/MagCount")
+quick_info = NodePath("PlayerDataOverlay/QuickInfo")
 button_container = NodePath("Buttons/MenuButtons")
 input_processing = NodePath("InputProcessing")
 settings_menu = NodePath("Settings")
@@ -45,50 +47,54 @@ offset_left = 10.0
 offset_top = 10.0
 theme_override_constants/separation = 3
 
-[node name="StatusOverlay" type="PanelContainer" parent="PlayerDataOverlay"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerDataOverlay"]
+layout_mode = 2
+
+[node name="StatusOverlay" type="PanelContainer" parent="PlayerDataOverlay/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/StatusOverlay"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay"]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="PlayerContainer" type="VBoxContainer" parent="PlayerDataOverlay/StatusOverlay/MarginContainer"]
+[node name="PlayerContainer" type="VBoxContainer" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay/MarginContainer"]
 layout_mode = 2
 script = ExtResource("2_slhvk")
 data_card_scene = ExtResource("3_446mo")
 
-[node name="PlayerData" parent="PlayerDataOverlay/StatusOverlay/MarginContainer/PlayerContainer" instance=ExtResource("3_446mo")]
+[node name="PlayerData" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay/MarginContainer/PlayerContainer" instance=ExtResource("3_446mo")]
 layout_mode = 2
 
-[node name="ResourceDisplay" type="PanelContainer" parent="PlayerDataOverlay"]
+[node name="ResourceDisplay" type="PanelContainer" parent="PlayerDataOverlay/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/ResourceDisplay"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay"]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="GridContainer" type="GridContainer" parent="PlayerDataOverlay/ResourceDisplay/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer"]
 layout_mode = 2
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="CoinSprite" type="TextureRect" parent="PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer"]
+[node name="CoinSprite" type="TextureRect" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_rfrb6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="CoinCount" type="Label" parent="PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer"]
+[node name="CoinCount" type="Label" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -96,7 +102,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MagSprite" type="TextureRect" parent="PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer"]
+[node name="MagSprite" type="TextureRect" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -104,7 +110,7 @@ texture = ExtResource("2_rfrb6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="MagCount" type="Label" parent="PlayerDataOverlay/ResourceDisplay/MarginContainer/GridContainer"]
+[node name="MagCount" type="Label" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -112,6 +118,20 @@ size_flags_vertical = 6
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="QuickInfo" type="PanelContainer" parent="PlayerDataOverlay" node_paths=PackedStringArray("label", "timer")]
+visible = false
+layout_mode = 2
+script = ExtResource("6_c2u1w")
+label = NodePath("Label")
+timer = NodePath("Timer")
+
+[node name="Label" type="Label" parent="PlayerDataOverlay/QuickInfo"]
+layout_mode = 2
+
+[node name="Timer" type="Timer" parent="PlayerDataOverlay/QuickInfo"]
+wait_time = 10.0
+one_shot = true
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -306,6 +326,7 @@ visible = false
 layout_mode = 1
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="timeout" from="PlayerDataOverlay/QuickInfo/Timer" to="PlayerDataOverlay/QuickInfo" method="_on_timer_timeout"]
 [connection signal="pressed" from="Buttons/MenuButtons/FreecamButton" to="." method="_on_freecam_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/LogButton" to="." method="_on_log_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/UIButton" to="." method="_on_ui_button_pressed"]
