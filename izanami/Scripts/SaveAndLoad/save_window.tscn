@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://co115f1ruqr4s"]
+
+[ext_resource type="Script" uid="uid://dr754lkjq7vh3" path="res://Scripts/SaveAndLoad/save_window.gd" id="1_3wlhh"]
+[ext_resource type="Script" uid="uid://bb81wm8jro8dj" path="res://Scripts/SaveAndLoad/save_menu.gd" id="1_qjf68"]
+
+[node name="SaveWindow" type="Window" node_paths=PackedStringArray("save_menu", "confirm_button")]
+title = "Choose Save file"
+initial_position = 2
+size = Vector2i(400, 400)
+transient = true
+exclusive = true
+always_on_top = true
+popup_window = true
+min_size = Vector2i(400, 400)
+content_scale_mode = 2
+content_scale_aspect = 3
+script = ExtResource("1_3wlhh")
+save_menu = NodePath("CanvasLayer/SaveMenu")
+confirm_button = NodePath("CanvasLayer/SaveMenu/Button")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="SaveMenu" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_qjf68")
+
+[node name="Heading" type="PanelContainer" parent="CanvasLayer/SaveMenu"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SaveMenu/Heading"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SaveMenu/Heading/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "File"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Date"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Label3" type="Label" parent="CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Location"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Items" type="HBoxContainer" parent="CanvasLayer/SaveMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="List" type="ItemList" parent="CanvasLayer/SaveMenu/Items"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/v_separation = 43
+max_text_lines = 2
+auto_height = true
+item_count = 3
+icon_mode = 0
+item_0/text = "Leaf"
+item_1/text = "Razor"
+item_2/text = "Excalihuh?"
+
+[node name="Date" type="ItemList" parent="CanvasLayer/SaveMenu/Items"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/v_separation = 20
+max_text_lines = 2
+auto_height = true
+item_count = 3
+fixed_column_width = 100
+icon_mode = 0
+item_0/text = "1"
+item_1/text = "1"
+item_2/text = "1"
+
+[node name="Location" type="ItemList" parent="CanvasLayer/SaveMenu/Items"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/v_separation = 43
+max_text_lines = 2
+item_count = 3
+icon_mode = 0
+item_0/text = "10"
+item_1/text = "10"
+item_2/text = "420"
+
+[node name="Button" type="Button" parent="CanvasLayer/SaveMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Create New Save"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="item_activated" from="CanvasLayer/SaveMenu" to="." method="_on_close_requested"]
+[connection signal="item_activated" from="CanvasLayer/SaveMenu/Items/List" to="CanvasLayer/SaveMenu" method="_on_item_activated"]
+[connection signal="item_selected" from="CanvasLayer/SaveMenu/Items/List" to="CanvasLayer/SaveMenu" method="_on_item_selected"]
+[connection signal="item_activated" from="CanvasLayer/SaveMenu/Items/Date" to="CanvasLayer/SaveMenu" method="_on_item_activated"]
+[connection signal="item_selected" from="CanvasLayer/SaveMenu/Items/Date" to="CanvasLayer/SaveMenu" method="_on_item_selected"]
+[connection signal="item_activated" from="CanvasLayer/SaveMenu/Items/Location" to="CanvasLayer/SaveMenu" method="_on_item_activated"]
+[connection signal="item_selected" from="CanvasLayer/SaveMenu/Items/Location" to="CanvasLayer/SaveMenu" method="_on_item_selected"]
+[connection signal="pressed" from="CanvasLayer/SaveMenu/Button" to="CanvasLayer/SaveMenu" method="_on_button_pressed"]

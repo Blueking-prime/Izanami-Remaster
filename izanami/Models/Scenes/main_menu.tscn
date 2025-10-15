@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkfyiyro88x3q"]
+
+[ext_resource type="Script" uid="uid://3uofbueh3m11" path="res://Models/Scenes/main_menu.gd" id="1_j5w4h"]
+[ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/UI/Overlays/Settings/settings.tscn" id="2_ognit"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yoqpr"]
+font_size = 300
+
+[sub_resource type="LabelSettings" id="LabelSettings_evq3c"]
+font_size = 50
+
+[node name="MainMenu" type="Node" node_paths=PackedStringArray("load_button", "settings_menu", "canvas_layer")]
+script = ExtResource("1_j5w4h")
+load_button = NodePath("CanvasLayer/VBoxContainer/Load")
+settings_menu = NodePath("Settings")
+canvas_layer = NodePath("CanvasLayer")
+
+[node name="Settings" parent="." instance=ExtResource("2_ognit")]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 708.16
+offset_top = 107.0
+offset_right = -716.0
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Load" type="Button" parent="CanvasLayer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "Load Game"
+
+[node name="New" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "New Game"
+
+[node name="Settings" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.084
+anchor_right = 1.002
+anchor_bottom = 0.463
+offset_left = 3.0
+offset_top = 0.279991
+offset_right = -0.84021
+offset_bottom = -0.0400391
+grow_horizontal = 2
+grow_vertical = 2
+text = "IZANAMI"
+label_settings = SubResource("LabelSettings_yoqpr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CanvasLayer/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.02
+offset_left = 815.0
+offset_top = 348.0
+offset_right = -815.0
+offset_bottom = -0.180054
+grow_horizontal = 2
+grow_vertical = 0
+text = "- Remaster -"
+label_settings = SubResource("LabelSettings_evq3c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="exit" from="Settings" to="." method="_on_settings_exit"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

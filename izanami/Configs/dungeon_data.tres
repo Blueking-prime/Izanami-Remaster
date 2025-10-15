@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="DungeonSaveData" load_steps=6 format=3 uid="uid://bk1x7fp445wu8"]
 
-[ext_resource type="Script" uid="uid://b67rnv1vuw66o" path="res://Models/Characters/base_character_save_data.gd" id="1_5e8t1"]
-[ext_resource type="Script" uid="uid://dr132bjuabjbp" path="res://Scenes/Dungeon/dungeon_map_save_data.gd" id="1_6uprk"]
-[ext_resource type="Script" uid="uid://rakx3xuh5nds" path="res://Scenes/Dungeon/dungeon_save_data.gd" id="2_o23vv"]
+[ext_resource type="Script" uid="uid://b67rnv1vuw66o" path="res://Models/Characters/Scripts/character_save_data.gd" id="1_5e8t1"]
+[ext_resource type="Script" uid="uid://dr132bjuabjbp" path="res://Models/Scenes/Dungeon/dungeon_map_save_data.gd" id="1_6uprk"]
+[ext_resource type="Script" uid="uid://rakx3xuh5nds" path="res://Models/Scenes/Dungeon/dungeon_save_data.gd" id="2_o23vv"]
 
 [sub_resource type="Resource" id="Resource_3pqi2"]
 script = ExtResource("1_6uprk")

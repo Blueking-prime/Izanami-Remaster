@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dt4jxndu1dwb1" path="res://Models/Characters/Players/players.gd" id="1_m2oad"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_blcr2"]
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="2_eydhy"]
-[ext_resource type="Script" uid="uid://cwpulgvrbinjm" path="res://Scripts/inventory.gd" id="3_aasua"]
+[ext_resource type="Script" uid="uid://cwpulgvrbinjm" path="res://Models/Characters/Players/Scripts/players_inventory.gd" id="3_aasua"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://Configs/all_items.tres" id="4_4q1mc"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="5_caqig"]
 

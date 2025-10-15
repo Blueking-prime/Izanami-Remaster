@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=40 format=3 uid="uid://b47wjtl3buq82"]
+[gd_resource type="Theme" load_steps=42 format=3 uid="uid://b47wjtl3buq82"]
 
 [ext_resource type="Texture2D" uid="uid://bc6qv00ctw0du" path="res://Assets/Art/Blue_Stone_UI_Asset/BlueStoneUI_SpriteSheet.png" id="1_aqin4"]
 
@@ -179,6 +179,22 @@ texture_margin_top = 6.0
 texture_margin_right = 4.0
 texture_margin_bottom = 9.0
 region_rect = Rect2(320, 212, 128, 41)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p288y"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(64, 112, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_38lg6"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(144, 64, 48, 48)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4iawa"]
 texture = ExtResource("1_aqin4")
@@ -379,6 +395,8 @@ InternalPanel/base_type = &"PanelContainer"
 InternalPanel/styles/panel = SubResource("StyleBoxTexture_f2ffg")
 Label/font_sizes/font_size = 6
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_0n1xd")
+PopupMenu/styles/hover = SubResource("StyleBoxTexture_p288y")
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_38lg6")
 ProgressBar/font_sizes/font_size = 6
 ProgressBar/styles/background = SubResource("StyleBoxTexture_4iawa")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_t2gxr")

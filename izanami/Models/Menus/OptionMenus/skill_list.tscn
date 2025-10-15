@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://fncughi5ndxs"]
-
-[ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/Menus/OptionMenus/options.tscn" id="1_dhhl0"]
-
-[node name="SkillList" instance=ExtResource("1_dhhl0")]
-option_scene = null

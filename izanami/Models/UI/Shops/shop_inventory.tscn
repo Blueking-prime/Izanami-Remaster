@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://ujhs0mvtimxh"]
+
+[ext_resource type="PackedScene" uid="uid://d0825mxmc6hd1" path="res://Models/UI/OptionMenus/option_menu.tscn" id="1_5j4rn"]
+[ext_resource type="Script" uid="uid://cmhw6ayteikxl" path="res://Models/UI/Shops/player_shop_inventory.gd" id="2_gu6dm"]
+
+[node name="PlayerInventory" instance=ExtResource("1_5j4rn")]
+anchors_preset = -1
+anchor_left = 0.667
+anchor_right = 1.0
+anchor_bottom = 0.667
+offset_left = -4.0
+offset_top = 78.0
+offset_right = -87.0
+offset_bottom = 0.0
+grow_horizontal = 0
+script = ExtResource("2_gu6dm")
+
+[node name="Q1Label" parent="Heading/MarginContainer/HBoxContainer" index="1"]
+text = "Quantity"
+
+[node name="Q2label" parent="Heading/MarginContainer/HBoxContainer" index="2"]
+text = "Cost"
+
+[connection signal="item_activated" from="Options" to="." method="_on_item_activated"]
+[connection signal="item_selected" from="Options" to="." method="_on_item_selected"]
+
+[editable path="Options"]

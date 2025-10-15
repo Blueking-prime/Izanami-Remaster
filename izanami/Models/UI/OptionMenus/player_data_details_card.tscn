@@ -1,0 +1,308 @@
+[gd_scene load_steps=2 format=3 uid="uid://byjs8yxdcn2dv"]
+
+[ext_resource type="Script" uid="uid://cec62gf0wm47s" path="res://Models/UI/OptionMenus/player_data_details_card.gd" id="1_54x7v"]
+
+[node name="PlayerDetails" type="PanelContainer" node_paths=PackedStringArray("namefield", "classname", "hpbar", "hpbar_text", "spbar", "spbar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "select_button")]
+offset_right = 553.0
+offset_bottom = 843.0
+script = ExtResource("1_54x7v")
+namefield = NodePath("MarginContainer/VBoxContainer/Namefield")
+classname = NodePath("MarginContainer/VBoxContainer/TitleBox/Class")
+hpbar = NodePath("MarginContainer/VBoxContainer/HPBar")
+hpbar_text = NodePath("MarginContainer/VBoxContainer/HPBar/Label")
+spbar = NodePath("MarginContainer/VBoxContainer/SPBar")
+spbar_text = NodePath("MarginContainer/VBoxContainer/SPBar/Label")
+stats_str = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value")
+stats_int = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value2")
+stats_wis = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value3")
+stats_end = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value4")
+stats_gui = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value5")
+stats_agi = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value6")
+head = NodePath("MarginContainer/VBoxContainer/GearBox/Gear/Label4")
+body = NodePath("MarginContainer/VBoxContainer/GearBox/Gear/Label5")
+weapon = NodePath("MarginContainer/VBoxContainer/GearBox/Gear/Label6")
+select_button = NodePath("MarginContainer/VBoxContainer/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Class" type="Label" parent="MarginContainer/VBoxContainer/TitleBox"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Class
+"
+
+[node name="BARS" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HPBarDesc" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "HP"
+
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 6
+show_percentage = false
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SPBarDesc" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "SP"
+
+[node name="SPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 6
+show_percentage = false
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="STATSECTION" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatsLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsBox"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Stats:"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/StatsBox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stats" type="GridContainer" parent="MarginContainer/VBoxContainer/StatsBox"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_constants/h_separation = 10
+columns = 6
+
+[node name="Stat" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "STR"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Stat2" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "int"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Stat3" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "wis"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Stat4" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "end"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Stat5" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "gui"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Stat6" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "agi"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Value2" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Value3" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Value4" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Value5" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Value6" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="GEAR" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GearBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GearLabel" type="Label" parent="MarginContainer/VBoxContainer/GearBox"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Gear:"
+
+[node name="Gear" type="GridContainer" parent="MarginContainer/VBoxContainer/GearBox"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_constants/h_separation = 20
+columns = 3
+
+[node name="Head" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+layout_mode = 2
+text = "Head"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Body" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+layout_mode = 2
+text = "Body"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Weapon" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+layout_mode = 2
+text = "Weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+layout_mode = 2
+text = "Head"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+layout_mode = 2
+text = "Head"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+layout_mode = 2
+text = "Head"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NAMEINPUT" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NametagDesc" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Choose your name:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Namefield" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "Obute"
+scroll_fit_content_height = true
+
+[node name="STATUSEFFECT" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

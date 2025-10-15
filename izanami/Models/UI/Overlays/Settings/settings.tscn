@@ -1,0 +1,315 @@
+[gd_scene load_steps=9 format=3 uid="uid://co458jxngt4el"]
+
+[ext_resource type="Script" uid="uid://cacgmstsgbr24" path="res://Models/UI/Overlays/Settings/settings.gd" id="1_ewfq3"]
+[ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_16b2c"]
+[ext_resource type="PackedScene" uid="uid://b2sson3f02peq" path="res://Models/UI/OptionMenus/keybind_option.tscn" id="2_f5xb2"]
+[ext_resource type="Script" uid="uid://di8diomqkagmj" path="res://Models/UI/Overlays/Settings/settings_window_mode.gd" id="3_cl27w"]
+[ext_resource type="Script" uid="uid://dlt4fkk3ag4xy" path="res://Models/UI/Overlays/Settings/accessibility_options.gd" id="5_3nvp3"]
+[ext_resource type="Script" uid="uid://u6wonda4akqq" path="res://Models/UI/Overlays/Settings/settings_audio.gd" id="5_vrjjt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3nvp3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_526lg"]
+
+[node name="Settings" type="Panel" node_paths=PackedStringArray("exit_button", "tab_container", "menu_switcher")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ewfq3")
+exit_button = NodePath("ExitButton")
+tab_container = NodePath("TabContainer")
+menu_switcher = NodePath("MenuSwitcher")
+
+[node name="MenuSwitcher" parent="." node_paths=PackedStringArray("menu_container") instance=ExtResource("2_16b2c")]
+menu_container = NodePath("../TabContainer")
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
+text = "Exit"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 2
+
+[node name="Graphics" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Graphics/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Graphics/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="LabelBlock" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/LabelBlock"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/LabelBlock"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Options"
+
+[node name="WindowMode" type="HBoxContainer" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("dropdown")]
+layout_mode = 2
+script = ExtResource("3_cl27w")
+dropdown = NodePath("OptionButton")
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/WindowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Mode"
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/WindowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Controls" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="LabelBlock" type="HBoxContainer" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer/LabelBlock"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Action"
+
+[node name="Label2" type="Label" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer/LabelBlock"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Key"
+
+[node name="InventoryBind" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_f5xb2")]
+layout_mode = 2
+action_name = &"inventory_key"
+
+[node name="StatusBind" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_f5xb2")]
+layout_mode = 2
+action_name = &"status_key"
+
+[node name="SettingsBind" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_f5xb2")]
+layout_mode = 2
+action_name = &"settings_key"
+
+[node name="SaveBind" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_f5xb2")]
+layout_mode = 2
+action_name = &"save_key"
+
+[node name="LoadBind" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_f5xb2")]
+layout_mode = 2
+action_name = &"load_key"
+
+[node name="QuitBind" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_f5xb2")]
+layout_mode = 2
+action_name = &"quit_key"
+
+[node name="SwitchLeaderBind" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_f5xb2")]
+layout_mode = 2
+action_name = &"switch_leader_key"
+
+[node name="Accessibility" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Accessibility"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Accessibility/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Accessibility/MarginContainer/ScrollContainer" node_paths=PackedStringArray("text_scroll")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("5_3nvp3")
+text_scroll = NodePath("Text Scroll")
+
+[node name="Text Scroll" type="CheckButton" parent="TabContainer/Accessibility/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3nvp3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_526lg")
+text = "Text Scroll"
+flat = true
+
+[node name="Audio" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Audio/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Audio/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Master" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("slider", "input_field")]
+layout_mode = 2
+script = ExtResource("5_vrjjt")
+bus_name = "Master"
+slider = NodePath("HSlider")
+input_field = NodePath("LineEdit")
+
+[node name="Label" type="Label" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master Volume"
+
+[node name="HSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master"]
+layout_mode = 2
+placeholder_text = "0"
+alignment = 1
+emoji_menu_enabled = false
+flat = true
+
+[node name="BGM" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("slider", "input_field")]
+layout_mode = 2
+script = ExtResource("5_vrjjt")
+bus_name = "BGM"
+slider = NodePath("HSlider")
+input_field = NodePath("LineEdit")
+
+[node name="Label" type="Label" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/BGM"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/BGM"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/BGM"]
+layout_mode = 2
+placeholder_text = "0"
+alignment = 1
+emoji_menu_enabled = false
+flat = true
+
+[node name="SFX" type="HBoxContainer" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("slider", "input_field")]
+layout_mode = 2
+script = ExtResource("5_vrjjt")
+bus_name = "SFX"
+slider = NodePath("HSlider")
+input_field = NodePath("LineEdit")
+
+[node name="Label" type="Label" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX Volume"
+
+[node name="HSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/SFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/SFX"]
+layout_mode = 2
+placeholder_text = "0"
+alignment = 1
+emoji_menu_enabled = false
+flat = true
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="item_selected" from="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/WindowMode/OptionButton" to="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/WindowMode" method="_on_option_button_item_selected"]
+[connection signal="toggled" from="TabContainer/Accessibility/MarginContainer/ScrollContainer/VBoxContainer/Text Scroll" to="TabContainer/Accessibility/MarginContainer/ScrollContainer/VBoxContainer" method="_on_text_scroll_toggled"]
+[connection signal="value_changed" from="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master/HSlider" to="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master" method="_on_slider_value_changed"]
+[connection signal="text_submitted" from="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master/LineEdit" to="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master" method="_on_input_text_submitted"]
+[connection signal="value_changed" from="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/BGM/HSlider" to="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/BGM" method="_on_slider_value_changed"]
+[connection signal="text_submitted" from="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/BGM/LineEdit" to="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/BGM" method="_on_input_text_submitted"]
+[connection signal="value_changed" from="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/SFX/HSlider" to="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/SFX" method="_on_slider_value_changed"]
+[connection signal="text_submitted" from="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/SFX/LineEdit" to="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/SFX" method="_on_input_text_submitted"]

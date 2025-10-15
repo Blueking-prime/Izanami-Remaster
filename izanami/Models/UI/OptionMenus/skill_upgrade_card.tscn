@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp8hjbvduev5m"]
+
+[ext_resource type="PackedScene" uid="uid://0hx0wuw1wgpb" path="res://Models/UI/OptionMenus/skill_menu_card.tscn" id="1_n2yfg"]
+[ext_resource type="Script" uid="uid://oo8om82vwfop" path="res://Models/UI/OptionMenus/skill_upgrade_card.gd" id="1_t36vu"]
+
+[node name="Skills" instance=ExtResource("1_n2yfg")]
+script = ExtResource("1_t36vu")
+
+[node name="Q1Label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer" index="1"]
+text = "Rank"
+
+[editable path="HBoxContainer/OptionMenu"]
+[editable path="HBoxContainer/OptionMenu/Options"]

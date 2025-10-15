@@ -1,0 +1,129 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyi5epemnot1x"]
+
+[ext_resource type="Script" uid="uid://cf08u8fibntsr" path="res://Models/UI/Overlays/description_box.gd" id="1_ie52s"]
+
+[node name="DescriptionBox" type="PanelContainer" node_paths=PackedStringArray("type", "element", "value", "effect_chance", "description", "subtype", "target_scope", "sell_price", "weapon_status", "cost", "stats", "rank")]
+offset_right = 582.0
+offset_bottom = 373.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ie52s")
+type = NodePath("Margin/Vbox/Hbox/Type")
+element = NodePath("Margin/Vbox/Hbox/Element")
+value = NodePath("Margin/Vbox/Hbox/Vbox/Value")
+effect_chance = NodePath("Margin/Vbox/Hbox/Vbox/EffectChance")
+description = NodePath("Margin/Vbox/Description")
+subtype = NodePath("Margin/Vbox/Hbox2/Subtype")
+target_scope = NodePath("Margin/Vbox/Hbox2/TargetScope")
+sell_price = NodePath("Margin/Vbox/Hbox2/SellPrice")
+weapon_status = NodePath("Margin/Vbox/Hbox2/WeaponStatus")
+cost = NodePath("Margin/Vbox/Hbox2/Cost")
+stats = NodePath("Margin/Vbox/Hbox/Stats")
+rank = NodePath("Margin/Vbox/Hbox/Rank")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Vbox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Hbox" type="HBoxContainer" parent="Margin/Vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Type" type="Label" parent="Margin/Vbox/Hbox"]
+layout_mode = 2
+text = "Type"
+vertical_alignment = 1
+
+[node name="Element" type="Label" parent="Margin/Vbox/Hbox"]
+layout_mode = 2
+text = "Trait"
+vertical_alignment = 1
+
+[node name="Rank" type="Label" parent="Margin/Vbox/Hbox"]
+visible = false
+layout_mode = 2
+text = "Rank"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="Margin/Vbox/Hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stats" type="Label" parent="Margin/Vbox/Hbox"]
+layout_mode = 2
+text = "Stats"
+
+[node name="Vbox" type="VBoxContainer" parent="Margin/Vbox/Hbox"]
+layout_mode = 2
+
+[node name="Value" type="Label" parent="Margin/Vbox/Hbox/Vbox"]
+layout_mode = 2
+text = "Value"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="EffectChance" type="Label" parent="Margin/Vbox/Hbox/Vbox"]
+layout_mode = 2
+text = "Effect chance"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Line" type="HSeparator" parent="Margin/Vbox"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Margin/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Description" type="Label" parent="Margin/Vbox"]
+layout_mode = 2
+text = "A short description of the item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="Margin/Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Line2" type="HSeparator" parent="Margin/Vbox"]
+layout_mode = 2
+
+[node name="Hbox2" type="HBoxContainer" parent="Margin/Vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Subtype" type="Label" parent="Margin/Vbox/Hbox2"]
+layout_mode = 2
+text = "Subtype"
+vertical_alignment = 1
+
+[node name="TargetScope" type="Label" parent="Margin/Vbox/Hbox2"]
+layout_mode = 2
+text = "target scope"
+vertical_alignment = 1
+
+[node name="Spacer3" type="Control" parent="Margin/Vbox/Hbox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SellPrice" type="Label" parent="Margin/Vbox/Hbox2"]
+layout_mode = 2
+text = "Sell value"
+vertical_alignment = 1
+
+[node name="WeaponStatus" type="Label" parent="Margin/Vbox/Hbox2"]
+visible = false
+layout_mode = 2
+text = "Equipped"
+vertical_alignment = 1
+
+[node name="Cost" type="Label" parent="Margin/Vbox/Hbox2"]
+layout_mode = 2
+text = "Cost"

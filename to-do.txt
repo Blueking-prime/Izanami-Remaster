@@ -42,10 +42,10 @@ BUG FIXES
 - [x] Fix enemy name bugs
 
 TASKS (WORKABLE)
-- [ ] Implement accessibility settings
-- [ ] Implement graphics settings
-- [ ] Implement audio settings
 - [ ] Add water/lava in dungeons
+- [ ] Implement accessibility settings
+- [x] Implement graphics settings
+- [x] Implement audio settings
 - [x] Add display for chest drops
 - [-] Replace save option in dungeon with autosave on floor transition
 - [/] Make exit send to next level of dungeon

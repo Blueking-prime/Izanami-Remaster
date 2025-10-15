@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://djrcrookt0uto"]
+
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_wiggx"]
+[ext_resource type="Resource" uid="uid://cnm8tckqavlii" path="res://Models/Skills/ClassSkills/SkillGroups/maken_skills.tres" id="2_n6xqy"]
+[ext_resource type="Resource" uid="uid://qpkhmmxj8nfi" path="res://Models/Gear/DefaultGearGroups/maken_gear.tres" id="2_qi1ci"]
+
+[node name="Maken" instance=ExtResource("1_wiggx")]
+classname = &"Maken"
+root_stats = {
+"AGI": 1,
+"END": 1,
+"GUI": 1,
+"INT": 4,
+"STR": 1,
+"WIS": 4
+}
+level_stats = ["STR", "INT"]
+desc = "A wielder of a cursed mystic blade who uses elemental runes"
+
+[node name="Gear" parent="." index="3"]
+player_gear_data = ExtResource("2_qi1ci")
+
+[node name="Skills" parent="." index="4"]
+skill_group = ExtResource("2_n6xqy")
+
+[node name="Items" parent="." index="5"]
+item_group = null
+
+[editable path="BattleSprite"]

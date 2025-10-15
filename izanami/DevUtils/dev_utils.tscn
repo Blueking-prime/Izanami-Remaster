@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://65xei334axov" path="res://DevUtils/dev_utils.gd" id="1_11sxk"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="2_5qx4e"]
 [ext_resource type="Texture2D" uid="uid://blse2il2lnlc1" path="res://Assets/Art/uNNAMED kATANA.jpg" id="2_11sxk"]
-[ext_resource type="TileSet" uid="uid://c50pucj5u271f" path="res://Scenes/Dungeon/dungeon_og_tileset.tres" id="4_calw1"]
+[ext_resource type="TileSet" uid="uid://c50pucj5u271f" path="res://Models/Scenes/Dungeon/dungeon_og_tileset.tres" id="4_calw1"]
 [ext_resource type="Script" uid="uid://b556um75nyju0" path="res://DevUtils/capture_tilemap_image.gd" id="5_11sxk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fncq3"]

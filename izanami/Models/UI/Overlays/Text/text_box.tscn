@@ -1,0 +1,158 @@
+[gd_scene load_steps=5 format=3 uid="uid://s3bvhf5ano50"]
+
+[ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/UI/OptionMenus/options.tscn" id="1_gnfuy"]
+[ext_resource type="Script" uid="uid://cpcnyphsrlyr6" path="res://Models/UI/Overlays/Text/text_box.gd" id="1_krbbq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_46m4p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bawka"]
+
+[node name="VBoxContainer" type="VBoxContainer" node_paths=PackedStringArray("title", "title_container", "text_box", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "ffwd_button", "scroll_timer")]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.681
+anchor_right = 0.5
+anchor_bottom = 0.98
+offset_left = -254.0
+offset_top = -0.160019
+offset_right = 254.0
+offset_bottom = 0.199982
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 0
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("1_krbbq")
+title = NodePath("HBoxContainer/TitleContainer/MarginContainer/Title")
+title_container = NodePath("HBoxContainer")
+text_box = NodePath("TextBox")
+text = NodePath("TextBox/Margin/VBox/Text")
+spacer = NodePath("TextBox/Margin/VBox/Control")
+options = NodePath("TextBox/Margin/VBox/Options")
+button_panel = NodePath("ButtonsPanel")
+skip_button = NodePath("ButtonsPanel/VBoxContainer/SkipButton")
+log_button = NodePath("ButtonsPanel/VBoxContainer/LogButton")
+auto_button = NodePath("ButtonsPanel/VBoxContainer/AutoButton")
+ffwd_button = NodePath("ButtonsPanel/VBoxContainer/FastForwardButton")
+scroll_timer = NodePath("TextScrollTimer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TitleContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"TextBoxHeader"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 3
+
+[node name="Title" type="Label" parent="HBoxContainer/TitleContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Dialogue Box"
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextBox" type="PanelContainer" parent="."]
+z_index = 10
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Margin" type="MarginContainer" parent="TextBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 3
+
+[node name="VBox" type="VBoxContainer" parent="TextBox/Margin"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="Text" type="RichTextLabel" parent="TextBox/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+bbcode_enabled = true
+text = "Add skill icons Add level cap (maybe) Implement AoE skills and [i]self_targeting[/i] skills Flesh out status effects Move battle movement and selection to separate nodeImplement [color=#FF00F3]dialog boxesLearn how to move[/color] players between scenesMake enemies not spawn on outer rows and columns[font_size=8]Move[/font_size]' stats to Stats scriptChange map enemy spawning to reflect contained enemiesFix item usage bug"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="TextBox/Margin/VBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Options" parent="TextBox/Margin/VBox" instance=ExtResource("1_gnfuy")]
+layout_mode = 2
+size_flags_vertical = 10
+mouse_filter = 0
+vertical_scroll_mode = 0
+
+[node name="PanelContainer" parent="TextBox/Margin/VBox/Options" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_46m4p")
+
+[node name="ButtonsPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bawka")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ButtonsPanel"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="ButtonsPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="LogButton" type="Button" parent="ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Log"
+
+[node name="SkipButton" type="Button" parent="ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "Skip"
+
+[node name="AutoButton" type="Button" parent="ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Auto"
+
+[node name="FastForwardButton" type="Button" parent="ButtonsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+toggle_mode = true
+text = "FFWD"
+
+[node name="Control2" type="Control" parent="ButtonsPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextScrollTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="gui_input" from="TextBox" to="." method="_on_text_box_gui_input"]
+
+[editable path="TextBox/Margin/VBox/Options"]
