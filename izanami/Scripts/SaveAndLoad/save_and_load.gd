@@ -3,24 +3,24 @@ extends Node
 @export_dir var folder_location: String = "user://save_files/"
 
 var save_files: Array
-var count: int
+var save_state: bool
 
-@export var save_window: SaveWindow
+const NO_OPTION_SELECTED = -1
 
-func save_game():
-	get_save_files()
+func save_game(index: int):
+	if index == NO_OPTION_SELECTED:
+		create_save_file(folder_location + "save_%d.tres" % [save_files.size() + 1])
+	else:
+		create_save_file(folder_location + save_files[index])
 
-	var file_location = folder_location + "save_%d.tres" % [count + 1]
-	create_save_file(file_location)
-
-func load_game():
-	get_save_files()
-
-	if save_files.back():
-		var file_location = folder_location + save_files.back()
-
-		load_save_file(file_location)
-
+func load_game(index: int):
+	if index == NO_OPTION_SELECTED:
+		if save_files.is_empty():
+			print('No save files')
+		else:
+			load_save_file(folder_location + save_files.back())
+	else:
+		load_save_file(folder_location + save_files[index])
 
 ## PROCESS FILE DIRECTORY
 func get_save_files():
@@ -28,8 +28,7 @@ func get_save_files():
 		DirAccess.make_dir_recursive_absolute(folder_location)
 
 	save_files = DirAccess.open(folder_location).get_files()
-	count = save_files.size()
-
+	print(save_files)
 
 ## PROCESS SAVE FILE DATA
 func create_save_file(file_location: String):
@@ -52,7 +51,6 @@ func load_save_file(file_location: String):
 	match save_file.scene_data.location:
 		'Town': await load_town()
 		'Demonitarium': await load_demonitarium()
-		'Dungeon': await load_dungeon(save_file.scene_data)
 
 	if not Global.players:
 		load_players()
@@ -82,27 +80,8 @@ func load_demonitarium():
 		add_sibling(demonitarium)
 		get_tree().current_scene = demonitarium
 
-	print('Town Loaded')
+	print('Demonitarium Loaded')
 
-func load_dungeon(scene_data: DungeonSaveData):
-	if not get_tree().current_scene is Dungeon:
-		get_tree().unload_current_scene()
-		var dungeon: Dungeon = Global.dungeon_scene.instantiate()
-
-		dungeon.width = scene_data.width
-		dungeon.height = scene_data.height
-		dungeon.enemy_types = scene_data.enemy_types
-		dungeon.item_drop_group = scene_data.item_drop_group
-		dungeon.gear_drop_group = scene_data.gear_drop_group
-		dungeon.MAX_ENEMIES = scene_data.MAX_ENEMIES
-		dungeon.enemy_spawn_chance = scene_data.enemy_spawn_chance
-		dungeon.treasure_spawn_chance = scene_data.treasure_spawn_chance
-		dungeon.gear_chance = scene_data.gear_chance
-
-		add_sibling(dungeon)
-		get_tree().current_scene = dungeon
-
-	print("Dungeon Loaded")
 
 ## SPAWN NEW PLAYERS ON FRESH LOAD
 func load_players():

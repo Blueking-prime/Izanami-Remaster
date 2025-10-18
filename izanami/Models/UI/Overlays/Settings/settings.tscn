@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://co458jxngt4el"]
+[gd_scene load_steps=10 format=3 uid="uid://co458jxngt4el"]
 
 [ext_resource type="Script" uid="uid://cacgmstsgbr24" path="res://Models/UI/Overlays/Settings/settings.gd" id="1_ewfq3"]
 [ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_16b2c"]
 [ext_resource type="PackedScene" uid="uid://b2sson3f02peq" path="res://Models/UI/OptionMenus/keybind_option.tscn" id="2_f5xb2"]
 [ext_resource type="Script" uid="uid://di8diomqkagmj" path="res://Models/UI/Overlays/Settings/settings_window_mode.gd" id="3_cl27w"]
+[ext_resource type="Script" uid="uid://c0jkgt40dfl1g" path="res://Models/UI/Overlays/Settings/tab_item_cycler.gd" id="4_ka3xp"]
 [ext_resource type="Script" uid="uid://dlt4fkk3ag4xy" path="res://Models/UI/Overlays/Settings/accessibility_options.gd" id="5_3nvp3"]
 [ext_resource type="Script" uid="uid://u6wonda4akqq" path="res://Models/UI/Overlays/Settings/settings_audio.gd" id="5_vrjjt"]
 
@@ -11,26 +12,18 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_526lg"]
 
-[node name="Settings" type="Panel" node_paths=PackedStringArray("exit_button", "tab_container", "menu_switcher")]
+[node name="Settings" type="Panel" node_paths=PackedStringArray("tab_container", "menu_switcher")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ewfq3")
-exit_button = NodePath("ExitButton")
 tab_container = NodePath("TabContainer")
 menu_switcher = NodePath("MenuSwitcher")
 
 [node name="MenuSwitcher" parent="." node_paths=PackedStringArray("menu_container") instance=ExtResource("2_16b2c")]
 menu_container = NodePath("../TabContainer")
-
-[node name="ExitButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 10.0
-offset_top = 10.0
-text = "Exit"
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -45,9 +38,11 @@ grow_horizontal = 2
 grow_vertical = 2
 current_tab = 2
 
-[node name="Graphics" type="TabBar" parent="TabContainer"]
+[node name="Graphics" type="TabBar" parent="TabContainer" node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
+script = ExtResource("4_ka3xp")
+options = [NodePath("MarginContainer/ScrollContainer/VBoxContainer/WindowMode/OptionButton")]
 metadata/_tab_index = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Graphics"]
@@ -98,9 +93,11 @@ text = "Window Mode"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Controls" type="TabBar" parent="TabContainer"]
+[node name="Controls" type="TabBar" parent="TabContainer" node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
+script = ExtResource("4_ka3xp")
+options = [NodePath("MarginContainer/ScrollContainer/VBoxContainer/InventoryBind"), NodePath("MarginContainer/ScrollContainer/VBoxContainer/StatusBind"), NodePath("MarginContainer/ScrollContainer/VBoxContainer/SettingsBind"), NodePath("MarginContainer/ScrollContainer/VBoxContainer/SaveBind"), NodePath("MarginContainer/ScrollContainer/VBoxContainer/LoadBind"), NodePath("MarginContainer/ScrollContainer/VBoxContainer/QuitBind"), NodePath("MarginContainer/ScrollContainer/VBoxContainer/SwitchLeaderBind")]
 metadata/_tab_index = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls"]
@@ -165,8 +162,10 @@ action_name = &"quit_key"
 layout_mode = 2
 action_name = &"switch_leader_key"
 
-[node name="Accessibility" type="TabBar" parent="TabContainer"]
+[node name="Accessibility" type="TabBar" parent="TabContainer" node_paths=PackedStringArray("options")]
 layout_mode = 2
+script = ExtResource("4_ka3xp")
+options = [NodePath("MarginContainer/ScrollContainer/VBoxContainer/Text Scroll")]
 metadata/_tab_index = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Accessibility"]
@@ -199,9 +198,11 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_526lg")
 text = "Text Scroll"
 flat = true
 
-[node name="Audio" type="TabBar" parent="TabContainer"]
+[node name="Audio" type="TabBar" parent="TabContainer" node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
+script = ExtResource("4_ka3xp")
+options = [NodePath("MarginContainer/ScrollContainer/VBoxContainer/Master/HSlider"), NodePath("MarginContainer/ScrollContainer/VBoxContainer/BGM/HSlider"), NodePath("MarginContainer/ScrollContainer/VBoxContainer/SFX/HSlider")]
 metadata/_tab_index = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Audio"]
@@ -304,7 +305,6 @@ emoji_menu_enabled = false
 flat = true
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="item_selected" from="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/WindowMode/OptionButton" to="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/WindowMode" method="_on_option_button_item_selected"]
 [connection signal="toggled" from="TabContainer/Accessibility/MarginContainer/ScrollContainer/VBoxContainer/Text Scroll" to="TabContainer/Accessibility/MarginContainer/ScrollContainer/VBoxContainer" method="_on_text_scroll_toggled"]
 [connection signal="value_changed" from="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master/HSlider" to="TabContainer/Audio/MarginContainer/ScrollContainer/VBoxContainer/Master" method="_on_slider_value_changed"]

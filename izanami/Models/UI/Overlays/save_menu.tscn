@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlflxypiwhkyi"]
+
+[ext_resource type="PackedScene" uid="uid://d0825mxmc6hd1" path="res://Models/UI/OptionMenus/option_menu.tscn" id="1_gfn7d"]
+[ext_resource type="Script" uid="uid://bb81wm8jro8dj" path="res://Models/UI/Overlays/save_menu.gd" id="2_hqm8v"]
+
+[node name="Save" type="Panel"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SaveMenu" parent="." node_paths=PackedStringArray("button", "title", "background") instance=ExtResource("1_gfn7d")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_hqm8v")
+button = NodePath("Button")
+title = NodePath("Title/MarginContainer/Label")
+background = NodePath("..")
+
+[node name="Title" type="PanelContainer" parent="SaveMenu"]
+layout_mode = 2
+theme_type_variation = &"InternalPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="SaveMenu/Title"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SaveMenu/Title/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Create Save File"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" parent="SaveMenu/Heading" index="0"]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="NameLabel" parent="SaveMenu/Heading/MarginContainer/HBoxContainer" index="0"]
+text = "File"
+
+[node name="Q1Label" parent="SaveMenu/Heading/MarginContainer/HBoxContainer" index="1"]
+text = "Date"
+
+[node name="Q2label" parent="SaveMenu/Heading/MarginContainer/HBoxContainer" index="2"]
+visible = false
+text = ""
+
+[node name="Button" type="Button" parent="SaveMenu"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Create New Save"
+
+[connection signal="visibility_changed" from="SaveMenu" to="SaveMenu" method="_on_visibility_changed"]
+[connection signal="item_activated" from="SaveMenu/Options" to="SaveMenu" method="_on_item_activated"]
+[connection signal="pressed" from="SaveMenu/Button" to="SaveMenu" method="_on_button_pressed"]
+
+[editable path="SaveMenu"]
+[editable path="SaveMenu/Options"]

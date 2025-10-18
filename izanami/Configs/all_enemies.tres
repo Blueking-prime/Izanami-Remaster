@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_58ui7")
-base_folder = "res://Models/Characters/Enemies"
+base_folder = "res://Models/Characters/Enemies/Types"
 includes = Array[String](["*.tscn"])
 excludes = Array[String](["enemy.tscn"])
-paths = Array[String](["res://Models/Characters/Enemies/goblin.tscn", "res://Models/Characters/Enemies/imp.tscn"])
+paths = Array[String](["res://Models/Characters/Enemies/Types/goblin.tscn", "res://Models/Characters/Enemies/Types/imp.tscn"])

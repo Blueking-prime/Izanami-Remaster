@@ -21,9 +21,9 @@ func _on_visibility_changed() -> void:
 	Audio.play_show_menu_sfx(visible)
 	menu_switcher.set_process_input(visible)
 	if visible:
-		Global.players.freeze()
+		if is_instance_valid(Global.players): Global.players.freeze()
 		if not Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)
-		Global.exit_button.show()
+		if is_instance_valid(Global.exit_button): Global.exit_button.show()
 		Global.description_box_parent = desc_box_container
 	else :
 		if Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.disconnect(_on_exit_button_pressed)

@@ -7,6 +7,9 @@ class_name InventoryMenu
 @export var gear_menu: Control
 @export var misc_menu: Control
 
+@export var selector_panel: Panel
+@export var selector_group: Node
+
 func load_menu():
 	skills_menu.load_stock()
 	items_menu.load_stock()
@@ -18,9 +21,17 @@ func _on_exit_button_pressed() -> void:
 	items_menu.target_selector.hide()
 	gear_menu.target_selector.hide()
 	skills_menu.target_selector.hide()
+	selector_panel.hide()
 	super._on_exit_button_pressed()
 
 func _on_visibility_changed() -> void:
 	super._on_visibility_changed()
 	if visible:
 		tab_container.get_child(Checks.inventory_tab).show()
+
+func _on_selector_visibility_changed():
+	for i in selector_group.get_children():
+		if i.visible:
+			selector_panel.show()
+			return
+	selector_panel.hide()

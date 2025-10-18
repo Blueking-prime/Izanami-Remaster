@@ -253,7 +253,6 @@ texture_margin_left = 4.0
 texture_margin_top = 10.0
 texture_margin_right = 4.0
 texture_margin_bottom = 12.0
-expand_margin_top = 5.0
 region_rect = Rect2(320, 208, 128, 48)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_74tkn"]
@@ -261,16 +260,20 @@ texture = ExtResource("1_aqin4")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
+expand_margin_top = 3.0
+expand_margin_bottom = 5.0
 region_rect = Rect2(464, 136, 48, 24)
 modulate_color = Color(0, 0, 0, 0.4)
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_t2gxr"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1xnc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5smy"]
 texture = ExtResource("1_aqin4")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
+expand_margin_top = 3.0
+expand_margin_bottom = 5.0
 region_rect = Rect2(464, 136, 48, 24)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u8508"]
@@ -278,6 +281,8 @@ texture = ExtResource("1_aqin4")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
+expand_margin_top = 3.0
+expand_margin_bottom = 5.0
 region_rect = Rect2(464, 112, 48, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r2d8t"]
@@ -365,7 +370,7 @@ texture_margin_bottom = 5.0
 region_rect = Rect2(32, 112, 16, 48)
 
 [resource]
-Button/font_sizes/font_size = 6
+Button/font_sizes/font_size = 8
 Button/styles/disabled = SubResource("StyleBoxTexture_w55up")
 Button/styles/focus = SubResource("StyleBoxTexture_2oqrx")
 Button/styles/hover = SubResource("StyleBoxTexture_15bb5")
@@ -374,7 +379,7 @@ Button/styles/pressed = SubResource("StyleBoxTexture_d1xnc")
 FlatButton/base_type = &"Button"
 FlatButton/colors/font_color = Color(1, 1, 1, 0.8)
 FlatButton/colors/font_focus_color = Color(10, 10, 10, 1)
-FlatButton/font_sizes/font_size = 6
+FlatButton/font_sizes/font_size = 8
 FlatButton/styles/focus = SubResource("StyleBoxEmpty_0n1xd")
 FlatButton/styles/hover = SubResource("StyleBoxEmpty_15bb5")
 FlatButton/styles/pressed = SubResource("StyleBoxEmpty_aqin4")
@@ -393,11 +398,14 @@ ImageFrame/base_type = &"TextureRect"
 ImageFrame/styles/panel = SubResource("StyleBoxTexture_syf3x")
 InternalPanel/base_type = &"PanelContainer"
 InternalPanel/styles/panel = SubResource("StyleBoxTexture_f2ffg")
-Label/font_sizes/font_size = 6
+Label/font_sizes/font_size = 8
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_0n1xd")
 PopupMenu/styles/hover = SubResource("StyleBoxTexture_p288y")
 PopupMenu/styles/panel = SubResource("StyleBoxTexture_38lg6")
-ProgressBar/font_sizes/font_size = 6
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 8
 ProgressBar/styles/background = SubResource("StyleBoxTexture_4iawa")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_t2gxr")
 ProgressBarGreen/base_type = &"ProgressBar"
@@ -406,15 +414,15 @@ ProgressBarGreen/styles/fill = SubResource("StyleBoxTexture_rn45m")
 ProgressBarRed/base_type = &"ProgressBar"
 ProgressBarRed/styles/background = SubResource("StyleBoxTexture_vl8en")
 ProgressBarRed/styles/fill = SubResource("StyleBoxTexture_2e76f")
-RichTextLabel/font_sizes/bold_font_size = 6
-RichTextLabel/font_sizes/bold_italics_font_size = 6
-RichTextLabel/font_sizes/italics_font_size = 6
-RichTextLabel/font_sizes/mono_font_size = 6
-RichTextLabel/font_sizes/normal_font_size = 6
-TabContainer/font_sizes/font_size = 6
+RichTextLabel/font_sizes/bold_font_size = 8
+RichTextLabel/font_sizes/bold_italics_font_size = 8
+RichTextLabel/font_sizes/italics_font_size = 8
+RichTextLabel/font_sizes/mono_font_size = 8
+RichTextLabel/font_sizes/normal_font_size = 8
+TabContainer/font_sizes/font_size = 8
 TabContainer/styles/panel = SubResource("StyleBoxTexture_d3yq3")
 TabContainer/styles/tab_disabled = SubResource("StyleBoxTexture_74tkn")
-TabContainer/styles/tab_focus = SubResource("StyleBoxLine_t2gxr")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_d1xnc")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_t5smy")
 TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_u8508")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_t5smy")

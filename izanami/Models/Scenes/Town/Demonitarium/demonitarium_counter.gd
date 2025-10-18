@@ -27,7 +27,8 @@ func choose_option():
 		3: await talk_to_crowley()
 
 func talk_to_crowley():
-	crowley.crowley()
+	#crowley.crowley()
+	pass
 
 func exit_shop():
 	var confirm = await Global.show_text_choice("Crowley", "Have your fears overcome you? ")

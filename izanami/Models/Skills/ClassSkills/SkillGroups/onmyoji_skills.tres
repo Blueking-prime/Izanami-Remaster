@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://dj1btdcfnlo2s"]
 
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_fe8p2"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_c0qy2"]
 
 [resource]
-script = ExtResource("1_fe8p2")
+script = ExtResource("1_c0qy2")
 base_folder = "res://Models/Skills/Onmyoji"
 includes = Array[String]([])
 excludes = Array[String]([])

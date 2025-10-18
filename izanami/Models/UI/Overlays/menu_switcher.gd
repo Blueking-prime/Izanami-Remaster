@@ -34,7 +34,7 @@ func move_right():
 	#menus[index].hide()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed('ui_left'):
+	if event.is_action_pressed('menu_left'):
 		move_left()
-	if event.is_action_pressed('ui_right'):
+	if event.is_action_pressed('menu_right'):
 		move_right()

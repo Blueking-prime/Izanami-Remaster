@@ -10,9 +10,20 @@ size_flags_horizontal = 3
 focus_mode = 2
 script = ExtResource("1_p4bdc")
 options = NodePath("HBoxContainer/OptionMenu/Options")
-nametag = NodePath("Player")
+nametag = NodePath("HBoxContainer2/PanelContainer/Player")
 
-[node name="Player" type="Label" parent="."]
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"InternalPanel"
+
+[node name="Player" type="Label" parent="HBoxContainer2/PanelContainer"]
 layout_mode = 2
 text = "Player"
 
@@ -28,6 +39,9 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 10.0
+
+[node name="Q1Label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer" index="1"]
+text = "Cost"
 
 [node name="Q2label" parent="HBoxContainer/OptionMenu/Heading/MarginContainer/HBoxContainer" index="2"]
 visible = false

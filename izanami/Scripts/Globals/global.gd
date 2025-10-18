@@ -119,7 +119,7 @@ func warp(source: Location, destination_scene: PackedScene): return await SCENE_
 func load_main_menu(): return SCENE_LOADER.load_main_menu()
 func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false): return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
 func get_resource(resource_name: String, type: String) -> Resource: return SCENE_LOADER.get_resource(resource_name, type)
-func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, warp: bool = true): return SCENE_LOADER.push_back_player(centre, distance, tilemap, warp)
+func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, _warp: bool = true): return SCENE_LOADER.push_back_player(centre, distance, tilemap, _warp)
 #endregion
 
 #region Quests
@@ -201,9 +201,12 @@ func _on_textbox_log_selected(toggled_on: bool):
 
 
 func _input(event: InputEvent) -> void:
+
 	if event.is_action_pressed("ui_cancel"):
 		sell.emit('exit')
 		exit_signal.emit()
-		Audio.play_exit_menu_sfx()
+		if is_instance_valid(exit_button) and exit_button.visible:
+			Audio.play_exit_menu_sfx()
 	if event.is_action_pressed('test'):
 		print('--------------------MOVE----------------------')
+		print(get_viewport().gui_get_focus_owner())

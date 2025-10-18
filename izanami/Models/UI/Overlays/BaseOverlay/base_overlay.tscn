@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjf7wmor410ps"]
+[gd_scene load_steps=14 format=3 uid="uid://bjf7wmor410ps"]
 
 [ext_resource type="Script" uid="uid://c1ojwvbieb55k" path="res://Models/UI/Overlays/BaseOverlay/base_overlay.gd" id="1_fxe44"]
 [ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/UI/Overlays/Settings/settings.tscn" id="2_3jbmj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="5_8ecp3"]
 [ext_resource type="Script" uid="uid://b1j2o20mmu7vg" path="res://Models/UI/Overlays/BaseOverlay/music_display.gd" id="6_62x73"]
 [ext_resource type="Script" uid="uid://vyg66mlvvh32" path="res://Models/UI/Overlays/BaseOverlay/quick_info.gd" id="6_c2u1w"]
+[ext_resource type="PackedScene" uid="uid://dlflxypiwhkyi" path="res://Models/UI/Overlays/save_menu.tscn" id="11_ej628"]
 
 [sub_resource type="Gradient" id="Gradient_ffifv"]
 
@@ -19,7 +20,7 @@ width = 10
 height = 10
 fill_from = Vector2(1, 0)
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("player_status", "quest_display", "music_display", "coin_counter", "mag_counter", "quick_info", "button_container", "input_processing", "settings_menu")]
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("input_processing", "player_status", "quest_display", "music_display", "mag_counter", "coin_counter", "quick_info", "save_menu", "settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,18 +28,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fxe44")
+input_processing = NodePath("InputProcessing")
 player_status = NodePath("PlayerDataOverlay/HBoxContainer/StatusOverlay/MarginContainer/PlayerContainer")
 quest_display = NodePath("InfoPanel/Quests")
 music_display = NodePath("InfoPanel/Music")
-coin_counter = NodePath("PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 mag_counter = NodePath("PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer/MagCount")
+coin_counter = NodePath("PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 quick_info = NodePath("PlayerDataOverlay/QuickInfo")
-button_container = NodePath("Buttons/MenuButtons")
-input_processing = NodePath("InputProcessing")
-settings_menu = NodePath("Settings")
+save_menu = NodePath("OverLays/Save/SaveMenu")
+settings_menu = NodePath("OverLays/Settings")
 
-[node name="InputProcessing" type="Node" parent="."]
+[node name="InputProcessing" type="Node" parent="." node_paths=PackedStringArray("button_container")]
 script = ExtResource("2_rcg7v")
+button_container = NodePath("../Buttons/MenuButtons")
 
 [node name="PlayerDataOverlay" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -73,7 +75,7 @@ layout_mode = 2
 [node name="ResourceDisplay" type="PanelContainer" parent="PlayerDataOverlay/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_vertical = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay"]
 layout_mode = 2
@@ -321,21 +323,28 @@ layout_mode = 2
 layout_mode = 2
 text = "- Objective"
 
-[node name="Settings" parent="." instance=ExtResource("2_3jbmj")]
+[node name="OverLays" type="Node" parent="."]
+
+[node name="Settings" parent="OverLays" instance=ExtResource("2_3jbmj")]
 visible = false
-layout_mode = 1
+
+[node name="Save" parent="OverLays" instance=ExtResource("11_ej628")]
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="timeout" from="PlayerDataOverlay/QuickInfo/Timer" to="PlayerDataOverlay/QuickInfo" method="_on_timer_timeout"]
-[connection signal="pressed" from="Buttons/MenuButtons/FreecamButton" to="." method="_on_freecam_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/LogButton" to="." method="_on_log_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/UIButton" to="." method="_on_ui_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/QuestsButton" to="." method="_on_quests_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/StatusButton" to="." method="_on_status_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/InventoryButton" to="." method="_on_inventory_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/MapButton" to="." method="_on_map_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/FreecamButton" to="InputProcessing" method="_on_freecam_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/LogButton" to="InputProcessing" method="_on_log_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/UIButton" to="InputProcessing" method="_on_ui_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/SettingsButton" to="InputProcessing" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/QuestsButton" to="InputProcessing" method="_on_quests_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/StatusButton" to="InputProcessing" method="_on_status_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/InventoryButton" to="InputProcessing" method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/MapButton" to="InputProcessing" method="_on_map_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/SaveButton" to="InputProcessing" method="_on_save_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/LoadButton" to="InputProcessing" method="_on_load_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButtons/QuitButton" to="InputProcessing" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButton" to="." method="_on_menu_button_pressed"]
+
+[editable path="OverLays/Save"]
+[editable path="OverLays/Save/SaveMenu"]
+[editable path="OverLays/Save/SaveMenu/Options"]

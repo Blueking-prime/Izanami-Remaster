@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://btrjbxddw5urq"]
 
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_mutc2"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_0gbqt"]
 
 [resource]
-script = ExtResource("1_mutc2")
+script = ExtResource("1_0gbqt")
 base_folder = "res://Models/Skills/Destitute"
 includes = Array[String]([])
 excludes = Array[String]([])
-paths = Array[String](["res://Models/Skills/Destitute/desperate_maul.tres", "res://Models/Skills/Destitute/wild_slash.tres"])
+paths = Array[String]([])

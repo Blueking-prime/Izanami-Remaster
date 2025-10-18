@@ -53,7 +53,7 @@ func _create_base_textbox(speaker: String, prompt: String, screen_side: String =
 
 	get_parent().text_box.title.text = speaker
 
-	if Checks.scroll:
+	if Checks.settings_flags.scroll:
 		get_parent().text_box.text_string = prompt
 		get_parent().text_box.scroll_text()
 	else:

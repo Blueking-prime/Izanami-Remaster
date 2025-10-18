@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://cnm8tckqavlii"]
 
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_w8ja1"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_tjb4s"]
 
 [resource]
-script = ExtResource("1_w8ja1")
+script = ExtResource("1_tjb4s")
 base_folder = "res://Models/Skills/Maken"
 includes = Array[String]([])
 excludes = Array[String]([])
-paths = Array[String](["res://Models/Skills/Maken/diazone_wheel.tres"])
+paths = Array[String]([])

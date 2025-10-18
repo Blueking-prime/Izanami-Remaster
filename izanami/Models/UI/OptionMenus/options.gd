@@ -19,7 +19,7 @@ func clear():
 func add_item(option_name: String, quantities: Array = []) -> Option:
 	var option: Option = option_scene.instantiate()
 
-	option.option_name.text = option_name
+	option.option_name = option_name
 
 	for i in quantities:
 		option.add_label(str(i))
@@ -46,7 +46,7 @@ func get_item_option(index: int) -> Option:
 		return button_container.get_child(-1)
 
 func get_item_text(index: int) -> String:
-	return get_item_option(index).option_name.text
+	return get_item_option(index).option_name
 
 func disable():
 	for i in button_container.get_children():

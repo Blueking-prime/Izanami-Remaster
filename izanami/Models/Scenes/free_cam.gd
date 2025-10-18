@@ -26,13 +26,21 @@ func setup_map():
 func _process(delta: float) -> void:
 	if Global.players and Global.players.frozen:
 		var direction = Vector2()
-		direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
+		direction = Input.get_vector('left', 'right', 'up', 'down')
 
 		if direction.length():
 			direction = direction.normalized()
 			position += direction * speed * delta
 		else:
 			if position != get_screen_center_position(): position = get_screen_center_position()
+
+		if Input.is_action_pressed('zoom_in'):
+			if zoom < zoom_max:
+				zoom += zoom_step
+		elif Input.is_action_pressed('zoom_out'):
+			if zoom > zoom_min:
+				zoom -= zoom_step
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('zoom_in'):
@@ -41,8 +49,10 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed('zoom_out'):
 		if zoom > zoom_min:
 			zoom -= zoom_step
-	elif event.is_action_pressed('zoom_reset'):
+	if event.is_action_pressed('zoom_reset'):
 		zoom = initial_zoom
+		position = Global.players.leader.global_position
+
 
 func show_cam():
 	Global.players.freeze()

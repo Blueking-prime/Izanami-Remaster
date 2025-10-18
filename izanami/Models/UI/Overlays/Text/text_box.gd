@@ -35,7 +35,7 @@ func scroll_text():
 
 
 func _go_next():
-	if Checks.scroll and not scroll_timer.is_stopped():
+	if Checks.settings_flags.scroll and not scroll_timer.is_stopped():
 		scroll_timer.stop()
 		text.text = Global.clear_custom_tags(text_string)
 	else:

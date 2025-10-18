@@ -7,7 +7,6 @@ extends OptionMenu
 var inventory: Inventory
 var selected_item_name: String
 
-
 func load_stock():
 	if Global.players:
 		inventory = Global.players.inventory
@@ -40,8 +39,6 @@ func choose_target(index: int):
 
 func _on_item_activated(index: int) -> void:
 	selected_item_name = options.get_item_text(index)
-	print(index)
-	print(selected_item_name)
 	if inventory.get_entry_by_name(selected_item_name).aoe:
 		Global.players.leader.use_item(selected_item_name, Global.players.party)
 		update_listing()

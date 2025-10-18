@@ -159,7 +159,7 @@ func collect_treasure():
 	Global.display_in_quick_info_panel("You got %s!" % [drop.name])
 
 
-func _on_detector_hit_chest(coords) -> void:
+func _on_detector_hit_chest(_coords) -> void:
 	collect_treasure()
 
 

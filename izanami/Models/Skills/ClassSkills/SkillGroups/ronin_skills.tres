@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://clp4ds710cx"]
 
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_7koi1"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_t3x5s"]
 
 [resource]
-script = ExtResource("1_7koi1")
+script = ExtResource("1_t3x5s")
 base_folder = "res://Models/Skills/Ronin"
 includes = Array[String]([])
 excludes = Array[String]([])

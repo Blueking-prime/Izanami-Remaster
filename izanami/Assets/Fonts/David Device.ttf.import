@@ -1,0 +1,40 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://q2odjwb4145t"
+path="res://.godot/imported/David Device.ttf-8f0511643b553a84ba49254ef414e910.fontdata"
+
+[deps]
+
+source_file="res://Assets/Fonts/David Device.ttf"
+dest_files=["res://.godot/imported/David Device.ttf-8f0511643b553a84ba49254ef414e910.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=0
+generate_mipmaps=false
+disable_embedded_bitmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=false
+force_autohinter=false
+hinting=2
+subpixel_positioning=0
+keep_rounding_remainders=false
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=false
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
+language_support={}
+script_support={}
+opentype_features={}

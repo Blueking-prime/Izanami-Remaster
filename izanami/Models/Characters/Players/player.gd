@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	var init_pos = global_position
 	if not freeze_movement:
 		var direction = Vector2()
-		direction = Input.get_vector('ui_left', 'ui_right', 'ui_up', 'ui_down')
+		direction = Input.get_vector('left', 'right', 'up', 'down')
 
 
 		if direction.length():

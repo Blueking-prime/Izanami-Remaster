@@ -1,59 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b08k8go4h38wa"]
+[gd_scene load_steps=2 format=3 uid="uid://b08k8go4h38wa"]
 
 [ext_resource type="Script" uid="uid://frflbaljo2le" path="res://Scripts/SaveAndLoad/save_and_load.gd" id="1_i2xsw"]
-[ext_resource type="Script" uid="uid://dr754lkjq7vh3" path="res://Scripts/SaveAndLoad/save_window.gd" id="2_njto7"]
-[ext_resource type="PackedScene" uid="uid://d0825mxmc6hd1" path="res://Models/UI/OptionMenus/option_menu.tscn" id="3_ixggn"]
-[ext_resource type="Script" uid="uid://bb81wm8jro8dj" path="res://Scripts/SaveAndLoad/save_menu.gd" id="3_w2t4k"]
 
-[node name="SaveAndLoad" type="Node" node_paths=PackedStringArray("save_window")]
+[node name="SaveAndLoad" type="Node"]
 script = ExtResource("1_i2xsw")
-save_window = NodePath("SaveWindow")
-
-[node name="SaveWindow" type="Window" parent="." node_paths=PackedStringArray("save_menu", "confirm_button")]
-title = "Choose Save file"
-initial_position = 2
-size = Vector2i(600, 600)
-visible = false
-transient = true
-exclusive = true
-always_on_top = true
-popup_window = true
-min_size = Vector2i(400, 400)
-content_scale_mode = 2
-content_scale_aspect = 3
-script = ExtResource("2_njto7")
-save_menu = NodePath("CanvasLayer/SaveMenu")
-confirm_button = NodePath("CanvasLayer/SaveMenu/Button")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="SaveWindow"]
-follow_viewport_enabled = true
-
-[node name="SaveMenu" parent="SaveWindow/CanvasLayer" instance=ExtResource("3_ixggn")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_w2t4k")
-
-[node name="Q1Label" parent="SaveWindow/CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer" index="1"]
-text = "Date"
-
-[node name="Q2label" parent="SaveWindow/CanvasLayer/SaveMenu/Heading/MarginContainer/HBoxContainer" index="2"]
-visible = false
-text = ""
-
-[node name="Button" type="Button" parent="SaveWindow/CanvasLayer/SaveMenu"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Create New Save"
-
-[connection signal="close_requested" from="SaveWindow" to="SaveWindow" method="_on_close_requested"]
-[connection signal="item_activated" from="SaveWindow/CanvasLayer/SaveMenu" to="SaveWindow" method="_on_close_requested"]
-[connection signal="item_activated" from="SaveWindow/CanvasLayer/SaveMenu/Options" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_item_activated"]
-[connection signal="pressed" from="SaveWindow/CanvasLayer/SaveMenu/Button" to="SaveWindow/CanvasLayer/SaveMenu" method="_on_button_pressed"]
-
-[editable path="SaveWindow/CanvasLayer/SaveMenu"]
-[editable path="SaveWindow/CanvasLayer/SaveMenu/Options"]

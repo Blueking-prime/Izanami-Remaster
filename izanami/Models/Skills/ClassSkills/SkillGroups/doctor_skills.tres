@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://c1sq61kgkmx03"]
 
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_u81xv"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_gh8o7"]
 
 [resource]
-script = ExtResource("1_u81xv")
+script = ExtResource("1_gh8o7")
 base_folder = "res://Models/Skills/Doctor"
 includes = Array[String]([])
 excludes = Array[String]([])
