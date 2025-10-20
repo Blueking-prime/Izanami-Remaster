@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bcxmyev8jvlgh"]
+[gd_scene load_steps=21 format=3 uid="uid://bcxmyev8jvlgh"]
 
 [ext_resource type="Script" uid="uid://ty13w3ttw1d5" path="res://Scripts/Globals/global.gd" id="1_u8o3i"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/UI/Overlays/Text/text_box.tscn" id="2_imufx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://n1fo1vibhwx4" path="res://Models/UI/DialogBoxes/confirmation_box.tscn" id="3_0ya4a"]
 [ext_resource type="PackedScene" uid="uid://cyi5epemnot1x" path="res://Models/UI/Overlays/description_box.tscn" id="3_qpouy"]
 [ext_resource type="PackedScene" uid="uid://cyon8uinblkc1" path="res://Models/Scenes/Dungeon/dungeon.tscn" id="3_sy3id"]
+[ext_resource type="PackedScene" uid="uid://bsvxjtygkmh1l" path="res://Models/UI/DialogBoxes/popup.tscn" id="4_08hma"]
 [ext_resource type="PackedScene" uid="uid://deahjbvovxuvn" path="res://Models/Scenes/Battle/battle.tscn" id="4_cg2fd"]
 [ext_resource type="PackedScene" uid="uid://bnbjoofilujw1" path="res://Models/UI/Shops/shop_menu.tscn" id="4_xxefv"]
 [ext_resource type="PackedScene" uid="uid://bkfyiyro88x3q" path="res://Models/Scenes/main_menu.tscn" id="5_o7tui"]
@@ -29,6 +30,7 @@ SCENE_LOADER = NodePath("SceneLoader")
 QUESTS = NodePath("Quests")
 text_box_scene = ExtResource("2_imufx")
 confirmation_box_scene = ExtResource("3_0ya4a")
+popup_scene = ExtResource("4_08hma")
 description_box_scene = ExtResource("3_qpouy")
 shop_menu_scene = ExtResource("4_xxefv")
 text_log_scene = ExtResource("6_4il6x")

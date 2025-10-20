@@ -19,6 +19,12 @@ func set_flags(_flags: Dictionary):
 		flags.set(i, _flags[i])
 	Global.update_quests()
 
+func change_setting(arg: StringName, value: Variant):
+	settings_flags.set(arg, value)
+
+func retreive_setting(arg: StringName) -> Variant:
+	return settings_flags.get(arg)
+
 #region QUESTS
 var completed_quests: Array
 
@@ -69,7 +75,7 @@ func clean_persistence():
 			item_option.erase(i)
 #endregion
 
-func save() -> Dictionary:
+func save_flags() -> Array:
 	var flag_data: Array = flags.get_script().get_script_property_list()
 	flag_data = flag_data.filter(
 		func(x): return x.name.ends_with('.gd') == false
@@ -77,19 +83,22 @@ func save() -> Dictionary:
 		func(x): return {'name': x.name, 'value': flags.get(x.name)}
 	)
 
+	return flag_data
+
+func save_settings() -> Array:
 	var settings_data: Array = settings_flags.get_script().get_script_property_list()
 	settings_data = settings_data.filter(
 		func(x): return x.name.ends_with('.gd') == false
 	).map(
 		func(x): return {'name': x.name, 'value': settings_flags.get(x.name)}
 	)
+	return settings_data
 
-	return {'flag_data': flag_data, 'settings_data': settings_data}
 
-
-func load_checks(save_data: Dictionary):
-	for i in save_data.flag_data:
+func load_flags(flag_data: Array):
+	for i in flag_data:
 		flags.set(i.name, i.value)
 
-	for i in save_data.settings_data:
+func load_settings(settings_data: Array):
+	for i in settings_data:
 		settings_flags.set(i.name, i.value)

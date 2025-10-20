@@ -7,6 +7,7 @@ func warp(source: Location, destination_scene: PackedScene):
 	#get_parent().change_background(get_parent().loading_screen, true)
 
 	Global.players.freeze()
+	Global.players.leader.velocity = Vector2.ZERO
 	source.hide()
 	source.disconnect_signals()
 
@@ -37,6 +38,7 @@ func warp(source: Location, destination_scene: PackedScene):
 	Global.players.call_deferred('unfreeze')
 
 	#get_parent().change_background(null, true)
+	SaveAndLoad.call_deferred('save_game', SaveAndLoad.AUTOSAVE_SELECTED)
 
 
 func load_main_menu():

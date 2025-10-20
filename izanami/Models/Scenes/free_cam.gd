@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 		else:
 			if position != get_screen_center_position(): position = get_screen_center_position()
 
+	#Code repeated to handle holding Joystick down
 		if Input.is_action_pressed('zoom_in'):
 			if zoom < zoom_max:
 				zoom += zoom_step
@@ -52,6 +53,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('zoom_reset'):
 		zoom = initial_zoom
 		position = Global.players.leader.global_position
+	if event.is_action_pressed('ui_cancel') and is_current():
+		hide_cam()
 
 
 func show_cam():

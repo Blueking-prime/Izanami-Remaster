@@ -36,7 +36,7 @@ radius = 183.096
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqjfq"]
 radius = 34.0147
 
-[node name="Town" node_paths=PackedStringArray("church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "test", "tilemap") instance=ExtResource("1_xeoqd")]
+[node name="Town" node_paths=PackedStringArray("church", "smithy", "apothecary", "dungeon", "demonitarium", "palace", "test", "tilemap", "entrance_area") instance=ExtResource("1_xeoqd")]
 script = ExtResource("1_wpby1")
 church = NodePath("Church")
 smithy = NodePath("Smithy")
@@ -47,6 +47,7 @@ palace = NodePath("Palace")
 test = NodePath("Test")
 entrance = Vector2(960, 878)
 tilemap = NodePath("ObjectsSort/Tilemap")
+entrance_area = NodePath("Entrance")
 
 [node name="Players" parent="ObjectsSort" index="0"]
 position = Vector2(965, 1202)
@@ -172,9 +173,10 @@ script = ExtResource("18_y17gc")
 shape = SubResource("CircleShape2D_vqjfq")
 
 [node name="ExitButton" parent="CanvasLayer" index="4"]
+anchors_preset = 0
 offset_left = 0.0
 offset_top = 0.0
-offset_right = 30.0
-offset_bottom = 15.0
+offset_right = 8.0
+offset_bottom = 8.0
 
 [connection signal="body_entered" from="Entrance" to="." method="_on_entrance_body_entered"]

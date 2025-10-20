@@ -6,12 +6,14 @@ var save_files: Array
 var save_state: bool
 
 const NO_OPTION_SELECTED = -1
+const AUTOSAVE_SELECTED = -2
 
 func save_game(index: int):
-	if index == NO_OPTION_SELECTED:
-		create_save_file(folder_location + "save_%d.tres" % [save_files.size() + 1])
-	else:
-		create_save_file(folder_location + save_files[index])
+	Global.save_icon(true)
+	match index:
+		NO_OPTION_SELECTED: create_save_file(folder_location + "save_%d.tres" % [save_files.size() + 1])
+		AUTOSAVE_SELECTED: create_save_file(folder_location + "autosave.tres")
+		_: create_save_file(folder_location + save_files[index])
 
 func load_game(index: int):
 	if index == NO_OPTION_SELECTED:
@@ -28,25 +30,28 @@ func get_save_files():
 		DirAccess.make_dir_recursive_absolute(folder_location)
 
 	save_files = DirAccess.open(folder_location).get_files()
+	save_files.erase('system.tres')
 	print(save_files)
 
 ## PROCESS SAVE FILE DATA
 func create_save_file(file_location: String):
+	Global.save_icon(true)
 	var save_file:GameSaveData = GameSaveData.new()
 
 	save_file.date = Time.get_datetime_string_from_system()
 	save_file.party_data = Global.players.save()
 	save_file.scene_data = get_tree().current_scene.save()
-	save_file.game_checks = Checks.save()
+	save_file.game_flags = Checks.save_flags()
 	print(file_location, save_file)
 
 	ResourceSaver.save(save_file, file_location)
 	print('saved!')
+	Global.save_icon(false)
 
 func load_save_file(file_location: String):
 	var save_file: GameSaveData = load(file_location)
 	print(file_location, save_file)
-	Checks.load_checks(save_file.game_checks)
+	Checks.load_flags(save_file.game_flags)
 
 	match save_file.scene_data.location:
 		'Town': await load_town()
@@ -62,6 +67,19 @@ func load_save_file(file_location: String):
 
 	print('loaded')
 
+
+func save_settings():
+	Global.save_icon(true)
+	var save_file: SettingsSaveData = SettingsSaveData.new()
+	save_file.data = Checks.save_settings()
+	ResourceSaver.save(save_file, folder_location + 'system.tres')
+	Global.save_icon(false)
+
+
+func load_settings():
+	var save_file: SettingsSaveData = load(folder_location + 'system.tres')
+	if save_file is SettingsSaveData:
+		Checks.load_settings(save_file.data)
 
 ## LOAD SCENE
 func load_town():

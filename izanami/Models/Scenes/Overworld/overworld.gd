@@ -23,11 +23,9 @@ func show_pins():
 		else :
 			i.hide()
 	get_current_node()
-	print(visible_pins)
 
 func navigate_to_pins(pin: Sprite2D):
 	player_marker.global_position = pin.global_position
-	print(pin, ' ', current_pin_index)
 
 func get_current_node():
 	current_pin_index = 0

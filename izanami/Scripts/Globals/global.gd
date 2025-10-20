@@ -10,6 +10,7 @@ extends Node
 @export_category("UI Assets")
 @export var text_box_scene: PackedScene
 @export var confirmation_box_scene: PackedScene
+@export var popup_scene: PackedScene
 @export var description_box_scene: PackedScene
 @export var shop_menu_scene: PackedScene
 @export var text_log_scene: PackedScene
@@ -36,6 +37,7 @@ var shop_menu: Control
 var text_box: TextBox
 var action_log: Label
 var confirmation_box: ConfirmationDialog
+var popup: AcceptDialog
 var text_log: TextLog
 var exit_button: Button
 
@@ -107,11 +109,13 @@ func path(start: Vector2i, goal: Vector2i, walls: Array, width: int, height: int
 func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 'No'], screen_side: String = 'L', dialogue: bool = false) -> int: return await UI.show_text_choice(speaker, prompt, choices, screen_side, dialogue)
 func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', dialogue: bool = false) -> void: await UI.show_text_box(speaker, prompt, persist, screen_side, dialogue)
 func show_confirmation_box(prompt: String) -> bool: return await UI.show_confirmation_box(prompt)
+func show_info_popup(prompt: String): await UI.show_info_popup(prompt)
 func change_background(texture: Texture2D, global: bool = false): return UI.change_background(texture, global)
 func show_description(object: Resource) -> void: return UI.show_description(object)
 func show_shop_menu(stock: ResourceGroup): return UI.show_shop_menu(stock)
 func add_text_log_to_scene(): return UI.add_text_log_to_scene()
 func display_in_quick_info_panel(text: String): return UI.display_in_quick_info_panel(text)
+func save_icon(show: bool): return UI.save_icon(show)
 #endregion
 
 #region SceneLoader
@@ -201,7 +205,6 @@ func _on_textbox_log_selected(toggled_on: bool):
 
 
 func _input(event: InputEvent) -> void:
-
 	if event.is_action_pressed("ui_cancel"):
 		sell.emit('exit')
 		exit_signal.emit()
@@ -209,4 +212,4 @@ func _input(event: InputEvent) -> void:
 			Audio.play_exit_menu_sfx()
 	if event.is_action_pressed('test'):
 		print('--------------------MOVE----------------------')
-		print(get_viewport().gui_get_focus_owner())
+		show_info_popup('Test message')

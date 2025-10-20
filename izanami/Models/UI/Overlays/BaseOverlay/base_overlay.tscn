@@ -20,7 +20,7 @@ width = 10
 height = 10
 fill_from = Vector2(1, 0)
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("input_processing", "player_status", "quest_display", "music_display", "mag_counter", "coin_counter", "quick_info", "save_menu", "settings_menu")]
+[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("input_processing", "player_status", "quest_display", "music_display", "mag_counter", "coin_counter", "quick_info", "save_icon", "save_menu", "settings_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +35,8 @@ music_display = NodePath("InfoPanel/Music")
 mag_counter = NodePath("PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer/MagCount")
 coin_counter = NodePath("PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer/CoinCount")
 quick_info = NodePath("PlayerDataOverlay/QuickInfo")
-save_menu = NodePath("OverLays/Save/SaveMenu")
+save_icon = NodePath("AutosaveIcon")
+save_menu = NodePath("OverLays/Save/VBoxContainer/SaveMenu")
 settings_menu = NodePath("OverLays/Settings")
 
 [node name="InputProcessing" type="Node" parent="." node_paths=PackedStringArray("button_container")]
@@ -330,6 +331,27 @@ visible = false
 
 [node name="Save" parent="OverLays" instance=ExtResource("11_ej628")]
 
+[node name="AutosaveIcon" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_bottom = -10.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="AutosaveIcon"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("5_8ecp3")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="AutosaveIcon"]
+layout_mode = 2
+text = "Saving"
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="timeout" from="PlayerDataOverlay/QuickInfo/Timer" to="PlayerDataOverlay/QuickInfo" method="_on_timer_timeout"]
 [connection signal="pressed" from="Buttons/MenuButtons/FreecamButton" to="InputProcessing" method="_on_freecam_button_pressed"]
@@ -346,5 +368,5 @@ visible = false
 [connection signal="pressed" from="Buttons/MenuButton" to="." method="_on_menu_button_pressed"]
 
 [editable path="OverLays/Save"]
-[editable path="OverLays/Save/SaveMenu"]
-[editable path="OverLays/Save/SaveMenu/Options"]
+[editable path="OverLays/Save/VBoxContainer/SaveMenu"]
+[editable path="OverLays/Save/VBoxContainer/SaveMenu/Options"]

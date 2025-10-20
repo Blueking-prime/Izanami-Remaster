@@ -14,10 +14,11 @@ class_name UIOverlay
 @export var mag_counter: Label
 @export var coin_counter: Label
 @export var quick_info: QuickInfoPanel
+@export var save_icon: Control
 
 @export_category("Overlays")
 @export var save_menu: SaveMenu
-@export var settings_menu: Settings
+@export var settings_menu: OverlayMenu
 @export var inventory_menu: InventoryMenu
 @export var quests_menu: QuestMenu
 @export var status_menu: StatusOverlay

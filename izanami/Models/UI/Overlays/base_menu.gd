@@ -26,6 +26,7 @@ func _on_visibility_changed() -> void:
 		if is_instance_valid(Global.exit_button): Global.exit_button.show()
 		Global.description_box_parent = desc_box_container
 	else :
+		if self.name == 'Settings' and is_node_ready(): SaveAndLoad.save_settings()
 		if Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.disconnect(_on_exit_button_pressed)
 		if is_instance_valid(Global.exit_button): Global.exit_button.hide()
 		if is_instance_valid(Global.players): Global.players.unfreeze()

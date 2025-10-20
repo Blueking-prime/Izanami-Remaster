@@ -49,13 +49,11 @@ func process_date(date_string: String) -> String:
 
 
 func _on_item_activated(index: int) -> void:
+	hide()
 	if SaveAndLoad.save_state:
 		SaveAndLoad.save_game(index)
 	else:
 		SaveAndLoad.load_game(index)
-
-	update_listing()
-	hide()
 
 
 func _on_button_pressed() -> void:

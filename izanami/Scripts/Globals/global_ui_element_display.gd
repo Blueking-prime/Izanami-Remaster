@@ -109,6 +109,21 @@ func show_confirmation_box(prompt: String) -> bool:
 
 	return get_parent().confrimation_response
 
+func show_info_popup(prompt: String):
+	if is_instance_valid(get_parent().popup):
+		get_parent().popup.queue_free()
+
+	get_parent().popup = get_parent().popup_scene.instantiate()
+
+	get_tree().get_current_scene().canvas_layer.add_child(get_parent().popup)
+
+	get_parent().popup.dialog_text = prompt
+	get_parent().popup.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	get_parent().popup.get_label().vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+
+	await get_parent().popup.close_requested
+
+	get_parent().popup.hide()
 
 func change_background(texture: Texture2D, global: bool = false):
 	if texture:
@@ -240,11 +255,21 @@ func _connect_text_box_signals():
 		get_parent().text_box.log_button.toggled.connect(get_parent()._on_textbox_log_selected)
 		get_parent().text_box.skip_button.pressed.connect(get_parent()._on_textbox_skip_selected)
 
+
 func add_text_log_to_scene():
 	if not get_parent().text_log.get_parent():
 		get_tree().get_current_scene().canvas_layer.add_child(get_parent().text_log)
+
 
 func display_in_quick_info_panel(text: String):
 	var scene = get_tree().get_current_scene()
 	if scene is Location:
 		scene.overlay.quick_info.display_info(text)
+
+func save_icon(show: bool):
+	var scene = get_tree().get_current_scene()
+	if scene is Location:
+		scene.overlay.save_icon.visible = show
+	else :
+		scene.save_icon.visible = show
+	print('Icon')

@@ -6,7 +6,7 @@ class_name UIOverlayInputProcessor
 
 var save_menu: SaveMenu:
 	get(): return get_parent().save_menu
-var settings_menu: Settings:
+var settings_menu: OverlayMenu:
 	get(): return get_parent().settings_menu
 var inventory_menu: InventoryMenu:
 	get(): return get_parent().inventory_menu
@@ -125,7 +125,6 @@ func _on_map_button_pressed() -> void:
 
 func _on_freecam_button_pressed() -> void:
 	if free_cam:
-		print(free_cam)
 		Global.players.freeze()
 
 		free_cam.setup_map()

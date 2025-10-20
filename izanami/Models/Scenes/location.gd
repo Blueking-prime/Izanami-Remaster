@@ -2,7 +2,14 @@ extends Node2D
 
 class_name Location
 
-@export var entrance: Vector2
+@export var entrance: Vector2:
+	get():
+		if entrance_area:
+			return entrance_area.global_position + (Vector2.DOWN * Location.TILEMAP_CELL_SIZE * 3)
+		else :
+			return entrance
+	set(arg): entrance = arg
+
 @export var tilemap: TileMapLayer
 @export var background: LocationBackground
 @export var entrance_area: Area2D
@@ -32,10 +39,6 @@ func load_scene():
 		test_players = null
 	else:
 		_remove_test_players()
-
-	if entrance_area:
-		entrance = entrance_area.global_position
-		entrance += Vector2.UP * entrance_area.get_child(0).shape.radius * 1.2
 
 	if background: background.draw_background()
 

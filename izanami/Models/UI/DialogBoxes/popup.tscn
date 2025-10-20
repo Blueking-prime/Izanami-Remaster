@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bsvxjtygkmh1l"]
+
+[node name="AcceptDialog" type="AcceptDialog"]
+initial_position = 1
+visible = true
+exclusive = false
+unresizable = true
+borderless = true
+always_on_top = true
+popup_window = true

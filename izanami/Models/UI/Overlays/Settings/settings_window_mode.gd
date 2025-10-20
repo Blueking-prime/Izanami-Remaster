@@ -15,8 +15,7 @@ func _ready() -> void:
 		if window_modes[i]:
 			dropdown.add_item(window_modes[i], i)
 
-	dropdown.selected = Checks.settings_flags.window_mode
+	dropdown.selected = Checks.retreive_setting('window_mode')
 
 func _on_option_button_item_selected(index: int) -> void:
-	var mode := dropdown.get_item_id(index)
-	Checks.settings_flags.window_mode = mode
+	Checks.change_setting('window_mode', dropdown.get_item_id(index))

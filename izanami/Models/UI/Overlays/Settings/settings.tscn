@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://co458jxngt4el"]
 
-[ext_resource type="Script" uid="uid://cacgmstsgbr24" path="res://Models/UI/Overlays/Settings/settings.gd" id="1_ewfq3"]
+[ext_resource type="Script" uid="uid://canoybrdma74a" path="res://Models/UI/Overlays/base_menu.gd" id="1_ka3xp"]
 [ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_16b2c"]
 [ext_resource type="PackedScene" uid="uid://b2sson3f02peq" path="res://Models/UI/OptionMenus/keybind_option.tscn" id="2_f5xb2"]
 [ext_resource type="Script" uid="uid://di8diomqkagmj" path="res://Models/UI/Overlays/Settings/settings_window_mode.gd" id="3_cl27w"]
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ewfq3")
+script = ExtResource("1_ka3xp")
 tab_container = NodePath("TabContainer")
 menu_switcher = NodePath("MenuSwitcher")
 
@@ -303,6 +303,24 @@ placeholder_text = "0"
 alignment = 1
 emoji_menu_enabled = false
 flat = true
+
+[node name="Banner" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_right = -50.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Banner"]
+layout_mode = 2
+text = "Close Menu to Save Changes"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="item_selected" from="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/WindowMode/OptionButton" to="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer/WindowMode" method="_on_option_button_item_selected"]

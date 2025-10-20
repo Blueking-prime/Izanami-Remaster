@@ -561,12 +561,12 @@ gold = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("inventory_menu", "quests_menu", "status_menu", "map_cam", "free_cam") instance=ExtResource("3_hxd4o")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("map_cam", "free_cam", "inventory_menu", "quests_menu", "status_menu") instance=ExtResource("3_hxd4o")]
+map_cam = NodePath("../../MapCam")
+free_cam = NodePath("../../FreeCam")
 inventory_menu = NodePath("../InventoryMenu")
 quests_menu = NodePath("../QuestMenu")
 status_menu = NodePath("../StatusOverlay")
-map_cam = NodePath("../../MapCam")
-free_cam = NodePath("../../FreeCam")
 
 [node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("4_qvqpn")]
 
@@ -578,6 +578,7 @@ visible = false
 
 [node name="ExitButton" type="Button" parent="CanvasLayer"]
 visible = false
+anchors_preset = -1
 offset_left = 10.0
 offset_top = 10.0
 text = "Back"

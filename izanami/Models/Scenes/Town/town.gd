@@ -55,10 +55,10 @@ func load_data(data: TownSaveData):
 	print('Town Data Loaded')
 
 
-func _on_entrance_body_entered(_body: Node2D) -> void:
+func _on_entrance_body_entered(body: Node2D) -> void:
 	Global.players.freeze()
 	if await Global.show_confirmation_box('Go to overworld?'):
-		print('Entrance')
+		Global.push_back_player(entrance, Location.TILEMAP_CELL_SIZE * 2)
 		go_to_overworld()
 	else :
 		Global.players.unfreeze()

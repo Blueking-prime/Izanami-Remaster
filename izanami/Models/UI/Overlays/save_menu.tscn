@@ -11,10 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SaveMenu" parent="." node_paths=PackedStringArray("button", "title", "background") instance=ExtResource("1_gfn7d")]
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
@@ -23,47 +22,52 @@ offset_right = -50.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_hqm8v")
-button = NodePath("Button")
-title = NodePath("Title/MarginContainer/Label")
-background = NodePath("..")
 
-[node name="Title" type="PanelContainer" parent="SaveMenu"]
+[node name="Title" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"InternalPanel"
 
-[node name="MarginContainer" type="MarginContainer" parent="SaveMenu/Title"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Title"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SaveMenu/Title/MarginContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/Title/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Create Save File"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" parent="SaveMenu/Heading" index="0"]
+[node name="SaveMenu" parent="VBoxContainer" node_paths=PackedStringArray("button", "title", "background") instance=ExtResource("1_gfn7d")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_hqm8v")
+button = NodePath("../Button")
+title = NodePath("../Title/MarginContainer/Label")
+background = NodePath("../..")
+
+[node name="MarginContainer" parent="VBoxContainer/SaveMenu/Heading" index="0"]
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="NameLabel" parent="SaveMenu/Heading/MarginContainer/HBoxContainer" index="0"]
+[node name="NameLabel" parent="VBoxContainer/SaveMenu/Heading/MarginContainer/HBoxContainer" index="0"]
 text = "File"
 
-[node name="Q1Label" parent="SaveMenu/Heading/MarginContainer/HBoxContainer" index="1"]
+[node name="Q1Label" parent="VBoxContainer/SaveMenu/Heading/MarginContainer/HBoxContainer" index="1"]
 text = "Date"
 
-[node name="Q2label" parent="SaveMenu/Heading/MarginContainer/HBoxContainer" index="2"]
+[node name="Q2label" parent="VBoxContainer/SaveMenu/Heading/MarginContainer/HBoxContainer" index="2"]
 visible = false
 text = ""
 
-[node name="Button" type="Button" parent="SaveMenu"]
+[node name="Button" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Create New Save"
 
-[connection signal="visibility_changed" from="SaveMenu" to="SaveMenu" method="_on_visibility_changed"]
-[connection signal="item_activated" from="SaveMenu/Options" to="SaveMenu" method="_on_item_activated"]
-[connection signal="pressed" from="SaveMenu/Button" to="SaveMenu" method="_on_button_pressed"]
+[connection signal="visibility_changed" from="VBoxContainer/SaveMenu" to="VBoxContainer/SaveMenu" method="_on_visibility_changed"]
+[connection signal="item_activated" from="VBoxContainer/SaveMenu/Options" to="VBoxContainer/SaveMenu" method="_on_item_activated"]
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/SaveMenu" method="_on_button_pressed"]
 
-[editable path="SaveMenu"]
-[editable path="SaveMenu/Options"]
+[editable path="VBoxContainer/SaveMenu"]
+[editable path="VBoxContainer/SaveMenu/Options"]
