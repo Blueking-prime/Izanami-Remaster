@@ -6,6 +6,7 @@ class_name Player
 @export var gear: PlayerGear
 @export var detector: PlayerDetector
 @export var listener: AudioListener2D
+@export var light: PointLight2D
 
 @export var skill_menu: Options
 @export var item_menu: Options

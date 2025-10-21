@@ -6,6 +6,7 @@ class_name InventorySkillMenu
 
 ## EXTERNAL PARAMETERS
 @export var target_selector: Options
+var curr_index: int
 
 func load_stock():
 	_clear_data_cards()
@@ -46,7 +47,7 @@ func _input(event: InputEvent) -> void:
 
 	if not is_ancestor_of(current_focus): return
 
-	var curr_index = current_focus.root_menu.get_parent().get_parent().get_parent().get_index()
+	curr_index = current_focus.root_menu.get_parent().get_parent().get_parent().get_index()
 
 
 	if event.is_action_pressed("ui_focus_next"):

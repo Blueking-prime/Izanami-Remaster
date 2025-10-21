@@ -42,7 +42,7 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_hqm8v")
-button = NodePath("../Button")
+button = NodePath("Button")
 title = NodePath("../Title/MarginContainer/Label")
 background = NodePath("../..")
 
@@ -60,14 +60,14 @@ text = "Date"
 visible = false
 text = ""
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/SaveMenu"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Create New Save"
 
 [connection signal="visibility_changed" from="VBoxContainer/SaveMenu" to="VBoxContainer/SaveMenu" method="_on_visibility_changed"]
 [connection signal="item_activated" from="VBoxContainer/SaveMenu/Options" to="VBoxContainer/SaveMenu" method="_on_item_activated"]
-[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/SaveMenu" method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveMenu/Button" to="VBoxContainer/SaveMenu" method="_on_button_pressed"]
 
 [editable path="VBoxContainer/SaveMenu"]
 [editable path="VBoxContainer/SaveMenu/Options"]

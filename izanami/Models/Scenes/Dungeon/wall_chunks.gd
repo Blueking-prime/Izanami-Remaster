@@ -34,6 +34,7 @@ func load_chunks(new_map: bool):
 		root_node.player.tilemap_position = current_chunk.entrance.clamp(
 			Vector2i(2, 2), Vector2i(map.width - 2, map.height -2)
 		)
+		root_node.player.light.enabled = true
 	else :
 		index = current_chunk.chunk_no
 

@@ -141,6 +141,7 @@ text = "Saving"
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/New" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="item_activated" from="CanvasLayer/Save/VBoxContainer/SaveMenu/Options" to="CanvasLayer/Save/VBoxContainer/SaveMenu" method="_on_item_activated"]
 
 [editable path="CanvasLayer/Save"]
 [editable path="CanvasLayer/Save/VBoxContainer/SaveMenu"]

@@ -3,8 +3,6 @@ extends Location
 class_name Demonitarium
 
 @export var counter: DemonitariumCounter
-@export var warp_points: Node2D
-
 
 func connect_signals():
 	if not Global.players.leader.detector.hit_building.is_connected(_check_building):
@@ -18,7 +16,6 @@ func _check_building(node: Variant):
 	overlay.hide()
 	match node:
 		counter: await counter.main()
-		#warp_points: await warp_points.main()
 
 func reset_from_battle():
 	super.reset_from_battle()

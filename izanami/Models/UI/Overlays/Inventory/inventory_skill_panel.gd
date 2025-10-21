@@ -60,7 +60,3 @@ func _on_item_selected(index: int) -> void:
 	var skill: Skill = player.skills.get_skills()[index]
 	if skill:
 		Global.show_description(skill)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel") and target_selector and target_selector.visible:
-		target_selector.hide()

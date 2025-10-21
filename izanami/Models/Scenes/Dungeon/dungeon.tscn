@@ -18,8 +18,8 @@ script = ExtResource("2_g8y5j")
 map = NodePath("Map")
 wall_chunks = NodePath("ObjectsSort/WallChunks")
 enemy_display = NodePath("CanvasLayer/EnemyDisplay")
-width = 20
-height = 10
+width = 40
+height = 20
 chunk_length = 3
 enemy_types = ExtResource("3_khi17")
 MAX_ENEMIES = 3
@@ -28,7 +28,7 @@ enemy_level = 1
 dungeon_name = "test"
 item_drop_group = ExtResource("4_1cpbm")
 gear_drop_group = ExtResource("5_uay2u")
-enemy_spawn_chance = 1.0
+enemy_spawn_chance = 0.0
 treasure_spawn_chance = 0.2
 gear_chance = 0.5
 max_treasure_no = 5
@@ -87,3 +87,12 @@ alignment = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/EnemyDisplay/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
+
+[node name="ExitButton" parent="CanvasLayer" index="5"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="7"]
+color = Color(0.0353462, 0.0353462, 0.0353462, 1)

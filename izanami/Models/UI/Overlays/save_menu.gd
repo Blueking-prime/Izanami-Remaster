@@ -49,10 +49,17 @@ func process_date(date_string: String) -> String:
 
 
 func _on_item_activated(index: int) -> void:
-	hide()
 	if SaveAndLoad.save_state:
+		if index >= 0:
+			var confirm = await Global.show_confirmation_box('Do you want to Overwrite this save?')
+			if not confirm: return
+		hide()
 		SaveAndLoad.save_game(index)
 	else:
+		if not get_tree().get_current_scene() is MainMenu:
+			var confirm = await Global.show_confirmation_box('Do you want to Load this save? \n(WARNING! Unsaved progress will be lost!)')
+			if not confirm: return
+		hide()
 		SaveAndLoad.load_game(index)
 
 
@@ -78,6 +85,19 @@ func _on_visibility_changed() -> void:
 		background.show()
 		_set_focus()
 	else :
-		if Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.connect(_on_exit_button_pressed)
+		if Global.exit_signal.is_connected(_on_exit_button_pressed): Global.exit_signal.disconnect(_on_exit_button_pressed)
 		if is_instance_valid(Global.exit_button): Global.exit_button.hide()
 		background.hide()
+
+func _input(event: InputEvent) -> void:
+	if not visible: return
+	var current_focus = get_viewport().gui_get_focus_owner()
+	if not is_instance_valid(current_focus): return
+	if current_focus is not Button: return
+	if not is_ancestor_of(current_focus): return
+
+	if event.is_action_pressed("ui_focus_next") or event.is_action_pressed("ui_focus_prev"):
+		if current_focus == button:
+			options.grab_focus()
+		else :
+			button.grab_focus()

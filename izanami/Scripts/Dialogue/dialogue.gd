@@ -77,7 +77,7 @@ func parse_branch(branch: Dictionary):
 		auto_delay_timer.stop()
 
 func show_cutscene(cutscene_name: String):
-	var scroll_state: bool = Checks.scroll
+	var scroll_state: bool = Checks.retreive_setting('scroll')
 	Global.pause_timer.connect(_on_pause_timeout)
 
 	if is_instance_valid(Global.players):
@@ -98,7 +98,7 @@ func show_cutscene(cutscene_name: String):
 				alt_branch += 1
 
 	Global.textbox_skip_flag = false
-	Checks.scroll = scroll_state
+	Checks.change_setting('scroll', scroll_state)
 	if is_instance_valid(Global.text_log):
 		Global.text_log.hide()
 
@@ -122,7 +122,7 @@ func parse_valid_choices(choices: Array, names: Array, index: int) -> int:
 	return choices.find_custom(func(x): return x.name == names[index])
 
 func _calculate_wait_time(text: String):
-	return text.split(' ').size() * Checks.scroll_speed * 2 + Checks.wait_time
+	return text.split(' ').size() * Checks.retreive_setting('scroll_speed') * 2 + Checks.retreive_setting('wait_time')
 
 func _check_screenside(speaker: String) -> String:
 	if speaker == "PLAYER_NAME" or speaker == '{pl}':

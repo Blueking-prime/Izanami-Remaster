@@ -16,13 +16,13 @@
 size = Vector2(300, 70)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xnnc6"]
-radius = 88.8369
+radius = 20.0
 
-[node name="Demonitarium" node_paths=PackedStringArray("counter", "warp_points", "tilemap") instance=ExtResource("1_ynqmm")]
+[node name="Demonitarium" node_paths=PackedStringArray("counter", "tilemap", "entrance_area") instance=ExtResource("1_ynqmm")]
 script = ExtResource("2_tp2q5")
 counter = NodePath("Counter")
-warp_points = NodePath("WarpPoints")
 tilemap = NodePath("ObjectsSort/TileMapLayer")
+entrance_area = NodePath("Exit")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ObjectsSort" index="1"]
 
@@ -55,23 +55,20 @@ confirm_button = NodePath("../../CanvasLayer/QuantityInput/Button")
 
 [node name="Crowley" type="Node2D" parent="Counter" index="4"]
 
-[node name="WarpPoints" type="Node2D" parent="." index="6"]
-position = Vector2(1628, 320)
-
-[node name="Enugu" type="Area2D" parent="WarpPoints" index="0"]
-position = Vector2(120, 127)
+[node name="Exit" type="Area2D" parent="." index="6"]
+position = Vector2(1748, 447)
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("8_s3mno")
 destination = "Enugu"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WarpPoints/Enugu" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" index="0"]
 shape = SubResource("CircleShape2D_xnnc6")
 
-[node name="Label" type="Label" parent="WarpPoints/Enugu" index="1"]
+[node name="Label" type="Label" parent="Exit" index="1"]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Enugu"
+text = "Exit"
 metadata/_edit_use_anchors_ = true
 
 [node name="QuantityInput" type="SpinBox" parent="CanvasLayer" index="3"]

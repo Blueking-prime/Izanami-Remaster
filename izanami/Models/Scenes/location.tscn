@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d4fsdqxn6alxo"]
+[gd_scene load_steps=19 format=3 uid="uid://d4fsdqxn6alxo"]
 
 [ext_resource type="Script" uid="uid://dl5ci1kbwevg4" path="res://Models/Scenes/location.gd" id="1_knc6e"]
 [ext_resource type="Script" uid="uid://csyfy2mq4hynd" path="res://Models/Scenes/player_camera_script.gd" id="2_16o45"]
@@ -519,6 +519,8 @@ sources/1 = SubResource("TileSetAtlasSource_roud6")
 sources/2 = SubResource("TileSetAtlasSource_u75el")
 sources/0 = SubResource("TileSetAtlasSource_kcgp0")
 
+[sub_resource type="Environment" id="Environment_80d1d"]
+
 [node name="Location" type="Node2D" node_paths=PackedStringArray("background", "test_players", "objectsort", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
 script = ExtResource("1_knc6e")
 background = NodePath("Background")
@@ -578,7 +580,9 @@ visible = false
 
 [node name="ExitButton" type="Button" parent="CanvasLayer"]
 visible = false
-anchors_preset = -1
 offset_left = 10.0
 offset_top = 10.0
 text = "Back"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_80d1d")

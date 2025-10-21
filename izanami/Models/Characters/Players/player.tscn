@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqykicfu0u1ug"]
+[gd_scene load_steps=11 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" uid="uid://d4gw8w33rep3v" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
@@ -11,13 +11,27 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mmjfn"]
 radius = 9.48683
 
-[node name="Player" node_paths=PackedStringArray("gear", "detector", "listener", "skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
+[sub_resource type="Gradient" id="Gradient_yh8rr"]
+offsets = PackedFloat32Array(0, 0.775449)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_883f5"]
+gradient = SubResource("Gradient_yh8rr")
+width = 128
+height = 128
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="Player" node_paths=PackedStringArray("gear", "detector", "listener", "light", "skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
 collision_layer = 8
 collision_mask = 51
 script = ExtResource("2_lj72d")
 gear = NodePath("Gear")
 detector = NodePath("Detector")
 listener = NodePath("AudioListener")
+light = NodePath("PointLight2D")
 skill_menu = NodePath("Skills/SkillList")
 item_menu = NodePath("Items/ItemList")
 max_sp = 0
@@ -79,6 +93,13 @@ bus = &"CharacterSFX"
 
 [node name="AudioListener" type="AudioListener2D" parent="." index="9"]
 current = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="10"]
+scale = Vector2(3.03125, 2.78125)
+enabled = false
+shadow_enabled = true
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_883f5")
 
 [connection signal="item_selected" from="Skills/SkillList" to="." method="_on_skill_list_selected"]
 [connection signal="item_selected" from="Items/ItemList" to="." method="_on_item_list_selected"]

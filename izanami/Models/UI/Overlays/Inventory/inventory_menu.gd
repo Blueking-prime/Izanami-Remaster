@@ -7,8 +7,6 @@ class_name InventoryMenu
 @export var gear_menu: Control
 @export var misc_menu: Control
 
-@export var selector_panel: Panel
-@export var selector_group: Node
 
 func load_menu():
 	skills_menu.load_stock()
@@ -17,12 +15,11 @@ func load_menu():
 
 	super.load_menu()
 
-func _on_exit_button_pressed() -> void:
-	items_menu.target_selector.hide()
-	gear_menu.target_selector.hide()
-	skills_menu.target_selector.hide()
-	selector_panel.hide()
-	super._on_exit_button_pressed()
+func reset_focus():
+	if current_tab is InventorySkillMenu:
+		current_tab.get_child(current_tab.curr_index).options.call_deferred('grab_focus')
+	else:
+		current_tab.options.grab_focus()
 
 func _on_visibility_changed() -> void:
 	super._on_visibility_changed()

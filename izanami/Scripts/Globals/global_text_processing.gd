@@ -60,13 +60,13 @@ func _whisper(result: RegExMatch) -> String:
 	if result.get_string(Global.REGEX_SLASH_GROUP):
 		return r'[/color]'
 	else :
-		return '[color=#%s]' % [Checks.thought_text_colour.to_html()]
+		return '[color=#%s]' % [Checks.retreive_setting('thought_text_colour').to_html()]
 
 func _small(result: RegExMatch) -> String:
 	if result.get_string(Global.REGEX_SLASH_GROUP):
 		return r'[/font_size]'
 	else :
-		return '[font_size=%d]' % [Checks.small_text_size]
+		return '[font_size=%d]' % [Checks.retreive_setting('small_text_size')]
 
 func _player() -> String:
 	return Checks.player_name

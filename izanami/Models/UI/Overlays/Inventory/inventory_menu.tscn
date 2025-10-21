@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dhsm8mq4h1rd6" path="res://Models/UI/Overlays/Inventory/inventory_gear.gd" id="3_dtbst"]
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/UI/OptionMenus/options.tscn" id="8_8cdlv"]
 
-[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("skills_menu", "items_menu", "gear_menu", "misc_menu", "selector_panel", "selector_group", "tab_container", "menu_switcher", "desc_box_container")]
+[node name="InventoryMenu" type="Panel" node_paths=PackedStringArray("skills_menu", "items_menu", "gear_menu", "misc_menu", "tab_container", "menu_switcher", "desc_box_container", "selector_panel", "selector_group")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,11 +21,11 @@ skills_menu = NodePath("TabContainer/Skills")
 items_menu = NodePath("TabContainer/Items")
 gear_menu = NodePath("TabContainer/Gear")
 misc_menu = NodePath("TabContainer/Misc")
-selector_panel = NodePath("SelectorPanel")
-selector_group = NodePath("Selectors")
 tab_container = NodePath("TabContainer")
 menu_switcher = NodePath("MenuSwitcher")
 desc_box_container = NodePath("BoxContainer")
+selector_panel = NodePath("SelectorPanel")
+selector_group = NodePath("Selectors")
 
 [node name="MenuSwitcher" parent="." node_paths=PackedStringArray("menu_container") instance=ExtResource("2_3184o")]
 menu_container = NodePath("../TabContainer")

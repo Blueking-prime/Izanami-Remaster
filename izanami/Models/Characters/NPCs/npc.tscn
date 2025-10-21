@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://byocasfo71gy0"]
+
+[ext_resource type="Script" uid="uid://b7n03nsf3sf1j" path="res://Models/Characters/NPCs/npc.gd" id="1_45exu"]
+[ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="1_yxwxv"]
+
+[sub_resource type="Curve2D" id="Curve2D_bq6y0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 80.6136, 0.844795, 0, 0, 0, 0, 26.8712, -28.723, 0, 0, 0, 0, 26.8712, -70.118, 0, 0, 0, 0, 79.687, -98.841, 0, 0, 0, 0, 136.209, -68.4284, 0, 0, 0, 0, 137.136, -28.723, 0, 0, 0, 0, 80.6136, 0.844795)
+}
+point_count = 7
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_45exu"]
+radius = 25.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-88, 1.52588e-05)
+scale = Vector2(1.07922, 1.18372)
+curve = SubResource("Curve2D_bq6y0")
+
+[node name="PathFolllow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(80.6136, 0.844795)
+rotates = false
+
+[node name="NPC" type="CharacterBody2D" parent="Path2D/PathFolllow2D" node_paths=PackedStringArray("path_follow")]
+scale = Vector2(0.926594, 0.844795)
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("1_45exu")
+cutscene = "res://Assets/Cutscenes/test_cutscene.json"
+path_follow = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFolllow2D/NPC"]
+position = Vector2(-7.62939e-06, -1.58548e-05)
+shape = SubResource("CircleShape2D_45exu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFolllow2D/NPC"]
+position = Vector2(0.999992, -1.00002)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_yxwxv")

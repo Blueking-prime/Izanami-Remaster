@@ -122,6 +122,7 @@ func exit_dungeon(completed: bool):
 	Global.players.unfreeze()
 	if confirm:
 		if completed: Checks.dungeons[dungeon_name].level += 1
+		player.light.enabled = false
 		Global.warp(self, Global.town_scene)
 	else :
 		unfreeze_enemies()
@@ -204,6 +205,7 @@ func _on_detector_hit_enemy(body: Enemy) -> void:
 	freeze_enemies()
 	#Global.push_back_player(body.global_position, 1)
 	await get_tree().create_timer(0.5).timeout
+	enemy_display.hide()
 	#! USE scene_file_path TO REMEMBERWHAT NODE TO LOAD
 	if body == boss_enemy:
 		initiate_battle(true)
@@ -216,10 +218,11 @@ func _on_detector_hit_border(chunk):
 	wall_chunks.update_player_chunk(chunk)
 
 func reset_from_battle():
-	#background.show()
+	background.show()
 	super.reset_from_battle()
 	objectsort.show()
 	enemy_display.update_display()
+	enemy_display.show()
 	unfreeze_enemies()
 
 

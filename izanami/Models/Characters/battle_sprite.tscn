@@ -49,6 +49,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Pointer" type="TextureRect" parent="VBox/BattleSprite"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -63,6 +64,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Indicator" type="TextureRect" parent="VBox/BattleSprite"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

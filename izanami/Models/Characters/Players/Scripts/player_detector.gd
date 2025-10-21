@@ -36,6 +36,8 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 			hit_enemy.emit(body)
 		if body.get_collision_layer_value(6):
 			hit_building.emit(body)
+		if body.get_collision_layer_value(8):
+			body.dialogue()
 
 
 func _on_area_entered(area: Area2D) -> void:

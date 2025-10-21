@@ -9,7 +9,7 @@ GOALS
 - [ ] Include boost info in item and skill description
 - [ ] Add skill icons
 - [ ] Add status effect icons
-- [ ] Remove dev tools [test event, freecam]
+- [ ] Remove dev tools [test event, freecam, print statements, Visible debug]
 
 BUG FIXES
 - [ ] Figure out object sorting
@@ -43,24 +43,25 @@ BUG FIXES
 - [x] Fix enemy name bugs
 
 TASKS (WORKABLE)
-- [ ] Change ui menus to book graphic
-- [ ] Add point lighting and directional lighting to players for dungeons and towns respectively
-- [ ] Add water/lava in dungeons
-- [ ] Us path and path follow for NPC movements
-- [ ] Fix leaf not working
-- [ ] Fix delay before enter battle after collision
 - [ ] Fix walking sound being played while idle
-- [ ] Grab focus on return to menu from cancel
-- [ ] Add focus switching between save menu list and new button
-- [ ] Only hide selector on menu exit
 - [ ] Implement custom loading screen scene
 - [ ] Implement GUIDE movement addon
 - [ ] Add controller menu bindings
-- [ ] Add option to save cutom bindings
-- [ ] Remove warp functionality from demonitarium
+- [ ] Add option to save custom bindings
+- [ ] Change ui menus to book graphic
+- [ ] Add water/lava in dungeons
 - [ ] Load Dungeon alongside town since always return to same town
 - [ ] load demonitarium alongside town since no need for warpping
 - [ ] Implement accessibility settings
+- [x] Add point lighting and directional lighting to players for dungeons and towns respectively
+- [x] Us path and path follow for NPC movements
+- [x] Fix leaf not working
+- [-] Fix delay before enter battle after collision (Add loading screen here)
+- [x] Fix indicators showing on battle start
+- [-] Add focus switching between save menu list and new button
+- [x] Grab focus on return to menu from cancel
+- [x] Only hide selector on menu exit
+- [x] Remove warp functionality from demonitarium (or just replace as entrance)
 - [x] Implement warning popup
 - [x] Hide overworld confirm after choice made
 - [x] Increase Button custom margins

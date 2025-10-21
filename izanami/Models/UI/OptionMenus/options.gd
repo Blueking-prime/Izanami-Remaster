@@ -6,7 +6,7 @@ class_name Options
 
 @export var option_scene: PackedScene
 
-var first_option: Option
+var last_focus: int = -1
 
 signal item_activated(index: int)
 signal item_selected(index: int)
@@ -58,6 +58,7 @@ func enable():
 
 
 func _on_option_selected(index: int):
+	last_focus = index
 	item_selected.emit(index)
 
 func _on_option_activated(index: int):
@@ -65,7 +66,10 @@ func _on_option_activated(index: int):
 
 func _on_focus_entered() -> void:
 	if button_container.get_children():
-		button_container.get_child(0).call_deferred('grab_focus')
+		if last_focus >= 0:
+			button_container.get_child(last_focus).call_deferred('grab_focus')
+		else:
+			button_container.get_child(0).call_deferred('grab_focus')
 
 
 func _input(event: InputEvent) -> void:
