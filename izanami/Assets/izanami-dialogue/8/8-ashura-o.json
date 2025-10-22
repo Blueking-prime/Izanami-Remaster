@@ -1,0 +1,24 @@
+{
+    "main": [
+        ["Ashura-O Paharada", "Weak."],
+        ["Ashura-O Paharada", "Weak. Weak. Weak. Weak. Weak. Weak. Weak. Weak. Weak. Weak."],
+        ["Ashura-O Paharada", "Surrounded by weaklings. Slobbering, servile, enfeebled, doddering WEAKLINGS."],
+        ["Ashura-O Paharada", "Do you know what that feels like. WHY! WHY DO I HAVE TO DO EVERYTHING MYSELF!"],
+        ["Ashura-O Paharada", "Most beloved of the Daimaou. Chosen by the Kijohime. I was to inherit this world!"],
+        ["Ashura-O Paharada", "Look at me, monkey! Do I look like a STEPPING STONE!?", ["Kind of.", "The Kijohime chose you?"], ["branch_1", "branch_2"]]
+    ],
+
+    "branch_1":[
+        ["Ashura-O Paharada", "..."],
+        ["Ashura-O Paharada", "Not even a speck of you shall remain."],
+        ["Ashura-O Paharada", "Die."]
+    ],
+
+    "branch_2":[
+        ["Ashura-O Paharada", "Yes. It was by her will that I took up the Daimaou's seat."],
+        ["Ashura-O Paharada", "With her by my side, she'd said, my claim to the throne would be undeniable."],
+        ["Ashura-O Paharada", "But to think she had a 'champion' this whole time. A monkey like you."],
+        ["Ashura-O Paharada", "You are the very incarnation of mankind's unsightliness. That is the reason you must perish."],
+        ["Ashura-O Paharada", "Through death, you will atone for your profanity."]
+]
+}

@@ -1,0 +1,48 @@
+{
+    "main": [
+        ["Dragonlord Kaiser", "Come, Great Warrior. Ahaaahaha. You wish to speak to the Great Dragonlord?"],
+        ["Dragonlord Kaiser", "I've heard many a tale of your conquest, to have defeated two of my fellow Heavenly Kings. Your power it's well..."],
+        ["Dragonlord Kaiser", "You may think it flattery but your potential reminds me much of the Daimaou himself, back in his youth."],
+        ["", "At this the Dragonlord has another laugh. One that lacked mockery or malice."],
+        ["Dragonlord Kaiser", "Back then the worlds were severed, the Diamaou was just a stark-eyed upstart fallen in from the human world"],
+        ["Dragonlord Kaiser", "But boy did he ever fill the demon world with blood. I was in the running for Daimaou, you know? After the old one died."],
+        ["Dragonlord Kaiser", "But after seeing that boy's power in action I resigned myself to second fiddle. It's rather tragic really. My potential was stubbed before it even began."],
+        ["Dragonlord Kaiser", "See, my boy or girl. In this world you're either born with power or you're worthless. I've lived long enough to understand this truth."],
+        ["Dragonlord Kaiser", "But that does not mean that your lot in life in unchangeable, all that matters is hedging your bets in the right places."],
+        ["Dragonlord Kaiser", "See, I [i]believed[/i] in the Daimaou. I was [i]certain[/i] of his power."], 
+        ["Dragonlord Kaiser", "Now that he's gone the only thing I'm certain of is that the Ashura-O is about to run this hardly strung together dominion into rubble."],
+        ["Dragonlord Kaiser", "So you see my conquest isn't one of greed or delusions of grandeur. If you wanted to be charitable, you could call it loyalty but I'm simply being realistic."],
+        ["Dragonlord Kaiser", 
+        "Your power is immense. I can see it, with you at our helm, we could wrestle these lands from the chaotic whims of the Blue and the Ashura-O.", 
+        ["Was the Daimaou a human?", "What about the Orb", "Why are you battling the Yuan Dao.", "What are your true plans?"], 
+        ["branch_1", "branch_2", "branch_3", "branch_4"]]
+    ],
+
+    "branch_1":[
+        ["Dragonlord Kaiser", "Yes! More human than you even!"],
+        ["Dragonlord Kaiser", "He tore through the demon world like a whirlwind and claimed the throne for himself."],
+        ["Dragonlord Kaiser", "His existence is proof enough that the ultimate lifeform is the fusion of man and demon!"]
+    ],
+
+    
+    "branch_2":[
+        ["Dragonlord Kaiser", "Ha! That thing? With the power of my Fusion Army we won't even need it."],
+        ["Dragonlord Kaiser", "Tell you what? The Yuan Dao seem to trust you. Go back out there and run their leader through, and it's all yours."],
+        ["", "He bellows another round of laughter"]
+    ],
+
+    "branch_3":[
+        ["Dragonlord Kaiser", "The Yuan Dao are interesting. The armor they wear is some kind of living creature."],
+        ["Dragonlord Kaiser", "So we, uhh, acquired some of their soldiers for our fusion experiments."],
+        ["Dragonlord Kaiser", "Naturally they were rather miffed about that,"],
+        ["", "He laughs again carelessly."],
+        ["Dragonlord Kaiser", "But this siege is good. It's been excellent training for my army."]
+    ],
+
+    "branch_4":[
+        ["Dragonlord Kaiser", "I haven't spoken a single lie since you stepped into this tower. I know it might be hard to believe after meeting Refael but I am an honest demon."],
+        ["Dragonlord Kaiser", "I believe you have the power to become the next Daimaou, and with my army none will be able to deny our rule."],
+        ["Dragonlord Kaiser", "All I ask is that you get rid of our little Yuan Dao problem."]
+
+    ]
+}

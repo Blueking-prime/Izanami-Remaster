@@ -1,0 +1,14 @@
+{
+    "main": [
+        ["Kobaneko", "Nya-hallo! I'm Kobaneko, most powerful merchant in all of Yomotsu Hirasaka!", 
+        ["How do you know me?", "What do you sell here?", "What do you know about this place?", "I want to grow stronger.", "Any advice?"], ["branch_1", "branch_2", "branch_3", "branch_4", "branch_5"], true],
+        ["Kobaneko", "Bye-bye."]
+    ],
+
+    "branch_1": ["Kobaneko", "Nothing that happens in this city escapes my ears, see, they're pretty big. No perversion that occurs here is outside my ken. And the Blue are always up to one of those."],
+    "branch_2": ["Kobaneko", "Nyaaa... you know. Things. Medicine and the like..."],
+    "branch_3": ["Kobaneko", "This is Yomotsu Hirasaka, or well that's what the young ones call it now. The current, ehh, former Daimaou changed its name after their ascension. It's quite the mouthful for an old coot like nya..."],
+    "branch_4": ["Kobaneko", "If strength is what you seek then get out there and slaughter to your hearts content. Nyihihi!"],
+    "branch_5": ["Kobaneko", "The only one you can trust is you."]
+
+}

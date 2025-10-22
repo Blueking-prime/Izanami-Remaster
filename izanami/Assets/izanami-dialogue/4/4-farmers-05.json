@@ -1,0 +1,9 @@
+{
+    "main": [
+        ["Teacher Sara", "I know I should be happy for him... But, when I think of the fact that I'll never see him again, I can't help tears."],
+        ["Teacher Sara", " Tell me outsider, is this my lack of faith?", ["Faith has nothing to do with it", "Yes", "No"], ["branch_1", "branch_2", "branch_3"]]
+    ],
+    "branch_1": ["Teacher Sara", "I see. You think like an outsider, so I don't expect you to understand. Faith is what keeps this place whole."],
+    "branch_2": ["Teacher Sara", "Ofcourse, I must ask for forgiveness. I've sinned in my heart. I must- but it just- it just hurts so much."],
+    "branch_3": ["Teacher Sara", "No? Yes, it is only natural to feel this way. My heart is prone to sin, and there is only one who is sinless."]
+}

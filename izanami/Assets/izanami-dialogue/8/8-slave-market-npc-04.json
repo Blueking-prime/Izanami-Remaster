@@ -1,0 +1,8 @@
+{
+    "main": [
+        ["Demon Slave", "Ah, care to hear my poetry, friend?", ["Yes", "No"], ["branch_1", "branch_2"], true]
+    ],
+    "branch_1":[["Demon Slave", "Ah. The greatest evils bears nobility. The greatest good seeks conquest. Man's fate is a reflection of greed. Born from chaos and so he shall return."],
+["Demon Slave", "Ah. Thank you for listening, friend."]],
+    "branch_2":["Demon Slave", "Ah. Shame."]
+}

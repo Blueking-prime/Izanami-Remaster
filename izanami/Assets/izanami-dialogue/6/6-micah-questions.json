@@ -1,0 +1,15 @@
+{
+    "main": [
+        ["Devimancer Micah", "Welcome back Hero, we've heard about your exploits all the way over here. You're more than we could've hoped for!", ["Do you trust her?", "About Aziraphale"], 
+        ["branch_1", "branch_2"]]
+    ],
+
+    "branch_1":[
+        ["Devimancer Micah", "I've known the Kijohime all my life. She's something like a sister to me, so I'm biased naturally."],
+        ["Devimancer Micah", "I won't tell you what to think, but she's one of the few people who've truly lived the life of a human and a demon."]
+    ],
+
+    "branch_2":[
+        ["Devimancer Micah", "An old coot who doesn't know when to die."]
+    ]
+}

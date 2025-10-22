@@ -1,0 +1,19 @@
+{
+    "main":[
+        ["", "You approach what looks like an injured Yuan Dao warrior. She is bleeding out and out of breath."],
+        ["Zhu Mei", "Incredible. How is it that you haven't given into the madness... Please. My name is Zhu Mei."],
+        ["Zhu Mei", "I only draw breath because my Bio-Suit is taking the brunt of the attack but..."],
+        ["Zhu Mei", "I don't have much time left. The Yuan Dao cannot let something like this con-con-conti-"],
+        ["Zhu Mei", "P-Pleeasseeee..."]
+    ],
+
+    "alt_1":[
+         ["", "You approach what looks like an injured Yuan Dao warrior. She is bleeding out and out of breath."],
+         ["Zhu Mei", "Incredible. How is it that you haven't given into the madness... Please. My name is Zhu Mei."],
+         ["Zhu Mei", "I only draw breath because my Bio-Suit is taking the brunt of the attack but..."],
+         ["Fu Liang", "<<[i]Don't speak anymore. Take this[/i]>>"],
+         ["", "Fu Liang gives the woman the Symbiote Stabilizer, mending her Bio-Armor"],
+         ["Zhu Mei", "Lady Fu...! I'm eternally indebted. To think you came for me yourself."],
+         ["Zhu Mei", "Please we must hurry. The North King is atop this tower"]
+    ]
+}

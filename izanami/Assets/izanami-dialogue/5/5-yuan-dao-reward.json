@@ -1,0 +1,21 @@
+{
+    "main":[
+        ["Fu Huang", "The stars have never been so visible as tonight. The future of the Yuan Dao is clear as day."],
+        ["Fu Liang", "My readings weren't wrong this time around, sister!"],
+        ["Fu Huang", "Hahaha. I suppose even a blind man can fish from a pond."],
+        ["Fu Liang", "What's that even supposed to mean!?"],
+        ["Fu Huang", "I apologize for this burden we have placed upon you. You will be rewarded ofcourse."],
+        ["Lui Dongmei", "Hold onto this as well, you'll need it when the time comes."],
+        ["Fu Liang", "Goodbye {pl}. Goodbye, Lady Beatrix. May our paths cross again under kinder stars."]
+    ],
+
+    "alt_1":[
+        ["Fu Huang", "The stars have never been so visible as tonight. The future of the Yuan Dao is clear as day."],
+        ["Lui Dongmei", "It is one at your side. Our forces are eternally indebted to you. Call upon us in your time of need."],
+        ["Fu Liang", "My readings weren't wrong this time around, sister!"],
+        ["Fu Huang", "Hahaha. I suppose even a blind man can fish from a pond."],
+        ["Fu Liang", "What's that even supposed to mean!?"],
+        ["Fu Huang", "My wayward sister still wishes to see more of this country, please take care of her."],
+        ["Lui Dongmei", "Hold onto this, you'll need it when the time comes."]
+    ]
+}

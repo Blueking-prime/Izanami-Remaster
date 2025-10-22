@@ -1,0 +1,39 @@
+{
+    "main":[
+        ["", "The Demonkin glares at you."],
+        ["Ragnarok", "What is it.", ["How are you?", "Watch the attitude", "Why are you working for the Dragonlord"], ["branch_1", "branch_2", "branch_3"]]
+
+        ],
+
+    "branch_1":[
+        ["Ragnarok", "Hm? Got a death wish, human?"],
+        ["Ragnarok", "If you're looking for somewhere to die, go throw yourself at the fusions. They're always itching for a fight."]
+    ],
+
+    "branch_2":[
+        ["Ragnarok", "Piss off, before I break you and your friend there."]
+    ],
+
+    "branch_3":[
+        ["Ragnarok", "Pays well enough. And It's not like I have much else doing.", ["That's interesting", "How much is he paying you?"], ["branch_4", "branch_5"]]
+    ],
+
+    "branch_4":[
+        ["Ragnarok", "Quit glaring. Buzz off."]
+    ],
+
+    "branch_5":[
+        ["", "A knowing grin slides across his face."],
+        ["Ragnarok", "Tell you what dear, the fusions here seem right ready to pound me when I least expect it."],
+        ["Ragnarok", "You can have my services for 500 yen, and nothing less.", ["Yes", "No"], ["branch_6", "branch_7"]]
+    ],
+
+    "branch_6":[
+        ["Ragnarok", "At your service, human."]
+    ],
+
+    "branch_7":[
+        ["Ragnarok", "Your loss, wanker."]
+    ]
+
+}

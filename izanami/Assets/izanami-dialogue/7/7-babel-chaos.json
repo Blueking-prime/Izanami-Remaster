@@ -1,0 +1,19 @@
+{
+    "main":[
+        ["", "At the pinnacle of the North Tower, you see BABEL CHAOS, gazing aimlessly in the distance."],
+        ["Babel Chaos", "What do you think of my subjects, Remnant?"],
+        ["Babel Chaos", "Does my domain pale in comparison to the many fiefdoms and armies you've encountered until now?"],
+        ["PLAYER_NAME", "Your subjects are mad."],
+        ["Babel Chaos", "Mad? Pray tell why?"], 
+        ["Babel Chaos", "Because they are irrational?"], 
+        ["Babel Chaos", "Because they are violent?"],
+        ["Babel Chaos", "Because they are senseless?"],
+        ["Babel Chaos", "Tell me when has mankind ever been sensible. Anger, Hatred, Envy. These are mankind's truest virtues."],
+        ["Babel Chaos", "I have peeled back the veneer of gentility and created a realm of absolute truth."],
+        ["Babel Chaos", "Demons know and live by this truth, yet humans scurry away from it."],
+        ["Babel Chaos", "They have eaten the fruit of knowledge and have chased away the darkness by Prometheus' Flame."],
+        ["Babel Chaos", "Hiding in their caves and atop their towers. With their silver and their gold and their knowledge. One wrong step away from the eternal abyss."],
+        ["Babel Chaos", "But to tell a human not to struggle aimlessly and fruitlessly is as to tell a bird not to fly, or a fish not to swim."],
+        ["Babel Chaos", "So. By all means, struggle. The Truth will burn itself into you with time."]
+    ]
+}

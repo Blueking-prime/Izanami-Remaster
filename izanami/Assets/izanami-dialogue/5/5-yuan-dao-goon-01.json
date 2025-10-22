@@ -1,0 +1,10 @@
+{
+    "main": [
+        ["Yuan Dao Gatekeeper", "You defeated the Black Dragon? But you're humans? Our leader will want to speak with you."]
+    ],
+
+    "alt_1": [
+        ["Yuan Dao Gatekeeper", "<<[i]Lady Fu! Your sister has been worried sick.[/i]>>"]
+    ]
+
+}

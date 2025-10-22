@@ -1,0 +1,15 @@
+{
+    "main": [
+        ["Kobaneko", "Nya-hallo! You seem like you've grown much stronger.", 
+        ["I seek more power...", "What has happened lately?"], ["branch_1", "branch_2"], true],
+        ["Kobaneko", "Bye-bye."]
+    ],
+
+    "branch_1": [
+        ["Kobaneko", "As do all of your kind."],
+        ["Kobaneko", "There is a cave that's said to have been the Daimaou's training ground. Deep within is a sword with an everlasting curse."],
+        ["Kobaneko", "If you're willing to dive into the depths of darkness then you will know immense power."]
+    ],
+
+    "branch_2": ["Kobaneko", "Nyaaa... The Ashura-O has been getting uppity as of late. Not content with his station in life, he has taken the Daimaou's tower."]
+}

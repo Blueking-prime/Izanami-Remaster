@@ -1,0 +1,58 @@
+{
+    "main":[
+        ["", "A tall dark-haired woman glared back at you, clad in black armor that swam around her like liquid metal, she had an imposing aura surrounding her."],
+        ["Fu Huang", "To yield is to be preserved whole. To be bent is to become straight. To be empty is to be full. To be worn out is to be renewed."],
+        ["Fu Huang", "Therefore the sage embraces the One And becomes the model of the world."],
+        ["Fu Huang", "Although our hammer has been split by an axe, this disgrace reveals to us our enemy's true nature as that of timber."],
+        ["Fu Huang", "So? Will you help us fell this tree?", 
+        ["The Enemy?", "'The One'", "Why do the Blue hate you.", "Fu Liang"], 
+        ["branch_1", "branch_2", "branch_3", "branch_4"]]
+        
+    ],
+
+    "branch_1":[
+        ["Fu Huang", "Our Enemy is the Dragonlord. He forces his human and demon subjects together in his cauldron and tempers powerful fusions."],
+        ["Fu Huang", "We've seen to calling these fusions 'Primal Demonkin'. He seeks to muster a force capable of tearing this continent in half."],
+        ["Fu Huang", "If you're to help, all we need you to do is destroy the Demonkin Fusion Device in the lowest section of the tower, deep underground."],
+        ["Fu Huang", "I believe your way and ours are one in the same. Do this small duty, and my forces will handle the rest."]
+    ],
+    "branch_2":[
+        ["Fu Huang", "The One that can be told of is not the eternal One; The name that can be named is not the eternal name."]
+    ],
+    "branch_3":[
+        ["Fu Huang", "When all the people of the world know beauty as beauty, There arises the recognition of ugliness."],
+        ["Fu Huang", "When they all know the good as good, there arises the recognition of evil."],  
+        ["Fu Huang", "Being and non-being produce each other; Difficulty and ease complete each other; Long and short contrast each other"],
+        ["Fu Huang", "So do we believe Man and Demonkind's fates are eternally bound."],
+        ["Fu Huang", "The Blue do not appreciate that notion. That is all."],
+        ["PLAYER_NAME", "It's as simple as that?"],
+        ["Fu Huang", "Most things in life are as simple as that."]],
+
+    "branch_4":[
+        ["Fu Huang", "My sister is a wayward one, but her heart is purer than mine."],
+        ["Fu Huang", "She regards all things equally. I trust her because she is cautious, like one crossing a frozen stream in the winter."],
+        ["Fu Huang", "I respect her because she is reserved, like a polite houseguest,"], 
+        ["Fu Huang", "I protect her because she is supple and pliant, like ice about to melt."], 
+        ["Fu Huang", "And I love her because she is genuine, like a piece of uncarved wood."],
+        ["", "You can tell from the shameless smile on her face that she is proud of her poetry (and that she truly loves her sister)."]
+    ],
+
+    "branch_5":[
+        ["Fu Huang", "Weapons are instruments of evil, not the instruments of a good ruler. When one uses them unavoidably, one regards calm restraint as the best principle."],
+        ["Fu Huang", "Even when one is victorious, one does not regard it as praiseworthy, for to praise victory is to delight in the slaughter of men."],
+        ["Fu Huang", "One who delights in slaughter cannot succeed."],
+        ["Fu Liang", "She means to say, she will avoid using the Dragon if she does not have to."]
+    ],
+
+    "alt_1":[
+         ["", "A tall dark-haired woman glared back at you, clad in black armor that swam around her like liquid metal, she had an imposing aura surrounding her."],
+        ["Fu Huang", "To yield is to be preserved whole. To be bent is to become straight. To be empty is to be full. To be worn out is to be renewed."],
+        ["Fu Huang", "Therefore the sage embraces the One And becomes the model of the world."],
+        ["Fu Huang", "You have brought our wayward sister back to us, and yet we still wish to burden you."],
+        ["Fu Liang", "My sister is rather fond of reciting poetry..."],
+        ["Fu Huang", "In these words hold the wisdom of the sages of old, yet words alone will not fell our enemy."],
+        ["Fu Huang", "Will you help us, Warrior?.", ["The Enemy?", "'The One'", "Why do the Blue hate you?", "The Dragon"], ["branch_1", "branch_2", "branch_3", "branch_5"]]
+    ]
+
+}
+

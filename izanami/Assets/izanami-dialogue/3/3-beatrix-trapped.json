@@ -1,0 +1,16 @@
+{
+    "main": [
+        ["Avant-Courier Beatrix", "How's goes the going.", 
+        ["Can you really get out by yourself?", "Who are the Yuan Dao", "Who is Caliburn.", "How did you get captured."],
+        ["branch_1", "branch_2", "branch_3", "branch_4"]]
+    ],
+
+    "branch_1":[["", "You can see a bit of perplexion in her face, then she laughs to herself quietly."], 
+                ["Avant-Courier Beatrix", "You're far too kind, friend."]],
+    "branch_2":[["Avant-Courier Beatrix", "Bio-freaks from across the sea who worship a dead god and wear its kin like living armor."],
+                ["Avant-Courier Beatrix", "Devimancer Micah called them a malignant blight even worse than the demons but you know how he is."], 
+                ["Avant-Courier Beatrix", "Fact of the matter is that our goals do not align whatsoever. The girl seems clueless enough, but those people are dangerous, and the Blue unilaterally considers them our enemy."]],
+    "branch_3":[["Avant-Courier Beatrix", "One of the Daimaou's most devoted lackeys. He's a paltry thing compared to the rest of them. If you free me I can help you take him out, but a warrior like you hardly needs my help."]],
+    "branch_4":[["Avant-Courier Beatrix", "Well, I have no reason to lie to you. I got sloppy. I got caught skulking about and I couldn't reliably fight my way out."], 
+                ["Avant-Courier Beatrix", "Those demons chosen by the Orbs are much more powerful than we thought. Be very careful, Remnant."]]
+}

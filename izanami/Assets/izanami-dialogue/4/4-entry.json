@@ -1,0 +1,9 @@
+{
+    "main": [
+        ["", "As you approach you note that the ground here seems less dead than other places you've seen, in front of you is a nearly imperceptible miasma blurring your vision."],
+        ["", "A voice rings out in your head, a familiar feeling to the voice that guided you here, but you can tell that this is different. It was like a violent inflitration, like your spirit was being penetrated from all directions."],
+        ["??? Voice", "A common demonkin would have been reduced to dust by now."],
+        ["??? Voice", "By all metrics you do seem like a demon... However... Come to the top of the Chayot. I wish to speak with you."],
+        ["", "The miasma vanishes suddenly and a sprawling city lays itself bare before your eyes, even more noteworthy was the floating tower casting a shadow over most of the town."]
+    ]
+}

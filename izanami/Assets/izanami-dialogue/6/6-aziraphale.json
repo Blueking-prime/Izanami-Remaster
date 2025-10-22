@@ -1,0 +1,39 @@
+
+{
+    "main":[
+        ["", "A decrepit looking man with sunken eyes stood before you."],
+        ["Noblesse Regent Aziraphale", "By the time I found out about the Kijohime's little experiment, you had already left the city."],
+        ["Noblesse Regent Aziraphale", "I refuse to play into the Kijohime's schemes. However, you rescued our Avant-Courier. There's merit in that. And not even I can deny your strength now"],
+        ["Noblesse Regent Aziraphale", "I will send you to the northern continent, but at the cost of a favour."],
+        ["Noblesse Regent Aziraphale", "I need you and Beatrix to go to the Guar Caverns and retrieve the Blue Lacrima that lies deep within it.", ["Yes sir", "Why?"], ["branch_1", "branch_2"]]
+    ],
+
+    "alt_2":[
+        ["", "A decrepit looking man with sunken eyes stood before you."],
+        ["Noblesse Regent Aziraphale", "By the time I found out about the Kijohime's little experiment, you had already left the city."],
+        ["Noblesse Regent Aziraphale", "I refuse to play into the Kijohime's schemes, but not even I can deny your strength now"],
+        ["Noblesse Regent Aziraphale", "I cannot send you to the northern continent as is, the current state of the city is too unstable."],
+        ["Noblesse Regent Aziraphale", "I need you to prove your loyalty and power by finding and defeating the Ashura Royal Karura.", ["Yes sir", "Why?", "Where can I find them?"], ["branch_1", "branch_2", "branch_3"]]
+    ],
+
+     "alt_3":[
+        ["", "A decrepit looking man with sunken eyes stood before you."],
+        ["Noblesse Regent Aziraphale", "I'm impressed. You're as strong as I'd expected."],
+        ["Noblesse Regent Aziraphale", "However, I need one more thing before I can truly settle this war."],
+        ["Noblesse Regent Aziraphale", "I will send you to the northern continent, but first, I need you to go to the Guar Caverns and retrieve the Blue Lacrima that lies deep within it."]
+    ],
+
+    "branch_1":[
+        ["Noblesse Regent Aziraphale", "See, you're excellent at following orders. I already like you more than the Kijohime."]
+    ],
+
+    "branch_2":[
+        ["", "The Regent raised a single outstretched hand, then lowered it without another word"],
+        ["Noblesse Regent Aziraphale", "It's not the place of dogs to ask of their master's ambition."],
+        ["Noblesse Regent Aziraphale", "Just as you wordlessly followed the Kijohime's order, wordlessly follow mine."]
+    ],
+
+    "branch_3":[
+        ["Noblesse Regent Aziraphale", "They summoned you with a brain, correct? Ask around."]
+    ]
+}

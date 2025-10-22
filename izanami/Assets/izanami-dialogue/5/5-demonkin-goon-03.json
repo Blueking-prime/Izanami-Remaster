@@ -1,0 +1,12 @@
+{
+    "main":[
+        ["Red Dragon Army Recruiter", "I sense immense power in you! The Red Dragon Army is recruiting even regular humans for a better world!"],
+        ["Beatrix", "Even? Pray tell what's 'even' about 'regular humans', you demonkin bellend."],
+        ["Red Dragon Army Recruiter", "Typical Human! So quick to anger."],
+        ["", "You physically accost Beatrix to prevent an inevitable escalation"]
+    ],
+
+    "alt":[
+        ["Red Dragon Army Recruiter", "I sense immense power in you! The Red Dragon Army is recruiting even regular humans for a better world!"]
+    ]
+}

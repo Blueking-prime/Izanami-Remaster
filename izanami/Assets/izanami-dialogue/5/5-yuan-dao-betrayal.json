@@ -1,0 +1,36 @@
+{
+    "main":[
+        ["", "Engage Fu Huang?", ["Yes", "No"], ["branch_1", "branch_2"]]
+    ],
+
+    "branch_1":[
+        ["Fu Huang", "A possibility I foresaw, yet one I hoped wouldn't come to pass."],
+        ["Fu Huang", "Our axe has turned wayward at promise of strength."],
+        ["Lui Dongmei", "One without a way is easily drawn to the promise of wealth."],
+        ["Fu Liang", "Please! This has to be some kind of misunderstanding!"],
+        ["Fu Huang", "<<[i]Behind me![/i]>>"],
+        ["Beatrix", "I don't know what your plan is, but I've got your back!"]
+    ],
+
+    "branch_2":[
+        ["", "..."]
+    ],
+
+    "branch_3":[
+        ["Fu Liang", "You can't be serious, {pl}! You wish to side with Dragonlord!?"],
+        ["Fu Huang", "A possibility I foresaw, yet one I hoped wouldn't come to pass."],
+        ["Fu Huang", "Our axe has turned wayward at promise of strength."],
+        ["Lui Dongmei", "One without a way is easily drawn to the promise of wealth."],
+        ["Fu Liang", "Please! This has to be some kind of misunderstanding!"],
+        ["Fu Huang", "<<[i]Behind me![/i]>>"],
+        ["Fu Liang", "I can't! {pl}... if this is the path you wish to take then I can't stay by your side."],
+        ["Fu Liang", "<<[i]My heart lies with the Yuan Dao![/i]>>"]
+
+
+    ],
+
+    "alt":[
+        ["", "Engage Fu Huang?", ["Yes", "No"], ["branch_3", "branch_2"]]
+    ]
+
+}
