@@ -25,10 +25,11 @@ func update_listing():
 
 	if player.skills:
 		for i in player.skills.get_skills():
-			options.add_item(
-				i.name,
-				[str(i.cost)]
-			)
+			if is_instance_valid(i):
+				options.add_item(
+					i.name,
+					[str(i.cost)]
+				)
 
 func show_target_selector():
 	target_selector.clear()

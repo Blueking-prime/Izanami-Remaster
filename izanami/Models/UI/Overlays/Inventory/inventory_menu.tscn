@@ -46,16 +46,23 @@ current_tab = 1
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 
-[node name="Skills" type="VBoxContainer" parent="TabContainer" node_paths=PackedStringArray("target_selector")]
+[node name="Skills" type="ScrollContainer" parent="TabContainer" node_paths=PackedStringArray("container", "target_selector")]
 visible = false
 layout_mode = 2
-focus_mode = 2
+follow_focus = true
 script = ExtResource("3_2pvlo")
 skill_menu_card_scene = ExtResource("3_b5xgx")
+container = NodePath("Skills")
 target_selector = NodePath("../../Selectors/SkillSelector")
 metadata/_tab_index = 0
 
-[node name="SkillCard" parent="TabContainer/Skills" instance=ExtResource("3_b5xgx")]
+[node name="Skills" type="VBoxContainer" parent="TabContainer/Skills"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+
+[node name="SkillCard" parent="TabContainer/Skills/Skills" instance=ExtResource("3_b5xgx")]
 layout_mode = 2
 
 [node name="Items" parent="TabContainer" node_paths=PackedStringArray("target_selector") instance=ExtResource("1_ty00r")]

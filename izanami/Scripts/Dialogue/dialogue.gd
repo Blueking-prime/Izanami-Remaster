@@ -12,7 +12,6 @@ extends Node
 var PLAYER_NAME: String = 'Player'
 var cutscene: Dictionary
 
-
 #func _ready() -> void:
 	#show_cutscene('test_cutscene')
 
@@ -23,9 +22,19 @@ func parse_branch(branch: Dictionary):
 	var current_line: int = 0
 	var selected_choice: int
 
+	if not branch.rewards.is_empty():
+		give_rewards(branch.rewards)
+
 	while current_line < dialogue_length:
 		var line: Array = branch.dialogue[current_line]
 		await Global.add_to_text_log(line)
+
+		# Check if speaker is in current party or part of npc group
+		if line[0] not in (
+				cutscene.info.characters + [''] + Global.players.party.map(func (x): return x.character_name)
+			):
+				current_line += 1
+				continue
 
 		if Global.textbox_auto_flag:
 			auto_delay_timer.start(_calculate_wait_time(line[1]))
@@ -33,12 +42,12 @@ func parse_branch(branch: Dictionary):
 		if Global.textbox_ffwd_flag:
 			auto_delay_timer.start(Checks.ffwd_speed)
 
-
 		if Global.textbox_skip_flag:
 			if line.size() >= 4 and line[3]:
 				Global.textbox_skip_flag = false
 				pass
 			else :
+				current_line += 1
 				continue
 
 		# Check if text has options
@@ -76,6 +85,7 @@ func parse_branch(branch: Dictionary):
 		current_line += 1
 		auto_delay_timer.stop()
 
+
 func show_cutscene(cutscene_name: String):
 	var scroll_state: bool = Checks.retreive_setting('scroll')
 	Global.pause_timer.connect(_on_pause_timeout)
@@ -83,9 +93,11 @@ func show_cutscene(cutscene_name: String):
 	if is_instance_valid(Global.players):
 		Global.players.freeze()
 
+	Global.set_ui_state(false)
 	cutscene = file_reader.load_cutscene(cutscene_name)
 
 	if not cutscene.is_empty():
+
 		# Check info
 		if Checks.check_flags(cutscene.main.checks):
 			await parse_branch(cutscene.main)
@@ -104,31 +116,40 @@ func show_cutscene(cutscene_name: String):
 
 	get_tree().get_current_scene().canvas_layer.remove_child(Global.text_log)
 
+	Global.set_ui_state(true)
 	if is_instance_valid(Global.players):
 		Global.players.unfreeze()
+
 
 func give_rewards(rewards: Array):
 	for i in rewards:
 		if i.type == 'Skill':
 			Global.players.leader.skills.add_skill(Global.get_resource(i.name, i.type))
+		elif i.type == 'Player':
+			Global.players.add_to_party(Global.spawn_player(i.name))
 		else :
 			for j in i.quantity:
 				Global.players.inventory.add_entry(Global.get_resource(i.name, i.type))
 
+
 func get_valid_choices(choices: Array) -> Array:
 	return choices.filter(func(x): return Checks.check_flags(x.checks)).map(func(x): return x.name)
+
 
 func parse_valid_choices(choices: Array, names: Array, index: int) -> int:
 	return choices.find_custom(func(x): return x.name == names[index])
 
+
 func _calculate_wait_time(text: String):
 	return text.split(' ').size() * Checks.retreive_setting('scroll_speed') * 2 + Checks.retreive_setting('wait_time')
+
 
 func _check_screenside(speaker: String) -> String:
 	if speaker == "PLAYER_NAME" or speaker == '{pl}':
 		return 'R'
 	else :
 		return 'L'
+
 
 func _on_auto_timer_timeout() -> void:
 	Global.next.emit()

@@ -5,6 +5,3 @@
 [resource]
 script = ExtResource("1_0gbqt")
 base_folder = "res://Models/Skills/Destitute"
-includes = Array[String]([])
-excludes = Array[String]([])
-paths = Array[String]([])

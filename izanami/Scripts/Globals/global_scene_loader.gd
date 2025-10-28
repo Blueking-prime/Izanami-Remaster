@@ -59,8 +59,21 @@ func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: 
 	parent.move_child(node, target_index)
 
 
-func get_resource(_resource_name: String, _type: String) -> Resource:
-	return null
+func get_resource(resource_name: String, type: String) -> Resource:
+	var item: Resource
+	var index: int
+	match type:
+		'Gear':
+			index = get_parent().all_gears.find_custom(func (x): return x.name == resource_name)
+			item = get_parent().all_gears.get(index)
+		'Item':
+			index = get_parent().all_items.find_custom(func (x): return x.name == resource_name)
+			item = get_parent().all_items.get(index)
+		'Skill':
+			index = get_parent().all_gears.find_custom(func (x): return x.name == resource_name)
+			item = get_parent().all_gears.get(index)
+
+	return item
 
 func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, _warp: bool = true):
 	var push_velocity_multiplier: int = 10
@@ -73,7 +86,6 @@ func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, _wa
 	else:
 		direction = centre.direction_to(player.global_position)
 
-
 	if _warp:
 		if tilemap: player.tilemap_position += Vector2i(direction.round()) * distance
 		else: player.global_position += direction * distance
@@ -81,3 +93,7 @@ func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, _wa
 		player.velocity = direction * push_velocity_multiplier * distance
 		player.get_real_velocity()
 		player.move_and_slide()
+
+func spawn_player(player_name: String) -> Player:
+	var index = get_parent().all_players.find_custom(func (x): return x.containsn(player_name))
+	return get_parent().all_players.get(index).instantiate()

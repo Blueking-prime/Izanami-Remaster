@@ -24,6 +24,15 @@ extends Node
 @export var main_menu_scene: PackedScene
 @export var overworld_scene: PackedScene
 
+@export_category('Resource Groups')
+@export var all_items_group: ResourceGroup
+@export var all_gears_group: ResourceGroup
+@export var all_skills_group: ResourceGroup
+@export var all_players_group: ResourceGroup
+var all_items
+var all_gears
+var all_skills
+var all_players
 
 var players: Party
 
@@ -116,6 +125,7 @@ func show_shop_menu(stock: ResourceGroup): return UI.show_shop_menu(stock)
 func add_text_log_to_scene(): return UI.add_text_log_to_scene()
 func display_in_quick_info_panel(text: String): return UI.display_in_quick_info_panel(text)
 func save_icon(show: bool): return UI.save_icon(show)
+func set_ui_state(show: bool): return UI.set_ui_state(show)
 #endregion
 
 #region SceneLoader
@@ -124,6 +134,7 @@ func load_main_menu(): return SCENE_LOADER.load_main_menu()
 func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false): return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
 func get_resource(resource_name: String, type: String) -> Resource: return SCENE_LOADER.get_resource(resource_name, type)
 func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, _warp: bool = true): return SCENE_LOADER.push_back_player(centre, distance, tilemap, _warp)
+func spawn_player(player_name: String) -> Player: return SCENE_LOADER.spawn_player(player_name)
 #endregion
 
 #region Quests
@@ -140,6 +151,12 @@ func rand_spread_test():
 		if n > 4:
 			print(n)
 
+
+func _ready() -> void:
+	all_items = all_items_group.load_all()
+	all_gears = all_gears_group.load_all()
+	all_skills = all_skills_group.load_all()
+	all_players = all_players_group.load_all()
 
 ## SIGNALS
 func _on_option_selected(index: int):

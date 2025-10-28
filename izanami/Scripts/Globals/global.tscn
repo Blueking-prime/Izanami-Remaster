@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bcxmyev8jvlgh"]
+[gd_scene load_steps=25 format=3 uid="uid://bcxmyev8jvlgh"]
 
 [ext_resource type="Script" uid="uid://ty13w3ttw1d5" path="res://Scripts/Globals/global.gd" id="1_u8o3i"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/UI/Overlays/Text/text_box.tscn" id="2_imufx"]
@@ -17,9 +17,13 @@
 [ext_resource type="PackedScene" uid="uid://cx24gmgelg67f" path="res://Models/Scenes/Overworld/overworld.tscn" id="13_aw1uo"]
 [ext_resource type="Script" uid="uid://cd2eu0m3h1bvx" path="res://Scripts/Globals/global_ui_element_display.gd" id="14_qfkbc"]
 [ext_resource type="Script" uid="uid://b3m6b5kdj6465" path="res://Scripts/Globals/global_algorithms_logic.gd" id="15_h8mch"]
+[ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://Configs/all_items.tres" id="15_ug654"]
+[ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="16_4ds0u"]
 [ext_resource type="Script" uid="uid://mqelb8bjj3q5" path="res://Scripts/Globals/global_scene_loader.gd" id="16_stni4"]
+[ext_resource type="Resource" uid="uid://byhbhthmfcq2e" path="res://Configs/all_skills.tres" id="17_jytmj"]
 [ext_resource type="Script" uid="uid://yfqq50vhchf6" path="res://Scripts/Globals/global_signals.gd" id="17_q1ilv"]
 [ext_resource type="Script" uid="uid://1j3u4tj6q6pv" path="res://Scripts/Globals/global_quests.gd" id="18_d5lpp"]
+[ext_resource type="Resource" uid="uid://b0hn3qgt63bvu" path="res://Configs/all_players.tres" id="18_yfm8f"]
 
 [node name="Global" type="Node" node_paths=PackedStringArray("TEXT", "UI", "ALGORITHMS", "SCENE_LOADER", "QUESTS")]
 script = ExtResource("1_u8o3i")
@@ -41,6 +45,10 @@ demonitarium_scene = ExtResource("7_gaejl")
 battle_scene = ExtResource("4_cg2fd")
 main_menu_scene = ExtResource("5_o7tui")
 overworld_scene = ExtResource("13_aw1uo")
+all_items_group = ExtResource("15_ug654")
+all_gears_group = ExtResource("16_4ds0u")
+all_skills_group = ExtResource("17_jytmj")
+all_players_group = ExtResource("18_yfm8f")
 
 [node name="TextProcessing" type="Node" parent="."]
 script = ExtResource("13_3nkps")

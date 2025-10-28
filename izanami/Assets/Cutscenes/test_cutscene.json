@@ -53,7 +53,16 @@
   },
   "test_choice_1": {
 	"flags": {},
-	"rewards": {},
+	"rewards": [
+		{   "name": "Leaf",
+			"type": "Item",
+			"quantity": 3
+		},
+		{
+			"name": "Light of Saber",
+			"type": "Skill"
+		}
+	],
 	"dialogue": [
 	  ["Speaker 1", "Yes.\nThe next message won't clear even if skipping is enabled"],
 	  [
@@ -69,12 +78,12 @@
   },
   "test_choice_1_empty": {
 	"flags": {},
-	"rewards": {},
+	"rewards": [],
 	"dialogue": []
   },
   "test_choice_2": {
 	"flags": {},
-	"rewards": {},
+	"rewards": [],
 	"dialogue": [
 	  ["Speaker 1", "Nothing really happens on this route"],
 	  ["PLAYER_NAME", "You have got to be kidding me"]
@@ -82,7 +91,7 @@
   },
   "test_choice_3": {
 	"flags": {},
-	"rewards": {},
+	"rewards": [],
 	"dialogue": [
 	  [
 		"Speaker 1",

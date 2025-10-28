@@ -1,15 +1,15 @@
 
 {
   "main": [
-     ["---", "Awaken, proud remnant. Soul tempered from unknowable battle."],
-     ["---", "Fear not. You are dead. Yes, adrift in the bosom of death, but you still yet persist"],
-     ["---", "You cling to existence, and beg for materialization."],
-     ["PLAYER_NAME", "...", ["Who are you", "What do you want"], ["branch_1", "branch_2"], true],
-     ["Guiding Voice", "I am a friend, that's all that's important. I can make you real, give you a body, a mind, make you an actuator in reality once more."],
-     ["Guiding Voice", "And all I ask in return is that you to do what you do best. The world you will awaken into has been torn asunder by four powerful Kings of Hell. Each wielding one of the four Orbs of Destiny"],
-     ["Guiding Voice", "I beseech you bring me these Orbs, that I might return to my world its lost glory."],
-     ["Guiding Voice", "Like I said, I am a friend, and friends help each other, kind spectre. Do you wish to wake? So that you may deliver my world from the hand of darkness?", ["Yes", "No"], ["branch_end", "branch_3"], "True"],
-     ["Guiding Voice", "Come then, break through the firmament of the beyond, and awaken."]
+	 ["---", "Awaken, proud remnant. Soul tempered from unknowable battle."],
+	 ["---", "Fear not. You are dead. Yes, adrift in the bosom of death, but you still yet persist"],
+	 ["---", "You cling to existence, and beg for materialization."],
+	 ["PLAYER_NAME", "...", ["Who are you", "What do you want"], ["branch_1", "branch_2"], true],
+	 ["Guiding Voice", "I am a friend, that's all that's important. I can make you real, give you a body, a mind, make you an actuator in reality once more."],
+	 ["Guiding Voice", "And all I ask in return is that you to do what you do best. The world you will awaken into has been torn asunder by four powerful Kings of Hell. Each wielding one of the four Orbs of Destiny"],
+	 ["Guiding Voice", "I beseech you bring me these Orbs, that I might return to my world its lost glory."],
+	 ["Guiding Voice", "Like I said, I am a friend, and friends help each other, kind spectre. Do you wish to wake? So that you may deliver my world from the hand of darkness?", ["Yes", "No"], ["branch_end", "branch_3"], "True"],
+	 ["Guiding Voice", "Come then, break through the firmament of the beyond, and awaken."]
 
   ],
   "branch_1":["---", "A difficult question to answer. If I told you my name it would have no meaning to you."],

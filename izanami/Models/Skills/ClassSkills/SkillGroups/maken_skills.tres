@@ -5,6 +5,3 @@
 [resource]
 script = ExtResource("1_tjb4s")
 base_folder = "res://Models/Skills/Maken"
-includes = Array[String]([])
-excludes = Array[String]([])
-paths = Array[String]([])

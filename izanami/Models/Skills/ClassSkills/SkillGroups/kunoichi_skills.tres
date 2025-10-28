@@ -5,6 +5,3 @@
 [resource]
 script = ExtResource("1_hnnm7")
 base_folder = "res://Models/Skills/Kunoichi"
-includes = Array[String]([])
-excludes = Array[String]([])
-paths = Array[String]([])

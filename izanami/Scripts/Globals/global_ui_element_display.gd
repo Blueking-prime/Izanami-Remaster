@@ -272,4 +272,10 @@ func save_icon(show: bool):
 		scene.overlay.save_icon.visible = show
 	else :
 		scene.save_icon.visible = show
-	print('Icon')
+
+func set_ui_state(show: bool):
+	var scene = get_tree().get_current_scene()
+	if scene is Location:
+		scene.overlay.visible = show
+	else :
+		scene.save_icon.visible = show
