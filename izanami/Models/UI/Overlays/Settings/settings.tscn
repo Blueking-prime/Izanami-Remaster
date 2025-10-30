@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://dlt4fkk3ag4xy" path="res://Models/UI/Overlays/Settings/accessibility_options.gd" id="5_3nvp3"]
 [ext_resource type="Script" uid="uid://u6wonda4akqq" path="res://Models/UI/Overlays/Settings/settings_audio.gd" id="5_vrjjt"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3nvp3"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_526lg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3nvp3"]
 
 [node name="Settings" type="Panel" node_paths=PackedStringArray("tab_container", "menu_switcher")]
 anchors_preset = 15
@@ -193,8 +193,8 @@ text_scroll = NodePath("Text Scroll")
 [node name="Text Scroll" type="CheckButton" parent="TabContainer/Accessibility/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/hover = SubResource("StyleBoxEmpty_3nvp3")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_526lg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3nvp3")
 text = "Text Scroll"
 flat = true
 

@@ -11,6 +11,7 @@ class_name MainMenu
 @export var save_menu: SaveMenu
 @export var save_icon: Control
 @export var canvas_layer: CanvasLayer
+@export var intro_scene: IntroScene
 
 func _ready() -> void:
 	SaveAndLoad.get_save_files()
@@ -25,6 +26,8 @@ func _ready() -> void:
 		load_button.disabled = false
 		load_button.grab_focus()
 
+	#if get_tree().current_scene != self: get_tree().current_scene = self
+
 func _on_load_pressed() -> void:
 	SaveAndLoad.save_state = false
 	save_menu.load_menu()
@@ -35,7 +38,7 @@ func _on_new_pressed() -> void:
 	## Go to new game scene
 	if not SaveAndLoad.save_files.is_empty():
 		var confirm = await Global.show_confirmation_box('Start New Game?')
-		if confirm: SaveAndLoad.call_deferred("load_town")
+		if confirm: intro_scene.play_intro()
 
 func _on_settings_pressed() -> void:
 	settings_menu.load_menu()

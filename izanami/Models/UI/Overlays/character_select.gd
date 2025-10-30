@@ -5,7 +5,7 @@ class_name CharacterSelector
 @export var player_status_card_scene: PackedScene
 @export var player_details_card_scene: PackedScene
 @export var available_class_scenes: Array[PackedScene]
-@export var player_party_scene: PackedScene
+@export var players_scene: PackedScene
 
 @export var player_container: HBoxContainer
 @export var player_node_container: Node
@@ -13,14 +13,13 @@ class_name CharacterSelector
 
 @export var available_classes: Array[Player]
 
-@export var player_party: Party
+signal player_created(player: Player)
 
-func _ready() -> void:
-	if not Global.player_party:
-		Global.player_party = player_party_scene.instantiate()
-
-	player_party = Global.player_party
-	load_menu()
+#func _ready() -> void:
+	#if not is_instance_valid(Global.players):
+		#Global.players = players_scene.instantiate()
+#
+	#load_menu()
 
 func load_menu():
 	_clear_data_cards()
@@ -107,13 +106,12 @@ func confirm_choice(card: PlayerDetailsCard):
 
 	player.character_name = card.namefield.text
 	Checks.player_name = player.character_name
-	player.lock = true
 	player_node_container.remove_child(player)
-	player_party.add_to_party(player)
-	player_party.load_party()
-	Global.set_seed()
-	print(player_party)
-	print(player_party.get_children())
+	Global.players.add_to_party(player)
+	Global.players.load_party()
+	#print(Global.players)
+	#print(Global.players.get_children())
+	player_created.emit(player)
 	hide()
 
 func _on_button_pressed() -> void:

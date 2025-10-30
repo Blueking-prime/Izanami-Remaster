@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=42 format=3 uid="uid://b47wjtl3buq82"]
+[gd_resource type="Theme" load_steps=43 format=3 uid="uid://b47wjtl3buq82"]
 
 [ext_resource type="Texture2D" uid="uid://bc6qv00ctw0du" path="res://Assets/Art/Blue_Stone_UI_Asset/BlueStoneUI_SpriteSheet.png" id="1_aqin4"]
 
@@ -143,6 +143,15 @@ texture_margin_top = 3.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 region_rect = Rect2(113, 19, 63, 11)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0dmqb"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 4.0
+texture_margin_top = 3.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(113, 19, 63, 11)
+modulate_color = Color(1.1941766, 1.1941766, 1.1941766, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vc3c8"]
 texture = ExtResource("1_aqin4")
@@ -392,7 +401,7 @@ HSlider/icons/grabber = SubResource("ImageTexture_7hw7j")
 HSlider/icons/grabber_disabled = SubResource("ImageTexture_7hw7j")
 HSlider/icons/grabber_highlight = SubResource("ImageTexture_7hw7j")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_3aajw")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_3aajw")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_0dmqb")
 HSlider/styles/slider = SubResource("StyleBoxTexture_vc3c8")
 ImageFrame/base_type = &"TextureRect"
 ImageFrame/styles/panel = SubResource("StyleBoxTexture_syf3x")

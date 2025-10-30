@@ -44,7 +44,7 @@ func warp(source: Location, destination_scene: PackedScene):
 func load_main_menu():
 	var main_menu = get_parent().main_menu_scene.instantiate()
 	get_tree().unload_current_scene()
-	add_sibling(main_menu)
+	get_parent().add_sibling(main_menu)
 	get_tree().current_scene = main_menu
 
 

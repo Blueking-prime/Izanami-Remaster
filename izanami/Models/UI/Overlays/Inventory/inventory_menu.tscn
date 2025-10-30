@@ -50,6 +50,8 @@ use_hidden_tabs_for_min_size = true
 visible = false
 layout_mode = 2
 follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
 script = ExtResource("3_2pvlo")
 skill_menu_card_scene = ExtResource("3_b5xgx")
 container = NodePath("Skills")
@@ -60,15 +62,12 @@ metadata/_tab_index = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-focus_mode = 2
 
 [node name="SkillCard" parent="TabContainer/Skills/Skills" instance=ExtResource("3_b5xgx")]
 layout_mode = 2
 
 [node name="Items" parent="TabContainer" node_paths=PackedStringArray("target_selector") instance=ExtResource("1_ty00r")]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("Options")
-focus_mode = 2
 script = ExtResource("2_miuef")
 target_selector = NodePath("../../Selectors/ItemSelector")
 metadata/_tab_index = 1
@@ -79,7 +78,6 @@ visible = false
 [node name="Gear" parent="TabContainer" node_paths=PackedStringArray("target_selector") instance=ExtResource("1_ty00r")]
 visible = false
 layout_mode = 2
-focus_mode = 2
 script = ExtResource("3_dtbst")
 target_selector = NodePath("../../Selectors/GearSelector")
 metadata/_tab_index = 2

@@ -34,9 +34,9 @@ func _play_sfx(track: AudioStream):
 
 func play_walking_sfx():
 	if local.playing:
-		if get_parent().state == Base_Character.STATES.WALKING and not local.get_stream_playback().is_stream_playing(walking_audio_stream_id):
+		if get_parent().state == Base_Character.STATES.WALKING: # and not local.get_stream_playback().is_stream_playing(walking_audio_stream_id):
 			walking_audio_stream_id = local.get_stream_playback().play_stream(walk_sfx, 0, 0, randf_range(0.8, 1.2))
-		elif get_parent().state != Base_Character.STATES.WALKING and local.get_stream_playback().is_stream_playing(walking_audio_stream_id):
+		elif get_parent().state != Base_Character.STATES.WALKING: # and local.get_stream_playback().is_stream_playing(walking_audio_stream_id):
 			local.get_stream_playback().stop_stream(walking_audio_stream_id)
 
 
@@ -52,4 +52,5 @@ func play_revive_sfx(): _play_sfx(revive_sfx)
 
 
 func _on_state_changed() -> void:
-	play_walking_sfx()
+	if visible:
+		play_walking_sfx()

@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkfyiyro88x3q"]
+[gd_scene load_steps=11 format=3 uid="uid://bkfyiyro88x3q"]
 
 [ext_resource type="Script" uid="uid://3uofbueh3m11" path="res://Models/Scenes/main_menu.gd" id="1_j5w4h"]
+[ext_resource type="Script" uid="uid://dk0x5n8mkcevl" path="res://Models/Scenes/intro_scene.gd" id="2_0lobm"]
 [ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/UI/Overlays/Settings/settings.tscn" id="2_ognit"]
+[ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="3_7ypsx"]
 [ext_resource type="PackedScene" uid="uid://dlflxypiwhkyi" path="res://Models/UI/Overlays/save_menu.tscn" id="3_x30nn"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="4_8fbda"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="4_ydioe"]
+[ext_resource type="PackedScene" uid="uid://vxxdyg18tnqq" path="res://Models/UI/Overlays/character_select.tscn" id="7_3aqkl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yoqpr"]
 font_size = 128
@@ -11,7 +15,7 @@ font_size = 128
 [sub_resource type="LabelSettings" id="LabelSettings_evq3c"]
 font_size = 32
 
-[node name="MainMenu" type="Node" node_paths=PackedStringArray("load_button", "new_button", "menu_ui", "exit_button", "settings_menu", "save_menu", "save_icon", "canvas_layer")]
+[node name="MainMenu" type="Node" node_paths=PackedStringArray("load_button", "new_button", "menu_ui", "exit_button", "settings_menu", "save_menu", "save_icon", "canvas_layer", "intro_scene")]
 script = ExtResource("1_j5w4h")
 load_button = NodePath("CanvasLayer/MenuUI/VBoxContainer/Load")
 new_button = NodePath("CanvasLayer/MenuUI/VBoxContainer/New")
@@ -21,6 +25,16 @@ settings_menu = NodePath("CanvasLayer/Settings")
 save_menu = NodePath("CanvasLayer/Save/VBoxContainer/SaveMenu")
 save_icon = NodePath("CanvasLayer/AutosaveIcon")
 canvas_layer = NodePath("CanvasLayer")
+intro_scene = NodePath("IntroScene")
+
+[node name="IntroScene" type="Node" parent="." node_paths=PackedStringArray("canvas_layer", "character_selector")]
+script = ExtResource("2_0lobm")
+canvas_layer = NodePath("../CanvasLayer")
+character_selector = NodePath("../CanvasLayer/CharacterSelect")
+cutscene_1 = "res://Assets/izanami-dialogue/0/0-intro.json"
+cutscene_2 = "res://Assets/izanami-dialogue/1/1-intro.json"
+starter_town = ExtResource("3_7ypsx")
+party_scene = ExtResource("4_8fbda")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -109,6 +123,9 @@ visible = false
 
 [node name="Save" parent="CanvasLayer" instance=ExtResource("3_x30nn")]
 
+[node name="CharacterSelect" parent="CanvasLayer" instance=ExtResource("7_3aqkl")]
+visible = false
+
 [node name="ExitButton" type="Button" parent="CanvasLayer"]
 visible = false
 offset_left = 10.0
@@ -141,7 +158,6 @@ text = "Saving"
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/New" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="item_activated" from="CanvasLayer/Save/VBoxContainer/SaveMenu/Options" to="CanvasLayer/Save/VBoxContainer/SaveMenu" method="_on_item_activated"]
 
 [editable path="CanvasLayer/Save"]
 [editable path="CanvasLayer/Save/VBoxContainer/SaveMenu"]

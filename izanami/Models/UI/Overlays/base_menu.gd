@@ -44,3 +44,4 @@ func _on_visibility_changed() -> void:
 		if Global.exit_signal.is_connected(self._on_exit_button_pressed): Global.exit_signal.disconnect(self._on_exit_button_pressed)
 		if is_instance_valid(Global.exit_button): Global.exit_button.hide()
 		if is_instance_valid(Global.players): Global.players.unfreeze()
+		if is_instance_valid(Global.description_box): Global.description_box.hide()

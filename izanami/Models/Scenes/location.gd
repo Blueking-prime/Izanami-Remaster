@@ -48,8 +48,7 @@ func load_scene():
 
 	if map_camera: map_camera.setup_map()
 
-	if tilemap:
-		tilemap.ready.connect(_on_map_loaded)
+	if tilemap: tilemap.ready.connect(_on_map_loaded)
 
 	Global.exit_button = exit_button
 	if not Global.exit_button.pressed.is_connected(Global._on_shop_exit): Global.exit_button.pressed.connect(Global._on_shop_exit)

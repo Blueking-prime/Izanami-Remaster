@@ -51,12 +51,12 @@ func _input(event: InputEvent) -> void:
 	curr_index = current_focus.root_menu.get_parent().get_parent().get_parent().get_index()
 
 
-	if event.is_action_pressed("ui_focus_next"):
+	if event.is_action_pressed("ui_right"):
 		if curr_index + 1 < container.get_child_count():
 			container.get_child(curr_index + 1).options.call_deferred('grab_focus')
 		else :
 			container.get_child(0).options.call_deferred('grab_focus')
-	if event.is_action_pressed("ui_focus_prev"):
+	if event.is_action_pressed("ui_left"):
 		if curr_index - 1 >= 0:
 			container.get_child(curr_index - 1).options.call_deferred('grab_focus')
 		else :

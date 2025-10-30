@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d4fsdqxn6alxo"]
+[gd_scene load_steps=21 format=3 uid="uid://d4fsdqxn6alxo"]
 
 [ext_resource type="Script" uid="uid://dl5ci1kbwevg4" path="res://Models/Scenes/location.gd" id="1_knc6e"]
 [ext_resource type="Script" uid="uid://csyfy2mq4hynd" path="res://Models/Scenes/player_camera_script.gd" id="2_16o45"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://b6paju7yq14y1" path="res://Models/Scenes/Dungeon/floor.gd" id="6_iv1rf"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="8_kxce6"]
 [ext_resource type="PackedScene" uid="uid://11siwvu70ak7" path="res://Models/UI/Overlays/BaseOverlay/quest_menu.tscn" id="13_m8nc8"]
+[ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/UI/Overlays/Settings/settings.tscn" id="14_kftft"]
+[ext_resource type="PackedScene" uid="uid://dlflxypiwhkyi" path="res://Models/UI/Overlays/save_menu.tscn" id="15_emf0p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kcgp0"]
 texture = ExtResource("3_glrit")
@@ -561,28 +563,43 @@ y_sort_enabled = true
 z_index = 0
 gold = 100
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_80d1d")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("map_cam", "free_cam", "inventory_menu", "quests_menu", "status_menu") instance=ExtResource("3_hxd4o")]
+[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("map_cam", "free_cam", "save_menu", "settings_menu", "inventory_menu", "quests_menu", "status_menu") instance=ExtResource("3_hxd4o")]
 map_cam = NodePath("../../MapCam")
 free_cam = NodePath("../../FreeCam")
-inventory_menu = NodePath("../InventoryMenu")
-quests_menu = NodePath("../QuestMenu")
-status_menu = NodePath("../StatusOverlay")
+save_menu = NodePath("../Overlays/Save/VBoxContainer/SaveMenu")
+settings_menu = NodePath("../Overlays/Settings")
+inventory_menu = NodePath("../Overlays/InventoryMenu")
+quests_menu = NodePath("../Overlays/QuestMenu")
+status_menu = NodePath("../Overlays/StatusOverlay")
 
-[node name="InventoryMenu" parent="CanvasLayer" instance=ExtResource("4_qvqpn")]
+[node name="Overlays" type="Node" parent="CanvasLayer"]
 
-[node name="StatusOverlay" parent="CanvasLayer" instance=ExtResource("5_g4neh")]
+[node name="InventoryMenu" parent="CanvasLayer/Overlays" instance=ExtResource("4_qvqpn")]
+
+[node name="StatusOverlay" parent="CanvasLayer/Overlays" instance=ExtResource("5_g4neh")]
 visible = false
 
-[node name="QuestMenu" parent="CanvasLayer" instance=ExtResource("13_m8nc8")]
+[node name="QuestMenu" parent="CanvasLayer/Overlays" instance=ExtResource("13_m8nc8")]
 visible = false
+
+[node name="Settings" parent="CanvasLayer/Overlays" instance=ExtResource("14_kftft")]
+visible = false
+
+[node name="Save" parent="CanvasLayer/Overlays" instance=ExtResource("15_emf0p")]
 
 [node name="ExitButton" type="Button" parent="CanvasLayer"]
 visible = false
 offset_left = 10.0
 offset_top = 10.0
+offset_right = 36.0
+offset_bottom = 28.0
 text = "Back"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_80d1d")
+[editable path="CanvasLayer/Overlays/Save"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]

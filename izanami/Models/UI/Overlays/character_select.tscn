@@ -22,7 +22,7 @@ script = ExtResource("1_kal2b")
 player_status_card_scene = ExtResource("2_04xmx")
 player_details_card_scene = ExtResource("10_hf6va")
 available_class_scenes = Array[PackedScene]([ExtResource("2_jeb3m"), ExtResource("3_x4rs5"), ExtResource("4_dgbw1"), ExtResource("5_kjg8s"), ExtResource("6_iocr8"), ExtResource("7_881no"), ExtResource("8_13ikf")])
-player_party_scene = ExtResource("11_b1lsy")
+players_scene = ExtResource("11_b1lsy")
 player_container = NodePath("ScrollContainer/HBoxContainer")
 player_node_container = NodePath("Classes")
 back_button = NodePath("BackButton")
@@ -30,24 +30,23 @@ metadata/_edit_horizontal_guides_ = [-86.0]
 
 [node name="BackButton" type="Button" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 150.0
-offset_bottom = 76.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
 text = "Back"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -908.0
-offset_top = -335.0
-offset_right = 911.0
-offset_bottom = 335.0
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
@@ -56,7 +55,7 @@ follow_focus = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 20
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="PlayersStatus" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_04xmx")]

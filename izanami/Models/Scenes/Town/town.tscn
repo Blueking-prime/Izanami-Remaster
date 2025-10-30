@@ -176,10 +176,14 @@ shape = SubResource("CircleShape2D_vqjfq")
 [node name="Node2D" parent="." index="14" instance=ExtResource("15_ujed2")]
 position = Vector2(615, 817)
 
-[node name="ExitButton" parent="CanvasLayer" index="4"]
+[node name="ExitButton" parent="CanvasLayer" index="2"]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 8.0
 offset_bottom = 8.0
 
 [connection signal="body_entered" from="Entrance" to="." method="_on_entrance_body_entered"]
+
+[editable path="CanvasLayer/Overlays/Save"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]

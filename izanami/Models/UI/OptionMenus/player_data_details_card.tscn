@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cec62gf0wm47s" path="res://Models/UI/OptionMenus/player_data_details_card.gd" id="1_54x7v"]
 
 [node name="PlayerDetails" type="PanelContainer" node_paths=PackedStringArray("namefield", "classname", "hpbar", "hpbar_text", "spbar", "spbar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "select_button")]
-offset_right = 553.0
-offset_bottom = 843.0
+offset_right = 159.0
+offset_bottom = 293.0
 script = ExtResource("1_54x7v")
 namefield = NodePath("MarginContainer/VBoxContainer/Namefield")
 classname = NodePath("MarginContainer/VBoxContainer/TitleBox/Class")
@@ -31,9 +31,8 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 
 [node name="TitleBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -54,7 +53,7 @@ size_flags_vertical = 6
 text = "HP"
 
 [node name="HPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 6
 show_percentage = false
@@ -77,7 +76,7 @@ size_flags_vertical = 6
 text = "SP"
 
 [node name="SPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 6
 show_percentage = false
@@ -106,7 +105,7 @@ size_flags_horizontal = 2
 text = "Stats:"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/StatsBox"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -114,7 +113,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
-theme_override_constants/h_separation = 10
+theme_override_constants/h_separation = 5
 columns = 6
 
 [node name="Stat" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
