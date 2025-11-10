@@ -1,0 +1,72 @@
+{
+   "info": {
+       "skippable": false,
+       "characters": ["Guiding Voice", "PLAYER_NAME"]
+   },
+   "main": {
+       "dialogue": [
+            ["...", "Awaken, proud remnant. Soul tempered from unknowable battle."],
+            ["...", "Fear not. You are dead. Yes, adrift in the bosom of death, but you still yet persist"],
+            ["...", "You cling to existence, and beg for materialization."],
+           [
+               "PLAYER_NAME",
+               "...",
+               [
+                   {
+                       "name": "Who are you?",
+                       "checks": [""],
+                       "branch": "branch_1"
+                   },
+                   {
+                       "name": "What do you want?",
+                       "checks": [""],
+                       "branch": "branch_2"
+                   }
+               ],
+               true,
+               true
+           ],
+           ["Guiding Voice", "I am a friend, that's all that's important. I can make you real, give you a body, a mind, make you an actuator in reality once more."],
+           ["Guiding Voice", "And all I ask in return is that you to do what you do best. The world you will awaken into has been torn asunder by four powerful Kings of Hell. Each wielding one of the four Orbs of Destiny"],
+     ["Guiding Voice", "I beseech you bring me these Orbs, that I might return to my world its lost glory."],
+     ["Guiding Voice", "Like I said, I am a friend, and friends help each other, kind spectre. Do you wish to wake? So that you may deliver my world from the hand of darkness?", 
+     [
+                   {
+                       "name": "Yes.",
+                       "checks": [""],
+                       "branch": "branch_c"
+                   },
+                   {
+                       "name": "No.",
+                       "checks": [""],
+                       "branch": "branch_d"
+                   }
+               ], true],
+     ["Guiding Voice", "Come then, break through the firmament of the beyond, and awaken."]
+       ]
+   },
+   "branch_a": {
+       "flags": {},
+       "rewards": {},
+       "dialogue": [["---", "A difficult question to answer. If I told you my name it would have no meaning to you."]]
+   },
+   "branch_b": {
+       "flags": {},
+       "rewards": {},
+       "dialogue": [["---", "Your spirit thrashed against the fabric of the invisible realm, and I answered, so it would be more accurate to ask what do *you* want?"]]
+   },
+
+    "branch_c": {
+       "flags": {},
+       "rewards": {},
+       "dialogue": [["Guiding Voice", "Magnificent."]]
+   },
+
+   "branch_d": {
+       "flags": {},
+       "rewards": {},
+       "dialogue": [["Guiding Voice", "That's quite an unexpected response. Well, I apologize for the smoke and mirrors but for us to even be talking like this requires the ritual to already be well underway. You reached out to me, remember?"],
+       ["Guiding Voice", "I suppose you could always just kill yourself upon materialization."]]
+   }
+   
+}

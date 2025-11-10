@@ -1,0 +1,18 @@
+{
+    "main":[
+        ["Kijohime Momiji", "..."],
+        ["", "Take the Kijohime's life?", ["Yes", "No"], ["branch_1", "branch_2"]]
+    ],
+
+    "branch_1":[
+        ["PLAYER_NAME", "Stand proud, Kijohime. You are strong."],
+        ["", "You cleave her head from her shoulders with your bare hands. Denying her future and severing your tie to things of old."]
+    ],
+
+    "branch_2":[
+        ["", "The Kijohime laughs to herself,"],
+        ["Kijohime Momiji", "How merciful you are."],
+        ["PLAYER_NAME", "Let us guide this world, together still."],
+        ["Kijohime Momiji", "Yes. My Daimaou."]
+    ]
+}
