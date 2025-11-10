@@ -222,11 +222,16 @@ func _on_textbox_log_selected(toggled_on: bool):
 
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey or event is InputEventMouse:
+		Checks.settings_flags.input_type = 0
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		Checks.settings_flags.input_type = 1
+
 	if event.is_action_pressed("ui_cancel"):
 		sell.emit('exit')
 		exit_signal.emit()
 		if is_instance_valid(exit_button) and exit_button.visible:
 			Audio.play_exit_menu_sfx()
 	if event.is_action_pressed('test'):
-		print('--------------------MOVE----------------------')
-		show_info_popup('Test message')
+		print('--------------------TEST----------------------')
+		print(Checks.settings_flags.input_type)

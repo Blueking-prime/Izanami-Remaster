@@ -354,4 +354,4 @@ text = "Saving"
 [connection signal="pressed" from="Buttons/MenuButtons/SaveButton" to="InputProcessing" method="_on_save_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/LoadButton" to="InputProcessing" method="_on_load_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButtons/QuitButton" to="InputProcessing" method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Buttons/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Buttons/MenuButton" to="InputProcessing" method="_on_menu_button_pressed"]

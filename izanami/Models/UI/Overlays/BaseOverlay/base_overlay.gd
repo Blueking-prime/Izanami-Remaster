@@ -28,15 +28,26 @@ var menu_list: Array
 var save_enabled: bool = true
 
 
-func _get_key_event_keycode(action_name: String):
-	return char(InputMap.action_get_events(action_name)[Checks.settings_flags.input_type].keycode)
+func _get_key_event_keycode(action_name: String) -> String:
+	match Checks.retreive_setting('input_type'):
+		0:
+			return OS.get_keycode_string(
+				InputMap.action_get_events(action_name)[0].get_keycode_with_modifiers()
+			)
+		#1: return Input.get_joy_button_string(
+				#InputMap.action_get_events(action_name)[1].button_index
+			#)
+		_:
+			return ''
 
 
 func _assign_button_labels():
 	for i in input_processing.button_container.get_children():
 		var button_name: String = i.name.trim_suffix('Button')
 		var event_key: String = _get_key_event_keycode(button_name.to_lower() + '_key')
-		i.text = button_name + ' (' + event_key + ')'
+		i.text = button_name
+		if event_key != '':
+			i.text += ' (' + event_key + ')'
 
 
 func update_coin_counter():

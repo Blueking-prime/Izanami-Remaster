@@ -6,7 +6,8 @@ class_name KeybindOption
 @export var button: Button
 
 ## 0 for keyboard, 1 for controller, etc
-@export var input_type: int
+@export var input_type: int:
+	get(): return Checks.retreive_setting('input_type')
 @export var action_name: StringName
 
 func _ready() -> void:

@@ -47,12 +47,16 @@ TASKS (WORKABLE)
 - [ ] Implement custom loading screen scene
 - [ ] Implement GUIDE movement addon
 - [ ] Add controller menu bindings
-- [ ] Add option to save custom bindings
 - [ ] Change ui menus to book graphic
 - [ ] Add water/lava in dungeons
 - [ ] Load Dungeon alongside town since always return to same town
 - [ ] load demonitarium alongside town since no need for warpping
+- [ ] Remove floor on unloaded tiles and reset player position if not on floor
+- [ ] Dual stack dungeon outer walls to allow for proper shadows (Or just shadow all walls)
+- [ ] Implement credit roll style display
+- [ ] Add time based directional lighting to towns and overworld
 - [ ] Implement accessibility settings
+- [x] Add option to save custom bindings
 - [x] Add point lighting and directional lighting to players for dungeons and towns respectively
 - [x] Us path and path follow for NPC movements
 - [x] Fix leaf not working

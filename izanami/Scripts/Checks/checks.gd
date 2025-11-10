@@ -3,6 +3,7 @@ extends Node
 
 @export var flags: Flags
 @export var settings_flags: SettingsFlags
+@export var input_map: ChecksInputMap
 
 @export var custom_seed: int = 0
 
@@ -92,6 +93,7 @@ func save_settings() -> Array:
 	).map(
 		func(x): return {'name': x.name, 'value': settings_flags.get(x.name)}
 	)
+	input_map.save_input_map()
 	return settings_data
 
 
@@ -102,3 +104,4 @@ func load_flags(flag_data: Array):
 func load_settings(settings_data: Array):
 	for i in settings_data:
 		settings_flags.set(i.name, i.value)
+	input_map.load_input_map()
