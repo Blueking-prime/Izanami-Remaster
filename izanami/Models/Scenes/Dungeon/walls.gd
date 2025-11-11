@@ -138,32 +138,32 @@ func render_outer_walls():
 
 func _render_up_edge(border: bool):
 	if border:
-		for i in range(marker.x, marker.x + width + 1):
-			outer_walls.append(Vector2i(i, marker.y))
+		for i in range(marker.x, marker.x + width):
+			outer_walls.append(Vector2i(i, marker.y + 1))
 	else:
 		for i in range(marker.x, marker.x + width + 1):
 			chunk_load_zones.append(Vector2i(i, marker.y))
 
 func _render_down_edge(border: bool):
 	if border:
-		for i in range(marker.x, marker.x + width + 1):
-			outer_walls.append(Vector2i(i, marker.y + height))
+		for i in range(marker.x, marker.x + width):
+			outer_walls.append(Vector2i(i, marker.y + height - 1))
 	else:
 		for i in range(marker.x, marker.x + width + 1):
 			chunk_load_zones.append(Vector2i(i, marker.y + height))
 
 func _render_left_edge(border: bool):
 	if border:
-		for i in range(marker.y, marker.y + height + 1):
-			outer_walls.append(Vector2i(marker.x, i))
+		for i in range(marker.y, marker.y + height):
+			outer_walls.append(Vector2i(marker.x + 1, i))
 	else:
 		for i in range(marker.y, marker.y + height + 1):
 			chunk_load_zones.append(Vector2i(marker.x, i))
 
 func _render_right_edge(border: bool):
 	if border:
-		for i in range(marker.y, marker.y + height + 1):
-			outer_walls.append(Vector2i(marker.x + width, i ))
+		for i in range(marker.y, marker.y + height):
+			outer_walls.append(Vector2i(marker.x + width - 1, i ))
 	else:
 		for i in range(marker.y, marker.y + height + 1):
 			chunk_load_zones.append(Vector2i(marker.x + width, i ))

@@ -53,7 +53,7 @@ func load_chunks(new_map: bool):
 		call_deferred('load_new_chunk', DIRECTION.DOWN, index + 1)
 
 	root_node.camera.tilemap_position = current_chunk.rect.get_center()
-
+	root_node.background.show_loaded_background.call_deferred()
 
 
 func load_new_chunk(pos: int, index: int) -> DungeonChunk:
@@ -111,9 +111,10 @@ func update_player_chunk(chunk: DungeonChunk):
 	chunk_tiles[_get_reverse_direction(direction)] = current_chunk
 	current_chunk = chunk
 
-	await root_node.camera.move_camera(current_chunk.rect.get_center())
+	root_node.camera.move_camera(current_chunk.rect.get_center())
 
-	await get_tree().create_timer(0.1).timeout
+	for i in 10:
+		await get_tree().process_frame
 
 	root_node.player.detector.left_chunk_border.connect(root_node._on_detector_hit_border)
 	Global.players.unfreeze()

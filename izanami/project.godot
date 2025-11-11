@@ -299,7 +299,8 @@ menu_left={
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="Buildings"
 2d_physics/layer_7="Warppoints"
-2d_physics/layer_8="NPCss"
+2d_physics/layer_8="NPCs"
+2d_physics/layer_9="Chunkborders"
 
 [rendering]
 

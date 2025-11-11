@@ -72,13 +72,13 @@ func partition_layout():
 		var chunk_data: Dictionary = {}
 
 		chunk_data['marker'] = i
-		chunk_data['walls'] = _get_tiles_in_chunk(i, walls)
-		chunk_data['empty_tiles'] = _get_tiles_in_chunk(i, empty_tiles)
-		chunk_data['treasure_tiles'] = _get_tiles_in_chunk(i, treasure_tiles)
-		chunk_data['opened_chests'] = _get_tiles_in_chunk(i, [])
-		chunk_data['enemy_tiles'] = _get_tiles_in_chunk(i, enemy_tiles)
-		chunk_data['start'] = _get_tiles_in_chunk(i, [start])
-		chunk_data['stop'] = _get_tiles_in_chunk(i, [stop])
+		chunk_data['walls'] = get_tiles_in_chunk(i, walls)
+		chunk_data['empty_tiles'] = get_tiles_in_chunk(i, empty_tiles)
+		chunk_data['treasure_tiles'] = get_tiles_in_chunk(i, treasure_tiles)
+		chunk_data['opened_chests'] = get_tiles_in_chunk(i, [])
+		chunk_data['enemy_tiles'] = get_tiles_in_chunk(i, enemy_tiles)
+		chunk_data['start'] = get_tiles_in_chunk(i, [start])
+		chunk_data['stop'] = get_tiles_in_chunk(i, [stop])
 		chunk_data['type'] = _get_chunk_type(i)
 		chunks[chunk_no] = chunk_data
 		chunk_no += 1
@@ -94,7 +94,7 @@ func _get_chunk_type(marker: Vector2i) -> int:
 
 	return type
 
-func _get_tiles_in_chunk(marker: Vector2i, tiles: Array[Vector2i]) -> Array[Vector2i]:
+func get_tiles_in_chunk(marker: Vector2i, tiles: Array[Vector2i]) -> Array[Vector2i]:
 		var chunk_tiles: Array[Vector2i] = []
 		for j in tiles:
 			if j.x in range(marker.x, marker.x + chunk_width) and j.y in range(marker.y, marker.y + chunk_height):

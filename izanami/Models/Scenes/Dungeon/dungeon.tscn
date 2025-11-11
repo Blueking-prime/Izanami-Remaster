@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyon8uinblkc1"]
+[gd_scene load_steps=11 format=3 uid="uid://cyon8uinblkc1"]
 
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Models/Scenes/location.tscn" id="1_pweoc"]
 [ext_resource type="Script" uid="uid://bec8jnwutx78b" path="res://Models/Scenes/Dungeon/dungeon.gd" id="2_g8y5j"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://cl1xfi8potiq4" path="res://Models/Scenes/Dungeon/dungeon_map.gd" id="3_kk8fo"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://Configs/all_items.tres" id="4_1cpbm"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="5_uay2u"]
-[ext_resource type="TileSet" uid="uid://c50pucj5u271f" path="res://Models/Scenes/Dungeon/dungeon_og_tileset.tres" id="7_f2ske"]
 [ext_resource type="Script" uid="uid://b75f6fmdm2y1x" path="res://Models/Scenes/Dungeon/wall_chunks.gd" id="7_yj5q6"]
 [ext_resource type="PackedScene" uid="uid://vssfk8x0qnt2" path="res://Models/Scenes/Dungeon/Chunk.tscn" id="8_yjhow"]
 [ext_resource type="Script" uid="uid://6hw0pek0fysd" path="res://Models/Scenes/Dungeon/dungeon_enemy_display.gd" id="11_co7ba"]
@@ -44,9 +43,9 @@ script = ExtResource("3_kk8fo")
 noise_map = SubResource("FastNoiseLite_f2ske")
 path_noise_cutoff = 0.2
 
-[node name="Background" parent="." index="4" node_paths=PackedStringArray("map")]
-tile_set = ExtResource("7_f2ske")
+[node name="Background" parent="." index="4" node_paths=PackedStringArray("map", "chunk_handler")]
 map = NodePath("../Map")
+chunk_handler = NodePath("../ObjectsSort/WallChunks")
 terrain_set = 2
 terrain_id = 1
 
@@ -59,7 +58,16 @@ chunk_scene = ExtResource("8_yjhow")
 
 [node name="Walls" parent="ObjectsSort/WallChunks" index="0" instance=ExtResource("8_yjhow")]
 
-[node name="EnemyDisplay" type="PanelContainer" parent="CanvasLayer" index="4" node_paths=PackedStringArray("container")]
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="7"]
+color = Color(0.0353462, 0.0353462, 0.0353462, 1)
+
+[node name="ExitButton" parent="CanvasLayer" index="2"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="EnemyDisplay" type="PanelContainer" parent="CanvasLayer" index="3" node_paths=PackedStringArray("container")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -88,11 +96,6 @@ alignment = 2
 [node name="Label" type="Label" parent="CanvasLayer/EnemyDisplay/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
 
-[node name="ExitButton" parent="CanvasLayer" index="5"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="CanvasModulate" type="CanvasModulate" parent="." index="7"]
-color = Color(0.0353462, 0.0353462, 0.0353462, 1)
+[editable path="CanvasLayer/Overlays/Save"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]

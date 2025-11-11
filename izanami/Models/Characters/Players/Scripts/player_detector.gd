@@ -20,8 +20,11 @@ signal hit_enemy(body)
 signal hit_building(body)
 
 func _process_tile_collison(body: TileMapLayer, body_rid: RID) -> String:
-	return body.get_cell_tile_data(body.get_coords_for_body_rid(body_rid)
-		).get_custom_data_by_layer_id(0).to_lower()
+	var data: TileData = body.get_cell_tile_data(body.get_coords_for_body_rid(body_rid))
+	if data is TileData:
+		return data.get_custom_data_by_layer_id(0).to_lower()
+	else:
+		return ''
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body is TileMapLayer:

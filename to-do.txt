@@ -52,8 +52,9 @@ TASKS (WORKABLE)
 - [ ] Add water/lava in dungeons
 - [ ] Load Dungeon alongside town since always return to same town
 - [ ] load demonitarium alongside town since no need for warpping
-- [ ] Remove floor on unloaded tiles and reset player position if not on floor
-- [ ] Dual stack dungeon outer walls to allow for proper shadows (Or just shadow all walls)
+- [x] Remove floor on unloaded tiles
+- [ ] Reset player position if not on floor
+- [x] Dual stack dungeon outer walls to allow for proper shadows (Or just shadow all walls)
 - [ ] Implement credit roll style display
 - [ ] Add time based directional lighting to towns and overworld
 - [ ] Implement accessibility settings
