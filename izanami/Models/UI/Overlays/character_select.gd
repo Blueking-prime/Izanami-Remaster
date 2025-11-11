@@ -85,7 +85,7 @@ func _clear_data_cards():
 	if children:
 		for i in children:
 			if is_instance_valid(i):
-				if is_ancestor_of(i): remove_child(i)
+				if is_ancestor_of(i): player_container.remove_child(i)
 				i.queue_free()
 
 

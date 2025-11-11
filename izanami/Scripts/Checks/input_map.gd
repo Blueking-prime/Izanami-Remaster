@@ -9,7 +9,6 @@ enum INPUT_TYPE { KEY, JOY_BUTTON, JOY_AXIS }
 func save_input_map():
 	var config = ConfigFile.new()
 	for action in InputMap.get_actions():
-		# Exclude built-in UI actions or debug actions if desired
 		if action.begins_with("ui_") or action.begins_with("debug_"):
 			continue
 
@@ -26,7 +25,6 @@ func save_input_map():
 			config.set_value("InputMap", action, key_codes)
 
 	config.save(CONFIG_FILE_PATH)
-	print("Input map saved to: " + CONFIG_FILE_PATH)
 
 func load_input_map():
 	var config = ConfigFile.new()
@@ -38,7 +36,6 @@ func load_input_map():
 	for action in config.get_section_keys("InputMap"):
 		var key_codes = config.get_value("InputMap", action)
 
-		# Clear corresponding input event
 		for existing_event in InputMap.action_get_events(action):
 			InputMap.action_erase_event(action, existing_event)
 
@@ -55,5 +52,3 @@ func load_input_map():
 					event = InputEventJoypadMotion.new()
 					event.axis = key_code[1]
 			InputMap.action_add_event(action, event)
-
-	print("Input map loaded from: " + CONFIG_FILE_PATH)

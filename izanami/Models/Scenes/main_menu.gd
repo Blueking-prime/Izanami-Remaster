@@ -36,9 +36,13 @@ func _on_load_pressed() -> void:
 
 func _on_new_pressed() -> void:
 	## Go to new game scene
+	menu_ui.hide()
 	if not SaveAndLoad.save_files.is_empty():
 		var confirm = await Global.show_confirmation_box('Start New Game?')
-		if confirm: intro_scene.play_intro()
+		if confirm:
+			intro_scene.play_intro()
+		else:
+			menu_ui.show()
 
 func _on_settings_pressed() -> void:
 	settings_menu.load_menu()

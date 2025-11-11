@@ -8,22 +8,27 @@ func warp(source: Location, destination_scene: PackedScene):
 
 	Global.players.freeze()
 	Global.players.leader.velocity = Vector2.ZERO
-	source.hide()
-	source.disconnect_signals()
+	if is_instance_valid(source):
+		source.hide()
+		source.disconnect_signals()
 
 	get_parent().players.leader.global_position = Vector2i.ZERO
 
 	var destination: Location = destination_scene.instantiate()
 	destination.hide()
-	source.add_sibling.call_deferred(destination)
+	if is_instance_valid(source):
+		source.add_sibling.call_deferred(destination)
+		source.call_deferred('remove_players')
+	else:
+		get_parent().add_sibling.call_deferred(destination)
 
-	source.call_deferred('remove_players')
 	destination.call_deferred('add_players')
 
 	#await get_tree().create_timer(1).timeout
 
 	get_tree().set_deferred('current_scene', destination)
-	if is_instance_valid(source): source.call_deferred('queue_free')
+	if is_instance_valid(source):
+		source.call_deferred('queue_free')
 
 	Audio.call_deferred('set_background_music')
 

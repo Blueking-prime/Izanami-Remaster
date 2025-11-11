@@ -6,7 +6,8 @@ class_name SettingsFlags
 	set(arg):
 		if arg != input_type:
 			input_type = arg
-			get_tree().get_current_scene().overlay.load_ui_elements()
+			var scene = get_tree().get_current_scene()
+			if scene is Location: scene.overlay.load_ui_elements()
 		else:
 			input_type = arg
 

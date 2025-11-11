@@ -31,8 +31,8 @@ intro_scene = NodePath("IntroScene")
 script = ExtResource("2_0lobm")
 canvas_layer = NodePath("../CanvasLayer")
 character_selector = NodePath("../CanvasLayer/CharacterSelect")
-cutscene_1 = "res://Assets/izanami-dialogue/0/0-intro.json"
-cutscene_2 = "res://Assets/izanami-dialogue/1/1-intro.json"
+cutscene_1 = "res://Assets/izanami-dialogue/0 - intro/0-intro.json"
+cutscene_2 = "res://Assets/izanami-dialogue/1 - yomotsu-1/1-intro.json"
 starter_town = ExtResource("3_7ypsx")
 party_scene = ExtResource("4_8fbda")
 
@@ -158,6 +158,7 @@ text = "Saving"
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/New" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuUI/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="player_created" from="CanvasLayer/CharacterSelect" to="IntroScene" method="_on_character_select_player_created"]
 
 [editable path="CanvasLayer/Save"]
 [editable path="CanvasLayer/Save/VBoxContainer/SaveMenu"]

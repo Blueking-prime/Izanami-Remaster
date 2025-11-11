@@ -10,7 +10,7 @@ var hidden_nodes: Array[Node] = []
 
 func setup_map():
 	scene = get_tree().current_scene
-	if scene:
+	if scene is Location:
 		var map_size: Vector2 = scene.size()
 		var screen_size: Vector2 = get_viewport().size
 		var map_scale = map_size / screen_size

@@ -43,6 +43,7 @@ BUG FIXES
 - [x] Fix enemy name bugs
 
 TASKS (WORKABLE)
+- [x] Fix new game warp not corrently setting current scene
 - [ ] Fix walking sound being played while idle
 - [ ] Implement custom loading screen scene
 - [ ] Implement GUIDE movement addon

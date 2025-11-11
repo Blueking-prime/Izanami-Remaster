@@ -42,7 +42,6 @@ func create_save_file(file_location: String):
 	save_file.party_data = Global.players.save()
 	save_file.scene_data = get_tree().current_scene.save()
 	save_file.game_flags = Checks.save_flags()
-	print(file_location, save_file)
 
 	ResourceSaver.save(save_file, file_location)
 	if not file_location.contains(autosave_file): Global.show_info_popup('saved!')
@@ -50,7 +49,6 @@ func create_save_file(file_location: String):
 
 func load_save_file(file_location: String):
 	var save_file: GameSaveData = load(file_location)
-	print(file_location, save_file)
 	Checks.load_flags(save_file.game_flags)
 
 	match save_file.scene_data.location:
@@ -89,16 +87,12 @@ func load_town():
 		add_sibling(town)
 		get_tree().current_scene = town
 
-	print('Town Loaded')
-
 func load_demonitarium():
 	if not get_tree().current_scene is Demonitarium:
 		get_tree().unload_current_scene()
 		var demonitarium: Demonitarium = Global.demonitarium_scene.instantiate()
 		add_sibling(demonitarium)
 		get_tree().current_scene = demonitarium
-
-	print('Demonitarium Loaded')
 
 
 ## SPAWN NEW PLAYERS ON FRESH LOAD

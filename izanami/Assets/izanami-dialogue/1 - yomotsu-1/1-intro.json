@@ -1,15 +1,15 @@
 
 {
    "main": [
-    ["Devimancer Micah", "Incredible... A true remnant before our very eyes. Can you believe it, Gilles?"],
-    ["Seithrmancer Gilles", "Yes, actually. We beckoned the damn thing."],
-    ["Devimancer Micah", "Can you speak then, remnant? What is your name?"],
-    ["PLAYER_NAME", "PLAYER_NAME"],
-    ["Seithrmancer Gilles", "Seems perfectly responsive, answers questions, maybe a bit dull. I'd say the awakening was a success."],
-    ["PLAYER_NAME", "You... called me here."],
-    ["Devimancer Micah", "We had a part in that, but if you're asking if we're the voice that spoke to you, then no. We're Servants of the Blue, last bastions of pure humanity."],
-    ["Devimancer Micah", "I think you've been told what to do already? Our job here is to guide you, if you have any questions to ask, feel free."],
-    ["Seithrmancer Gilles", "What you just stepped out of is a world portal, you'll run into them around the world. The Orb Bearers have severed the link back here, so you'll have to fix those for us."], 
-    ["Devimancer Micah", "Don't worry, there's a little something in it for you too. Run along now."]
+	["Devimancer Micah", "Incredible... A true remnant before our very eyes. Can you believe it, Gilles?"],
+	["Seithrmancer Gilles", "Yes, actually. We beckoned the damn thing."],
+	["Devimancer Micah", "Can you speak then, remnant? What is your name?"],
+	["PLAYER_NAME", "PLAYER_NAME"],
+	["Seithrmancer Gilles", "Seems perfectly responsive, answers questions, maybe a bit dull. I'd say the awakening was a success."],
+	["PLAYER_NAME", "You... called me here."],
+	["Devimancer Micah", "We had a part in that, but if you're asking if we're the voice that spoke to you, then no. We're Servants of the Blue, last bastions of pure humanity."],
+	["Devimancer Micah", "I think you've been told what to do already? Our job here is to guide you, if you have any questions to ask, feel free."],
+	["Seithrmancer Gilles", "What you just stepped out of is a world portal, you'll run into them around the world. The Orb Bearers have severed the link back here, so you'll have to fix those for us."],
+	["Devimancer Micah", "Don't worry, there's a little something in it for you too. Run along now."]
 ]
 }
