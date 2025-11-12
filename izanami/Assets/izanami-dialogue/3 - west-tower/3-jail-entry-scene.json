@@ -2,8 +2,8 @@
     "main": [
         ["...", "You there! You're human? Oh, the stars must have guided you here. Please!"],
         ["Fu Liang", "I can see you clearly now. Yes, you must be a human. My name is Fu Liang. That terrible demon Caliburn has bound me here..."],
-        [["...", "H-Hey!"], 
-        ["...", "Heyyy! Remnant is that you!?"]],
+        ["...", "H-Hey!"], 
+        ["...", "Heyyy! Remnant is that you!?"],
         ["Avant-Courier Beatrix", "Hey! It's me! Remember me right? HAHA, so you didn't get wasted after all. I guess you handled the business at Kinta well?"],
         ["Fu Liang", "You know her?"],
         ["Avant-Courier Beatrix", "Of course, you came here for me right, Remnant?", ["Yes", "I've never met this woman in my life"], ["branch_1", "branch_2"], true],

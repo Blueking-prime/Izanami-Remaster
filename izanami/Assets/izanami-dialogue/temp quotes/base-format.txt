@@ -1,0 +1,17 @@
+{
+	"info": {
+		"skippable": false,
+		"characters": ["Guiding Voice", "...", "PLAYER_NAME"]
+	},
+	"main": {
+		"checks": [],
+		"flags" : {},
+		"rewards": {},
+		"dialogue": main
+	},
+	"branch": {
+		"flags": {},
+		"rewards": {},
+		"dialogue": 
+	}
+}

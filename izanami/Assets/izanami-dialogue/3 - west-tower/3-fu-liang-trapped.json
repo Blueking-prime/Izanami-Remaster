@@ -1,19 +1,19 @@
 {
-    "main":["Fu Liang", "Yes... 'Remnant'... Is that what they call you?", 
-    ["My Name is PLAYER_NAME", "Who are the Yuan Dao", "What do the stars tell you now", "How did you get captured"], 
-    ["branch_1", "branch_2", "branch_3", "branch_4"]],
+    "main":[
+    ["Fu Liang", "Yes... 'Remnant'... Is that what they call you?", ["My Name is PLAYER_NAME", "Who are the Yuan Dao", "What do the stars tell you now", "How did you get captured"], 
+    ["branch_1", "branch_2", "branch_3", "branch_4"]]],
 
-    "branch_1":["Fu Liang", "Yes, {pl}. A fitting name for one favored by the stars."],
+    "branch_1":[["Fu Liang", "Yes, {pl}. A fitting name for one favored by the stars."]],
     "branch_2":[["Fu Liang", "We are foreigners to this cursed land, guided here by the five elements, the twelve branches, the ten stems and the nine stars."],
                 ["Fu Liang", "We wish to help those in pain, and learn of the true nature of demonkind."],
                 ["Fu Liang", "Unfortunately I cannot tell you much else if you are allied with the Blue. I do not see you as an enemy, but you must understand."]],
-    "branch_3":["Fu Liang", "They tell me that my fate is in your hands, as I mentioned before. If you wish, I can even read your fortune through them.", ["Yes", "No"], ["fortune_yes", "fortune_no"]],
+    "branch_3":[["Fu Liang", "They tell me that my fate is in your hands, as I mentioned before. If you wish, I can even read your fortune through them.", ["Yes", "No"], ["fortune_5", "fortune_6"]]],
     "branch_4":[["Fu Liang", "Ah... that's quite embarassing, dear {pl}. I tried pleading to the Heavenly King Caliburn on behalf of the people of Kinta and it seemed that I drew his ire."],
                 ["Fu Liang", "I didn't wish to sully the Yuan Dao's reputation, so I allowed myself thrown in here as penitence."],
                 ["Fu Liang", "As I can only read the intention of the Wandering Stars, I cannot divine every possible outcome and this one was... unforseen."]],
-    "fortune_yes":[["", "You stretch your hand out to her through the cell bars."], 
+    "fortune_5":[["", "You stretch your hand out to her through the cell bars."], 
                     ["Fu Liang", "Your path... is scattered. Like stones by the riverside. You possess signs of all elements, yet are bound by none of them."], 
                     ["Fu Liang", "I'm sorry... I'm not as experienced as my sister in the reading of signs. Maybe If we leave here I can take you to her."]],
-    "fortune_no":["Fu Liang", "Yes... you do not need to know The Way to follow it. You are much wiser than a first glance betrays, chosen {pl}."]
+    "fortune_6":[["Fu Liang", "Yes... you do not need to know The Way to follow it. You are much wiser than a first glance betrays, chosen {pl}."]]
 
 }

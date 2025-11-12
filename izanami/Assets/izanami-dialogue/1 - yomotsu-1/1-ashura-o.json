@@ -1,15 +1,69 @@
 {
     "main": [
-        ["Ashura-O Paharada", "You reek. You have business with me, monkey?", 
-        ["Who are you?", "Who are the Ashura Corp?", "I reek?", "Who is the Daimaou?", "Why do you hate humans?",  "Any advice?"], ["branch_1", "branch_2", "branch_3", "branch_4", "branch_5", "branch_6"], true],
-        ["Ashura-O Paharada", "Hm."]
+        [
+            "Ashura-O Paharada",
+            "You reek. You have business with me, monkey?",
+            [
+                "Who are you?",
+                "Who are the Ashura Corp?",
+                "I reek?",
+                "Who is the Daimaou?",
+                "Why do you hate humans?",
+                "Any advice?"
+            ],
+            [
+                "branch_1",
+                "branch_2",
+                "branch_3",
+                "branch_4",
+                "branch_5",
+                "branch_6"
+            ],
+            true
+        ],
+        [
+            "Ashura-O Paharada",
+            "Hm."
+        ]
     ],
-
-    "branch_1": ["Ashura-O Paharada", "A God of Decadence. An unparalleled warrior. Most beloved of the Daimaou. Hark, for you are in the presence of the venerable Ashura-O Paharada."],
-    "branch_2": ["Ashura-O Paharada", "The tide that will pound your masters to dust, foul remnant."],
-    "branch_3": ["Ashura-O Paharada", "Yes, you reek of the stench of the spirit realm. You smell like a demon, but look like a human. An unforgivable perversion."],
-    "branch_4": ["Ashura-O Paharada", "Ask me a question like this again and I will scatter your body and soul across the 7 dimensions."],
-    "branch_5": [["Ashura-O Paharada", "Because they are weak and do not understand their place. The ever-so merciful Daimaou allowed them co-exist with us, and yet they still believe themselves superior."],
-                ["Ashura-O Paharada", "They create homonculi like you to mock us yet the only reason they still live is by the Daimaou's word. No, monkey. I do not hate all humans, only those who do not know their place in the world."]],
-    "branch_6": ["Ashura-O Paharada", "Stay out of my way or your rotting corpse will belch a deathly scent only the worms could love."]
+    "branch_1": [
+        [
+            "Ashura-O Paharada",
+            "A God of Decadence. An unparalleled warrior. Most beloved of the Daimaou. Hark, for you are in the presence of the venerable Ashura-O Paharada."
+        ]
+    ],
+    "branch_2": [
+        [
+            "Ashura-O Paharada",
+            "The tide that will pound your masters to dust, foul remnant."
+        ]
+    ],
+    "branch_3": [
+        [
+            "Ashura-O Paharada",
+            "Yes, you reek of the stench of the spirit realm. You smell like a demon, but look like a human. An unforgivable perversion."
+        ]
+    ],
+    "branch_4": [
+        [
+            "Ashura-O Paharada",
+            "Ask me a question like this again and I will scatter your body and soul across the 7 dimensions."
+        ]
+    ],
+    "branch_5": [
+        [
+            "Ashura-O Paharada",
+            "Because they are weak and do not understand their place. The ever-so merciful Daimaou allowed them co-exist with us, and yet they still believe themselves superior."
+        ],
+        [
+            "Ashura-O Paharada",
+            "They create homonculi like you to mock us yet the only reason they still live is by the Daimaou's word. No, monkey. I do not hate all humans, only those who do not know their place in the world."
+        ]
+    ],
+    "branch_6": [
+        [
+            "Ashura-O Paharada",
+            "Stay out of my way or your rotting corpse will belch a deathly scent only the worms could love."
+        ]
+    ]
 }
