@@ -115,23 +115,11 @@ if len(datum) > 1:
         alt_segment.append(alt)
         counter += 1
 
-
-
-
-
-print("------")
-print(branch_segment)
-
-
-
-
 scripted["main"]["dialogue"] = main_segment
 for x in branch_segment:
     scripted.update(x)
 for y in alt_segment:
     scripted.update(y)
-
-
 
 exit = json.dumps(scripted)
 print(exit)
