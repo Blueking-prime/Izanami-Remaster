@@ -1,22 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsgkr5mkwrndu"]
+[gd_scene load_steps=5 format=3 uid="uid://dsgkr5mkwrndu"]
 
 [ext_resource type="Script" uid="uid://w05mxxxmt4p8" path="res://Scripts/Dialogue/dialogue.gd" id="1_6knxj"]
 [ext_resource type="Script" uid="uid://dovvgbt4pnp3g" path="res://Scripts/Dialogue/dialogue_file_reader.gd" id="2_2lf6u"]
 [ext_resource type="Resource" uid="uid://chf160oykp0s4" path="res://Assets/Cutscenes/cutscenes.tres" id="3_yllqs"]
+[ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="4_epjoo"]
 
-[node name="Dialogue" type="Node" node_paths=PackedStringArray("auto_delay_timer", "file_reader", "canvas_layer")]
+[node name="Dialogue" type="Node" node_paths=PackedStringArray("auto_delay_timer", "file_reader", "canvas_layer", "test_players")]
 script = ExtResource("1_6knxj")
 auto_delay_timer = NodePath("AutoTimer")
 file_reader = NodePath("FileReader")
 canvas_layer = NodePath("CanvasLayer")
+test_cutscene = "res://Assets/izanami-dialogue/tempname_2.json"
+test_players = NodePath("Players")
 
 [node name="AutoTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
 [node name="FileReader" type="Node" parent="."]
 script = ExtResource("2_2lf6u")
 cutscenes = ExtResource("3_yllqs")
+
+[node name="Players" parent="." instance=ExtResource("4_epjoo")]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="timeout" from="AutoTimer" to="." method="_on_auto_timer_timeout"]

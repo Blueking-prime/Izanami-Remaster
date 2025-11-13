@@ -9,11 +9,14 @@ extends Node
 @export var canvas_layer: CanvasLayer
 @export var textlog: TextLog
 
-var PLAYER_NAME: String = 'Player'
+@export_file("*.json") var test_cutscene: String
+@export var test_players: Party
+
 var cutscene: Dictionary
 
 #func _ready() -> void:
-	#show_cutscene('test_cutscene')
+	#if not Global.players: Global.players = test_players
+	#show_cutscene(test_cutscene)
 
 
 func parse_branch(branch: Dictionary):
@@ -31,7 +34,7 @@ func parse_branch(branch: Dictionary):
 
 		# Check if speaker is in current party or part of npc group
 		if line[0] not in (
-				cutscene.info.characters + [''] + Global.players.party.map(func (x): return x.character_name)
+				cutscene.info.characters + ['', 'PLAYER_NAME'] + Global.players.party.map(func (x): return x.character_name)
 			):
 				current_line += 1
 				continue

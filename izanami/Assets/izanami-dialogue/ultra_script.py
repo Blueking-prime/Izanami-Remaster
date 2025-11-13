@@ -1,129 +1,113 @@
-import json
+from json import dumps, load
+from copy import deepcopy
 
+OUTPUT_LOCATION = "tempname.json"
 
-#file here
-
-with open('1 - yomotsu-1/1-beatrix-questions.json', 'r') as file:
-    datum = json.load(file)
-
-scripted = {
+# Template
+TEMPLATE: dict = {
 	"info": {
-		"skippable": 'false',
-		"characters": ["Guiding Voice", "..."]
+		"skippable": False,
+		"characters": []
 	},
 	"main": {
 		"checks": [],
 		"flags" : {},
 		"rewards": {},
-		"dialogue": 'main'
+		"dialogue": []
 	},
 }
 
-branch = {
+BRANCH_TEMPLATE: dict = {
     "name": {
-		"flags": {},
-		"rewards": {},
-		"dialogue": 'main'
-	}
+        "flags": {},
+        "rewards": {},
+        "dialogue": []
+    }
 }
 
-def createQArray(qarray, brancharray):
-    temp_array = []
-    for i in qarray:
-        temp_array.append({
-						"name": i,
+# Dialogue line indexes
+SPEAKER = 0
+TEXT = 1
+QUESTION_ARRAY = 2
+BRANCH_ARRAY = 3
+UNSKIPPABLE_FLAG = 4
+LOOP_OPTIONS_FLAG = 5
+
+
+# GLobal variables (Ideally a better way than a global variable, but it's 2am)
+characters = set()
+
+def create_question_array(questions: list, branches: list) -> list[dict]:
+    temp = []
+    for i in range(len(questions)):
+        temp.append({
+						"name": questions[i],
 						"checks": [],
-						"branch": brancharray[qarray.index(i)]
+						"branch": branches[i]
 					},)
-    return temp_array
+    return temp
 
-main_segment = []
-leaf = []
-branches = []
-branch_segment = []
-alt = []
-alt_leaf = []
-alt_segment = []
-final_segment = []
 
-for x in datum["main"]:
-    if len(x) < 3:
-        main_segment.append(x)
-    else:
-        if len(x) == 5:
-            y = [x[0], x[1], createQArray(x[2], x[3]), x[4]]
-        elif len(x) > 5:
-            y = [x[0], x[1], createQArray(x[2], x[3]), x[4], x[5]]
+def convert_section(section: list) -> list:
+    converted_section = []
+    for line in section:
+        characters.add(line[SPEAKER])
+        if len(line) < 3:
+            converted_section.append(line)
         else:
-            y = [x[0], x[1], createQArray(x[2], x[3])]
-        main_segment.append(y)
+            converted_line = [line[SPEAKER], line[TEXT], create_question_array(line[QUESTION_ARRAY], line[BRANCH_ARRAY])]
+            try:
+                converted_line + [line[UNSKIPPABLE_FLAG]]
+                try:
+                    converted_line + [line[LOOP_OPTIONS_FLAG]]
+                except IndexError:
+                    pass
+            except IndexError:
+                pass
+            converted_section.append(converted_line)
+
+    return converted_section
 
 
-if len(datum) > 1:
-    counter = 1
-    for x in datum:
-        leaf = []
-        if x == "main":
-            continue
-        if "alt" in x:
-            continue
-        for y in datum[x]:
-            if len(y) < 3:
-                leaf.append(y)
-            else:
-                if len(y) == 5:
-                    y = [y[0], y[1], createQArray(y[2], y[3]), y[4]]
-                elif len(y) > 5:
-                    y = [y[0], y[1], createQArray(y[2], y[3]), y[4], y[5]]
-                else:
-                    y = [y[0], y[1], createQArray(y[2], y[3])]
-                leaf.append(y)
-        branch = {
-                    "branch_" + str(counter): {
-                        "flags": {},
-                        "rewards": {},
-                        "dialogue": leaf
-                    }
-                }
-        branch_segment.append(branch)
-        counter += 1
-    counter = 1
-    for x in datum:
-        if x == "main":
-            continue
-        if "branch" in x:
-            continue
-        for y in datum[x]:
-            if len(y) < 3:
-                alt_leaf.append(y)
-            else:
-                if len(y) == 5:
-                    y = [y[0], y[1], createQArray(y[2], y[3]), y[4]]
-                elif len(y) > 5:
-                    y = [y[0], y[1], createQArray(y[2], y[3]), y[4], y[5]]
-                else:
-                    y = [y[0], y[1], createQArray(y[2], y[3])]
-                alt_leaf.append(y)
-        alt = {
-            "alt_" + str(counter): {
-                "checks": [],
-                "flags" : {},
-                "rewards": {},
-                "dialogue": alt_leaf
-                },
-            }
-        alt_segment.append(alt)
-        counter += 1
+def main():
+    main_segment = []
+    alt_sections = []
+    branches = []
 
-scripted["main"]["dialogue"] = main_segment
-for x in branch_segment:
-    scripted.update(x)
-for y in alt_segment:
-    scripted.update(y)
+    filename: str = input("Paste file name: ")
 
-exit = json.dumps(scripted)
-print(exit)
+    with open(filename, 'r') as file:
+        file_data: dict = load(file)
 
-with open("tempname.json", "w") as f:
-    f.write(exit)
-    
+    for section in file_data.keys():
+        if section == "main":
+            main_segment = convert_section(file_data[section])
+        if "alt" in section:
+            alt_section = {section: deepcopy(BRANCH_TEMPLATE["name"])}
+            alt_section[section]["dialogue"] = convert_section(file_data[section])
+            alt_sections.append(alt_section)
+        if "branch" in section:
+            branch = {section: deepcopy(BRANCH_TEMPLATE["name"])}
+            branch[section]["dialogue"] = convert_section(file_data[section])
+            branches.append(branch)
+
+    # Create final result cutscene from template
+    result = deepcopy(TEMPLATE)
+
+    result["info"]["characters"] = list(characters)
+    result["main"]["dialogue"] = main_segment
+
+    for branch in branches:
+        print(branch)
+        result.update(branch)
+
+    for alt_section in alt_sections:
+        result.update(alt_section)
+
+    print(result)
+
+    with open(OUTPUT_LOCATION, "w") as f:
+        f.write(dumps(result))
+
+if __name__ == '__main__':
+    main()
