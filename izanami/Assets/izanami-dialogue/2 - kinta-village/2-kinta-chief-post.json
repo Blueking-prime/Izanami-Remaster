@@ -3,8 +3,8 @@
         ["Demonkin Chief", "Thank you for liberating us. We are ever grateful, we demonkin aren't as strong as purebloods, so it's not uncommon that some witless brute sees fit to hold their strength over us. We used to be capable of defending ourselves, but that changed after that demon Caliburn appeared.",
     ["Who's Caliburn", "About Yomotsu", "About Blue", "About Ashura Corp"], ["branch_1", "branch_2", "branch_3", "branch_4"]]
     ],
-    "branch_1":["Demonkin Chief", "He was given dominion over this area as one of the Daimaou's Heavenly Kings, but after the Daimaou disappeared he suddenly started behaving erratically. The last Demonkin settlement that went against his will got wiped out."],
-    "branch_2":["Demonkin Chief", "That infernal city is no place for Demonkin like us. Between the power struggles, the slavers and the brewing civil wars, most Demonkin would rather take their chances with the outside world."],
-    "branch_3":["Demonkin Chief", "Hm? Yes, there was a human woman who passed through here shortly before you arrived. When we asked her for help, all she said was 'A colleague is on their way.' "],
-    "branch_4":["Demonkin Chief", "There were Ashura Corp members stationed here, but after the Daimaou vanished they all withdrew to Yomotsu shortly after. I wouldn't be surprised if the Ashura-O has something terribly careless planned."]
+    "branch_1":[["Demonkin Chief", "He was given dominion over this area as one of the Daimaou's Heavenly Kings, but after the Daimaou disappeared he suddenly started behaving erratically. The last Demonkin settlement that went against his will got wiped out."]],
+    "branch_2":[["Demonkin Chief", "That infernal city is no place for Demonkin like us. Between the power struggles, the slavers and the brewing civil wars, most Demonkin would rather take their chances with the outside world."]],
+    "branch_3":[["Demonkin Chief", "Hm? Yes, there was a human woman who passed through here shortly before you arrived. When we asked her for help, all she said was 'A colleague is on their way.' "]],
+    "branch_4":[["Demonkin Chief", "There were Ashura Corp members stationed here, but after the Daimaou vanished they all withdrew to Yomotsu shortly after. I wouldn't be surprised if the Ashura-O has something terribly careless planned."]]
 }

@@ -3,17 +3,17 @@
         ["Sinless Refael", "I know what you're here for. The Orb of the all powerful Daimaou, am I correct? I simply wish to have a discussion with you rather than have this conversation devolve into barbarity."],
         ["Sinless Refael", "As you can clearly see, I did not allow my domain degenerate like the other Heavenly Kings. I wielded both the power of the Orb and my own power to create the only haven on this cursed land."],
         ["Sinless Refael", "Tell me, have the Blue told you what these Orbs are? Your Progenitors? The voice that guided you here? Have they told you what it is they've sent you through the jaws of death to retrieve."],
-        ["Sinless Refael", "That gormless look on your face serves as enough of an answer. Tell me, are you a believer in the Daimaou or in the Blue?", ["Daimaou", "Blue", "You", "Neither"], ["branch_dai", "branch_blu", "branch_you", "branch_no"], true],
+        ["Sinless Refael", "That gormless look on your face serves as enough of an answer. Tell me, are you a believer in the Daimaou or in the Blue?", ["Daimaou", "Blue", "You", "Neither"], ["branch_1", "branch_2", "branch_3", "branch_4"], true],
         ["Sinless Refael", "So thus, I raise you a proposition."],
         ["Sinless Refael", "It is with the power of the Orbs alone that I have been able to create such a beautiful country."],
         ["Sinless Refael", "With just one, I was able to turn the cursed, ruined land of the Southern Domain into my paradise."],
         ["Sinless Refael", "Sacrifices are necessary to maintain my demonic power, but the people give. Willingly, knowing it is for the sake of their brethren and prosperity."],
         ["Sinless Refael", "As such, great Warrior, I offer you a covenant. I will give you my orb without word or struggle, and you will carry on the will of Paradise."],
         ["Sinless Refael", "With all four orbs in our possession we can strip this world of all demonic influence, and guide humanity to its future."],
-        ["Sinless Refael", "So, do you share my dream?", ["Yes", "No"], ["branch_agr", "branch_deny"], true]
+        ["Sinless Refael", "So, do you share my dream?", ["Yes", "No"], ["branch_5", "branch_6"], true]
     ],
 
-    "branch_dai":[
+    "branch_1":[
         ["Sinless Refael", "And what is it exactly that you believe in? His strength? His rule? His riches? I'm not like your masters, remnant. I'm willing to share my knowledge with you."],
         ["Sinless Refael", "The Daimaou you've heard of is but one of many. An endless cycle of mutiny, violence and distrust. Each Daimaou a victim of the next."],
         ["Sinless Refael", "Trying to build a sensible society on a foundation like that is like trying to grow rice in the desert. One mad god after another."],
@@ -21,13 +21,13 @@
         ["Sinless Refael", "The inevitability is an even more terrible demon taking his throne. There is no redemption coming for the people of this country. No redemption asides from me."]
 
 ],
-    "branch_blu":[        
+    "branch_2":[        
         ["Sinless Refael", "Why? You have no real allegiance to them. They're the glimmering remnants of old mankind, and you're a mannequin dancing to their swansong."],
         ["Sinless Refael", "Humans in my domain thrive beyond measure, without fear of subjugation by demons. They have no need for the endless crusade for power."],
         ["Sinless Refael", "My sources even yet tell me that the Blue are locked in conflict with the Ashura-O. If that brainless thing is able to accumulate enough power he could very well become the next Daimaou."],
         ["Sinless Refael", "He is strong enough to do that, that alone should tell you the fate of your masters."]
 ],
-    "branch_you":[
+    "branch_3":[
         ["Sinless Refael", "Hm?"],
         ["", "She seems genuinely taken aback by your answer."],
         ["Sinless Refael", "You've fallen for the sweet lies of an angel so easily. You really are human, through and through."],
@@ -35,20 +35,20 @@
         ["Sinless Refael", "Structure, protection, and most importantly, belief. All ideals needed for mankind to thrive."],
         ["Sinless Refael", ""]
     ],
-    "branch_no":[
+    "branch_4":[
         ["Sinless Refael", "Naturally, you are not from this world. Your allegiances yet lie with none."],
         ["Sinless Refael", "The Daimaou's madness pales in comparison to the paradise I have created."],
         ["Sinless Refael", "An ideal habitat for humans. Safe, fruitful, simple. No wars, no plague, no jealousy, no hate, most importantly no demons."],
         ["Sinless Refael", "A world where everyone knows their place from birth. A kind, peaceful place where mankind has no reason to tear one another apart."]
     ],
 
-    "branch_agr":[
+    "branch_5":[
         ["PLAYER_NAME", "Such a world makes more sense than this one."],
         ["Sinless Refael", "It will be a dangerous path, filled with a great many perils and distractions."],
         ["Sinless Refael", "But know that I will always be with you, my champion."]
     ],
 
-    "branch_deny":[
+    "branch_6":[
         ["PLAYER_NAME", "Such a world is the dream of a tyrant."],
         ["Sinless Refael", "Ah, I'd really thought you'd seen it my way. What a tragedy, my champion. If you will oppose me then I have no choice."],
         ["Sinless Refael", "I'll have to sate my dissapointment with the taste of your flesh."]

@@ -5,8 +5,8 @@
         ["branch_1", "branch_2", "branch_3", "branch_4"]]
     ],
 
-    "branch_1":["Caliburn Goon", "You take me for a fool, man-thing? Let's see how well you jabber with your jaw hanging around your neck."],
-    "branch_2":["Caliburn Goon", "Then you are a human. In which case Lord Caliburn would see his tower consecrated with your blood."],
-    "branch_3":["Caliburn Goon", "Yes. As do all true demons. Forgive my inconsideration. Please go on ahead."],
-    "branch_4":["Caliburn Goon", "The Ashura-O? Wow, then you must be a great warrior. Please go on ahead!"]
+    "branch_1":[["Caliburn Goon", "You take me for a fool, man-thing? Let's see how well you jabber with your jaw hanging around your neck."]],
+    "branch_2":[["Caliburn Goon", "Then you are a human. In which case Lord Caliburn would see his tower consecrated with your blood."]],
+    "branch_3":[["Caliburn Goon", "Yes. As do all true demons. Forgive my inconsideration. Please go on ahead."]],
+    "branch_4":[["Caliburn Goon", "The Ashura-O? Wow, then you must be a great warrior. Please go on ahead!"]]
 }

@@ -3,6 +3,6 @@
         ["Demonkin Chief", "I can sense immense courage from you, warrior. We the people of Kinta are merely craftsmen and farmers, yet those terrible demon brothers enact their nonsensical laws on us and take our food as tax. Will you be our deliverance?", 
         ["I'll try.", "No, I cannot."], ["branch_1", "branch_2"], true]
     ],
-    "branch_1":["Demonkin Chief", "Then please, but be vigilant. Those two can be crafty together."],
-    "branch_2":["Demonkin Chief", "Is that so. It seems I've regrettably been misinformed."]
+    "branch_1":[["Demonkin Chief", "Then please, but be vigilant. Those two can be crafty together."]],
+    "branch_2":[["Demonkin Chief", "Is that so. It seems I've regrettably been misinformed."]]
 }

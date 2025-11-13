@@ -2,8 +2,8 @@
     "main": [
         ["Old Man Oogeck", "Hmmm? Why I haven't seen you before? Could you be the outsider from overseas?", ["Where is this place", "What do you know about the Daimaou", "Overseas?"], ["branch_1", "branch_2", "branch_3"]]
     ],
-    "branch_1":["Old Man Oogeck", "This place used to be called Gokuraku back in my day, but I think the kids call it something else now."],
-    "branch_2":["Old Man Oogeck", "Huh? The daima-hwhatnow?"],
+    "branch_1":[["Old Man Oogeck", "This place used to be called Gokuraku back in my day, but I think the kids call it something else now."]],
+    "branch_2":[["Old Man Oogeck", "Huh? The daima-hwhatnow?"]],
     "branch_3":[["Old Man Oogeck", "Yes, the only way to get to Gokuraku is over the roiling seas and past the serpent of despair."], 
     ["Old Man Oogeck", "The only people who are here are those chosen by God. It's simple. If you're here, you must be one of the chosen."],
     ["Old Man Oogeck", "Hmmm? Yomowho? Hirawhere? Are all outsiders as kooky as you?"]]
