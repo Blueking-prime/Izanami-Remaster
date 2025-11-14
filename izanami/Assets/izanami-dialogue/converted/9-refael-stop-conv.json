@@ -1,0 +1,64 @@
+{
+    "info": {
+        "skippable": false,
+        "characters": [
+            "",
+            "Sinless Refael"
+        ]
+    },
+    "main": {
+        "checks": [],
+        "flags": {},
+        "rewards": {},
+        "dialogue": [
+            [
+                "",
+                "Suddenly, from within something bursts forth!"
+            ],
+            [
+                "Sinless Refael",
+                "This vortex of power... This is the Cauldron of Ascension. This is where this world shall be made anew."
+            ],
+            [
+                "Sinless Refael",
+                "Warrior without equal. Will you grant me thine providence to bring my paradise to all living things?",
+                [
+                    {
+                        "name": "Yes",
+                        "checks": [],
+                        "branch": "branch_1"
+                    },
+                    {
+                        "name": "No",
+                        "checks": [],
+                        "branch": "branch_2"
+                    }
+                ]
+            ]
+        ]
+    },
+    "branch_1": {
+        "flags": {},
+        "rewards": {},
+        "dialogue": [
+            [
+                "Sinless Refael",
+                "Come. Let us guide them into truth."
+            ]
+        ]
+    },
+    "branch_2": {
+        "flags": {},
+        "rewards": {},
+        "dialogue": [
+            [
+                "Sinless Refael",
+                "Facetious wretch. Fine. I have taken enough power as it is. I'll do it myself."
+            ],
+            [
+                "Sinless Refael",
+                "Don't worry. When I remake this world, I'll make sure you're reborn as the lying snake that you are."
+            ]
+        ]
+    }
+}

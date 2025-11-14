@@ -1,8 +1,6 @@
 from json import dumps, load
 from copy import deepcopy
 
-OUTPUT_LOCATION = "tempname.json"
-
 # Template
 TEMPLATE: dict = {
 	"info": {
@@ -68,13 +66,18 @@ def convert_section(section: list) -> list:
 
     return converted_section
 
+def string_slicer(file_str: str):
+    return file_str.split("/")[1]
 
-def main():
+
+def convert(input_path: str):
     main_segment = []
     alt_sections = []
     branches = []
 
-    filename: str = input("Paste file name: ")
+    # filename: str = input("Paste file name: ")
+    filename: str = input_path
+    OUTPUT_LOCATION = "converted/" +  string_slicer(filename)[:-5] + "-conv.json"
 
     with open(filename, 'r') as file:
         file_data: dict = load(file)
@@ -109,5 +112,5 @@ def main():
     with open(OUTPUT_LOCATION, "w") as f:
         f.write(dumps(result))
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#   main()

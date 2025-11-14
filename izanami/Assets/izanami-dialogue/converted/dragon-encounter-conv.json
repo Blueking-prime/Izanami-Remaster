@@ -1,0 +1,65 @@
+{
+    "info": {
+        "skippable": false,
+        "characters": [
+            "",
+            "Fu Liang",
+            "Beatrix"
+        ]
+    },
+    "main": {
+        "checks": [],
+        "flags": {},
+        "rewards": {},
+        "dialogue": [
+            [
+                "",
+                "A shadow casts overhead. From above you, a massive figure slumps to the ground. A dark, gurgling black puddle with massive bones strewn about inside."
+            ],
+            [
+                "",
+                "It makes several uncomfortable sounds, before a claw emerges out of it. Dark and scaled, dragging sparks across the ground."
+            ],
+            [
+                "",
+                "The formless mass morphs and twists, forming a maw and then two massive wings. Before you know it, a terrible beast bares it's fangs before you!"
+            ]
+        ]
+    },
+    "alt_1": {
+        "flags": {},
+        "rewards": {},
+        "dialogue": [
+            [
+                "Fu Liang",
+                "<<[i]Calm now, child of the starseed. They are chosen by the stars and have guided me here.[/i]>>"
+            ],
+            [
+                "",
+                "Fu Liang spoke in an unfamiliar language, yet somehow you understood every word."
+            ],
+            [
+                "",
+                "The Creature ceased its attack, and folded back into itself."
+            ],
+            [
+                "Fu Liang",
+                "Hope we didn't spook you too much, {pl}."
+            ]
+        ]
+    },
+    "alt_2": {
+        "flags": {},
+        "rewards": {},
+        "dialogue": [
+            [
+                "Beatrix",
+                "Gilles told me about this, that they have some kind of living weapon."
+            ],
+            [
+                "Beatrix",
+                "Keep your head up, Remnant. This thing's not just your average demon!"
+            ]
+        ]
+    }
+}
