@@ -59,6 +59,7 @@ chunk_scene = ExtResource("8_yjhow")
 [node name="Walls" parent="ObjectsSort/WallChunks" index="0" instance=ExtResource("8_yjhow")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." index="7"]
+visible = false
 color = Color(0.0353462, 0.0353462, 0.0353462, 1)
 
 [node name="ExitButton" parent="CanvasLayer" index="2"]

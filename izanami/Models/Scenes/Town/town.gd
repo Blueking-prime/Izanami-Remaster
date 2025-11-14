@@ -13,15 +13,18 @@ class_name Town
 var locations = ["Palace", "Church", "Smithy", "Apothecary", "Demonitorium", "Dungeon"]
 var actions = ['Talk', "Go Somewhere", 'Status']
 var characters = ["Kobaneko", "White"]
+var disable_entrance: bool = false
 
 func load_scene():
 	super.load_scene()
 
 func connect_signals():
+	super.connect_signals()
 	if not Global.players.leader.detector.hit_building.is_connected(_check_building):
 		Global.players.leader.detector.hit_building.connect(_check_building)
 
 func disconnect_signals():
+	super.disconnect_signals()
 	if Global.players.leader.detector.hit_building.is_connected(_check_building):
 		Global.players.leader.detector.hit_building.disconnect(_check_building)
 
@@ -40,6 +43,12 @@ func _check_building(node: Variant):
 	#if event.is_action_pressed("ui_end"):
 		#func_church()
 
+func handle_out_of_bounds():
+	#disable_entrance = true
+	Global.players.leader.tilemap_position = (Vector2i(entrance) / TILEMAP_CELL_SIZE) # + (Vector2i.DOWN * 2)
+	#await get_tree().physics_frame
+	#disable_entrance = false
+
 func save() -> TownSaveData:
 	var save_data: TownSaveData = TownSaveData.new()
 
@@ -56,6 +65,8 @@ func load_data(data: TownSaveData):
 
 
 func _on_entrance_body_entered(_body: Node2D) -> void:
+	if disable_entrance: return
+
 	Global.players.freeze()
 	if await Global.show_confirmation_box('Go to overworld?'):
 		Global.push_back_player(entrance, Location.TILEMAP_CELL_SIZE * 2)

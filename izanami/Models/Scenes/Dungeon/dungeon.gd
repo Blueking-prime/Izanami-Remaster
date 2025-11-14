@@ -79,6 +79,7 @@ func load_scene():
 	#print('Final time ', (start_time - Time.get_ticks_msec()) * -1)
 
 func connect_signals():
+	super.connect_signals()
 	print('Dungeon sig connected')
 	player.detector.hit_chest.connect(_on_detector_hit_chest)
 	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
@@ -87,12 +88,15 @@ func connect_signals():
 	player.detector.left_chunk_border.connect(_on_detector_hit_border)
 
 func disconnect_signals():
+	super.disconnect_signals()
 	player.detector.hit_chest.disconnect(_on_detector_hit_chest)
 	player.detector.hit_enemy.disconnect(_on_detector_hit_enemy)
 	player.detector.hit_exit.disconnect(_on_detector_hit_exit)
 	player.detector.hit_entrance.disconnect(_on_detector_hit_entrance)
 	player.detector.left_chunk_border.disconnect(_on_detector_hit_border)
 
+func handle_out_of_bounds():
+	Global.players.leader.tilemap_position = wall_chunks.current_chunk.rect.get_center()
 
 #func setup_navigation_region():
 	#var vertices = PackedVector2Array([

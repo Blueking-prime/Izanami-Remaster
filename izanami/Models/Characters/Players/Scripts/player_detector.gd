@@ -13,6 +13,7 @@ signal hit_chest(coord)
 var on_exit_signals := ['chunk_border', 'entrance']
 signal left_chunk_border(chunk)
 signal left_entrance
+signal left_map
 
 signal hit_enemy(body)
 
@@ -50,6 +51,8 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_body_shape_exited(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body is TileMapLayer:
+		if body is LocationBackground:
+			left_map.emit()
 		var sig := _process_tile_collison(body, body_rid)
 		match sig:
 			'chunk_border': left_chunk_border.emit(body)

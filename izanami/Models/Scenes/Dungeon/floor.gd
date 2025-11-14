@@ -13,6 +13,7 @@ class_name LocationBackground
 
 var chunks: Dictionary = {}
 var all_tiles: Array[Vector2i] = []
+var current_tiles: Array[Vector2i] = []
 
 func draw_background():
 	clear()
@@ -49,8 +50,14 @@ func sectionalise_background():
 		chunk_no += 1
 
 func show_loaded_background():
-	var current_tiles := []
+	current_tiles = []
 	for i in chunk_handler.chunk_tiles:
 		if i is DungeonChunk: current_tiles.append_array(chunks[i.chunk_no])
 
 	_render_background(current_tiles)
+
+func confirm_player_location() -> bool:
+	if Global.players.leader.tilemap_position in current_tiles:
+		return true
+	else:
+		return false

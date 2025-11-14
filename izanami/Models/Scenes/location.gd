@@ -5,7 +5,7 @@ class_name Location
 @export var entrance: Vector2:
 	get():
 		if entrance_area:
-			return entrance_area.global_position + (Vector2.DOWN * Location.TILEMAP_CELL_SIZE * 3)
+			return entrance_area.global_position + (Vector2.DOWN * TILEMAP_CELL_SIZE * 3)
 		else :
 			return entrance
 	set(arg): entrance = arg
@@ -57,9 +57,13 @@ func load_scene():
 
 	overlay.load_ui_elements()
 
-func connect_signals(): pass
+func connect_signals():
+	Global.players.leader.detector.left_map.connect(_on_left_map)
 
-func disconnect_signals(): pass
+
+func disconnect_signals():
+	Global.players.leader.detector.left_map.disconnect(_on_left_map)
+
 
 func _remove_test_players():
 	if is_instance_valid(test_players):
@@ -107,8 +111,14 @@ func go_to_overworld():
 	overworld.source_location = self
 	add_sibling(overworld)
 
+func handle_out_of_bounds(): pass
+
 func save():
 	pass
 
 func load_data(_data):
 	pass
+
+
+func _on_left_map():
+	if not background.confirm_player_location(): handle_out_of_bounds()

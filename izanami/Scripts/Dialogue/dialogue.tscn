@@ -10,7 +10,7 @@ script = ExtResource("1_6knxj")
 auto_delay_timer = NodePath("AutoTimer")
 file_reader = NodePath("FileReader")
 canvas_layer = NodePath("CanvasLayer")
-test_cutscene = "res://Assets/izanami-dialogue/tempname_2.json"
+test_cutscene = "res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-ashura-o-conv.json"
 test_players = NodePath("Players")
 
 [node name="AutoTimer" type="Timer" parent="."]
