@@ -34,18 +34,6 @@ func _spawn_player_card(player: Player):
 
 func update_card(data: PlayerDataCard, player: Player):
 	player.assign_ui_element_to_character(data)
-	#data.nametag.text = player.nametag.text
-	#data.sprite.texture = player.battle_sprite_texture.texture
-	#data.nametag.text = player.battle_sprite.nametag.text
-	#data.hp_bar_text.text = str(player.hp) + '/' + str(player.max_hp)
-	#data.sp_bar_text.text = str(player.sp) + '/' + str(player.max_sp)
-#
-	#player.battle_sprite_texture = data.sprite
-	#player.nametag = data.nametag
-	#player.hp_bar = data.hp_bar
-	#player.hp_bar_text = data.hp_bar_text
-	#player.sp_bar = data.sp_bar
-	#player.sp_bar_text = data.sp_bar_text
 
 
 func _clear_data_cards(children: Dictionary = {}):

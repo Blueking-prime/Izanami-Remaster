@@ -24,7 +24,7 @@ var chased: bool = false
 
 var party_panels: Dictionary = {}
 var stored_pos: Vector2
-var sprites: Array = []
+#var sprites: Array = []
 
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed('freecam_key'):
@@ -38,10 +38,10 @@ func _ready() -> void:
 
 func load_party():
 	party = get_children().filter(func(x): if x is Player and is_instance_valid(x): return x)
-	sprites.clear()
+	#sprites.clear()
 	for i in party:
-		# Store battle sprites in array to recall
-		sprites.append(i.battle_sprite)
+		## Store battle sprites in array to recall
+		#sprites.append(i.battle_sprite)
 		i.hide()
 		i.detector.monitoring = false
 		i.hitbox.disabled = true
@@ -170,13 +170,13 @@ func battle_reset():
 
 	revert_menu()
 
-	var valid_sprites := []
-	for i in sprites:
-		if is_instance_valid(i):
-			valid_sprites.append(i)
-#
-	sprites = valid_sprites
-	#print(sprites)
+	#var valid_sprites := []
+	#for i in sprites:
+		#if is_instance_valid(i):
+			#valid_sprites.append(i)
+##
+	#sprites = valid_sprites
+	##print(sprites)
 
 	revert_sprites()
 
@@ -186,22 +186,6 @@ func place_characters_in_battle():
 	for i in party:
 		var sprite: BattleSprite = battle_sprite_scene.instantiate()
 
-		#sprite.battle_sprite.texture = i.battle_sprite_texture.texture
-		#sprite.nametag.text = i.battle_sprite.nametag.text
-		#sprite.hp_bar_text.text = str(i.hp) + ' / ' + str(i.max_hp)
-		#sprite.sp_bar_text.text = str(i.sp) + ' / ' + str(i.max_sp)
-#
-		#i.nametag = sprite.nametag
-		#i.status_icons = sprite.status_icons
-		#i.hp_bar = sprite.hp_bar
-		#i.hp_bar_text = sprite.hp_bar_text
-		#i.sp_bar = sprite.sp_bar
-		#i.sp_bar_text = sprite.sp_bar_text
-		#i.pointer = sprite.pointer
-		#i.indicator = sprite.indicator
-		#i.battle_sprite_texture = sprite.battle_sprite
-#
-		#i.battle_sprite = sprite
 		i.assign_ui_element_to_character(sprite)
 
 		player_section.add_child(sprite)

@@ -16,24 +16,16 @@ enum STATES {IDLE, WALKING, BATTLE}
 @export var audio: CharacterAudio
 
 @export_category('UI')
-@export var nametag: Label
+@export var battle_sprite_texture: Texture2D
 @export var status_icon_container: GridContainer
-
-@export var hp_bar: ProgressBar
-@export var hp_bar_text: Label
-@export var sp_bar: ProgressBar
-@export var sp_bar_text: Label
-
-@export var pointer: TextureRect
-@export var indicator: TextureRect
-@export var battle_sprite_texture: TextureRect
-
-@export var original_battle_sprite_control: BattleSprite
-@export var battle_sprite: BattleSprite
-
 @export var dungeon_sprite: Sprite2D
+
 @export var hitbox: CollisionShape2D
 
+signal indicator_signal(visible: bool)
+signal pointer_signal(visible: bool)
+signal hp_signal(value: int, text: String)
+signal sp_signal(value: int, text: String)
 
 @export_category('Character Data')
 @export var character_name: String
@@ -66,7 +58,7 @@ var stats: Dictionary[StringName, int] = base_stats.duplicate()
 	set(value):
 		if value > max_hp: value = max_hp
 		hp = value
-		_update_hp_bar()
+		hp_signal.emit((float(hp) / max_hp) * 100, str(hp, ' / ', max_hp))
 
 @export var ATK: float = 1
 @export var DEF: float = 1
@@ -86,116 +78,52 @@ func _ready() -> void:
 	statuses.test()
 
 func load_character():
-	#stats = base_stats
-	#Global.print_to_log(base_stats, ' ', stats)
 	update_stats()
 	hp = max_hp
-	#pointer.set_position(Vector2(0, -130))
-	nametag.text = character_name
 	skills.load_stock()
 	items.load_stock()
 
-	#if ally > 0:
-		#pointer.set_texture(load("res://Assets/right_arrow.svg"))
-	#else:
-		#pointer.set_texture(load("res://Assets/left_arrow.svg"))
-	#Global.print_to_log(name, pointer.position)
-	#Global.print_to_log(hp)
-	#Global.print_to_log("ROOT STATS", root_stats)
-	#Global.print_to_log("BASE STATS", base_stats)
-	#Global.print_to_log("STATS", stats)
-	#Global.print_to_log(skills.get_skills())
-	#Global.print_to_log(skills.get_skills()[1].action(self, self))
-
-func _update_hp_bar():
-	if hp_bar:
-		hp_bar.value = float(hp) / max_hp * 100
-		hp_bar_text.text = str(hp, ' / ', max_hp)
-
 func dungeon_display():
-	battle_sprite.hide()
 	dungeon_sprite.show()
 
 func battle_display():
-	battle_sprite.show()
 	dungeon_sprite.hide()
 
 func set_acting():
-	indicator.show()
+	indicator_signal.emit(true)
 
 func unset_acting():
-	indicator.hide()
+	indicator_signal.emit(false)
 
 func target():
-	pointer.show()
+	pointer_signal.emit(true)
 
 func untarget():
-	pointer.hide()
-
+	pointer_signal.emit(false)
 
 func assign_ui_element_to_character(ui_object: Control):
 	if 'nametag' in ui_object and is_instance_valid(ui_object.nametag):
-		ui_object.nametag.text = nametag.text
-		nametag = ui_object.nametag
+		ui_object.nametag.text = character_name
 
 	if 'status_icons' in ui_object and is_instance_valid(ui_object.status_icons):
 		status_icon_container = ui_object.status_icons
 
-	if 'battle_sprite_texture' in ui_object and is_instance_valid(ui_object.battle_sprite_texture):
-		ui_object.battle_sprite_texture.texture = battle_sprite_texture.texture
-		battle_sprite_texture = ui_object.battle_sprite_texture
-
-	if 'dungeon_sprite_texture' in ui_object and is_instance_valid(ui_object.dungeon_sprite_texture):
-		#ui_object.dungeon_sprite_texture as Sprite2D
-		ui_object.dungeon_sprite_texture.texture = dungeon_sprite.texture
-		dungeon_sprite = ui_object.dungeon_sprite
+	if 'sprite' in ui_object and is_instance_valid(ui_object.sprite):
+		ui_object.sprite.texture = battle_sprite_texture
 
 	if 'pointer' in ui_object and is_instance_valid(ui_object.pointer):
-		pointer = ui_object.pointer
+		pointer_signal.connect(ui_object._set_pointer)
 
 	if 'indicator' in ui_object and is_instance_valid(ui_object.indicator):
-		indicator = ui_object.indicator
+		indicator_signal.connect(ui_object._set_indicator)
 
 	if 'hp_bar' in ui_object and is_instance_valid(ui_object.hp_bar):
-		ui_object.hp_bar.value = hp_bar.value
-		hp_bar = ui_object.hp_bar
-
-	if 'hp_bar_text' in ui_object and is_instance_valid(ui_object.hp_bar_text):
-		ui_object.hp_bar_text.text = hp_bar_text.text
-		hp_bar_text = ui_object.hp_bar_text
-
-	if 'sp_bar' in ui_object and is_instance_valid(ui_object.sp_bar):
-		ui_object.sp_bar.value = sp_bar.value
-		sp_bar = ui_object.sp_bar
-
-	if 'sp_bar_text' in ui_object and is_instance_valid(ui_object.sp_bar_text):
-		ui_object.sp_bar_text.text = sp_bar_text.text
-		sp_bar_text = ui_object.sp_bar_text
+		ui_object.hp_bar.value = (float(hp) / max_hp) * 100
+		ui_object.hp_bar_text.text = str(hp, ' / ', max_hp)
+		hp_signal.connect(ui_object._update_hp_bar)
 
 func reset_ui_elements():
-	battle_sprite = original_battle_sprite_control
-
-	original_battle_sprite_control.nametag.text = nametag.text
-	nametag = original_battle_sprite_control.nametag
-
-	status_icon_container = original_battle_sprite_control.status_icons
-
-	original_battle_sprite_control.battle_sprite_texture.texture = battle_sprite_texture.texture
-	battle_sprite_texture = original_battle_sprite_control.battle_sprite_texture
-
-	pointer = original_battle_sprite_control.pointer
-	indicator = original_battle_sprite_control.indicator
-
-	original_battle_sprite_control.hp_bar.value = hp_bar.value
-	hp_bar = original_battle_sprite_control.hp_bar
-	original_battle_sprite_control.hp_bar_text.text = hp_bar_text.text
-	hp_bar_text = original_battle_sprite_control.hp_bar_text
-
-	original_battle_sprite_control.sp_bar.value = sp_bar.value
-	sp_bar = original_battle_sprite_control.sp_bar
-	original_battle_sprite_control.sp_bar_text.text = sp_bar_text.text
-	sp_bar_text = original_battle_sprite_control.sp_bar_text
-
+	status_icon_container = $Statuses/GridContainer
 
 func update_stats():
 	for i in root_stats:

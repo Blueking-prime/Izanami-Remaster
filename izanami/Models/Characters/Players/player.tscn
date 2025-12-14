@@ -42,32 +42,24 @@ mag = 0
 level_cap = 60
 speed = 20
 classname = &""
+battle_sprite_texture = ExtResource("5_yd6jm")
 character_name = "Player"
 desc = "A named shade"
 
-[node name="BattleSprite" parent="." index="0"]
-visible = false
-
-[node name="BattleSprite" parent="BattleSprite/VBox" index="2"]
-texture = ExtResource("5_yd6jm")
-
-[node name="SPBar" parent="BattleSprite/VBox" index="4"]
-visible = true
-
-[node name="DungeonSprite" parent="." index="1"]
+[node name="DungeonSprite" parent="." index="0"]
 position = Vector2(0, -12)
 scale = Vector2(1, 1)
 texture = ExtResource("5_yd6jm")
 
-[node name="Hitbox" parent="." index="2"]
+[node name="Hitbox" parent="." index="1"]
 position = Vector2(0, -7)
+
+[node name="SkillList" parent="Skills" index="0" instance=ExtResource("6_ahy4h")]
+visible = false
 
 [node name="Gear" type="Node" parent="." index="3"]
 script = ExtResource("5_k34jo")
 player_gear_data = ExtResource("4_etuff")
-
-[node name="SkillList" parent="Skills" index="0" instance=ExtResource("6_ahy4h")]
-visible = false
 
 [node name="ItemList" parent="Items" index="0" instance=ExtResource("6_ahy4h")]
 visible = false
@@ -91,10 +83,10 @@ autoplay = true
 max_polyphony = 32
 bus = &"CharacterSFX"
 
-[node name="AudioListener" type="AudioListener2D" parent="." index="9"]
+[node name="AudioListener" type="AudioListener2D" parent="." index="8"]
 current = true
 
-[node name="PointLight2D" type="PointLight2D" parent="." index="10"]
+[node name="PointLight2D" type="PointLight2D" parent="." index="9"]
 scale = Vector2(3.03125, 2.78125)
 enabled = false
 shadow_enabled = true
@@ -106,5 +98,3 @@ texture = SubResource("GradientTexture2D_883f5")
 [connection signal="area_entered" from="Detector" to="Detector" method="_on_area_entered"]
 [connection signal="body_shape_entered" from="Detector" to="Detector" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Detector" to="Detector" method="_on_body_shape_exited"]
-
-[editable path="BattleSprite"]

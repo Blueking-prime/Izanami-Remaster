@@ -34,9 +34,9 @@ func create_card(player: Player):
 	update_cards(card, player)
 
 func update_cards(card: PlayerStatusCard, player: Player):
-	card.nametag.text = player.nametag.text
+	card.nametag.text = player.character_name
 	card.classname.text = player.classname
-	card.icon.texture = player.battle_sprite_texture.texture
+	card.icon.texture = player.battle_sprite_texture
 
 	if player == Global.players.leader:
 		card.leader_icon.show()
@@ -81,7 +81,7 @@ func _on_exit_button_pressed() -> void:
 func show_target_selector():
 	target_selector.clear()
 	for i in Global.players.party:
-		target_selector.add_icon_item(i.battle_sprite_texture.texture, i.character_name)
+		target_selector.add_icon_item(i.battle_sprite_texture, i.character_name)
 
 	target_selector.show()
 	target_selector.grab_focus()

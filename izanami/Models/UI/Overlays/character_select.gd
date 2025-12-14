@@ -43,7 +43,7 @@ func create_card(player: Player):
 	card.classname.size_flags_horizontal = Control.SIZE_SHRINK_CENTER | Control.SIZE_EXPAND
 	details.classname. text = player.classname
 
-	card.icon.texture = player.battle_sprite_texture.texture
+	card.icon.texture = player.battle_sprite_texture
 
 	card.hpbar.hide()
 	card.spbar.hide()

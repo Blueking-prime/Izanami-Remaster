@@ -30,7 +30,7 @@ func display_demons():
 			demons.get_or_add(enemy.name, {
 				'scene'			: i,
 				'stats'			: enemy.stats,
-				'sprite_texture': enemy.battle_sprite_texture.texture,
+				'sprite_texture': enemy.battle_sprite_texture,
 				'lvl'			: enemy.lvl,
 				'price'			: enemy.stats.values().reduce(func(accum, x): return accum + (10 * x), 10)
 			})

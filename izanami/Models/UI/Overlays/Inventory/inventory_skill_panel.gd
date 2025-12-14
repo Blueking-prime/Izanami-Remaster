@@ -15,7 +15,7 @@ var selected_skill_index: int
 
 func load_stock():
 	if player:
-		nametag.text = player.nametag.text
+		nametag.text = player.character_name
 		update_listing()
 	if target_selector and not target_selector.item_activated.is_connected(choose_target):
 		target_selector.item_activated.connect(choose_target)
@@ -35,7 +35,7 @@ func show_target_selector():
 	target_selector.clear()
 	for i in Global.players.party:
 		target_selector.add_icon_item(
-			i.battle_sprite_texture.texture,
+			i.battle_sprite_texture,
 			i.character_name,
 		)
 

@@ -55,8 +55,8 @@ func exit_battle(exit_type: StringName):
 	Global.players.gold += get_parent().earned_gold
 
 
-	print(get_parent().earned_exp, "XP EARNED")
-	print(get_parent().earned_gold, "G EARNED")
+	Global.print_to_log(str(get_parent().earned_exp) + "XP EARNED")
+	Global.print_to_log(str(get_parent().earned_gold) + "G EARNED")
 	# Prepare return scene
 	if dungeon:
 		dungeon.reset_from_battle()

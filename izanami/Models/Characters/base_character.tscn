@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://drei8wtrpbio6"]
+[gd_scene load_steps=22 format=3 uid="uid://drei8wtrpbio6"]
 
 [ext_resource type="Script" uid="uid://bh4xox2dcbnl5" path="res://Models/Characters/base_character.gd" id="1_e6dxp"]
-[ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_ar764"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="2_au5i3"]
 [ext_resource type="Script" uid="uid://ofeoa40fp5fr" path="res://Models/Characters/Scripts/character_hitbox.gd" id="4_1gq6w"]
 [ext_resource type="Script" uid="uid://bfeekdsttq72a" path="res://Models/Characters/Scripts/character_skills.gd" id="4_8cldu"]
@@ -28,48 +27,17 @@ radius = 7.0
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ldu8x"]
 
-[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "audio", "nametag", "status_icon_container", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "pointer", "indicator", "battle_sprite_texture", "original_battle_sprite_control", "battle_sprite", "dungeon_sprite", "hitbox")]
+[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "audio", "status_icon_container", "dungeon_sprite", "hitbox")]
 script = ExtResource("1_e6dxp")
 skills = NodePath("Skills")
 items = NodePath("Items")
 statuses = NodePath("Statuses")
 audio = NodePath("AudioPlayer")
-nametag = NodePath("BattleSprite/VBox/NameTag")
-status_icon_container = NodePath("BattleSprite/VBox/StatusIcons")
-hp_bar = NodePath("BattleSprite/VBox/HPBar")
-hp_bar_text = NodePath("BattleSprite/VBox/HPBar/HPBarText")
-sp_bar = NodePath("BattleSprite/VBox/SPBar")
-sp_bar_text = NodePath("BattleSprite/VBox/SPBar/SPBarText")
-pointer = NodePath("BattleSprite/VBox/BattleSprite/Pointer")
-indicator = NodePath("BattleSprite/VBox/BattleSprite/Indicator")
-battle_sprite_texture = NodePath("BattleSprite/VBox/BattleSprite")
-original_battle_sprite_control = NodePath("BattleSprite")
-battle_sprite = NodePath("BattleSprite")
+battle_sprite_texture = ExtResource("2_au5i3")
+status_icon_container = NodePath("Statuses/GridContainer")
 dungeon_sprite = NodePath("DungeonSprite")
 hitbox = NodePath("Hitbox")
 character_name = "Base Character"
-
-[node name="BattleSprite" parent="." instance=ExtResource("2_ar764")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -182.5
-offset_right = 120.0
-offset_bottom = 182.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Pointer" parent="BattleSprite/VBox/BattleSprite" index="0"]
-visible = false
-
-[node name="Indicator" parent="BattleSprite/VBox/BattleSprite" index="1"]
-visible = false
-
-[node name="SPBar" parent="BattleSprite/VBox" index="4"]
-visible = false
 
 [node name="DungeonSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.125, 0.125)
@@ -95,6 +63,11 @@ en_exhaust = ExtResource("10_ku8jv")
 restore = ExtResource("11_kun65")
 low_health = ExtResource("13_1fnnn")
 
+[node name="GridContainer" type="GridContainer" parent="Statuses"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="StatusIconHandler" type="Node" parent="Statuses"]
 script = ExtResource("14_2mtdu")
 icon_scene = ExtResource("15_66upe")
@@ -116,5 +89,3 @@ bus = &"CharacterSFX"
 stream = SubResource("AudioStreamPolyphonic_ldu8x")
 
 [connection signal="state_changed" from="." to="AudioPlayer" method="_on_state_changed"]
-
-[editable path="BattleSprite"]

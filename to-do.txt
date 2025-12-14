@@ -46,6 +46,7 @@ TASKS (WORKABLE)
 - [x] Fix new game warp not corrently setting current scene
 - [ ] Fix walking sound being played while idle
 - [x] Implement custom loading screen scene
+- [x] Modify dynamic UI element (HP bars, etc) assignment to fix asset free bugs
 - [ ] Implement GUIDE movement addon
 - [ ] Add controller menu bindings
 - [ ] Change ui menus to book graphic

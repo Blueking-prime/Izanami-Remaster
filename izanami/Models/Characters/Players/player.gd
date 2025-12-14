@@ -24,7 +24,7 @@ class_name Player
 	set(value):
 		if value > max_sp: value = max_sp
 		sp = value
-		_update_sp_bar()
+		sp_signal.emit((float(sp) / max_sp) * 100, str(sp, ' / ', max_sp))
 
 @export var level_up_xp: int:
 	get():
@@ -122,11 +122,6 @@ func restore(value: float):
 
 ## CHILD NODE FUNCTIONS
 ### SP
-func _update_sp_bar():
-	if sp_bar:
-		sp_bar.value = float(sp) / max_sp * 100
-		sp_bar_text.text = str(sp, ' / ', max_sp)
-
 func consume_sp(value: float):
 	#Global.print_to_log('sp', sp)
 	if sp <= 0:
@@ -180,6 +175,14 @@ func _on_item_list_selected(index: int) -> void:
 
 
 ### UI DISPLAYS
+func assign_ui_element_to_character(ui_object: Control):
+	super.assign_ui_element_to_character(ui_object)
+
+	if 'sp_bar' in ui_object and is_instance_valid(ui_object.sp_bar):
+		ui_object.sp_bar.value = (float(sp) / max_sp) * 100
+		ui_object.sp_bar_text.text = str(sp, ' / ', max_sp)
+		sp_signal.connect(ui_object._update_sp_bar)
+
 func reset_menu():
 	item_menu.clear()
 	skill_menu.clear()

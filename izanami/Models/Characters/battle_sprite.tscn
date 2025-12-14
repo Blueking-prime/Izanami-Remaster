@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="2_1pw31"]
 [ext_resource type="Texture2D" uid="uid://dhk5om5486n8k" path="res://Assets/Art/down-arrow-svgrepo-com.svg" id="3_j4uhy"]
 
-[node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "status_icons", "battle_sprite_texture", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text")]
+[node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "status_icons", "sprite", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text")]
 offset_right = 56.0
 offset_bottom = 98.0
 size_flags_horizontal = 3
@@ -15,7 +15,7 @@ theme_override_constants/margin_bottom = 3
 script = ExtResource("1_o83ir")
 nametag = NodePath("VBox/NameTag")
 status_icons = NodePath("VBox/StatusIcons")
-battle_sprite_texture = NodePath("VBox/BattleSprite")
+sprite = NodePath("VBox/BattleSprite")
 pointer = NodePath("VBox/BattleSprite/Pointer")
 indicator = NodePath("VBox/BattleSprite/Indicator")
 hp_bar = NodePath("VBox/HPBar")
