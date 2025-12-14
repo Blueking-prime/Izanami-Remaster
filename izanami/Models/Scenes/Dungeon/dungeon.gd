@@ -54,7 +54,7 @@ var boss_enemy: Enemy
 func load_scene():
 	#var start_time = Time.get_ticks_msec()
 	#print('Preload ', start_time)
-	Global.change_background(Global.loading_screen, true)
+	await LoadingScreen.show()
 
 	super.load_scene()
 
@@ -75,7 +75,7 @@ func load_scene():
 	enemy_display.update_display()
 	overlay.save_enabled = false
 
-	Global.change_background(null, true)
+	await LoadingScreen.hide()
 	#print('Final time ', (start_time - Time.get_ticks_msec()) * -1)
 
 func connect_signals():

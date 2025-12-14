@@ -125,27 +125,18 @@ func show_info_popup(prompt: String):
 
 	get_parent().popup.hide()
 
-func change_background(texture: Texture2D, global: bool = false):
+func change_background(texture: Texture2D):
 	if texture:
 		if not is_instance_valid(get_parent().background_texture):
 			get_parent().background_texture = TextureRect.new()
 			get_parent().background_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			get_parent().background_texture.set_anchors_preset(Control.PRESET_FULL_RECT)
-			if not global:
-				get_tree().current_scene.canvas_layer.get_child(0).add_sibling(get_parent().background_texture)
-			else:
-				get_parent().root_canvas_layer = CanvasLayer.new()
-				get_tree().root.add_child.call_deferred(get_parent().root_canvas_layer)
-				get_parent().root_canvas_layer.add_child.call_deferred(get_parent().background_texture)
+			get_tree().current_scene.canvas_layer.get_child(0).add_sibling(get_parent().background_texture)
 
 		get_parent().background_texture.texture = texture
 	else:
 		if is_instance_valid(get_parent().background_texture):
-			if not global:
-				get_tree().current_scene.canvas_layer.remove_child(get_parent().background_texture)
-			else :
-				#get_parent().root_canvas_layer.remove_child(get_parent().background_texture)
-				get_tree().root.remove_child.call_deferred(get_parent().root_canvas_layer)
+			get_tree().current_scene.canvas_layer.remove_child(get_parent().background_texture)
 			get_parent().background_texture.queue_free()
 			get_parent().root_canvas_layer.queue_free()
 

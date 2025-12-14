@@ -38,6 +38,7 @@ SaveAndLoad="*res://Scripts/SaveAndLoad/save_and_load.tscn"
 Global="*res://Scripts/Globals/global.tscn"
 Audio="*res://Scripts/Audio/audio.tscn"
 Dialogue="*res://Scripts/Dialogue/dialogue.tscn"
+LoadingScreen="*res://Models/UI/Overlays/loading_screen.tscn"
 
 [debug]
 

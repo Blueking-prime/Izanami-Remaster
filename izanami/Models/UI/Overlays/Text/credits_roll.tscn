@@ -1,4 +1,31 @@
-Izanami Remaster To-do List
+[gd_scene load_steps=3 format=3 uid="uid://cy6vfpynetk84"]
+
+[ext_resource type="Script" uid="uid://cffkj746wvtk0" path="res://Models/UI/Overlays/Text/credits_roll.gd" id="1_k4p7q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4p7q"]
+bg_color = Color(0.15967038, 0.15967038, 0.15967023, 1)
+
+[node name="Control" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+script = ExtResource("1_k4p7q")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4p7q")
+
+[node name="Label" type="Label" parent="PanelContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Izanami Remaster To-do List
 GOALS
 - [ ] Add controller support
 	- [x] Add option to switch input map index for input events
@@ -45,7 +72,7 @@ BUG FIXES
 TASKS (WORKABLE)
 - [x] Fix new game warp not corrently setting current scene
 - [ ] Fix walking sound being played while idle
-- [x] Implement custom loading screen scene
+- [ ] Implement custom loading screen scene
 - [ ] Implement GUIDE movement addon
 - [ ] Add controller menu bindings
 - [ ] Change ui menus to book graphic
@@ -55,7 +82,7 @@ TASKS (WORKABLE)
 - [x] Remove floor on unloaded tiles
 - [x] Reset player position if not on floor
 - [x] Dual stack dungeon outer walls to allow for proper shadows (Or just shadow all walls)
-- [x] Implement credit roll style display
+- [ ] Implement credit roll style display
 - [ ] Add time based directional lighting to towns and overworld
 - [ ] Implement accessibility settings
 - [ ] Make camera move to player on scene load
@@ -169,7 +196,7 @@ TASKS (WORKABLE)
 - [x] Remove overlay on camera
 - [X] Convert map data to use vector2 for coordinates
 - [x] Add loading screens
-- [x] Add "escape" to church
+- [x] Add \"escape\" to church
 - [x] Add enemies chasing players in dungeon
 - [x] Disable saving while being chased in dungeon
 - [x] Implement main menu
@@ -271,4 +298,7 @@ OST
 - [ ] Forced battle theme
 - [ ] Dungeon theme
 - [ ] Town/faction themes
-
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

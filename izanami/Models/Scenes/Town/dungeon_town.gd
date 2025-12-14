@@ -36,7 +36,7 @@ func main():
 
 	Global.players.unfreeze()
 	if confirm:
-		Global.change_background(Global.loading_screen, true)
+		await LoadingScreen.show()
 		dungeon = Global.dungeon_scene.instantiate()
 		set_dungeon_level()
 		load_dungeon()

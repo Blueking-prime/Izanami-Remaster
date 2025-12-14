@@ -2,9 +2,8 @@ extends Node
 
 class_name GlobalSceneLoader
 
-
 func warp(source: Location, destination_scene: PackedScene):
-	#get_parent().change_background(get_parent().loading_screen, true)
+	await LoadingScreen.show()
 
 	Global.players.freeze()
 	Global.players.leader.velocity = Vector2.ZERO
@@ -24,7 +23,7 @@ func warp(source: Location, destination_scene: PackedScene):
 
 	destination.call_deferred('add_players')
 
-	#await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1).timeout
 
 	get_tree().set_deferred('current_scene', destination)
 	if is_instance_valid(source):
@@ -32,7 +31,7 @@ func warp(source: Location, destination_scene: PackedScene):
 
 	Audio.call_deferred('set_background_music')
 
-	#await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1).timeout
 
 	get_parent().players.leader.global_position = destination.entrance
 
@@ -40,9 +39,9 @@ func warp(source: Location, destination_scene: PackedScene):
 
 	print(destination.get_script().get_global_name(), ' Loaded')
 	destination.show()
-	Global.players.call_deferred('unfreeze')
+	await LoadingScreen.hide()
 
-	#get_parent().change_background(null, true)
+	Global.players.call_deferred('unfreeze')
 	SaveAndLoad.call_deferred('save_game', SaveAndLoad.AUTOSAVE_SELECTED)
 
 

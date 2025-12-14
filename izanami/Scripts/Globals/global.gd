@@ -14,7 +14,6 @@ extends Node
 @export var description_box_scene: PackedScene
 @export var shop_menu_scene: PackedScene
 @export var text_log_scene: PackedScene
-@export var loading_screen: AnimatedTexture
 
 @export_category("Game Scenes")
 @export var town_scene: PackedScene
@@ -119,7 +118,7 @@ func show_text_choice(speaker: String, prompt: String, choices: Array = ['Yes', 
 func show_text_box(speaker: String, prompt: String, persist: bool = false, screen_side: String = 'L', dialogue: bool = false) -> void: await UI.show_text_box(speaker, prompt, persist, screen_side, dialogue)
 func show_confirmation_box(prompt: String) -> bool: return await UI.show_confirmation_box(prompt)
 func show_info_popup(prompt: String): await UI.show_info_popup(prompt)
-func change_background(texture: Texture2D, global: bool = false): return UI.change_background(texture, global)
+func change_background(texture: Texture2D): return UI.change_background(texture)
 func show_description(object: Resource) -> void: return UI.show_description(object)
 func show_shop_menu(stock: ResourceGroup): return UI.show_shop_menu(stock)
 func add_text_log_to_scene(): return UI.add_text_log_to_scene()

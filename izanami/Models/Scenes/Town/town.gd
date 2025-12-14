@@ -44,10 +44,10 @@ func _check_building(node: Variant):
 		#func_church()
 
 func handle_out_of_bounds():
-	#disable_entrance = true
+	disable_entrance = true
 	Global.players.leader.tilemap_position = (Vector2i(entrance) / TILEMAP_CELL_SIZE) # + (Vector2i.DOWN * 2)
-	#await get_tree().physics_frame
-	#disable_entrance = false
+	await get_tree().create_timer(3).timeout
+	disable_entrance = false
 
 func save() -> TownSaveData:
 	var save_data: TownSaveData = TownSaveData.new()
