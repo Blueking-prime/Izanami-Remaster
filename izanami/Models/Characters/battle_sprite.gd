@@ -11,6 +11,7 @@ class_name BattleSprite
 @export var hp_bar_text: Label
 @export var sp_bar: ProgressBar
 @export var sp_bar_text: Label
+@export var animation_player: AnimationPlayer
 
 func _update_hp_bar(value: int, text: String):
 	hp_bar.value = value

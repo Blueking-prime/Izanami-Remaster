@@ -1,10 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3nogdpgqda7d"]
+[gd_scene load_steps=8 format=3 uid="uid://b3nogdpgqda7d"]
 
 [ext_resource type="Script" uid="uid://dc1xbnxs1w5ja" path="res://Models/Characters/battle_sprite.gd" id="1_o83ir"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="2_1pw31"]
 [ext_resource type="Texture2D" uid="uid://dhk5om5486n8k" path="res://Assets/Art/down-arrow-svgrepo-com.svg" id="3_j4uhy"]
 
-[node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "status_icons", "sprite", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text")]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_mbgw5"]
+frame_0/texture = ExtResource("2_1pw31")
+
+[sub_resource type="Animation" id="Animation_mbgw5"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBox/BattleSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(4.415934, 4.415934, 4.415934, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_twu67"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBox/BattleSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0didy"]
+_data = {
+&"RESET": SubResource("Animation_twu67"),
+&"hit": SubResource("Animation_mbgw5")
+}
+
+[node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "status_icons", "sprite", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "animation_player")]
 offset_right = 56.0
 offset_bottom = 98.0
 size_flags_horizontal = 3
@@ -22,6 +62,7 @@ hp_bar = NodePath("VBox/HPBar")
 hp_bar_text = NodePath("VBox/HPBar/HPBarText")
 sp_bar = NodePath("VBox/SPBar")
 sp_bar_text = NodePath("VBox/SPBar/SPBarText")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -44,7 +85,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-texture = ExtResource("2_1pw31")
+texture = SubResource("AnimatedTexture_mbgw5")
 expand_mode = 3
 stretch_mode = 5
 
@@ -120,3 +161,8 @@ grow_vertical = 2
 text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0didy")
+}

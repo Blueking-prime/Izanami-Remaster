@@ -43,6 +43,8 @@ func _physics_process(delta: float) -> void:
 	var intended_velocity = direction * speed * delta * 1000
 	nav_agent.set_velocity(intended_velocity)
 
+	super._physics_process(delta)
+
 func use_skill(skill_id, _target):
 	Global.print_to_log(atk_lines[randi_range(0, atk_lines.size() - 1)])
 	super.use_skill(skill_id,_target)
@@ -58,7 +60,7 @@ func battle_ai(player_array: Array, enemy_array: Array):
 
 	if skill.aoe:
 		use_skill(skill_id, target_array)
-		await get_tree().create_timer(1).timeout
+		#await get_tree().create_timer(1).timeout
 
 
 	else:
@@ -72,7 +74,7 @@ func battle_ai(player_array: Array, enemy_array: Array):
 				target_actor = target_array.reduce(func(a, b): return a if a.hp < b.hp else b)
 
 		use_skill(skill_id, target_actor)
-		await get_tree().create_timer(1).timeout
+		#await get_tree().create_timer(1).timeout
 
 	Global.print_to_log('from ' + character_name)
 

@@ -1,9 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsdq0efwkbsg0"]
+[gd_scene load_steps=15 format=3 uid="uid://dsdq0efwkbsg0"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_m7q0y"]
 [ext_resource type="Script" uid="uid://dwbx2bd1vyrhc" path="res://Models/Characters/Enemies/enemy.gd" id="2_43wjv"]
 [ext_resource type="Texture2D" uid="uid://dwh8ptd80rs8r" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f0.png" id="3_l2v3y"]
+[ext_resource type="Texture2D" uid="uid://b1tebfog7fh1f" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f1.png" id="4_p8mcc"]
 [ext_resource type="Script" uid="uid://sjdgi74lsa73" path="res://Models/Characters/Enemies/enemy_detector.gd" id="4_wf7g7"]
+[ext_resource type="Texture2D" uid="uid://cekvx5jexggco" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f2.png" id="5_3hi3x"]
+[ext_resource type="Texture2D" uid="uid://dtvhukdsc5mbl" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_idle_anim_f3.png" id="6_jtgn0"]
+[ext_resource type="Texture2D" uid="uid://114ov83xdapc" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_run_anim_f0.png" id="7_8srp2"]
+[ext_resource type="Texture2D" uid="uid://btjnlek63yt1k" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_run_anim_f1.png" id="8_wkoa3"]
+[ext_resource type="Texture2D" uid="uid://dva88pintqgho" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_run_anim_f2.png" id="9_fxvrf"]
+[ext_resource type="Texture2D" uid="uid://dlb2d85s6ms4b" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/goblin_run_anim_f3.png" id="10_i8g78"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_fwpdg"]
+frames = 4
+frame_0/texture = ExtResource("3_l2v3y")
+frame_1/texture = ExtResource("4_p8mcc")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_3hi3x")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_jtgn0")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_rph7n"]
+frames = 4
+frame_0/texture = ExtResource("7_8srp2")
+frame_1/texture = ExtResource("8_wkoa3")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("9_fxvrf")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("10_i8g78")
+frame_3/duration = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uk6gu"]
 radius = 95.021
@@ -20,12 +47,14 @@ speed = 7
 freeze = false
 heal_threshold = 0.8
 map_size = Rect2i(0, 0, 1000, 1000)
-battle_sprite_texture = ExtResource("3_l2v3y")
+battle_sprite_texture = SubResource("AnimatedTexture_fwpdg")
+dungeon_sprite_idle_texture = SubResource("AnimatedTexture_fwpdg")
+dungeon_sprite_walk_texture = SubResource("AnimatedTexture_rph7n")
 character_name = "Enemy"
 
 [node name="DungeonSprite" parent="." index="0"]
-scale = Vector2(1, 1)
-texture = ExtResource("3_l2v3y")
+position = Vector2(0, -3)
+texture = SubResource("AnimatedTexture_fwpdg")
 
 [node name="Detector" type="Area2D" parent="." index="5"]
 collision_layer = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://drei8wtrpbio6"]
+[gd_scene load_steps=27 format=3 uid="uid://drei8wtrpbio6"]
 
 [ext_resource type="Script" uid="uid://bh4xox2dcbnl5" path="res://Models/Characters/base_character.gd" id="1_e6dxp"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="2_au5i3"]
@@ -19,6 +19,12 @@
 [ext_resource type="AudioStream" uid="uid://cw457ki0nwohy" path="res://Assets/SFX/585255__lesaucisson__swoosh-3-double.mp3" id="18_8vnn5"]
 [ext_resource type="AudioStream" uid="uid://x8hyo8a6mdcq" path="res://Assets/SFX/406271__anthousai__hit-wooden-03.wav" id="19_hncbh"]
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_py730"]
+frame_0/texture = ExtResource("2_au5i3")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_mypun"]
+frame_0/texture = ExtResource("2_au5i3")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiiub"]
 custom_solver_bias = 1.0
 radius = 7.0
@@ -27,21 +33,82 @@ radius = 7.0
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ldu8x"]
 
-[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "audio", "status_icon_container", "dungeon_sprite", "hitbox")]
+[sub_resource type="Animation" id="Animation_8vnn5"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:battle_sprite_texture:pause")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DungeonSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(4.415934, 4.415934, 4.415934, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hncbh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:battle_sprite_texture:pause")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DungeonSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ny3u8"]
+_data = {
+&"RESET": SubResource("Animation_hncbh"),
+&"hit": SubResource("Animation_8vnn5")
+}
+
+[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "audio", "animation_player", "status_icon_container", "dungeon_sprite", "hitbox")]
 script = ExtResource("1_e6dxp")
 skills = NodePath("Skills")
 items = NodePath("Items")
 statuses = NodePath("Statuses")
 audio = NodePath("AudioPlayer")
-battle_sprite_texture = ExtResource("2_au5i3")
+animation_player = NodePath("AnimationPlayer")
+battle_sprite_texture = SubResource("AnimatedTexture_py730")
 status_icon_container = NodePath("Statuses/GridContainer")
 dungeon_sprite = NodePath("DungeonSprite")
 hitbox = NodePath("Hitbox")
 character_name = "Base Character"
 
 [node name="DungeonSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("2_au5i3")
+texture = SubResource("AnimatedTexture_mypun")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xiiub")
@@ -87,5 +154,10 @@ bus = &"CharacterSFX"
 
 [node name="Global" type="AudioStreamPlayer" parent="AudioPlayer"]
 stream = SubResource("AudioStreamPolyphonic_ldu8x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ny3u8")
+}
 
 [connection signal="state_changed" from="." to="AudioPlayer" method="_on_state_changed"]

@@ -1,12 +1,41 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqykicfu0u1ug"]
+[gd_scene load_steps=20 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" uid="uid://d4gw8w33rep3v" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
+[ext_resource type="Texture2D" uid="uid://bo4nklgqghcrw" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f1.png" id="4_4rdbf"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="4_etuff"]
+[ext_resource type="Texture2D" uid="uid://cj0ani3u5jtrn" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f2.png" id="5_gbjdk"]
 [ext_resource type="Script" uid="uid://ccecmimg8gv2o" path="res://Models/Characters/Players/Scripts/player_gear.gd" id="5_k34jo"]
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="5_yd6jm"]
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/UI/OptionMenus/options.tscn" id="6_ahy4h"]
 [ext_resource type="Script" uid="uid://c1aqcvo26tkph" path="res://Models/Characters/Players/Scripts/player_detector.gd" id="6_g43wq"]
+[ext_resource type="Texture2D" uid="uid://pkl5nyvuq8eq" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f3.png" id="6_prwqw"]
+[ext_resource type="Texture2D" uid="uid://cg5ramv5ibojw" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f0.png" id="7_f13ww"]
+[ext_resource type="Texture2D" uid="uid://b5wjhaa7iybpb" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f1.png" id="8_fa0uk"]
+[ext_resource type="Texture2D" uid="uid://bxqtr51bxt77o" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f2.png" id="9_neffn"]
+[ext_resource type="Texture2D" uid="uid://b20ff65t0oe4p" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f3.png" id="10_akb8o"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_emc6j"]
+frames = 4
+speed_scale = 4.0
+frame_0/texture = ExtResource("5_yd6jm")
+frame_1/texture = ExtResource("4_4rdbf")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_gbjdk")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_prwqw")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6k7lq"]
+frames = 4
+speed_scale = 4.0
+frame_0/texture = ExtResource("7_f13ww")
+frame_1/texture = ExtResource("8_fa0uk")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("9_neffn")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("10_akb8o")
+frame_3/duration = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mmjfn"]
 radius = 9.48683
@@ -42,14 +71,15 @@ mag = 0
 level_cap = 60
 speed = 20
 classname = &""
-battle_sprite_texture = ExtResource("5_yd6jm")
+battle_sprite_texture = SubResource("AnimatedTexture_emc6j")
+dungeon_sprite_idle_texture = SubResource("AnimatedTexture_emc6j")
+dungeon_sprite_walk_texture = SubResource("AnimatedTexture_6k7lq")
 character_name = "Player"
 desc = "A named shade"
 
 [node name="DungeonSprite" parent="." index="0"]
-position = Vector2(0, -12)
-scale = Vector2(1, 1)
-texture = ExtResource("5_yd6jm")
+position = Vector2(0, -13)
+texture = SubResource("AnimatedTexture_emc6j")
 
 [node name="Hitbox" parent="." index="1"]
 position = Vector2(0, -7)

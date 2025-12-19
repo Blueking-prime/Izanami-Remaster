@@ -1,14 +1,14 @@
 {
-    "main": [
-        ["Avant-Courier Beatrix", "You must be the remnant. How's the flesh treating you?", 
-        ["Who are you?", "Why do you people need me", "I like your guns.", "Any advice?"], ["branch_1", "branch_2", "branch_3", "branch_4"], true],
-        ["Avant-Courier Beatrix", "May death find you alive."]
-    ],
+	"main": [
+		["Avant-Courier Beatrix", "You must be the remnant. How's the flesh treating you?",
+		["Who are you?", "Why do you people need me", "I like your guns.", "Any advice?"], ["branch_1", "branch_2", "branch_3", "branch_4"], true],
+		["Avant-Courier Beatrix", "May death find you alive."]
+	],
 
-    "branch_1": [["Avant-Courier Beatrix", "I am Avant-Courier Beatrix. Really, you can just call me Beatrix, but titles mean a lot here as I've found. I'm a scout, and a damn good one too. I'm one of the few among these limp-wristed scholars who's actually willing to brave the outside world."]],
-    "branch_2": [["Avant-Courier Beatrix", "Haven't a clue, friend. I haven't been told anything and I haven't asked. I'm meant to scout ahead of you though, so our paths will cross again eventually. Assuming I don't get the orbs first, HAHAHA!"]],
-    "branch_3": [["Avant-Courier Beatrix", "Haha, thanks. I built them all myself y'know! This one's called Marigold and she was the first, you can see where I messed up the muzzle-loading a bit. I don't really use 'er that much any more but she can still sing."], 
-    ["Avant-Courier Beatrix", "This one's called Ingrid and she's my latest, don't tell the other girls but she's my personal favorite, haha! Fires as fast as you can pull the trigger, if you look closely you can see-"],
-    ["PLAYER_NAME", "[This goes on for a while]"]],
-    "branch_4": [["Avant-Courier Beatrix", "Aren't you supposed to be some sort of destined warrior spirit. I'm sure you'll figure something out. If you've got a head on your shoulders you'll take any advantage this world gives you. It's not a kind place."]]
+	"branch_1": [["Avant-Courier Beatrix", "I am Avant-Courier Beatrix. Really, you can just call me Beatrix, but titles mean a lot here as I've found. I'm a scout, and a damn good one too. I'm one of the few among these limp-wristed scholars who's actually willing to brave the outside world."]],
+	"branch_2": [["Avant-Courier Beatrix", "Haven't a clue, friend. I haven't been told anything and I haven't asked. I'm meant to scout ahead of you though, so our paths will cross again eventually. Assuming I don't get the orbs first, HAHAHA!"]],
+	"branch_3": [["Avant-Courier Beatrix", "Haha, thanks. I built them all myself y'know! This one's called Marigold and she was the first, you can see where I messed up the muzzle-loading a bit. I don't really use 'er that much any more but she can still sing."],
+	["Avant-Courier Beatrix", "This one's called Ingrid and she's my latest, don't tell the other girls but she's my personal favorite, haha! Fires as fast as you can pull the trigger, if you look closely you can see-"],
+	["PLAYER_NAME", "[This goes on for a while]"]],
+	"branch_4": [["Avant-Courier Beatrix", "Aren't you supposed to be some sort of destined warrior spirit. I'm sure you'll figure something out. If you've got a head on your shoulders you'll take any advantage this world gives you. It's not a kind place."]]
 }

@@ -33,7 +33,7 @@ func _ready() -> void:
 			remove_child(test_players)
 			test_players.queue_free()
 	else :
-		Global.players =test_players
+		Global.players = test_players
 
 	setup.actor_setup()
 	#print(turn_order)

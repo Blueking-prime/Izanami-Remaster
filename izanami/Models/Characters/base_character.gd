@@ -7,6 +7,7 @@ enum STATES {IDLE, WALKING, BATTLE}
 @export var state: STATES:
 	set(arg):
 		state = arg
+		set_dungeon_sprite()
 		state_changed.emit()
 
 @export_category('Handlers')
@@ -14,11 +15,16 @@ enum STATES {IDLE, WALKING, BATTLE}
 @export var items: CharacterItems
 @export var statuses: CharacterStatuses
 @export var audio: CharacterAudio
+@export var animation_player: AnimationPlayer
 
 @export_category('UI')
-@export var battle_sprite_texture: Texture2D
+@export var battle_sprite_texture: AnimatedTexture
+@export var battle_sprite: Control
+
 @export var status_icon_container: GridContainer
 @export var dungeon_sprite: Sprite2D
+@export var dungeon_sprite_idle_texture: AnimatedTexture
+@export var dungeon_sprite_walk_texture: AnimatedTexture
 
 @export var hitbox: CollisionShape2D
 
@@ -70,12 +76,36 @@ var stats: Dictionary[StringName, int] = base_stats.duplicate()
 	set(arg): global_position = (arg * Location.TILEMAP_CELL_SIZE) + Vector2i(8, 15)
 
 var alive: bool = true
+var init_pos: Vector2
 
 signal state_changed
+signal moved
 
 func _ready() -> void:
 	load_character()
-	statuses.test()
+	#statuses.test()
+	init_pos = global_position
+
+func _process(_delta: float) -> void:
+	if is_instance_valid(dungeon_sprite_idle_texture):
+		dungeon_sprite_idle_texture.speed_scale = randf_range(3, 5)
+	if is_instance_valid(dungeon_sprite_walk_texture):
+		dungeon_sprite_walk_texture.speed_scale = randf_range(3, 5)
+
+func _physics_process(_delta: float) -> void:
+	if init_pos != global_position:
+		if state != STATES.WALKING: state = STATES.WALKING
+		if global_position.x < init_pos.x:
+			dungeon_sprite.flip_h = true
+		elif global_position.x > init_pos.x:
+			dungeon_sprite.flip_h = false
+
+		moved.emit()
+	else :
+		if state != STATES.BATTLE and state != STATES.IDLE: state = STATES.IDLE
+
+	init_pos = global_position
+
 
 func load_character():
 	update_stats()
@@ -83,11 +113,29 @@ func load_character():
 	skills.load_stock()
 	items.load_stock()
 
+func set_dungeon_sprite():
+	if not is_instance_valid(dungeon_sprite): return
+
+	match state:
+		STATES.IDLE:
+			if is_instance_valid(dungeon_sprite_idle_texture):
+				dungeon_sprite.texture = dungeon_sprite_idle_texture
+			print(dungeon_sprite.texture)
+			dungeon_sprite.show()
+		STATES.WALKING:
+			if is_instance_valid(dungeon_sprite_walk_texture):
+				dungeon_sprite.texture = dungeon_sprite_walk_texture
+			dungeon_sprite.show()
+		STATES.BATTLE:
+			dungeon_sprite.hide()
+
+
+
 func dungeon_display():
 	dungeon_sprite.show()
 
 func battle_display():
-	dungeon_sprite.hide()
+	if state != STATES.BATTLE: state = STATES.BATTLE
 
 func set_acting():
 	indicator_signal.emit(true)
@@ -102,6 +150,7 @@ func untarget():
 	pointer_signal.emit(false)
 
 func assign_ui_element_to_character(ui_object: Control):
+	battle_sprite = ui_object
 	if 'nametag' in ui_object and is_instance_valid(ui_object.nametag):
 		ui_object.nametag.text = character_name
 
@@ -154,6 +203,9 @@ func guard():
 
 func damage(value: float):
 	audio.play_damage_sfx()
+	animation_player.play("hit")
+	if is_instance_valid(battle_sprite) and 'animation_player' in battle_sprite:
+		battle_sprite.animation_player.play("hit")
 	value /= DEF
 	Global.print_to_log('%s takes %f damage!' % [character_name, value])
 	if value < hp:

@@ -44,8 +44,6 @@ var active_selection
 var freeze_movement: bool = false
 var lock: bool = false
 
-## SIGNALS
-signal moved
 
 func load_character():
 	ally = 1
@@ -59,7 +57,6 @@ func load_character():
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(Global.players) and self != Global.players.leader: return
 
-	var init_pos = global_position
 	if not freeze_movement:
 		var direction = Vector2()
 		direction = Input.get_vector('left', 'right', 'up', 'down')
@@ -76,11 +73,7 @@ func _physics_process(delta: float) -> void:
 		get_real_velocity()
 		move_and_slide()
 
-	if init_pos != global_position:
-		if state != STATES.WALKING: state = STATES.WALKING
-		moved.emit()
-	else :
-		if state != STATES.BATTLE and state != STATES.IDLE: state = STATES.IDLE
+	super._physics_process(delta)
 
 ## MODIFY PROPERTIES
 func update_stats():
@@ -117,7 +110,7 @@ func level_up(value):
 
 func restore(value: float):
 	sp += value
-	Global.print_to_log(' %s healed %f HP' % [character_name, value])
+	Global.print_to_log(' %s restored %f SP' % [character_name, value])
 
 
 ## CHILD NODE FUNCTIONS

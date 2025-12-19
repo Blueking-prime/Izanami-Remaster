@@ -75,19 +75,32 @@ var type: StringName
 ## WORKING VARIABLES
 var value: int
 
-func action(obj: Base_Character, target: Variant) -> bool:
+func action(obj: Base_Character, target_: Variant) -> bool:
 	var stat_total = 0
+	var target
+	if target_ is Array:
+		target = target_.duplicate()
+	else:
+		target = target_
 
 	if not Global.rand_chance(accuracy[rank]): return false
 
 	if conditions:
-		var condidtion_check = false
+		var condition_check = false
 		for i in conditions:
-			if i in target.statuses.status_effects_scripts:
-				condidtion_check = true
-				break
+			if target is Array:
+				for j in target:
+					if i in j.statuses.status_effects_scripts:
+						condition_check = true
+					else:
+						target.erase(j)
 
-		if not condidtion_check: return false
+			else:
+				if i in target.statuses.status_effects_scripts:
+					condition_check = true
+					break
+
+		if not condition_check or (target is Array and target.is_empty()): return false
 
 	if obj.statuses.exhausted: return false
 

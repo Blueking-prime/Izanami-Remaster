@@ -17,3 +17,8 @@ mono_crash.*.json
 izanami/Assets/Music/*
 izanami/Assets/Art/*
 izanami-(4.4)/*
+izanami/DevUtils/map_layer_1_set_8x8.tres
+izanami/DevUtils/map_pattern.tres
+izanami/DevUtils/map_set.tres
+izanami/Assets/izanami-dialogue/
+/izanami/Assets/izanami-dialogue

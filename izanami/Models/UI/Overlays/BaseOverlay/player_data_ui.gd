@@ -10,6 +10,7 @@ class_name PlayerDataCard
 @export var sp_bar: ProgressBar
 @export var sp_bar_text: Label
 @export var status_icons: GridContainer
+@export var animation_player: AnimationPlayer
 
 func _update_hp_bar(value: int, text: String):
 	hp_bar.value = value
