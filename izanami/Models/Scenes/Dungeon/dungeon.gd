@@ -13,6 +13,7 @@ var dungeon_sample = [
 ## CHILD NODES
 @export var map: DungeonMap
 @export var wall_chunks: WallChunkLoader
+@export var animation_player: AnimationPlayer
 
 #@export var navigation_region: NavigationRegion2D
 @export var enemy_display: DungeonEnemyDisplay

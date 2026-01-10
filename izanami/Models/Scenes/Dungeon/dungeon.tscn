@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyon8uinblkc1"]
+[gd_scene load_steps=15 format=3 uid="uid://cyon8uinblkc1"]
 
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Models/Scenes/location.tscn" id="1_pweoc"]
 [ext_resource type="Script" uid="uid://bec8jnwutx78b" path="res://Models/Scenes/Dungeon/dungeon.gd" id="2_g8y5j"]
@@ -12,10 +12,101 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_f2ske"]
 
-[node name="Dungeon" node_paths=PackedStringArray("map", "wall_chunks", "enemy_display") instance=ExtResource("1_pweoc")]
+[sub_resource type="Animation" id="Animation_l2ewl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gtkgy"]
+resource_name = "leave_chunk"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.35355353, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b8brl"]
+resource_name = "enter_chunk"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.35355353),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vl1c5"]
+_data = {
+&"RESET": SubResource("Animation_l2ewl"),
+&"enter_chunk": SubResource("Animation_b8brl"),
+&"leave_chunk": SubResource("Animation_gtkgy")
+}
+
+[node name="Dungeon" node_paths=PackedStringArray("map", "wall_chunks", "animation_player", "enemy_display") instance=ExtResource("1_pweoc")]
 script = ExtResource("2_g8y5j")
 map = NodePath("Map")
 wall_chunks = NodePath("ObjectsSort/WallChunks")
+animation_player = NodePath("AnimationPlayer")
 enemy_display = NodePath("CanvasLayer/EnemyDisplay")
 width = 40
 height = 20
@@ -58,7 +149,12 @@ chunk_scene = ExtResource("8_yjhow")
 
 [node name="Walls" parent="ObjectsSort/WallChunks" index="0" instance=ExtResource("8_yjhow")]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." index="7"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_vl1c5")
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="8"]
 visible = false
 color = Color(0.0353462, 0.0353462, 0.0353462, 1)
 
@@ -96,6 +192,15 @@ alignment = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/EnemyDisplay/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
+
+[node name="TextureRect" type="ColorRect" parent="CanvasLayer" index="4"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [editable path="CanvasLayer/Overlays/Save"]
 [editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]

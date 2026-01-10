@@ -99,6 +99,8 @@ func update_player_chunk(chunk: DungeonChunk):
 		Global.players.unfreeze()
 		switching = false
 		return
+	root_node.animation_player.play("leave_chunk")
+	await root_node.animation_player.animation_finished
 
 	for i in chunk_tiles:
 		if i != current_chunk and i != chunk:
@@ -119,6 +121,8 @@ func update_player_chunk(chunk: DungeonChunk):
 	root_node.player.detector.left_chunk_border.connect(root_node._on_detector_hit_border)
 	Global.players.unfreeze()
 	switching = false
+	root_node.animation_player.play("enter_chunk")
+
 	load_chunks(false)
 
 
