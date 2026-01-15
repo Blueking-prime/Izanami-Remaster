@@ -5,8 +5,8 @@ class_name TownDungeon
 @export var no_of_floors: int
 
 @export var dungeon_title: String
-@export var dungeon_dimensions: Array[Vector2]
 @export var dungeon_fixed: Array[bool]
+@export var dungeon_chunk_length: Array[int]
 @export var dungeon_data: Array[DungeonSaveData]
 @export var dungeon_enemies: Array[ResourceGroup]
 @export var dungeon_levels: Array[int]
@@ -49,8 +49,7 @@ func set_dungeon_level():
 		if dungeon_fixed[dungeon_floor]:
 			dungeon.load_data(dungeon_data[dungeon_floor])
 		else:
-			dungeon.width = dungeon_dimensions[dungeon_floor].x
-			dungeon.height = dungeon_dimensions[dungeon_floor].y
+			dungeon.chunk_length = dungeon_chunk_length[dungeon_floor]
 			dungeon.enemy_types = dungeon_enemies[dungeon_floor]
 			dungeon.item_drop_group = dungeon_item_drops[dungeon_floor]
 			dungeon.gear_drop_group = dungeon_gear_drops[dungeon_floor]
@@ -59,8 +58,7 @@ func set_dungeon_level():
 			dungeon.treasure_spawn_chance = dungeon_treasure_spawn_chance[dungeon_floor]
 			dungeon.gear_chance = dungeon_gear_chance[dungeon_floor]
 	else:
-		dungeon.width = 8
-		dungeon.height = 5
+		dungeon.chunk_length = 5
 		dungeon.enemy_types = dungeon_enemies[no_of_floors - 1]
 		dungeon.item_drop_group = dungeon_item_drops[no_of_floors - 1]
 		dungeon.gear_drop_group = dungeon_gear_drops[no_of_floors - 1]

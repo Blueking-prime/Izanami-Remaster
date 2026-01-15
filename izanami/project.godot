@@ -292,6 +292,8 @@ menu_left={
 
 [layer_names]
 
+2d_render/layer_1="PlayerTorch"
+2d_render/layer_2="SunLight"
 2d_physics/layer_1="Walls"
 2d_navigation/layer_1="Floor"
 2d_physics/layer_2="Chests"

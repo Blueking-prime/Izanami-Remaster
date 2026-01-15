@@ -31,7 +31,7 @@ const TILEMAP_CELL_SIZE: int = 16
 func _ready() -> void:
 	load_scene()
 
-	if get_tree().current_scene == self: connect_signals()
+	#if get_tree().current_scene == self: connect_signals()
 
 func load_scene():
 	if not Global.players:
@@ -56,6 +56,8 @@ func load_scene():
 	Audio.call_deferred('set_background_music')
 
 	overlay.load_ui_elements()
+
+	connect_signals()
 
 func connect_signals():
 	Global.players.leader.detector.left_map.connect(_on_left_map)

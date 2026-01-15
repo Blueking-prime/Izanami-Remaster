@@ -108,8 +108,8 @@ map = NodePath("Map")
 wall_chunks = NodePath("ObjectsSort/WallChunks")
 animation_player = NodePath("AnimationPlayer")
 enemy_display = NodePath("CanvasLayer/EnemyDisplay")
-width = 40
-height = 20
+width = 46
+height = 24
 chunk_length = 3
 enemy_types = ExtResource("3_khi17")
 MAX_ENEMIES = 3
@@ -155,8 +155,7 @@ libraries = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." index="8"]
-visible = false
-color = Color(0.0353462, 0.0353462, 0.0353462, 1)
+color = Color(0.04, 0.04, 0.04, 0.8980392)
 
 [node name="ExitButton" parent="CanvasLayer" index="2"]
 offset_left = 0.0

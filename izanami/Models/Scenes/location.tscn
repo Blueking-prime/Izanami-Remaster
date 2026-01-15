@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dlflxypiwhkyi" path="res://Models/UI/Overlays/save_menu.tscn" id="15_emf0p"]
 
 [sub_resource type="Environment" id="Environment_80d1d"]
+ambient_light_sky_contribution = 0.0
+fog_enabled = true
 
 [node name="Location" type="Node2D" node_paths=PackedStringArray("background", "test_players", "objectsort", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
 script = ExtResource("1_knc6e")

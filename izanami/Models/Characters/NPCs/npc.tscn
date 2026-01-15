@@ -12,7 +12,7 @@ point_count = 7
 [sub_resource type="CircleShape2D" id="CircleShape2D_45exu"]
 radius = 25.0
 
-[node name="Node2D" type="Node2D"]
+[node name="NPC" type="Node2D"]
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(-88, 1.52588e-05)

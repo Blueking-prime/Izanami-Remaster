@@ -81,12 +81,12 @@ func load_scene():
 
 func connect_signals():
 	super.connect_signals()
-	print('Dungeon sig connected')
 	player.detector.hit_chest.connect(_on_detector_hit_chest)
 	player.detector.hit_enemy.connect(_on_detector_hit_enemy)
 	player.detector.hit_exit.connect(_on_detector_hit_exit)
 	player.detector.left_entrance.connect(_on_detector_left_entrance)
 	player.detector.left_chunk_border.connect(_on_detector_hit_border)
+	print('Dungeon sig connected')
 
 func disconnect_signals():
 	super.disconnect_signals()

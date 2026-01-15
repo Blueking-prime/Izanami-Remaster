@@ -6,9 +6,6 @@ extends Node
 func show():
 	if canvas_layer.visible: return
 
-	if self != get_parent().get_child(-1):
-		get_parent().move_child(self, -1)
-
 	canvas_layer.show()
 	animation_player.play("fade_to_black")
 	await animation_player.animation_finished

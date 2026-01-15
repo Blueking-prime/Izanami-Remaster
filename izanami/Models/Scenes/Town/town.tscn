@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5qgnil3yfo54"]
+[gd_scene load_steps=24 format=3 uid="uid://c5qgnil3yfo54"]
 
 [ext_resource type="Script" uid="uid://wf61cxsog4sa" path="res://Models/Scenes/Town/town.gd" id="1_wpby1"]
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Models/Scenes/location.tscn" id="1_xeoqd"]
@@ -21,6 +21,9 @@ radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6d4y1"]
 radius = 172.491
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ujed2"]
+polygon = PackedVector2Array(120, 123, 120, -126, -123, -126, -123, 123)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iypj6"]
 radius = 186.454
@@ -78,6 +81,9 @@ offset_bottom = 23.0
 text = "Church"
 metadata/_edit_use_anchors_ = true
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Church" index="2"]
+occluder = SubResource("OccluderPolygon2D_ujed2")
+
 [node name="Smithy" type="StaticBody2D" parent="." index="7"]
 position = Vector2(479, 1404)
 collision_layer = 32
@@ -93,6 +99,9 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Smithy"
 metadata/_edit_use_anchors_ = true
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Smithy" index="2"]
+occluder = SubResource("OccluderPolygon2D_ujed2")
 
 [node name="Apothecary" type="StaticBody2D" parent="." index="8"]
 position = Vector2(960, 324)
@@ -110,6 +119,9 @@ offset_bottom = 23.0
 text = "Apothecary"
 metadata/_edit_use_anchors_ = true
 
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Apothecary" index="2"]
+occluder = SubResource("OccluderPolygon2D_ujed2")
+
 [node name="Dungeon" type="StaticBody2D" parent="." index="9"]
 position = Vector2(1644, 718)
 collision_layer = 32
@@ -117,8 +129,8 @@ collision_mask = 0
 script = ExtResource("8_k31jc")
 no_of_floors = 2
 dungeon_title = "Test"
-dungeon_dimensions = Array[Vector2]([Vector2(32, 18), Vector2(48, 27)])
 dungeon_fixed = Array[bool]([false, false])
+dungeon_chunk_length = Array[int]([3, 4])
 dungeon_data = Array[ExtResource("10_dxb7f")]([null, null])
 dungeon_enemies = Array[ExtResource("11_6gf2o")]([ExtResource("9_tt1ik"), ExtResource("9_tt1ik")])
 dungeon_levels = Array[int]([1, 5])
@@ -138,6 +150,9 @@ offset_bottom = 23.0
 text = "Dungeon"
 metadata/_edit_use_anchors_ = true
 
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="Dungeon" index="2"]
+occluder = SubResource("OccluderPolygon2D_ujed2")
+
 [node name="Demonitarium" type="StaticBody2D" parent="." index="10" node_paths=PackedStringArray("collision_shape")]
 position = Vector2(268, 726)
 collision_layer = 32
@@ -154,6 +169,10 @@ offset_right = 71.0
 offset_bottom = 23.0
 text = "Demonitarium"
 metadata/_edit_use_anchors_ = true
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="Demonitarium" index="2"]
+position = Vector2(2, 0)
+occluder = SubResource("OccluderPolygon2D_ujed2")
 
 [node name="Palace" type="Node2D" parent="." index="11"]
 position = Vector2(960, 1202)
@@ -173,8 +192,21 @@ script = ExtResource("18_y17gc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Test" index="0"]
 shape = SubResource("CircleShape2D_vqjfq")
 
-[node name="Node2D" parent="." index="14" instance=ExtResource("15_ujed2")]
+[node name="NPC" parent="." index="14" instance=ExtResource("15_ujed2")]
 position = Vector2(615, 817)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." index="15"]
+visible = false
+position = Vector2(2753, 540)
+rotation = 0.7853982
+color = Color(0.703174, 0.5738049, 0.44092566, 1)
+energy = 0.4
+range_item_cull_mask = 2
+shadow_color = Color(0, 0, 0, 0.49019608)
+shadow_filter_smooth = 3.0
+shadow_item_cull_mask = 2
+height = 0.5
+max_distance = 1000.0
 
 [node name="ExitButton" parent="CanvasLayer" index="2"]
 offset_left = 0.0

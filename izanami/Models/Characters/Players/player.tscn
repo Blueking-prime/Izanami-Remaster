@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dqykicfu0u1ug"]
+[gd_scene load_steps=21 format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" uid="uid://d4gw8w33rep3v" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
@@ -51,7 +51,10 @@ height = 128
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
+fill_to = Vector2(0.8917379, 0.094017096)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4rdbf"]
+polygon = PackedVector2Array(-4, 0, -4, 12, 4, 12, 4, 0)
 
 [node name="Player" node_paths=PackedStringArray("gear", "detector", "listener", "light", "skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
 collision_layer = 8
@@ -119,9 +122,17 @@ current = true
 [node name="PointLight2D" type="PointLight2D" parent="." index="9"]
 scale = Vector2(3.03125, 2.78125)
 enabled = false
+energy = 2.0
 shadow_enabled = true
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_883f5")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="11"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, -13)
+occluder = SubResource("OccluderPolygon2D_4rdbf")
+occluder_light_mask = 2
 
 [connection signal="item_selected" from="Skills/SkillList" to="." method="_on_skill_list_selected"]
 [connection signal="item_selected" from="Items/ItemList" to="." method="_on_item_list_selected"]

@@ -98,7 +98,6 @@ vertical_alignment = 1
 [node name="SPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
-theme_type_variation = &"ProgressBarGreen"
 show_percentage = false
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SPBar"]
