@@ -2,6 +2,8 @@ extends Node
 
 class_name BattleSetup
 
+@export var results_screen: ResultsScreen
+
 @export var player_section: Control
 @export var choice: Control
 @export var skill_panel: Control
@@ -9,6 +11,7 @@ class_name BattleSetup
 @export var action_log: Label
 
 @onready var process_turns: BattleTurns = get_parent().process_turns
+@onready var process_input: BattleInput = get_parent().process_input
 
 ## RETURN LOCATIONS
 @onready var dungeon: Dungeon = get_parent().dungeon
@@ -44,9 +47,14 @@ func _player_party_setup():
 
 
 func exit_battle(exit_type: StringName):
+	process_input.set_process_input(false)
 	if exit_type == "run":
 		get_parent().earned_exp /= 2
 		get_parent().earned_gold = 0
+
+		results_screen.set_banner(false)
+	else :
+		results_screen.set_banner(true)
 	#elif exit_type == "win":
 		#get_parent().earned_exp
 		#get_parent().earned_gold
@@ -55,9 +63,14 @@ func exit_battle(exit_type: StringName):
 	Global.players.gold += get_parent().earned_gold
 
 
-	Global.print_to_log(str(get_parent().earned_exp) + "XP EARNED")
-	Global.print_to_log(str(get_parent().earned_gold) + "G EARNED")
+	results_screen.show_g(get_parent().earned_gold)
+	results_screen.show_xp(get_parent().earned_exp)
+
+	results_screen.show()
 	# Prepare return scene
+
+	await results_screen.exited
+
 	if dungeon:
 		dungeon.reset_from_battle()
 	#elif town:
@@ -66,4 +79,6 @@ func exit_battle(exit_type: StringName):
 		demonitarium.reset_from_battle()
 
 	Global.players.battle_reset()
+
+
 	get_parent().queue_free()

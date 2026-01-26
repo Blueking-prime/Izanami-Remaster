@@ -229,6 +229,7 @@ func reset_from_battle():
 	enemy_display.update_display()
 	enemy_display.show()
 	unfreeze_enemies()
+	LoadingScreen.hide()
 
 
 ## SAVE AND LOAD LOGIC

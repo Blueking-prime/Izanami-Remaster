@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://deahjbvovxuvn"]
+[gd_scene load_steps=15 format=3 uid="uid://deahjbvovxuvn"]
 
 [ext_resource type="Script" uid="uid://fofqxl6akue7" path="res://Models/Scenes/Battle/battle.gd" id="1_ivyfm"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="2_a6unq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://5uwa33jhw5eq" path="res://Models/Scenes/Battle/battle_turn_actions.gd" id="5_jqv44"]
 [ext_resource type="Script" uid="uid://b221itnwg2fwd" path="res://Models/Scenes/Battle/battle_actions.gd" id="6_mlml3"]
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/UI/OptionMenus/options.tscn" id="11_bvqio"]
+[ext_resource type="PackedScene" uid="uid://x6cb76ly3pgx" path="res://Models/Scenes/Battle/results_screen.tscn" id="13_ppcew"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hqfu"]
 border_color = Color(0.8, 0.8, 0.8, 0)
@@ -28,8 +29,9 @@ process_turns = NodePath("Turns")
 process_actions = NodePath("Actions")
 canvas_layer = NodePath("CanvasLayer")
 
-[node name="Setup" type="Node" parent="." node_paths=PackedStringArray("player_section", "choice", "skill_panel", "desc_box_parent", "action_log")]
+[node name="Setup" type="Node" parent="." node_paths=PackedStringArray("results_screen", "player_section", "choice", "skill_panel", "desc_box_parent", "action_log")]
 script = ExtResource("3_dbox5")
+results_screen = NodePath("../CanvasLayer/ResultsScreen")
 player_section = NodePath("../CanvasLayer/ActorContainer/PlayerSection")
 choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
 skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
@@ -234,6 +236,9 @@ size_flags_vertical = 6
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ResultsScreen" parent="CanvasLayer" instance=ExtResource("13_ppcew")]
+visible = false
 
 [connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Attack" to="Input" method="_on_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Skills" to="Input" method="_on_skills_pressed"]
