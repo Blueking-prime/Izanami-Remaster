@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://vxxdyg18tnqq"]
+[gd_scene format=3 uid="uid://vxxdyg18tnqq"]
 
 [ext_resource type="Script" uid="uid://c26o6fwfamrgr" path="res://Models/UI/Overlays/character_select.gd" id="1_kal2b"]
 [ext_resource type="PackedScene" uid="uid://c4jo6wqiakv6r" path="res://Models/UI/OptionMenus/player_data_status_card.tscn" id="2_04xmx"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://byjs8yxdcn2dv" path="res://Models/UI/OptionMenus/player_data_details_card.tscn" id="10_hf6va"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="11_b1lsy"]
 
-[node name="CharacterSelect" type="Panel" node_paths=PackedStringArray("player_container", "player_node_container", "back_button")]
+[node name="CharacterSelect" type="Panel" unique_id=303322654 node_paths=PackedStringArray("player_container", "player_node_container", "back_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,73 +28,69 @@ player_node_container = NodePath("Classes")
 back_button = NodePath("BackButton")
 metadata/_edit_horizontal_guides_ = [-86.0]
 
-[node name="BackButton" type="Button" parent="."]
-visible = false
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=610928186]
 layout_mode = 1
-anchors_preset = -1
-offset_left = 10.0
-offset_top = 10.0
-text = "Back"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 150.0
-offset_bottom = 150.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=578052743]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="PlayersStatus" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_04xmx")]
+[node name="PlayersStatus" parent="ScrollContainer/HBoxContainer" unique_id=1431410149 instance=ExtResource("2_04xmx")]
 layout_mode = 2
 
-[node name="Nametag" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer/TitleBox" index="0"]
+[node name="Nametag" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer/TitleBox" parent_id_path=PackedInt32Array(1431410149, 1799335494) index="0" unique_id=1749505144]
 visible = false
 
-[node name="BARS" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="3"]
+[node name="BARS" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="3" unique_id=1956585683]
 visible = false
 
-[node name="HPBar" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="4"]
+[node name="HPBar" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="4" unique_id=2050371035]
 visible = false
 
-[node name="SPBar" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="5"]
+[node name="SPBar" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="5" unique_id=1420963773]
 visible = false
 
-[node name="STATSECTION" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="6"]
+[node name="STATSECTION" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="6" unique_id=269295845]
 visible = false
 
-[node name="StatsBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="7"]
+[node name="StatsBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="7" unique_id=762124519]
 visible = false
 
-[node name="GEAR" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="8"]
+[node name="GEAR" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="8" unique_id=1472986874]
 visible = false
 
-[node name="GearBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="9"]
+[node name="GearBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="9" unique_id=1296992282]
 visible = false
 
-[node name="StatusBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="13"]
+[node name="StatusBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="13" unique_id=687309594]
 visible = false
 
-[node name="Button" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" index="14"]
+[node name="Button" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="14" unique_id=303791780]
 visible = true
 
-[node name="PlayersDetails" parent="ScrollContainer/HBoxContainer" instance=ExtResource("10_hf6va")]
+[node name="PlayersDetails" parent="ScrollContainer/HBoxContainer" unique_id=1413750163 instance=ExtResource("10_hf6va")]
 layout_mode = 2
 
-[node name="Classes" type="Node" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=556166367]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 36.0
+offset_bottom = 28.0
+text = "Back"
+
+[node name="Classes" type="Node" parent="." unique_id=698228902]
 
 [connection signal="pressed" from="BackButton" to="." method="_on_button_pressed"]
 

@@ -49,6 +49,11 @@ func use_skill(skill_id, _target):
 	Global.print_to_log(atk_lines[randi_range(0, atk_lines.size() - 1)])
 	super.use_skill(skill_id,_target)
 
+func update_stats():
+	for i in root_stats:
+		base_stats[i] = lvl * root_stats[i]
+
+	super.update_stats()
 
 func battle_ai(player_array: Array, enemy_array: Array):
 	var skill_id = randi_range(0, get_skills().size() - 1)

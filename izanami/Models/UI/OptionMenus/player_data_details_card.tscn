@@ -263,19 +263,19 @@ vertical_alignment = 1
 
 [node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=432341]
 layout_mode = 2
-text = "Head"
+text = "-"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=1875884874]
 layout_mode = 2
-text = "Head"
+text = "-"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=1056416908]
 layout_mode = 2
-text = "Head"
+text = "-"
 horizontal_alignment = 1
 vertical_alignment = 1
 

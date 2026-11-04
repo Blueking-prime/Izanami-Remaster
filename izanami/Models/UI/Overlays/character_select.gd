@@ -47,6 +47,7 @@ func create_card(player: Player):
 
 	card.hp_bar.hide()
 	card.sp_bar.hide()
+	card.xp_bar.hide()
 
 	player.assign_ui_element_to_character(details)
 

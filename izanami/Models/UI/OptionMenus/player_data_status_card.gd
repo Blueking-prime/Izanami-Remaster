@@ -12,6 +12,8 @@ class_name PlayerStatusCard
 @export var hp_bar_text: Label
 @export var sp_bar: ProgressBar
 @export var sp_bar_text: Label
+@export var xp_bar: ProgressBar
+@export var xp_bar_text: Label
 
 @export var stats: Dictionary
 @export var stats_str: Label

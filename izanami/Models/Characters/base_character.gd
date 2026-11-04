@@ -38,6 +38,7 @@ signal sp_signal(value: int, text: String)
 @export var root_stats: Dictionary[StringName, int] = {"STR": 1, "INT": 1, "WIS": 1, "END": 1, "GUI": 1, "AGI": 1}
 var base_stats: Dictionary[StringName, int] = root_stats.duplicate()
 var stats: Dictionary[StringName, int] = base_stats.duplicate()
+@export var additional_stat_chance: float = 0.5
 
 @export var level_stats: Array[StringName] = ["STR", "INT", "WIS", "END", "GUI", "AGI"]
 @export var desc: String
@@ -179,10 +180,6 @@ func reset_ui_elements():
 	status_icon_container = $Statuses/GridContainer
 
 func update_stats():
-	for i in root_stats:
-		if i in level_stats:
-			base_stats[i] = lvl * root_stats[i]
-
 	stats = base_stats.duplicate()
 
 

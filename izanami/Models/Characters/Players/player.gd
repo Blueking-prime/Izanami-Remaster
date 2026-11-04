@@ -28,7 +28,10 @@ class_name Player
 
 @export var level_up_xp: int:
 	get():
-		return 50 * (2 ** lvl)
+		if lvl < level_cap:
+			return 50 * (2 ** lvl)
+		else:
+			return 0
 
 ## STATIC PROPERTIES
 @export var xp: int = 0
@@ -92,19 +95,26 @@ func update_derived_stats(current_max: Array):
 func level_up(value):
 	xp += value
 	Global.print_to_log(character_name + " gained " + str(xp) + "EXP")
-	if xp < level_up_xp:
+
+	if xp < level_up_xp or not level_up_xp:
 		return
 
-	if lvl >= level_cap:
-		return
+	while xp > level_up_xp and level_up_xp:
+		if lvl >= level_cap:
+			return
 
-	Global.print_to_log(character_name + " leveled up!")
+		Global.print_to_log(character_name + " leveled up!")
 
-	xp -= level_up_xp
-	lvl += 1
+		xp -= level_up_xp
+		lvl += 1
 
-	update_stats()
-	level_up_xp = 50 * (2 ** lvl)
+		for i in level_stats:
+			base_stats[i] += 1
+
+		for i in Global.rand_spread(additional_stat_chance, 99):
+			base_stats[base_stats.keys()[randi_range(0, len(base_stats.keys()))]] += 1
+
+		update_stats()
 	skills.update_skills()
 	_display_skills()
 
@@ -175,6 +185,10 @@ func assign_ui_element_to_character(ui_object: Control):
 		ui_object.sp_bar.value = (float(sp) / max_sp) * 100
 		ui_object.sp_bar_text.text = str(sp, ' / ', max_sp)
 		sp_signal.connect(ui_object._update_sp_bar)
+
+	if 'xp_bar' in ui_object and is_instance_valid(ui_object.xp_bar):
+		ui_object.xp_bar.value = (float(xp) / level_up_xp) * 100
+		ui_object.xp_bar_text.text = str(xp, ' / ', level_up_xp)
 
 func reset_menu():
 	item_menu.clear()

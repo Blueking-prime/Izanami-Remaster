@@ -28,6 +28,8 @@ class_name PlayerDetailsCard
 signal selected(node: PlayerDetailsCard)
 
 func _on_button_pressed() -> void:
+	if not namefield.text:
+		namefield.text = 'Obute'
 	selected.emit(self)
 
 func _update_hp_bar(value: int, text: String):
