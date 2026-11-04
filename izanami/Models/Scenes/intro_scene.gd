@@ -29,4 +29,5 @@ func play_post_select_intro():
 func _on_character_select_player_created(player: Player) -> void:
 	player.lock = true
 	Global.players.switch_leader(Global.players.party.find(player))
+	Global.players.clear_party()
 	play_post_select_intro()

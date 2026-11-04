@@ -43,17 +43,7 @@ func update_cards(card: PlayerStatusCard, player: Player):
 	else:
 		card.leader_icon.hide()
 
-	card.hpbar.value = player.hp_bar.value
-	card.hpbar_text.text = player.hp_bar_text.text
-	card.spbar.value = player.sp_bar.value
-	card.spbar_text.text = player.sp_bar_text.text
-
-	card.stats_str.text = str(player.stats.STR)
-	card.stats_int.text = str(player.stats.INT)
-	card.stats_wis.text = str(player.stats.WIS)
-	card.stats_end.text = str(player.stats.END)
-	card.stats_gui.text = str(player.stats.GUI)
-	card.stats_agi.text = str(player.stats.AGI)
+	player.assign_ui_element_to_character(card)
 
 	var gear: Dictionary = player.gear.gear_dict
 	for slot in gear:

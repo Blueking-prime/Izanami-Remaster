@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4jo6wqiakv6r"]
+[gd_scene format=3 uid="uid://c4jo6wqiakv6r"]
 
 [ext_resource type="Script" uid="uid://df0nmijq131cb" path="res://Models/UI/OptionMenus/player_data_status_card.gd" id="1_3dfbo"]
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="2_acqo4"]
 
-[node name="PlayersStatus" type="PanelContainer" node_paths=PackedStringArray("nametag", "classname", "leader_icon", "icon", "hpbar", "hpbar_text", "spbar", "spbar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "description", "status_effect", "select_button")]
+[node name="PlayersStatus" type="PanelContainer" unique_id=1787191629 node_paths=PackedStringArray("nametag", "classname", "leader_icon", "icon", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "description", "status_effect", "select_button")]
 offset_right = 121.0
 offset_bottom = 228.0
 script = ExtResource("1_3dfbo")
@@ -11,10 +11,10 @@ nametag = NodePath("MarginContainer/VBoxContainer/TitleBox/Nametag")
 classname = NodePath("MarginContainer/VBoxContainer/TitleBox/Class")
 leader_icon = NodePath("MarginContainer/VBoxContainer/TextureRect/LeaderTag")
 icon = NodePath("MarginContainer/VBoxContainer/TextureRect")
-hpbar = NodePath("MarginContainer/VBoxContainer/HPBar")
-hpbar_text = NodePath("MarginContainer/VBoxContainer/HPBar/Label")
-spbar = NodePath("MarginContainer/VBoxContainer/SPBar")
-spbar_text = NodePath("MarginContainer/VBoxContainer/SPBar/Label")
+hp_bar = NodePath("MarginContainer/VBoxContainer/HPBar")
+hp_bar_text = NodePath("MarginContainer/VBoxContainer/HPBar/Label")
+sp_bar = NodePath("MarginContainer/VBoxContainer/SPBar")
+sp_bar_text = NodePath("MarginContainer/VBoxContainer/SPBar/Label")
 stats_str = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value")
 stats_int = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value2")
 stats_wis = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value3")
@@ -28,44 +28,44 @@ description = NodePath("MarginContainer/VBoxContainer/DescBox/Description")
 status_effect = NodePath("MarginContainer/VBoxContainer/StatusBox/StatusEffect")
 select_button = NodePath("MarginContainer/VBoxContainer/Button")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1372446925]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1459889764]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="TitleBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TitleBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1799335494]
 layout_mode = 2
 
-[node name="Nametag" type="Label" parent="MarginContainer/VBoxContainer/TitleBox"]
+[node name="Nametag" type="Label" parent="MarginContainer/VBoxContainer/TitleBox" unique_id=1749505144]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "P1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Class" type="Label" parent="MarginContainer/VBoxContainer/TitleBox"]
+[node name="Class" type="Label" parent="MarginContainer/VBoxContainer/TitleBox" unique_id=1075776172]
 layout_mode = 2
 text = "Class
 "
 
-[node name="ICON" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="ICON" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=358226148]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=361493661]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 texture = ExtResource("2_acqo4")
 stretch_mode = 5
 
-[node name="LeaderTag" type="Label" parent="MarginContainer/VBoxContainer/TextureRect"]
+[node name="LeaderTag" type="Label" parent="MarginContainer/VBoxContainer/TextureRect" unique_id=1290210958]
 visible = false
 layout_mode = 1
 offset_right = 19.0
@@ -74,17 +74,17 @@ text = "Leader"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BARS" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="BARS" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1956585683]
 layout_mode = 2
 
-[node name="HPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=2050371035]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_vertical = 1
 theme_type_variation = &"ProgressBarRed"
 show_percentage = false
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HPBar"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HPBar" unique_id=476443236]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,12 +95,12 @@ text = "0 / 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+[node name="SPBar" type="ProgressBar" parent="MarginContainer/VBoxContainer" unique_id=1420963773]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SPBar"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SPBar" unique_id=1519577234]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,29 +111,29 @@ text = "0 / 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="STATSECTION" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="STATSECTION" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=269295845]
 layout_mode = 2
 
-[node name="StatsBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="StatsBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=762124519]
 layout_mode = 2
 
-[node name="StatsLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsBox"]
+[node name="StatsLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsBox" unique_id=246505263]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "Stats:"
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/StatsBox"]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/StatsBox" unique_id=1372565301]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Stats" type="GridContainer" parent="MarginContainer/VBoxContainer/StatsBox"]
+[node name="Stats" type="GridContainer" parent="MarginContainer/VBoxContainer/StatsBox" unique_id=281847837]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/h_separation = 3
 columns = 6
 
-[node name="Stat" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Stat" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=1423112746]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -142,7 +142,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Stat2" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Stat2" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=202747410]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -151,7 +151,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Stat3" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Stat3" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=433696031]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -160,7 +160,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Stat4" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Stat4" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=1860347907]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -169,7 +169,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Stat5" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Stat5" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=400244609]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -178,7 +178,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Stat6" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Stat6" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=1795206593]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -187,7 +187,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=1493702505]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -196,7 +196,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Value2" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Value2" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=145454267]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -205,7 +205,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Value3" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Value3" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=2049638973]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -214,7 +214,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Value4" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Value4" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=732278455]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -223,7 +223,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Value5" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Value5" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=2093185457]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -232,7 +232,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Value6" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats"]
+[node name="Value6" type="Label" parent="MarginContainer/VBoxContainer/StatsBox/Stats" unique_id=1464598675]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -241,72 +241,72 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="GEAR" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="GEAR" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1472986874]
 layout_mode = 2
 
-[node name="GearBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="GearBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1296992282]
 layout_mode = 2
 
-[node name="GearLabel" type="Label" parent="MarginContainer/VBoxContainer/GearBox"]
+[node name="GearLabel" type="Label" parent="MarginContainer/VBoxContainer/GearBox" unique_id=1195568382]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "Gear:"
 
-[node name="Gear" type="GridContainer" parent="MarginContainer/VBoxContainer/GearBox"]
+[node name="Gear" type="GridContainer" parent="MarginContainer/VBoxContainer/GearBox" unique_id=720636838]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/h_separation = 3
 columns = 3
 
-[node name="Head" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+[node name="Head" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=104004883]
 layout_mode = 2
 text = "Head"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Body" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+[node name="Body" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=123131701]
 layout_mode = 2
 text = "Body"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Weapon" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+[node name="Weapon" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=2119218118]
 layout_mode = 2
 text = "Weapon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=53020790]
 layout_mode = 2
 text = "Head"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=1908323209]
 layout_mode = 2
 text = "Head"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear"]
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/GearBox/Gear" unique_id=719377411]
 layout_mode = 2
 text = "Head"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DESCRIPTION" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="DESCRIPTION" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=157339368]
 layout_mode = 2
 
-[node name="DescBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="DescBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=146745173]
 layout_mode = 2
 
-[node name="DescLabel" type="Label" parent="MarginContainer/VBoxContainer/DescBox"]
+[node name="DescLabel" type="Label" parent="MarginContainer/VBoxContainer/DescBox" unique_id=1466900836]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 6
 text = "Desc:"
 
-[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/DescBox"]
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/DescBox" unique_id=1974456417]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -316,24 +316,24 @@ text = "A named shade"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="STATUSEFFECT" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="STATUSEFFECT" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1676672467]
 layout_mode = 2
 
-[node name="StatusBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="StatusBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=687309594]
 layout_mode = 2
 
-[node name="StatusLabel" type="Label" parent="MarginContainer/VBoxContainer/StatusBox"]
+[node name="StatusLabel" type="Label" parent="MarginContainer/VBoxContainer/StatusBox" unique_id=747671641]
 layout_mode = 2
 size_flags_horizontal = 2
 text = "Status:"
 
-[node name="StatusEffect" type="Label" parent="MarginContainer/VBoxContainer/StatusBox"]
+[node name="StatusEffect" type="Label" parent="MarginContainer/VBoxContainer/StatusBox" unique_id=117615391]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "None
 "
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=303791780]
 visible = false
 layout_mode = 2
 text = "Choose"

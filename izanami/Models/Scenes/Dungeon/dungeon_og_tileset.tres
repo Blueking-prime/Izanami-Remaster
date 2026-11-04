@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=83 format=3 uid="uid://c50pucj5u271f"]
+[gd_resource type="TileSet" format=3 uid="uid://c50pucj5u271f"]
 
 [ext_resource type="Texture2D" uid="uid://cmmt3ba4u5yo7" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="1_5exyi"]
 [ext_resource type="Texture2D" uid="uid://jau6vpcqyha4" path="res://Assets/Art/fantasy_ [version 2 (2).0]/cave_/cave_.png" id="2_jqbmd"]

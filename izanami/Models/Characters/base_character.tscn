@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://drei8wtrpbio6"]
+[gd_scene format=3 uid="uid://drei8wtrpbio6"]
 
 [ext_resource type="Script" uid="uid://bh4xox2dcbnl5" path="res://Models/Characters/base_character.gd" id="1_e6dxp"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="2_au5i3"]
@@ -33,6 +33,33 @@ radius = 7.0
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ldu8x"]
 
+[sub_resource type="Animation" id="Animation_hncbh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:battle_sprite_texture:pause")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DungeonSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_8vnn5"]
 resource_name = "hit"
 length = 0.5
@@ -61,40 +88,13 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(4.415934, 4.415934, 4.415934, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_hncbh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:battle_sprite_texture:pause")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DungeonSprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ny3u8"]
 _data = {
 &"RESET": SubResource("Animation_hncbh"),
 &"hit": SubResource("Animation_8vnn5")
 }
 
-[node name="Base Character" type="CharacterBody2D" node_paths=PackedStringArray("skills", "items", "statuses", "audio", "animation_player", "status_icon_container", "dungeon_sprite", "hitbox")]
+[node name="Base Character" type="CharacterBody2D" unique_id=1861513359 node_paths=PackedStringArray("skills", "items", "statuses", "audio", "animation_player", "status_icon_container", "dungeon_sprite", "hitbox")]
 script = ExtResource("1_e6dxp")
 skills = NodePath("Skills")
 items = NodePath("Items")
@@ -107,22 +107,22 @@ dungeon_sprite = NodePath("DungeonSprite")
 hitbox = NodePath("Hitbox")
 character_name = "Base Character"
 
-[node name="DungeonSprite" type="Sprite2D" parent="."]
+[node name="DungeonSprite" type="Sprite2D" parent="." unique_id=2023850608]
 texture = SubResource("AnimatedTexture_mypun")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=208075646]
 shape = SubResource("CircleShape2D_xiiub")
 script = ExtResource("4_1gq6w")
 
-[node name="Skills" type="Node" parent="."]
+[node name="Skills" type="Node" parent="." unique_id=330096693]
 script = ExtResource("4_8cldu")
 skill_group = ExtResource("5_ehjd2")
 
-[node name="Items" type="Node" parent="."]
+[node name="Items" type="Node" parent="." unique_id=572089478]
 script = ExtResource("6_4tgcu")
 item_group = ExtResource("7_eqn43")
 
-[node name="Statuses" type="Node" parent="." node_paths=PackedStringArray("icon_handler")]
+[node name="Statuses" type="Node" parent="." unique_id=487388594 node_paths=PackedStringArray("icon_handler")]
 script = ExtResource("8_hvm8g")
 icon_handler = NodePath("StatusIconHandler")
 test_effect = ExtResource("9_tto21")
@@ -130,16 +130,16 @@ en_exhaust = ExtResource("10_ku8jv")
 restore = ExtResource("11_kun65")
 low_health = ExtResource("13_1fnnn")
 
-[node name="GridContainer" type="GridContainer" parent="Statuses"]
+[node name="GridContainer" type="GridContainer" parent="Statuses" unique_id=950611538]
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StatusIconHandler" type="Node" parent="Statuses"]
+[node name="StatusIconHandler" type="Node" parent="Statuses" unique_id=2039393646]
 script = ExtResource("14_2mtdu")
 icon_scene = ExtResource("15_66upe")
 
-[node name="AudioPlayer" type="Node2D" parent="." node_paths=PackedStringArray("local", "global")]
+[node name="AudioPlayer" type="Node2D" parent="." unique_id=749642232 node_paths=PackedStringArray("local", "global")]
 script = ExtResource("16_4vh7u")
 walk_sfx = ExtResource("17_py730")
 attack_sfx = ExtResource("18_8vnn5")
@@ -147,17 +147,15 @@ damage_sfx = ExtResource("19_hncbh")
 local = NodePath("Local")
 global = NodePath("Global")
 
-[node name="Local" type="AudioStreamPlayer2D" parent="AudioPlayer"]
+[node name="Local" type="AudioStreamPlayer2D" parent="AudioPlayer" unique_id=280081610]
 stream = SubResource("AudioStreamPolyphonic_4vh7u")
 max_polyphony = 10
 bus = &"CharacterSFX"
 
-[node name="Global" type="AudioStreamPlayer" parent="AudioPlayer"]
+[node name="Global" type="AudioStreamPlayer" parent="AudioPlayer" unique_id=1038694851]
 stream = SubResource("AudioStreamPolyphonic_ldu8x")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ny3u8")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=449928651]
+libraries/ = SubResource("AnimationLibrary_ny3u8")
 
 [connection signal="state_changed" from="." to="AudioPlayer" method="_on_state_changed"]

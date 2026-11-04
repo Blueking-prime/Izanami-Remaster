@@ -8,11 +8,12 @@ class_name PlayerStatusCard
 @export var leader_icon: Control
 @export var icon: TextureRect
 
-@export var hpbar: ProgressBar
-@export var hpbar_text: Label
-@export var spbar: ProgressBar
-@export var spbar_text: Label
+@export var hp_bar: ProgressBar
+@export var hp_bar_text: Label
+@export var sp_bar: ProgressBar
+@export var sp_bar_text: Label
 
+@export var stats: Dictionary
 @export var stats_str: Label
 @export var stats_int: Label
 @export var stats_wis: Label
@@ -38,3 +39,19 @@ signal selected(node: PlayerStatusCard)
 
 func _on_button_pressed() -> void:
 	selected.emit(self)
+
+func _update_hp_bar(value: int, text: String):
+	hp_bar.value = value
+	hp_bar_text.text = text
+
+func _update_sp_bar(value: int, text: String):
+	sp_bar.value = value
+	sp_bar_text.text = text
+
+func assign_stats_to_UI() -> void:
+	stats_str.text = str(stats.STR)
+	stats_int.text = str(stats.INT)
+	stats_wis.text = str(stats.WIS)
+	stats_end.text = str(stats.END)
+	stats_gui.text = str(stats.GUI)
+	stats_agi.text = str(stats.AGI)

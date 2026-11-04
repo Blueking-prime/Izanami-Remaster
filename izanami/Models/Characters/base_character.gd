@@ -171,6 +171,10 @@ func assign_ui_element_to_character(ui_object: Control):
 		ui_object.hp_bar_text.text = str(hp, ' / ', max_hp)
 		hp_signal.connect(ui_object._update_hp_bar)
 
+	if 'stats' in ui_object:
+		ui_object.stats = stats.duplicate_deep()
+		ui_object.assign_stats_to_UI()
+
 func reset_ui_elements():
 	status_icon_container = $Statuses/GridContainer
 

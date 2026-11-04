@@ -20,11 +20,15 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 resources_spreadsheet_view/fold_docks=true
 resources_spreadsheet_view/resource_cell_label_mode=1
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Izanami"
 run/main_scene="res://Models/Scenes/main_menu.tscn"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://Assets/Art/icon.svg"
 
 [audio]

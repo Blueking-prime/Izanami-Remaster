@@ -41,24 +41,14 @@ func create_card(player: Player):
 	card.nametag.hide()
 	card.classname.text = player.classname
 	card.classname.size_flags_horizontal = Control.SIZE_SHRINK_CENTER | Control.SIZE_EXPAND
-	details.classname. text = player.classname
+	details.classname.text = player.classname
 
 	card.icon.texture = player.battle_sprite_texture
 
-	card.hpbar.hide()
-	card.spbar.hide()
+	card.hp_bar.hide()
+	card.sp_bar.hide()
 
-	details.hpbar.value = player.hp_bar.value
-	details.hpbar_text.text = player.hp_bar_text.text
-	details.spbar.value = player.sp_bar.value
-	details.spbar_text.text = player.sp_bar_text.text
-
-	details.stats_str.text = str(player.stats.STR)
-	details.stats_int.text = str(player.stats.INT)
-	details.stats_wis.text = str(player.stats.WIS)
-	details.stats_end.text = str(player.stats.END)
-	details.stats_gui.text = str(player.stats.GUI)
-	details.stats_agi.text = str(player.stats.AGI)
+	player.assign_ui_element_to_character(details)
 
 	card.description.text = player.desc
 

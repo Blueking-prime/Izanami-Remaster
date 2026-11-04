@@ -18,7 +18,7 @@ func main():
 	if quest in Global.active_quest_list:
 		if quest_2 not in Global.active_quest_list:
 			Global.add_quest(quest_2)
-		Checks.test_return = true
+		Checks.flags.test_return = true
 		#print('Flag set')
 	else :
 		Global.add_quest(quest)

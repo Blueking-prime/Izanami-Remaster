@@ -130,6 +130,10 @@ func warp_players(area: WarpPoint):
 		if confirm:
 			Global.warp(get_tree().current_scene, area.destination_scene)
 
+func clear_party(exceptions: Array = []):
+	for i in party:
+		if i not in exceptions:
+			remove_from_party(i)
 
 ## BATTLE SCENE
 func battle_collision():
