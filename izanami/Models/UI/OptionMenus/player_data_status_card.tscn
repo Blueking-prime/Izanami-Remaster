@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://df0nmijq131cb" path="res://Models/UI/OptionMenus/player_data_status_card.gd" id="1_3dfbo"]
 [ext_resource type="Texture2D" uid="uid://bil3lejwoho37" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="2_acqo4"]
 
-[node name="PlayersStatus" type="PanelContainer" unique_id=1787191629 node_paths=PackedStringArray("nametag", "classname", "leader_icon", "icon", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "xp_bar", "xp_bar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "description", "status_effect", "select_button")]
+[node name="PlayersStatus" type="PanelContainer" unique_id=1787191629 node_paths=PackedStringArray("nametag", "classname", "leader_icon", "icon", "vbox", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "xp_bar", "xp_bar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "description", "status_label", "status_effect", "select_button")]
 offset_right = 121.0
 offset_bottom = 228.0
 script = ExtResource("1_3dfbo")
@@ -11,6 +11,7 @@ nametag = NodePath("MarginContainer/VBoxContainer/TitleBox/Nametag")
 classname = NodePath("MarginContainer/VBoxContainer/TitleBox/Class")
 leader_icon = NodePath("MarginContainer/VBoxContainer/TextureRect/LeaderTag")
 icon = NodePath("MarginContainer/VBoxContainer/TextureRect")
+vbox = NodePath("MarginContainer/VBoxContainer")
 hp_bar = NodePath("MarginContainer/VBoxContainer/HPBar")
 hp_bar_text = NodePath("MarginContainer/VBoxContainer/HPBar/Label")
 sp_bar = NodePath("MarginContainer/VBoxContainer/SPBar")
@@ -26,7 +27,8 @@ stats_agi = NodePath("MarginContainer/VBoxContainer/StatsBox/Stats/Value6")
 head = NodePath("MarginContainer/VBoxContainer/GearBox/Gear/Label4")
 body = NodePath("MarginContainer/VBoxContainer/GearBox/Gear/Label5")
 weapon = NodePath("MarginContainer/VBoxContainer/GearBox/Gear/Label6")
-description = NodePath("MarginContainer/VBoxContainer/DescBox/Description")
+description = NodePath("MarginContainer/VBoxContainer/DescBox/ScrollContainer/Description")
+status_label = NodePath("MarginContainer/VBoxContainer/StatusBox/StatusLabel")
 status_effect = NodePath("MarginContainer/VBoxContainer/StatusBox/StatusEffect")
 select_button = NodePath("MarginContainer/VBoxContainer/Button")
 
@@ -317,6 +319,7 @@ layout_mode = 2
 
 [node name="DescBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=146745173]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="DescLabel" type="Label" parent="MarginContainer/VBoxContainer/DescBox" unique_id=1466900836]
 layout_mode = 2
@@ -324,12 +327,16 @@ size_flags_horizontal = 2
 size_flags_vertical = 6
 text = "Desc:"
 
-[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/DescBox" unique_id=1974456417]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/DescBox" unique_id=1834826486]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/DescBox/ScrollContainer" unique_id=1974456417]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 3.0
+size_flags_vertical = 3
 text = "A named shade"
 vertical_alignment = 1
 autowrap_mode = 2
@@ -348,8 +355,8 @@ text = "Status:"
 [node name="StatusEffect" type="Label" parent="MarginContainer/VBoxContainer/StatusBox" unique_id=117615391]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "None
-"
+text = "None"
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=303791780]
 visible = false

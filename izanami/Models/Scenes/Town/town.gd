@@ -7,10 +7,11 @@ class_name Town
 @export var apothecary: TownApothecary
 @export var dungeon: TownDungeon
 @export var demonitarium: TownDemonitarium
+@export var slave_market: TownSlaveMarket
 @export var palace: Node
 @export var test: Node
 
-var locations = ["Palace", "Church", "Smithy", "Apothecary", "Demonitorium", "Dungeon"]
+var locations = ["Palace", "Church", "Smithy", "Apothecary", "Demonitorium", "Dungeon", "SlaveMarket"]
 var actions = ['Talk', "Go Somewhere", 'Status']
 var characters = ["Kobaneko", "White"]
 var disable_entrance: bool = false
@@ -37,6 +38,7 @@ func _check_building(node: Variant):
 		apothecary: await apothecary.main()
 		demonitarium: await demonitarium.main()
 		palace: await palace.main()
+		slave_market: await slave_market.main()
 		test: await test.main()
 
 #func _input(event: InputEvent) -> void:
@@ -61,7 +63,7 @@ func load_data(data: TownSaveData):
 	apothecary.stock = data.apothecary_stock
 	smithy.stock = data.smithy_stock
 
-	print('Town Data Loaded')
+	('Town Data Loaded')
 
 
 func _on_entrance_body_entered(_body: Node2D) -> void:

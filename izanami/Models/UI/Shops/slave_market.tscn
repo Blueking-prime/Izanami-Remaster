@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d05wcwvuplat0"]
+
+[ext_resource type="PackedScene" uid="uid://vxxdyg18tnqq" path="res://Models/UI/Overlays/character_select.tscn" id="1_k8f6y"]
+[ext_resource type="Script" uid="uid://bx2cpjkh050na" path="res://Models/UI/Shops/slave_market.gd" id="2_tq6sk"]
+
+[node name="SlaveMarket" unique_id=303322654 instance=ExtResource("1_k8f6y")]
+anchors_preset = -1
+anchor_bottom = 0.689
+offset_bottom = 2.9599915
+script = ExtResource("2_tq6sk")
+
+[node name="ScrollContainer" parent="." index="0" unique_id=610928186]
+vertical_scroll_mode = 0
+
+[node name="StatusBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="14" unique_id=687309594]
+visible = true
+
+[node name="StatusLabel" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer/StatusBox" index="0" unique_id=747671641]
+text = "Cost:"
+
+[editable path="ScrollContainer/HBoxContainer/PlayersStatus"]

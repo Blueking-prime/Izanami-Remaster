@@ -24,6 +24,11 @@ signal player_created(player: Player)
 func load_menu():
 	_clear_data_cards()
 	load_classes()
+
+	Global.exit_button = back_button
+	if not Global.exit_signal.is_connected(_on_button_pressed): Global.exit_signal.connect(_on_button_pressed)
+	if not Global.exit_button.pressed.is_connected(Global._on_shop_exit): Global.exit_button.pressed.connect(Global._on_shop_exit)
+
 	for i in available_classes:
 		player_node_container.add_child(i)
 		create_card(i)
@@ -34,7 +39,7 @@ func load_classes():
 	for i in available_class_scenes:
 		available_classes.append(i.instantiate())
 
-func create_card(player: Player):
+func create_card(player: Player) -> PlayerStatusCard:
 	var card: PlayerStatusCard = player_status_card_scene.instantiate()
 	var details: PlayerDetailsCard = player_details_card_scene.instantiate()
 
@@ -45,9 +50,10 @@ func create_card(player: Player):
 
 	card.icon.texture = player.battle_sprite_texture
 
-	card.hp_bar.hide()
-	card.sp_bar.hide()
-	card.xp_bar.hide()
+	if self is SlaveMarket:
+		card.hide_details(true)
+	else:
+		card.hide_details()
 
 	player.assign_ui_element_to_character(details)
 
@@ -70,6 +76,8 @@ func create_card(player: Player):
 
 	card.selected.connect(choose_target)
 	details.selected.connect(confirm_choice)
+
+	return card
 
 func _clear_data_cards():
 	var children = player_container.get_children()

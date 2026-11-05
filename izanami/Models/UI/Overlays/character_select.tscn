@@ -59,22 +59,25 @@ visible = false
 [node name="SPBar" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="5" unique_id=1420963773]
 visible = false
 
-[node name="STATSECTION" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="6" unique_id=269295845]
+[node name="XPBar" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="6" unique_id=2092095569]
 visible = false
 
-[node name="StatsBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="7" unique_id=762124519]
+[node name="STATSECTION" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="7" unique_id=269295845]
 visible = false
 
-[node name="GEAR" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="8" unique_id=1472986874]
+[node name="StatsBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="8" unique_id=762124519]
 visible = false
 
-[node name="GearBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="9" unique_id=1296992282]
+[node name="GEAR" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="9" unique_id=1472986874]
 visible = false
 
-[node name="StatusBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="13" unique_id=687309594]
+[node name="GearBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="10" unique_id=1296992282]
 visible = false
 
-[node name="Button" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="14" unique_id=303791780]
+[node name="StatusBox" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="14" unique_id=687309594]
+visible = false
+
+[node name="Button" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="15" unique_id=303791780]
 visible = true
 
 [node name="PlayersDetails" parent="ScrollContainer/HBoxContainer" unique_id=1413750163 instance=ExtResource("10_hf6va")]

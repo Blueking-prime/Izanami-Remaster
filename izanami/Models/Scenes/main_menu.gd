@@ -40,6 +40,8 @@ func _on_new_pressed() -> void:
 	if not SaveAndLoad.save_files.is_empty():
 		var confirm = await Global.show_confirmation_box('Start New Game?')
 		if confirm:
+			Global.exit_signal.disconnect(_on_exit_button_pressed)
+			Global.exit_button.pressed.disconnect(Global._on_shop_exit)
 			intro_scene.play_intro()
 		else:
 			menu_ui.show()

@@ -8,6 +8,8 @@ class_name PlayerStatusCard
 @export var leader_icon: Control
 @export var icon: TextureRect
 
+@export var vbox: VBoxContainer
+
 @export var hp_bar: ProgressBar
 @export var hp_bar_text: Label
 @export var sp_bar: ProgressBar
@@ -29,6 +31,7 @@ class_name PlayerStatusCard
 
 @export var description: Label
 
+@export var status_label: Label
 @export var status_effect: Label
 
 @export var select_button: Button
@@ -57,3 +60,16 @@ func assign_stats_to_UI() -> void:
 	stats_end.text = str(stats.END)
 	stats_gui.text = str(stats.GUI)
 	stats_agi.text = str(stats.AGI)
+
+func hide_details(shop: bool = false):
+	hp_bar.hide()
+	sp_bar.hide()
+	xp_bar.hide()
+
+	for i in vbox.get_children():
+		if i is HSeparator and i.name not in ['ICON', 'DESCRIPTION', 'STATUSEFFECT']:
+			i.hide()
+		if i is HBoxContainer and i.name not in ['TitleBox', 'DescBox']:
+			i.hide()
+			if shop and i.name == 'StatusBox':
+				i.show()

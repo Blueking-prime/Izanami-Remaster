@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dk5618o5l67d5"]
+[gd_scene format=3 uid="uid://dk5618o5l67d5"]
 
 [ext_resource type="Script" uid="uid://dt4jxndu1dwb1" path="res://Models/Characters/Players/players.gd" id="1_m2oad"]
 [ext_resource type="PackedScene" uid="uid://b3nogdpgqda7d" path="res://Models/Characters/battle_sprite.tscn" id="2_blcr2"]
@@ -37,28 +37,31 @@ frame_2/duration = 1.0
 frame_3/texture = ExtResource("14_uoebu")
 frame_3/duration = 1.0
 
-[node name="Players" type="Node2D" node_paths=PackedStringArray("inventory")]
+[node name="Players" type="Node2D" unique_id=1695891697 node_paths=PackedStringArray("inventory")]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_m2oad")
 battle_sprite_scene = ExtResource("2_blcr2")
 player_scene = ExtResource("2_eydhy")
+gold = 200
 inventory = NodePath("Inventory")
 
-[node name="Inventory" type="Node" parent="."]
+[node name="Inventory" type="Node" parent="." unique_id=872071646]
 script = ExtResource("3_aasua")
 item_group = ExtResource("4_4q1mc")
 gear_group = ExtResource("5_caqig")
 
-[node name="Player" parent="." instance=ExtResource("2_eydhy")]
+[node name="Player" parent="." unique_id=1340209342 instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
+cost = 100
 classname = &"Knight"
 character_name = "P1"
 lvl = 10
 
-[node name="Player2" parent="." instance=ExtResource("2_eydhy")]
+[node name="Player2" parent="." unique_id=531017146 instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(22, 0)
+cost = 100
 classname = &"Knight"
 battle_sprite_texture = SubResource("AnimatedTexture_cppqo")
 dungeon_sprite_idle_texture = SubResource("AnimatedTexture_cppqo")

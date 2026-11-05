@@ -40,6 +40,7 @@ class_name Player
 ## CONSTANTS
 @export var level_cap: int = 60
 @export var speed: int = 50
+@export var cost: int = 100
 @export var classname: StringName
 
 ## STATES

@@ -4,7 +4,8 @@
 
 [node name="PlayerDetails" type="PanelContainer" unique_id=2049814712 node_paths=PackedStringArray("namefield", "classname", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "stats_str", "stats_int", "stats_wis", "stats_end", "stats_gui", "stats_agi", "head", "body", "weapon", "select_button")]
 offset_right = 159.0
-offset_bottom = 293.0
+offset_bottom = 237.0
+size_flags_vertical = 3
 script = ExtResource("1_54x7v")
 namefield = NodePath("MarginContainer/VBoxContainer/Namefield")
 classname = NodePath("MarginContainer/VBoxContainer/TitleBox/Class")
@@ -32,7 +33,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=579041577]
 layout_mode = 2
-theme_override_constants/separation = 5
 
 [node name="TitleBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=779248941]
 layout_mode = 2
