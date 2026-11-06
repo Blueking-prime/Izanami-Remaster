@@ -6,9 +6,11 @@ extends Skill
 @export var sp_recover: bool
 ## Check if skill recovers hp
 @export var hp_recover: bool
+## Amount of relative SP skill recovers compared to HP (if applicable)
+@export var sp_fraction: float = 0.5
 
 func  _init() -> void:
-	type = 'Heal Skill'
+	type = 'Support'
 
 func action(obj: Base_Character, target: Variant) -> bool:
 	if not super.action(obj, target): return false
@@ -33,4 +35,4 @@ func heal(target: Base_Character):
 	if hp_recover:
 		target.heal(value)
 	if sp_recover and 'sp' in target:
-		target.restore(value / 2)
+		target.restore(value * sp_fraction)

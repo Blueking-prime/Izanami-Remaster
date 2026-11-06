@@ -3,7 +3,7 @@ class_name Cleanse_Skill
 extends Skill
 
 func  _init() -> void:
-	type = 'Cleanse Skill'
+	type = 'Support'
 
 func action(obj: Base_Character, target: Variant) -> bool:
 	if not super.action(obj, target): return false

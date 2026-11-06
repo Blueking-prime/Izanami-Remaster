@@ -67,8 +67,17 @@ var stats: Dictionary[StringName, int] = base_stats.duplicate()
 		hp = value
 		hp_signal.emit((float(hp) / max_hp) * 100, str(hp, ' / ', max_hp))
 
-@export var ATK: float = 1
-@export var DEF: float = 1
+const MAX_BUFF: float = 3
+const MIN_BUFF: float = 0.3
+
+@export var ATK: float = 1:
+	set(value):
+		ATK = clampf(value, MIN_BUFF, MAX_BUFF)
+
+@export var DEF: float = 1:
+	set(value):
+		DEF = clampf(value, MIN_BUFF, MAX_BUFF)
+
 @export var lvl: int = 1
 @export var ally: int
 

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://b3mvu53oax2u4"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_jkdkl"]
+[ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="2_ddvbd"]
+
+[resource]
+script = ExtResource("1_jkdkl")
+element = "Physical"
+name = &"Wisteria Senbon"
+stats = 32
+stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+cost = 30
+desc = "20 Pot AGI Physical, 30-50-70% chance to poison"
+status_effect = ExtResource("2_ddvbd")
+effect_chance = Array[float]([0.3, 0.5, 0.7])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

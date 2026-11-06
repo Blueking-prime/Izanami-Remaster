@@ -19,6 +19,11 @@ func play_intro():
 	character_selector.load_menu()
 	character_selector.show()
 
+func implement_starting_materials(player: Player):
+	match player.classname:
+		'Scion':
+			Global.players.gold += 1000
+
 func play_post_select_intro():
 	Global.set_seed()
 	#await Dialogue.show_cutscene(cutscene_2)
@@ -30,4 +35,5 @@ func _on_character_select_player_created(player: Player) -> void:
 	player.lock = true
 	Global.players.switch_leader(Global.players.party.find(player))
 	Global.players.clear_party()
+	implement_starting_materials(player)
 	play_post_select_intro()

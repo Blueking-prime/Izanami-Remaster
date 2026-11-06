@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://itpsxpjjt55q"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_25bue"]
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="2_25bue"]
+
+[resource]
+script = ExtResource("1_25bue")
+element = "Dark"
+name = &"Corruption"
+stats = 16
+stat_multiplier = Array[float]([2.5, 3.0, 3.5])
+cost = 30
+desc = "25-30-35 Pot GUI Dark Attack, 0.75x DEF Enemy Debuff"
+status_effect = ExtResource("2_25bue")
+effect_magnitude = Array[float]([0.75, 0.75, 0.75])
+effect_chance = Array[float]([0.3, 0.5, 0.7])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

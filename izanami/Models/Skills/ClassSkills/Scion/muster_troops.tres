@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://b0duejnjq3n1u"]
+
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_7wkf4"]
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="2_ss2r1"]
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="3_61ksc"]
+
+[resource]
+script = ExtResource("1_7wkf4")
+flavour_text = "“You call upon your party to focus”"
+desc = "AoE 1.25-1.5-1.75x ATK and DEF Boost for 3 turns"
+status_effect = Array[Script]([ExtResource("2_ss2r1"), ExtResource("3_61ksc")])
+effect_magnitude = Array[float]([1.25, 1.5, 1.75])
+aoe = true
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

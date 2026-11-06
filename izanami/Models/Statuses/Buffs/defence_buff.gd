@@ -5,6 +5,6 @@ func _init() -> void:
 	super._init()
 
 func trigger(victim: Base_Character):
-	victim.DEF += magnitude
+	victim.DEF *= magnitude
 
 	super.trigger(victim)

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://dgffgww14ct5x"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_8eeub"]
+[ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="2_cxirg"]
+
+[resource]
+script = ExtResource("1_8eeub")
+element = "Physical"
+name = &"Stoneflower Senbon"
+stats = 32
+stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+cost = 10
+desc = "20 Pot AGI Physical, 20-35-50% chance to paralyze"
+status_effect = ExtResource("2_cxirg")
+effect_chance = Array[float]([0.2, 0.35, 0.5])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

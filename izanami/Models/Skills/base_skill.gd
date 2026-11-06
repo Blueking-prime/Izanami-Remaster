@@ -41,7 +41,7 @@ var _stats: Array[StringName] = []
 ## Skill effect descriptor
 @export var desc: String
 ## Type of skill used
-var type: StringName
+@export var type: StringName
 
 ## Chance for a skill to be a crit
 @export_range(0, 1, 0.05) var crit_chance: Array[float] = [0.2, 0.2, 0.2]
@@ -51,13 +51,13 @@ var type: StringName
 ## Effect on users ATK and DEF attributes respectively (multiplicative)
 @export var boost: Array[Vector2] = [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
 ## The status effect applied by this skill
-@export var status_effect: Script
+@export var status_effect: Array[Script]
 ## How many turns the status effect would last (if applicable)
-@export var effect_duration: Array[int] = [3, 3, 3]
+@export var effect_duration: Dictionary[Script, PackedInt32Array]
 ## Magnitude of status effects effect if status effect is a buff/debuff (if applicable)
-@export var effect_magnitude: Array[float]
+@export var effect_magnitude: Dictionary[Script, PackedFloat32Array]
 ## Stats the effect_magnitude scales off (if applicable)
-@export var effect_mag_stats: Array[StringName] = []
+@export var effect_mag_stats: Dictionary[Script, PackedStringArray]
 ## Chance for status effect to land (if applicable)
 @export_range(0, 1, 0.05) var effect_chance: Array[float] = [1, 1, 1]
 
@@ -128,27 +128,28 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 		value *= crit_mult[rank]
 
 	if status_effect:
-		obj.audio.play_support_sfx()
-		if aoe:
-			for i in target:
-				_apply_status(obj, i)
-		else:
-			_apply_status(obj, target)
+		for effect in status_effect:
+			obj.audio.play_support_sfx()
+			if aoe:
+				for i in target:
+					_apply_status(obj, i, effect)
+			else:
+				_apply_status(obj, target, effect)
 
 	#Global.print_to_log('base value = ', value)
 	return true
 
-func _apply_status(obj: Base_Character, target: Base_Character):
+func _apply_status(obj: Base_Character, target: Base_Character, effect: Script):
 	if Global.rand_chance(effect_chance[rank]):
-		var status: Status = status_effect.new()
-		status.duration = effect_duration[rank]
+		var status: Status = effect.new()
+		status.duration = effect_duration[effect][rank]
 
 		if status is StatusBuff:
 			var mag_stat_total = 0
-			status.magnitude = effect_magnitude
+			status.magnitude = effect_magnitude[effect][rank]
 
 			for stat in obj.stats:
-				if stat in effect_mag_stats:
+				if stat in effect_mag_stats[effect]:
 					mag_stat_total += obj.stats[stat]
 			if mag_stat_total > 0:
 				status.magnitude *= mag_stat_total

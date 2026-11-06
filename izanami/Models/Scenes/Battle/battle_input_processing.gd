@@ -236,9 +236,9 @@ func _on_skill_panel_item_activated(idx: int) -> void:
 			target = current_player
 			process_actions.action()
 			return
-		if skill is Offensive_Skill:
+		if skill.type == 'Offensive':
 			offense = true
-		if skill is Heal_Skill:
+		if skill.type == 'Support':
 			offense = false
 	if flag == 'Items':
 		Checks.set_item_persistence(current_player, idx)

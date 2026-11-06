@@ -6,9 +6,9 @@ extends Skill
 @export_enum('Physical', 'Fire', 'Water', 'Wind', 'Dark', 'Light', 'Blood',) var element: String
 
 ## Ststus effect skill is effective against
-@export var status_modifier: Script
+@export var status_modifier: Array[Script]
 ## Multiplier for effectiveness against status effect
-@export var status_effectiveness: float = 1.5
+@export var status_effectiveness: float = 1
 
 ## Check if skill canhit multiple times
 @export var multi_hit: bool = false
@@ -18,7 +18,7 @@ extends Skill
 @export_range(0, 1, 0.01) var multi_hit_chance: float = 0.5
 
 func  _init() -> void:
-	type = 'Offensive Skill'
+	type = 'Offensive'
 
 func action(obj: Base_Character, target: Variant) -> bool:
 	if not super.action(obj, target): return false
@@ -70,8 +70,9 @@ func act(obj: Base_Character, target: Base_Character):
 	#print('act resist value = ', value)
 
 	if status_modifier:
-		if status_modifier in target.statuses.status_effects_scripts:
-			value *= status_effectiveness
+		for i in status_modifier:
+			if i in target.statuses.status_effects_scripts:
+				value *= status_effectiveness
 
 	#print('act staus value = ', value)
 

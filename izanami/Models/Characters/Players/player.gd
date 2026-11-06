@@ -14,7 +14,7 @@ class_name Player
 ## DYNAMIC PROPERTIES
 @export var max_sp: int:
 	get():
-		var _max_sp = (stats['AGI'] + stats['END']) * 3
+		var _max_sp = (stats['AGI'] + stats['END']) * 3 * lvl
 		if _max_sp > 0:
 			return _max_sp
 		else:

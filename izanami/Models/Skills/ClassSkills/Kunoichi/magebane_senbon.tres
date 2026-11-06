@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://b0nnfbti2lvu2"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_u6mdb"]
+[ext_resource type="Script" uid="uid://12tt5alqdiul" path="res://Models/Statuses/Effects/seal.gd" id="2_u6mdb"]
+
+[resource]
+script = ExtResource("1_u6mdb")
+element = "Physical"
+name = &"Magebane Senbon"
+stats = 32
+stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+cost = 35
+desc = "20 Pot AGI Physical, 20-25-40% chance to seal"
+status_effect = ExtResource("2_u6mdb")
+effect_chance = Array[float]([0.2, 0.25, 0.4])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"
