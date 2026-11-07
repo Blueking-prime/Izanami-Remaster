@@ -1,13 +1,23 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://duxt2316vnrs4"]
 
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="1_2wap2"]
 [ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_smbsb"]
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="2_yx0c4"]
 
 [resource]
 script = ExtResource("1_smbsb")
 name = &"Smoke Bomb"
 cost = 40
 desc = "AoE 0.9 - 0.8 - 0.75x ATK and DEF Enemy Debuff for 3 turns"
-effect_magnitude = Array[float]([0.9, 0.8, 0.75])
-effect_chance = Array[float]([0.3, 0.5, 0.7])
+type = &"Offensive"
+status_effect = Array[Script]([ExtResource("1_2wap2"), ExtResource("2_yx0c4")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_2wap2"): PackedInt32Array(3, 3, 3),
+ExtResource("2_yx0c4"): PackedInt32Array(3, 3, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_2wap2"): PackedFloat32Array(0.9, 0.8, 0.75),
+ExtResource("2_yx0c4"): PackedFloat32Array(0.9, 0.8, 0.75)
+})
 aoe = true
 metadata/_custom_type_script = "uid://b05xjy5qvosa3"

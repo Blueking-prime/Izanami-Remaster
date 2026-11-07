@@ -72,6 +72,11 @@ var _stats: Array[StringName] = []
 ## Check if skill can target others besides self
 @export var targetable: bool = true
 
+## Check if cerctain flags are set
+@export var flags_to_check: Array[StringName]
+## Trigger certain flags
+@export var flags_to_set: Dictionary[StringName, Variant]
+
 ## WORKING VARIABLES
 var value: int
 
@@ -84,6 +89,8 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 		target = target_
 
 	if not Global.rand_chance(accuracy[rank]): return false
+
+	if not Checks.check_flags(flags_to_check): return false
 
 	if conditions:
 		var condition_check = false
@@ -137,7 +144,10 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 				_apply_status(obj, target, effect)
 
 	#Global.print_to_log('base value = ', value)
+
+	Checks.set_flags(flags_to_set)
 	return true
+
 
 func _apply_status(obj: Base_Character, target: Base_Character, effect: Script):
 	if Global.rand_chance(effect_chance[rank]):

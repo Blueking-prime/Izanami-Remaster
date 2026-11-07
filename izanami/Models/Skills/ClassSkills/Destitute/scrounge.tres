@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://dwdpsfqrc1ya8"]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_rknwn"]
+
+[resource]
+script = ExtResource("1_rknwn")
+hp_recover = true
+name = &"Scrounge"
+stats = 4
+accuracy = Array[float]([0.9, 0.9, 0.9])
+rank = 2
+cost = 25
+desc = "90% Chance to Heal; Scales with WIS"
+targetable = false
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

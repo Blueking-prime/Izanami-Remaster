@@ -29,6 +29,7 @@ class_name CharacterStatuses
 
 var passive_effects = [restore]
 
+var targetable: bool = true
 var stunned: bool = false
 var exhausted: bool = false
 var counterstance: bool = false
@@ -65,6 +66,7 @@ func reset_status():
 	stunned = false
 	exhausted = false
 	hp_low = false
+	targetable = true
 	enchantment = ''
 	for i in resistances: resistances[i] = 0
 

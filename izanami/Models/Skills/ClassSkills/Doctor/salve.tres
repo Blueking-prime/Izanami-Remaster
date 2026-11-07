@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://cemav86y7ooos"]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_l3m3b"]
+
+[resource]
+script = ExtResource("1_l3m3b")
+hp_recover = true
+name = &"Salve"
+stats = 4
+stat_multiplier = Array[float]([1.0, 2.0, 3.0])
+cost = 25
+desc = "AOE Heal for 10-20-30 Potency WIS"
+aoe = true
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

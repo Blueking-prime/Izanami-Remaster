@@ -13,3 +13,7 @@ var smithy_buy: bool = false
 var test_return: bool = false
 var meander: bool = false
 #endregion
+
+#region Skill Checks
+var hemostasis: bool = false
+#endregion

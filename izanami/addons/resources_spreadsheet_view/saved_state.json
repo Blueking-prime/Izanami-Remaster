@@ -8,6 +8,22 @@
         "visibility": 0.0
       }
     },
+    "res://Models/Skills/ClassSkills/Destitute/": {
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
+    "res://Models/Skills/ClassSkills/Doctor/": {
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
     "res://Models/Skills/ClassSkills/Kunoichi/": {
       "resource_local_to_scene": {
         "visibility": 0.0
@@ -28,7 +44,9 @@
   "recent_paths": [
     "res://Models/Skills/",
     "res://Models/Skills/ClassSkills/Kunoichi/",
-    "res://Models/Skills/ClassSkills/Scion/"
+    "res://Models/Skills/ClassSkills/Scion/",
+    "res://Models/Skills/ClassSkills/Destitute/",
+    "res://Models/Skills/ClassSkills/Doctor/"
   ],
   "table_functions": {
     "filter": [

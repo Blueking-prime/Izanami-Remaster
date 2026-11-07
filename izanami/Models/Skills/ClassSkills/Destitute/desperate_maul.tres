@@ -1,37 +1,22 @@
-[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=3 format=3 uid="uid://3ok4qy6snqj0"]
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://3ok4qy6snqj0"]
 
 [ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_g2k2v"]
 [ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="2_iviwg"]
 
 [resource]
 script = ExtResource("1_g2k2v")
-element = ""
+element = "Physical"
 status_effectiveness = 1.5
 multi_hit = true
 multi_hit_max = 5
-multi_hit_chance = 0.5
 name = &"Desperate Maul"
 stats = 1
 stat_multiplier = Array[float]([0.5, 0.5, 0.5])
-lvl_requirement = 1
-conditions = Array[Script]([])
-accuracy = Array[float]([1.0, 1.0, 1.0])
-rank = 0
+rank = 2
 cost = 35
-hp_cost = 0.0
-flavour_text = ""
 desc = "Deal STR/2 (Multihit up to 5); 40% chance to Poison"
-type = &""
-crit_chance = Array[float]([0.2, 0.2, 0.2])
-crit_mult = Array[float]([2.0, 2.0, 2.0])
-boost = Array[Vector2]([Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)])
-status_effect = ExtResource("2_iviwg")
-effect_duration = Array[int]([3, 3, 3])
-effect_magnitude = Array[float]([])
-effect_mag_stats = Array[StringName]([])
-effect_chance = Array[float]([1.0, 1.0, 1.0])
-aoe = false
-universal = false
-random_target = false
-target_no = 1
-targetable = true
+status_effect = Array[Script]([ExtResource("2_iviwg")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_iviwg"): PackedInt32Array(3, 3, 3)
+})
+effect_chance = Array[float]([0.4, 0.4, 0.4])

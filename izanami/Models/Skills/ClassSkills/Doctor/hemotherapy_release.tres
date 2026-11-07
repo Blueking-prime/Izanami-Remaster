@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://rs1p34f0viyn"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_5e2xe"]
+[ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="1_qek6v"]
+
+[resource]
+script = ExtResource("1_5e2xe")
+element = "Blood"
+name = &"Hemotherapy; Release"
+stats = 2
+stat_multiplier = Array[float]([1.0, 1.5, 2.0])
+cost = 35
+desc = "If Hemotherapy was used, deal 10-15-20 AOE INT Blood damage and Poison all enemies."
+status_effect = Array[Script]([ExtResource("1_qek6v")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_qek6v"): PackedInt32Array(3, 3, 3)
+})
+aoe = true
+flags_to_check = Array[StringName]([&"hemostasis"])
+flags_to_set = Dictionary[StringName, Variant]({
+&"hemostasis": false
+})
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

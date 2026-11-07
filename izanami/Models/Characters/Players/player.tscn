@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqykicfu0u1ug"]
+[gd_scene format=3 uid="uid://dqykicfu0u1ug"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_ll1t0"]
 [ext_resource type="Script" uid="uid://d4gw8w33rep3v" path="res://Models/Characters/Players/player.gd" id="2_lj72d"]
@@ -56,7 +56,7 @@ fill_to = Vector2(0.8917379, 0.094017096)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4rdbf"]
 polygon = PackedVector2Array(-4, 0, -4, 12, 4, 12, 4, 0)
 
-[node name="Player" node_paths=PackedStringArray("gear", "detector", "listener", "light", "skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
+[node name="Player" unique_id=1047805007 node_paths=PackedStringArray("gear", "detector", "listener", "light", "skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
 collision_layer = 8
 collision_mask = 51
 script = ExtResource("2_lj72d")
@@ -73,6 +73,7 @@ xp = 0
 mag = 0
 level_cap = 60
 speed = 20
+cost = 100
 classname = &""
 battle_sprite_texture = SubResource("AnimatedTexture_emc6j")
 dungeon_sprite_idle_texture = SubResource("AnimatedTexture_emc6j")
@@ -80,46 +81,46 @@ dungeon_sprite_walk_texture = SubResource("AnimatedTexture_6k7lq")
 character_name = "Player"
 desc = "A named shade"
 
-[node name="DungeonSprite" parent="." index="0"]
+[node name="DungeonSprite" parent="." index="0" unique_id=2023850608]
 position = Vector2(0, -13)
 texture = SubResource("AnimatedTexture_emc6j")
 
-[node name="Hitbox" parent="." index="1"]
+[node name="Hitbox" parent="." index="1" unique_id=208075646]
 position = Vector2(0, -7)
 
-[node name="SkillList" parent="Skills" index="0" instance=ExtResource("6_ahy4h")]
+[node name="SkillList" parent="Skills" parent_id_path=PackedInt32Array(330096693) index="0" unique_id=1883111484 instance=ExtResource("6_ahy4h")]
 visible = false
 
-[node name="Gear" type="Node" parent="." index="3"]
+[node name="Gear" type="Node" parent="." index="3" unique_id=1583628311]
 script = ExtResource("5_k34jo")
 player_gear_data = ExtResource("4_etuff")
 
-[node name="ItemList" parent="Items" index="0" instance=ExtResource("6_ahy4h")]
+[node name="ItemList" parent="Items" parent_id_path=PackedInt32Array(572089478) index="0" unique_id=1189769063 instance=ExtResource("6_ahy4h")]
 visible = false
 
-[node name="Detector" type="Area2D" parent="." index="6"]
+[node name="Detector" type="Area2D" parent="." index="6" unique_id=1285159370]
 position = Vector2(0, -7)
 collision_layer = 0
 collision_mask = 1014
 script = ExtResource("6_g43wq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0" unique_id=492780656]
 shape = SubResource("CircleShape2D_mmjfn")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Local" parent="AudioPlayer" index="0"]
+[node name="Local" parent="AudioPlayer" parent_id_path=PackedInt32Array(749642232) index="0" unique_id=280081610]
 autoplay = true
 max_polyphony = 32
 
-[node name="Global" parent="AudioPlayer" index="1"]
+[node name="Global" parent="AudioPlayer" parent_id_path=PackedInt32Array(749642232) index="1" unique_id=1038694851]
 autoplay = true
 max_polyphony = 32
 bus = &"CharacterSFX"
 
-[node name="AudioListener" type="AudioListener2D" parent="." index="8"]
+[node name="AudioListener" type="AudioListener2D" parent="." index="8" unique_id=1354700739]
 current = true
 
-[node name="PointLight2D" type="PointLight2D" parent="." index="9"]
+[node name="PointLight2D" type="PointLight2D" parent="." index="9" unique_id=1444045729]
 scale = Vector2(3.03125, 2.78125)
 enabled = false
 energy = 2.0
@@ -127,7 +128,7 @@ shadow_enabled = true
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_883f5")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="11"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="11" unique_id=306308455]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(0, -13)

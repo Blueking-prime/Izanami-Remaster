@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://ctr3xeru3xhef"]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_g3dgo"]
+[ext_resource type="Script" uid="uid://cwfymgx22iu7g" path="res://Models/Statuses/Buffs/bleed.gd" id="1_qspas"]
+[ext_resource type="Script" uid="uid://cv1bwrjnw3l1n" path="res://Models/Statuses/Effects/death.gd" id="2_6taeu"]
+[ext_resource type="Script" uid="uid://12tt5alqdiul" path="res://Models/Statuses/Effects/seal.gd" id="3_nfh3x"]
+[ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="4_otjpl"]
+[ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="5_le6py"]
+
+[resource]
+script = ExtResource("1_g3dgo")
+name = &"Hemothrapy"
+conditions = Array[Script]([ExtResource("1_qspas"), ExtResource("2_6taeu"), ExtResource("3_nfh3x"), ExtResource("4_otjpl"), ExtResource("5_le6py")])
+cost = 35
+desc = "Removes all status effects from party"
+aoe = true
+flags_to_set = Dictionary[StringName, Variant]({
+&"hemostasis": true
+})
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

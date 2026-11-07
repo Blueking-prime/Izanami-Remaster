@@ -212,6 +212,9 @@ func guard():
 
 
 func damage(value: float):
+	if value < 0:
+		heal(absf(value))
+		return
 	audio.play_damage_sfx()
 	animation_player.play("hit")
 	if is_instance_valid(battle_sprite) and 'animation_player' in battle_sprite:
@@ -225,6 +228,9 @@ func damage(value: float):
 		die()
 
 func heal(value: float):
+	if value < 0:
+		damage(absf(value))
+		return
 	audio.play_heal_sfx()
 	hp += value
 	Global.print_to_log(' %s healed %f HP' % [character_name, value])

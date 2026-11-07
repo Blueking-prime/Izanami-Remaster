@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://b0dvqtp5kr75r"]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_6abnf"]
+
+[resource]
+script = ExtResource("1_6abnf")
+hp_recover = true
+name = &"Balm"
+stats = 4
+stat_multiplier = Array[float]([2.0, 3.0, 4.0])
+cost = 10
+desc = "Heal target for 20-30-40 Potency WIS"
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

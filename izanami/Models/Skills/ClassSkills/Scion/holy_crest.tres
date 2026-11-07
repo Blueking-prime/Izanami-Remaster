@@ -4,4 +4,14 @@
 
 [resource]
 script = ExtResource("1_6xnrp")
+sp_recover = true
+hp_recover = true
+sp_fraction = 0.4
+name = &"Holy Crest"
+stats = 16
+stat_multiplier = Array[float]([0.5, 1.0, 1.5])
+cost = 30
+flavour_text = "“You vow upon a blessed sigil”"
+desc = "AoE 5-10-15 Potency GUI Healing + 0.4x Pot GUI Staminav"
+aoe = true
 metadata/_custom_type_script = "uid://5wdiyimyq1xd"

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://d1ufibqpeuqxu"]
+
+[ext_resource type="Script" uid="uid://cwfymgx22iu7g" path="res://Models/Statuses/Buffs/bleed.gd" id="1_5ho8n"]
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_j2tli"]
+
+[resource]
+script = ExtResource("1_j2tli")
+hp_recover = true
+revive_skill = true
+name = &"Resuscitation"
+accuracy = Array[float]([0.25, 0.5, 1.0])
+cost = 50
+desc = "25-50-100% chance to resurrect any downed party member + Heal to 50-75-100%"
+status_effect = Array[Script]([ExtResource("1_5ho8n")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_5ho8n"): PackedInt32Array(1, 1, 1)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_5ho8n"): PackedFloat32Array(-0.25, -0.5, -1)
+})
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

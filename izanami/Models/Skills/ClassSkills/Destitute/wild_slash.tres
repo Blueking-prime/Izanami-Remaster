@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=2 format=3 uid="uid://vro1nr1pn8tw"]
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://vro1nr1pn8tw"]
 
 [ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_iwy8i"]
 
@@ -6,30 +6,9 @@
 script = ExtResource("1_iwy8i")
 element = "Physical"
 status_effectiveness = 1.5
-multi_hit = false
-multi_hit_max = 1
-multi_hit_chance = 0.5
-name = &"Wild Style"
+name = &"Wild Slash"
 stats = 1
-stat_multiplier = Array[float]([1.0, 1.0, 1.0])
 lvl_requirement = 5
-conditions = Array[Script]([])
-accuracy = Array[float]([1.0, 1.0, 1.0])
-rank = 0
-cost = 0
-hp_cost = 0.0
+cost = 40
 flavour_text = "You let loose, lashing out against all your enemies"
-desc = ""
-type = &""
-crit_chance = Array[float]([0.2, 0.2, 0.2])
-crit_mult = Array[float]([2.0, 2.0, 2.0])
-boost = Array[Vector2]([Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)])
-effect_duration = Array[int]([3, 3, 3])
-effect_magnitude = Array[float]([])
-effect_mag_stats = Array[StringName]([])
-effect_chance = Array[float]([1.0, 1.0, 1.0])
 aoe = true
-universal = false
-random_target = false
-target_no = 1
-targetable = true

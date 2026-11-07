@@ -8,6 +8,8 @@ extends Skill
 @export var hp_recover: bool
 ## Amount of relative SP skill recovers compared to HP (if applicable)
 @export var sp_fraction: float = 0.5
+## Check if skill revives its target
+@export var revive_skill: bool = false
 
 func  _init() -> void:
 	type = 'Support'
@@ -31,8 +33,21 @@ func action(obj: Base_Character, target: Variant) -> bool:
 
 	return true
 
+func revive(target: Base_Character):
+	if revive_skill and not target.alive:
+		target.alive = true
+
+func cleanse(target: Base_Character):
+	for i in conditions:
+		for j in target.statuses.status_effects:
+			if j.get_script() == i:
+				target.statuses.remove_status(j)
+
 func heal(target: Base_Character):
-	if hp_recover:
-		target.heal(value)
-	if sp_recover and 'sp' in target:
-		target.restore(value * sp_fraction)
+	revive(target)
+	cleanse(target)
+	if target.alive:
+		if hp_recover:
+			target.heal(value)
+		if sp_recover and 'sp' in target:
+			target.restore(value * sp_fraction)

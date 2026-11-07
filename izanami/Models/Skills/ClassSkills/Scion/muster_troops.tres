@@ -6,9 +6,18 @@
 
 [resource]
 script = ExtResource("1_7wkf4")
+name = &"Muster Troops"
+cost = 40
 flavour_text = "“You call upon your party to focus”"
 desc = "AoE 1.25-1.5-1.75x ATK and DEF Boost for 3 turns"
 status_effect = Array[Script]([ExtResource("2_ss2r1"), ExtResource("3_61ksc")])
-effect_magnitude = Array[float]([1.25, 1.5, 1.75])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_ss2r1"): PackedInt32Array(3, 3, 3),
+ExtResource("3_61ksc"): PackedInt32Array(3, 3, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("2_ss2r1"): PackedFloat32Array(1.25, 1.5, 1.75),
+ExtResource("3_61ksc"): PackedFloat32Array(1.25, 1.5, 1.75)
+})
 aoe = true
 metadata/_custom_type_script = "uid://b05xjy5qvosa3"

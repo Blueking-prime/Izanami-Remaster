@@ -57,6 +57,9 @@ func _left_press():
 			index = actors.size() - 1
 			switch_focus(index, 0)
 
+	if not actors[index].statuses.targetable: _left_press()
+
+
 func _right_press():
 	if aoe_targetting:
 		switch_focus_aoe()
@@ -68,23 +71,26 @@ func _right_press():
 			index = 0
 			switch_focus(index, actors.size() - 1)
 
+		if not actors[index].statuses.targetable: _right_press()
+
 func _up_or_down_press():
 	if aoe_targetting:
 		switch_focus_aoe()
 	else:
-		print(index)
 		if index > process_turns.player_array.size() - 1:
 			switch_focus(0, index)
 			index = 0
+			if not actors[index].statuses.targetable: _right_press()
 		else:
 			switch_focus(process_turns.player_array.size(), index)
 			index = process_turns.player_array.size()
+			if not actors[index].statuses.targetable: _left_press()
+
 
 func _set_target_by_index(event: InputEvent):
 	if not aoe_targetting:
 		var key = int(event.as_text().trim_prefix('Kp ')) - 1
-		print(key)
-		if key < actors.size():
+		if key < actors.size() and actors.get(key).statuses.targetable:
 			switch_focus(key, index)
 			index = key
 

@@ -20,6 +20,10 @@ var idx: int = 0
 
 
 func act():
+	if check_if_players_all_dead():
+		# Run game over
+		end_battle()
+
 	if not actor:
 		actor = turn_order[0]
 
@@ -82,6 +86,11 @@ func check_if_enemies_all_dead():
 			return false
 	return true
 
+func check_if_players_all_dead():
+	for i in player_array:
+		if i.alive:
+			return false
+	return true
 
 func end_turn():
 	idx = 0

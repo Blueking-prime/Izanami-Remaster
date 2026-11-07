@@ -4,4 +4,12 @@
 
 [resource]
 script = ExtResource("1_b6fmv")
+sp_recover = true
+sp_fraction = 1.0
+name = &"Morale Boost"
+stats = 16
+stat_multiplier = Array[float]([1.0, 1.5, 2.0])
+cost = 40
+desc = "Heals party STAMINA for 10-15-20 potency GUI"
+aoe = true
 metadata/_custom_type_script = "uid://5wdiyimyq1xd"

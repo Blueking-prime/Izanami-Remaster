@@ -11,6 +11,9 @@ stats = 32
 stat_multiplier = Array[float]([2.0, 2.0, 2.0])
 cost = 10
 desc = "20 Pot AGI Physical, 20-35-50% chance to paralyze"
-status_effect = ExtResource("2_cxirg")
+status_effect = Array[Script]([ExtResource("2_cxirg")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_cxirg"): PackedInt32Array(1, 1, 1)
+})
 effect_chance = Array[float]([0.2, 0.35, 0.5])
 metadata/_custom_type_script = "uid://kstpb53dvbbq"
