@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://gif3m3hbpfru"]
+
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_7fqab"]
+[ext_resource type="Script" uid="uid://c47hansax6v55" path="res://Models/Statuses/Effects/low_health.gd" id="1_i2y6p"]
+[ext_resource type="Script" uid="uid://cv1bwrjnw3l1n" path="res://Models/Statuses/Effects/death.gd" id="2_fckrg"]
+[ext_resource type="Script" uid="uid://ddnn7uwubv74m" path="res://Models/Statuses/Effects/immortal.gd" id="3_ruo1s"]
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="4_dscsg"]
+[ext_resource type="Script" uid="uid://hcxx67ulhigm" path="res://Models/Statuses/Effects/enchant.gd" id="5_i2y6p"]
+
+[resource]
+script = ExtResource("1_7fqab")
+name = &"Demon Bane Harakiri"
+conditions = Array[Script]([ExtResource("1_i2y6p")])
+cost = 60
+flavour_text = "“In desperation, you spill your own innards, letting your bloodlust run wild. You’re no more than a demon now!”"
+desc = "Can only be used at less than 10% HP. Immortal for 2-3-4 turns. After 2-3-4 turns you die instantly. NO REVIVE. ATK multiplied by 3x. All skill damage counts as blood elemental."
+status_effect = Array[Script]([ExtResource("3_ruo1s"), ExtResource("4_dscsg"), ExtResource("5_i2y6p"), ExtResource("2_fckrg")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("3_ruo1s"): PackedInt32Array(2, 3, 4),
+ExtResource("4_dscsg"): PackedInt32Array(2, 3, 4),
+ExtResource("5_i2y6p"): PackedInt32Array(2, 3, 4),
+ExtResource("2_fckrg"): PackedInt32Array(1, 1, 1)
+})
+effect_delay = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_fckrg"): PackedInt32Array(1, 2, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("4_dscsg"): PackedFloat32Array(3, 3, 3)
+})
+effect_extra_prop = Dictionary[Script, Variant]({
+ExtResource("2_fckrg"): true,
+ExtResource("5_i2y6p"): &"Blood"
+})
+targetable = false
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

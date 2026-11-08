@@ -47,11 +47,6 @@ func action(obj: Base_Character, target: Variant) -> bool:
 
 func act(obj: Base_Character, target: Base_Character):
 	#target = target as Base_Character
-
-	if target.statuses.counterstance:
-		target.statuses.counterstance = false
-		target = obj
-
 	#print('act begin value = ', value)
 
 	var el
@@ -59,6 +54,14 @@ func act(obj: Base_Character, target: Base_Character):
 		el = element
 	elif obj.statuses.enchantment != '':
 		el = obj.statuses.enchantment
+
+	if target.statuses.counterstance:
+		target.statuses.counterstance = false
+		if target.statuses.counter_element:
+			el = target.statuses.counter_element
+		if target.statuses.fixed_counter_damage:
+			value = target.statuses.fixed_counter_damage
+		target = obj
 
 	if el:
 		value *= (1 - target.resistances[el])

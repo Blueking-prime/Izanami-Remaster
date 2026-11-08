@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://bknepwmepd0m5"]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_7noe8"]
+[ext_resource type="Script" uid="uid://g7nrjsrt68ut" path="res://Models/Statuses/Effects/bloodlust.gd" id="1_37pa8"]
+
+[resource]
+script = ExtResource("1_7noe8")
+hp_recover = true
+name = &"Meditation"
+stats = 4
+stat_multiplier = Array[float]([1.0, 2.0, 3.0])
+conditions = Array[Script]([ExtResource("1_37pa8")])
+cost = 25
+flavour_text = "“With some mantra you silence the voices of carnage in your mind.”"
+desc = "Self-Heal for 10-20-30 Pot WIS; Cures Bloodlust"
+targetable = false
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

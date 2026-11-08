@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://ct02os8n72yb4"]
+
+[ext_resource type="Script" uid="uid://dqp0qqmakxwp5" path="res://Models/Statuses/Buffs/counter.gd" id="1_21rko"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_v58qx"]
+
+[resource]
+script = ExtResource("1_v58qx")
+name = &"Kami-e"
+cost = 40
+flavour_text = "“You twist your body, flowing like water and folding like paper.”"
+desc = "Negate the next attack and retaliate  with a 20-30-40 Pot AGI Water"
+status_effect = Array[Script]([ExtResource("1_21rko")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_21rko"): PackedInt32Array(1, 1, 1)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_21rko"): PackedFloat32Array(2, 3, 4)
+})
+effect_mag_stats = Dictionary[Script, PackedStringArray]({
+ExtResource("1_21rko"): PackedStringArray("AGI")
+})
+effect_extra_prop = Dictionary[Script, Variant]({
+ExtResource("1_21rko"): &"Water"
+})
+targetable = false
+flags_to_set = Dictionary[StringName, Variant]({
+&"kami_e_used": true
+})
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

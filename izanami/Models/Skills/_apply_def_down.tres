@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://by1swr67l2as7"]
+
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="1_0e3g1"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_4ec20"]
+
+[resource]
+script = ExtResource("2_4ec20")
+desc = "Applies 0.75x def down to self"
+status_effect = Array[Script]([ExtResource("1_0e3g1")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_0e3g1"): PackedInt32Array(1, 1, 1)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_0e3g1"): PackedFloat32Array(0.75, 0.75, 0.75)
+})
+targetable = false
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

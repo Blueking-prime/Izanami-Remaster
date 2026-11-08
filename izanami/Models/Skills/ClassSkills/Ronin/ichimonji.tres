@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://lc1yovuw45ox"]
+
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="1_ul2ay"]
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_xuhap"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="3_hsxff"]
+
+[sub_resource type="Resource" id="Resource_m714s"]
+script = ExtResource("3_hsxff")
+desc = "Applies 0.75x def down to self"
+status_effect = Array[Script]([ExtResource("1_ul2ay")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_ul2ay"): PackedInt32Array(1, 1, 1)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_ul2ay"): PackedFloat32Array(0.75, 0.75, 0.75)
+})
+targetable = false
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"
+
+[resource]
+script = ExtResource("1_xuhap")
+element = "Physical"
+name = &"Ichimonji"
+stats = 1
+stat_multiplier = Array[float]([2.5, 3.5, 4.5])
+cost = 30
+hp_cost = 0.1
+flavour_text = "\"Letting go of your guard, ignorant of all defense, you put your very soul into one devastating swing, dealing X damage\""
+desc = "0.75x DEF Debuff for one turn; 25-35-45 Potency STR Physical attack; Costs 10% HP."
+skill_to_trigger = SubResource("Resource_m714s")
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

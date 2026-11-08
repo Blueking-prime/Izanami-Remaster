@@ -48,6 +48,13 @@ func _player_party_setup():
 
 func exit_battle(exit_type: StringName):
 	process_input.set_process_input(false)
+
+	for i in process_turns.player_array:
+		i.alive = true
+		i.perma_dead = false
+
+	Checks.reset_battle_flags()
+
 	if exit_type == "run":
 		get_parent().earned_exp /= 2
 		get_parent().earned_gold = 0

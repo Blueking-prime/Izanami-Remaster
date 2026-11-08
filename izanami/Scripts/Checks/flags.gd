@@ -14,6 +14,20 @@ var test_return: bool = false
 var meander: bool = false
 #endregion
 
-#region Skill Checks
+const SKILL_FLAGS: Array = [
+	'hemostasis',
+	'rankyaku_used',
+	'kami_e_used',
+	'tekkai_used',
+	'shigan_used',
+	'geppo_used',
+]
+
+#region skill flags
 var hemostasis: bool = false
+var rankyaku_used: bool = false
+var kami_e_used: bool = false
+var tekkai_used: bool = false
+var shigan_used: bool = false
+var geppo_used: bool = false
 #endregion

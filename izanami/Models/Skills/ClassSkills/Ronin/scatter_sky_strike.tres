@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://cp27oayui01f8"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_jd8af"]
+[ext_resource type="Resource" uid="uid://0ik1uomyshrq" path="res://Models/Skills/_apply_bloodlust.tres" id="2_umb5t"]
+
+[resource]
+script = ExtResource("1_jd8af")
+element = "Physical"
+name = &"Scattter Sky Strike"
+stats = 1
+stat_multiplier = Array[float]([2.0, 2.5, 3.0])
+cost = 40
+hp_cost = 0.1
+desc = "20-25-30 Pot STR Physical to all enemies; Costs 10% HP; Chance to trigger bloodlust"
+aoe = true
+skill_to_trigger = ExtResource("2_umb5t")
+sub_skill_trigger_chance = Array[float]([0.1, 0.1, 0.1])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

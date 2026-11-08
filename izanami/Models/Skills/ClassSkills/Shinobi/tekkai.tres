@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://o820j165h6m0"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_rf8lr"]
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="2_2jpe6"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="3_fq0bm"]
+
+[sub_resource type="Resource" id="Resource_pxitk"]
+script = ExtResource("3_fq0bm")
+name = &"Def Up"
+desc = "Applies 1.5x def down to self"
+status_effect = Array[Script]([ExtResource("2_2jpe6")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_2jpe6"): PackedInt32Array(1, 1, 1)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("2_2jpe6"): PackedFloat32Array(1.5, 1.5, 1.5)
+})
+targetable = false
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"
+
+[resource]
+script = ExtResource("1_rf8lr")
+name = &"Tekkai"
+stats = 32
+stat_multiplier = Array[float]([1.5, 2.5, 3.0])
+cost = 32
+flavour_text = "\"You harden the breath in your lungs, dealing a palm strike while holding your guard up\""
+desc = "Increases defense by 1.5x for this turn. 15-25-30 Pot AGI Attack"
+flags_to_set = Dictionary[StringName, Variant]({
+&"tekkai_used": true
+})
+skill_to_trigger = SubResource("Resource_pxitk")
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

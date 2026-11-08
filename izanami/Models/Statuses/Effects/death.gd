@@ -6,5 +6,7 @@ func _init() -> void:
 func trigger(victim: Base_Character):
 	victim.hp = 0
 	victim.alive = false
+	if bool(extra_prop):
+		victim.perma_dead = true
 
 	super.trigger(victim)

@@ -86,6 +86,7 @@ const MIN_BUFF: float = 0.3
 	set(arg): global_position = (arg * Location.TILEMAP_CELL_SIZE) + Vector2i(8, 15)
 
 var alive: bool = true
+var perma_dead: bool = false
 var init_pos: Vector2
 
 signal state_changed

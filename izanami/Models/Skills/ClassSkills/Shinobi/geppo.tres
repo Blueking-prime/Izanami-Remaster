@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dj8xbg80u8j0u"]
+
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_e457r"]
+[ext_resource type="Script" uid="uid://ddnn7uwubv74m" path="res://Models/Statuses/Effects/immortal.gd" id="1_nf3gx"]
+
+[resource]
+script = ExtResource("1_e457r")
+name = &"Geppo"
+cost = 30
+flavour_text = "“Using the air itself as your foothold, you take a vantage position”"
+desc = "40-60-80% probability to nullify enemy attacks for 2 turns"
+type = &"Support"
+status_effect = Array[Script]([ExtResource("1_nf3gx")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_nf3gx"): PackedInt32Array(2, 2, 2)
+})
+effect_chance = Array[float]([0.4, 0.6, 0.8])
+targetable = false
+flags_to_set = Dictionary[StringName, Variant]({
+&"geppo_used": true
+})
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

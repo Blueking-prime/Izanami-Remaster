@@ -20,6 +20,10 @@ func set_flags(_flags: Dictionary):
 		flags.set(i, _flags[i])
 	Global.update_quests()
 
+func reset_battle_flags():
+	for i in flags.SKILL_FLAGS:
+		flags.set(i, false)
+
 func change_setting(arg: StringName, value: Variant):
 	settings_flags.set(arg, value)
 

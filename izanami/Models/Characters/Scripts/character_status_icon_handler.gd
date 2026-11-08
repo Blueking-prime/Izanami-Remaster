@@ -23,7 +23,12 @@ func add_icon(status: Status):
 	status_icon_container.add_child(icon)
 
 func tick_icon(status: Status):
-	if is_instance_valid(status_icon_dict[status]):	status_icon_dict[status].counter.text = str(status.duration - status.elapsed)
+	if is_instance_valid(status_icon_dict[status]):
+		if status.delay > 0:
+			status_icon_dict[status].counter.text = str(status.delay)
+		else:
+			status_icon_dict[status].counter.text = str(status.duration - status.elapsed)
+
 
 func remove_icon(status: Status):
 	if status not in status_icon_dict: return

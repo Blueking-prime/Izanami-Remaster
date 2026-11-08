@@ -34,7 +34,7 @@ func action(obj: Base_Character, target: Variant) -> bool:
 	return true
 
 func revive(target: Base_Character):
-	if revive_skill and not target.alive:
+	if revive_skill and not target.alive and not target.perma_dead:
 		target.alive = true
 
 func cleanse(target: Base_Character):

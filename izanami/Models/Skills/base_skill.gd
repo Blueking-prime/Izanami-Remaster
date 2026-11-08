@@ -54,10 +54,14 @@ var _stats: Array[StringName] = []
 @export var status_effect: Array[Script]
 ## How many turns the status effect would last (if applicable)
 @export var effect_duration: Dictionary[Script, PackedInt32Array]
+## How much delay before the status effect triggers (if applicable)
+@export var effect_delay: Dictionary[Script, PackedInt32Array]
 ## Magnitude of status effects effect if status effect is a buff/debuff (if applicable)
 @export var effect_magnitude: Dictionary[Script, PackedFloat32Array]
 ## Stats the effect_magnitude scales off (if applicable)
 @export var effect_mag_stats: Dictionary[Script, PackedStringArray]
+## Stats the any extra properties to set for the status effect (if applicable)
+@export var effect_extra_prop: Dictionary[Script, Variant]
 ## Chance for status effect to land (if applicable)
 @export_range(0, 1, 0.05) var effect_chance: Array[float] = [1, 1, 1]
 
@@ -76,6 +80,11 @@ var _stats: Array[StringName] = []
 @export var flags_to_check: Array[StringName]
 ## Trigger certain flags
 @export var flags_to_set: Dictionary[StringName, Variant]
+
+## Sub Skill to trigger (if applicable)
+@export var skill_to_trigger: Skill
+## Chance for skill triggers another skill
+@export_range(0, 1, 0.05) var sub_skill_trigger_chance: Array[float] = [1, 1, 1]
 
 ## WORKING VARIABLES
 var value: int
@@ -146,13 +155,27 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 	#Global.print_to_log('base value = ', value)
 
 	Checks.set_flags(flags_to_set)
+	_trigger_new_skill(obj, target)
 	return true
+
+
+func _trigger_new_skill(obj: Base_Character, target: Base_Character):
+	if is_instance_valid(skill_to_trigger):
+		if Global.rand_chance(sub_skill_trigger_chance[rank]):
+			if skill_to_trigger.targetable:
+				skill_to_trigger.action(obj, target)
+			else:
+				skill_to_trigger.action(obj, obj)
 
 
 func _apply_status(obj: Base_Character, target: Base_Character, effect: Script):
 	if Global.rand_chance(effect_chance[rank]):
 		var status: Status = effect.new()
 		status.duration = effect_duration[effect][rank]
+		if effect_delay.get(effect):
+			status.delay = effect_delay[effect][rank]
+		if effect_extra_prop.get(effect):
+			status.extra_prop = effect_extra_prop[effect]
 
 		if status is StatusBuff:
 			var mag_stat_total = 0

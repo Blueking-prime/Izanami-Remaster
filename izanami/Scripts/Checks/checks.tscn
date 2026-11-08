@@ -1,24 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://chajioof38qb3"]
+[gd_scene format=3 uid="uid://chajioof38qb3"]
 
 [ext_resource type="Script" uid="uid://qa4rtevqub1v" path="res://Scripts/Checks/checks.gd" id="1_k2ijd"]
 [ext_resource type="Script" uid="uid://bojqxboyflqr4" path="res://Scripts/Checks/flags.gd" id="2_4l7yr"]
 [ext_resource type="Script" uid="uid://ctsdumwyq3c6h" path="res://Scripts/Checks/settings_flags.gd" id="3_kpwqp"]
 [ext_resource type="Script" uid="uid://civ4qek81q1r" path="res://Scripts/Checks/input_map.gd" id="4_plqpt"]
 
-[node name="Checks" type="Node" node_paths=PackedStringArray("flags", "settings_flags", "input_map")]
+[node name="Checks" type="Node" unique_id=1321962532 node_paths=PackedStringArray("flags", "settings_flags", "input_map")]
 script = ExtResource("1_k2ijd")
 flags = NodePath("Flags")
 settings_flags = NodePath("Settings")
 input_map = NodePath("InputMap")
 
-[node name="Flags" type="Node" parent="."]
+[node name="Flags" type="Node" parent="." unique_id=1687816541]
 script = ExtResource("2_4l7yr")
 
-[node name="Settings" type="Node" parent="."]
+[node name="Settings" type="Node" parent="." unique_id=1550756069]
 script = ExtResource("3_kpwqp")
 thought_text_colour = Color(0.533333, 0.4, 0.870588, 1)
 
-[node name="InputMap" type="Node" parent="."]
+[node name="InputMap" type="Node" parent="." unique_id=249623956]
 script = ExtResource("4_plqpt")
 
-[node name="Persistence" type="Node" parent="."]
+[node name="Persistence" type="Node" parent="." unique_id=1970696127]

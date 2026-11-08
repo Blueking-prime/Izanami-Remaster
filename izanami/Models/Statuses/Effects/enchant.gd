@@ -1,9 +1,9 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Counter'
+	desc = 'Enchant with element'
 
 func trigger(victim: Base_Character):
-	victim.statuses.counterstance = true
+	victim.statuses.enchantment = StringName(extra_prop)
 
 	super.trigger(victim)

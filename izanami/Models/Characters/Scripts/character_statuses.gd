@@ -32,8 +32,11 @@ var passive_effects = [restore]
 var targetable: bool = true
 var stunned: bool = false
 var exhausted: bool = false
-var counterstance: bool = false
 var hp_low: bool  = false
+
+var counterstance: bool = false
+var counter_element: StringName
+var fixed_counter_damage: int
 
 func test():
 	#Global.print_to_log(test_effect)
@@ -84,13 +87,17 @@ func auto_ailment():
 func trigger_status():
 	for i in status_effects:
 		Global.print_to_log(i.desc + ' proced')
-		i.trigger(get_parent())
+		if i.delay <= 0:
+			i.trigger(get_parent())
 		if i.get_script() not in passive_effects:
 			icon_handler.tick_icon(i)
 
 
 func expire_status():
 	for i in status_effects:
+		if i.delay > 0:
+			i.delay -= 1
+			continue
 		if i.elapsed >= i.duration:
 			remove_status(i)
 

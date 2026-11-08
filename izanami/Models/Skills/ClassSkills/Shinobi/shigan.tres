@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://b6l18n0lmt5jf"]
+
+[ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="1_kbwt5"]
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_l15xw"]
+
+[resource]
+script = ExtResource("1_l15xw")
+element = "Physical"
+multi_hit = true
+multi_hit_max = 3
+name = &"Shigan"
+stats = 32
+stat_multiplier = Array[float]([1.5, 2.0, 2.5])
+cost = 35
+flavour_text = "\"You strike at your targets pressure points, in an attempt to paralyze them\""
+desc = "15-20-25 Pot AGI Physical, 1/4 chance to paralyze, can multi-hit"
+status_effect = Array[Script]([ExtResource("1_kbwt5")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_kbwt5"): PackedInt32Array(1, 1, 1)
+})
+effect_chance = Array[float]([0.25, 0.25, 0.25])
+flags_to_set = Dictionary[StringName, Variant]({
+&"shigan_used": true
+})
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

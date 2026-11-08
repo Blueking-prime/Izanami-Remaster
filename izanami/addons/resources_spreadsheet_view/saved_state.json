@@ -32,12 +32,28 @@
         "visibility": 0.0
       }
     },
+    "res://Models/Skills/ClassSkills/Ronin/": {
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
     "res://Models/Skills/ClassSkills/Scion/": {
       "resource_local_to_scene": {
         "visibility": 0.0
       },
       "resource_name": {
         "visibility": 0.0
+      }
+    },
+    "res://Models/Skills/ClassSkills/Shinobi/": {
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
       }
     }
   },
@@ -46,7 +62,9 @@
     "res://Models/Skills/ClassSkills/Kunoichi/",
     "res://Models/Skills/ClassSkills/Scion/",
     "res://Models/Skills/ClassSkills/Destitute/",
-    "res://Models/Skills/ClassSkills/Doctor/"
+    "res://Models/Skills/ClassSkills/Doctor/",
+    "res://Models/Skills/ClassSkills/Ronin/",
+    "res://Models/Skills/ClassSkills/Shinobi/"
   ],
   "table_functions": {
     "filter": [

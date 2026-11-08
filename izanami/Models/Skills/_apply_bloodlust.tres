@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://0ik1uomyshrq"]
+
+[ext_resource type="Script" uid="uid://g7nrjsrt68ut" path="res://Models/Statuses/Effects/bloodlust.gd" id="1_nj5uy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_o2wwr"]
+
+[resource]
+script = ExtResource("2_o2wwr")
+desc = "Applies bllodlust to self"
+status_effect = Array[Script]([ExtResource("1_nj5uy")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_nj5uy"): PackedInt32Array(3, 2, 3)
+})
+targetable = false
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

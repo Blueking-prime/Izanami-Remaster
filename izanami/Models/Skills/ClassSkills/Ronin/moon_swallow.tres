@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://cpiu1n0gbpqna"]
+
+[ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="1_e51w1"]
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_jobvy"]
+
+[resource]
+script = ExtResource("1_jobvy")
+element = "Physical"
+name = &"Moon Swallow"
+stats = 1
+stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+cost = 20
+flavour_text = "\"Channeling the power of the moon you perform a dazzling strike, dealing X damage\""
+desc = "20 Pot STR Physical; 25-30-40% chance to stun enemy"
+status_effect = Array[Script]([ExtResource("1_e51w1")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_e51w1"): PackedInt32Array(1, 1, 1)
+})
+effect_chance = Array[float]([0.25, 0.3, 0.4])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"
