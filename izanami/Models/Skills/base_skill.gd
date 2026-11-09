@@ -143,6 +143,8 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 		Global.print_to_log('CRIT!')
 		value *= crit_mult[rank]
 
+	_trigger_new_skill(obj, target)
+
 	if status_effect:
 		for effect in status_effect:
 			obj.audio.play_support_sfx()
@@ -155,15 +157,14 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 	#Global.print_to_log('base value = ', value)
 
 	Checks.set_flags(flags_to_set)
-	_trigger_new_skill(obj, target)
 	return true
 
 
-func _trigger_new_skill(obj: Base_Character, target: Base_Character):
+func _trigger_new_skill(obj: Base_Character, target_: Variant):
 	if is_instance_valid(skill_to_trigger):
 		if Global.rand_chance(sub_skill_trigger_chance[rank]):
 			if skill_to_trigger.targetable:
-				skill_to_trigger.action(obj, target)
+				skill_to_trigger.action(obj, target_)
 			else:
 				skill_to_trigger.action(obj, obj)
 

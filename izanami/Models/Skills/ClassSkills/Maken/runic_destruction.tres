@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://b3g5a2h8acd6u"]
+
+[ext_resource type="Script" uid="uid://b548gmdwgt38l" path="res://Models/Statuses/Buffs/Runes/azure_rune.gd" id="1_dkgx4"]
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_oebwj"]
+[ext_resource type="Script" uid="uid://drlhw78e6em07" path="res://Models/Statuses/Buffs/Runes/flare_rune.gd" id="2_r3hdp"]
+[ext_resource type="Script" uid="uid://i8koyj4qr7s6" path="res://Models/Statuses/Buffs/Runes/zephyr_rune.gd" id="3_cymvq"]
+[ext_resource type="Script" uid="uid://dgw1asfsnhlck" path="res://Models/Statuses/Buffs/Runes/rune.gd" id="4_kvvqo"]
+[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Models/Skills/SubSkills/_clear_runes.tres" id="6_vdxyj"]
+
+[resource]
+script = ExtResource("1_oebwj")
+name = &"Runic Destruction"
+stats = 2
+stat_multiplier = Array[float]([3.0, 4.0, 5.0])
+conditions = Array[Script]([ExtResource("1_dkgx4"), ExtResource("2_r3hdp"), ExtResource("3_cymvq"), ExtResource("4_kvvqo")])
+cost = 32
+desc = "Remove your current rune and deal 30-40-50 POT INT of that element"
+skill_to_trigger = ExtResource("6_vdxyj")
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

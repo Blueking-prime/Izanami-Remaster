@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://lhqntjrgostv"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_u7ir6"]
+[ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="1_ycm76"]
+
+[resource]
+script = ExtResource("1_u7ir6")
+element = "Physical"
+name = &"Quick Draw"
+stats = 1
+stat_multiplier = Array[float]([1.0, 1.0, 2.0])
+rank = 2
+cost = 40
+desc = "20 Pot STR Phys Attack AOE, 30% chance to stun all enemies"
+status_effect = Array[Script]([ExtResource("1_ycm76")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_ycm76"): PackedInt32Array(1, 1, 1)
+})
+effect_chance = Array[float]([0.3, 0.3, 0.3])
+aoe = true
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

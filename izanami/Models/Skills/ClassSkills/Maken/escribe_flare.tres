@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://c8s6xh3i3fs0b"]
+
+[ext_resource type="Script" uid="uid://drlhw78e6em07" path="res://Models/Statuses/Buffs/Runes/flare_rune.gd" id="1_25why"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_d3g4c"]
+[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Models/Skills/SubSkills/_clear_runes.tres" id="3_ghqe8"]
+
+[resource]
+script = ExtResource("1_d3g4c")
+name = &"Escribe Fire"
+cost = 40
+desc = "Activate fire rune; Gain resistance to fire damage for 3-5-7 turns"
+type = &"Support"
+status_effect = Array[Script]([ExtResource("1_25why")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_25why"): PackedInt32Array(3, 5, 7)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_25why"): PackedFloat32Array(0.25, 0.5, 0.75)
+})
+targetable = false
+skill_to_trigger = ExtResource("3_ghqe8")
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

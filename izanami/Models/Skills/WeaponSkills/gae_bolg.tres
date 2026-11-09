@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://ctv6ixmc1qev7"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_80vog"]
+[ext_resource type="Script" uid="uid://cv1bwrjnw3l1n" path="res://Models/Statuses/Effects/death.gd" id="1_u107d"]
+
+[resource]
+script = ExtResource("1_80vog")
+element = "Physical"
+name = &"Gae Bolg"
+stats = 1
+stat_multiplier = Array[float]([1.0, 1.0, 3.5])
+rank = 2
+cost = 20
+desc = "35 Pot STR PHYS Damage; 40% Instant Kill"
+status_effect = Array[Script]([ExtResource("1_u107d")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_u107d"): PackedInt32Array(1, 1, 1)
+})
+effect_chance = Array[float]([0.4, 0.4, 0.4])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

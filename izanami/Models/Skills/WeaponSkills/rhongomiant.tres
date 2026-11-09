@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://b3xcs2euej2ph"]
+
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="1_4n8p3"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_a6wys"]
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="2_31omx"]
+[ext_resource type="Script" uid="uid://3tmqdoaqpve8" path="res://Models/Statuses/Buffs/regen.gd" id="3_ut35w"]
+
+[resource]
+script = ExtResource("1_a6wys")
+name = &"Rhongomiant"
+rank = 2
+cost = 40
+desc = "1.25x AOE ATK and DEF Buff; 5 POT WIS Regen"
+type = &"Support"
+status_effect = Array[Script]([ExtResource("1_4n8p3"), ExtResource("2_31omx"), ExtResource("3_ut35w")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_4n8p3"): PackedInt32Array(1, 1, 3),
+ExtResource("2_31omx"): PackedInt32Array(1, 1, 3),
+ExtResource("3_ut35w"): PackedInt32Array(1, 1, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_4n8p3"): PackedFloat32Array(1, 1, 1.25),
+ExtResource("2_31omx"): PackedFloat32Array(1, 1, 1.25),
+ExtResource("3_ut35w"): PackedFloat32Array(0, 0, 0.1)
+})
+effect_mag_stats = Dictionary[Script, PackedStringArray]({
+ExtResource("3_ut35w"): PackedStringArray("WIS")
+})
+aoe = true
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

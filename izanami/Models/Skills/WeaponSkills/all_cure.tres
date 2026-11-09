@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://14fxyqamqnur"]
+
+[ext_resource type="Script" uid="uid://cwfymgx22iu7g" path="res://Models/Statuses/Buffs/bleed.gd" id="1_7l2ah"]
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="2_je0lo"]
+[ext_resource type="Script" uid="uid://ck4wn0aed2naw" path="res://Models/Statuses/Effects/en_exhaust.gd" id="2_y53s7"]
+[ext_resource type="Script" uid="uid://12tt5alqdiul" path="res://Models/Statuses/Effects/seal.gd" id="3_032hg"]
+[ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="4_28ymo"]
+[ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="5_nvv7v"]
+
+[resource]
+script = ExtResource("2_je0lo")
+hp_recover = true
+name = &"All Cure"
+stats = 4.0
+stat_multiplier = Array[float]([1.0, 1.0, 1024.0])
+conditions = Array[Script]([ExtResource("1_7l2ah"), ExtResource("2_y53s7"), ExtResource("3_032hg"), ExtResource("4_28ymo"), ExtResource("5_nvv7v")])
+rank = 2
+cost = 40
+desc = "Full AOE HEAL, Cures all status effects"
+aoe = true
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

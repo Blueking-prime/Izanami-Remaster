@@ -190,7 +190,8 @@ func show_description(object: Resource) -> void:
 		if object.value != 0:
 			get_parent().description_box.value.text = str(object.value)
 		elif object.status_effect:
-			get_parent().description_box.value.text = object.status_effect.new().desc
+			for i in object.status_effect:
+				get_parent().description_box.value.text = i.new().desc
 		else:
 			get_parent().description_box.value.hide()
 

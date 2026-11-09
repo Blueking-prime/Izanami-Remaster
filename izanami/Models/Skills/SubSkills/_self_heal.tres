@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://b0t24klr141og"]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_4mcdj"]
+
+[resource]
+script = ExtResource("1_4mcdj")
+stats = 16
+stat_multiplier = Array[float]([0.4, 1.0, 1.0])
+desc = "Heals for 40% of damage dealt"
+targetable = false
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://bqp248c6oysua"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_kbb5l"]
+
+[resource]
+script = ExtResource("1_kbb5l")
+element = "Wind"
+name = &"Devil Storm"
+stats = 2
+stat_multiplier = Array[float]([1.0, 1.0, 2.0])
+rank = 2
+cost = 40
+desc = "20 Pot INT Wind Attack AOE"
+aoe = true
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

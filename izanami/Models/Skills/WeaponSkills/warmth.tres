@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://dt4b2q0yn4whj"]
+
+[ext_resource type="Script" uid="uid://3tmqdoaqpve8" path="res://Models/Statuses/Buffs/regen.gd" id="1_hfipd"]
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_qbfan"]
+
+[resource]
+script = ExtResource("1_qbfan")
+hp_recover = true
+name = &"Warmth"
+stats = 2
+stat_multiplier = Array[float]([1.0, 1.0, 2.0])
+rank = 2
+cost = 40
+desc = "20 Pot INT AOE Healing; 5 Pot AOE REGEN"
+status_effect = Array[Script]([ExtResource("1_hfipd")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_hfipd"): PackedInt32Array(3, 3, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_hfipd"): PackedFloat32Array(0, 0, 0.5)
+})
+effect_mag_stats = Dictionary[Script, PackedStringArray]({
+ExtResource("1_hfipd"): PackedStringArray("INT")
+})
+aoe = true
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

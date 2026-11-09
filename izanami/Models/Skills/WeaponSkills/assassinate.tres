@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://3qdssgcsjt37"]
+
+[ext_resource type="Script" uid="uid://cv1bwrjnw3l1n" path="res://Models/Statuses/Effects/death.gd" id="1_oc1na"]
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="2_shkjs"]
+
+[resource]
+script = ExtResource("2_shkjs")
+name = &"Assassinate"
+stats = 32
+rank = 2
+cost = 20
+desc = "10 Pot AGI ATK; 5% chance to instant kill"
+status_effect = Array[Script]([ExtResource("1_oc1na")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_oc1na"): PackedInt32Array(1, 1, 1)
+})
+effect_chance = Array[float]([0.05, 0.05, 0.05])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

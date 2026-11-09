@@ -13,7 +13,7 @@ class_name CharacterStatuses
 @export var restore: Script
 @export var low_health: Script
 
-## Gives character resistance to elemental trait
+## Gives character resistance to elemental trait (0 - 100%)
 @export var resistances: Dictionary[StringName, float] = {
 	'Physical':	0,
 	'Fire':		0,

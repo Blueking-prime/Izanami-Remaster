@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://do3mwadcoutth"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="2_n4rff"]
+
+[resource]
+script = ExtResource("2_n4rff")
+element = "Fire"
+name = &"Devil Flames"
+stats = 2
+stat_multiplier = Array[float]([1.0, 1.0, 2.0])
+rank = 2
+cost = 40
+desc = "20 Pot INT Fire Attack AOE"
+aoe = true
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

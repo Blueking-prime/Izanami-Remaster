@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_qyy31")
-base_folder = "res://Models/Skills/Scion"
+base_folder = "res://Models/Skills/ClassSkills/Scion"

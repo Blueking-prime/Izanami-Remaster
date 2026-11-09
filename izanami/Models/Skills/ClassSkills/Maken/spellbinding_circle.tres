@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="UniqueSpellBindingCircle" format=3 uid="uid://ci3u1opb0q4fl"]
+
+[ext_resource type="Script" uid="uid://bgybybdp7jhv1" path="res://Models/Skills/ClassSkills/Maken/spell_binding_circle.gd" id="1_6qoxx"]
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="1_kbu3y"]
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="2_fwtat"]
+[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Models/Skills/SubSkills/_clear_runes.tres" id="4_vqscj"]
+
+[resource]
+script = ExtResource("1_6qoxx")
+ATK_buff = ExtResource("1_kbu3y")
+DEF_buff = ExtResource("2_fwtat")
+name = &"Spellbinding Circle"
+stats = 4
+stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_kbu3y"): PackedInt32Array(3, 5, 7),
+ExtResource("2_fwtat"): PackedInt32Array(3, 5, 7)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_kbu3y"): PackedFloat32Array(1.3, 1.3, 1.3),
+ExtResource("2_fwtat"): PackedFloat32Array(1.3, 1.3, 1.3)
+})
+aoe = true
+skill_to_trigger = ExtResource("4_vqscj")
+metadata/_custom_type_script = "uid://bgybybdp7jhv1"

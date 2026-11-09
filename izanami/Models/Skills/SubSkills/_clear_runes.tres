@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://b80dlx6r7m1i5"]
+
+[ext_resource type="Script" uid="uid://b548gmdwgt38l" path="res://Models/Statuses/Buffs/Runes/azure_rune.gd" id="1_y8k7y"]
+[ext_resource type="Script" uid="uid://drlhw78e6em07" path="res://Models/Statuses/Buffs/Runes/flare_rune.gd" id="2_6bsj4"]
+[ext_resource type="Script" uid="uid://i8koyj4qr7s6" path="res://Models/Statuses/Buffs/Runes/zephyr_rune.gd" id="3_k46k2"]
+[ext_resource type="Script" uid="uid://dgw1asfsnhlck" path="res://Models/Statuses/Buffs/Runes/rune.gd" id="4_gtqhn"]
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="5_u7byc"]
+
+[resource]
+script = ExtResource("5_u7byc")
+conditions = Array[Script]([ExtResource("1_y8k7y"), ExtResource("2_6bsj4"), ExtResource("3_k46k2"), ExtResource("4_gtqhn")])
+type = &"Clears current runes"
+targetable = false
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

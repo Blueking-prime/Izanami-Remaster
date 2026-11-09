@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://lelyy6g2ggug"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_m0uv6"]
+
+[resource]
+script = ExtResource("1_m0uv6")
+name = &"Spin Attack"
+stats = 8
+stat_multiplier = Array[float]([1.0, 1.0, 3.0])
+rank = 2
+hp_cost = 0.2
+desc = "30 POT END AOE ATK; Lose 20% of HP"
+aoe = true
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

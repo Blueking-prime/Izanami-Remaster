@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://hnupii0nnsaw"]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_nyib0"]
+
+[resource]
+script = ExtResource("1_nyib0")
+element = "Dark"
+multi_hit = true
+multi_hit_max = 3
+name = &"Witch Bullet"
+stats = 2
+stat_multiplier = Array[float]([1.0, 1.0, 2.5])
+rank = 2
+cost = 30
+desc = "25 Potency INT Dark Attack, can multihit up to 3 times"
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

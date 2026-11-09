@@ -32,12 +32,20 @@
         "visibility": 0.0
       }
     },
-    "res://Models/Skills/ClassSkills/Ronin/": {
+    "res://Models/Skills/ClassSkills/Maken/": {
       "resource_local_to_scene": {
-        "visibility": 0
+        "visibility": 0.0
       },
       "resource_name": {
-        "visibility": 0
+        "visibility": 0.0
+      }
+    },
+    "res://Models/Skills/ClassSkills/Ronin/": {
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
       }
     },
     "res://Models/Skills/ClassSkills/Scion/": {
@@ -50,10 +58,26 @@
     },
     "res://Models/Skills/ClassSkills/Shinobi/": {
       "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
+    "res://Models/Skills/EnemySkills/": {
+      "resource_local_to_scene": {
         "visibility": 0
       },
       "resource_name": {
         "visibility": 0
+      }
+    },
+    "res://Models/Skills/WeaponSkills/": {
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
       }
     }
   },
@@ -64,7 +88,10 @@
     "res://Models/Skills/ClassSkills/Destitute/",
     "res://Models/Skills/ClassSkills/Doctor/",
     "res://Models/Skills/ClassSkills/Ronin/",
-    "res://Models/Skills/ClassSkills/Shinobi/"
+    "res://Models/Skills/ClassSkills/Shinobi/",
+    "res://Models/Skills/ClassSkills/Maken/",
+    "res://Models/Skills/WeaponSkills/",
+    "res://Models/Skills/EnemySkills/"
   ],
   "table_functions": {
     "filter": [

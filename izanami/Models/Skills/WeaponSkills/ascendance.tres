@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://if0vn41k3gc0"]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_kt3an"]
+[ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="1_wtn3l"]
+
+[resource]
+script = ExtResource("1_kt3an")
+hp_recover = true
+name = &"Ascendance"
+stats = 4
+stat_multiplier = Array[float]([1.0, 1.0, 2.5])
+cost = 40
+desc = "25 Pot WIS AOE Healing; 1.2x DEF Boost"
+status_effect = Array[Script]([ExtResource("1_wtn3l")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_wtn3l"): PackedInt32Array(1, 1, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_wtn3l"): PackedFloat32Array(1, 1, 1.2)
+})
+aoe = true
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

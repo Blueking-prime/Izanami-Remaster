@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://cbt6hiexgrjr7"]
+
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="1_6s5qb"]
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="2_it5sf"]
+
+[resource]
+script = ExtResource("2_it5sf")
+element = "Physical"
+name = &"Eye Stab"
+stats = 32
+stat_multiplier = Array[float]([2.0, 1.0, 1.0])
+desc = "20 Pot AGI Phys Attack, 0.9x ATK Debuff"
+status_effect = Array[Script]([ExtResource("1_6s5qb")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("1_6s5qb"): PackedInt32Array(3, 3, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_6s5qb"): PackedFloat32Array(0.9, 0.9, 0.9)
+})
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

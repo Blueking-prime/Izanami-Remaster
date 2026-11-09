@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_hnnm7")
-base_folder = "res://Models/Skills/Kunoichi"
+base_folder = "res://Models/Skills/ClassSkills/Kunoichi"
+paths = Array[String](["res://Models/Skills/ClassSkills/Kunoichi/corruption.tres", "res://Models/Skills/ClassSkills/Kunoichi/feng_shui_assasination.tres", "res://Models/Skills/ClassSkills/Kunoichi/magebane_senbon.tres", "res://Models/Skills/ClassSkills/Kunoichi/smoke_bomb.tres", "res://Models/Skills/ClassSkills/Kunoichi/stoneflower_senbon.tres", "res://Models/Skills/ClassSkills/Kunoichi/unique_attack_kunoichi.tres", "res://Models/Skills/ClassSkills/Kunoichi/wisteria_senbon.tres"])
