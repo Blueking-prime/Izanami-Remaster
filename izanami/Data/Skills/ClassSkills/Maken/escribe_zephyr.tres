@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b548gmdwgt38l" path="res://Models/Statuses/Buffs/Runes/azure_rune.gd" id="1_6k186"]
 [ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_101j0"]
-[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Models/Skills/SubSkills/_clear_runes.tres" id="3_5v8xi"]
+[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Data/Skills/SubSkills/_clear_runes.tres" id="3_5v8xi"]
 
 [resource]
 script = ExtResource("2_101j0")

@@ -83,6 +83,8 @@ var _stats: Array[StringName] = []
 
 ## Sub Skill to trigger (if applicable)
 @export var skill_to_trigger: Skill
+## Check if sub skill flags are set
+@export var sub_skill_flags: Array[StringName]
 ## Chance for skill triggers another skill
 @export_range(0, 1, 0.05) var sub_skill_trigger_chance: Array[float] = [1, 1, 1]
 
@@ -161,6 +163,9 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 
 
 func _trigger_new_skill(obj: Base_Character, target_: Variant):
+	if sub_skill_flags:
+		if not Checks.check_flags(sub_skill_flags): return
+
 	if is_instance_valid(skill_to_trigger):
 		if Global.rand_chance(sub_skill_trigger_chance[rank]):
 			if skill_to_trigger.targetable:

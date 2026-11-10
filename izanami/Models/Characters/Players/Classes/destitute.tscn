@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckiwa6lyvqgds"]
+[gd_scene format=3 uid="uid://ckiwa6lyvqgds"]
 
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_tiiom"]
-[ext_resource type="Resource" uid="uid://btrjbxddw5urq" path="res://Models/Skills/ClassSkills/SkillGroups/destitute_skills.tres" id="2_u0icw"]
+[ext_resource type="Resource" uid="uid://btrjbxddw5urq" path="res://Data/Skills/ClassSkills/SkillGroups/destitute_skills.tres" id="2_u0icw"]
 
 [node name="Destitute" instance=ExtResource("1_tiiom")]
 classname = &"Destitute"

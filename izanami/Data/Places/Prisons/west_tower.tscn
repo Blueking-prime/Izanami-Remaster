@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dvg1l2nxqsu80"]
+
+[ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_inqw0"]
+
+[node name="WestTower" unique_id=1401756524 instance=ExtResource("1_inqw0")]
+
+[node name="Church" parent="." index="6" unique_id=971128350]
+visible = false
+
+[node name="Smithy" parent="." index="7" unique_id=1205182863]
+visible = false
+
+[node name="SlaveMarket" parent="." index="8" unique_id=213523245]
+visible = false
+
+[node name="Apothecary" parent="." index="9" unique_id=411896941]
+visible = false
+
+[node name="Demonitarium" parent="." index="11" unique_id=2125678861]
+visible = false
+
+[editable path="CanvasLayer/Overlays/Save"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]

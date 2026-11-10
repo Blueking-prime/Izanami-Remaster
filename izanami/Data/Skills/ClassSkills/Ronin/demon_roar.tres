@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://duy6hj6mnai8m"]
 
 [ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_5oqg4"]
-[ext_resource type="Resource" uid="uid://0ik1uomyshrq" path="res://Models/Skills/SubSkills/_apply_bloodlust.tres" id="2_ktpbl"]
+[ext_resource type="Resource" uid="uid://0ik1uomyshrq" path="res://Data/Skills/SubSkills/_apply_bloodlust.tres" id="2_ktpbl"]
 
 [resource]
 script = ExtResource("1_5oqg4")

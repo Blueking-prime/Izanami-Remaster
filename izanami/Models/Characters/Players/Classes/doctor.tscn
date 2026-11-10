@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckvlq77lwkf6g"]
+[gd_scene format=3 uid="uid://ckvlq77lwkf6g"]
 
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_5nlql"]
-[ext_resource type="Resource" uid="uid://c1sq61kgkmx03" path="res://Models/Skills/ClassSkills/SkillGroups/doctor_skills.tres" id="2_cperr"]
+[ext_resource type="Resource" uid="uid://c1sq61kgkmx03" path="res://Data/Skills/ClassSkills/SkillGroups/doctor_skills.tres" id="2_cperr"]
 [ext_resource type="Resource" uid="uid://d2brp4x7whi00" path="res://Models/Items/DefaultItemGroups/doctor_items.tres" id="3_rnxc3"]
 
 [node name="Doctor" instance=ExtResource("1_5nlql")]

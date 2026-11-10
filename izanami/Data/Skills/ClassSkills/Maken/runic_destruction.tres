@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://drlhw78e6em07" path="res://Models/Statuses/Buffs/Runes/flare_rune.gd" id="2_r3hdp"]
 [ext_resource type="Script" uid="uid://i8koyj4qr7s6" path="res://Models/Statuses/Buffs/Runes/zephyr_rune.gd" id="3_cymvq"]
 [ext_resource type="Script" uid="uid://dgw1asfsnhlck" path="res://Models/Statuses/Buffs/Runes/rune.gd" id="4_kvvqo"]
-[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Models/Skills/SubSkills/_clear_runes.tres" id="6_vdxyj"]
+[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Data/Skills/SubSkills/_clear_runes.tres" id="6_vdxyj"]
 
 [resource]
 script = ExtResource("1_oebwj")

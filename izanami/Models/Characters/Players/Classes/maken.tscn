@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://djrcrookt0uto"]
+[gd_scene format=3 uid="uid://djrcrookt0uto"]
 
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_wiggx"]
-[ext_resource type="Resource" uid="uid://cnm8tckqavlii" path="res://Models/Skills/ClassSkills/SkillGroups/maken_skills.tres" id="2_n6xqy"]
+[ext_resource type="Resource" uid="uid://cnm8tckqavlii" path="res://Data/Skills/ClassSkills/SkillGroups/maken_skills.tres" id="2_n6xqy"]
 [ext_resource type="Resource" uid="uid://qpkhmmxj8nfi" path="res://Models/Gear/DefaultGearGroups/maken_gear.tres" id="2_qi1ci"]
 
 [node name="Maken" instance=ExtResource("1_wiggx")]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ResourceGroup" format=3 uid="uid://clp4ds710cx"]
 
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_t3x5s"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_l7wdu"]
 
 [resource]
-script = ExtResource("1_t3x5s")
+script = ExtResource("1_l7wdu")
 base_folder = "res://Models/Skills/ClassSkills/Ronin"

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dqjlqrmlah8y6"]
+
+[ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_jkcqv"]
+
+[node name="Kinta" unique_id=1401756524 instance=ExtResource("1_jkcqv")]
+
+[node name="SlaveMarket" parent="." index="8" unique_id=213523245]
+visible = false
+
+[node name="Apothecary" parent="." index="9" unique_id=411896941]
+visible = false
+
+[node name="Dungeon" parent="." index="10" unique_id=185818203]
+visible = false
+
+[node name="Demonitarium" parent="." index="11" unique_id=2125678861]
+visible = false
+
+[node name="Test" parent="." index="14" unique_id=1206824539]
+visible = false
+
+[editable path="CanvasLayer/Overlays/Save"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]

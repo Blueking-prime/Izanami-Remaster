@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4jilrknh2vja"]
+[gd_scene format=3 uid="uid://b4jilrknh2vja"]
 
 [ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_qchpq"]
-[ext_resource type="Resource" uid="uid://d1iv4ftmi0jov" path="res://Models/Skills/ClassSkills/SkillGroups/shinobi_skills.tres" id="2_b2n4a"]
+[ext_resource type="Resource" uid="uid://d1iv4ftmi0jov" path="res://Data/Skills/ClassSkills/SkillGroups/shinobi_skills.tres" id="2_b2n4a"]
 
 [node name="Shinobi" instance=ExtResource("1_qchpq")]
 classname = &"Shinobi"

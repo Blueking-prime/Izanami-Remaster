@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ResourceGroup" format=3 uid="uid://tro4amab83rb"]
+
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_s48lo"]
+
+[resource]
+script = ExtResource("1_s48lo")
+base_folder = "res://Models/Skills/ClassSkills/Kunoichi"

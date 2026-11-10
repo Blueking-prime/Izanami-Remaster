@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ResourceGroup" format=3 uid="uid://cnm8tckqavlii"]
 
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_tjb4s"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_y2xmg"]
 
 [resource]
-script = ExtResource("1_tjb4s")
+script = ExtResource("1_y2xmg")
 base_folder = "res://Models/Skills/ClassSkills/Maken"

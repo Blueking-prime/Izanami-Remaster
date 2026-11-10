@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UniqueSpellBindingCircle" format=3 uid="uid://ci3u1opb0q4fl"]
 
-[ext_resource type="Script" uid="uid://bgybybdp7jhv1" path="res://Models/Skills/ClassSkills/Maken/spell_binding_circle.gd" id="1_6qoxx"]
+[ext_resource type="Script" uid="uid://bgybybdp7jhv1" path="res://Data/Skills/ClassSkills/Maken/spell_binding_circle.gd" id="1_6qoxx"]
 [ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="1_kbu3y"]
 [ext_resource type="Script" uid="uid://dp5edwpc7ck10" path="res://Models/Statuses/Buffs/defence_buff.gd" id="2_fwtat"]
-[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Models/Skills/SubSkills/_clear_runes.tres" id="4_vqscj"]
+[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Data/Skills/SubSkills/_clear_runes.tres" id="4_vqscj"]
 
 [resource]
 script = ExtResource("1_6qoxx")

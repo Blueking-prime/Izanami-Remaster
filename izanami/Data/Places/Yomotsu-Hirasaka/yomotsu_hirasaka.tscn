@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bdk3swxcvc13"]
+
+[ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_d4xe5"]
+
+[node name="YomotsuHirasaka" unique_id=1401756524 instance=ExtResource("1_d4xe5")]
+
+[editable path="CanvasLayer/Overlays/Save"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]

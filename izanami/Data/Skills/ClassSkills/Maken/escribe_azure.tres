@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://i8koyj4qr7s6" path="res://Models/Statuses/Buffs/Runes/zephyr_rune.gd" id="1_4h34r"]
 [ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_hh5o7"]
-[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Models/Skills/SubSkills/_clear_runes.tres" id="3_i3jtg"]
+[ext_resource type="Resource" uid="uid://b80dlx6r7m1i5" path="res://Data/Skills/SubSkills/_clear_runes.tres" id="3_i3jtg"]
 
 [resource]
 script = ExtResource("2_hh5o7")

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ResourceGroup" format=3 uid="uid://dspktpi6y5l1g"]
 
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_qyy31"]
+[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="1_xenyr"]
 
 [resource]
-script = ExtResource("1_qyy31")
+script = ExtResource("1_xenyr")
 base_folder = "res://Models/Skills/ClassSkills/Scion"
