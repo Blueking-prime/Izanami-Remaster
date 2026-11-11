@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://byocasfo71gy0"]
+
+[ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="1_7i4gk"]
+
+[sub_resource type="Curve2D" id="Curve2D_bq6y0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 80.6136, 0.844795, 0, 0, 0, 0, 26.8712, -28.723, 0, 0, 0, 0, 26.8712, -70.118, 0, 0, 0, 0, 79.687, -98.841, 0, 0, 0, 0, 136.209, -68.4284, 0, 0, 0, 0, 137.136, -28.723, 0, 0, 0, 0, 80.6136, 0.844795)
+}
+point_count = 7
+
+[node name="NPC" type="Node2D" unique_id=956659945]
+
+[node name="Path2D" type="Path2D" parent="." unique_id=532922186]
+position = Vector2(-88, 1.52588e-05)
+scale = Vector2(1.07922, 1.18372)
+curve = SubResource("Curve2D_bq6y0")
+
+[node name="PathFolllow2D" type="PathFollow2D" parent="Path2D" unique_id=1523305222]
+position = Vector2(80.6136, 0.844795)
+rotates = false
+
+[node name="NPC" parent="Path2D/PathFolllow2D" unique_id=845832440 node_paths=PackedStringArray("path_follow") instance=ExtResource("1_7i4gk")]
+path_follow = NodePath("..")

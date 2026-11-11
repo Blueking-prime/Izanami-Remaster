@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://dobwosnxelorr" path="res://Models/Scenes/Town/demonitarium.gd" id="10_h5qir"]
 [ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="11_6gf2o"]
 [ext_resource type="PackedScene" uid="uid://5iv4fsku5g5x" path="res://Models/Scenes/Town/Demonitarium/demonitarium.tscn" id="14_k4n1q"]
-[ext_resource type="PackedScene" uid="uid://byocasfo71gy0" path="res://Models/Characters/NPCs/npc.tscn" id="15_ujed2"]
+[ext_resource type="PackedScene" uid="uid://byocasfo71gy0" path="res://Models/Characters/NPCs/npc_with_path.tscn" id="15_ujed2"]
 [ext_resource type="PackedScene" uid="uid://d05wcwvuplat0" path="res://Models/UI/Shops/slave_market.tscn" id="17_fvh20"]
 [ext_resource type="Script" uid="uid://dytjd2yhrw5eb" path="res://Models/Scenes/Town/test.gd" id="18_y17gc"]
 

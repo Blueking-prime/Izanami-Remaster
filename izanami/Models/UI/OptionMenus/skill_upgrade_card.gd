@@ -7,14 +7,14 @@ func update_listing():
 
 	if player.skills:
 		for i in player.skills.get_skills():
-			if i.rank < 2:
+			if is_instance_valid(i) and i.rank < 2:
 				options.add_item(
 					i.name,
 					[rank_indicator(i.rank),]
 				)
 
 func rank_indicator(rank: int) -> String:
-	return '⬤'.repeat(rank) + '◯'.repeat(2 - rank)
+	return 'X'.repeat(rank) + '-'.repeat(2 - rank)
 
 func upgrade_skill(skill_id: int):
 	var skill: Skill = player.skills.get_skills()[skill_id]

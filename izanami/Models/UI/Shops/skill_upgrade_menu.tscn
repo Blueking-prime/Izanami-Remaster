@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlt58862gge0u"]
+[gd_scene format=3 uid="uid://dlt58862gge0u"]
 
 [ext_resource type="Script" uid="uid://ceokvbo311by8" path="res://Models/UI/Overlays/Inventory/inventory_skills.gd" id="1_b2fm3"]
 [ext_resource type="Script" uid="uid://cpeakabaih3s6" path="res://Models/UI/Shops/skill_upgrade_menu.gd" id="1_sm2qp"]
 [ext_resource type="PackedScene" uid="uid://bp8hjbvduev5m" path="res://Models/UI/OptionMenus/skill_upgrade_card.tscn" id="2_ehlhe"]
 
-[node name="SkillUpgradeMenus" type="Control" node_paths=PackedStringArray("skills_menu", "desc_box_container")]
+[node name="SkillUpgradeMenus" type="Control" unique_id=1719892862 node_paths=PackedStringArray("skills_menu", "desc_box_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ script = ExtResource("1_sm2qp")
 skills_menu = NodePath("PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel")
 desc_box_container = NodePath("BoxContainer")
 
-[node name="PanelContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="VBoxContainer" parent="." unique_id=398059158]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.665
@@ -27,21 +27,21 @@ offset_right = -87.0
 offset_bottom = -6.10352e-05
 grow_horizontal = 0
 
-[node name="Heading" type="PanelContainer" parent="PanelContainer"]
+[node name="Heading" type="PanelContainer" parent="PanelContainer" unique_id=668223261]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Heading"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Heading" unique_id=339663461]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Heading/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Heading/MarginContainer" unique_id=337860015]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer"]
+[node name="NameLabel" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer" unique_id=2101221824]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
@@ -49,7 +49,7 @@ text = "Player"
 vertical_alignment = 1
 justification_flags = 162
 
-[node name="Q1Label" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer"]
+[node name="Q1Label" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer" unique_id=370574774]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Rank"
@@ -57,7 +57,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 162
 
-[node name="Q2label" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer"]
+[node name="Q2label" type="Label" parent="PanelContainer/Heading/MarginContainer/HBoxContainer" unique_id=817444846]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "SkillCost"
@@ -65,27 +65,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 162
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer" unique_id=1874464939]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer" unique_id=442376457]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SkillUpgradePanel" type="VBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer"]
+[node name="SkillUpgradePanel" type="VBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer" unique_id=569418899 node_paths=PackedStringArray("container")]
 layout_mode = 2
 script = ExtResource("1_b2fm3")
 skill_menu_card_scene = ExtResource("2_ehlhe")
+container = NodePath(".")
 metadata/_tab_index = 1
 
-[node name="Skills" parent="PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel" instance=ExtResource("2_ehlhe")]
+[node name="Skills" parent="PanelContainer/PanelContainer/MarginContainer/SkillUpgradePanel" unique_id=1744370290 instance=ExtResource("2_ehlhe")]
 layout_mode = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=521680289]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,7 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ConfirmButton" type="Button" parent="."]
+[node name="ConfirmButton" type="Button" parent="." unique_id=1979725999]
 visible = false
 layout_mode = 1
 anchors_preset = 8

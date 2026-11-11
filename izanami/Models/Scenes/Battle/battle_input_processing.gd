@@ -14,6 +14,8 @@ class_name BattleInput
 @export var guard_button: Button
 @export var run_button: Button
 
+@export var key_processing: BattleKeyProcessing
+
 @onready var setup: BattleSetup = get_parent().setup
 @onready var process_turns: BattleTurns = get_parent().process_turns
 @onready var process_actions: BattleActions = get_parent().process_actions
@@ -175,6 +177,9 @@ func show_options():
 
 func _release_focus():
 	dummy_control.grab_focus()
+
+func disable_input():
+	queue_free()
 
 
 ## ACTION MENU SIGNAL PROCESSORS

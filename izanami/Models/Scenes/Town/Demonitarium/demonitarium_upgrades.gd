@@ -4,7 +4,7 @@ class_name DemonitariumUpgrades
 
 @export var upgrade_menu: SKillUpgradeMenu
 
-func upgrade_skills():
+func main():
 	Global.sell.disconnect(get_parent()._sell_parser)
 
 	upgrade_menu.load_menu()
@@ -15,3 +15,6 @@ func choose_option():
 	Global.sell.connect(get_parent()._sell_parser)
 	Global.exit_button.show()
 	await get_parent().choose_option()
+
+func close_shop():
+	upgrade_menu.hide()

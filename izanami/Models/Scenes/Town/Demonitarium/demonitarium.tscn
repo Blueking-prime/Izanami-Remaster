@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://5iv4fsku5g5x"]
+[gd_scene format=3 uid="uid://5iv4fsku5g5x"]
 
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Models/Scenes/location.tscn" id="1_ynqmm"]
 [ext_resource type="Script" uid="uid://cxx7lassxd8wx" path="res://Models/Scenes/Town/Demonitarium/demonitarium_interior.gd" id="2_tp2q5"]
+[ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="3_0lbk2"]
 [ext_resource type="Script" uid="uid://d4k148f5wltcw" path="res://Models/Scenes/Town/Demonitarium/demonitarium_counter.gd" id="3_yclhr"]
 [ext_resource type="Script" uid="uid://csyec5oqhni8b" path="res://Models/Scenes/Town/Demonitarium/demonitarium_upgrades.gd" id="4_mvtyy"]
 [ext_resource type="Script" uid="uid://ld1ypj1eypg3" path="res://Models/Scenes/Town/Demonitarium/demonitarium_fights.gd" id="5_eahef"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://Configs/all_enemies.tres" id="6_xkcin"]
 [ext_resource type="Script" uid="uid://dgtk2ys57t7r2" path="res://Models/Scenes/Town/Demonitarium/demonitarium_mag.gd" id="7_88gcs"]
 [ext_resource type="Script" uid="uid://bvixjyjqfnhpa" path="res://Models/Scenes/Town/Demonitarium/warppoint.gd" id="8_s3mno"]
+[ext_resource type="Script" uid="uid://crcemkfmplupw" path="res://Models/Scenes/Town/Demonitarium/cutscene_trigger.gd" id="9_quoik"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/UI/Shops/shop_inventory.tscn" id="9_swh6u"]
 [ext_resource type="Script" uid="uid://dvgxlecxg5mg1" path="res://Models/UI/Shops/demonitarium_fights.gd" id="10_l35od"]
 [ext_resource type="PackedScene" uid="uid://dlt58862gge0u" path="res://Models/UI/Shops/skill_upgrade_menu.tscn" id="11_k077g"]
@@ -15,63 +17,129 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbrf6"]
 size = Vector2(300, 70)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbct6"]
+size = Vector2(180, 368)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rbct6"]
+radius = 69.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_xnnc6"]
 radius = 20.0
 
-[node name="Demonitarium" node_paths=PackedStringArray("counter", "tilemap", "entrance_area") instance=ExtResource("1_ynqmm")]
+[node name="Demonitarium" unique_id=1479066493 node_paths=PackedStringArray("fight_counter", "skill_counter", "tilemap", "entrance_area") instance=ExtResource("1_ynqmm")]
 script = ExtResource("2_tp2q5")
-counter = NodePath("Counter")
+fight_counter = NodePath("FightCounter")
+skill_counter = NodePath("SkillCounter")
 tilemap = NodePath("ObjectsSort/TileMapLayer")
 entrance_area = NodePath("Exit")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="ObjectsSort" index="1"]
+[node name="Beatrix" parent="ObjectsSort" index="1" unique_id=845832440 instance=ExtResource("3_0lbk2")]
+position = Vector2(715.99994, 470)
 
-[node name="Counter" type="StaticBody2D" parent="." index="5" node_paths=PackedStringArray("fights", "upgrades", "mag", "crowley")]
+[node name="Momiji" parent="ObjectsSort" index="2" unique_id=21405816 instance=ExtResource("3_0lbk2")]
+position = Vector2(716.00006, 277.00003)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="ObjectsSort" index="3" unique_id=1595836310]
+
+[node name="Mag" type="Node" parent="." index="5" unique_id=1618846709 node_paths=PackedStringArray("quantity_input", "confirm_button")]
+script = ExtResource("7_88gcs")
+quantity_input = NodePath("../CanvasLayer/QuantityInput")
+confirm_button = NodePath("../CanvasLayer/QuantityInput/Button")
+
+[node name="SkillCounter" type="StaticBody2D" parent="." index="6" unique_id=906185464 node_paths=PackedStringArray("mag", "shop", "shopkeep")]
 position = Vector2(960, 108)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("3_yclhr")
-fights = NodePath("Fights")
-upgrades = NodePath("SkillUpgrades")
-mag = NodePath("Mag")
-crowley = NodePath("Crowley")
+mag = NodePath("../Mag")
+shop = NodePath("SkillUpgrades")
+dialogue_text = Dictionary[String, Variant]({
+"choice_text": "What would you like? ",
+"entrance_dialogue": "Unholy sigils paint the walls and howling creatures cackle from cages hanging precariously overhead",
+"exit": "Have your fears overcome you? ",
+"greeting": "Test your skills, adventurer... Anything you carve out is yours.",
+"low_funds": "You seem to lack the coin for this",
+"purchased": "",
+"shop_options": ["Buy Mag", "Upgrade Skills", "Talk to Giles"],
+"sold": "",
+"speaker": "Giles"
+})
+shopkeep = NodePath("Giles")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkillCounter" index="0" unique_id=522766786]
 shape = SubResource("RectangleShape2D_sbrf6")
 
-[node name="SkillUpgrades" type="Node" parent="Counter" index="1" node_paths=PackedStringArray("upgrade_menu")]
+[node name="SkillUpgrades" type="Node" parent="SkillCounter" index="1" unique_id=1607723901 node_paths=PackedStringArray("upgrade_menu")]
 script = ExtResource("4_mvtyy")
 upgrade_menu = NodePath("../../CanvasLayer/SKillUpgradeMenu")
 
-[node name="Fights" type="Node" parent="Counter" index="2" node_paths=PackedStringArray("demonitarium_display")]
+[node name="Giles" parent="SkillCounter" index="2" unique_id=77952457 instance=ExtResource("3_0lbk2")]
+position = Vector2(-3.637979e-12, -78.00001)
+
+[node name="FightCounter" type="StaticBody2D" parent="." index="7" unique_id=1765181045 node_paths=PackedStringArray("mag", "shop", "shopkeep")]
+position = Vector2(1428, 106)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_yclhr")
+mag = NodePath("../Mag")
+shop = NodePath("Fights")
+dialogue_text = Dictionary[String, Variant]({
+"choice_text": "What would you like? ",
+"entrance_dialogue": "Unholy sigils paint the walls and howling creatures cackle from cages hanging precariously overhead",
+"exit": "Have your fears overcome you? ",
+"greeting": "Test your skills, adventurer... Anything you carve out is yours.",
+"low_funds": "You seem to lack the coin for this",
+"purchased": "",
+"shop_options": ["Buy Mag", "Fight Demons", "Talk to Micah"],
+"sold": "",
+"speaker": "Micah"
+})
+shopkeep = NodePath("Micah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FightCounter" index="0" unique_id=1750200604]
+shape = SubResource("RectangleShape2D_sbrf6")
+
+[node name="Fights" type="Node" parent="FightCounter" index="1" unique_id=582053847 node_paths=PackedStringArray("demonitarium_display")]
 script = ExtResource("5_eahef")
 demonitarium_display = NodePath("../../CanvasLayer/DemonitariumFights")
 stock = ExtResource("6_xkcin")
 
-[node name="Mag" type="Node" parent="Counter" index="3" node_paths=PackedStringArray("quantity_input", "confirm_button")]
-script = ExtResource("7_88gcs")
-quantity_input = NodePath("../../CanvasLayer/QuantityInput")
-confirm_button = NodePath("../../CanvasLayer/QuantityInput/Button")
+[node name="Micah" parent="FightCounter" index="2" unique_id=1770865812 instance=ExtResource("3_0lbk2")]
+position = Vector2(-7.275958e-12, -77)
 
-[node name="Crowley" type="Node2D" parent="Counter" index="4"]
+[node name="RegentArea" type="StaticBody2D" parent="." index="8" unique_id=2000266243]
+position = Vector2(2119, 175)
 
-[node name="Exit" type="Area2D" parent="." index="6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RegentArea" index="0" unique_id=1612150117]
+shape = SubResource("RectangleShape2D_rbct6")
+
+[node name="Regent" parent="RegentArea" index="1" unique_id=1774699510 instance=ExtResource("3_0lbk2")]
+position = Vector2(-3.0517578e-05, 8)
+
+[node name="CutsceneTrigger" type="Area2D" parent="." index="9" unique_id=1845754352]
+position = Vector2(1748, 447)
+script = ExtResource("9_quoik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger" index="0" unique_id=139910500]
+shape = SubResource("CircleShape2D_rbct6")
+
+[node name="Exit" type="Area2D" parent="." index="10" unique_id=1859049499]
 position = Vector2(1748, 447)
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("8_s3mno")
-destination = "Enugu"
+destination = "Yomotsu Hirasaka"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" index="0" unique_id=1296311530]
 shape = SubResource("CircleShape2D_xnnc6")
 
-[node name="Label" type="Label" parent="Exit" index="1"]
+[node name="Label" type="Label" parent="Exit" index="1" unique_id=996833589]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Exit"
 metadata/_edit_use_anchors_ = true
 
-[node name="QuantityInput" type="SpinBox" parent="CanvasLayer" index="3"]
+[node name="QuantityInput" type="SpinBox" parent="CanvasLayer" index="3" unique_id=767590302]
 visible = false
 offset_left = 420.0
 offset_top = 212.0
@@ -80,14 +148,14 @@ offset_bottom = 291.0
 max_value = 99.0
 rounded = true
 
-[node name="Button" type="Button" parent="CanvasLayer/QuantityInput" index="2"]
+[node name="Button" type="Button" parent="CanvasLayer/QuantityInput" index="2" unique_id=1821376700]
 layout_mode = 0
 offset_left = 131.0
 offset_right = 241.0
 offset_bottom = 79.0
 text = "Confirm"
 
-[node name="DemonitariumFights" parent="CanvasLayer" index="4" instance=ExtResource("9_swh6u")]
+[node name="DemonitariumFights" parent="CanvasLayer" index="4" unique_id=1311368244 instance=ExtResource("9_swh6u")]
 visible = false
 anchor_left = 0.498
 anchor_bottom = 0.619
@@ -99,9 +167,15 @@ script = ExtResource("10_l35od")
 demon_group = ExtResource("6_xkcin")
 demons = {}
 
-[node name="SKillUpgradeMenu" parent="CanvasLayer" index="5" node_paths=PackedStringArray("shop_handler") instance=ExtResource("11_k077g")]
+[node name="SKillUpgradeMenu" parent="CanvasLayer" index="5" unique_id=737305660 node_paths=PackedStringArray("shop_handler") instance=ExtResource("11_k077g")]
 visible = false
-shop_handler = NodePath("../../Counter/SkillUpgrades")
+shop_handler = NodePath("../../SkillCounter/SkillUpgrades")
 
+[connection signal="body_entered" from="CutsceneTrigger" to="CutsceneTrigger" method="select_cutscene"]
+[connection signal="fight_demon" from="CanvasLayer/DemonitariumFights" to="FightCounter/Fights" method="fight_enemy"]
+
+[editable path="CanvasLayer/Overlays/Save"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
+[editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]
 [editable path="CanvasLayer/DemonitariumFights"]
 [editable path="CanvasLayer/DemonitariumFights/Options"]

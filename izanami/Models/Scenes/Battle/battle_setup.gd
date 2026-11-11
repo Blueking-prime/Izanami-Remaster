@@ -47,7 +47,7 @@ func _player_party_setup():
 
 
 func exit_battle(exit_type: StringName):
-	process_input.set_process_input(false)
+	process_input.disable_input()
 
 	for i in process_turns.player_array:
 		i.alive = true
@@ -87,5 +87,5 @@ func exit_battle(exit_type: StringName):
 
 	Global.players.battle_reset()
 
-
+	print('Leaving battle')
 	get_parent().queue_free()

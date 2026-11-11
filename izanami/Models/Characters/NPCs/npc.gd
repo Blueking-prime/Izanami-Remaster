@@ -10,6 +10,7 @@ var frozen: bool = false
 
 
 func _physics_process(delta: float) -> void:
+	if not path_follow: return
 	if not frozen: path_follow.progress += speed * delta
 	if frozen and not Global.players.frozen: frozen = false
 

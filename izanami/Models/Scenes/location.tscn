@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d4fsdqxn6alxo"]
+[gd_scene format=3 uid="uid://d4fsdqxn6alxo"]
 
 [ext_resource type="Script" uid="uid://dl5ci1kbwevg4" path="res://Models/Scenes/location.gd" id="1_knc6e"]
 [ext_resource type="Script" uid="uid://csyfy2mq4hynd" path="res://Models/Scenes/player_camera_script.gd" id="2_16o45"]
@@ -18,7 +18,7 @@
 ambient_light_sky_contribution = 0.0
 fog_enabled = true
 
-[node name="Location" type="Node2D" node_paths=PackedStringArray("background", "test_players", "objectsort", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
+[node name="Location" type="Node2D" unique_id=1921072622 node_paths=PackedStringArray("background", "test_players", "objectsort", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
 script = ExtResource("1_knc6e")
 background = NodePath("Background")
 test_players = NodePath("ObjectsSort/Players")
@@ -30,40 +30,42 @@ overlay = NodePath("CanvasLayer/BaseOverlay")
 canvas_layer = NodePath("CanvasLayer")
 exit_button = NodePath("CanvasLayer/ExitButton")
 
-[node name="PlayerCam" type="Camera2D" parent="."]
+[node name="SceneStatehandler" type="Node" parent="." unique_id=1362279773]
+
+[node name="PlayerCam" type="Camera2D" parent="." unique_id=671880362]
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("2_16o45")
 
-[node name="MapCam" type="Camera2D" parent="." node_paths=PackedStringArray("scene")]
+[node name="MapCam" type="Camera2D" parent="." unique_id=593482673 node_paths=PackedStringArray("scene")]
 script = ExtResource("3_rgujj")
 scene = NodePath("..")
 
-[node name="FreeCam" type="Camera2D" parent="."]
+[node name="FreeCam" type="Camera2D" parent="." unique_id=2099917493]
 script = ExtResource("3_1ec6t")
 
-[node name="Background" type="TileMapLayer" parent="."]
+[node name="Background" type="TileMapLayer" parent="." unique_id=1757614582]
 z_index = -5
 tile_set = ExtResource("5_80d1d")
 script = ExtResource("6_iv1rf")
 width = 19
 height = 10
 
-[node name="ObjectsSort" type="Node2D" parent="."]
+[node name="ObjectsSort" type="Node2D" parent="." unique_id=1553400495]
 y_sort_enabled = true
 
-[node name="Players" parent="ObjectsSort" instance=ExtResource("8_kxce6")]
+[node name="Players" parent="ObjectsSort" unique_id=1401413597 instance=ExtResource("8_kxce6")]
 z_index = 0
 gold = 100
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1275137642]
 environment = SubResource("Environment_80d1d")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=688247954]
 
-[node name="BaseOverlay" parent="CanvasLayer" node_paths=PackedStringArray("map_cam", "free_cam", "save_menu", "settings_menu", "inventory_menu", "quests_menu", "status_menu") instance=ExtResource("3_hxd4o")]
+[node name="BaseOverlay" parent="CanvasLayer" unique_id=758054077 node_paths=PackedStringArray("map_cam", "free_cam", "save_menu", "settings_menu", "inventory_menu", "quests_menu", "status_menu") instance=ExtResource("3_hxd4o")]
 map_cam = NodePath("../../MapCam")
 free_cam = NodePath("../../FreeCam")
 save_menu = NodePath("../Overlays/Save/VBoxContainer/SaveMenu")
@@ -72,22 +74,22 @@ inventory_menu = NodePath("../Overlays/InventoryMenu")
 quests_menu = NodePath("../Overlays/QuestMenu")
 status_menu = NodePath("../Overlays/StatusOverlay")
 
-[node name="Overlays" type="Node" parent="CanvasLayer"]
+[node name="Overlays" type="Node" parent="CanvasLayer" unique_id=879764853]
 
-[node name="InventoryMenu" parent="CanvasLayer/Overlays" instance=ExtResource("4_qvqpn")]
+[node name="InventoryMenu" parent="CanvasLayer/Overlays" unique_id=435445559 instance=ExtResource("4_qvqpn")]
 
-[node name="StatusOverlay" parent="CanvasLayer/Overlays" instance=ExtResource("5_g4neh")]
+[node name="StatusOverlay" parent="CanvasLayer/Overlays" unique_id=852253463 instance=ExtResource("5_g4neh")]
 visible = false
 
-[node name="QuestMenu" parent="CanvasLayer/Overlays" instance=ExtResource("13_m8nc8")]
+[node name="QuestMenu" parent="CanvasLayer/Overlays" unique_id=532479909 instance=ExtResource("13_m8nc8")]
 visible = false
 
-[node name="Settings" parent="CanvasLayer/Overlays" instance=ExtResource("14_kftft")]
+[node name="Settings" parent="CanvasLayer/Overlays" unique_id=1092112504 instance=ExtResource("14_kftft")]
 visible = false
 
-[node name="Save" parent="CanvasLayer/Overlays" instance=ExtResource("15_emf0p")]
+[node name="Save" parent="CanvasLayer/Overlays" unique_id=973185591 instance=ExtResource("15_emf0p")]
 
-[node name="ExitButton" type="Button" parent="CanvasLayer"]
+[node name="ExitButton" type="Button" parent="CanvasLayer" unique_id=1936125841]
 visible = false
 offset_left = 10.0
 offset_top = 10.0
