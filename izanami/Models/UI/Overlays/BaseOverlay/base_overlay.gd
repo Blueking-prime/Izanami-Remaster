@@ -61,15 +61,24 @@ func load_ui_elements():
 	update_coin_counter()
 	mag_counter.text = str(Global.players.mag)
 
+	connect_signals()
+
 	settings_menu.load_menu()
 	quests_menu.load_menu()
 
-	quest_display.connect_signals()
 	quest_display.update_quest()
-
-	music_display.connect_signals()
 	music_display.update_track()
 
+func disable():
+	input_processing.set_process_input(false)
+	hide()
+
+func connect_signals():
+	if not status_menu.refresh_details_display.is_connected(player_status.display_player_data):
+		status_menu.refresh_details_display.connect(player_status.display_player_data)
+
+	quest_display.connect_signals()
+	music_display.connect_signals()
 
 func _on_visibility_changed() -> void:
 	if visible:

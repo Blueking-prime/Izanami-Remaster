@@ -2,6 +2,7 @@ extends CharacterSelector
 
 class_name SlaveMarket
 
+
 var current_slave_cost: int
 var menu_view: bool = false
 
@@ -19,8 +20,11 @@ func choose_target(card: PlayerStatusCard):
 	current_slave_cost = int(card.status_effect.text)
 
 func confirm_choice(card: PlayerDetailsCard):
+	if Global.players.is_party_full():
+		await Global.show_info_popup('No space in party!')
+		return
+
 	if Global.players.gold < current_slave_cost:
-		Global.print_to_log("Not enough funds")
 		Global.sell.emit('low funds')
 		return
 	else:

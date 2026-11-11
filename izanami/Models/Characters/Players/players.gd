@@ -13,6 +13,7 @@ class_name Party
 @export var gold: int
 @export var mag: int
 @export var dungeon_level: int = 0
+const MAX_PARTY_SIZE: int = 4
 
 @export var inventory: Inventory
 
@@ -99,7 +100,15 @@ func switch_leader(_index: int):
 
 	load_party()
 
+func is_party_full() -> bool:
+	if party.size() < MAX_PARTY_SIZE:
+		return false
+	else:
+		return true
+
 func add_to_party(player: Player):
+	if is_party_full(): return
+
 	add_child(player)
 	#player.global_position.x += 20 * len(party) # Offset the player to prevent overlap
 	load_party()

@@ -23,7 +23,8 @@ signal player_created(player: Player)
 
 func load_menu():
 	_clear_data_cards()
-	load_classes()
+	if not available_classes:
+		load_classes()
 
 	Global.exit_button = back_button
 	if not Global.exit_signal.is_connected(_on_button_pressed): Global.exit_signal.connect(_on_button_pressed)
@@ -35,7 +36,6 @@ func load_menu():
 		i.hide()
 
 func load_classes():
-	available_classes = []
 	for i in available_class_scenes:
 		available_classes.append(i.instantiate())
 
@@ -44,6 +44,7 @@ func create_card(player: Player) -> PlayerStatusCard:
 	var details: PlayerDetailsCard = player_details_card_scene.instantiate()
 
 	card.nametag.hide()
+	card.remove_button.hide()
 	card.classname.text = player.classname
 	card.classname.size_flags_horizontal = Control.SIZE_SHRINK_CENTER | Control.SIZE_EXPAND
 	details.classname.text = player.classname
@@ -59,13 +60,6 @@ func create_card(player: Player) -> PlayerStatusCard:
 
 	card.description.text = player.desc
 
-	#card.get_node('MarginContainer/VBoxContainer/BARS').hide()
-	#card.get_node('MarginContainer/VBoxContainer/STATSECTION').hide()
-	#card.get_node('MarginContainer/VBoxContainer/GEAR').hide()
-
-	card.get_node('MarginContainer/VBoxContainer/StatsBox').hide()
-	card.get_node('MarginContainer/VBoxContainer/GearBox').hide()
-	card.get_node('MarginContainer/VBoxContainer/StatusBox').hide()
 	card.select_button.show()
 
 	card.extra_details_card = details
@@ -96,18 +90,23 @@ func choose_target(card: PlayerStatusCard):
 	card.select_button.hide()
 	card.extra_details_card.show()
 
+
 func confirm_choice(card: PlayerDetailsCard):
 	# Maybe remove other nodes instead and change this to party node
+
 	var player: Player
 	for i in player_node_container.get_children():
 		if i.classname == card.classname.text:
 			player = i
+			break
 
 	player.character_name = card.namefield.text
 	Checks.player_name = player.character_name
 	player_node_container.remove_child(player)
 	Global.players.add_to_party(player)
 	Global.players.load_party()
+	available_classes.erase(player)
+	load_menu()
 	#print(Global.players)
 	#print(Global.players.get_children())
 	player_created.emit(player)

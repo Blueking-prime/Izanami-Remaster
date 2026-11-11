@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://3uofbueh3m11" path="res://Models/Scenes/main_menu.gd" id="1_j5w4h"]
 [ext_resource type="Script" uid="uid://dk0x5n8mkcevl" path="res://Models/Scenes/intro_scene.gd" id="2_0lobm"]
 [ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/UI/Overlays/Settings/settings.tscn" id="2_ognit"]
-[ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="3_7ypsx"]
+[ext_resource type="PackedScene" uid="uid://bdk3swxcvc13" path="res://Data/Places/Yomotsu-Hirasaka/yomotsu_hirasaka.tscn" id="3_0lobm"]
 [ext_resource type="PackedScene" uid="uid://dlflxypiwhkyi" path="res://Models/UI/Overlays/save_menu.tscn" id="3_x30nn"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="4_8fbda"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="4_ydioe"]
@@ -29,11 +29,11 @@ intro_scene = NodePath("IntroScene")
 
 [node name="IntroScene" type="Node" parent="." unique_id=2043710046 node_paths=PackedStringArray("character_selector")]
 script = ExtResource("2_0lobm")
+character_selector = NodePath("../CanvasLayer/CharacterSelect")
 cutscene_1 = "res://Assets/izanami-dialogue/0 - intro/0-intro.json"
 cutscene_2 = "res://Assets/izanami-dialogue/1 - yomotsu-1/1-intro.json"
-starter_town = ExtResource("3_7ypsx")
+starter_town = ExtResource("3_0lobm")
 party_scene = ExtResource("4_8fbda")
-character_selector = NodePath("../CanvasLayer/CharacterSelect")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=715876702]
 

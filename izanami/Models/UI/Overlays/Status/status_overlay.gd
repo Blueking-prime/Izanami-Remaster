@@ -7,6 +7,8 @@ class_name StatusOverlay
 @export var player_container: HBoxContainer
 @export var target_selector: Options
 
+signal refresh_details_display
+
 func load_menu():
 	#_clear_data_cards()
 	var cards = _get_card_holders()
@@ -30,6 +32,7 @@ func create_card(player: Player):
 
 	card.player = player
 	player_container.add_child(card)
+	card.player_removed.connect(_refresh_display)
 
 	update_cards(card, player)
 
@@ -44,6 +47,7 @@ func update_cards(card: PlayerStatusCard, player: Player):
 		card.leader_icon.hide()
 
 	player.assign_ui_element_to_character(card)
+	card.remove_button.visible = not player.lock
 
 	var gear: Dictionary = player.gear.gear_dict
 	for slot in gear:
@@ -51,7 +55,6 @@ func update_cards(card: PlayerStatusCard, player: Player):
 		else: card[slot].text = ''
 
 	card.description.text = player.desc
-
 
 func _clear_data_cards(children: Dictionary = {}):
 	if children:
@@ -89,6 +92,8 @@ func _on_switch_button_pressed() -> void:
 		else:
 			show_target_selector()
 
+func _refresh_display():
+	refresh_details_display.emit()
 
 func _on_visibility_changed() -> void:
 	Audio.quiet(visible)

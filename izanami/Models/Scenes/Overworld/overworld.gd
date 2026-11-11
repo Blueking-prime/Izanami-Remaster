@@ -45,6 +45,6 @@ func _input(event: InputEvent) -> void:
 		navigate_to_pins(visible_pins[current_pin_index])
 	if event.is_action_pressed("ui_accept"):
 		#Global.warp(source_location, visible_pins[current_pin_index].destination)
-		Global.warp(source_location, Global.town_scene)
+		Global.warp(source_location, visible_pins[current_pin_index].destination)
 		#await get_tree().create_timer(3).timeout
 		queue_free()

@@ -2,6 +2,9 @@ extends PanelContainer
 
 class_name PlayerStatusCard
 
+var status_shown_flag: bool = false
+
+@export var remove_button: Button
 @export var nametag: Label
 @export var classname: Label
 
@@ -41,6 +44,7 @@ class_name PlayerStatusCard
 @export var player: Player
 
 signal selected(node: PlayerStatusCard)
+signal player_removed
 
 func _on_button_pressed() -> void:
 	selected.emit(self)
@@ -66,6 +70,7 @@ func hide_details(shop: bool = false):
 	sp_bar.hide()
 	xp_bar.hide()
 
+	status_shown_flag = shop
 	for i in vbox.get_children():
 		if i is HSeparator and i.name not in ['ICON', 'DESCRIPTION', 'STATUSEFFECT']:
 			i.hide()
@@ -73,3 +78,10 @@ func hide_details(shop: bool = false):
 			i.hide()
 			if shop and i.name == 'StatusBox':
 				i.show()
+
+func _on_remove_pressed() -> void:
+	var confirm =  await Global.show_confirmation_box('Remove ' + nametag.text + ' from party?')
+	if confirm:
+		Global.players.remove_from_party(player)
+		player_removed.emit()
+		queue_free()

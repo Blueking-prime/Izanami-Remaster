@@ -172,7 +172,7 @@ func _on_detector_hit_chest(_coords) -> void:
 ## BATTLE LOGIC
 func initiate_battle(forced: bool):
 	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, MAX_ENEMIES)
-	overlay.hide()
+	overlay.disable()
 
 	var battle: Battle = Global.battle_scene.instantiate()
 	battle.no_of_enemies = no_of_enemies

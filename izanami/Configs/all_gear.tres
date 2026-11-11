@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_x0vcg")
-base_folder = "res://Models/Gear"
+base_folder = "res://Data/Gear"
 includes = Array[String](["*.tres"])
-paths = Array[String](["res://Models/Gear/bamboo_shoot.tres", "res://Models/Gear/excalihuh.tres", "res://Models/Gear/wool_cap.tres"])
+paths = Array[String](["res://Data/Gear/bamboo_shoot.tres", "res://Data/Gear/excalihuh.tres", "res://Data/Gear/wool_cap.tres"])

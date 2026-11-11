@@ -30,7 +30,7 @@ func disconnect_signals():
 		Global.players.leader.detector.hit_building.disconnect(_check_building)
 
 func _check_building(node: Variant):
-	overlay.hide()
+	overlay.disable()
 	match node:
 		church: await church.main()
 		dungeon: await dungeon.main()

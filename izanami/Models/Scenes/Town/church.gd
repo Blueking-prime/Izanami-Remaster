@@ -2,6 +2,16 @@ extends Node2D
 
 class_name TownChurch
 
+@export var dialogue_text: Dictionary [String, String] = {
+	'speaker': "Sister Amaka",
+	'entrance_dialogue': "The soft scent of incense attacks you. There's a quiet hymn everberating from unknown places.",
+	'greeting': "Come my child, be healed",
+	'healed': "You have been healed. Go now and sin no more",
+	'status_cured': "You have been delivered from ailment. Go now and be free.",
+	'charge': '',
+	'blessing': "Our lord has granted you a boon"
+}
+
 var cost: int = 0
 var text_: String
 
@@ -35,27 +45,27 @@ func display_status():
 	await Global.show_text_box('', text_)
 
 func dialogue():
-	await Global.show_text_box('', "The soft scent of incense attacks you. There's a quiet hymn everberating from unknown places.")
-	await Global.show_text_box("Sister Amaka", "Come my child, be healed")
+	await Global.show_text_box('', dialogue_text.entrance_dialogue)
+	await Global.show_text_box(dialogue_text.speaker, dialogue_text.greeting)
 
 func choose():
 	var option = await Global.show_text_choice("", 'Choose: ', ['Healing', 'Purge', 'Blessing'])
 	if option == 2:
 		cost = len(Global.players.party) * 20
 
-	var heal = await Global.show_text_choice("Sister Amaka", "That will be %d yen | Balance: %d" % [cost, Global.players.gold])
+	var heal = await Global.show_text_choice(dialogue_text.speaker, "That will be %d yen | Balance: %d" % [cost, Global.players.gold])
 	if heal == 0:
 		if Global.players.gold >= cost:
 			match option:
 				0:
 					for i in Global.players.party: i.heal(i.max_hp)
-					await Global.show_text_box("Sister Amaka","You have been healed. Go now and sin no more")
+					await Global.show_text_box(dialogue_text.speaker, dialogue_text.healed)
 				1:
 					for i in Global.players.party: i.status_effect = 'null'
-					await Global.show_text_box("Sister Amaka","You have been delivered from ailment. Go now and be free.")
+					await Global.show_text_box(dialogue_text.speaker, dialogue_text.status_cured)
 				2:
 					# Do something
-					await Global.show_text_box("Sister Amaka","Our lord has granted you a boon")
+					await Global.show_text_box(dialogue_text.speaker, dialogue_text.blessing)
 			Global.players.gold -= cost
 		else:
 			await Global.show_text_box('System', "You don't have enough Yen")

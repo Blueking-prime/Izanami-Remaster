@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjf7wmor410ps"]
+[gd_scene format=3 uid="uid://bjf7wmor410ps"]
 
 [ext_resource type="Script" uid="uid://c1ojwvbieb55k" path="res://Models/UI/Overlays/BaseOverlay/base_overlay.gd" id="1_fxe44"]
 [ext_resource type="Script" uid="uid://513oavblcmx1" path="res://Models/UI/Overlays/BaseOverlay/base_overlay_input_processing.gd" id="2_rcg7v"]
@@ -18,7 +18,7 @@ width = 10
 height = 10
 fill_from = Vector2(1, 0)
 
-[node name="BaseOverlay" type="Control" node_paths=PackedStringArray("input_processing", "player_status", "quest_display", "music_display", "mag_counter", "coin_counter", "quick_info", "save_icon")]
+[node name="BaseOverlay" type="Control" unique_id=64381992 node_paths=PackedStringArray("input_processing", "player_status", "quest_display", "music_display", "mag_counter", "coin_counter", "quick_info", "save_icon")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,65 +35,65 @@ coin_counter = NodePath("PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginC
 quick_info = NodePath("PlayerDataOverlay/QuickInfo")
 save_icon = NodePath("AutosaveIcon")
 
-[node name="InputProcessing" type="Node" parent="." node_paths=PackedStringArray("button_container")]
+[node name="InputProcessing" type="Node" parent="." unique_id=2146748830 node_paths=PackedStringArray("button_container")]
 script = ExtResource("2_rcg7v")
 button_container = NodePath("../Buttons/MenuButtons")
 
-[node name="PlayerDataOverlay" type="VBoxContainer" parent="."]
+[node name="PlayerDataOverlay" type="VBoxContainer" parent="." unique_id=60619719]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 10.0
 offset_top = 10.0
 theme_override_constants/separation = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerDataOverlay"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerDataOverlay" unique_id=1432880648]
 layout_mode = 2
 
-[node name="StatusOverlay" type="PanelContainer" parent="PlayerDataOverlay/HBoxContainer"]
+[node name="StatusOverlay" type="PanelContainer" parent="PlayerDataOverlay/HBoxContainer" unique_id=1897344629]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay" unique_id=1625489412]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="PlayerContainer" type="VBoxContainer" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay/MarginContainer"]
+[node name="PlayerContainer" type="VBoxContainer" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay/MarginContainer" unique_id=751410109]
 layout_mode = 2
 script = ExtResource("2_slhvk")
 data_card_scene = ExtResource("3_446mo")
 
-[node name="PlayerData" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay/MarginContainer/PlayerContainer" instance=ExtResource("3_446mo")]
+[node name="PlayerData" parent="PlayerDataOverlay/HBoxContainer/StatusOverlay/MarginContainer/PlayerContainer" unique_id=611993035 instance=ExtResource("3_446mo")]
 layout_mode = 2
 
-[node name="ResourceDisplay" type="PanelContainer" parent="PlayerDataOverlay/HBoxContainer"]
+[node name="ResourceDisplay" type="PanelContainer" parent="PlayerDataOverlay/HBoxContainer" unique_id=1853532768]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay" unique_id=1140447683]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="GridContainer" type="GridContainer" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer" unique_id=1241571394]
 layout_mode = 2
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="CoinSprite" type="TextureRect" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer"]
+[node name="CoinSprite" type="TextureRect" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer" unique_id=1041608414]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_rfrb6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="CoinCount" type="Label" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer"]
+[node name="CoinCount" type="Label" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer" unique_id=1233610216]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -101,7 +101,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MagSprite" type="TextureRect" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer"]
+[node name="MagSprite" type="TextureRect" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer" unique_id=964770005]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -109,7 +109,7 @@ texture = ExtResource("2_rfrb6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="MagCount" type="Label" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer"]
+[node name="MagCount" type="Label" parent="PlayerDataOverlay/HBoxContainer/ResourceDisplay/MarginContainer/GridContainer" unique_id=749027504]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -118,21 +118,21 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="QuickInfo" type="PanelContainer" parent="PlayerDataOverlay" node_paths=PackedStringArray("label", "timer")]
+[node name="QuickInfo" type="PanelContainer" parent="PlayerDataOverlay" unique_id=1131695262 node_paths=PackedStringArray("label", "timer")]
 visible = false
 layout_mode = 2
 script = ExtResource("6_c2u1w")
 label = NodePath("Label")
 timer = NodePath("Timer")
 
-[node name="Label" type="Label" parent="PlayerDataOverlay/QuickInfo"]
+[node name="Label" type="Label" parent="PlayerDataOverlay/QuickInfo" unique_id=730315526]
 layout_mode = 2
 
-[node name="Timer" type="Timer" parent="PlayerDataOverlay/QuickInfo"]
+[node name="Timer" type="Timer" parent="PlayerDataOverlay/QuickInfo" unique_id=473682764]
 wait_time = 10.0
 one_shot = true
 
-[node name="Buttons" type="VBoxContainer" parent="."]
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=1454909343]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -145,11 +145,11 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
-[node name="MenuButtons" type="VBoxContainer" parent="Buttons"]
+[node name="MenuButtons" type="VBoxContainer" parent="Buttons" unique_id=783999130]
 layout_mode = 2
 alignment = 2
 
-[node name="FreecamButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="FreecamButton" type="Button" parent="Buttons/MenuButtons" unique_id=1987094405]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
@@ -157,7 +157,7 @@ text = "FreeCam ( )"
 flat = true
 alignment = 2
 
-[node name="LogButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="LogButton" type="Button" parent="Buttons/MenuButtons" unique_id=2146943259]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
@@ -165,7 +165,7 @@ text = "Log ()"
 flat = true
 alignment = 2
 
-[node name="UIButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="UIButton" type="Button" parent="Buttons/MenuButtons" unique_id=388562505]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
@@ -173,7 +173,7 @@ text = "UI ()"
 flat = true
 alignment = 2
 
-[node name="SettingsButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="SettingsButton" type="Button" parent="Buttons/MenuButtons" unique_id=1295005301]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
@@ -181,7 +181,7 @@ text = "Settings ( )"
 flat = true
 alignment = 2
 
-[node name="QuestsButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="QuestsButton" type="Button" parent="Buttons/MenuButtons" unique_id=1846992068]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
@@ -189,7 +189,7 @@ text = "Quests ( )"
 flat = true
 alignment = 2
 
-[node name="StatusButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="StatusButton" type="Button" parent="Buttons/MenuButtons" unique_id=1897139056]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
@@ -197,7 +197,7 @@ text = "Status (S)"
 flat = true
 alignment = 2
 
-[node name="InventoryButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="InventoryButton" type="Button" parent="Buttons/MenuButtons" unique_id=722339598]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
@@ -205,7 +205,7 @@ text = "Inventory (I)"
 flat = true
 alignment = 2
 
-[node name="MapButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="MapButton" type="Button" parent="Buttons/MenuButtons" unique_id=884760512]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"FlatButton"
@@ -213,28 +213,28 @@ text = "Map (M)"
 flat = true
 alignment = 2
 
-[node name="SaveButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="SaveButton" type="Button" parent="Buttons/MenuButtons" unique_id=559156310]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 text = "Save (V)"
 flat = true
 alignment = 2
 
-[node name="LoadButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="LoadButton" type="Button" parent="Buttons/MenuButtons" unique_id=654360274]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 text = "Load (L)"
 flat = true
 alignment = 2
 
-[node name="QuitButton" type="Button" parent="Buttons/MenuButtons"]
+[node name="QuitButton" type="Button" parent="Buttons/MenuButtons" unique_id=1035043021]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 text = "Quit (Q)"
 flat = true
 alignment = 2
 
-[node name="MenuButton" type="Button" parent="Buttons"]
+[node name="MenuButton" type="Button" parent="Buttons" unique_id=111044336]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 toggle_mode = true
@@ -244,7 +244,7 @@ flat = true
 alignment = 2
 icon_alignment = 2
 
-[node name="InfoPanel" type="VBoxContainer" parent="."]
+[node name="InfoPanel" type="VBoxContainer" parent="." unique_id=1277016881]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -254,73 +254,73 @@ offset_right = -10.0
 grow_horizontal = 0
 theme_override_constants/separation = 3
 
-[node name="Music" type="PanelContainer" parent="InfoPanel" node_paths=PackedStringArray("text_label")]
+[node name="Music" type="PanelContainer" parent="InfoPanel" unique_id=1042074587 node_paths=PackedStringArray("text_label")]
 layout_mode = 2
 script = ExtResource("6_62x73")
 text_label = NodePath("MarginContainer/HBoxContainer/Label")
 
-[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Music"]
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Music" unique_id=1328500344]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InfoPanel/Music/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InfoPanel/Music/MarginContainer" unique_id=81012936]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="InfoPanel/Music/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="InfoPanel/Music/MarginContainer/HBoxContainer" unique_id=1458706335]
 layout_mode = 2
 texture = ExtResource("5_8ecp3")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="InfoPanel/Music/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="InfoPanel/Music/MarginContainer/HBoxContainer" unique_id=1096120625]
 layout_mode = 2
 text = "Current Track"
 
-[node name="Quests" type="VBoxContainer" parent="InfoPanel" node_paths=PackedStringArray("title", "objective_cointainer")]
+[node name="Quests" type="VBoxContainer" parent="InfoPanel" unique_id=1556730704 node_paths=PackedStringArray("title", "objective_cointainer")]
 layout_mode = 2
 theme_override_constants/separation = 3
 script = ExtResource("5_1x7n3")
 title = NodePath("Header/MarginContainer/QuestLabel")
 objective_cointainer = NodePath("Objectives/MarginContainer/VBoxContainer")
 
-[node name="Header" type="PanelContainer" parent="InfoPanel/Quests"]
+[node name="Header" type="PanelContainer" parent="InfoPanel/Quests" unique_id=1798822122]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Quests/Header"]
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Quests/Header" unique_id=335963067]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="QuestLabel" type="Label" parent="InfoPanel/Quests/Header/MarginContainer"]
+[node name="QuestLabel" type="Label" parent="InfoPanel/Quests/Header/MarginContainer" unique_id=1438564850]
 layout_mode = 2
 text = "Current Quest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Objectives" type="PanelContainer" parent="InfoPanel/Quests"]
+[node name="Objectives" type="PanelContainer" parent="InfoPanel/Quests" unique_id=2046063263]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Quests/Objectives"]
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel/Quests/Objectives" unique_id=345400326]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel/Quests/Objectives/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel/Quests/Objectives/MarginContainer" unique_id=1752000091]
 layout_mode = 2
 
-[node name="ObjectiveLabel" type="Label" parent="InfoPanel/Quests/Objectives/MarginContainer/VBoxContainer"]
+[node name="ObjectiveLabel" type="Label" parent="InfoPanel/Quests/Objectives/MarginContainer/VBoxContainer" unique_id=612544462]
 layout_mode = 2
 text = "- Objective"
 
-[node name="AutosaveIcon" type="HBoxContainer" parent="."]
+[node name="AutosaveIcon" type="HBoxContainer" parent="." unique_id=1219308922]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -330,14 +330,14 @@ offset_left = 10.0
 offset_bottom = -10.0
 grow_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="AutosaveIcon"]
+[node name="TextureRect" type="TextureRect" parent="AutosaveIcon" unique_id=916993767]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 texture = ExtResource("5_8ecp3")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="AutosaveIcon"]
+[node name="Label" type="Label" parent="AutosaveIcon" unique_id=1419014789]
 layout_mode = 2
 text = "Saving"
 

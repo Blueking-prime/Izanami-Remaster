@@ -53,7 +53,6 @@ gear_group = ExtResource("5_caqig")
 
 [node name="Player" parent="." unique_id=1340209342 instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
-cost = 100
 classname = &"Knight"
 character_name = "P1"
 lvl = 10
@@ -61,7 +60,6 @@ lvl = 10
 [node name="Player2" parent="." unique_id=531017146 instance=ExtResource("2_eydhy")]
 y_sort_enabled = true
 position = Vector2(22, 0)
-cost = 100
 classname = &"Knight"
 battle_sprite_texture = SubResource("AnimatedTexture_cppqo")
 dungeon_sprite_idle_texture = SubResource("AnimatedTexture_cppqo")

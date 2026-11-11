@@ -6,4 +6,3 @@
 script = ExtResource("1_00j85")
 base_folder = "res://Models/Items"
 includes = Array[String](["*.tres"])
-paths = Array[String](["res://Models/Items/leaf.tres", "res://Models/Items/razor.tres"])

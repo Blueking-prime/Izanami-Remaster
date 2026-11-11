@@ -35,7 +35,6 @@ func _spawn_player_card(player: Player):
 func update_card(data: PlayerDataCard, player: Player):
 	player.assign_ui_element_to_character(data)
 
-
 func _clear_data_cards(children: Dictionary = {}):
 	if children:
 		for i in children.values():
