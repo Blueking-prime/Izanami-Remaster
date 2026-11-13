@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7n03nsf3sf1j" path="res://Models/Characters/NPCs/npc.gd" id="1_45exu"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="1_yxwxv"]
+[ext_resource type="JSON" path="res://Assets/Cutscenes/test_cutscene.json" id="2_bq6y0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_45exu"]
 radius = 25.0
@@ -11,7 +12,9 @@ scale = Vector2(0.926594, 0.844795)
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("1_45exu")
-cutscene = "res://Assets/Cutscenes/test_cutscene.json"
+cutscenes = Dictionary[int, Resource]({
+0: ExtResource("2_bq6y0")
+})
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=226285900]
 position = Vector2(-7.62939e-06, -1.58548e-05)

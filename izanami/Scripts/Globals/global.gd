@@ -199,7 +199,7 @@ func _on_textbox_ffwd_selected(toggled_on: bool):
 	else :
 		textbox_ffwd_flag = false
 		textbox_auto_flag = false
-		Checks.state = scroll_state
+		Checks.scroll = scroll_state
 		pause_timer.emit()
 
 func _on_textbox_log_selected(toggled_on: bool):

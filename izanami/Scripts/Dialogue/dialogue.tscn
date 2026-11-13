@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsgkr5mkwrndu"]
+[gd_scene format=3 uid="uid://dsgkr5mkwrndu"]
 
 [ext_resource type="Script" uid="uid://w05mxxxmt4p8" path="res://Scripts/Dialogue/dialogue.gd" id="1_6knxj"]
 [ext_resource type="Script" uid="uid://dovvgbt4pnp3g" path="res://Scripts/Dialogue/dialogue_file_reader.gd" id="2_2lf6u"]
 [ext_resource type="Resource" uid="uid://chf160oykp0s4" path="res://Assets/Cutscenes/cutscenes.tres" id="3_yllqs"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="4_epjoo"]
 
-[node name="Dialogue" type="Node" node_paths=PackedStringArray("auto_delay_timer", "file_reader", "canvas_layer", "test_players")]
+[node name="Dialogue" type="Node" unique_id=1402307256 node_paths=PackedStringArray("auto_delay_timer", "file_reader", "canvas_layer", "test_players")]
 script = ExtResource("1_6knxj")
 auto_delay_timer = NodePath("AutoTimer")
 file_reader = NodePath("FileReader")
@@ -13,16 +13,16 @@ canvas_layer = NodePath("CanvasLayer")
 test_cutscene = "res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-ashura-o-conv.json"
 test_players = NodePath("Players")
 
-[node name="AutoTimer" type="Timer" parent="."]
+[node name="AutoTimer" type="Timer" parent="." unique_id=1595799996]
 one_shot = true
 
-[node name="FileReader" type="Node" parent="."]
+[node name="FileReader" type="Node" parent="." unique_id=261052138]
 script = ExtResource("2_2lf6u")
 cutscenes = ExtResource("3_yllqs")
 
-[node name="Players" parent="." instance=ExtResource("4_epjoo")]
+[node name="Players" parent="." unique_id=512086109 instance=ExtResource("4_epjoo")]
 visible = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1236774285]
 
 [connection signal="timeout" from="AutoTimer" to="." method="_on_auto_timer_timeout"]

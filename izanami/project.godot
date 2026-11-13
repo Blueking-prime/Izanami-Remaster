@@ -308,6 +308,7 @@ menu_left={
 2d_physics/layer_7="Warppoints"
 2d_physics/layer_8="NPCs"
 2d_physics/layer_9="Chunkborders"
+2d_physics/layer_11="CutsceneTriggers"
 
 [rendering]
 

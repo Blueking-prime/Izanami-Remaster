@@ -2,17 +2,22 @@
 
 [ext_resource type="Script" uid="uid://qa4rtevqub1v" path="res://Scripts/Checks/checks.gd" id="1_k2ijd"]
 [ext_resource type="Script" uid="uid://bojqxboyflqr4" path="res://Scripts/Checks/flags.gd" id="2_4l7yr"]
+[ext_resource type="Script" uid="uid://b6vgk8m58xuh2" path="res://Scripts/Checks/scene_state_handler.gd" id="3_52ikl"]
 [ext_resource type="Script" uid="uid://ctsdumwyq3c6h" path="res://Scripts/Checks/settings_flags.gd" id="3_kpwqp"]
 [ext_resource type="Script" uid="uid://civ4qek81q1r" path="res://Scripts/Checks/input_map.gd" id="4_plqpt"]
 
-[node name="Checks" type="Node" unique_id=1321962532 node_paths=PackedStringArray("flags", "settings_flags", "input_map")]
+[node name="Checks" type="Node" unique_id=1321962532 node_paths=PackedStringArray("flags", "scene_state_handler", "settings_flags", "input_map")]
 script = ExtResource("1_k2ijd")
 flags = NodePath("Flags")
+scene_state_handler = NodePath("StateHandler")
 settings_flags = NodePath("Settings")
 input_map = NodePath("InputMap")
 
 [node name="Flags" type="Node" parent="." unique_id=1687816541]
 script = ExtResource("2_4l7yr")
+
+[node name="StateHandler" type="Node" parent="." unique_id=1926316179]
+script = ExtResource("3_52ikl")
 
 [node name="Settings" type="Node" parent="." unique_id=1550756069]
 script = ExtResource("3_kpwqp")

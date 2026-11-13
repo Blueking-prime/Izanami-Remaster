@@ -47,6 +47,8 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_collision_layer_value(7):
 		Global.players.warp_players(area)
+	if area.get_collision_layer_value(11):
+		area.dialogue()
 
 
 func _on_body_shape_exited(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:

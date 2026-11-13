@@ -2,8 +2,10 @@ extends Node
 
 
 @export var flags: Flags
+@export var scene_state_handler: StateHandler
 @export var settings_flags: SettingsFlags
 @export var input_map: ChecksInputMap
+@export var state: StateHandler.STATE = StateHandler.STATE.BEGIN
 
 @export var custom_seed: int = 0
 
@@ -18,7 +20,18 @@ func check_flags(_flags: Array) -> bool:
 func set_flags(_flags: Dictionary):
 	for i in _flags:
 		flags.set(i, _flags[i])
+	scene_state_handler.set_scene_state()
 	Global.update_quests()
+
+func check_cutscene_played(cutscene: JSON) -> bool:
+	if cutscene in flags.played_cutscenes:
+		return true
+	else :
+		return false
+
+func set_cutscene_played(cutscene: Variant):
+	if cutscene not in flags.played_cutscenes:
+		flags.played_cutscenes.append(cutscene)
 
 func reset_battle_flags():
 	for i in flags.SKILL_FLAGS:

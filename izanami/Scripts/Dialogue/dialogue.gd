@@ -89,7 +89,7 @@ func parse_branch(branch: Dictionary):
 		auto_delay_timer.stop()
 
 
-func show_cutscene(cutscene_name: String):
+func show_cutscene(cutscene_name: Variant):
 	var scroll_state: bool = Checks.retreive_setting('scroll')
 	Global.pause_timer.connect(_on_pause_timeout)
 
@@ -122,6 +122,8 @@ func show_cutscene(cutscene_name: String):
 	Global.set_ui_state(true)
 	if is_instance_valid(Global.players):
 		Global.players.unfreeze()
+
+	Checks.set_cutscene_played(cutscene_name)
 
 
 func give_rewards(rewards: Array):

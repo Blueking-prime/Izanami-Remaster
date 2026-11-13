@@ -91,10 +91,9 @@ var cave_three_trigger: bool = false
 
 #region Party Member Flags
 var zhu_mei_in_party: bool = false
+var beatrix_in_party: bool = false
 #endregion
 
 #region Cutscene Flags
-var momiji_cutscene_played: bool = false
-var momiji_daimaou_cutscene_played: bool = false
-var zhu_mei_cutscene_played: bool = false
+var played_cutscenes: Array = []
 #endregion

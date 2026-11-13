@@ -13,9 +13,11 @@ class_name Location
 @export var tilemap: TileMapLayer
 @export var background: LocationBackground
 @export var entrance_area: Area2D
+@export var cutscene_trigger: CutsceneTrigger
 
 @export var test_players: Party
 @export var objectsort: Node
+@export var npcs: Node
 
 @export var camera: PlayerCam
 @export var map_camera: Map
@@ -53,6 +55,8 @@ func load_scene():
 	Global.exit_button = exit_button
 	if not Global.exit_button.pressed.is_connected(Global._on_shop_exit): Global.exit_button.pressed.connect(Global._on_shop_exit)
 
+	set_scene_state()
+
 	Audio.call_deferred('set_background_music')
 
 	overlay.load_ui_elements()
@@ -77,6 +81,30 @@ func add_players():
 
 func remove_players():
 	objectsort.remove_child(Global.players)
+
+func set_scene_state():
+	cutscene_trigger.set_cutscene()
+	match Checks.state:
+		StateHandler.STATE.BEGIN: _begin()
+		StateHandler.STATE.POST_WEST_TOWER: _post_west_tower()
+		StateHandler.STATE.POST_SOUTH_TOWER: _post_south_tower()
+		StateHandler.STATE.POST_EAST_TOWER: _post_east_tower()
+		StateHandler.STATE.POST_NORTH_TOWER: _post_north_tower()
+
+func _begin():
+	pass
+
+func _post_west_tower():
+	_begin()
+
+func _post_south_tower():
+	_post_west_tower()
+
+func _post_east_tower():
+	_post_south_tower()
+
+func _post_north_tower():
+	_post_east_tower()
 
 func size() -> Vector2:
 	if tilemap:

@@ -20,7 +20,7 @@ func _on_grid_updated():
 	var pagelist_node := $"Scroll/Pagelist"
 	for x in pagelist_node.get_children():
 		x.queue_free()
-	
+
 	var button_group := ButtonGroup.new()
 	var btns := []
 	btns.resize(page_count)
@@ -53,11 +53,11 @@ func _on_grid_updated():
 	if sort_type == TYPE_FLOAT or sort_type == TYPE_INT:
 		for i in page_count:
 			btns[i].text = str(property_values[i])
-			
+
 	elif sort_type == TYPE_COLOR:
 		for i in page_count:
 			btns[i].self_modulate = property_values[i] * 0.75 + Color(0.25, 0.25, 0.25, 1.0)
-	
+
 	elif sort_type == TYPE_STRING:
 		var strings := []
 		strings.resize(page_count)
@@ -65,16 +65,16 @@ func _on_grid_updated():
 			strings[i] = property_values[i].get_file()
 			if strings[i] == "":
 				strings[i] = str(i)
-			
+
 		_fill_buttons_with_prefixes(btns, strings, page_count)
-	
+
 	elif sort_type == TYPE_OBJECT:
 		var strings := []
 		strings.resize(page_count + 1)
 		for i in page_count:
 			if is_instance_valid(property_values[i]):
 				strings[i] = property_values[i].resource_path.get_file()
-		
+
 		_fill_buttons_with_prefixes(btns, strings, page_count)
 
 
@@ -92,7 +92,7 @@ func _fill_buttons_with_prefixes(btns : Array, strings : Array, page_count : int
 				btns[i].text = strings[i].left(j + 1)
 				btns[i - 1].text = strings[i - 1].left(max(j + 1, btns[i - 1].text.length()))
 				break
-	
+
 	for i in page_count - 1:
 		btns[i].text = btns[i].text + "-" + btns[i + 1].text
 

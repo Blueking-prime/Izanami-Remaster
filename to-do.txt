@@ -12,6 +12,9 @@ GOALS
 - [ ] Remove dev tools [test event, freecam, print statements, Visible debug]
 
 BUG FIXES
+Fix Map not working
+
+Add custom floor layout and boss trigger to dungeon bosses (or just trigger fight on attempted exit from final floor (in which case add marker to indicate final floor on select scene))
 - [ ] Figure out object sorting
 - [ ] Fix loading screen crashing
 - [x] improve navigation performance
