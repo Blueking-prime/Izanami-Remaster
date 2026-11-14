@@ -22,6 +22,7 @@
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/6 - yomotsu-2-conv/6-gilles-questions-conv.json" id="11_o0hg5"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-micah-questions-conv.json" id="12_rrkac"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/6 - yomotsu-2-conv/6-micah-questions-conv.json" id="13_byhc2"]
+[ext_resource type="PackedScene" uid="uid://c63vhdnmlq65a" path="res://Models/Scenes/cutscene_trigger.tscn" id="14_oik1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbrf6"]
 size = Vector2(300, 70)
@@ -87,6 +88,8 @@ cutscenes = Dictionary[int, Resource]({
 })
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="2" unique_id=1595836310]
+
+[node name="CutsceneTrigger" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=252652566 instance=ExtResource("14_oik1t")]
 
 [node name="Mag" type="Node" parent="." index="5" unique_id=1618846709 node_paths=PackedStringArray("quantity_input", "confirm_button")]
 script = ExtResource("7_88gcs")

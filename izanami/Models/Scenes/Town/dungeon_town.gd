@@ -47,7 +47,7 @@ func main():
 func set_dungeon_level():
 	if dungeon_floor < no_of_floors:
 		if dungeon_fixed[dungeon_floor]:
-			dungeon.load_data(dungeon_data[dungeon_floor])
+			dungeon.fixed_layout = true
 		else:
 			dungeon.chunk_length = dungeon_chunk_length[dungeon_floor]
 			dungeon.enemy_types = dungeon_enemies[dungeon_floor]

@@ -76,7 +76,10 @@ const MIN_BUFF: float = 0.3
 
 @export var DEF: float = 1:
 	set(value):
-		DEF = clampf(value, MIN_BUFF, MAX_BUFF)
+		if not is_inf(value):
+			DEF = clampf(value, MIN_BUFF, MAX_BUFF)
+		else :
+			DEF = value
 
 @export var lvl: int = 1
 @export var ally: int

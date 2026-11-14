@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bhd28mkqo13qy"]
+
+[ext_resource type="Script" uid="uid://c2kul0qcpncfw" path="res://Models/Scenes/Town/barrier.gd" id="1_8wx3q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rbct6"]
+
+[node name="Barrier" type="StaticBody2D" unique_id=1564323056 node_paths=PackedStringArray("collision")]
+collision_layer = 2048
+collision_mask = 8
+script = ExtResource("1_8wx3q")
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=243484287]
+shape = SubResource("CircleShape2D_rbct6")

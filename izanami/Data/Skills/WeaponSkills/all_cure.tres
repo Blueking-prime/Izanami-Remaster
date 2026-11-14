@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwfymgx22iu7g" path="res://Models/Statuses/Buffs/bleed.gd" id="1_7l2ah"]
 [ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="2_je0lo"]
-[ext_resource type="Script" uid="uid://ck4wn0aed2naw" path="res://Models/Statuses/Effects/en_exhaust.gd" id="2_y53s7"]
+[ext_resource type="Script" uid="uid://ck4wn0aed2naw" path="res://Models/Statuses/Effects/ex_exhaust.gd" id="2_y53s7"]
 [ext_resource type="Script" uid="uid://12tt5alqdiul" path="res://Models/Statuses/Effects/seal.gd" id="3_032hg"]
 [ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="4_28ymo"]
 [ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="5_nvv7v"]

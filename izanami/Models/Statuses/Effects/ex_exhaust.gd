@@ -4,6 +4,7 @@ func _init() -> void:
 	desc = 'ExExhaust'
 
 func trigger(victim: Base_Character):
-	victim.sp -= victim.max_sp / 4
+	victim.statuses.exhausted = true
+	victim.DEF *= 0.5
 
 	super.trigger(victim)

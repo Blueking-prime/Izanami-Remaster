@@ -90,8 +90,12 @@ var cave_two_trigger: bool = false
 var cave_three_trigger: bool = false
 
 #region Party Member Flags
+var is_party_full: bool:
+	get(): return Global.players.is_party_full()
+
 var zhu_mei_in_party: bool = false
 var beatrix_in_party: bool = false
+var momiji_in_party: bool = false
 #endregion
 
 #region Cutscene Flags

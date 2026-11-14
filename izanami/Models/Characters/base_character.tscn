@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://Configs/all_items.tres" id="7_eqn43"]
 [ext_resource type="Script" uid="uid://cd4agmtlp3l0x" path="res://Models/Characters/Scripts/character_statuses.gd" id="8_hvm8g"]
 [ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="9_tto21"]
-[ext_resource type="Script" uid="uid://ck4wn0aed2naw" path="res://Models/Statuses/Effects/en_exhaust.gd" id="10_ku8jv"]
+[ext_resource type="Script" uid="uid://ck4wn0aed2naw" path="res://Models/Statuses/Effects/ex_exhaust.gd" id="10_ku8jv"]
 [ext_resource type="Script" uid="uid://dem0jl3gowqni" path="res://Models/Statuses/Effects/restore.gd" id="11_kun65"]
 [ext_resource type="Script" uid="uid://c47hansax6v55" path="res://Models/Statuses/Effects/low_health.gd" id="13_1fnnn"]
 [ext_resource type="Script" uid="uid://7rbt3o8pwygn" path="res://Models/Characters/Scripts/character_status_icon_handler.gd" id="14_2mtdu"]
@@ -126,7 +126,7 @@ item_group = ExtResource("7_eqn43")
 script = ExtResource("8_hvm8g")
 icon_handler = NodePath("StatusIconHandler")
 test_effect = ExtResource("9_tto21")
-en_exhaust = ExtResource("10_ku8jv")
+ex_exhaust = ExtResource("10_ku8jv")
 restore = ExtResource("11_kun65")
 low_health = ExtResource("13_1fnnn")
 

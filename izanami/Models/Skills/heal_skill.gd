@@ -42,6 +42,9 @@ func cleanse(target: Base_Character):
 		for j in target.statuses.status_effects:
 			if j.get_script() == i:
 				target.statuses.remove_status(j)
+				if i == target.statuses.ex_exhaust and 'sp' in target:
+					target.sp = 0
+
 
 func heal(target: Base_Character):
 	revive(target)

@@ -9,23 +9,19 @@
 [ext_resource type="TileSet" uid="uid://c50pucj5u271f" path="res://Models/Scenes/Dungeon/dungeon_og_tileset.tres" id="5_80d1d"]
 [ext_resource type="PackedScene" uid="uid://bs1rilljov5l4" path="res://Models/UI/Overlays/Status/status_overlay.tscn" id="5_g4neh"]
 [ext_resource type="Script" uid="uid://b6paju7yq14y1" path="res://Models/Scenes/Dungeon/floor.gd" id="6_iv1rf"]
-[ext_resource type="Script" uid="uid://crcemkfmplupw" path="res://Models/Scenes/Town/Demonitarium/cutscene_trigger.gd" id="8_emf0p"]
 [ext_resource type="PackedScene" uid="uid://dk5618o5l67d5" path="res://Models/Characters/Players/players.tscn" id="8_kxce6"]
 [ext_resource type="PackedScene" uid="uid://11siwvu70ak7" path="res://Models/UI/Overlays/BaseOverlay/quest_menu.tscn" id="13_m8nc8"]
 [ext_resource type="PackedScene" uid="uid://co458jxngt4el" path="res://Models/UI/Overlays/Settings/settings.tscn" id="14_kftft"]
 [ext_resource type="PackedScene" uid="uid://dlflxypiwhkyi" path="res://Models/UI/Overlays/save_menu.tscn" id="15_emf0p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ennl8"]
-radius = 69.0
-
 [sub_resource type="Environment" id="Environment_80d1d"]
 ambient_light_sky_contribution = 0.0
 fog_enabled = true
 
-[node name="Location" type="Node2D" unique_id=1921072622 node_paths=PackedStringArray("background", "cutscene_trigger", "test_players", "objectsort", "npcs", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
+[node name="Location" type="Node2D" unique_id=1921072622 node_paths=PackedStringArray("background", "cutscene_triggers", "test_players", "objectsort", "npcs", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
 script = ExtResource("1_knc6e")
 background = NodePath("Background")
-cutscene_trigger = NodePath("CutsceneTrigger")
+cutscene_triggers = NodePath("ObjectsSort/CutsceneTriggers")
 test_players = NodePath("ObjectsSort/Players")
 objectsort = NodePath("ObjectsSort")
 npcs = NodePath("ObjectsSort/NPCs")
@@ -66,14 +62,7 @@ gold = 100
 
 [node name="NPCs" type="Node2D" parent="ObjectsSort" unique_id=1395145928]
 
-[node name="CutsceneTrigger" type="Area2D" parent="." unique_id=192056547]
-position = Vector2(1748, 447)
-collision_layer = 1024
-collision_mask = 8
-script = ExtResource("8_emf0p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger" unique_id=1448455949]
-shape = SubResource("CircleShape2D_ennl8")
+[node name="CutsceneTriggers" type="Node2D" parent="ObjectsSort" unique_id=1033116959]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1275137642]
 environment = SubResource("Environment_80d1d")

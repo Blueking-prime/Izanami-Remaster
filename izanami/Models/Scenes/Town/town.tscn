@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://dobwosnxelorr" path="res://Models/Scenes/Town/demonitarium.gd" id="10_h5qir"]
 [ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="11_6gf2o"]
 [ext_resource type="PackedScene" uid="uid://5iv4fsku5g5x" path="res://Models/Scenes/Town/Demonitarium/demonitarium.tscn" id="14_k4n1q"]
-[ext_resource type="PackedScene" uid="uid://byocasfo71gy0" path="res://Models/Characters/NPCs/npc_with_path.tscn" id="15_ujed2"]
 [ext_resource type="PackedScene" uid="uid://d05wcwvuplat0" path="res://Models/UI/Shops/slave_market.tscn" id="17_fvh20"]
 [ext_resource type="Script" uid="uid://dytjd2yhrw5eb" path="res://Models/Scenes/Town/test.gd" id="18_y17gc"]
 
@@ -56,10 +55,10 @@ entrance = Vector2(960, 878)
 tilemap = NodePath("ObjectsSort/Tilemap")
 entrance_area = NodePath("Entrance")
 
-[node name="Players" parent="ObjectsSort" index="0"]
+[node name="Players" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="0" unique_id=1401413597]
 position = Vector2(965, 1202)
 
-[node name="Tilemap" type="TileMapLayer" parent="ObjectsSort" index="1" unique_id=23866188]
+[node name="Tilemap" type="TileMapLayer" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="2" unique_id=23866188]
 
 [node name="Entrance" type="Area2D" parent="." index="5" unique_id=1069221630]
 position = Vector2(960, 1133)
@@ -199,13 +198,7 @@ occluder = SubResource("OccluderPolygon2D_ujed2")
 [node name="Palace" type="Node2D" parent="." index="12" unique_id=1161247768]
 position = Vector2(960, 1202)
 
-[node name="Characters" type="Node" parent="." index="13" unique_id=1056779866]
-
-[node name="Kobaneko" type="Node2D" parent="Characters" index="0" unique_id=622345301]
-
-[node name="White" type="Node2D" parent="Characters" index="1" unique_id=1218833124]
-
-[node name="CustomTrigger" type="StaticBody2D" parent="." index="14" unique_id=1206824539]
+[node name="CustomTrigger" type="StaticBody2D" parent="." index="13" unique_id=1206824539]
 position = Vector2(960, 864)
 collision_layer = 32
 collision_mask = 0
@@ -214,10 +207,7 @@ script = ExtResource("18_y17gc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CustomTrigger" index="0" unique_id=104583567]
 shape = SubResource("CircleShape2D_vqjfq")
 
-[node name="NPC" parent="." index="15" unique_id=1407150314 instance=ExtResource("15_ujed2")]
-position = Vector2(615, 817)
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." index="16" unique_id=1625025689]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." index="14" unique_id=1625025689]
 visible = false
 position = Vector2(2753, 540)
 rotation = 0.7853982
@@ -230,11 +220,11 @@ shadow_item_cull_mask = 2
 height = 0.5
 max_distance = 1000.0
 
-[node name="SlaveMarket" parent="CanvasLayer/Overlays" index="5" unique_id=303322654 node_paths=PackedStringArray("back_button") instance=ExtResource("17_fvh20")]
+[node name="SlaveMarket" parent="CanvasLayer/Overlays" parent_id_path=PackedInt32Array(879764853) index="5" unique_id=303322654 node_paths=PackedStringArray("back_button") instance=ExtResource("17_fvh20")]
 visible = false
 back_button = NodePath("../../ExitButton")
 
-[node name="ExitButton" parent="CanvasLayer" index="2"]
+[node name="ExitButton" parent="CanvasLayer" parent_id_path=PackedInt32Array(688247954) index="2" unique_id=1936125841]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 8.0

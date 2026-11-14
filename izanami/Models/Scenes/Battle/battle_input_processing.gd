@@ -156,6 +156,11 @@ func show_choice():
 	targetting = false
 	choice.show()
 	skill_panel.hide()
+	if current_player.statuses.exhausted:
+		skills_button.hide()
+	else :
+		skills_button.show()
+
 	if current_player in Checks.battle_option:
 		choice.get_child(Checks.battle_option[current_player]).call_deferred('grab_focus')
 	else:

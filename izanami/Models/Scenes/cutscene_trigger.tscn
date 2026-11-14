@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c63vhdnmlq65a"]
+
+[ext_resource type="Script" uid="uid://crcemkfmplupw" path="res://Models/Scenes/Town/Demonitarium/cutscene_trigger.gd" id="1_sau0h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ennl8"]
+radius = 69.0
+
+[node name="CutsceneTrigger" type="Area2D" unique_id=252652566]
+collision_layer = 1024
+collision_mask = 8
+script = ExtResource("1_sau0h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=21950090]
+shape = SubResource("CircleShape2D_ennl8")

@@ -9,7 +9,7 @@ class_name CharacterStatuses
 
 @export var test_effect: Script
 
-@export var en_exhaust: Script
+@export var ex_exhaust: Script
 @export var restore: Script
 @export var low_health: Script
 
@@ -80,7 +80,7 @@ func auto_ailment():
 	if get_parent() is Player:
 		add_status(restore.new())
 		if get_parent().sp < 0:
-			add_status(en_exhaust.new())
+			add_status(ex_exhaust.new())
 	if get_parent().hp < get_parent().max_hp * 0.3:
 		add_status(low_health.new())
 

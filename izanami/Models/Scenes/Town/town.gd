@@ -12,25 +12,15 @@ class_name Town
 @export var test: Node
 
 var locations = ["Palace", "Church", "Smithy", "Apothecary", "Demonitorium", "Dungeon", "SlaveMarket"]
-var actions = ['Talk', "Go Somewhere", 'Status']
-var characters = ["Kobaneko", "White"]
 var disable_entrance: bool = false
 
 func load_scene():
 	super.load_scene()
 
-func connect_signals():
-	super.connect_signals()
-	if not Global.players.leader.detector.hit_building.is_connected(_check_building):
-		Global.players.leader.detector.hit_building.connect(_check_building)
 
-func disconnect_signals():
-	super.disconnect_signals()
-	if Global.players.leader.detector.hit_building.is_connected(_check_building):
-		Global.players.leader.detector.hit_building.disconnect(_check_building)
 
 func _check_building(node: Variant):
-	overlay.disable()
+	super._check_building(node)
 	match node:
 		church: await church.main()
 		dungeon: await dungeon.main()

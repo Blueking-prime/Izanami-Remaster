@@ -3,8 +3,9 @@ extends Node
 class_name Battle
 
 ## CUSTOM PARAMETERS
-@export var no_of_enemies: int
+@export var no_of_enemies: int = 1
 @export var enemy_level: int = 1
+@export var rand_spawn: bool = true
 @export var forced: bool = false
 @export var enemy_group: ResourceGroup
 @export var enemy_set: Array

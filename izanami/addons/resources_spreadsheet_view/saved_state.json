@@ -1,5 +1,21 @@
 {
   "column_properties": {
+    "res://Data/Skills/ClassSkills/Doctor/": {
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://Data/Skills/ClassSkills/Ronin/": {
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
     "res://Models/Skills/": {
       "resource_local_to_scene": {
         "visibility": 0.0
@@ -91,7 +107,9 @@
     "res://Models/Skills/ClassSkills/Shinobi/",
     "res://Models/Skills/ClassSkills/Maken/",
     "res://Models/Skills/WeaponSkills/",
-    "res://Models/Skills/EnemySkills/"
+    "res://Models/Skills/EnemySkills/",
+    "res://Data/Skills/ClassSkills/Doctor/",
+    "res://Data/Skills/ClassSkills/Ronin/"
   ],
   "table_functions": {
     "filter": [

@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://bdk3swxcvc13"]
 
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_d4xe5"]
+[ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="2_bdfll"]
 
 [node name="YomotsuHirasaka" unique_id=1401756524 instance=ExtResource("1_d4xe5")]
+entrance = Vector2(0, 0)
+
+[node name="Kobaneko" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="0" unique_id=845832440 instance=ExtResource("2_bdfll")]
+position = Vector2(663.99994, 560)
+
+[node name="Ashura-O" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="1" unique_id=786942742 instance=ExtResource("2_bdfll")]
+position = Vector2(1291.9999, 563)
 
 [editable path="CanvasLayer/Overlays/Save"]
 [editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]

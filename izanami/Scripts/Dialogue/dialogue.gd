@@ -123,8 +123,16 @@ func show_cutscene(cutscene_name: Variant):
 	if is_instance_valid(Global.players):
 		Global.players.unfreeze()
 
-	Checks.set_cutscene_played(cutscene_name)
+	if cutscene.info.has('add_to_party'):
+		add_party_member(cutscene.info.add_to_party)
+	else:
+		Checks.set_cutscene_played(cutscene_name)
 
+
+func add_party_member(party_member: StringName):
+	if Checks.check_flags([party_member + '_in_party']):
+		var new_member: Player = Global.get_npc_player(party_member)
+		Global.players.add_to_party(new_member)
 
 func give_rewards(rewards: Array):
 	for i in rewards:

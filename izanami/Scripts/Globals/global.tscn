@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bcxmyev8jvlgh"]
+[gd_scene format=3 uid="uid://bcxmyev8jvlgh"]
 
 [ext_resource type="Script" uid="uid://ty13w3ttw1d5" path="res://Scripts/Globals/global.gd" id="1_u8o3i"]
 [ext_resource type="PackedScene" uid="uid://s3bvhf5ano50" path="res://Models/UI/Overlays/Text/text_box.tscn" id="2_imufx"]
@@ -24,7 +24,7 @@
 [ext_resource type="Script" uid="uid://1j3u4tj6q6pv" path="res://Scripts/Globals/global_quests.gd" id="18_d5lpp"]
 [ext_resource type="Resource" uid="uid://b0hn3qgt63bvu" path="res://Configs/all_players.tres" id="18_yfm8f"]
 
-[node name="Global" type="Node" node_paths=PackedStringArray("TEXT", "UI", "ALGORITHMS", "SCENE_LOADER", "QUESTS")]
+[node name="Global" type="Node" unique_id=1026132341 node_paths=PackedStringArray("TEXT", "UI", "ALGORITHMS", "SCENE_LOADER", "QUESTS")]
 script = ExtResource("1_u8o3i")
 TEXT = NodePath("TextProcessing")
 UI = NodePath("UIElementDisplay")
@@ -48,20 +48,20 @@ all_gears_group = ExtResource("16_4ds0u")
 all_skills_group = ExtResource("17_jytmj")
 all_players_group = ExtResource("18_yfm8f")
 
-[node name="TextProcessing" type="Node" parent="."]
+[node name="TextProcessing" type="Node" parent="." unique_id=1070995718]
 script = ExtResource("13_3nkps")
 
-[node name="UIElementDisplay" type="Node" parent="."]
+[node name="UIElementDisplay" type="Node" parent="." unique_id=1338952247]
 script = ExtResource("14_qfkbc")
 
-[node name="AlgorithmsLogic" type="Node" parent="."]
+[node name="AlgorithmsLogic" type="Node" parent="." unique_id=1219502606]
 script = ExtResource("15_h8mch")
 
-[node name="SceneLoader" type="Node" parent="."]
+[node name="SceneLoader" type="Node" parent="." unique_id=1689958852]
 script = ExtResource("16_stni4")
 
-[node name="Signals" type="Node" parent="."]
+[node name="Signals" type="Node" parent="." unique_id=167053818]
 script = ExtResource("17_q1ilv")
 
-[node name="Quests" type="Node" parent="."]
+[node name="Quests" type="Node" parent="." unique_id=217836719]
 script = ExtResource("18_d5lpp")

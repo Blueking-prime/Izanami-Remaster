@@ -7,6 +7,7 @@ class_name BattleEnemies
 
 @onready var no_of_enemies: int = get_parent().no_of_enemies
 @onready var enemy_level: int = get_parent().enemy_level
+@onready var rand_spawn: bool = get_parent().rand_spawn
 @onready var enemy_group: ResourceGroup  = get_parent().enemy_group
 @onready var enemy_set: Array = get_parent().enemy_set
 
@@ -32,17 +33,25 @@ func _initialize_enemies(from_resource_group: bool):
 	if from_resource_group:
 		enemy_set = enemy_group.load_all()
 
-	var _type
-	for i in no_of_enemies:
-		_type = randi_range(0, enemy_set.size() - 1)
-		var enemy: Enemy = enemy_set[_type].instantiate()
-		enemy.lvl = enemy_level
+	if rand_spawn:
+		enemy_set = _random_spawn()
+
+	for i in enemy_set:
+		var enemy: Enemy = i.instantiate()
+		if enemy_level:
+			enemy.lvl = enemy_level
 
 		add_child(enemy)
 
 	enemies = get_children()
 	#for i in enemies.size():
 		#enemies[i].name = enemies[i].get_class() + ' ' + str(i)
+
+func _random_spawn() -> Array:
+	var type_array: Array = []
+	for i in no_of_enemies:
+		type_array.append(enemy_set[randi_range(0, enemy_set.size() - 1)])
+	return type_array
 
 func place_charscters():
 	for i in enemies:

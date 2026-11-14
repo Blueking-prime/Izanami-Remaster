@@ -27,6 +27,7 @@ var dungeon_sample = [
 @export var max_enemy_spawns: int = 10
 @export var enemy_level: int = 1
 @export var dungeon_name: String = 'test'
+@export var fixed_layout: bool = false
 
 ## DROPS
 @export var item_drop_group: ResourceGroup
@@ -64,16 +65,16 @@ func load_scene():
 	_load_items()
 
 	#print('Pre map create ', (start_time - Time.get_ticks_msec()) * -1)
+	if not fixed_layout:
+		map.draw_new_map()
+		#map.display_dungeon()
+		#print('Pre map render ', (start_time - Time.get_ticks_msec()) * -1)
 
-	map.draw_new_map()
-	#map.display_dungeon()
-	#print('Pre map render ', (start_time - Time.get_ticks_msec()) * -1)
+		background.draw_background()
+		wall_chunks.load_chunks(true)
 
-	background.draw_background()
-	wall_chunks.load_chunks(true)
-
-	#setup_navigation_region()
-	enemy_display.update_display()
+		#setup_navigation_region()
+		enemy_display.update_display()
 	overlay.save_enabled = false
 
 	await LoadingScreen.hide()

@@ -13,7 +13,7 @@ class_name Location
 @export var tilemap: TileMapLayer
 @export var background: LocationBackground
 @export var entrance_area: Area2D
-@export var cutscene_trigger: CutsceneTrigger
+@export var cutscene_triggers: Node2D
 
 @export var test_players: Party
 @export var objectsort: Node
@@ -63,13 +63,19 @@ func load_scene():
 
 	connect_signals()
 
+func _check_building(node: Variant):
+	overlay.disable()
+
 func connect_signals():
 	Global.players.leader.detector.left_map.connect(_on_left_map)
+	if not Global.players.leader.detector.hit_building.is_connected(_check_building):
+		Global.players.leader.detector.hit_building.connect(_check_building)
 
 
 func disconnect_signals():
 	Global.players.leader.detector.left_map.disconnect(_on_left_map)
-
+	if Global.players.leader.detector.hit_building.is_connected(_check_building):
+		Global.players.leader.detector.hit_building.disconnect(_check_building)
 
 func _remove_test_players():
 	if is_instance_valid(test_players):
@@ -83,28 +89,29 @@ func remove_players():
 	objectsort.remove_child(Global.players)
 
 func set_scene_state():
-	cutscene_trigger.set_cutscene()
 	match Checks.state:
 		StateHandler.STATE.BEGIN: _begin()
+		StateHandler.STATE.POST_KINTA: _post_kinta()
 		StateHandler.STATE.POST_WEST_TOWER: _post_west_tower()
 		StateHandler.STATE.POST_SOUTH_TOWER: _post_south_tower()
 		StateHandler.STATE.POST_EAST_TOWER: _post_east_tower()
+		StateHandler.STATE.POST_EAST_TOWER: _post_lacrima()
 		StateHandler.STATE.POST_NORTH_TOWER: _post_north_tower()
 
 func _begin():
 	pass
-
-func _post_west_tower():
+func _post_kinta():
 	_begin()
-
+func _post_west_tower():
+	_post_kinta()
 func _post_south_tower():
 	_post_west_tower()
-
 func _post_east_tower():
 	_post_south_tower()
-
-func _post_north_tower():
+func _post_lacrima():
 	_post_east_tower()
+func _post_north_tower():
+	_post_lacrima()
 
 func size() -> Vector2:
 	if tilemap:

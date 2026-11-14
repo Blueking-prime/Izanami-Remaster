@@ -74,10 +74,16 @@ func get_resource(resource_name: String, type: String) -> Resource:
 			index = get_parent().all_items.find_custom(func (x): return x.name == resource_name)
 			item = get_parent().all_items.get(index)
 		'Skill':
-			index = get_parent().all_gears.find_custom(func (x): return x.name == resource_name)
-			item = get_parent().all_gears.get(index)
+			index = get_parent().all_skills.find_custom(func (x): return x.name == resource_name)
+			item = get_parent().all_skills.get(index)
 
 	return item
+
+func get_npc_player(npc_name: String) -> Player:
+	var index = get_parent().playable_npcs.find_custom(func (x): return x.name == npc_name)
+	var npc = get_parent().playable_npcs.get(index)
+
+	return npc.instantiate()
 
 func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, _warp: bool = true):
 	var push_velocity_multiplier: int = 10

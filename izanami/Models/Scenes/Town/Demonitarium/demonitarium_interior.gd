@@ -12,16 +12,8 @@ class_name Demonitarium
 @export var giles_npc: NPC
 @export var micah_npc: NPC
 
-func connect_signals():
-	if not Global.players.leader.detector.hit_building.is_connected(_check_building):
-		Global.players.leader.detector.hit_building.connect(_check_building)
-
-func disconnect_signals():
-	if Global.players.leader.detector.hit_building.is_connected(_check_building):
-		Global.players.leader.detector.hit_building.disconnect(_check_building)
-
 func _check_building(node: Variant):
-	overlay.disable()
+	super._check_building(node)
 	match node:
 		fight_counter: await fight_counter.main()
 		skill_counter: await skill_counter.main()
@@ -41,10 +33,15 @@ func _post_west_tower():
 	super._post_west_tower()
 	if Checks.check_flags(['beatrix_saved']):
 		beatrix_npc.show()
+	if Checks.check_flags(['beatrix_in_party']):
+		beatrix_npc.hide()
 
 func _post_east_tower():
 	super._post_east_tower()
 	momiji_npc.show()
+	if Checks.check_flags(['momiji_in_party']):
+		momiji_npc.hide()
+
 	regent_area.hide()
 
 

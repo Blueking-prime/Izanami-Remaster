@@ -1,22 +1,48 @@
 [gd_scene format=3 uid="uid://dqjlqrmlah8y6"]
 
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_jkcqv"]
+[ext_resource type="PackedScene" uid="uid://c63vhdnmlq65a" path="res://Models/Scenes/cutscene_trigger.tscn" id="2_7jpou"]
+[ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/Town/barrier.tscn" id="2_qj3n8"]
+[ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/goblin.tscn" id="3_qj3n8"]
+[ext_resource type="PackedScene" uid="uid://bqial3twfexr4" path="res://Models/Characters/Enemies/Types/imp.tscn" id="4_jtihi"]
 
 [node name="Kinta" unique_id=1401756524 instance=ExtResource("1_jkcqv")]
+
+[node name="Barrier" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="0" unique_id=1564323056 instance=ExtResource("2_qj3n8")]
+position = Vector2(273.00003, 1407.0001)
+scale = Vector2(30, 30)
+
+[node name="BossCutscene" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=252652566 instance=ExtResource("2_7jpou")]
+position = Vector2(968, 176)
+battles = Dictionary[int, Array]({
+1: [ExtResource("3_qj3n8"), ExtResource("4_jtihi")]
+})
 
 [node name="SlaveMarket" parent="." index="8" unique_id=213523245]
 visible = false
 
+[node name="CollisionShape2D" parent="SlaveMarket" index="0" unique_id=1837987646]
+disabled = true
+
 [node name="Apothecary" parent="." index="9" unique_id=411896941]
 visible = false
+
+[node name="CollisionShape2D" parent="Apothecary" index="0" unique_id=353428508]
+disabled = true
 
 [node name="Dungeon" parent="." index="10" unique_id=185818203]
 visible = false
 
+[node name="CollisionShape2D" parent="Dungeon" index="0" unique_id=922227558]
+disabled = true
+
 [node name="Demonitarium" parent="." index="11" unique_id=2125678861]
 visible = false
 
-[node name="Test" parent="." index="14" unique_id=1206824539]
+[node name="CollisionShape2D" parent="Demonitarium" index="0" unique_id=127981267]
+disabled = true
+
+[node name="CustomTrigger" parent="." index="13" unique_id=1206824539]
 visible = false
 
 [editable path="CanvasLayer/Overlays/Save"]
