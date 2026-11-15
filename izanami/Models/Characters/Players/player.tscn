@@ -58,7 +58,7 @@ polygon = PackedVector2Array(-4, 0, -4, 12, 4, 12, 4, 0)
 
 [node name="Player" unique_id=1047805007 node_paths=PackedStringArray("gear", "detector", "listener", "light", "skill_menu", "item_menu") instance=ExtResource("1_ll1t0")]
 collision_layer = 8
-collision_mask = 51
+collision_mask = 2099
 script = ExtResource("2_lj72d")
 gear = NodePath("Gear")
 detector = NodePath("Detector")
@@ -101,7 +101,7 @@ visible = false
 [node name="Detector" type="Area2D" parent="." index="6" unique_id=1285159370]
 position = Vector2(0, -7)
 collision_layer = 0
-collision_mask = 2038
+collision_mask = 4086
 script = ExtResource("6_g43wq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0" unique_id=492780656]

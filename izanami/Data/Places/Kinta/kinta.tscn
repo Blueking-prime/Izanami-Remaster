@@ -8,14 +8,17 @@
 
 [node name="Kinta" unique_id=1401756524 instance=ExtResource("1_jkcqv")]
 
-[node name="Barrier" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="0" unique_id=1564323056 instance=ExtResource("2_qj3n8")]
-position = Vector2(273.00003, 1407.0001)
-scale = Vector2(30, 30)
-
 [node name="BossCutscene" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=252652566 instance=ExtResource("2_7jpou")]
 position = Vector2(968, 176)
 battles = Dictionary[int, Array]({
 1: [ExtResource("3_qj3n8"), ExtResource("4_jtihi")]
+})
+
+[node name="SmithyBarrier" parent="ObjectsSort/Barriers" parent_id_path=PackedInt32Array(660711449) index="0" unique_id=1564323056 instance=ExtResource("2_qj3n8")]
+position = Vector2(273.00003, 1407.0001)
+scale = Vector2(30, 30)
+states = Dictionary[int, bool]({
+1: true
 })
 
 [node name="SlaveMarket" parent="." index="8" unique_id=213523245]

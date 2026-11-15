@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 class_name NPC
 
-@export var cutscenes: Dictionary [StateHandler.STATE, Resource] = {}
+@export var cutscenes: Dictionary [StateHandler.STATE, Resource]
 
 @export var path_follow: PathFollow2D
 @export var speed: float = 100
+
 var frozen: bool = false
 var current_cutscene: JSON
 
@@ -14,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	if not frozen: path_follow.progress += speed * delta
 	if frozen and not Global.players.frozen: frozen = false
 
-func set_cutscene():
+func set_state():
 	#var state: int = Checks.state
 	#while not cutscenes.has(state) and state > 0:
 		#state -= 1
@@ -27,9 +28,10 @@ func set_cutscene():
 
 func dialogue():
 	frozen = true
-	set_cutscene()
-	await Dialogue.show_cutscene(current_cutscene)
-	current_cutscene = cutscenes[StateHandler.STATE.DEFAULT]
+	set_state()
+	if visible:
+		await Dialogue.show_cutscene(current_cutscene)
+		current_cutscene = cutscenes[StateHandler.STATE.DEFAULT]
 
 func trigger_interact_flags():
 	pass

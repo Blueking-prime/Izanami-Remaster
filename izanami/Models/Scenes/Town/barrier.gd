@@ -9,7 +9,8 @@ class_name Barrier
 
 func set_state():
 	if states.has(Checks.state):
-		collision.set_deferred('disabled', states[Checks.state])
+		print('set_disabled')
+		collision.set_deferred('disabled', not states[Checks.state])
 
 		if extra_checks:
 			collision.set_deferred('disabled', Checks.check_flags(extra_checks))

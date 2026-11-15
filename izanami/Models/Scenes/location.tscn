@@ -64,6 +64,8 @@ gold = 100
 
 [node name="CutsceneTriggers" type="Node2D" parent="ObjectsSort" unique_id=1033116959]
 
+[node name="Barriers" type="Node2D" parent="ObjectsSort" unique_id=660711449]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1275137642]
 environment = SubResource("Environment_80d1d")
 

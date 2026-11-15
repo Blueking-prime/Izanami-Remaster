@@ -5,12 +5,9 @@ class_name Demonitarium
 @export var fight_counter: DemonitariumCounter
 @export var skill_counter: DemonitariumCounter
 
-@export var regent_area: StaticBody2D
 @export var beatrix_npc: NPC
 @export var momiji_npc: NPC
-@export var regent_npc: NPC
-@export var giles_npc: NPC
-@export var micah_npc: NPC
+
 
 func _check_building(node: Variant):
 	super._check_building(node)
@@ -41,8 +38,6 @@ func _post_east_tower():
 	momiji_npc.show()
 	if Checks.check_flags(['momiji_in_party']):
 		momiji_npc.hide()
-
-	regent_area.hide()
 
 
 func save() -> DemonitariumSaveData:
