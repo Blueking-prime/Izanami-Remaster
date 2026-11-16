@@ -18,13 +18,13 @@
 ambient_light_sky_contribution = 0.0
 fog_enabled = true
 
-[node name="Location" type="Node2D" unique_id=1921072622 node_paths=PackedStringArray("background", "cutscene_triggers", "test_players", "objectsort", "npcs", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
+[node name="Location" type="Node2D" unique_id=1921072622 node_paths=PackedStringArray("background", "test_players", "objectsort", "npcs", "cutscene_triggers", "camera", "map_camera", "freecam", "overlay", "canvas_layer", "exit_button")]
 script = ExtResource("1_knc6e")
 background = NodePath("Background")
-cutscene_triggers = NodePath("ObjectsSort/CutsceneTriggers")
 test_players = NodePath("ObjectsSort/Players")
 objectsort = NodePath("ObjectsSort")
 npcs = NodePath("ObjectsSort/NPCs")
+cutscene_triggers = NodePath("ObjectsSort/CutsceneTriggers")
 camera = NodePath("PlayerCam")
 map_camera = NodePath("MapCam")
 freecam = NodePath("FreeCam")

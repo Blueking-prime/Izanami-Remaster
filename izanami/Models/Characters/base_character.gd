@@ -134,7 +134,6 @@ func set_dungeon_sprite():
 		STATES.IDLE:
 			if is_instance_valid(dungeon_sprite_idle_texture):
 				dungeon_sprite.texture = dungeon_sprite_idle_texture
-			print(dungeon_sprite.texture)
 			dungeon_sprite.show()
 		STATES.WALKING:
 			if is_instance_valid(dungeon_sprite_walk_texture):

@@ -5,11 +5,10 @@ class_name Barrier
 @export var collision: CollisionShape2D
 
 @export var states: Dictionary [StateHandler.STATE, bool] = {}
-@export var extra_checks: Array[StringName]
+@export var extra_checks: Array[StringName] = ['false_flag']
 
 func set_state():
 	if states.has(Checks.state):
-		print('set_disabled')
 		collision.set_deferred('disabled', not states[Checks.state])
 
 		if extra_checks:

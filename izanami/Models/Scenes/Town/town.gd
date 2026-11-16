@@ -11,13 +11,17 @@ class_name Town
 @export var palace: Node
 @export var test: Node
 
-var locations = ["Palace", "Church", "Smithy", "Apothecary", "Demonitorium", "Dungeon", "SlaveMarket"]
+var locations = ["Palace", "Church", "Smithy", "Apothecary", "Demonitorium", "Dungeon", "SlaveMarket", "CustomTrigger"]
 var disable_entrance: bool = false
 
 func load_scene():
 	super.load_scene()
+	_disable_hidden_buildings()
 
-
+func _disable_hidden_buildings():
+	for i in get_children():
+		if i is StaticBody2D and i.name in locations:
+			i.get_child(0).disabled = not i.visible
 
 func _check_building(node: Variant):
 	super._check_building(node)
@@ -34,6 +38,11 @@ func _check_building(node: Variant):
 #func _input(event: InputEvent) -> void:
 	#if event.is_action_pressed("ui_end"):
 		#func_church()
+
+func reset_from_battle():
+	super.reset_from_battle()
+	show()
+	LoadingScreen.hide()
 
 func handle_out_of_bounds():
 	disable_entrance = true
@@ -52,8 +61,6 @@ func save() -> TownSaveData:
 func load_data(data: TownSaveData):
 	apothecary.stock = data.apothecary_stock
 	smithy.stock = data.smithy_stock
-
-	('Town Data Loaded')
 
 
 func _on_entrance_body_entered(_body: Node2D) -> void:

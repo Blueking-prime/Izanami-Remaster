@@ -11,6 +11,8 @@ func show():
 	await animation_player.animation_finished
 
 func hide():
+	if not canvas_layer.visible: return
+
 	animation_player.play("fade_out")
 	await animation_player.animation_finished
 	canvas_layer.hide()

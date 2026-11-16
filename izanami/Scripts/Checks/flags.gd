@@ -61,6 +61,7 @@ var fu_liang_saved: bool = false:
 		else :
 			fu_liang_saved = value
 
+var agree_to_fight_bros: bool = false
 var demon_bros_fought: bool = false
 var kinta_npcs_spoken_to: bool = false
 

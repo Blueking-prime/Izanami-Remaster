@@ -1,17 +1,30 @@
 [gd_scene format=3 uid="uid://dqjlqrmlah8y6"]
 
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_jkcqv"]
-[ext_resource type="PackedScene" uid="uid://c63vhdnmlq65a" path="res://Models/Scenes/cutscene_trigger.tscn" id="2_7jpou"]
-[ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/Town/barrier.tscn" id="2_qj3n8"]
+[ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="2_8t1gc"]
+[ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/barrier.tscn" id="2_qj3n8"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-chief-pre-conv.json" id="3_8t1gc"]
+[ext_resource type="JSON" path="res://Assets/Cutscenes/test_cutscene.json" id="3_hyl6v"]
 [ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/goblin.tscn" id="3_qj3n8"]
 [ext_resource type="PackedScene" uid="uid://bqial3twfexr4" path="res://Models/Characters/Enemies/Types/imp.tscn" id="4_jtihi"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-chief-post-conv.json" id="5_soed5"]
 
 [node name="Kinta" unique_id=1401756524 instance=ExtResource("1_jkcqv")]
 
-[node name="BossCutscene" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=252652566 instance=ExtResource("2_7jpou")]
-position = Vector2(968, 176)
+[node name="Boss" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=845832440 instance=ExtResource("2_8t1gc")]
+position = Vector2(965, 188)
+cutscenes = Dictionary[int, Resource]({
+0: ExtResource("3_hyl6v"),
+1: ExtResource("3_8t1gc"),
+2: ExtResource("5_soed5")
+})
 battles = Dictionary[int, Array]({
-1: [ExtResource("3_qj3n8"), ExtResource("4_jtihi")]
+1: [ExtResource("4_jtihi"), ExtResource("3_qj3n8")]
+})
+battle_set_flags = Dictionary[int, Dictionary]({
+1: {
+&"demon_bros_fought": true
+}
 })
 
 [node name="SmithyBarrier" parent="ObjectsSort/Barriers" parent_id_path=PackedInt32Array(660711449) index="0" unique_id=1564323056 instance=ExtResource("2_qj3n8")]

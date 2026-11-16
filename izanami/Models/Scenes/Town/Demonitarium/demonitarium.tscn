@@ -22,8 +22,10 @@
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/6 - yomotsu-2-conv/6-gilles-questions-conv.json" id="11_o0hg5"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-micah-questions-conv.json" id="12_rrkac"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/6 - yomotsu-2-conv/6-micah-questions-conv.json" id="13_byhc2"]
-[ext_resource type="PackedScene" uid="uid://c63vhdnmlq65a" path="res://Models/Scenes/cutscene_trigger.tscn" id="14_oik1t"]
-[ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/Town/barrier.tscn" id="15_8wgci"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-intro-conv.json" id="14_o0hg5"]
+[ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/barrier.tscn" id="15_8wgci"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/6 - yomotsu-2-conv/6-entry-conv.json" id="15_rrkac"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/8 - yomotsu-3-conv/8-intro-conv.json" id="16_byhc2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbrf6"]
 size = Vector2(300, 70)
@@ -83,9 +85,18 @@ cutscenes = Dictionary[int, Resource]({
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="2" unique_id=1595836310]
 
-[node name="CutsceneTrigger" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=252652566 instance=ExtResource("14_oik1t")]
+[node name="EntranceTrigger" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=1638876573 instance=ExtResource("3_0lbk2")]
+position = Vector2(1748.0001, 447)
+scale = Vector2(2.194, 2)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("14_o0hg5"),
+5: ExtResource("15_rrkac"),
+7: ExtResource("16_byhc2")
+})
+sprite_texture = null
 
-[node name="Barrier" parent="ObjectsSort/Barriers" parent_id_path=PackedInt32Array(660711449) index="0" unique_id=1564323056 instance=ExtResource("15_8wgci")]
+[node name="RegentBarrier" parent="ObjectsSort/Barriers" parent_id_path=PackedInt32Array(660711449) index="0" unique_id=1564323056 instance=ExtResource("15_8wgci")]
 position = Vector2(2119, 183)
 scale = Vector2(5, 5)
 states = Dictionary[int, bool]({

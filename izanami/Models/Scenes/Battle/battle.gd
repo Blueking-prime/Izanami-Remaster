@@ -11,6 +11,7 @@ class_name Battle
 @export var enemy_set: Array
 @export var test_players: Party
 @export var enemies: BattleEnemies
+@export var flags: Dictionary
 
 ## CHILD NODES
 @export var setup: BattleSetup

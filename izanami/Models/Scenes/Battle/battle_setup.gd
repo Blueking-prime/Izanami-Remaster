@@ -37,6 +37,7 @@ func actor_setup():
 
 	get_tree().current_scene = get_parent()
 	Audio.call_deferred('set_background_music')
+	LoadingScreen.hide()
 
 
 func _player_party_setup():
@@ -61,6 +62,7 @@ func exit_battle(exit_type: StringName):
 
 		results_screen.set_banner(false)
 	else :
+		Checks.set_flags(get_parent().flags)
 		results_screen.set_banner(true)
 	#elif exit_type == "win":
 		#get_parent().earned_exp
@@ -80,8 +82,8 @@ func exit_battle(exit_type: StringName):
 
 	if dungeon:
 		dungeon.reset_from_battle()
-	#elif town:
-		#town.reset_from_battle()
+	elif town:
+		town.reset_from_battle()
 	elif demonitarium:
 		demonitarium.reset_from_battle()
 

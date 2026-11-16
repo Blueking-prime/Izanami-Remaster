@@ -13,11 +13,11 @@ class_name Location
 @export var tilemap: TileMapLayer
 @export var background: LocationBackground
 @export var entrance_area: Area2D
-@export var cutscene_triggers: Node2D
 
 @export var test_players: Party
 @export var objectsort: Node
 @export var npcs: Node
+@export var cutscene_triggers: Node2D
 
 @export var camera: PlayerCam
 @export var map_camera: Map
@@ -27,6 +27,7 @@ class_name Location
 @export var canvas_layer: CanvasLayer
 @export var exit_button: Button
 
+var last_played_cutscene: NPC
 const TILEMAP_CELL_SIZE: int = 16
 
 
@@ -141,6 +142,7 @@ func reset_from_battle():
 	overlay.load_ui_elements()
 	Global.players.reset_battle_collision()
 	overlay.show()
+	last_played_cutscene.play_cutscene()
 
 func go_to_overworld():
 	Global.players.freeze()

@@ -125,7 +125,7 @@ func show_cutscene(cutscene_name: Variant):
 
 	if cutscene.info.has('add_to_party'):
 		add_party_member(cutscene.info.add_to_party)
-	else:
+	elif cutscene.info.has('replayable') and not cutscene.info.replayable:
 		Checks.set_cutscene_played(cutscene_name)
 
 

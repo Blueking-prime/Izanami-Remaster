@@ -7,14 +7,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_45exu"]
 radius = 25.0
 
-[node name="NPC" type="CharacterBody2D" unique_id=845832440]
-scale = Vector2(0.926594, 0.844795)
+[node name="NPC" type="CharacterBody2D" unique_id=845832440 node_paths=PackedStringArray("label", "sprite")]
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("1_45exu")
 cutscenes = Dictionary[int, Resource]({
 0: ExtResource("2_bq6y0")
 })
+sprite_texture = ExtResource("1_yxwxv")
+label = NodePath("Label")
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=226285900]
 position = Vector2(-7.62939e-06, -1.58548e-05)
@@ -23,4 +25,10 @@ shape = SubResource("CircleShape2D_45exu")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1888445312]
 position = Vector2(0.999992, -1.00002)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_yxwxv")
+
+[node name="Label" type="Label" parent="." unique_id=1597226759]
+offset_left = -18.346762
+offset_right = 21.653238
+offset_bottom = 8.0
+horizontal_alignment = 1
+vertical_alignment = 1
