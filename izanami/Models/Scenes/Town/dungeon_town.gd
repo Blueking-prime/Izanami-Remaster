@@ -6,6 +6,7 @@ class_name TownDungeon
 
 @export var dungeon_title: String
 @export var dungeon_fixed: Array[bool]
+@export var dungeon_fixed_layouts: Array[PackedScene]
 @export var dungeon_chunk_length: Array[int]
 @export var dungeon_data: Array[DungeonSaveData]
 @export var dungeon_enemies: Array[ResourceGroup]
@@ -37,8 +38,11 @@ func main():
 	Global.players.unfreeze()
 	if confirm:
 		await LoadingScreen.show()
-		dungeon = Global.dungeon_scene.instantiate()
-		set_dungeon_level()
+		if dungeon_fixed[dungeon_floor]:
+			dungeon = dungeon_fixed_layouts[dungeon_floor].instantiate()
+		else:
+			dungeon = Global.dungeon_scene.instantiate()
+			set_dungeon_level()
 		load_dungeon()
 		get_parent().queue_free()
 	else :
@@ -46,17 +50,14 @@ func main():
 
 func set_dungeon_level():
 	if dungeon_floor < no_of_floors:
-		if dungeon_fixed[dungeon_floor]:
-			dungeon.fixed_layout = true
-		else:
-			dungeon.chunk_length = dungeon_chunk_length[dungeon_floor]
-			dungeon.enemy_types = dungeon_enemies[dungeon_floor]
-			dungeon.item_drop_group = dungeon_item_drops[dungeon_floor]
-			dungeon.gear_drop_group = dungeon_gear_drops[dungeon_floor]
-			dungeon.MAX_ENEMIES = dungeon_MAX_ENEMIES[dungeon_floor]
-			dungeon.enemy_spawn_chance = dungeon_enemy_spawn_chance[dungeon_floor]
-			dungeon.treasure_spawn_chance = dungeon_treasure_spawn_chance[dungeon_floor]
-			dungeon.gear_chance = dungeon_gear_chance[dungeon_floor]
+		dungeon.chunk_length = dungeon_chunk_length[dungeon_floor]
+		dungeon.enemy_types = dungeon_enemies[dungeon_floor]
+		dungeon.item_drop_group = dungeon_item_drops[dungeon_floor]
+		dungeon.gear_drop_group = dungeon_gear_drops[dungeon_floor]
+		dungeon.MAX_ENEMIES = dungeon_MAX_ENEMIES[dungeon_floor]
+		dungeon.enemy_spawn_chance = dungeon_enemy_spawn_chance[dungeon_floor]
+		dungeon.treasure_spawn_chance = dungeon_treasure_spawn_chance[dungeon_floor]
+		dungeon.gear_chance = dungeon_gear_chance[dungeon_floor]
 	else:
 		dungeon.chunk_length = 5
 		dungeon.enemy_types = dungeon_enemies[no_of_floors - 1]
@@ -69,6 +70,7 @@ func set_dungeon_level():
 	return
 
 func load_dungeon():
+	dungeon.town = get_parent().scene_file_path
 	get_parent().disconnect_signals()
 	get_parent().remove_players()
 	dungeon.add_players()

@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_y2xmg")
-base_folder = "res://Models/Skills/ClassSkills/Maken"
+base_folder = "res://Data/Skills/ClassSkills/Maken"
+paths = Array[String](["res://Data/Skills/ClassSkills/Maken/diazone_wheel.tres", "res://Data/Skills/ClassSkills/Maken/escribe_azure.tres", "res://Data/Skills/ClassSkills/Maken/escribe_flare.tres", "res://Data/Skills/ClassSkills/Maken/escribe_zephyr.tres", "res://Data/Skills/ClassSkills/Maken/runic_destruction.tres", "res://Data/Skills/ClassSkills/Maken/spellbinding_circle.tres", "res://Data/Skills/ClassSkills/Maken/spell_binding_circle.gd"])

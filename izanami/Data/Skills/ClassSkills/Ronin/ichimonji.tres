@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_xuhap"]
 [ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="3_hsxff"]
 
-[sub_resource type="Resource" id="Resource_m714s"]
+[sub_resource type="Resource" id="Resource_ib24v"]
 script = ExtResource("3_hsxff")
 desc = "Applies 0.75x def down to self"
 status_effect = Array[Script]([ExtResource("1_ul2ay")])
@@ -27,5 +27,5 @@ cost = 30
 hp_cost = 0.1
 flavour_text = "\"Letting go of your guard, ignorant of all defense, you put your very soul into one devastating swing, dealing X damage\""
 desc = "0.75x DEF Debuff for one turn; 25-35-45 Potency STR Physical attack; Costs 10% HP."
-skill_to_trigger = SubResource("Resource_m714s")
+skill_to_trigger = SubResource("Resource_ib24v")
 metadata/_custom_type_script = "uid://kstpb53dvbbq"

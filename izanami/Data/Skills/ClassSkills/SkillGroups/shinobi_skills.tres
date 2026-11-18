@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_txwgd")
-base_folder = "res://Models/Skills/ClassSkills/Shinobi"
+base_folder = "res://Data/Skills/ClassSkills/Shinobi"
+paths = Array[String](["res://Data/Skills/ClassSkills/Shinobi/geppo.tres", "res://Data/Skills/ClassSkills/Shinobi/kami_e.tres", "res://Data/Skills/ClassSkills/Shinobi/rankyaku.tres", "res://Data/Skills/ClassSkills/Shinobi/rokuogan_assassination.tres", "res://Data/Skills/ClassSkills/Shinobi/shigan.tres", "res://Data/Skills/ClassSkills/Shinobi/tekkai.tres"])

@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_l7wdu")
-base_folder = "res://Models/Skills/ClassSkills/Ronin"
+base_folder = "res://Data/Skills/ClassSkills/Ronin"
+paths = Array[String](["res://Data/Skills/ClassSkills/Ronin/demon_bane_harakiri.tres", "res://Data/Skills/ClassSkills/Ronin/demon_roar.tres", "res://Data/Skills/ClassSkills/Ronin/ichimonji.tres", "res://Data/Skills/ClassSkills/Ronin/meditation.tres", "res://Data/Skills/ClassSkills/Ronin/moon_swallow.tres", "res://Data/Skills/ClassSkills/Ronin/scatter_sky_strike.tres", "res://Data/Skills/ClassSkills/Ronin/tsujigiri.tres"])

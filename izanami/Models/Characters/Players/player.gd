@@ -14,11 +14,11 @@ class_name Player
 ## DYNAMIC PROPERTIES
 @export var max_sp: int:
 	get():
-		var _max_sp = (stats['AGI'] + stats['END']) * 3 * lvl
-		if _max_sp > 0:
+		var _max_sp = (stats['AGI'] + stats['END']) * lvl
+		if _max_sp > 30:
 			return _max_sp
 		else:
-			return 1
+			return 30
 
 @export var sp: int:
 	set(value):
@@ -29,7 +29,7 @@ class_name Player
 @export var level_up_xp: int:
 	get():
 		if lvl < level_cap:
-			return 50 * (2 ** lvl)
+			return 10 * (2 ** lvl)
 		else:
 			return 0
 
@@ -51,6 +51,9 @@ var lock: bool = false
 
 func load_character():
 	ally = 1
+	if lvl > 1:
+		for i in lvl:
+			_increase_stats()
 	sp = max_sp
 	super.load_character()
 	gear.load_stock()
@@ -84,6 +87,7 @@ func update_stats():
 	var current_max = [max_hp, max_sp]
 
 	super.update_stats()
+
 	for i in stats:
 		stats[i] = base_stats[i] + $Gear.stats[i]
 
@@ -109,15 +113,18 @@ func level_up(value):
 		xp -= level_up_xp
 		lvl += 1
 
-		for i in level_stats:
-			base_stats[i] += 1
-
-		for i in Global.rand_spread(additional_stat_chance, 99):
-			base_stats[base_stats.keys()[randi_range(0, len(base_stats.keys()))]] += 1
+		_increase_stats()
 
 		update_stats()
 	skills.update_skills()
 	_display_skills()
+
+func _increase_stats():
+	for i in level_stats:
+		base_stats[i] += 1
+
+	for i in Global.rand_spread(additional_stat_chance, 99):
+		base_stats[base_stats.keys().pick_random()] += 1
 
 func restore(value: float):
 	sp += value
@@ -149,8 +156,9 @@ func show_skill_menu(menu: Options):
 	_display_skills()
 	skill_menu.grab_focus()
 
+
 func _on_skill_list_selected(index: int) -> void:
-	Global.show_description(get_skills()[index])
+	Global.show_description(skills.get_skill(index))
 	Global.description_box.size_flags_stretch_ratio = 2
 
 
@@ -167,6 +175,7 @@ func show_item_menu(menu: Options):
 	if not item_menu.item_selected.is_connected(_on_item_list_selected): item_menu.item_selected.connect(_on_item_list_selected)
 	_display_items()
 	item_menu.grab_focus()
+
 
 func use_item(item_name, _target):
 	if item_name is int: item_name = item_menu.get_item_text(active_selection)
@@ -195,6 +204,8 @@ func reset_menu():
 	item_menu.clear()
 	skill_menu.clear()
 	active_selection = null
+	if is_instance_valid(skill_menu) and skill_menu.item_selected.is_connected(_on_skill_list_selected): skill_menu.item_selected.disconnect(_on_skill_list_selected)
+	if is_instance_valid(item_menu) and item_menu.item_selected.is_connected(_on_item_list_selected): item_menu.item_selected.disconnect(_on_item_list_selected)
 	if is_instance_valid(Global.description_box):
 		Global.description_box.queue_free()
 

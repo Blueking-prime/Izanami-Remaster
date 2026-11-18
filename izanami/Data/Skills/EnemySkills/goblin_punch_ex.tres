@@ -10,5 +10,6 @@ multi_hit_max = 3
 name = &"Goblin Punch EX"
 stats = 2
 stat_multiplier = Array[float]([1.5, 1.0, 1.0])
+lvl_requirement = 10
 desc = "15 Potency INT Dark Attack, can multihit up to 3 times"
 metadata/_custom_type_script = "uid://kstpb53dvbbq"

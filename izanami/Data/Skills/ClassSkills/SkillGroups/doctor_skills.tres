@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_cg0bm")
-base_folder = "res://Models/Skills/ClassSkills/Doctor"
+base_folder = "res://Data/Skills/ClassSkills/Doctor"
+paths = Array[String](["res://Data/Skills/ClassSkills/Doctor/anasthesia.tres", "res://Data/Skills/ClassSkills/Doctor/balm.tres", "res://Data/Skills/ClassSkills/Doctor/hemotherapy.tres", "res://Data/Skills/ClassSkills/Doctor/hemotherapy_release.tres", "res://Data/Skills/ClassSkills/Doctor/performative_pill.tres", "res://Data/Skills/ClassSkills/Doctor/resuscitation.tres", "res://Data/Skills/ClassSkills/Doctor/salve.tres"])

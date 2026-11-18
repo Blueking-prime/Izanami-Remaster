@@ -128,6 +128,9 @@ func show_cutscene(cutscene_name: Variant):
 	elif cutscene.info.has('replayable') and not cutscene.info.replayable:
 		Checks.set_cutscene_played(cutscene_name)
 
+	if get_tree().current_scene is Location:
+		get_tree().current_scene.set_scene_state()
+
 
 func add_party_member(party_member: StringName):
 	if Checks.check_flags([party_member + '_in_party']):

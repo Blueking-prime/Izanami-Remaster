@@ -51,30 +51,31 @@ var marker: Vector2i
 var rect: Rect2i
 
 func render_objects():
-	height = map.chunk_height
-	width = map.chunk_width
+	if not root_node.fixed_layout:
+		height = map.chunk_height
+		width = map.chunk_width
 
-	walls = map.chunks[chunk_no].walls
-	empty_tiles = map.chunks[chunk_no].empty_tiles
-	chests = map.chunks[chunk_no].treasure_tiles
-	opened_chests = map.chunks[chunk_no].opened_chests
-	enemies = map.chunks[chunk_no].enemy_tiles
-	marker = map.chunks[chunk_no].marker
-	rect = Rect2i(marker.x, marker.y, width, height)
+		walls = map.chunks[chunk_no].walls
+		empty_tiles = map.chunks[chunk_no].empty_tiles
+		chests = map.chunks[chunk_no].treasure_tiles
+		opened_chests = map.chunks[chunk_no].opened_chests
+		enemies = map.chunks[chunk_no].enemy_tiles
+		marker = map.chunks[chunk_no].marker
+		rect = Rect2i(marker.x, marker.y, width, height)
 
-	if not map.chunks[chunk_no].start.is_empty():
-		entrance = map.start
-		render_entrance()
-	if not map.chunks[chunk_no].stop.is_empty():
-		exit = map.stop
-		render_exit()
-	if map.chunks[chunk_no].has('type'):
-		chunk_type = map.chunks[chunk_no].type
+		if not map.chunks[chunk_no].start.is_empty():
+			entrance = map.start
+			render_entrance()
+		if not map.chunks[chunk_no].stop.is_empty():
+			exit = map.stop
+			render_exit()
+		if map.chunks[chunk_no].has('type'):
+			chunk_type = map.chunks[chunk_no].type
 
-	render_empty()
-	render_treasure_chests()
-	render_outer_walls()
-	render_inner_walls()
+		render_empty()
+		render_treasure_chests()
+		render_outer_walls()
+		render_inner_walls()
 
 	place_enemies()
 	root_node.freeze_enemies()
@@ -94,18 +95,19 @@ func set_connections():
 
 
 func place_enemies():
-	var enemy_set = enemy_types.load_all()
-	for coord in enemies:
-		var _type = randi_range(0, enemy_set.size() - 1)
-		var enemy: Enemy = enemy_set[_type].instantiate()
+	if not root_node.fixed_layout:
+		var enemy_set = enemy_types.load_all()
+		for coord in enemies:
+			var _type = randi_range(0, enemy_set.size() - 1)
+			var enemy: Enemy = enemy_set[_type].instantiate()
 
-		add_child(enemy)
-		enemy.dungeon_display()
-		enemy.position = coord * Location.TILEMAP_CELL_SIZE
+			add_child(enemy)
+			enemy.dungeon_display()
+			enemy.position = coord * Location.TILEMAP_CELL_SIZE
 
 	enemy_nodes = get_children()
-	#if not root_node.boss_enemy and not enemy_nodes.is_empty():
-		#root_node.set_boss(enemy_nodes.pick_random())
+	if not root_node.boss_enemy and not enemy_nodes.is_empty():
+		root_node.set_boss(enemy_nodes.pick_random())
 
 
 func render_treasure_chests():

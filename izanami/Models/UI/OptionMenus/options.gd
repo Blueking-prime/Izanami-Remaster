@@ -12,6 +12,7 @@ signal item_activated(index: int)
 signal item_selected(index: int)
 
 func clear():
+	last_focus = -1
 	for i in button_container.get_children():
 		button_container.remove_child(i)
 		i.queue_free()
@@ -51,11 +52,12 @@ func get_item_text(index: int) -> String:
 func disable():
 	for i in button_container.get_children():
 		i.disabled = true
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func enable():
 	for i in button_container.get_children():
 		i.disabled = false
-
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_option_selected(index: int):
 	last_focus = index
@@ -92,3 +94,9 @@ func _input(event: InputEvent) -> void:
 			button_container.get_child(curr_index - 1).call_deferred('grab_focus')
 		else :
 			button_container.get_child(-1).call_deferred('grab_focus')
+
+func _on_visibility_changed() -> void:
+	if visible:
+		process_mode = Node.PROCESS_MODE_INHERIT
+	else :
+		process_mode = Node.PROCESS_MODE_DISABLED

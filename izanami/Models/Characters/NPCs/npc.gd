@@ -6,7 +6,7 @@ class_name NPC
 @export var battles: Dictionary [StateHandler.STATE, Array]
 
 @export var extra_battle_flags: Dictionary [StateHandler.STATE, PackedStringArray]
-@export var battle_set_flags: Dictionary [StateHandler.STATE, Dictionary]
+@export var battle_set_flags: Dictionary [StateHandler.STATE, SetFlag]
 
 @export var sprite_texture: Texture2D
 @export var label: Label
@@ -42,7 +42,7 @@ func set_state():
 	if battles.has(Checks.state):
 		current_battle.enemies = battles[Checks.state]
 		if battle_set_flags.has(Checks.state):
-			current_battle.flags = battle_set_flags[Checks.state]
+			current_battle.flags = battle_set_flags[Checks.state].data
 		else:
 			current_battle.flags = {}
 	else :

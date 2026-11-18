@@ -8,6 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/goblin.tscn" id="3_qj3n8"]
 [ext_resource type="PackedScene" uid="uid://bqial3twfexr4" path="res://Models/Characters/Enemies/Types/imp.tscn" id="4_jtihi"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-chief-post-conv.json" id="5_soed5"]
+[ext_resource type="Script" uid="uid://d3yxx42ra51hx" path="res://Scripts/Checks/set_flag.gd" id="8_hyl6v"]
+
+[sub_resource type="Resource" id="Resource_soed5"]
+script = ExtResource("8_hyl6v")
+data = Dictionary[StringName, bool]({
+&"demon_bros_fought": true
+})
+metadata/_custom_type_script = "uid://d3yxx42ra51hx"
 
 [node name="Kinta" unique_id=1401756524 instance=ExtResource("1_jkcqv")]
 
@@ -21,10 +29,8 @@ cutscenes = Dictionary[int, Resource]({
 battles = Dictionary[int, Array]({
 1: [ExtResource("4_jtihi"), ExtResource("3_qj3n8")]
 })
-battle_set_flags = Dictionary[int, Dictionary]({
-1: {
-&"demon_bros_fought": true
-}
+battle_set_flags = Dictionary[int, ExtResource("8_hyl6v")]({
+1: SubResource("Resource_soed5")
 })
 
 [node name="SmithyBarrier" parent="ObjectsSort/Barriers" parent_id_path=PackedInt32Array(660711449) index="0" unique_id=1564323056 instance=ExtResource("2_qj3n8")]

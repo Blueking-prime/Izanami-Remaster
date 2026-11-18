@@ -68,7 +68,7 @@ func exit_battle(exit_type: StringName):
 		#get_parent().earned_exp
 		#get_parent().earned_gold
 
-	Global.players.level_up(get_parent().earned_exp)
+	Global.players.level_up(get_parent().earned_exp, get_parent().enemy_level)
 	Global.players.gold += get_parent().earned_gold
 
 

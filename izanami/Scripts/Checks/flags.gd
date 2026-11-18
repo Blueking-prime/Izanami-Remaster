@@ -68,8 +68,22 @@ var kinta_npcs_spoken_to: bool = false
 var fight_refael: bool = false
 var join_refael: bool = false
 
-var yuan_dao_side: bool = false
-var black_dragon_side: bool = false
+var yuan_dao_side: bool = false:
+	set(value):
+		if black_dragon_side:
+			yuan_dao_side = false
+		else :
+			yuan_dao_side = value
+var black_dragon_side: bool = false:
+	set(value):
+		if yuan_dao_side:
+			black_dragon_side = false
+		else :
+			black_dragon_side = value
+var et_b_one_not_fought: bool = true
+var et_b_two_not_fought: bool = true
+var et_b_three_not_fought: bool = true
+var et_b_four_not_fought: bool = true
 var dragonlord_spoken_to: bool = false
 var symbiote_stabilizer: bool = false
 

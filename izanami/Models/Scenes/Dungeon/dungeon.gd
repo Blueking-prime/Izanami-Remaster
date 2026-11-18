@@ -23,11 +23,15 @@ var dungeon_sample = [
 @export var height: int = 5
 @export var chunk_length: int = 3
 @export var enemy_types: ResourceGroup
+## Max enemies in a battle
 @export var MAX_ENEMIES: int = 3
+## Max enemies spawned on map
 @export var max_enemy_spawns: int = 10
 @export var enemy_level: int = 1
 @export var dungeon_name: String = 'test'
 @export var fixed_layout: bool = false
+@export var fixed_exit: Vector2i
+@export_dir var town: String
 
 ## DROPS
 @export var item_drop_group: ResourceGroup
@@ -36,6 +40,7 @@ var _gear_drops = []
 var _item_drops = []
 
 ## DROP RATES
+@export var enemy_spawn_chance_per_battle: float = 0.6
 @export var enemy_spawn_chance: float = 0.8
 @export var treasure_spawn_chance: float = 0.2
 @export var gear_chance: float = 0.5
@@ -75,6 +80,13 @@ func load_scene():
 
 		#setup_navigation_region()
 		enemy_display.update_display()
+	else:
+		await tilemap.render_objects()
+		player.tilemap_position = entrance.clamp(
+			Vector2i(2, 2), Vector2i(width - 2, height -2)
+		)
+		tilemap.exit = fixed_exit
+
 	overlay.save_enabled = false
 
 	await LoadingScreen.hide()
@@ -129,7 +141,7 @@ func exit_dungeon(completed: bool):
 	if confirm:
 		if completed: Checks.dungeons[dungeon_name].level += 1
 		player.light.enabled = false
-		Global.warp(self, Global.town_scene)
+		Global.warp(self, load(town))
 	else :
 		unfreeze_enemies()
 
@@ -172,11 +184,10 @@ func _on_detector_hit_chest(_coords) -> void:
 
 ## BATTLE LOGIC
 func initiate_battle(forced: bool):
-	var no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance, MAX_ENEMIES)
 	overlay.disable()
 
 	var battle: Battle = Global.battle_scene.instantiate()
-	battle.no_of_enemies = no_of_enemies
+	battle.no_of_enemies = 1 + Global.rand_spread(enemy_spawn_chance_per_battle, MAX_ENEMIES)
 	battle.dungeon = self
 	battle.enemy_group = enemy_types
 	battle.enemy_level = enemy_level
@@ -215,7 +226,7 @@ func _on_detector_hit_enemy(body: Enemy) -> void:
 	#! USE scene_file_path TO REMEMBERWHAT NODE TO LOAD
 	if body == boss_enemy:
 		initiate_battle(true)
-		tilemap._render_exit()
+		tilemap.render_exit()
 	else :
 		initiate_battle(false)
 	if is_instance_valid(body):	body.queue_free()
@@ -230,7 +241,7 @@ func reset_from_battle():
 	enemy_display.update_display()
 	enemy_display.show()
 	unfreeze_enemies()
-	LoadingScreen.hide()
+	await LoadingScreen.hide()
 
 
 ## SAVE AND LOAD LOGIC

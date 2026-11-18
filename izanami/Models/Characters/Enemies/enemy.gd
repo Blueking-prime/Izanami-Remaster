@@ -60,15 +60,21 @@ func battle_ai(player_array: Array, enemy_array: Array):
 	var skill: Skill = get_skills()[skill_id]
 
 	var target_array = player_array
+
 	if skill is Heal_Skill:
 		target_array = enemy_array
 
 	if skill.aoe:
 		use_skill(skill_id, target_array)
-		#await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1).timeout
 
 
 	else:
+		# Filter hidden targets
+		var targetable_array = target_array.filter(func (x): return x.statuses.targetable)
+		if not targetable_array.is_empty():
+			target_array = targetable_array
+
 		var target_actor = target_array[randi_range(0, target_array.size() - 1)]
 		if skill is Heal_Skill:
 			if hp < max_hp * heal_threshold:
@@ -79,7 +85,7 @@ func battle_ai(player_array: Array, enemy_array: Array):
 				target_actor = target_array.reduce(func(a, b): return a if a.hp < b.hp else b)
 
 		use_skill(skill_id, target_actor)
-		#await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1).timeout
 
 	Global.print_to_log('from ' + character_name)
 
@@ -88,14 +94,14 @@ func gold_drop():
 	for i in stats:
 		sum += stats[i]
 
-	return sum * 10
+	return sum * 10 * lvl
 
 func exp_drop():
 	var sum = 0
 	for i in stats:
 		sum += stats[i]
 
-	return sum * 9
+	return sum * 9 * lvl
 
 
 func _on_navigation_agent_2d_navigation_finished() -> void:

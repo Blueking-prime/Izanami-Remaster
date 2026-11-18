@@ -227,10 +227,19 @@ func revert_menu():
 func place_ui():
 	pass
 
-func level_up(xp: int):
-	xp /= len(party)
+func level_up(xp: int, enemy_level: int):
+	var diff = clampf(enemy_level - _avg_player_lvl(), -15, 15)
+	if diff > 0:
+		xp *= 1 + diff
+	else:
+		xp /= 1 + abs(diff)
+
+	xp /= party.size()
 	for i in party:
 		i.level_up(xp)
+
+func _avg_player_lvl() -> float:
+	return party.reduce(func (acc: int, y): return acc + y.lvl, 0) / party.size()
 
 # MOVEMENT HANDLING
 func freeze():

@@ -155,6 +155,7 @@ func show_choice():
 	toggle_option_selectable(true)
 	targetting = false
 	choice.show()
+	skill_panel.disable()
 	skill_panel.hide()
 	if current_player.statuses.exhausted:
 		skills_button.hide()
@@ -169,7 +170,6 @@ func show_choice():
 func show_options():
 	skill_panel.enable()
 	skill_panel.grab_focus()
-	print(current_player)
 	match flag:
 		'Items':
 			if current_player in Checks.item_option:

@@ -129,7 +129,7 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 	if hp_cost:
 		obj.damage(obj.max_hp * hp_cost)
 
-	if flavour_text != '':
+	if flavour_text:
 		Global.print_to_log(flavour_text)
 
 	for stat in obj.stats:
@@ -150,7 +150,7 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 	if status_effect:
 		for effect in status_effect:
 			obj.audio.play_support_sfx()
-			if aoe:
+			if target is Array:
 				for i in target:
 					_apply_status(obj, i, effect)
 			else:
@@ -178,9 +178,9 @@ func _apply_status(obj: Base_Character, target: Base_Character, effect: Script):
 	if Global.rand_chance(effect_chance[rank]):
 		var status: Status = effect.new()
 		status.duration = effect_duration[effect][rank]
-		if effect_delay.get(effect):
+		if effect_delay.has(effect):
 			status.delay = effect_delay[effect][rank]
-		if effect_extra_prop.get(effect):
+		if effect_extra_prop.has(effect):
 			status.extra_prop = effect_extra_prop[effect]
 
 		if status is StatusBuff:
@@ -188,8 +188,9 @@ func _apply_status(obj: Base_Character, target: Base_Character, effect: Script):
 			status.magnitude = effect_magnitude[effect][rank]
 
 			for stat in obj.stats:
-				if stat in effect_mag_stats[effect]:
-					mag_stat_total += obj.stats[stat]
+				if effect_mag_stats.has(effect):
+					if stat in effect_mag_stats[effect]:
+						mag_stat_total += obj.stats[stat]
 			if mag_stat_total > 0:
 				status.magnitude *= mag_stat_total
 

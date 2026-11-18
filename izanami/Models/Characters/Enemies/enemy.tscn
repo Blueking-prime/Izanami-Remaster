@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsdq0efwkbsg0"]
+[gd_scene format=3 uid="uid://dsdq0efwkbsg0"]
 
 [ext_resource type="PackedScene" uid="uid://drei8wtrpbio6" path="res://Models/Characters/base_character.tscn" id="1_m7q0y"]
 [ext_resource type="Script" uid="uid://dwbx2bd1vyrhc" path="res://Models/Characters/Enemies/enemy.gd" id="2_43wjv"]
@@ -35,7 +35,7 @@ frame_3/duration = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_uk6gu"]
 radius = 95.021
 
-[node name="Enemy" node_paths=PackedStringArray("nav_agent", "path_switch_timer", "detector") instance=ExtResource("1_m7q0y")]
+[node name="Enemy" unique_id=172291403 node_paths=PackedStringArray("nav_agent", "path_switch_timer", "detector") instance=ExtResource("1_m7q0y")]
 collision_layer = 16
 collision_mask = 9
 script = ExtResource("2_43wjv")
@@ -52,20 +52,20 @@ dungeon_sprite_idle_texture = SubResource("AnimatedTexture_fwpdg")
 dungeon_sprite_walk_texture = SubResource("AnimatedTexture_rph7n")
 character_name = "Enemy"
 
-[node name="DungeonSprite" parent="." index="0"]
+[node name="DungeonSprite" parent="." index="0" unique_id=2023850608]
 position = Vector2(0, -3)
 texture = SubResource("AnimatedTexture_fwpdg")
 
-[node name="Detector" type="Area2D" parent="." index="5"]
+[node name="Detector" type="Area2D" parent="." index="5" unique_id=1947640088]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("4_wf7g7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0" unique_id=1297350845]
 shape = SubResource("CircleShape2D_uk6gu")
 debug_color = Color(1, 0.0431373, 0.141176, 0.65098)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7" unique_id=1554470119]
 path_desired_distance = 4.0
 target_desired_distance = 4.0
 path_postprocessing = 1
@@ -76,7 +76,7 @@ max_neighbors = 3
 max_speed = 200.0
 debug_enabled = true
 
-[node name="PathSwitchTimer" type="Timer" parent="." index="8"]
+[node name="PathSwitchTimer" type="Timer" parent="." index="8" unique_id=1375751572]
 process_callback = 0
 wait_time = 5.0
 one_shot = true

@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bn6tdwm4hho4f" path="res://Models/Scenes/Town/dungeon_town.gd" id="8_k31jc"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://Configs/all_enemies.tres" id="9_tt1ik"]
 [ext_resource type="Script" uid="uid://rakx3xuh5nds" path="res://Models/Scenes/Dungeon/dungeon_save_data.gd" id="10_dxb7f"]
+[ext_resource type="PackedScene" uid="uid://bdb28hoif5ea0" path="res://Models/Scenes/Dungeon/boss_floor.tscn" id="10_fvh20"]
 [ext_resource type="Script" uid="uid://dobwosnxelorr" path="res://Models/Scenes/Town/demonitarium.gd" id="10_h5qir"]
 [ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="11_6gf2o"]
 [ext_resource type="PackedScene" uid="uid://5iv4fsku5g5x" path="res://Models/Scenes/Town/Demonitarium/demonitarium.tscn" id="14_k4n1q"]
@@ -150,7 +151,8 @@ collision_mask = 0
 script = ExtResource("8_k31jc")
 no_of_floors = 2
 dungeon_title = "Test"
-dungeon_fixed = Array[bool]([false, false])
+dungeon_fixed = Array[bool]([false, true])
+dungeon_fixed_layouts = Array[PackedScene]([null, ExtResource("10_fvh20")])
 dungeon_chunk_length = Array[int]([3, 4])
 dungeon_data = Array[ExtResource("10_dxb7f")]([null, null])
 dungeon_enemies = Array[ExtResource("11_6gf2o")]([ExtResource("9_tt1ik"), ExtResource("9_tt1ik")])

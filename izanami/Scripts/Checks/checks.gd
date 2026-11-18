@@ -49,7 +49,8 @@ var completed_quests: Array
 
 var dungeons: Dictionary = {
 	'test': {
-		'level': 2
+		'level': 2,
+		'boss_floor': 2
 	}
 }
 

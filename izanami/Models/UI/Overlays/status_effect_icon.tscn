@@ -1,39 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg6blmcotgqs7"]
+[gd_scene format=3 uid="uid://cg6blmcotgqs7"]
 
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="1_bewby"]
 [ext_resource type="Script" uid="uid://cmfdojklyhj1w" path="res://Models/UI/Overlays/status_effect_icon.gd" id="2_gnp15"]
 
-[node name="StatusEffectIcon" type="TextureRect" node_paths=PackedStringArray("counter", "effect_name")]
+[node name="StatusEffectIcon" type="TextureRect" unique_id=1024100983 node_paths=PackedStringArray("counter", "effect_name")]
+offset_right = 10.0
+offset_bottom = 10.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("1_bewby")
+expand_mode = 1
 stretch_mode = 5
 script = ExtResource("2_gnp15")
 counter = NodePath("Counter")
 effect_name = NodePath("EffectName")
 
-[node name="EffectName" type="Label" parent="."]
+[node name="EffectName" type="Label" parent="." unique_id=2004895023]
 visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -23.0
-offset_bottom = 22.3333
+offset_left = -5.0
+offset_top = -8.0
+offset_right = 4.0
 grow_horizontal = 2
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Counter" type="Label" parent="."]
+[node name="Counter" type="Label" parent="." unique_id=1099565035]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -49.0
-offset_top = 7.0
-offset_right = -9.0
-offset_bottom = 30.0
+offset_left = -2.0
+offset_right = 2.0
+offset_bottom = 8.0
 grow_horizontal = 0
+scale = Vector2(0.6296247, 0.47492167)
 text = "0"
 horizontal_alignment = 2
 

@@ -3,6 +3,7 @@ extends Node
 class_name BattleTurns
 
 @export var turncount_label: Label
+@export var turn_order_display: HBoxContainer
 
 @onready var process_input: BattleInput = get_parent().process_input
 @onready var setup: BattleSetup = get_parent().setup
@@ -26,6 +27,9 @@ func act():
 
 	if not actor:
 		actor = turn_order[0]
+
+	fill_turn_count_display()
+	highlight_current_actor()
 
 	actor.set_acting()
 
@@ -70,9 +74,7 @@ func advance_actor():
 
 func kill_enemies():
 	for i in enemy_array:
-		print(i.character_name, i.alive)
 		if not i.alive:
-			print(i, ' should die')
 			get_parent().earned_exp += i.exp_drop()
 			get_parent().earned_gold += i.gold_drop()
 			enemy_array.erase(i)
@@ -105,6 +107,31 @@ func end_turn():
 
 func end_battle():
 	setup.exit_battle("win")
+
+func fill_turn_count_display():
+	for i in turn_order_display.get_children():
+		turn_order_display.remove_child(i)
+		i.queue_free()
+
+	for i in turn_order:
+		if i.alive:
+			turn_order_display.add_child(create_turn_count_icon(i))
+
+func create_turn_count_icon(entity: Base_Character) -> PanelContainer:
+	var panel_container: PanelContainer = PanelContainer.new()
+	var texture: TextureRect = TextureRect.new()
+	texture.texture = entity.battle_sprite_texture
+	texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	texture.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	texture.scale = Vector2(0.5, 0.5)
+	panel_container.add_child(texture)
+	panel_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	panel_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
+
+	return panel_container
+
+func highlight_current_actor():
+	pass
 
 #func enemy_attack_script_placeholder():
 	#var target_player = randi_range(0, player_array.size() - 1)

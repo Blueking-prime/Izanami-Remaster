@@ -11,6 +11,5 @@ status_modifier = Array[Script]([ExtResource("2_h4t41"), ExtResource("3_uotrt"),
 status_effectiveness = 2.0
 name = &"Unique Attack"
 rank = 2
-cost = 25
 desc = "Deal 2x DMG if attacking an enemy who is poisoned, paralyzed or sealeds"
 metadata/_custom_type_script = "uid://kstpb53dvbbq"

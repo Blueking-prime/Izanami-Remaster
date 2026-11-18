@@ -40,9 +40,12 @@ func _check_building(node: Variant):
 		#func_church()
 
 func reset_from_battle():
+	Global.players.freeze()
 	super.reset_from_battle()
 	show()
-	LoadingScreen.hide()
+	await LoadingScreen.hide()
+	Global.players.unfreeze()
+
 
 func handle_out_of_bounds():
 	disable_entrance = true

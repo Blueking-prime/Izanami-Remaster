@@ -3,6 +3,7 @@ extends Node
 class_name CharacterSkills
 
 #@export_dir var skill_location: String
+@export var basic_attack: Skill
 @export var _all_skills: Array[Skill] = []
 @export var _skills: Array[Skill] = []:
 	set(arg):
@@ -14,7 +15,7 @@ class_name CharacterSkills
 func load_stock() -> void:
 	if skill_group:
 		skill_group.load_all_into(_all_skills)
-		update_skills()
+	update_skills()
 
 func add_skill(skill: Skill) -> void:
 	#var skill = load(skill_location + '/' + skill_name + '.tres') as Skill

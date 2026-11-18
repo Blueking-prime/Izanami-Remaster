@@ -1,11 +1,105 @@
 [gd_scene format=3 uid="uid://cbfnjn6ce3aei"]
 
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_j7itn"]
+[ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="2_a6x4u"]
+[ext_resource type="Script" uid="uid://d3yxx42ra51hx" path="res://Scripts/Checks/set_flag.gd" id="3_xvya1"]
+
+[sub_resource type="Resource" id="Resource_soed5"]
+script = ExtResource("3_xvya1")
+data = Dictionary[StringName, bool]({
+&"et_b_one_not_fought": false
+})
+metadata/_custom_type_script = "uid://d3yxx42ra51hx"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvya1"]
+size = Vector2(145, 1156)
+
+[sub_resource type="Resource" id="Resource_2bng1"]
+script = ExtResource("3_xvya1")
+data = Dictionary[StringName, bool]({
+&"et_b_two_not_fought": false
+})
+metadata/_custom_type_script = "uid://d3yxx42ra51hx"
+
+[sub_resource type="Resource" id="Resource_6ajgp"]
+script = ExtResource("3_xvya1")
+data = Dictionary[StringName, bool]({
+&"et_b_one_not_fought": false
+})
+metadata/_custom_type_script = "uid://d3yxx42ra51hx"
+
+[sub_resource type="Resource" id="Resource_bxxin"]
+script = ExtResource("3_xvya1")
+data = Dictionary[StringName, bool]({
+&"et_b_two_not_fought": false
+})
+metadata/_custom_type_script = "uid://d3yxx42ra51hx"
 
 [node name="EastTower" unique_id=1401756524 instance=ExtResource("1_j7itn")]
 
+[node name="Dragonlord" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="0" unique_id=845832440 instance=ExtResource("2_a6x4u")]
+position = Vector2(1684, 862)
+
+[node name="FuHuang" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="1" unique_id=1222301955 instance=ExtResource("2_a6x4u")]
+position = Vector2(793, 864)
+
+[node name="YuanDaoFight" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=1412619568 instance=ExtResource("2_a6x4u")]
+position = Vector2(793, 749)
+extra_battle_flags = Dictionary[int, PackedStringArray]({
+4: PackedStringArray("et_b_one_not_fought", "black_dragon_side")
+})
+battle_set_flags = Dictionary[int, ExtResource("3_xvya1")]({
+4: SubResource("Resource_soed5")
+})
+
+[node name="CollisionShape2D" parent="ObjectsSort/CutsceneTriggers/YuanDaoFight" index="0" unique_id=226285900]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_xvya1")
+
+[node name="YuanDaoFight2" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="1" unique_id=116142957 instance=ExtResource("2_a6x4u")]
+position = Vector2(559, 749)
+extra_battle_flags = Dictionary[int, PackedStringArray]({
+4: PackedStringArray("et_b_two_not_fought", "black_dragon_side")
+})
+battle_set_flags = Dictionary[int, ExtResource("3_xvya1")]({
+4: SubResource("Resource_2bng1")
+})
+
+[node name="CollisionShape2D" parent="ObjectsSort/CutsceneTriggers/YuanDaoFight2" index="0" unique_id=226285900]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_xvya1")
+
+[node name="BlackDragonFight" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="2" unique_id=1862693056 instance=ExtResource("2_a6x4u")]
+position = Vector2(1818, 749)
+extra_battle_flags = Dictionary[int, PackedStringArray]({
+4: PackedStringArray("et_b_one_not_fought", "yuan_dao_side")
+})
+battle_set_flags = Dictionary[int, ExtResource("3_xvya1")]({
+4: SubResource("Resource_6ajgp")
+})
+
+[node name="CollisionShape2D" parent="ObjectsSort/CutsceneTriggers/BlackDragonFight" index="0" unique_id=226285900]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_xvya1")
+
+[node name="BlackDragonFight2" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="3" unique_id=411217385 instance=ExtResource("2_a6x4u")]
+position = Vector2(2062, 749)
+extra_battle_flags = Dictionary[int, PackedStringArray]({
+4: PackedStringArray("et_b_two_not_fought", "yuan_dao_side")
+})
+battle_set_flags = Dictionary[int, ExtResource("3_xvya1")]({
+4: SubResource("Resource_bxxin")
+})
+
+[node name="CollisionShape2D" parent="ObjectsSort/CutsceneTriggers/BlackDragonFight2" index="0" unique_id=226285900]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_xvya1")
+
 [node name="Church" parent="." index="6" unique_id=971128350]
 visible = false
+
+[node name="Smithy" parent="." index="7" unique_id=1205182863]
+position = Vector2(1181, 298)
 
 [node name="SlaveMarket" parent="." index="8" unique_id=213523245]
 visible = false
@@ -13,9 +107,19 @@ visible = false
 [node name="Apothecary" parent="." index="9" unique_id=411896941]
 visible = false
 
+[node name="Dungeon" parent="." index="10" unique_id=185818203]
+visible = false
+
 [node name="Demonitarium" parent="." index="11" unique_id=2125678861]
 visible = false
 
+[node name="CustomTrigger" parent="." index="13" unique_id=1206824539]
+visible = false
+
+[editable path="ObjectsSort/CutsceneTriggers/YuanDaoFight"]
+[editable path="ObjectsSort/CutsceneTriggers/YuanDaoFight2"]
+[editable path="ObjectsSort/CutsceneTriggers/BlackDragonFight"]
+[editable path="ObjectsSort/CutsceneTriggers/BlackDragonFight2"]
 [editable path="CanvasLayer/Overlays/Save"]
 [editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
 [editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]

@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b5wjhaa7iybpb" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f1.png" id="8_fa0uk"]
 [ext_resource type="Texture2D" uid="uid://bxqtr51bxt77o" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f2.png" id="9_neffn"]
 [ext_resource type="Texture2D" uid="uid://b20ff65t0oe4p" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f3.png" id="10_akb8o"]
+[ext_resource type="Resource" uid="uid://yxcota6ap2ey" path="res://Models/Skills/basic_attack.tres" id="11_gbjdk"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_emc6j"]
 frames = 4
@@ -88,7 +89,10 @@ texture = SubResource("AnimatedTexture_emc6j")
 [node name="Hitbox" parent="." index="1" unique_id=208075646]
 position = Vector2(0, -7)
 
-[node name="SkillList" parent="Skills" parent_id_path=PackedInt32Array(330096693) index="0" unique_id=1883111484 instance=ExtResource("6_ahy4h")]
+[node name="Skills" parent="." index="2" unique_id=330096693]
+basic_attack = ExtResource("11_gbjdk")
+
+[node name="SkillList" parent="Skills" index="0" unique_id=1883111484 instance=ExtResource("6_ahy4h")]
 visible = false
 
 [node name="Gear" type="Node" parent="." index="3" unique_id=1583628311]
@@ -101,7 +105,7 @@ visible = false
 [node name="Detector" type="Area2D" parent="." index="6" unique_id=1285159370]
 position = Vector2(0, -7)
 collision_layer = 0
-collision_mask = 4086
+collision_mask = 3062
 script = ExtResource("6_g43wq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" index="0" unique_id=492780656]

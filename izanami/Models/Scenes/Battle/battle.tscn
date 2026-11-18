@@ -33,32 +33,33 @@ canvas_layer = NodePath("CanvasLayer")
 script = ExtResource("3_dbox5")
 results_screen = NodePath("../CanvasLayer/ResultsScreen")
 player_section = NodePath("../CanvasLayer/ActorContainer/PlayerSection")
-choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
-skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
-desc_box_parent = NodePath("../CanvasLayer/ActionBoxUI/VBox")
-action_log = NodePath("../CanvasLayer/ActionBoxUI/VBox/LogPanel/ScrollContainer/MarginContainer/LogText")
+choice = NodePath("../CanvasLayer/ActionBoxUI/HBox/Actions")
+skill_panel = NodePath("../CanvasLayer/ActionBoxUI/HBox/SkillPanel")
+desc_box_parent = NodePath("../CanvasLayer/ActionBoxUI/HBox")
+action_log = NodePath("../CanvasLayer/ActionBoxUI/HBox/LogPanel/ScrollContainer/MarginContainer/LogText")
 
 [node name="Input" type="Node" parent="." unique_id=1400202352 node_paths=PackedStringArray("choice", "skill_panel", "dummy_control", "desc_box", "dummy_option", "attack_button", "skills_button", "items_button", "guard_button", "run_button", "key_processing")]
 script = ExtResource("4_1gqnq")
-choice = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions")
-skill_panel = NodePath("../CanvasLayer/ActionBoxUI/VBox/SkillPanel")
+choice = NodePath("../CanvasLayer/ActionBoxUI/HBox/Actions")
+skill_panel = NodePath("../CanvasLayer/ActionBoxUI/HBox/SkillPanel")
 dummy_control = NodePath("../DummyControl")
-desc_box = NodePath("../CanvasLayer/ActionBoxUI/VBox/DescriptionPanel")
+desc_box = NodePath("../CanvasLayer/ActionBoxUI/HBox/DescriptionPanel")
 dummy_option = NodePath("../CanvasLayer/ActionBoxUI/DummyOption")
-attack_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Attack")
-skills_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Skills")
-items_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Items")
-guard_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Guard")
-run_button = NodePath("../CanvasLayer/ActionBoxUI/VBox/Actions/Run")
+attack_button = NodePath("../CanvasLayer/ActionBoxUI/HBox/Actions/Attack")
+skills_button = NodePath("../CanvasLayer/ActionBoxUI/HBox/Actions/Skills")
+items_button = NodePath("../CanvasLayer/ActionBoxUI/HBox/Actions/Items")
+guard_button = NodePath("../CanvasLayer/ActionBoxUI/HBox/Actions/Guard")
+run_button = NodePath("../CanvasLayer/ActionBoxUI/HBox/Actions/Run")
 key_processing = NodePath("KeyProcessing")
 
 [node name="KeyProcessing" type="Node" parent="Input" unique_id=1327470781 node_paths=PackedStringArray("log_panel")]
 script = ExtResource("5_6gl7k")
-log_panel = NodePath("../../CanvasLayer/ActionBoxUI/VBox/LogPanel")
+log_panel = NodePath("../../CanvasLayer/ActionBoxUI/HBox/LogPanel")
 
-[node name="Turns" type="Node" parent="." unique_id=905006907 node_paths=PackedStringArray("turncount_label")]
+[node name="Turns" type="Node" parent="." unique_id=905006907 node_paths=PackedStringArray("turncount_label", "turn_order_display")]
 script = ExtResource("5_jqv44")
 turncount_label = NodePath("../CanvasLayer/Count/MarginContainer/GridContainer/Label2")
+turn_order_display = NodePath("../CanvasLayer/TurnDisplay")
 
 [node name="Actions" type="Node" parent="." unique_id=1799230028]
 script = ExtResource("6_mlml3")
@@ -136,20 +137,20 @@ disabled = true
 button_mask = 0
 flat = true
 
-[node name="VBox" type="HBoxContainer" parent="CanvasLayer/ActionBoxUI" unique_id=1196283530]
+[node name="HBox" type="HBoxContainer" parent="CanvasLayer/ActionBoxUI" unique_id=1196283530]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="LogPanel" type="PanelContainer" parent="CanvasLayer/ActionBoxUI/VBox" unique_id=153108194]
+[node name="LogPanel" type="PanelContainer" parent="CanvasLayer/ActionBoxUI/HBox" unique_id=153108194]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ActionBoxUI/VBox/LogPanel" unique_id=1465879793]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ActionBoxUI/HBox/LogPanel" unique_id=1465879793]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ActionBoxUI/VBox/LogPanel/ScrollContainer" unique_id=273079223]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ActionBoxUI/HBox/LogPanel/ScrollContainer" unique_id=273079223]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -158,47 +159,47 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="LogText" type="Label" parent="CanvasLayer/ActionBoxUI/VBox/LogPanel/ScrollContainer/MarginContainer" unique_id=1604662003]
+[node name="LogText" type="Label" parent="CanvasLayer/ActionBoxUI/HBox/LogPanel/ScrollContainer/MarginContainer" unique_id=1604662003]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Actions" type="VBoxContainer" parent="CanvasLayer/ActionBoxUI/VBox" unique_id=1543829593]
+[node name="Actions" type="VBoxContainer" parent="CanvasLayer/ActionBoxUI/HBox" unique_id=1543829593]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="Attack" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions" unique_id=75379594]
+[node name="Attack" type="Button" parent="CanvasLayer/ActionBoxUI/HBox/Actions" unique_id=75379594]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Attack"
 
-[node name="Skills" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions" unique_id=794187358]
+[node name="Skills" type="Button" parent="CanvasLayer/ActionBoxUI/HBox/Actions" unique_id=794187358]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Skills"
 
-[node name="Items" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions" unique_id=1788607718]
+[node name="Items" type="Button" parent="CanvasLayer/ActionBoxUI/HBox/Actions" unique_id=1788607718]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Items"
 
-[node name="Guard" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions" unique_id=376786686]
+[node name="Guard" type="Button" parent="CanvasLayer/ActionBoxUI/HBox/Actions" unique_id=376786686]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Guard"
 
-[node name="Run" type="Button" parent="CanvasLayer/ActionBoxUI/VBox/Actions" unique_id=1543582257]
+[node name="Run" type="Button" parent="CanvasLayer/ActionBoxUI/HBox/Actions" unique_id=1543582257]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Run"
 
-[node name="SkillPanel" parent="CanvasLayer/ActionBoxUI/VBox" unique_id=1833934955 instance=ExtResource("11_bvqio")]
+[node name="SkillPanel" parent="CanvasLayer/ActionBoxUI/HBox" unique_id=1833934955 instance=ExtResource("11_bvqio")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DescriptionPanel" type="PanelContainer" parent="CanvasLayer/ActionBoxUI/VBox" unique_id=2036361183]
+[node name="DescriptionPanel" type="PanelContainer" parent="CanvasLayer/ActionBoxUI/HBox" unique_id=2036361183]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -238,14 +239,26 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TurnDisplay" type="HBoxContainer" parent="CanvasLayer" unique_id=1184086140]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
 [node name="ResultsScreen" parent="CanvasLayer" unique_id=1217716736 instance=ExtResource("13_ppcew")]
 visible = false
 
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Attack" to="Input" method="_on_attack_pressed"]
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Skills" to="Input" method="_on_skills_pressed"]
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Items" to="Input" method="_on_items_pressed"]
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Guard" to="Input" method="_on_guard_pressed"]
-[connection signal="pressed" from="CanvasLayer/ActionBoxUI/VBox/Actions/Run" to="Input" method="_on_run_pressed"]
-[connection signal="hidden" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="Input" method="_on_skill_panel_hidden"]
-[connection signal="item_activated" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="Input" method="_on_skill_panel_item_activated"]
-[connection signal="item_selected" from="CanvasLayer/ActionBoxUI/VBox/SkillPanel" to="Input" method="_on_skill_panel_item_selected"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/HBox/Actions/Attack" to="Input" method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/HBox/Actions/Skills" to="Input" method="_on_skills_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/HBox/Actions/Items" to="Input" method="_on_items_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/HBox/Actions/Guard" to="Input" method="_on_guard_pressed"]
+[connection signal="pressed" from="CanvasLayer/ActionBoxUI/HBox/Actions/Run" to="Input" method="_on_run_pressed"]
+[connection signal="hidden" from="CanvasLayer/ActionBoxUI/HBox/SkillPanel" to="Input" method="_on_skill_panel_hidden"]
+[connection signal="item_activated" from="CanvasLayer/ActionBoxUI/HBox/SkillPanel" to="Input" method="_on_skill_panel_item_activated"]
+[connection signal="item_selected" from="CanvasLayer/ActionBoxUI/HBox/SkillPanel" to="Input" method="_on_skill_panel_item_selected"]

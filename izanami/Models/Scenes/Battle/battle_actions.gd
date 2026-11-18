@@ -32,7 +32,7 @@ func action():
 
 ## ACTION MENU FUNCTIONS
 func use_basic_attack():
-	process_turns.current_player.use_skill(0, target)
+	process_turns.current_player.skills.basic_attack.action(process_turns.current_player, target)
 	await get_tree().create_timer(1).timeout
 
 func use_skills():

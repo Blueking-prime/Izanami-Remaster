@@ -5,5 +5,4 @@ func _init() -> void:
 
 func trigger(victim: Base_Character):
 	victim.restore(victim.stats['END'])
-	print(victim.character_name, ' restored sp ', victim.stats['END'])
 	super.trigger(victim)
