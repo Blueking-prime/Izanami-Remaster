@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://cyon8uinblkc1"]
+[gd_scene format=3 uid="uid://dt2lmeeqmhqj0"]
 
-[ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Models/Scenes/location.tscn" id="1_pweoc"]
+[ext_resource type="PackedScene" path="res://Models/Scenes/location.tscn" id="1_pweoc"]
 [ext_resource type="Script" uid="uid://bec8jnwutx78b" path="res://Models/Scenes/Dungeon/dungeon.gd" id="2_g8y5j"]
 [ext_resource type="Resource" uid="uid://d1ojuriup7dgc" path="res://Configs/all_enemies.tres" id="3_khi17"]
-[ext_resource type="Script" uid="uid://cl1xfi8potiq4" path="res://Models/Scenes/Dungeon/dungeon_map.gd" id="3_kk8fo"]
+[ext_resource type="Script" path="res://Models/Scenes/Dungeon/dungeon_map.gd" id="3_kk8fo"]
 [ext_resource type="Resource" uid="uid://cax38by3qeox4" path="res://Configs/all_items.tres" id="4_1cpbm"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="5_uay2u"]
-[ext_resource type="Script" uid="uid://b75f6fmdm2y1x" path="res://Models/Scenes/Dungeon/wall_chunks.gd" id="7_yj5q6"]
-[ext_resource type="PackedScene" uid="uid://vssfk8x0qnt2" path="res://Models/Scenes/Dungeon/Chunk.tscn" id="8_yjhow"]
-[ext_resource type="Script" uid="uid://6hw0pek0fysd" path="res://Models/Scenes/Dungeon/dungeon_enemy_display.gd" id="11_co7ba"]
+[ext_resource type="Script" path="res://Models/Scenes/Dungeon/wall_chunks.gd" id="7_yj5q6"]
+[ext_resource type="PackedScene" path="res://Models/Scenes/Dungeon/Chunk.tscn" id="8_yjhow"]
+[ext_resource type="Script" path="res://Models/Scenes/Dungeon/dungeon_enemy_display.gd" id="11_co7ba"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_f2ske"]
 
@@ -117,8 +117,11 @@ max_enemy_spawns = 3
 enemy_level = 1
 dungeon_name = "test"
 fixed_layout = false
+fixed_exit = Vector2i(0, 0)
+town = ""
 item_drop_group = ExtResource("4_1cpbm")
 gear_drop_group = ExtResource("5_uay2u")
+enemy_spawn_chance_per_battle = 0.6
 enemy_spawn_chance = 0.5
 treasure_spawn_chance = 0.2
 gear_chance = 0.5

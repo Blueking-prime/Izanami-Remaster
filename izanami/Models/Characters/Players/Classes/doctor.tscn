@@ -7,12 +7,12 @@
 [node name="Doctor" unique_id=1275332550 instance=ExtResource("1_5nlql")]
 classname = &"Doctor"
 root_stats = Dictionary[StringName, int]({
-&"AGI": 1,
-&"END": 1,
-&"GUI": 2,
-&"INT": 1,
-&"STR": 1,
-&"WIS": 6
+&"AGI": 11,
+&"END": 5,
+&"GUI": 7,
+&"INT": 5,
+&"STR": 2,
+&"WIS": 5
 })
 level_stats = Array[StringName]([&"INT", &"WIS"])
 desc = "A healer of men, a combat medic, a learned medicine man."

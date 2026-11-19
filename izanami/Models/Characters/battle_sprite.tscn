@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3nogdpgqda7d"]
+[gd_scene format=3 uid="uid://b3nogdpgqda7d"]
 
 [ext_resource type="Script" uid="uid://dc1xbnxs1w5ja" path="res://Models/Characters/battle_sprite.gd" id="1_o83ir"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="2_1pw31"]

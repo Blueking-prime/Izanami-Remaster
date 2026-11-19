@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://x6cb76ly3pgx"]
+[gd_scene format=3 uid="uid://x6cb76ly3pgx"]
 
 [ext_resource type="Script" uid="uid://cf8n2rehtfyh4" path="res://Models/Scenes/Battle/results_screen.gd" id="1_nb07i"]
 

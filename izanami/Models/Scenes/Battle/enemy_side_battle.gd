@@ -50,7 +50,7 @@ func _initialize_enemies(from_resource_group: bool):
 func _random_spawn() -> Array:
 	var type_array: Array = []
 	for i in no_of_enemies:
-		type_array.append(enemy_set[randi_range(0, enemy_set.size() - 1)])
+		type_array.append(enemy_set.pick_random())
 	return type_array
 
 func place_charscters():

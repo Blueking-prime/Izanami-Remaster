@@ -14,11 +14,11 @@ class_name Player
 ## DYNAMIC PROPERTIES
 @export var max_sp: int:
 	get():
-		var _max_sp = (stats['AGI'] + stats['END']) * lvl
-		if _max_sp > 30:
+		var _max_sp = (stats['AGI'] + stats['END']) + (lvl * 5) + 30
+		if _max_sp > 0:
 			return _max_sp
 		else:
-			return 30
+			return 50
 
 @export var sp: int:
 	set(value):
@@ -51,12 +51,11 @@ var lock: bool = false
 
 func load_character():
 	ally = 1
-	if lvl > 1:
-		for i in lvl:
-			_increase_stats()
-	sp = max_sp
-	super.load_character()
+	for i in lvl:
+		_increase_stats()
 	gear.load_stock()
+	super.load_character()
+	sp = max_sp
 	_display_skills()
 	_display_items()
 
@@ -128,7 +127,7 @@ func _increase_stats():
 
 func restore(value: float):
 	sp += value
-	Global.print_to_log(' %s restored %f SP' % [character_name, value])
+	#Global.print_to_log(' %s restored %f SP' % [character_name, value])
 
 
 ## CHILD NODE FUNCTIONS

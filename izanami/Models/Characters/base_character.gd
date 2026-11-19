@@ -96,6 +96,7 @@ signal state_changed
 signal moved
 
 func _ready() -> void:
+	base_stats = root_stats.duplicate()
 	load_character()
 	#statuses.test()
 	init_pos = global_position

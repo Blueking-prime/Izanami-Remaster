@@ -59,7 +59,7 @@ log_panel = NodePath("../../CanvasLayer/ActionBoxUI/HBox/LogPanel")
 [node name="Turns" type="Node" parent="." unique_id=905006907 node_paths=PackedStringArray("turncount_label", "turn_order_display")]
 script = ExtResource("5_jqv44")
 turncount_label = NodePath("../CanvasLayer/Count/MarginContainer/GridContainer/Label2")
-turn_order_display = NodePath("../CanvasLayer/TurnDisplay")
+turn_order_display = NodePath("../CanvasLayer/TurnDisplay/Hbox")
 
 [node name="Actions" type="Node" parent="." unique_id=1799230028]
 script = ExtResource("6_mlml3")
@@ -239,14 +239,17 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TurnDisplay" type="HBoxContainer" parent="CanvasLayer" unique_id=1184086140]
-anchors_preset = 5
+[node name="TurnDisplay" type="PanelContainer" parent="CanvasLayer" unique_id=104963888]
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_top = 10.0
+offset_bottom = 42.0
 grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="Hbox" type="HBoxContainer" parent="CanvasLayer/TurnDisplay" unique_id=1184086140]
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 alignment = 1

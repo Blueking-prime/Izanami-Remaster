@@ -6,12 +6,12 @@
 [node name="Destitute" unique_id=430486556 instance=ExtResource("1_tiiom")]
 classname = &"Destitute"
 root_stats = Dictionary[StringName, int]({
-&"AGI": -1,
-&"END": -1,
-&"GUI": -1,
-&"INT": -1,
-&"STR": -1,
-&"WIS": -1
+&"AGI": 4,
+&"END": 4,
+&"GUI": 4,
+&"INT": 4,
+&"STR": 4,
+&"WIS": 4
 })
 desc = "Born into poverty, not even the scraps on your back belong to you. Your birth was insignificant and your life a meaningless struggle, but alas you may yet find your worth in the pit."
 

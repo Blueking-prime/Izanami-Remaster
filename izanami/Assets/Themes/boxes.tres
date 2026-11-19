@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bc6qv00ctw0du" path="res://Assets/Art/Blue_Stone_UI_Asset/BlueStoneUI_SpriteSheet.png" id="1_aqin4"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4v756"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w55up"]
 content_margin_left = 5.0
 content_margin_top = 5.0
@@ -84,6 +86,13 @@ content_margin_top = 3.0
 content_margin_right = 3.0
 content_margin_bottom = 3.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqin4"]
+bg_color = Color(0.41, 0.41, 0.41, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cm6ua"]
 texture = ExtResource("1_aqin4")
 texture_margin_left = 5.0
@@ -164,6 +173,14 @@ expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 region_rect = Rect2(32, 112, 16, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i73y1"]
+texture = ExtResource("1_aqin4")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(275, 227, 26, 25)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_syf3x"]
 texture = ExtResource("1_aqin4")
@@ -379,6 +396,8 @@ texture_margin_bottom = 5.0
 region_rect = Rect2(32, 112, 16, 48)
 
 [resource]
+BlankPanel/base_type = &"PanelContainer"
+BlankPanel/styles/panel = SubResource("StyleBoxEmpty_4v756")
 Button/font_sizes/font_size = 8
 Button/styles/disabled = SubResource("StyleBoxTexture_w55up")
 Button/styles/focus = SubResource("StyleBoxTexture_2oqrx")
@@ -392,6 +411,8 @@ FlatButton/font_sizes/font_size = 8
 FlatButton/styles/focus = SubResource("StyleBoxEmpty_0n1xd")
 FlatButton/styles/hover = SubResource("StyleBoxEmpty_15bb5")
 FlatButton/styles/pressed = SubResource("StyleBoxEmpty_aqin4")
+GreyPanel/base_type = &"PanelContainer"
+GreyPanel/styles/panel = SubResource("StyleBoxFlat_aqin4")
 HScrollBar/styles/grabber = SubResource("StyleBoxTexture_cm6ua")
 HScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_o1qxq")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_21k47")
@@ -403,6 +424,8 @@ HSlider/icons/grabber_highlight = SubResource("ImageTexture_7hw7j")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_3aajw")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_0dmqb")
 HSlider/styles/slider = SubResource("StyleBoxTexture_vc3c8")
+Highlight/base_type = &"PanelContainer"
+Highlight/styles/panel = SubResource("StyleBoxTexture_i73y1")
 ImageFrame/base_type = &"TextureRect"
 ImageFrame/styles/panel = SubResource("StyleBoxTexture_syf3x")
 InternalPanel/base_type = &"PanelContainer"

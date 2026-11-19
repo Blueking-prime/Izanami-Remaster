@@ -6,7 +6,8 @@ extends Base_Character
 @export var path_switch_timer: Timer
 @export var detector: EnemyDetector
 
-@export var atk_lines: Array = []
+@export var atk_lines: Array[String] = []
+@export var loot: Array[Resource]
 @export var speed: int
 @export var freeze: bool = false
 
@@ -46,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 func use_skill(skill_id, _target):
-	Global.print_to_log(atk_lines[randi_range(0, atk_lines.size() - 1)])
+	Global.print_to_log(atk_lines.pick_random())
 	super.use_skill(skill_id,_target)
 
 func update_stats():

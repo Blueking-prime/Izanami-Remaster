@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://vssfk8x0qnt2"]
+[gd_scene format=3 uid="uid://vssfk8x0qnt2"]
 
 [ext_resource type="TileSet" uid="uid://c50pucj5u271f" path="res://Models/Scenes/Dungeon/dungeon_og_tileset.tres" id="1_fkjy7"]
 [ext_resource type="Script" uid="uid://bjud3qpdsk12e" path="res://Models/Scenes/Dungeon/walls.gd" id="2_d28i2"]

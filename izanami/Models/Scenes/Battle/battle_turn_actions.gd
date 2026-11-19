@@ -37,6 +37,8 @@ func act():
 		advance_actor()
 		return
 
+	Global.print_to_log('-------------------------------------------')
+
 	actor.statuses.status()
 	if actor.statuses.stunned:
 		print('%s is stunned' % [actor.character_name])
@@ -123,15 +125,18 @@ func create_turn_count_icon(entity: Base_Character) -> PanelContainer:
 	texture.texture = entity.battle_sprite_texture
 	texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	texture.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	texture.scale = Vector2(0.5, 0.5)
 	panel_container.add_child(texture)
 	panel_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	panel_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	panel_container.theme_type_variation = 'BlankPanel'
 
 	return panel_container
 
 func highlight_current_actor():
-	pass
+	for i in turn_order_display.get_children():
+		i.theme_type_variation = 'BlankPanel'
+		if i.get_index() == idx:
+			i.theme_type_variation = 'Highlight'
 
 #func enemy_attack_script_placeholder():
 	#var target_player = randi_range(0, player_array.size() - 1)

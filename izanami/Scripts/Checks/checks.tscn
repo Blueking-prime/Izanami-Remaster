@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://chajioof38qb3"]
+[gd_scene format=3 uid="uid://bhhvnw32c1wi8"]
 
-[ext_resource type="Script" uid="uid://qa4rtevqub1v" path="res://Scripts/Checks/checks.gd" id="1_k2ijd"]
-[ext_resource type="Script" uid="uid://bojqxboyflqr4" path="res://Scripts/Checks/flags.gd" id="2_4l7yr"]
+[ext_resource type="Script" path="res://Scripts/Checks/checks.gd" id="1_k2ijd"]
+[ext_resource type="Script" path="res://Scripts/Checks/flags.gd" id="2_4l7yr"]
 [ext_resource type="Script" uid="uid://b6vgk8m58xuh2" path="res://Scripts/Checks/scene_state_handler.gd" id="3_52ikl"]
-[ext_resource type="Script" uid="uid://ctsdumwyq3c6h" path="res://Scripts/Checks/settings_flags.gd" id="3_kpwqp"]
-[ext_resource type="Script" uid="uid://civ4qek81q1r" path="res://Scripts/Checks/input_map.gd" id="4_plqpt"]
+[ext_resource type="Script" path="res://Scripts/Checks/settings_flags.gd" id="3_kpwqp"]
+[ext_resource type="Script" path="res://Scripts/Checks/input_map.gd" id="4_plqpt"]
 
 [node name="Checks" type="Node" unique_id=1321962532 node_paths=PackedStringArray("flags", "scene_state_handler", "settings_flags", "input_map")]
 script = ExtResource("1_k2ijd")

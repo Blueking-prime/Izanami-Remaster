@@ -7,12 +7,12 @@
 [node name="Scion" unique_id=1562808133 instance=ExtResource("1_ohesr")]
 classname = &"Scion"
 root_stats = Dictionary[StringName, int]({
-&"AGI": 1,
-&"END": 4,
-&"GUI": 4,
-&"INT": 1,
-&"STR": 1,
-&"WIS": 1
+&"AGI": 5,
+&"END": 9,
+&"GUI": 9,
+&"INT": 3,
+&"STR": 5,
+&"WIS": 5
 })
 level_stats = Array[StringName]([&"STR", &"GUI"])
 desc = "Born to unimaginable wealth and unbearable responsibility, well learned in arts of hand and war. High HP character with support buffs and a little healing"

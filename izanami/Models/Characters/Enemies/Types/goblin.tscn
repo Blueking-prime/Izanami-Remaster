@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://dr3i0j0rl2a7g"]
 
 [ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_adh4s"]
-[ext_resource type="Script" uid="uid://ckaixm5hjxvt0" path="res://Models/Characters/Enemies/Types/goblin.gd" id="2_gx3q5"]
 [ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="3_acdm4"]
 [ext_resource type="Resource" uid="uid://dom6uowf0ht13" path="res://Data/Skills/EnemySkills/goblin_punch.tres" id="4_kmnol"]
 [ext_resource type="Resource" uid="uid://bddfgdl8arr5s" path="res://Data/Skills/EnemySkills/goblin_punch_ex.tres" id="5_ne2t0"]
 
 [node name="Goblin" unique_id=1885853659 instance=ExtResource("1_adh4s")]
-script = ExtResource("2_gx3q5")
-enemy_atk_lines = ["The Goblin slashes at you with its claws and you take"]
-enemy_stats = Dictionary[StringName, int]({
+atk_lines = Array[String](["\"The Goblin slashes at you with its claws and you take\""])
+character_name = "Goblin"
+root_stats = Dictionary[StringName, int]({
 &"AGI": 0,
 &"END": 2,
 &"GUI": 0,
@@ -17,7 +16,13 @@ enemy_stats = Dictionary[StringName, int]({
 &"STR": 1,
 &"WIS": 0
 })
-enemy_resistances = Dictionary[StringName, float]({
+
+[node name="Skills" parent="." index="2" unique_id=330096693]
+_all_skills = Array[ExtResource("3_acdm4")]([ExtResource("4_kmnol"), ExtResource("5_ne2t0")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4" unique_id=487388594]
+resistances = Dictionary[StringName, float]({
 &"Blood": 0.0,
 &"Dark": 0.0,
 &"Fire": -0.5,
@@ -26,8 +31,3 @@ enemy_resistances = Dictionary[StringName, float]({
 &"Water": 0.0,
 &"Wind": 0.0
 })
-character_name = "Goblin"
-
-[node name="Skills" parent="." index="2" unique_id=330096693]
-_all_skills = Array[ExtResource("3_acdm4")]([ExtResource("4_kmnol"), ExtResource("5_ne2t0")])
-skill_group = null

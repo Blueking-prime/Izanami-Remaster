@@ -6,12 +6,12 @@
 [node name="Ronin" unique_id=792806535 instance=ExtResource("1_lj287")]
 classname = &"Ronin"
 root_stats = Dictionary[StringName, int]({
-&"AGI": 1,
-&"END": 4,
-&"GUI": 1,
-&"INT": 1,
-&"STR": 4,
-&"WIS": 1
+&"AGI": 5,
+&"END": 9,
+&"GUI": 5,
+&"INT": 5,
+&"STR": 9,
+&"WIS": 3
 })
 level_stats = Array[StringName]([&"STR", &"END"])
 desc = "A former samurai who has performed a slight against his lord"

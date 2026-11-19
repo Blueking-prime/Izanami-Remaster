@@ -18,8 +18,12 @@
 [ext_resource type="Texture2D" uid="uid://ddo0fxwlrdhwd" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/wizzard_f_idle_anim_f3.png" id="11_36d6w"]
 [ext_resource type="Texture2D" uid="uid://bqpfxq0p1xk73" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/elf_f_run_anim_f0.png" id="11_rs5ej"]
 [ext_resource type="Texture2D" uid="uid://8liqk6ip5dgj" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/elf_f_run_anim_f1.png" id="12_5r3da"]
+[ext_resource type="Texture2D" uid="uid://je6rdp8x0vtf" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/wizzard_f_run_anim_f0.png" id="12_y2ryp"]
+[ext_resource type="Texture2D" uid="uid://wiln87odsgi7" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/wizzard_f_run_anim_f1.png" id="13_k11l4"]
 [ext_resource type="Texture2D" uid="uid://cuwpttnldccj5" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/elf_f_run_anim_f2.png" id="13_nsyrm"]
+[ext_resource type="Texture2D" uid="uid://bnfal8b270plb" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/wizzard_f_run_anim_f2.png" id="14_tmrw1"]
 [ext_resource type="Texture2D" uid="uid://cc0g30mmi0ryn" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/elf_f_run_anim_f3.png" id="14_uoebu"]
+[ext_resource type="Texture2D" uid="uid://8w5l1uryo20l" path="res://Assets/Art/0x72_DungeonTilesetII_v1.7/frames/wizzard_f_run_anim_f3.png" id="15_vfe8h"]
 [ext_resource type="PackedScene" uid="uid://cshuei3rcvrpb" path="res://Models/Characters/Players/Classes/scion.tscn" id="21_y2ryp"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_k11l4"]
@@ -31,6 +35,16 @@ frame_1/duration = 1.0
 frame_2/texture = ExtResource("10_yftpy")
 frame_2/duration = 1.0
 frame_3/texture = ExtResource("11_36d6w")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_t5f8t"]
+frames = 4
+frame_0/texture = ExtResource("12_y2ryp")
+frame_1/texture = ExtResource("13_k11l4")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("14_tmrw1")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("15_vfe8h")
 frame_3/duration = 1.0
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_cppqo"]
@@ -72,7 +86,7 @@ gear_group = ExtResource("5_caqig")
 [node name="Ronin" parent="." unique_id=792806535 instance=ExtResource("7_gekyr")]
 battle_sprite_texture = SubResource("AnimatedTexture_k11l4")
 dungeon_sprite_idle_texture = SubResource("AnimatedTexture_k11l4")
-dungeon_sprite_walk_texture = SubResource("AnimatedTexture_k11l4")
+dungeon_sprite_walk_texture = SubResource("AnimatedTexture_t5f8t")
 character_name = "Ronin"
 lvl = 10
 
@@ -81,7 +95,6 @@ battle_sprite_texture = SubResource("AnimatedTexture_cppqo")
 dungeon_sprite_idle_texture = SubResource("AnimatedTexture_cppqo")
 dungeon_sprite_walk_texture = SubResource("AnimatedTexture_yftpy")
 character_name = "Doctor"
-level_stats = Array[StringName]([&"INT", &"WIS"])
 lvl = 5
 
 [node name="Scion" parent="." unique_id=1562808133 instance=ExtResource("21_y2ryp")]

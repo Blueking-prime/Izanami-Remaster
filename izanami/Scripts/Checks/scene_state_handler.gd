@@ -16,11 +16,11 @@ enum STATE {
 @export var state_flags: Dictionary [StringName, PackedStringArray] = {
 	'BEGIN': [],
 	'POST_KINTA': ['demon_bros_fought'],
-	'POST_WEST_TOWER': ['false_flag'],
-	'POST_SOUTH_TOWER': ['false_flag'],
-	'POST_EAST_TOWER': ['false_flag'],
-	'POST_LACRIMA': ['false_flag'],
-	'POST_NORTH_TOWER': ['false_flag']
+	'POST_WEST_TOWER': ['caliburn_orb'],
+	'POST_SOUTH_TOWER': ['refael_orb'],
+	'POST_EAST_TOWER': ['east_tower_orb'],
+	'POST_LACRIMA': ['lacrima_obtained'],
+	'POST_NORTH_TOWER': ['babel_chaos_orb']
 }
 
 func set_scene_state():

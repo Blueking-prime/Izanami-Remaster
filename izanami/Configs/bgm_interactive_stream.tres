@@ -1,4 +1,4 @@
-[gd_resource type="AudioStreamInteractive" load_steps=6 format=3 uid="uid://dloga3a4rvkut"]
+[gd_resource type="AudioStreamInteractive" format=3 uid="uid://dloga3a4rvkut"]
 
 [ext_resource type="AudioStream" uid="uid://cjplisiwdq7pk" path="res://Assets/Music/ByeByeBrain320bit(chosic.com).mp3" id="1_h2cl3"]
 [ext_resource type="AudioStream" uid="uid://cpknlmdxo4oel" path="res://Assets/Music/peritune-spook4(chosic.com).mp3" id="2_u8mv6"]

@@ -7,12 +7,12 @@
 [node name="Kunoichi" unique_id=1540489041 instance=ExtResource("1_5ywah")]
 classname = &"Kunoichi"
 root_stats = Dictionary[StringName, int]({
-&"AGI": 4,
-&"END": 1,
-&"GUI": 4,
-&"INT": 1,
-&"STR": 1,
-&"WIS": 1
+&"AGI": 9,
+&"END": 5,
+&"GUI": 9,
+&"INT": 5,
+&"STR": 3,
+&"WIS": 5
 })
 level_stats = Array[StringName]([&"GUI", &"AGI"])
 desc = ""

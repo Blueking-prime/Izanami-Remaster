@@ -184,6 +184,7 @@ func _on_detector_hit_chest(_coords) -> void:
 
 ## BATTLE LOGIC
 func initiate_battle(forced: bool):
+	await LoadingScreen.show()
 	overlay.disable()
 
 	var battle: Battle = Global.battle_scene.instantiate()
