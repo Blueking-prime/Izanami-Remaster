@@ -1,7 +1,8 @@
 extends StatusBuff
 
 func _init() -> void:
-	desc = 'Counter'
+	name = 'Counter'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.statuses.counterstance = true

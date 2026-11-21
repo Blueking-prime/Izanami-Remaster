@@ -3,6 +3,7 @@ extends MarginContainer
 class_name BattleSprite
 
 @export var nametag: Label
+@export var lvl_tag: Label
 @export var status_icons: GridContainer
 @export var sprite: TextureRect
 @export var pointer: TextureRect
@@ -25,4 +26,5 @@ func _set_pointer(_visible: bool):
 	pointer.visible = _visible
 
 func _set_indicator(_visible: bool):
-	indicator.visible = _visible
+	#indicator.visible = _visible
+	pass

@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Death'
+	name = 'Death'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.hp = 0

@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Low'
+	name = 'Low'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.statuses.hp_low = true

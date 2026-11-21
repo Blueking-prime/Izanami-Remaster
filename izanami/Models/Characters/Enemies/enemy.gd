@@ -102,8 +102,10 @@ func exp_drop():
 	for i in stats:
 		sum += stats[i]
 
-	return sum * 9 * lvl
+	return sum * 1000 * lvl
 
+func item_drop():
+	return loot.pick_random()
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
 	target_position = Vector2(

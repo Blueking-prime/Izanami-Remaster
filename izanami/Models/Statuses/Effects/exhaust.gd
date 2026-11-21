@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Exhaust'
+	name = 'Exhaust'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.sp -= victim.max_sp / 4

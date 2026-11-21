@@ -1,8 +1,8 @@
 extends StatusBuff
 
 func _init() -> void:
-	desc = 'Attack'
-	super._init()
+	name = 'Attack'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.ATK *= magnitude

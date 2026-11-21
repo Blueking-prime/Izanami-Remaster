@@ -50,10 +50,6 @@ func _player_party_setup():
 func exit_battle(exit_type: StringName):
 	process_input.disable_input()
 
-	for i in process_turns.player_array:
-		i.alive = true
-		i.perma_dead = false
-
 	Checks.reset_battle_flags()
 
 	if exit_type == "run":
@@ -62,13 +58,15 @@ func exit_battle(exit_type: StringName):
 
 		results_screen.set_banner(false)
 	else :
+		for drop in get_parent().drops:
+			Global.players.inventory.add_entry(drop)
 		Checks.set_flags(get_parent().flags)
 		results_screen.set_banner(true)
 	#elif exit_type == "win":
 		#get_parent().earned_exp
 		#get_parent().earned_gold
 
-	Global.players.level_up(get_parent().earned_exp, get_parent().enemy_level)
+	Global.players.level_up(get_parent().earned_exp, get_parent().enemy_level, results_screen)
 	Global.players.gold += get_parent().earned_gold
 
 

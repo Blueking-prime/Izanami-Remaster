@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'ExExhaust'
+	name = 'ExExhaust'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.statuses.exhausted = true

@@ -44,7 +44,7 @@ _data = {
 &"hit": SubResource("Animation_mbgw5")
 }
 
-[node name="BattleSprite" type="MarginContainer" node_paths=PackedStringArray("nametag", "status_icons", "sprite", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "animation_player")]
+[node name="BattleSprite" type="MarginContainer" unique_id=443032920 node_paths=PackedStringArray("nametag", "lvl_tag", "status_icons", "sprite", "pointer", "indicator", "hp_bar", "hp_bar_text", "sp_bar", "sp_bar_text", "animation_player")]
 offset_right = 56.0
 offset_bottom = 98.0
 size_flags_horizontal = 3
@@ -53,7 +53,8 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 script = ExtResource("1_o83ir")
-nametag = NodePath("VBox/NameTag")
+nametag = NodePath("VBox/HBoxContainer/NameTag")
+lvl_tag = NodePath("VBox/HBoxContainer/LvlTag")
 status_icons = NodePath("VBox/StatusIcons")
 sprite = NodePath("VBox/BattleSprite")
 pointer = NodePath("VBox/BattleSprite/Pointer")
@@ -64,23 +65,33 @@ sp_bar = NodePath("VBox/SPBar")
 sp_bar_text = NodePath("VBox/SPBar/SPBarText")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1657621067]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="StatusIcons" type="GridContainer" parent="VBox"]
+[node name="StatusIcons" type="GridContainer" parent="VBox" unique_id=971430103]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 6
 
-[node name="NameTag" type="Label" parent="VBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox" unique_id=2079320325]
+layout_mode = 2
+alignment = 1
+
+[node name="NameTag" type="Label" parent="VBox/HBoxContainer" unique_id=2081116762]
 layout_mode = 2
 text = "Slim Shady"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BattleSprite" type="TextureRect" parent="VBox"]
+[node name="LvlTag" type="Label" parent="VBox/HBoxContainer" unique_id=1949088879]
+layout_mode = 2
+text = "Lv 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BattleSprite" type="TextureRect" parent="VBox" unique_id=1256325989]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -89,7 +100,7 @@ texture = SubResource("AnimatedTexture_mbgw5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Pointer" type="TextureRect" parent="VBox/BattleSprite"]
+[node name="Pointer" type="TextureRect" parent="VBox/BattleSprite" unique_id=692144628]
 visible = false
 layout_mode = 1
 anchors_preset = 5
@@ -104,7 +115,7 @@ texture = ExtResource("3_j4uhy")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Indicator" type="TextureRect" parent="VBox/BattleSprite"]
+[node name="Indicator" type="TextureRect" parent="VBox/BattleSprite" unique_id=391117417]
 visible = false
 layout_mode = 1
 anchors_preset = 5
@@ -120,7 +131,7 @@ expand_mode = 1
 stretch_mode = 4
 flip_v = true
 
-[node name="HPBar" type="ProgressBar" parent="VBox"]
+[node name="HPBar" type="ProgressBar" parent="VBox" unique_id=1706330608]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_vertical = 1
@@ -129,7 +140,7 @@ value = 100.0
 rounded = true
 show_percentage = false
 
-[node name="HPBarText" type="Label" parent="VBox/HPBar"]
+[node name="HPBarText" type="Label" parent="VBox/HPBar" unique_id=1315104302]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,7 +152,7 @@ text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SPBar" type="ProgressBar" parent="VBox"]
+[node name="SPBar" type="ProgressBar" parent="VBox" unique_id=348922702]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 size_flags_vertical = 1
@@ -149,7 +160,7 @@ value = 100.0
 rounded = true
 show_percentage = false
 
-[node name="SPBarText" type="Label" parent="VBox/SPBar"]
+[node name="SPBarText" type="Label" parent="VBox/SPBar" unique_id=31383774]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,7 +172,5 @@ text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_0didy")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=334194283]
+libraries/ = SubResource("AnimationLibrary_0didy")

@@ -22,6 +22,7 @@ class_name Battle
 
 var earned_exp: int
 var earned_gold: int
+var drops: Array[Resource] = []
 
 ## RETURN LOCATIONS
 var dungeon: Dungeon

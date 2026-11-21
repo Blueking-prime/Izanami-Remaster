@@ -31,6 +31,7 @@ func load_stock(data: ResourceGroup):
 		add_entry(i)
 
 func add_entry(entry: Variant):
+	if not is_instance_valid(entry): return
 	#if entry is Gear:
 		#if entry.name in gear_data:
 			#gear_data[entry.name].append(entry)

@@ -48,6 +48,9 @@ var _stats: Array[StringName] = []
 ## If skill is a crit, the base value is multiplied by this
 @export var crit_mult: Array[float] = [2, 2, 2]
 
+## Chance to steal from the enemy
+@export var steal_chance: Array[float] = [0, 0, 0]
+
 ## Effect on users ATK and DEF attributes respectively (multiplicative)
 @export var boost: Array[Vector2] = [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
 ## The status effect applied by this skill
@@ -156,6 +159,8 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 			else:
 				_apply_status(obj, target, effect)
 
+	if Global.rand_chance(steal_chance[rank]):
+		_steal(target)
 	#Global.print_to_log('base value = ', value)
 
 	Checks.set_flags(flags_to_set)
@@ -199,9 +204,16 @@ func _apply_status(obj: Base_Character, target: Base_Character, effect: Script):
 	else:
 		Global.print_to_log('Miss on ' + target.character_name + '!')
 
-
 #func rand_chance(chance: float) -> bool:
 	#if randf() < chance:
 		#return true
 	#else:
 		#return false
+
+
+func _steal(target: Variant):
+	if target is Enemy and not target.loot.is_empty():
+		var item: Resource = target.item_drop()
+		Global.players.inventory.add_entry(item)
+		target.loot.erase(item)
+		Global.print_to_log(item.name + ' was stolen!')

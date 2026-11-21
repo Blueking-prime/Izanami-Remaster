@@ -79,6 +79,7 @@ func kill_enemies():
 		if not i.alive:
 			get_parent().earned_exp += i.exp_drop()
 			get_parent().earned_gold += i.gold_drop()
+			get_parent().drops.append(i.item_drop())
 			enemy_array.erase(i)
 			turn_order.erase(i)
 			actors.erase(i)

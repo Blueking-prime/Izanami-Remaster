@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Bloodlust'
+	name = 'Bloodlust'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.ATK *= 2

@@ -171,6 +171,12 @@ func battle_setup():
 	place_characters_in_battle()
 
 func battle_reset():
+	for i in party:
+		i.alive = true
+		i.perma_dead = false
+		if i.hp < 1:
+			i.hp = 1
+
 	leader.position = stored_pos
 	#z_index -= 1
 
@@ -194,6 +200,11 @@ func battle_reset():
 	revert_sprites()
 
 	leader.show()
+
+func die():
+	if party.all(func(x): return not x.alive):
+		await Global.show_info_popup('And so you fall, your journey never to be completed')
+		Global.load_main_menu()
 
 func place_characters_in_battle():
 	for i in party:
@@ -227,18 +238,27 @@ func revert_menu():
 func place_ui():
 	pass
 
-func level_up(xp: int, enemy_level: int):
-	var diff = clampf(enemy_level - _avg_player_lvl(), -15, 15)
+func level_up(xp: int, enemy_level: int, results: ResultsScreen = null):
+	var diff = clampf(enemy_level - avg_player_lvl(), -15, 15)
 	if diff > 0:
 		xp *= 1 + diff
 	else:
 		xp /= 1 + abs(diff)
 
 	xp /= party.size()
+	var _lvl: Array[int] = [0, 0]
+	var _stats: Array[Dictionary] = [{}, {}]
 	for i in party:
+		_lvl[0] = i.lvl
+		_stats[0] = i.base_stats.duplicate()
 		i.level_up(xp)
+		_lvl[1] = i.lvl
+		_stats[1] = i.base_stats.duplicate()
 
-func _avg_player_lvl() -> float:
+		if _lvl[1] > _lvl[0] and is_instance_valid(results):
+			results.spawn_results(i.name, _lvl, _stats)
+
+func avg_player_lvl() -> float:
 	return party.reduce(func (acc: int, y): return acc + y.lvl, 0) / party.size()
 
 # MOVEMENT HANDLING

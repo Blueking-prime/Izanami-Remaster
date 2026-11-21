@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://do5dydvdq2rxm"]
+
+[ext_resource type="Texture2D" uid="uid://ck8bv5ujeyeft" path="res://Assets/Art/right_arrow.svg" id="1_q2wow"]
+[ext_resource type="Script" uid="uid://bhm6hvyqooigt" path="res://Models/Scenes/Battle/stat_change.gd" id="1_smhgt"]
+
+[node name="AGIChange" type="HBoxContainer" unique_id=735185812 node_paths=PackedStringArray("statname", "init_stat", "arrow", "fin_stat")]
+script = ExtResource("1_smhgt")
+statname = NodePath("Statname")
+init_stat = NodePath("Change/InitStat")
+arrow = NodePath("Change/Arrow")
+fin_stat = NodePath("Change/FinStat")
+
+[node name="Statname" type="Label" parent="." unique_id=383187944]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+text = "AGI:"
+
+[node name="Change" type="HBoxContainer" parent="." unique_id=505003983]
+layout_mode = 2
+
+[node name="InitStat" type="Label" parent="Change" unique_id=1524360153]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "5"
+vertical_alignment = 1
+
+[node name="Arrow" type="TextureRect" parent="Change" unique_id=957318984]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_q2wow")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="FinStat" type="Label" parent="Change" unique_id=1009110927]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "6"
+horizontal_alignment = 2
+vertical_alignment = 1

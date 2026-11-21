@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Restore'
+	name = 'Restore'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.restore(victim.stats['END'])

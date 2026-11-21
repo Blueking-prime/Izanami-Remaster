@@ -6,6 +6,7 @@ var status_shown_flag: bool = false
 
 @export var remove_button: Button
 @export var nametag: Label
+@export var lvl_tag: Label
 @export var classname: Label
 
 @export var leader_icon: Control

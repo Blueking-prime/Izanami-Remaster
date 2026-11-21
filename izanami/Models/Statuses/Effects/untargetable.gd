@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Hidden'
+	name = 'Hidden'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.statuses.targetable = false

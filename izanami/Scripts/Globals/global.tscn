@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="2_pafky"]
 [ext_resource type="PackedScene" uid="uid://n1fo1vibhwx4" path="res://Models/UI/DialogBoxes/confirmation_box.tscn" id="3_0ya4a"]
 [ext_resource type="PackedScene" uid="uid://cyi5epemnot1x" path="res://Models/UI/Overlays/description_box.tscn" id="3_qpouy"]
-[ext_resource type="PackedScene" uid="uid://cyon8uinblkc1" path="res://Models/Scenes/Dungeon/dungeon.tscn" id="3_sy3id"]
+[ext_resource type="PackedScene" uid="uid://dt2lmeeqmhqj0" path="res://Models/Scenes/Dungeon/dungeon.tscn" id="3_sy3id"]
 [ext_resource type="PackedScene" uid="uid://bsvxjtygkmh1l" path="res://Models/UI/DialogBoxes/popup.tscn" id="4_08hma"]
 [ext_resource type="PackedScene" uid="uid://deahjbvovxuvn" path="res://Models/Scenes/Battle/battle.tscn" id="4_cg2fd"]
 [ext_resource type="PackedScene" uid="uid://bnbjoofilujw1" path="res://Models/UI/Shops/shop_menu.tscn" id="4_xxefv"]

@@ -5,6 +5,7 @@ class_name PlayerDataCard
 @export var player: Player
 @export var sprite: TextureRect
 @export var nametag: Label
+@export var lvl_tag: Label
 @export var hp_bar: ProgressBar
 @export var hp_bar_text: Label
 @export var sp_bar: ProgressBar

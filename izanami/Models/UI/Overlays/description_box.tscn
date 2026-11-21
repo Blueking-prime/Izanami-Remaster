@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyi5epemnot1x"]
+[gd_scene format=3 uid="uid://cyi5epemnot1x"]
 
 [ext_resource type="Script" uid="uid://cf08u8fibntsr" path="res://Models/UI/Overlays/description_box.gd" id="1_ie52s"]
 
-[node name="DescriptionBox" type="PanelContainer" node_paths=PackedStringArray("type", "element", "value", "effect_chance", "description", "subtype", "target_scope", "sell_price", "weapon_status", "cost", "stats", "rank")]
+[node name="DescriptionBox" type="PanelContainer" unique_id=1491190477 node_paths=PackedStringArray("type", "element", "value", "effect_name", "effect_chance", "description", "subtype", "target_scope", "sell_price", "weapon_status", "cost", "stats", "rank")]
 offset_right = 582.0
 offset_bottom = 373.0
 size_flags_horizontal = 3
@@ -10,9 +10,10 @@ size_flags_vertical = 3
 script = ExtResource("1_ie52s")
 type = NodePath("Margin/Vbox/Hbox/Type")
 element = NodePath("Margin/Vbox/Hbox/Element")
-value = NodePath("Margin/Vbox/Hbox/Vbox/Value")
-effect_chance = NodePath("Margin/Vbox/Hbox/Vbox/EffectChance")
-description = NodePath("Margin/Vbox/Description")
+value = NodePath("Margin/Vbox/Hbox/Value")
+effect_name = NodePath("Margin/Vbox/Hbox/Vbox/EffectName")
+effect_chance = NodePath("Margin/Vbox/Hbox/Vbox/EffectName")
+description = NodePath("Margin/Vbox/ScrollContainer/Description")
 subtype = NodePath("Margin/Vbox/Hbox2/Subtype")
 target_scope = NodePath("Margin/Vbox/Hbox2/TargetScope")
 sell_price = NodePath("Margin/Vbox/Hbox2/SellPrice")
@@ -21,112 +22,125 @@ cost = NodePath("Margin/Vbox/Hbox2/Cost")
 stats = NodePath("Margin/Vbox/Hbox/Stats")
 rank = NodePath("Margin/Vbox/Hbox/Rank")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=1197272159]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Vbox" type="VBoxContainer" parent="Margin"]
+[node name="Vbox" type="VBoxContainer" parent="Margin" unique_id=1640739435]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Hbox" type="HBoxContainer" parent="Margin/Vbox"]
+[node name="Hbox" type="HBoxContainer" parent="Margin/Vbox" unique_id=1143402153]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Type" type="Label" parent="Margin/Vbox/Hbox"]
+[node name="Type" type="Label" parent="Margin/Vbox/Hbox" unique_id=1008329697]
 layout_mode = 2
 text = "Type"
 vertical_alignment = 1
 
-[node name="Element" type="Label" parent="Margin/Vbox/Hbox"]
+[node name="Element" type="Label" parent="Margin/Vbox/Hbox" unique_id=331361065]
 layout_mode = 2
 text = "Trait"
 vertical_alignment = 1
 
-[node name="Rank" type="Label" parent="Margin/Vbox/Hbox"]
+[node name="Rank" type="Label" parent="Margin/Vbox/Hbox" unique_id=1773499512]
 visible = false
 layout_mode = 2
 text = "Rank"
 vertical_alignment = 1
 
-[node name="Spacer" type="Control" parent="Margin/Vbox/Hbox"]
+[node name="Spacer" type="Control" parent="Margin/Vbox/Hbox" unique_id=394272049]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Stats" type="Label" parent="Margin/Vbox/Hbox"]
+[node name="Stats" type="Label" parent="Margin/Vbox/Hbox" unique_id=1892866198]
 layout_mode = 2
 text = "Stats"
 
-[node name="Vbox" type="VBoxContainer" parent="Margin/Vbox/Hbox"]
+[node name="Vbox" type="VBoxContainer" parent="Margin/Vbox/Hbox" unique_id=1318418194]
 layout_mode = 2
 
-[node name="Value" type="Label" parent="Margin/Vbox/Hbox/Vbox"]
+[node name="EffectName" type="Label" parent="Margin/Vbox/Hbox/Vbox" unique_id=1715722483]
+visible = false
 layout_mode = 2
-text = "Value"
+text = "Effect Name"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="EffectChance" type="Label" parent="Margin/Vbox/Hbox/Vbox"]
+[node name="EffectChance" type="Label" parent="Margin/Vbox/Hbox/Vbox" unique_id=374217086]
+visible = false
 layout_mode = 2
 text = "Effect chance"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Line" type="HSeparator" parent="Margin/Vbox"]
+[node name="Value" type="Label" parent="Margin/Vbox/Hbox" unique_id=1393381496]
+layout_mode = 2
+text = "Value"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Line" type="HSeparator" parent="Margin/Vbox" unique_id=371631111]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="Margin/Vbox"]
+[node name="Spacer" type="Control" parent="Margin/Vbox" unique_id=2029498226]
+visible = false
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Vbox" unique_id=1386051908]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Description" type="Label" parent="Margin/Vbox"]
+[node name="Description" type="Label" parent="Margin/Vbox/ScrollContainer" unique_id=1260975597]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "A short description of the item"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Spacer2" type="Control" parent="Margin/Vbox"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Line2" type="HSeparator" parent="Margin/Vbox"]
+[node name="Spacer2" type="Control" parent="Margin/Vbox" unique_id=1922327854]
+visible = false
 layout_mode = 2
 
-[node name="Hbox2" type="HBoxContainer" parent="Margin/Vbox"]
+[node name="Line2" type="HSeparator" parent="Margin/Vbox" unique_id=557816866]
+layout_mode = 2
+
+[node name="Hbox2" type="HBoxContainer" parent="Margin/Vbox" unique_id=892946250]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Subtype" type="Label" parent="Margin/Vbox/Hbox2"]
+[node name="Subtype" type="Label" parent="Margin/Vbox/Hbox2" unique_id=1189783109]
 layout_mode = 2
 text = "Subtype"
 vertical_alignment = 1
 
-[node name="TargetScope" type="Label" parent="Margin/Vbox/Hbox2"]
+[node name="TargetScope" type="Label" parent="Margin/Vbox/Hbox2" unique_id=610783906]
 layout_mode = 2
 text = "target scope"
 vertical_alignment = 1
 
-[node name="Spacer3" type="Control" parent="Margin/Vbox/Hbox2"]
+[node name="Spacer3" type="Control" parent="Margin/Vbox/Hbox2" unique_id=349416970]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SellPrice" type="Label" parent="Margin/Vbox/Hbox2"]
+[node name="SellPrice" type="Label" parent="Margin/Vbox/Hbox2" unique_id=1250217926]
 layout_mode = 2
 text = "Sell value"
 vertical_alignment = 1
 
-[node name="WeaponStatus" type="Label" parent="Margin/Vbox/Hbox2"]
+[node name="WeaponStatus" type="Label" parent="Margin/Vbox/Hbox2" unique_id=3264436]
 visible = false
 layout_mode = 2
 text = "Equipped"
 vertical_alignment = 1
 
-[node name="Cost" type="Label" parent="Margin/Vbox/Hbox2"]
+[node name="Cost" type="Label" parent="Margin/Vbox/Hbox2" unique_id=352991155]
 layout_mode = 2
 text = "Cost"

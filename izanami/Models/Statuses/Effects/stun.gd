@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Stun'
+	name = 'Stun'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.statuses.stunned = true

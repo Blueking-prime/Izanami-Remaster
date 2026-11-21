@@ -6,8 +6,12 @@ class_name Status
 @export var elapsed: int
 @export var delay: int = 0
 @export var desc: String
+@export var name: StringName
 @export var icon: Texture2D = load("res://addons/godot_resource_groups/resource_group.svg")
 @export var extra_prop: Variant
+
+func _init() -> void:
+	desc = name
 
 func trigger(_victim: Base_Character):
 	elapsed += 1

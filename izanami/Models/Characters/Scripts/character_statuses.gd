@@ -14,7 +14,7 @@ class_name CharacterStatuses
 @export var low_health: Script
 
 ## Gives character resistance to elemental trait (0 - 100%)
-@export var resistances: Dictionary[StringName, float] = {
+@export var base_resistances: Dictionary[StringName, float] = {
 	'Physical':	0,
 	'Fire':		0,
 	'Water':	0,
@@ -23,6 +23,8 @@ class_name CharacterStatuses
 	'Light':	0,
 	'Blood':	0,
 }
+
+var resistances: Dictionary
 
 ## Gives all character skills elemental trait
 @export var enchantment: StringName
@@ -71,7 +73,7 @@ func reset_status():
 	hp_low = false
 	targetable = true
 	enchantment = ''
-	for i in resistances: resistances[i] = 0
+	for i in base_resistances: resistances[i] = base_resistances[i]
 
 	get_parent().ATK = 1
 	get_parent().DEF = 1
@@ -86,7 +88,8 @@ func auto_ailment():
 
 func trigger_status():
 	for i in status_effects:
-		Global.print_to_log(i.desc + ' proced')
+		if i.get_script() != restore:
+			Global.print_to_log(i.desc + ' proced')
 		if i.delay <= 0:
 			i.trigger(get_parent())
 		if i.get_script() not in passive_effects:
@@ -117,3 +120,6 @@ func remove_status(_status: Status):
 
 	status_effects.erase(_status)
 	status_effects_scripts.erase(_status.get_script())
+
+func remove_status_script():
+	pass

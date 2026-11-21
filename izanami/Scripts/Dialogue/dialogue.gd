@@ -135,6 +135,8 @@ func show_cutscene(cutscene_name: Variant):
 func add_party_member(party_member: StringName):
 	if Checks.check_flags([party_member + '_in_party']):
 		var new_member: Player = Global.get_npc_player(party_member)
+		new_member.lvl = int(Global.players.avg_player_lvl())
+
 		Global.players.add_to_party(new_member)
 
 func give_rewards(rewards: Array):

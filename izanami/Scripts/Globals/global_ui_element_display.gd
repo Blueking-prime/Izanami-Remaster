@@ -152,69 +152,7 @@ func show_description(object: Resource) -> void:
 	else:
 		get_tree().get_current_scene().canvas_layer.add_child(get_parent().description_box)
 
-	if 'stats' in object:
-		var stats_string = ''
-		for i in object.stats:
-			if object.stats is Dictionary:
-				if object.stats[i] != 0:
-					stats_string += i + ': ' + str(object.stats[i]) + ' '
-			elif object.stats is int:
-				stats_string = " ".join(object._stats)
-		get_parent().description_box.stats.text = stats_string
-	else:
-		get_parent().description_box.stats.hide()
-
-	get_parent().description_box.cost.hide()
-
-	if object is Gear:
-		get_parent().description_box.type.text = 'Gear'
-		get_parent().description_box.subtype.text = object.slot
-		if object.equipped:
-			get_parent().description_box.weapon_status.show()
-		get_parent().description_box.effect_chance.hide()
-		get_parent().description_box.target_scope.hide()
-		get_parent().description_box.value.hide()
-	else:
-		if object is Item:
-			get_parent().description_box.type.text = 'Item'
-			get_parent().description_box.effect_chance.text = str(object.effect_chance * 100) + '%'
-		if object is Skill:
-			get_parent().description_box.type.text = 'Skill'
-			get_parent().description_box.cost.show()
-			get_parent().description_box.cost.text = str(object.cost)
-			get_parent().description_box.effect_chance.text = str(object.effect_chance[object.rank] * 100) + '%'
-			if object.rank > 0:
-				get_parent().description_box.rank.text = '+'.repeat(object.rank)
-				get_parent().description_box.rank.show()
-
-		if object.value != 0:
-			get_parent().description_box.value.text = str(object.value)
-		elif object.status_effect:
-			for i in object.status_effect:
-				get_parent().description_box.value.text = i.new().desc
-		else:
-			get_parent().description_box.value.hide()
-
-		get_parent().description_box.subtype.text = object.type
-		if object.aoe:
-			get_parent().description_box.target_scope.text = 'AOE'
-		if object.universal:
-			get_parent().description_box.target_scope.text = 'Universal'
-		else:
-			get_parent().description_box.target_scope.text = "Single"
-		get_parent().description_box.weapon_status.hide()
-
-	if 'price' in object:
-		get_parent().description_box.sell_price.text = '#' + str(object.price)
-	elif object is Skill:
-		get_parent().description_box.sell_price.text = str(object.crit_chance[object.rank] * 100) + '%'
-	else:
-		get_parent().description_box.sell_price.hide()
-
-	if 'element' in object:
-		get_parent().description_box.element.text = object.element
-	get_parent().description_box.description.text = object.desc
-
+	get_parent().description_box.set_info(object)
 
 func show_shop_menu(stock: ResourceGroup):
 	if is_instance_valid(get_parent().shop_menu):

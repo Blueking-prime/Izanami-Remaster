@@ -1,7 +1,8 @@
 extends Status
 
 func _init() -> void:
-	desc = 'Immortal'
+	name = 'Immortal'
+	super()
 
 func trigger(victim: Base_Character):
 	victim.DEF = INF

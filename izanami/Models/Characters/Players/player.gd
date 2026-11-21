@@ -48,7 +48,6 @@ var active_selection
 var freeze_movement: bool = false
 var lock: bool = false
 
-
 func load_character():
 	ally = 1
 	for i in lvl:
@@ -108,6 +107,7 @@ func level_up(value):
 			return
 
 		Global.print_to_log(character_name + " leveled up!")
+		print(character_name + " leveled up!")
 
 		xp -= level_up_xp
 		lvl += 1
@@ -209,9 +209,9 @@ func reset_menu():
 		Global.description_box.queue_free()
 
 func die():
-	Global.print_to_log('And so you fall, your journey never to be completed')
+	Global.print_to_log(character_name + ' has fallen')
 	super.die()
-## Add death screen and shit
+	Global.players.die()
 
 func save() -> CharacterSaveData:
 	var save_data: PlayerSaveData = PlayerSaveData.new()

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_inqw0"]
 [ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="2_iqdpw"]
+[ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/barrier.tscn" id="3_i0xtu"]
 
 [node name="WestTower" unique_id=1401756524 instance=ExtResource("1_inqw0")]
 
@@ -10,6 +11,14 @@ position = Vector2(592.00006, 705)
 
 [node name="FuLiang" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="1" unique_id=959031724 instance=ExtResource("2_iqdpw")]
 position = Vector2(1259.0001, 693.00006)
+
+[node name="DungeonBarrier" parent="ObjectsSort/Barriers" parent_id_path=PackedInt32Array(660711449) index="0" unique_id=1564323056 instance=ExtResource("3_i0xtu")]
+position = Vector2(908, 281)
+scale = Vector2(20, 20)
+states = Dictionary[int, bool]({
+2: true
+})
+extra_checks = Array[StringName]([&"girl_saved"])
 
 [node name="Church" parent="." index="6" unique_id=971128350]
 visible = false

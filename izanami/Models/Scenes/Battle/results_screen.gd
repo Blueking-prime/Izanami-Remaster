@@ -5,6 +5,9 @@ class_name ResultsScreen
 @export var result: Label
 @export var xp_result_label: Label
 @export var g_result_label: Label
+@export var lvl_up_display: HBoxContainer
+
+@export var results_screen_card_scene: PackedScene
 
 @export var animation_player: AnimationPlayer
 
@@ -25,6 +28,12 @@ func show_xp(value: int):
 func show_g(value: int):
 	g_result_label.text = str(value) + " G EARNED"
 
+func spawn_results(p_name: String, lvls: Array[int], stats: Array[Dictionary]):
+	var card: ResultsScreenCard = results_screen_card_scene.instantiate()
+
+	card.set_change_info(p_name, lvls, stats)
+
+	lvl_up_display.add_child(card)
 
 func _unhandled_key_input(_event: InputEvent) -> void:
 	set_process_unhandled_key_input(false)

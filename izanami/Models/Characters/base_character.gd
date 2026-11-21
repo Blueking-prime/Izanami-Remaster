@@ -127,6 +127,7 @@ func load_character():
 	hp = max_hp
 	skills.load_stock()
 	items.load_stock()
+	statuses.resistances = statuses.base_resistances.duplicate()
 
 func set_dungeon_sprite():
 	if not is_instance_valid(dungeon_sprite): return
@@ -167,6 +168,9 @@ func assign_ui_element_to_character(ui_object: Control):
 	battle_sprite = ui_object
 	if 'nametag' in ui_object and is_instance_valid(ui_object.nametag):
 		ui_object.nametag.text = character_name
+
+	if 'lvl_tag' in ui_object and is_instance_valid(ui_object.lvl_tag):
+		ui_object.lvl_tag.text = 'Lv ' + str(lvl)
 
 	if 'status_icons' in ui_object and is_instance_valid(ui_object.status_icons):
 		status_icon_container = ui_object.status_icons

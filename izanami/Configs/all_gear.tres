@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ResourceGroup" format=3 uid="uid://umirx22rugjw"]
 
-[ext_resource type="Script" uid="uid://3lgnbrucsnl" path="res://addons/godot_resource_groups/resource_group.gd" id="1_x0vcg"]
+[ext_resource type="Script" uid="uid://b17sy7t5x0ufu" path="res://addons/godot_resource_groups/resource_group.gd" id="1_x0vcg"]
 
 [resource]
 script = ExtResource("1_x0vcg")

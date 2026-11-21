@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bl7j3gdr7av8q"]
+
+[ext_resource type="Texture2D" uid="uid://ck8bv5ujeyeft" path="res://Assets/Art/right_arrow.svg" id="1_kd64x"]
+[ext_resource type="Script" uid="uid://3g1yhgchi70c" path="res://Models/Scenes/Battle/results_screen_card.gd" id="1_s4bm7"]
+[ext_resource type="PackedScene" uid="uid://do5dydvdq2rxm" path="res://Models/Scenes/Battle/stat_change.tscn" id="3_vxytm"]
+
+[node name="ResultsScreenCard" type="PanelContainer" unique_id=1209435999 node_paths=PackedStringArray("nametag", "init_lvl", "fin_lvl", "stat_change_container")]
+offset_right = 40.0
+offset_bottom = 15.0
+script = ExtResource("1_s4bm7")
+nametag = NodePath("MarginContainer/Vbox/Nametag")
+init_lvl = NodePath("MarginContainer/Vbox/HBoxContainer/InitLVl")
+fin_lvl = NodePath("MarginContainer/Vbox/HBoxContainer/FinalLvl")
+stat_change_container = NodePath("MarginContainer/Vbox/VBoxContainer")
+stat_change_scene = ExtResource("3_vxytm")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=108282489]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Vbox" type="VBoxContainer" parent="MarginContainer" unique_id=382258921]
+layout_mode = 2
+
+[node name="Nametag" type="Label" parent="MarginContainer/Vbox" unique_id=100007101]
+layout_mode = 2
+text = "Player"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Vbox" unique_id=2139917903]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Vbox" unique_id=1666664146]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Vbox/HBoxContainer" unique_id=1759781639]
+layout_mode = 2
+text = "Lv"
+
+[node name="InitLVl" type="Label" parent="MarginContainer/Vbox/HBoxContainer" unique_id=565593871]
+layout_mode = 2
+text = "1"
+
+[node name="Arrow" type="TextureRect" parent="MarginContainer/Vbox/HBoxContainer" unique_id=307850505]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+texture = ExtResource("1_kd64x")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="FinalLvl" type="Label" parent="MarginContainer/Vbox/HBoxContainer" unique_id=2102168003]
+layout_mode = 2
+text = "2"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Vbox" unique_id=160025561]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Vbox" unique_id=195312708]
+layout_mode = 2
