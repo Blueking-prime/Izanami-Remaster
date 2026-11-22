@@ -16,7 +16,19 @@ extends Node
 @export var text_log_scene: PackedScene
 
 @export_category("Game Scenes")
+@export var party_scene: PackedScene
 @export var town_scene: PackedScene
+@export var town_scenes: Dictionary[StringName, PackedScene] = {
+	'YomotsuHirasaka' = null,
+	'Kinta' = null,
+	'Prisons' = null,
+	'Gokuraku' = null,
+	'EastTower' = null,
+	'Etemenanki' = null,
+	'RandomCave1' = null,
+	'RandomCave2' = null,
+	'RandomCave3' = null,
+}
 @export var dungeon_scene: PackedScene
 @export var demonitarium_scene: PackedScene
 @export var battle_scene: PackedScene
@@ -32,7 +44,20 @@ var all_items
 var all_gears
 var all_skills
 var all_players
-@export var playable_npcs: Array[PackedScene]
+@export var playable_npcs: Dictionary[StringName, PackedScene] = {
+	'Beatrix' = null,
+	'Fu Liang' = null,
+	'Momiji' = null,
+}
+@export var classes: Dictionary[StringName, PackedScene] = {
+	'Ronin': null,
+	'Scion': null,
+	'Kunoichi': null,
+	'Shinobi': null,
+	'Doctor': null,
+	'Maken': null,
+	'Destitute': null,
+}
 
 var players: Party
 
@@ -133,7 +158,7 @@ func warp(source: Location, destination_scene: PackedScene): return await SCENE_
 func load_main_menu(): return SCENE_LOADER.load_main_menu()
 func move_node_to_other_node(node: Node, parent: Node, other_node: Node, after: int = false): return SCENE_LOADER.move_node_to_other_node(node, parent, other_node, after)
 func get_resource(resource_name: String, type: String) -> Resource: return SCENE_LOADER.get_resource(resource_name, type)
-func get_npc_player(npc_name: String) -> Player: return SCENE_LOADER.get_npc_player(npc_name)
+func load_packed_scene(_name: String, type: StringName) -> Node2D: return SCENE_LOADER.load_packed_scene(_name, type)
 func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, _warp: bool = true): return SCENE_LOADER.push_back_player(centre, distance, tilemap, _warp)
 func spawn_player(player_name: String) -> Player: return SCENE_LOADER.spawn_player(player_name)
 #endregion

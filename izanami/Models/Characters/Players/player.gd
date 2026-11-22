@@ -221,9 +221,13 @@ func save() -> CharacterSaveData:
 	save_data.alive = alive
 
 	save_data.character_name = character_name
+	save_data.classname = classname
 	save_data.sp = sp
 	save_data.xp = xp
 	save_data.gear = gear.save()
+	save_data.skills = skills.save()
+
+	save_data.base_stats = base_stats.duplicate()
 
 	return save_data
 
@@ -233,10 +237,13 @@ func load_data(data: CharacterSaveData):
 	xp = data.xp
 	items.item_group = null
 	gear.player_gear_data = data.gear
+	skills._all_skills = data.skills
 	character_name = data.character_name
 
-	super.load_data(data)
 
+	super.load_data(data)
+	base_stats = data.base_stats.duplicate()
+	update_stats()
 	sp = data.sp
 
 #func _on_detector_object_hit(object_type: Variant) -> void:

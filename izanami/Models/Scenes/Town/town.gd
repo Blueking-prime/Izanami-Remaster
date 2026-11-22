@@ -17,6 +17,7 @@ var disable_entrance: bool = false
 func load_scene():
 	super.load_scene()
 	_disable_hidden_buildings()
+	print('Scene Loaded')
 
 func _disable_hidden_buildings():
 	for i in get_children():
@@ -56,6 +57,7 @@ func handle_out_of_bounds():
 func save() -> TownSaveData:
 	var save_data: TownSaveData = TownSaveData.new()
 
+	save_data.location = name
 	save_data.apothecary_stock = apothecary.stock
 	save_data.smithy_stock = smithy.stock
 

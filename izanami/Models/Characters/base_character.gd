@@ -262,10 +262,10 @@ func save() -> CharacterSaveData:
 	return save_data
 
 func load_data(data: CharacterSaveData):
+	load_character()
+
 	lvl = data.lvl
 	alive = data.alive
-
-	load_character()
 
 	hp = data.hp
 	position = data.position

@@ -23,7 +23,7 @@ func warp(source: Location, destination_scene: PackedScene):
 
 	destination.call_deferred('add_players')
 
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
 
 	get_tree().set_deferred('current_scene', destination)
 	if is_instance_valid(source):
@@ -31,7 +31,7 @@ func warp(source: Location, destination_scene: PackedScene):
 
 	Audio.call_deferred('set_background_music')
 
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
 
 	get_parent().players.leader.global_position = destination.entrance
 
@@ -79,11 +79,18 @@ func get_resource(resource_name: String, type: String) -> Resource:
 
 	return item
 
-func get_npc_player(npc_name: String) -> Player:
-	var index = get_parent().playable_npcs.find_custom(func (x): return x.name == npc_name)
-	var npc = get_parent().playable_npcs.get(index)
+func load_packed_scene(_name: String, type: StringName) -> Node2D:
+	var node: PackedScene
+	match type:
+		'NPC': node = get_parent().playable_npcs.get(_name)
+		'Dungeon': node = get_parent().dungeon_scenes.get(_name)
+		'Town': node = get_parent().town_scenes.get(_name)
+		'Class': node = get_parent().classes.get(_name)
 
-	return npc.instantiate()
+	if is_instance_valid(node):
+		return node.instantiate()
+	else:
+		return
 
 func push_back_player(centre: Vector2, distance: int, tilemap: bool = false, _warp: bool = true):
 	var push_velocity_multiplier: int = 10

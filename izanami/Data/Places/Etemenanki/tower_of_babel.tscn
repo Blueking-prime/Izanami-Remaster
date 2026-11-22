@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_x8vga"]
 
-[node name="TowerOfBabel" unique_id=1401756524 instance=ExtResource("1_x8vga")]
+[node name="Babel" unique_id=1401756524 instance=ExtResource("1_x8vga")]
 
 [node name="Church" parent="." index="6" unique_id=971128350]
 visible = false

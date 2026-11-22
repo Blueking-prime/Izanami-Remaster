@@ -51,8 +51,8 @@ func load_save_file(file_location: String):
 	var save_file: GameSaveData = load(file_location)
 	Checks.load_flags(save_file.game_flags)
 
-	match save_file.scene_data.location:
-		'Town': await load_town()
+	match save_file.scene_data.type:
+		'Town': await load_town(save_file.scene_data)
 		'Demonitarium': await load_demonitarium()
 
 	if not Global.players:
@@ -80,10 +80,10 @@ func load_settings():
 		Checks.load_settings(save_file.data)
 
 ## LOAD SCENE
-func load_town():
-	if not get_tree().current_scene is Town:
+func load_town(save_data: TownSaveData):
+	if get_tree().current_scene.name != save_data.location:
 		get_tree().unload_current_scene()
-		var town: Town = Global.town_scene.instantiate()
+		var town: Town = Global.load_packed_scene(save_data.location, 'Town')
 		add_sibling(town)
 		get_tree().current_scene = town
 
@@ -97,5 +97,4 @@ func load_demonitarium():
 
 ## SPAWN NEW PLAYERS ON FRESH LOAD
 func load_players():
-	var players: Party = preload("res://Models/Characters/Players/players.tscn").instantiate()
-	Global.players =  players
+	Global.players = Global.party_scene.instantiate()

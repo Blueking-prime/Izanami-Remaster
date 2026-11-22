@@ -301,9 +301,9 @@ func load_state(save_data: PartySaveData):
 		i.queue_free()
 
 	for i in save_data.players:
-		var player: Player = player_scene.instantiate()
-		player.gear.player_gear_data = null
-		player.items.item_group = null
+		var player: Player = Global.load_packed_scene(i.classname, 'Class')
+		#player.gear.player_gear_data = null
+		#player.items.item_group = null
 		add_to_party(player)
 		player.load_data(i)
 		#player.freeze_movement = true

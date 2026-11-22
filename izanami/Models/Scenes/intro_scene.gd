@@ -7,7 +7,6 @@ class_name IntroScene
 
 @export_file('*.json') var cutscene_1: String
 @export_file('*.json') var cutscene_2: String
-@export var starter_town: PackedScene
 @export var party_scene: PackedScene
 
 
@@ -27,7 +26,7 @@ func implement_starting_materials(player: Player):
 func play_post_select_intro():
 	Global.set_seed()
 	#await Dialogue.show_cutscene(cutscene_2)
-	Global.warp(null, starter_town)
+	Global.warp(null, Global.town_scenes['YomotsuHirasaka'])
 	get_parent().queue_free()
 
 

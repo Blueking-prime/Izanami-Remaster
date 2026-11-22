@@ -41,3 +41,6 @@ func get_skill(index: int) -> Skill:
 		return _skills.get(index)
 	else :
 		return _skills.back()
+
+func save() -> Array[Skill]:
+	return _all_skills
