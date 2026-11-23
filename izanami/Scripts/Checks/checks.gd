@@ -9,32 +9,20 @@ extends Node
 
 @export var custom_seed: int = 0
 
-var current_quest: GlobalQuests.Quest
 var refresh_shops: bool = false
 var player_name: String = 'Magnolia'
-var scroll: bool:
-	set(value): settings_flags.scroll = value
-	get(): return settings_flags.scroll
-var scroll_speed: float:
-	set(value): settings_flags.scroll_speed = value
-	get(): return settings_flags.scroll_speed
-var ffwd_speed: float:
-	set(value): settings_flags.ffwd_speed = value
-	get(): return settings_flags.ffwd_speed
-var wait_time: float:
-	set(value): settings_flags.wait_time = value
-	get(): return settings_flags.wait_time
-var thought_text_colour: Color:
-	set(value): settings_flags.thought_text_colour = value
-	get(): return settings_flags.thought_text_colour
-var small_text_size: int:
-	set(value): settings_flags.small_text_size = value
-	get(): return settings_flags.small_text_size
-
-
 
 func check_flags(_flags: Array) -> bool:
 	return _flags.all(func(x): return flags.get(x))
+
+func get_flags(_flags: Array) -> Dictionary[StringName, Variant]:
+	var results: Dictionary[StringName, Variant] = {}
+	for i in _flags:
+		results[i] = flags.get(i)
+	return results
+
+func get_flag(_flag: StringName) -> Variant:
+	return flags.get
 
 func set_flags(_flags: Dictionary):
 	for i in _flags:
@@ -63,8 +51,10 @@ func retreive_setting(arg: StringName) -> Variant:
 	return settings_flags.get(arg)
 
 #region QUESTS
-var completed_quests: Array
-
+var active_quest_list: Array[GlobalQuests.Quest]
+var current_quest: GlobalQuests.Quest
+var completed_quests: Array[GlobalQuests.Quest]
+#endregion
 
 var dungeons: Dictionary = {
 	'test': {

@@ -301,7 +301,11 @@ func load_state(save_data: PartySaveData):
 		i.queue_free()
 
 	for i in save_data.players:
-		var player: Player = Global.load_packed_scene(i.classname, 'Class')
+		var player: Player
+		if i.character_name in Global.playable_npcs:
+			player = Global.load_packed_scene(i.character_name, 'NPC')
+		else:
+			player = Global.load_packed_scene(i.classname, 'Class')
 		#player.gear.player_gear_data = null
 		#player.items.item_group = null
 		add_to_party(player)

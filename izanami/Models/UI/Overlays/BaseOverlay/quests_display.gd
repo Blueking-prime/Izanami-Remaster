@@ -13,19 +13,19 @@ func connect_signals():
 		Global.quests_changed.connect(_on_quests_updated)
 
 func update_quest():
-	if not Global.current_quest or Global.current_quest.completed:
+	if not Checks.current_quest or Checks.current_quest.completed:
 		default_display()
 		return
 
-	if not currently_displayed_quest or (Global.current_quest.title != currently_displayed_quest.title):
-		currently_displayed_quest = Global.current_quest
+	if not currently_displayed_quest or (Checks.current_quest.title != currently_displayed_quest.title):
+		currently_displayed_quest = Checks.current_quest
 		title.text = currently_displayed_quest.title
 		_clear_objectives()
 
 	_get_displayed_objectives()
 	currently_displayed_quest.refresh_flags()
 
-	update_objectives(Global.current_quest.objectives)
+	update_objectives(Checks.current_quest.objectives)
 
 func update_objectives(objectives: Array):
 	if not objectives.is_empty():

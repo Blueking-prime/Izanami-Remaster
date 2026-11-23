@@ -7,9 +7,9 @@ extends OptionMenu
 ## WORKING VARIABLES
 var quests: Array:
 	get():
-		return Global.active_quest_list
+		return Checks.active_quest_list
 	set(arg):
-		Global.active_quest_list = arg
+		Checks.active_quest_list = arg
 
 var current_quest: GlobalQuests.Quest:
 	get():

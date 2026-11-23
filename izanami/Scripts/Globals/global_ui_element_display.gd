@@ -72,6 +72,8 @@ func _create_base_textbox(speaker: String, prompt: String, screen_side: String =
 
 	if get_parent().textbox_auto_flag:
 		get_parent().text_box.auto_button.set_pressed_no_signal(true)
+	if get_parent().textbox_ffwd_flag:
+		get_parent().text_box.ffwd_button.set_pressed_no_signal(true)
 	if get_parent().text_log.visible:
 		get_parent().text_box.log_button.button_pressed = true
 
@@ -183,7 +185,7 @@ func _connect_text_box_signals():
 		get_parent().text_box.auto_button.toggled.connect(get_parent()._on_textbox_auto_selected)
 		get_parent().text_box.ffwd_button.toggled.connect(get_parent()._on_textbox_ffwd_selected)
 		get_parent().text_box.log_button.toggled.connect(get_parent()._on_textbox_log_selected)
-		get_parent().text_box.skip_button.pressed.connect(get_parent()._on_textbox_skip_selected)
+		get_parent().text_box.skip_button.toggled.connect(get_parent()._on_textbox_skip_selected)
 
 
 func add_text_log_to_scene():

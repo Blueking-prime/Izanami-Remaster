@@ -138,6 +138,7 @@ text = "Log"
 [node name="SkipButton" type="Button" parent="ButtonsPanel/VBoxContainer" unique_id=156147477]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
+toggle_mode = true
 text = "Skip"
 
 [node name="AutoButton" type="Button" parent="ButtonsPanel/VBoxContainer" unique_id=243518536]

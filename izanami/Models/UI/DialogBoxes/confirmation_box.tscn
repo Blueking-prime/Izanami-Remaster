@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://n1fo1vibhwx4"]
 
-[node name="ConfirmationBox" type="ConfirmationDialog"]
+[ext_resource type="Script" uid="uid://c7mv6dlmmx6ls" path="res://Models/UI/DialogBoxes/confirmation_box.gd" id="1_omse6"]
+
+[node name="ConfirmationBox" type="ConfirmationDialog" unique_id=540662415]
+oversampling_override = 1.0
 title = "Please Confirm"
 initial_position = 1
 visible = true
@@ -10,3 +13,4 @@ popup_window = true
 ok_button_text = "Yes"
 dialog_autowrap = true
 cancel_button_text = "No"
+script = ExtResource("1_omse6")

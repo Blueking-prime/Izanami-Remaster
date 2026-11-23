@@ -26,6 +26,7 @@ text = "5"
 vertical_alignment = 1
 
 [node name="Arrow" type="TextureRect" parent="Change" unique_id=957318984]
+visible = false
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -34,6 +35,7 @@ expand_mode = 5
 stretch_mode = 5
 
 [node name="FinStat" type="Label" parent="Change" unique_id=1009110927]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 1

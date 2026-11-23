@@ -35,13 +35,15 @@ func scroll_text():
 
 
 func _go_next():
-	if Checks.settings_flags.scroll and not scroll_timer.is_stopped():
+	if Checks.retreive_setting('scroll') and not scroll_timer.is_stopped():
 		scroll_timer.stop()
 		text.text = Global.clear_custom_tags(text_string)
 	else:
 		Global.next.emit()
 
 func _input(event: InputEvent) -> void:
+	if not visible: return
+
 	if event.is_action_pressed("ui_accept"):
 		_go_next()
 	elif event.is_action_pressed('text_auto'):
@@ -49,8 +51,8 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed('text_ffwd'):
 		ffwd_button.button_pressed = not ffwd_button.button_pressed
 	elif event.is_action_pressed('text_skip'):
-		skip_button.button_pressed = true
+		skip_button.button_pressed = not skip_button.button_pressed
 
 func _on_text_box_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and visible:
 		_go_next()

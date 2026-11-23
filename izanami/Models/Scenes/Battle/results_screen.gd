@@ -36,11 +36,11 @@ func spawn_results(p_name: String, lvls: Array[int], stats: Array[Dictionary]):
 	lvl_up_display.add_child(card)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") and visible:
 		Global.next.emit()
 
 func _on_screen_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and visible:
 		Global.next.emit()
 
 
@@ -53,7 +53,6 @@ func _on_visibility_changed() -> void:
 		LoadingScreen.show()
 		await LoadingScreen.animation_player.animation_finished
 		exited.emit()
-
 	else :
 		animation_player.stop()
 		set_process_unhandled_key_input(false)

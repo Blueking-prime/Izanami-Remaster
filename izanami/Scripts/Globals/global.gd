@@ -83,15 +83,17 @@ var confrimation_response: bool
 
 # TEXTBOX FLAGS
 var textbox_skip_flag: bool
-var textbox_auto_flag: bool
-var textbox_ffwd_flag: bool
+var textbox_auto_flag: bool:
+	set(value):
+		textbox_auto_flag = value
+		text_box.auto_button.set_pressed_no_signal(value)
+var textbox_ffwd_flag: bool:
+	set(value):
+		textbox_ffwd_flag = value
+		text_box.ffwd_button.set_pressed_no_signal(value)
+
 
 var scroll_state: bool
-
-var active_quest_list: Array[GlobalQuests.Quest]
-var current_quest: GlobalQuests.Quest:
-	set(arg): Checks.current_quest = arg
-	get(): return Checks.current_quest
 
 #region REGEX EXplanation
 r'''
@@ -201,32 +203,31 @@ func _on_shop_exit():
 	exit_signal.emit()
 
 
-func _on_textbox_skip_selected():
-	var confirm = await show_confirmation_box('Skip cutscene')
-	if confirm:
-		textbox_skip_flag = true
-		next.emit()
+func _on_textbox_skip_selected(toggled_on: bool):
+	if toggled_on:
+		var confirm = await show_confirmation_box('Skip cutscene')
+		if confirm:
+			textbox_skip_flag = true
+			next.emit()
+		text_box.skip_button.button_pressed = false
 
 func _on_textbox_auto_selected(toggled_on: bool):
+	textbox_auto_flag = toggled_on
 	if toggled_on:
-		textbox_auto_flag = true
 		next.emit()
 	else :
-		textbox_auto_flag = false
 		textbox_ffwd_flag = false
 		pause_timer.emit()
 
 func _on_textbox_ffwd_selected(toggled_on: bool):
+	textbox_ffwd_flag = toggled_on
+	textbox_auto_flag = toggled_on
 	if toggled_on:
-		textbox_ffwd_flag = true
-		textbox_auto_flag = true
-		scroll_state = Checks.scroll
-		Checks.scroll = false
+		scroll_state = Checks.retreive_setting('scroll')
+		Checks.change_setting('scroll', false)
 		next.emit()
 	else :
-		textbox_ffwd_flag = false
-		textbox_auto_flag = false
-		Checks.scroll = scroll_state
+		Checks.change_setting('scroll', scroll_state)
 		pause_timer.emit()
 
 func _on_textbox_log_selected(toggled_on: bool):
@@ -249,13 +250,14 @@ func _on_textbox_log_selected(toggled_on: bool):
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventMouse:
-		Checks.settings_flags.input_type = 0
-	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		Checks.settings_flags.input_type = 1
+		Checks.change_setting('input_type', ChecksInputMap.INPUT_TYPE.KEY)
+	elif event is InputEventJoypadButton:
+		Checks.change_setting('input_type', ChecksInputMap.INPUT_TYPE.JOY_BUTTON)
+	elif event is InputEventJoypadMotion:
+		Checks.change_setting('input_type', ChecksInputMap.INPUT_TYPE.JOY_AXIS)
 
 	if event.is_action_pressed("ui_cancel"):
-		sell.emit('exit')
-		exit_signal.emit()
+		_on_shop_exit()
 		if is_instance_valid(exit_button) and exit_button.visible:
 			Audio.play_exit_menu_sfx()
 	if event.is_action_pressed('test'):

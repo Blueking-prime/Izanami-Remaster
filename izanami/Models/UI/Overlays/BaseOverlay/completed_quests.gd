@@ -5,7 +5,7 @@ extends OptionMenu
 @export var objective_list: Options
 
 ## WORKING VARIABLES
-var quests: Array:
+var quests: Array[GlobalQuests.Quest]:
 	get():
 		return Checks.completed_quests
 

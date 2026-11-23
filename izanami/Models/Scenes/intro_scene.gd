@@ -32,6 +32,7 @@ func play_post_select_intro():
 
 func _on_character_select_player_created(player: Player) -> void:
 	player.lock = true
+	Checks.player_name = player.character_name
 	Global.players.switch_leader(Global.players.party.find(player))
 	Global.players.clear_party()
 	implement_starting_materials(player)

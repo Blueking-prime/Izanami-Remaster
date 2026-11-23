@@ -2,11 +2,11 @@ extends Node
 
 class_name SettingsFlags
 
-@export var input_type: int = 0:
+@export var input_type: ChecksInputMap.INPUT_TYPE = ChecksInputMap.INPUT_TYPE.KEY:
 	set(arg):
 		if arg != input_type:
 			input_type = arg
-			var scene = get_tree().get_current_scene()
+			var scene = get_tree().current_scene
 			if scene is Location: scene.overlay.load_ui_elements()
 		else:
 			input_type = arg

@@ -2,6 +2,24 @@ extends Node
 
 class_name Flags
 
+#region Info
+var custom_seed: int:
+	get(): return get_parent().custom_seed
+	set(value): get_parent().custom_seed = value
+var active_quest_list: Array[GlobalQuests.Quest]:
+	get(): return get_parent().active_quest_list
+	set(value): get_parent().active_quest_list = value
+var current_quest: GlobalQuests.Quest:
+	get(): return get_parent().current_quest
+	set(value): get_parent().current_quest = value
+var player_name: String:
+	get(): return get_parent().player_name
+	set(value): get_parent().player_name = value
+var completed_quests: Array[GlobalQuests.Quest]:
+	get(): return get_parent().completed_quests
+	set(value): get_parent().completed_quests = value
+#endregion
+
 #region Test Flags
 var main_check: bool = true
 var main_flag: bool = false

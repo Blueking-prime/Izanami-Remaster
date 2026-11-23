@@ -27,7 +27,8 @@ var drops: Array[Resource] = []
 ## RETURN LOCATIONS
 var dungeon: Dungeon
 var town: Town
-var demonitarium: Node
+var demonitarium: Demonitarium
+var overworld_encounter: bool
 
 
 func _ready() -> void:

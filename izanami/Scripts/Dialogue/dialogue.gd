@@ -43,7 +43,7 @@ func parse_branch(branch: Dictionary):
 			auto_delay_timer.start(_calculate_wait_time(line[1]))
 
 		if Global.textbox_ffwd_flag:
-			auto_delay_timer.start(Checks.ffwd_speed)
+			auto_delay_timer.start(Checks.retreive_setting('ffwd_speed'))
 
 		if Global.textbox_skip_flag:
 			if line.size() >= 4 and line[3]:

@@ -82,6 +82,8 @@ func exit_battle(exit_type: StringName):
 		dungeon.reset_from_battle()
 	elif town:
 		town.reset_from_battle()
+		if get_parent().overworld_encounter:
+			town.go_to_overworld()
 	elif demonitarium:
 		demonitarium.reset_from_battle()
 

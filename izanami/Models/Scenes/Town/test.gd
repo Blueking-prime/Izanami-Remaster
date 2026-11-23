@@ -12,19 +12,12 @@ var quest_2 = GlobalQuests.Quest.new('Test 2 Quest', [
 ])
 
 func main():
-
-	#remove_child(test_player)
-	#print(Global.players.gold)
-	if quest in Global.active_quest_list:
-		if quest_2 not in Global.active_quest_list:
+	if quest in Checks.active_quest_list:
+		if quest_2 not in Checks.active_quest_list:
 			Global.add_quest(quest_2)
-		Checks.flags.test_return = true
-		#print('Flag set')
+		Checks.set_flags({'test_return': true})
 	else :
 		Global.add_quest(quest)
 
-	#print(Checks.current_quest.title, Checks.current_quest)
-
-	#print('Reload')
 	get_parent().overlay.load_ui_elements()
 	get_parent().overlay.show()

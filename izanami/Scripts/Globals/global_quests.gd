@@ -37,31 +37,31 @@ func load_quests():
 	pass
 
 func add_quest(quest: Quest):
-	if quest not in get_parent().active_quest_list:
-		get_parent().active_quest_list.append(quest)
-	if not get_parent().current_quest:
+	if quest not in Checks.active_quest_list:
+		Checks.active_quest_list.append(quest)
+	if not Checks.current_quest:
 		set_active_quest(quest)
 
 func set_active_quest(quest: Quest, update: bool = true):
-	get_parent().current_quest = quest
+	Checks.current_quest = quest
 	if update:
 		update_quests()
 
 func update_quests():
-	for i in get_parent().active_quest_list:
+	for i in Checks.active_quest_list:
 		i.refresh_flags()
 		if i.completed:
-			if i == get_parent().current_quest:
+			if i == Checks.current_quest:
 				_set_new_curent_quest()
 			Checks.completed_quests.append(i)
-			get_parent().active_quest_list.erase(i)
+			Checks.active_quest_list.erase(i)
 
 	get_parent().quests_changed.emit()
 	#print('Refreshed')
 
 
 func _set_new_curent_quest():
-	if get_parent().active_quest_list.back():
-		set_active_quest(get_parent().active_quest_list.back(), false)
+	if Checks.active_quest_list.back():
+		set_active_quest(Checks.active_quest_list.back(), false)
 	else :
 		set_active_quest(null, false)

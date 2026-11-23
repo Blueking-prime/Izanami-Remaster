@@ -144,6 +144,7 @@ func reset_from_battle():
 	overlay.show()
 	if last_played_cutscene:
 		last_played_cutscene.play_cutscene()
+		last_played_cutscene = null
 
 func go_to_overworld():
 	Global.players.freeze()

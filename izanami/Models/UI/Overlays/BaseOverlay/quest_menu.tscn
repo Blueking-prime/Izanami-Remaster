@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://11siwvu70ak7"]
+[gd_scene format=3 uid="uid://11siwvu70ak7"]
 
 [ext_resource type="Script" uid="uid://bpro3bpsmtw05" path="res://Models/UI/Overlays/BaseOverlay/quest_menu.gd" id="1_cod0v"]
 [ext_resource type="PackedScene" uid="uid://bahbw57ddd7vt" path="res://Scripts/menu_switcher.tscn" id="2_6m2fi"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dfmxwvhcd52h1" path="res://Models/UI/Overlays/BaseOverlay/completed_quests.gd" id="5_vxv28"]
 [ext_resource type="PackedScene" uid="uid://ujhs0mvtimxh" path="res://Models/UI/Shops/shop_inventory.tscn" id="5_ysctb"]
 
-[node name="QuestMenu" type="Panel" node_paths=PackedStringArray("active_menu", "completed_menu", "tab_container", "menu_switcher", "desc_box_container")]
+[node name="QuestMenu" type="Panel" unique_id=1988570782 node_paths=PackedStringArray("active_menu", "completed_menu", "tab_container", "menu_switcher", "desc_box_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,10 +20,10 @@ tab_container = NodePath("TabContainer")
 menu_switcher = NodePath("MenuSwitcher")
 desc_box_container = NodePath("BoxContainer")
 
-[node name="MenuSwitcher" parent="." node_paths=PackedStringArray("menu_container") instance=ExtResource("2_6m2fi")]
+[node name="MenuSwitcher" parent="." unique_id=1644800348 node_paths=PackedStringArray("menu_container") instance=ExtResource("2_6m2fi")]
 menu_container = NodePath("../TabContainer")
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=746256082]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -39,7 +39,7 @@ current_tab = 1
 drag_to_rearrange_enabled = true
 use_hidden_tabs_for_min_size = true
 
-[node name="Active" parent="TabContainer" node_paths=PackedStringArray("objective_list") instance=ExtResource("5_ysctb")]
+[node name="Active" parent="TabContainer" unique_id=1046700218 node_paths=PackedStringArray("objective_list") instance=ExtResource("5_ysctb")]
 visible = false
 layout_mode = 2
 focus_neighbor_bottom = NodePath("Options")
@@ -60,7 +60,7 @@ visible = false
 [node name="Q2label" parent="TabContainer/Active/Heading/MarginContainer/HBoxContainer" index="2"]
 visible = false
 
-[node name="Completed" parent="TabContainer" node_paths=PackedStringArray("objective_list") instance=ExtResource("5_ysctb")]
+[node name="Completed" parent="TabContainer" unique_id=1984316018 node_paths=PackedStringArray("objective_list") instance=ExtResource("5_ysctb")]
 layout_mode = 2
 focus_mode = 2
 script = ExtResource("5_vxv28")
@@ -79,7 +79,7 @@ visible = false
 [node name="Q2label" parent="TabContainer/Completed/Heading/MarginContainer/HBoxContainer" index="2"]
 visible = false
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=2081904638]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,7 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ObjectivesList" parent="." instance=ExtResource("5_6qcnh")]
+[node name="ObjectivesList" parent="." unique_id=1841812251 instance=ExtResource("5_6qcnh")]
 visible = false
 layout_mode = 0
 offset_left = 1328.0

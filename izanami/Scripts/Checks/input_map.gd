@@ -27,8 +27,8 @@ func save_input_map():
 	config.save(CONFIG_FILE_PATH)
 
 func load_input_map():
-	var config = ConfigFile.new()
-	var error = config.load(CONFIG_FILE_PATH)
+	var config: ConfigFile = ConfigFile.new()
+	var error: Error = config.load(CONFIG_FILE_PATH)
 	if error != OK:
 		print("Error loading input map: " + str(error))
 		return
