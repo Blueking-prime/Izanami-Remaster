@@ -12,6 +12,25 @@ extends Node
 var current_quest: GlobalQuests.Quest
 var refresh_shops: bool = false
 var player_name: String = 'Magnolia'
+var scroll: bool:
+	set(value): settings_flags.scroll = value
+	get(): return settings_flags.scroll
+var scroll_speed: float:
+	set(value): settings_flags.scroll_speed = value
+	get(): return settings_flags.scroll_speed
+var ffwd_speed: float:
+	set(value): settings_flags.ffwd_speed = value
+	get(): return settings_flags.ffwd_speed
+var wait_time: float:
+	set(value): settings_flags.wait_time = value
+	get(): return settings_flags.wait_time
+var thought_text_colour: Color:
+	set(value): settings_flags.thought_text_colour = value
+	get(): return settings_flags.thought_text_colour
+var small_text_size: int:
+	set(value): settings_flags.small_text_size = value
+	get(): return settings_flags.small_text_size
+
 
 
 func check_flags(_flags: Array) -> bool:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bua0gndfwvb8p"
+path="res://.godot/imported/D8 - Prepare.mp3-38de0d7b0156a3dba837a97062caff04.mp3str"
+
+[deps]
+
+source_file="res://Assets/Tracks/Fedora Musik/D8 - Prepare.mp3"
+dest_files=["res://.godot/imported/D8 - Prepare.mp3-38de0d7b0156a3dba837a97062caff04.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

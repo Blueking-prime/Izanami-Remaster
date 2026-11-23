@@ -44,6 +44,12 @@ func _go_next():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		_go_next()
+	elif event.is_action_pressed('text_auto'):
+		auto_button.button_pressed = not auto_button.button_pressed
+	elif event.is_action_pressed('text_ffwd'):
+		ffwd_button.button_pressed = not ffwd_button.button_pressed
+	elif event.is_action_pressed('text_skip'):
+		skip_button.button_pressed = true
 
 func _on_text_box_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):

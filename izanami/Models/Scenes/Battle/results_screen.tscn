@@ -196,4 +196,5 @@ horizontal_alignment = 1
 root_node = NodePath("../PressKey")
 libraries/ = SubResource("AnimationLibrary_0sl6d")
 
+[connection signal="gui_input" from="." to="." method="_on_screen_gui_input"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

@@ -216,14 +216,16 @@ func die():
 func save() -> CharacterSaveData:
 	var save_data: PlayerSaveData = PlayerSaveData.new()
 
-	save_data.hp = hp
+	save_data.character_name = character_name
+	save_data.classname = classname
+
 	save_data.lvl = lvl
 	save_data.alive = alive
 
-	save_data.character_name = character_name
-	save_data.classname = classname
+	save_data.hp = hp
 	save_data.sp = sp
 	save_data.xp = xp
+
 	save_data.gear = gear.save()
 	save_data.skills = skills.save()
 
@@ -234,16 +236,19 @@ func save() -> CharacterSaveData:
 func load_data(data: CharacterSaveData):
 	data = data as PlayerSaveData
 
+	lvl = data.lvl
 	xp = data.xp
+
 	items.item_group = null
 	gear.player_gear_data = data.gear
 	skills._all_skills = data.skills
+
 	character_name = data.character_name
 
-
-	super.load_data(data)
 	base_stats = data.base_stats.duplicate()
 	update_stats()
+
+	hp = data.hp
 	sp = data.sp
 
 #func _on_detector_object_hit(object_type: Variant) -> void:

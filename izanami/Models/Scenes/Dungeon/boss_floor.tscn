@@ -1,15 +1,19 @@
 [gd_scene format=4 uid="uid://bdb28hoif5ea0"]
 
-[ext_resource type="PackedScene" uid="uid://cyon8uinblkc1" path="res://Models/Scenes/Dungeon/dungeon.tscn" id="1_xxtxe"]
-[ext_resource type="Script" uid="uid://kc642r4ntv5s" path="res://addons/godot_resource_groups/resource_group.gd" id="2_5rmpu"]
+[ext_resource type="PackedScene" uid="uid://dt2lmeeqmhqj0" path="res://Models/Scenes/Dungeon/dungeon.tscn" id="1_xxtxe"]
+[ext_resource type="Script" uid="uid://b17sy7t5x0ufu" path="res://addons/godot_resource_groups/resource_group.gd" id="2_5rmpu"]
 [ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/goblin.tscn" id="2_tvrad"]
+[ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="4_5rmpu"]
 
 [sub_resource type="Resource" id="Resource_s2euh"]
 script = ExtResource("2_5rmpu")
 paths = Array[String](["res://Models/Characters/Enemies/Types/goblin.tscn"])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vesbr"]
-size = Vector2(242, 92)
+size = Vector2(242, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qknd2"]
+size = Vector2(242, 5)
 
 [node name="BossFloor" unique_id=1510255609 node_paths=PackedStringArray("tilemap") instance=ExtResource("1_xxtxe")]
 enemy_types = SubResource("Resource_s2euh")
@@ -47,10 +51,21 @@ shape = SubResource("RectangleShape2D_vesbr")
 [node name="Detector" parent="ObjectsSort/WallChunks/Walls/Boss" index="5" unique_id=1947640088]
 visible = false
 
+[node name="Players" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="1" unique_id=1401413597]
+position = Vector2(227, 283)
+
+[node name="NPC" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=845832440 instance=ExtResource("4_5rmpu")]
+position = Vector2(304, 217)
+
+[node name="CollisionShape2D" parent="ObjectsSort/CutsceneTriggers/NPC" index="0" unique_id=226285900]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_qknd2")
+
 [node name="CanvasModulate" parent="." index="8" unique_id=2059945218]
 visible = false
 
 [editable path="ObjectsSort/WallChunks/Walls/Boss"]
+[editable path="ObjectsSort/CutsceneTriggers/NPC"]
 [editable path="CanvasLayer/Overlays/Save"]
 [editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]
 [editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu/Options"]

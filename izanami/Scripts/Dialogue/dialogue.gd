@@ -100,7 +100,8 @@ func show_cutscene(cutscene_name: Variant):
 	cutscene = file_reader.load_cutscene(cutscene_name)
 
 	if not cutscene.is_empty():
-
+		if get_tree().current_scene is Location:
+			get_tree().current_scene.overlay.disable()
 		# Check info
 		if Checks.check_flags(cutscene.main.checks):
 			await parse_branch(cutscene.main)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dk8ms76hq83hb"
+path="res://.godot/imported/D7-Fin.mp3-eeddcdcd2528ca9d3b7c1b20e20e23cc.mp3str"
+
+[deps]
+
+source_file="res://Assets/Tracks/Fedora Musik/D7-Fin.mp3"
+dest_files=["res://.godot/imported/D7-Fin.mp3-eeddcdcd2528ca9d3b7c1b20e20e23cc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

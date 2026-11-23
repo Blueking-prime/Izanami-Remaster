@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wf61cxsog4sa" path="res://Models/Scenes/Town/town.gd" id="1_wpby1"]
 [ext_resource type="PackedScene" uid="uid://d4fsdqxn6alxo" path="res://Models/Scenes/location.tscn" id="1_xeoqd"]
+[ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="3_2lndn"]
 [ext_resource type="Script" uid="uid://degg0mew17rdq" path="res://Models/Scenes/Town/church.gd" id="3_ysa3r"]
 [ext_resource type="Script" uid="uid://t37kx57gslqc" path="res://Models/Scenes/Town/smithy.gd" id="4_hnjkr"]
 [ext_resource type="Resource" uid="uid://umirx22rugjw" path="res://Configs/all_gear.tres" id="5_rbk51"]
@@ -58,6 +59,8 @@ entrance_area = NodePath("Entrance")
 
 [node name="Players" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="0" unique_id=1401413597]
 position = Vector2(965, 1202)
+
+[node name="NPC" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="0" unique_id=845832440 instance=ExtResource("3_2lndn")]
 
 [node name="Tilemap" type="TileMapLayer" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="2" unique_id=23866188]
 

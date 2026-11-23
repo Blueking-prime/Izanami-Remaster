@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends PanelContainer
 
 class_name KeybindOption
 
@@ -21,7 +21,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func get_key_event() -> InputEvent:
-	return InputMap.action_get_events(action_name)[Checks.settings_flags.input_type]
+	return InputMap.action_get_events(action_name).get(Checks.settings_flags.input_type)
 
 func set_key_text():
 	button.text = 'Unassigned'
@@ -62,3 +62,7 @@ func _on_button_toggled(toggled_on: bool) -> void:
 				i.set_process_unhandled_key_input(false)
 
 		set_key_text()
+
+
+func _on_focus_entered() -> void:
+	button.grab_focus()

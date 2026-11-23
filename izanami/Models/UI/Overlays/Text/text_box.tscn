@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://s3bvhf5ano50"]
+[gd_scene format=3 uid="uid://s3bvhf5ano50"]
 
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/UI/OptionMenus/options.tscn" id="1_gnfuy"]
 [ext_resource type="Script" uid="uid://cpcnyphsrlyr6" path="res://Models/UI/Overlays/Text/text_box.gd" id="1_krbbq"]
@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bawka"]
 
-[node name="VBoxContainer" type="VBoxContainer" node_paths=PackedStringArray("title", "title_container", "text_box", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "ffwd_button", "scroll_timer")]
+[node name="VBoxContainer" type="VBoxContainer" unique_id=880763544 node_paths=PackedStringArray("title", "title_container", "text_box", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "ffwd_button", "scroll_timer")]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.681
@@ -36,47 +36,47 @@ auto_button = NodePath("ButtonsPanel/VBoxContainer/AutoButton")
 ffwd_button = NodePath("ButtonsPanel/VBoxContainer/FastForwardButton")
 scroll_timer = NodePath("TextScrollTimer")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1304566419]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="HBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1492677957]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="TitleContainer" type="PanelContainer" parent="HBoxContainer"]
+[node name="TitleContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1779364397]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_type_variation = &"TextBoxHeader"
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/TitleContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/TitleContainer" unique_id=1010311707]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 3
 
-[node name="Title" type="Label" parent="HBoxContainer/TitleContainer/MarginContainer"]
+[node name="Title" type="Label" parent="HBoxContainer/TitleContainer/MarginContainer" unique_id=1842030190]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Dialogue Box"
 
-[node name="Control2" type="Control" parent="HBoxContainer"]
+[node name="Control2" type="Control" parent="HBoxContainer" unique_id=902354078]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="TextBox" type="PanelContainer" parent="."]
+[node name="TextBox" type="PanelContainer" parent="." unique_id=959775083]
 z_index = 10
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBox" type="VBoxContainer" parent="TextBox"]
+[node name="VBox" type="VBoxContainer" parent="TextBox" unique_id=128327790]
 layout_mode = 2
 alignment = 2
 
-[node name="Margin" type="MarginContainer" parent="TextBox/VBox"]
+[node name="Margin" type="MarginContainer" parent="TextBox/VBox" unique_id=1958424751]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 50
@@ -84,7 +84,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 3
 
-[node name="Text" type="RichTextLabel" parent="TextBox/VBox/Margin"]
+[node name="Text" type="RichTextLabel" parent="TextBox/VBox/Margin" unique_id=913945681]
 layout_mode = 2
 mouse_filter = 1
 bbcode_enabled = true
@@ -93,12 +93,12 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="Control" type="Control" parent="TextBox/VBox"]
+[node name="Control" type="Control" parent="TextBox/VBox" unique_id=1457678201]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Margin2" type="MarginContainer" parent="TextBox/VBox"]
+[node name="Margin2" type="MarginContainer" parent="TextBox/VBox" unique_id=109536703]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_left = 50
@@ -106,57 +106,57 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 3
 
-[node name="Options" parent="TextBox/VBox/Margin2" instance=ExtResource("1_gnfuy")]
+[node name="Options" parent="TextBox/VBox/Margin2" unique_id=372079653 instance=ExtResource("1_gnfuy")]
 layout_mode = 2
 size_flags_vertical = 10
 mouse_filter = 0
 vertical_scroll_mode = 0
 
-[node name="PanelContainer" parent="TextBox/VBox/Margin2/Options" index="0"]
+[node name="PanelContainer" parent="TextBox/VBox/Margin2/Options" index="0" unique_id=2066197883]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_46m4p")
 
-[node name="ButtonsPanel" type="PanelContainer" parent="."]
+[node name="ButtonsPanel" type="PanelContainer" parent="." unique_id=958205540]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bawka")
 
-[node name="VBoxContainer" type="HBoxContainer" parent="ButtonsPanel"]
+[node name="VBoxContainer" type="HBoxContainer" parent="ButtonsPanel" unique_id=2102610065]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="ButtonsPanel/VBoxContainer"]
+[node name="Control" type="Control" parent="ButtonsPanel/VBoxContainer" unique_id=1794565038]
 visible = false
 layout_mode = 2
 
-[node name="LogButton" type="Button" parent="ButtonsPanel/VBoxContainer"]
+[node name="LogButton" type="Button" parent="ButtonsPanel/VBoxContainer" unique_id=617084096]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Log"
 
-[node name="SkipButton" type="Button" parent="ButtonsPanel/VBoxContainer"]
+[node name="SkipButton" type="Button" parent="ButtonsPanel/VBoxContainer" unique_id=156147477]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "Skip"
 
-[node name="AutoButton" type="Button" parent="ButtonsPanel/VBoxContainer"]
+[node name="AutoButton" type="Button" parent="ButtonsPanel/VBoxContainer" unique_id=243518536]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 toggle_mode = true
 text = "Auto"
 
-[node name="FastForwardButton" type="Button" parent="ButtonsPanel/VBoxContainer"]
+[node name="FastForwardButton" type="Button" parent="ButtonsPanel/VBoxContainer" unique_id=1249529435]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 toggle_mode = true
 text = "FFWD"
 
-[node name="Control2" type="Control" parent="ButtonsPanel/VBoxContainer"]
+[node name="Control2" type="Control" parent="ButtonsPanel/VBoxContainer" unique_id=520369002]
 visible = false
 layout_mode = 2
 
-[node name="TextScrollTimer" type="Timer" parent="."]
+[node name="TextScrollTimer" type="Timer" parent="." unique_id=96982906]
 wait_time = 0.05
 
 [connection signal="gui_input" from="TextBox" to="." method="_on_text_box_gui_input"]

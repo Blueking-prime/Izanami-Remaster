@@ -57,10 +57,11 @@ func _clear_visible_menus():
 			i._on_exit_button_pressed()
 
 	if retain_freeze: Global.players.freeze()
+	_on_menu_button_pressed()
 
 
 #region Signal Handler
-func _on_menu_opened(menu: OverlayMenu) -> void:
+func _on_menu_opened(menu: Control) -> void:
 	menu.load_menu()
 
 	if menu.visible:
@@ -80,33 +81,18 @@ func _on_quests_button_pressed() -> void:
 	_on_menu_opened(quests_menu)
 
 func _on_status_button_pressed() -> void:
-	status_menu.load_menu()
-	if status_menu.visible:
-		status_menu._on_exit_button_pressed()
-	else:
-		_clear_visible_menus()
-		status_menu.show()
+	_on_menu_opened(status_menu)
 
 func _on_save_button_pressed() -> void:
 	if not get_parent().save_enabled: return
 	SaveAndLoad.save_state = true
 
-	save_menu.load_menu()
-	if save_menu.visible:
-		save_menu._on_exit_button_pressed()
-	else:
-		_clear_visible_menus()
-		save_menu.show()
+	_on_menu_opened(save_menu)
 
 func _on_load_button_pressed() -> void:
 	SaveAndLoad.save_state = false
 
-	save_menu.load_menu()
-	if save_menu.visible:
-		save_menu._on_exit_button_pressed()
-	else:
-		_clear_visible_menus()
-		save_menu.show()
+	_on_menu_opened(save_menu)
 
 func _on_quit_button_pressed() -> void:
 	var confirm = await Global.show_confirmation_box('Exit to Main Menu? ')

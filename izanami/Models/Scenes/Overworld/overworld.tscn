@@ -5,13 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="3_4qj6l"]
 [ext_resource type="Script" uid="uid://dlua1l2vyqqje" path="res://Models/Scenes/Overworld/location_pin.gd" id="4_rmeny"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="5_4qj6l"]
-[ext_resource type="PackedScene" uid="uid://c4ypeu0ha3j5d" path="res://Data/Places/Etemenanki/tower_of_babel.tscn" id="5_5flu3"]
-[ext_resource type="PackedScene" uid="uid://cu6rn66xwtmri" path="res://Data/Places/random_cave_2.tscn" id="6_y2bt7"]
-[ext_resource type="PackedScene" uid="uid://dvg1l2nxqsu80" path="res://Data/Places/Prisons/west_tower.tscn" id="7_gl0tr"]
-[ext_resource type="PackedScene" uid="uid://dqjlqrmlah8y6" path="res://Data/Places/Kinta/kinta.tscn" id="8_g31wl"]
-[ext_resource type="PackedScene" uid="uid://bdk3swxcvc13" path="res://Data/Places/Yomotsu-Hirasaka/yomotsu_hirasaka.tscn" id="9_0kh5g"]
-[ext_resource type="PackedScene" uid="uid://du2ert3blah5b" path="res://Data/Places/Gokuraku/gokuraku.tscn" id="10_4cqvb"]
-[ext_resource type="PackedScene" uid="uid://cbfnjn6ce3aei" path="res://Data/Places/Yuan-Chao Stronghold/east_tower.tscn" id="11_neeb8"]
 
 [node name="Overworld" type="Node" unique_id=1162061893 node_paths=PackedStringArray("map", "player_marker")]
 script = ExtResource("1_6s5ae")
@@ -35,7 +28,7 @@ position = Vector2(334, 42)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
-destination = ExtResource("5_5flu3")
+destination = &"Babel"
 flags = Array[String](["babel_trigger"])
 
 [node name="Cave2" type="Sprite2D" parent="CanvasLayer/TextureRect" unique_id=1167805853]
@@ -44,7 +37,7 @@ position = Vector2(247, 125)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
-destination = ExtResource("6_y2bt7")
+destination = &"RandomCave2"
 flags = Array[String](["cave_two_trigger"])
 
 [node name="WestTower" type="Sprite2D" parent="CanvasLayer/TextureRect" unique_id=928285709]
@@ -53,7 +46,7 @@ position = Vector2(135, 138)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
-destination = ExtResource("7_gl0tr")
+destination = &"Prisons"
 flags = Array[String](["demon_bros_fought"])
 
 [node name="Kinta" type="Sprite2D" parent="CanvasLayer/TextureRect" unique_id=1782758467]
@@ -62,7 +55,7 @@ position = Vector2(184.00002, 171)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
-destination = ExtResource("8_g31wl")
+destination = &"Kinta"
 flags = Array[String](["true_flag"])
 
 [node name="YomotsuHirasaka" type="Sprite2D" parent="CanvasLayer/TextureRect" unique_id=312232334]
@@ -71,7 +64,7 @@ position = Vector2(320.99997, 184)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
-destination = ExtResource("9_0kh5g")
+destination = &"YomotsuHirasaka"
 flags = Array[String](["true_flag"])
 
 [node name="Cave1" type="Sprite2D" parent="CanvasLayer/TextureRect" unique_id=1347179348]
@@ -81,6 +74,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 offset = Vector2(4144.9995, 584.9999)
 script = ExtResource("4_rmeny")
+destination = &"RandomCave1"
 flags = Array[String](["cave_one_trigger"])
 
 [node name="Cave3" type="Sprite2D" parent="CanvasLayer/TextureRect" unique_id=288271535]
@@ -89,6 +83,7 @@ position = Vector2(422, 228)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
+destination = &"RandomCave2"
 flags = Array[String](["cave_three_trigger"])
 
 [node name="SouthTower" type="Sprite2D" parent="CanvasLayer/TextureRect" unique_id=1599242387]
@@ -97,7 +92,7 @@ position = Vector2(106.00003, 293)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
-destination = ExtResource("10_4cqvb")
+destination = &"Gokuraku"
 flags = Array[String](["caliburn_orb"])
 
 [node name="EastTower" type="Sprite2D" parent="CanvasLayer/TextureRect" unique_id=1291398123]
@@ -106,7 +101,7 @@ position = Vector2(479.99997, 306)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_4qj6l")
 script = ExtResource("4_rmeny")
-destination = ExtResource("11_neeb8")
+destination = &"EastTower"
 flags = Array[String](["refael_orb"])
 
 [node name="PlayerMarker" type="Sprite2D" parent="CanvasLayer" unique_id=226690333]

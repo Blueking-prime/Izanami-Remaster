@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfh22xwukbyum"
+path="res://.godot/imported/D5(1).mp3-1e0d91fb39958f5525810711a2379dc8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Tracks/Fedora Musik/D5(1).mp3"
+dest_files=["res://.godot/imported/D5(1).mp3-1e0d91fb39958f5525810711a2379dc8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
