@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_heal"]
+
+[resource]
+script = ExtResource("1_heal")
+hp_recover = true
+name = &"Focus"
+stats = 16
+stat_multiplier = Array[float]([0.5, 1.0, 1.5])
+lvl_requirement = 4
+cost = 40
+desc = "5-10-15 GUI POT Self HEAL"
+targetable = false

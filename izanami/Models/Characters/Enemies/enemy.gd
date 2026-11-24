@@ -62,7 +62,7 @@ func battle_ai(player_array: Array, enemy_array: Array):
 
 	var target_array = player_array
 
-	if skill is Heal_Skill:
+	if skill is Heal_Skill or skill.type == 'Support':
 		target_array = enemy_array
 
 	if skill.aoe:
@@ -76,7 +76,12 @@ func battle_ai(player_array: Array, enemy_array: Array):
 		if not targetable_array.is_empty():
 			target_array = targetable_array
 
-		var target_actor = target_array[randi_range(0, target_array.size() - 1)]
+		var target_actor: Base_Character
+		if skill.targetable:
+			target_actor = target_array.pick_random()
+		else:
+			target_actor = self
+
 		if skill is Heal_Skill:
 			if hp < max_hp * heal_threshold:
 				# heal self

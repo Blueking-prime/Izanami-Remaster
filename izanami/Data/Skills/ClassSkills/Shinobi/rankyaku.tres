@@ -6,10 +6,11 @@
 script = ExtResource("1_vo4b6")
 element = "Wind"
 name = &"Rankyaku"
+lvl_requirement = 10
 stats = 32
 stat_multiplier = Array[float]([2.0, 3.0, 4.0])
-cost = 40
-flavour_text = "\"You deliver a powerful kick, sending out a blade of wind\""
+cost = 60
+flavour_text = "You deliver a powerful kick, sending out a blade of air"
 desc = "20-30-40 Potency AGI Wind"
 flags_to_set = Dictionary[StringName, Variant]({
 &"rankyaku_used": true

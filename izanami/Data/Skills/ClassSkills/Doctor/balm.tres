@@ -6,8 +6,10 @@
 script = ExtResource("1_6abnf")
 hp_recover = true
 name = &"Balm"
+lvl_requirement = 1
 stats = 4
 stat_multiplier = Array[float]([2.0, 3.0, 4.0])
-cost = 10
-desc = "Heal target for 20-30-40 Potency WIS"
+cost = 20
+flavour_text = "You soothe your ally’s wounds"
+desc = "Heal target for 20-30-40 Potency WIS; "
 metadata/_custom_type_script = "uid://5wdiyimyq1xd"

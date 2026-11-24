@@ -9,16 +9,17 @@ element = "Physical"
 multi_hit = true
 multi_hit_max = 3
 name = &"Shigan"
+lvl_requirement = 2
 stats = 32
 stat_multiplier = Array[float]([1.5, 2.0, 2.5])
-cost = 35
-flavour_text = "\"You strike at your targets pressure points, in an attempt to paralyze them\""
-desc = "15-20-25 Pot AGI Physical, 1/4 chance to paralyze, can multi-hit"
+cost = 45
+flavour_text = "You strike at your target’s pressure points"
+desc = "15-20-25 Pot AGI Physical, 10% chance to paralyze, can multi-hit"
 status_effect = Array[Script]([ExtResource("1_kbwt5")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
 ExtResource("1_kbwt5"): PackedInt32Array(1, 1, 1)
 })
-effect_chance = Array[float]([0.25, 0.25, 0.25])
+effect_chance = Array[float]([0.1, 0.1, 0.1])
 flags_to_set = Dictionary[StringName, Variant]({
 &"shigan_used": true
 })

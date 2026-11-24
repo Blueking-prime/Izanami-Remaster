@@ -59,8 +59,10 @@ func act(obj: Base_Character, target: Base_Character):
 		target.statuses.counterstance = false
 		if target.statuses.counter_element:
 			el = target.statuses.counter_element
+			target.statuses.counter_element = ''
 		if target.statuses.fixed_counter_damage:
 			value = target.statuses.fixed_counter_damage
+			target.statuses.fixed_counter_damage = 0
 		target = obj
 
 	if el:

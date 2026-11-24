@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EscapeSkill" format=3]
+
+[ext_resource type="Script" path="res://Models/Skills/escape_skill.gd" id="1_escape"]
+
+[resource]
+script = ExtResource("1_escape")
+name = &"Soru"
+lvl_requirement = 4
+cost = 50
+flavour_text = "You vanish before your opponent’s eyes"
+desc = "80-90-100% Instant escape"
+accuracy = Array[float]([0.8, 0.9, 1.0])
+targetable = false

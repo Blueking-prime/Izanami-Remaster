@@ -6,9 +6,11 @@
 
 [resource]
 script = ExtResource("2_101j0")
-name = &"Escribe Azure"
-cost = 27
-desc = "Activate azure rune; Gain resistance to fire damage for 3-5-7 turns"
+name = &"Escribe Zephyr"
+lvl_requirement = 1
+cost = 30
+flavour_text = "You escribe endless wind!"
+desc = "Activate wind rune; Gain resistance to wind damage for 3-5-7 turns"
 type = &"Support"
 status_effect = Array[Script]([ExtResource("1_6k186")])
 effect_duration = Dictionary[Script, PackedInt32Array]({

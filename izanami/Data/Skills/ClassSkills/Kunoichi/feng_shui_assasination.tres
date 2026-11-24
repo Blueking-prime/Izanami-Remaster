@@ -1,22 +1,32 @@
-[gd_resource type="Resource" script_class="Offensive_Skill" format=3 uid="uid://vg2i2lo8ismg"]
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=7 format=3 uid="uid://vg2i2lo8ismg"]
 
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_heal"]
 [ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="1_uslxv"]
-[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_xyrly"]
 [ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="2_56x7y"]
 [ext_resource type="Script" uid="uid://cv1bwrjnw3l1n" path="res://Models/Statuses/Effects/death.gd" id="2_kwll3"]
 [ext_resource type="Script" uid="uid://12tt5alqdiul" path="res://Models/Statuses/Effects/seal.gd" id="3_swdek"]
 
+[sub_resource type="Resource" id="Resource_clear_target_debuffs"]
+script = ExtResource("1_heal")
+name = &"Clear Target Debuffs"
+conditions = Array[Script]([ExtResource("1_uslxv"), ExtResource("2_56x7y"), ExtResource("3_swdek")])
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"
+
 [resource]
-script = ExtResource("1_xyrly")
+script = ExtResource("1_offensive")
 element = "Physical"
-name = &"Feng Shui Assasination"
+name = &"Feng-Shui Assassination"
+lvl_requirement = 10
 stats = 32
 stat_multiplier = Array[float]([4.0, 4.0, 4.0])
 conditions = Array[Script]([ExtResource("1_uslxv"), ExtResource("2_56x7y"), ExtResource("3_swdek")])
-cost = 40
-desc = "If target is poisoned, paralyzed or sealed; deal 40 AGI Phys Damage and 5-10-15% chance to instantly kill; Cure Target"
+cost = 70
+flavour_text = "“I’ll finish this in one strike!”"
+desc = "If target is poisoned, paralyzed or sealed; deal 40 AGI Phys Damage and 1-3-5% chance to instantly kill; Cure Target"
 status_effect = Array[Script]([ExtResource("2_kwll3")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
 ExtResource("2_kwll3"): PackedInt32Array(1, 1, 1)
 })
-effect_chance = Array[float]([0.05, 0.1, 0.15])
+effect_chance = Array[float]([0.01, 0.03, 0.05])
+skill_to_trigger = SubResource("Resource_clear_target_debuffs")

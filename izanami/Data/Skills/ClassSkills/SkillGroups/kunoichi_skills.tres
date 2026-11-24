@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_s48lo")
 base_folder = "res://Data/Skills/ClassSkills/Kunoichi"
-excludes = Array[String](["_*"])
+excludes = Array[String](["_*", "*.gd", "*.uid"])
 paths = Array[String](["res://Data/Skills/ClassSkills/Kunoichi/corruption.tres", "res://Data/Skills/ClassSkills/Kunoichi/feng_shui_assasination.tres", "res://Data/Skills/ClassSkills/Kunoichi/magebane_senbon.tres", "res://Data/Skills/ClassSkills/Kunoichi/smoke_bomb.tres", "res://Data/Skills/ClassSkills/Kunoichi/stoneflower_senbon.tres", "res://Data/Skills/ClassSkills/Kunoichi/wisteria_senbon.tres"])

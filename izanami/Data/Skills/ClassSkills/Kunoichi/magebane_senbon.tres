@@ -7,13 +7,15 @@
 script = ExtResource("1_u6mdb")
 element = "Physical"
 name = &"Magebane Senbon"
+lvl_requirement = 5
 stats = 32
-stat_multiplier = Array[float]([2.0, 2.0, 2.0])
-cost = 35
-desc = "20 Pot AGI Physical, 20-25-40% chance to seal for 1 turn"
+stat_multiplier = Array[float]([1.5, 1.5, 1.5])
+cost = 50
+flavour_text = "A tainted senbon flies out!"
+desc = "15 Pot AGI Physical, 20-25-30% chance to seal"
 status_effect = Array[Script]([ExtResource("2_u6mdb")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
 ExtResource("2_u6mdb"): PackedInt32Array(1, 1, 1)
 })
-effect_chance = Array[float]([0.2, 0.25, 0.4])
+effect_chance = Array[float]([0.2, 0.25, 0.3])
 metadata/_custom_type_script = "uid://kstpb53dvbbq"

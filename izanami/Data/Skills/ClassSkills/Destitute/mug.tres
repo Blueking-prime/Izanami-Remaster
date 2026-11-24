@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Physical"
+name = &"Mug"
+stats = 33
+stat_multiplier = Array[float]([1.0, 1.5, 2.0])
+lvl_requirement = 5
+cost = 40
+flavour_text = "You attempt to mug the target"
+desc = "Deals 10-15-20 (AGI+STR) POT Physical. Attempt to “Steal” from the enemy"
+steal_chance = Array[float]([1.0, 1.0, 1.0])

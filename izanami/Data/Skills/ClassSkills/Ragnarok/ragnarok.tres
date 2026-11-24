@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="2_attack"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="3_base"]
+
+[sub_resource type="Resource" id="Resource_ragnarok_buff"]
+script = ExtResource("3_base")
+desc = "1.2-1.3-1.5x self ATK Boost for 3 turns"
+status_effect = Array[Script]([ExtResource("2_attack")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_attack"): PackedInt32Array(3, 3, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("2_attack"): PackedFloat32Array(1.2, 1.3, 1.5)
+})
+targetable = false
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Physical"
+name = &"Ragnarok"
+stats = 1
+stat_multiplier = Array[float]([4.0, 4.0, 4.0])
+lvl_requirement = 10
+cost = 80
+desc = "1.2-1.3-1.5x ATK Boost for 3 turns; 40 STR POT "
+skill_to_trigger = SubResource("Resource_ragnarok_buff")

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="2_attack_buff"]
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Dark"
+name = &"Persephone"
+stats = 32
+lvl_requirement = 10
+stat_multiplier = Array[float]([2.0, 3.0, 4.0])
+cost = 80
+desc = "20-30-40 Potency AGI DARK; 0.75x ATK Debuff"
+status_effect = Array[Script]([ExtResource("2_attack_buff")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_attack_buff"): PackedInt32Array(3, 3, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("2_attack_buff"): PackedFloat32Array(0.75, 0.75, 0.75)
+})
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

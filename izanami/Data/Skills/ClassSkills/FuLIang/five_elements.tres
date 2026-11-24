@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_heal"]
+
+[resource]
+script = ExtResource("1_heal")
+hp_recover = true
+sp_recover = true
+sp_fraction = 0.25
+name = &"Five Elements"
+stats = 4
+lvl_requirement = 10
+stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+cost = 60
+desc = "Heals party STAMINA for 5 potency GUI; AOE Heal 20 Potency WIS"
+aoe = true
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Fire"
+name = &"Flame Lash"
+stats = 2
+stat_multiplier = Array[float]([1.0, 2.0, 3.0])
+lvl_requirement = 1
+cost = 25
+desc = "10-20-30 POT INT FIRE "

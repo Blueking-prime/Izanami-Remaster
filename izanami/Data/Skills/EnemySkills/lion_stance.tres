@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Skill" format=3]
+
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_base"]
+[ext_resource type="Script" uid="uid://dqp0qqmakxwp5" path="res://Models/Statuses/Buffs/counter.gd" id="2_counter"]
+
+[resource]
+script = ExtResource("1_base")
+name = &"Lion Stance"
+stats = 33
+stat_multiplier = Array[float]([4.0, 4.0, 4.0])
+desc = "Counter; 40 POT STR AGI if hit"
+type = &"Support"
+status_effect = Array[Script]([ExtResource("2_counter")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_counter"): PackedInt32Array(1, 1, 1)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("2_counter"): PackedFloat32Array(4.0, 4.0, 4.0)
+})
+effect_mag_stats = Dictionary[Script, PackedStringArray]({
+ExtResource("2_counter"): PackedStringArray("STR", "AGI")
+})
+targetable = false
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"

@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_xenyr")
 base_folder = "res://Data/Skills/ClassSkills/Scion"
+excludes = Array[String](["*.gd", "*.uid"])
 paths = Array[String](["res://Data/Skills/ClassSkills/Scion/blood_oath.tres", "res://Data/Skills/ClassSkills/Scion/braggart_howl.tres", "res://Data/Skills/ClassSkills/Scion/holy_crest.tres", "res://Data/Skills/ClassSkills/Scion/morale_boost.tres", "res://Data/Skills/ClassSkills/Scion/muster_troops.tres", "res://Data/Skills/ClassSkills/Scion/royal_vow.tres"])

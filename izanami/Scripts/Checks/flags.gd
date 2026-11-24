@@ -54,6 +54,12 @@ var shigan_used: bool = false
 var geppo_used: bool = false
 
 var babel_chaos_death_count: int = 0
+var babel_chaos_death_active: bool:
+	get():
+		if babel_chaos_death_count >= 3:
+			return true
+		else :
+			return false
 #endregion
 
 #region Story Flags

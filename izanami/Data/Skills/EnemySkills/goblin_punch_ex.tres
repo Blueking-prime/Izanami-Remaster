@@ -4,12 +4,10 @@
 
 [resource]
 script = ExtResource("1_sibc5")
-element = "Dark"
-multi_hit = true
-multi_hit_max = 3
+element = "Wind"
 name = &"Goblin Punch EX"
-stats = 2
-stat_multiplier = Array[float]([1.5, 1.0, 1.0])
+stats = 1
+stat_multiplier = Array[float]([3.5, 3.5, 3.5])
 lvl_requirement = 10
-desc = "15 Potency INT Dark Attack, can multihit up to 3 times"
+desc = "35 Potency STR Wind Attack"
 metadata/_custom_type_script = "uid://kstpb53dvbbq"

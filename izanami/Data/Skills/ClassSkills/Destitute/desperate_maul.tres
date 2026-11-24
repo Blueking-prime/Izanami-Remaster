@@ -10,11 +10,13 @@ status_effectiveness = 1.5
 multi_hit = true
 multi_hit_max = 5
 name = &"Desperate Maul"
+lvl_requirement = 8
 stats = 1
-stat_multiplier = Array[float]([0.5, 0.5, 0.5])
+stat_multiplier = Array[float]([1.0, 1.5, 2.0])
 rank = 2
-cost = 35
-desc = "Deal STR/2 (Multihit up to 5); 40% chance to Poison"
+cost = 80
+flavour_text = "“!!!”"
+desc = "Deal 10-15-20 STR POT (Multihit up to 5); 40% chance to Poison"
 status_effect = Array[Script]([ExtResource("2_iviwg")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
 ExtResource("2_iviwg"): PackedInt32Array(3, 3, 3)

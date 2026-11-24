@@ -21,11 +21,12 @@ metadata/_custom_type_script = "uid://b05xjy5qvosa3"
 [resource]
 script = ExtResource("1_rf8lr")
 name = &"Tekkai"
-stats = 32
+lvl_requirement = 5
+stats = 1
 stat_multiplier = Array[float]([1.5, 2.5, 3.0])
-cost = 32
-flavour_text = "\"You harden the breath in your lungs, dealing a palm strike while holding your guard up\""
-desc = "Increases defense by 1.5x for this turn. 15-25-30 Pot AGI Attack"
+cost = 50
+flavour_text = "You strike while holding your guard up."
+desc = "Increases defense for this turn. 15-25-30 Pot STR Attack"
 flags_to_set = Dictionary[StringName, Variant]({
 &"tekkai_used": true
 })

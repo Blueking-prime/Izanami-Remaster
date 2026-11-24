@@ -7,8 +7,9 @@
 [resource]
 script = ExtResource("1_18rt0")
 name = &"Blood Oath"
-cost = 10
-flavour_text = "\"You swear to the core of your very being, boosting your physical prowess to deadly levels\""
+lvl_requirement = 12
+cost = 70
+flavour_text = "“I swear by mine own blood!”"
 desc = "1.5x-1.75x-2.0x ATK boost. Lose 15% of HP per turn for 3 turns."
 status_effect = Array[Script]([ExtResource("1_vjo5m"), ExtResource("2_h21uy")])
 effect_duration = Dictionary[Script, PackedInt32Array]({

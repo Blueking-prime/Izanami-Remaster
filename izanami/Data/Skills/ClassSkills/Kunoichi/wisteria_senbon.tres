@@ -7,10 +7,12 @@
 script = ExtResource("1_jkdkl")
 element = "Physical"
 name = &"Wisteria Senbon"
+lvl_requirement = 2
 stats = 32
-stat_multiplier = Array[float]([2.0, 2.0, 2.0])
-cost = 30
-desc = "20 Pot AGI Physical, 30-50-70% chance to poison"
+stat_multiplier = Array[float]([1.5, 1.5, 1.5])
+cost = 25
+flavour_text = "A tainted senbon flies out!"
+desc = "15 Pot AGI Physical, 30-50-70% chance to poison"
 status_effect = Array[Script]([ExtResource("2_ddvbd")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
 ExtResource("2_ddvbd"): PackedInt32Array(3, 3, 3)

@@ -102,6 +102,9 @@ func action(obj: Base_Character, target_: Variant) -> bool:
 	else:
 		target = target_
 
+	if type == 'Support' and not targetable and aoe:
+		target = Global.players.party
+
 	if not Global.rand_chance(accuracy[rank]): return false
 
 	if not Checks.check_flags(flags_to_check): return false

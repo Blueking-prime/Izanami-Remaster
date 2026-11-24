@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceGroup" format=3]
+
+[ext_resource type="Script" uid="uid://b17sy7t5x0ufu" path="res://addons/godot_resource_groups/resource_group.gd" id="1_resource_group"]
+
+[resource]
+script = ExtResource("1_resource_group")
+base_folder = "res://Data/Skills/ClassSkills/Ragnarok"
+excludes = Array[String](["*.gd", "*.uid"])
+paths = Array[String](["res://Data/Skills/ClassSkills/Ragnarok/dragon_dive.tres", "res://Data/Skills/ClassSkills/Ragnarok/dragon_fist.tres", "res://Data/Skills/ClassSkills/Ragnarok/flame_lash.tres", "res://Data/Skills/ClassSkills/Ragnarok/focus.tres", "res://Data/Skills/ClassSkills/Ragnarok/ragnarok.tres", "res://Data/Skills/ClassSkills/Ragnarok/wave_slash.tres"])

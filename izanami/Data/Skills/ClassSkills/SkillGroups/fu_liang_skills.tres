@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceGroup" format=3 uid="uid://dj1btdcfnlo2s"]
+
+[ext_resource type="Script" uid="uid://b17sy7t5x0ufu" path="res://addons/godot_resource_groups/resource_group.gd" id="1_c0qy2"]
+
+[resource]
+script = ExtResource("1_c0qy2")
+base_folder = "res://Data/Skills/ClassSkills/FuLIang"
+excludes = Array[String](["*.gd", "*.uid"])
+paths = Array[String](["res://Data/Skills/ClassSkills/FuLIang/foretell.tres", "res://Data/Skills/ClassSkills/FuLIang/twelve_branches.tres", "res://Data/Skills/ClassSkills/FuLIang/ten_stems.tres", "res://Data/Skills/ClassSkills/FuLIang/nine_stars.tres", "res://Data/Skills/ClassSkills/FuLIang/adapt.tres", "res://Data/Skills/ClassSkills/FuLIang/five_elements.tres"])

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Blood"
+name = &"Cataclysm"
+stats = 1
+stat_multiplier = Array[float]([3.0, 3.0, 3.0])
+hp_cost = 0.05
+desc = "30 POT STR BLOOD AOE; 5% HP loss"
+aoe = true
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

@@ -5,8 +5,10 @@
 
 [resource]
 script = ExtResource("1_30tdj")
-name = &"Performative Pill"
+name = &"Performance Pill"
+lvl_requirement = 5
 cost = 35
+flavour_text = "You enhance your team’s performance"
 desc = "REGEN 15-20-25 Potency WIS for 3 turns"
 status_effect = Array[Script]([ExtResource("1_mvdyj")])
 effect_duration = Dictionary[Script, PackedInt32Array]({

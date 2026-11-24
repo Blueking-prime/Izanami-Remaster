@@ -10,10 +10,12 @@
 [resource]
 script = ExtResource("1_oebwj")
 name = &"Runic Destruction"
+lvl_requirement = 10
 stats = 2
 stat_multiplier = Array[float]([3.0, 4.0, 5.0])
 conditions = Array[Script]([ExtResource("1_dkgx4"), ExtResource("2_r3hdp"), ExtResource("3_cymvq"), ExtResource("4_kvvqo")])
-cost = 32
+cost = 80
+flavour_text = "“Cascading magics!”"
 desc = "Remove your current rune and deal 30-40-50 POT INT of that element"
 skill_to_trigger = ExtResource("6_vdxyj")
 metadata/_custom_type_script = "uid://kstpb53dvbbq"

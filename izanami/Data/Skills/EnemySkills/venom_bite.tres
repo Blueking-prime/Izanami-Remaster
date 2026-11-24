@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+[ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="2_toxin"]
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Physical"
+name = &"Venom Bite"
+stats = 1
+stat_multiplier = Array[float]([1.5, 1.5, 1.5])
+desc = "15 POT STR; 40% chance to Poison"
+status_effect = Array[Script]([ExtResource("2_toxin")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_toxin"): PackedInt32Array(3, 3, 3)
+})
+effect_chance = Array[float]([0.4, 0.4, 0.4])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

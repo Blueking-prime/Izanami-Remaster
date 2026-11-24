@@ -6,7 +6,9 @@
 [resource]
 script = ExtResource("1_12tbr")
 name = &"Anasthesia"
+lvl_requirement = 7
 conditions = Array[Script]([ExtResource("1_vjn0l")])
-cost = 30
+cost = 60
+flavour_text = "You forcefully reset your ally’s nervous system"
 desc = "Sets target ally’s stamina to 0"
 metadata/_custom_type_script = "uid://5wdiyimyq1xd"

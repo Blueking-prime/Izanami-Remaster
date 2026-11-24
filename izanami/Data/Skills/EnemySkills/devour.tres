@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="2_heal"]
+
+[sub_resource type="Resource" id="Resource_devour_heal"]
+script = ExtResource("2_heal")
+hp_recover = true
+stats = 1
+stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+desc = "Heals user for 20 potency STR"
+targetable = false
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Physical"
+name = &"Devour"
+stats = 1
+stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+desc = "20 POT STR PHYS; Gain 20% HP"
+skill_to_trigger = SubResource("Resource_devour_heal")
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

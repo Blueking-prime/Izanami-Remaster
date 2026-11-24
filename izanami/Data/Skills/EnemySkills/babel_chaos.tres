@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+[ext_resource type="Script" uid="uid://cv1bwrjnw3l1n" path="res://Models/Statuses/Effects/death.gd" id="2_death"]
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Dark"
+name = &"Babel Chaos"
+desc = "Triggers after Madness turn counter hits. Instant Kill AOE Infinity damage"
+status_effect = Array[Script]([ExtResource("2_death")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("2_death"): PackedInt32Array(1, 1, 1)
+})
+effect_extra_prop = Dictionary[Script, Variant]({
+ExtResource("2_death"): true
+})
+aoe = true
+flags_to_check = Array[StringName]([&"babel_chaos_death_active"])
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

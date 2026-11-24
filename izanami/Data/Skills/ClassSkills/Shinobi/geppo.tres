@@ -1,20 +1,29 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dj8xbg80u8j0u"]
 
 [ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_e457r"]
-[ext_resource type="Script" uid="uid://ddnn7uwubv74m" path="res://Models/Statuses/Effects/immortal.gd" id="1_nf3gx"]
+[ext_resource type="Script" uid="uid://dqp0qqmakxwp5" path="res://Models/Statuses/Buffs/counter.gd" id="1_nf3gx"]
 
 [resource]
 script = ExtResource("1_e457r")
 name = &"Geppo"
-cost = 30
-flavour_text = "“Using the air itself as your foothold, you take a vantage position”"
-desc = "40-60-80% probability to nullify enemy attacks for 2 turns"
+lvl_requirement = 1
+cost = 35
+flavour_text = "Using the air as a foothold, you take the high ground"
+desc = "Negate the next attack and retaliate with a 10-15-25 Pot AGI Wind"
 type = &"Support"
 status_effect = Array[Script]([ExtResource("1_nf3gx")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
-ExtResource("1_nf3gx"): PackedInt32Array(2, 2, 2)
+ExtResource("1_nf3gx"): PackedInt32Array(1, 1, 1)
 })
-effect_chance = Array[float]([0.4, 0.6, 0.8])
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("1_nf3gx"): PackedFloat32Array(1, 1.5, 2.5)
+})
+effect_mag_stats = Dictionary[Script, PackedStringArray]({
+ExtResource("1_nf3gx"): PackedStringArray("AGI")
+})
+effect_extra_prop = Dictionary[Script, Variant]({
+ExtResource("1_nf3gx"): &"Wind"
+})
 targetable = false
 flags_to_set = Dictionary[StringName, Variant]({
 &"geppo_used": true

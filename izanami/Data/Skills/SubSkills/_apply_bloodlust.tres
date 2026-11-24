@@ -5,7 +5,10 @@
 
 [resource]
 script = ExtResource("2_o2wwr")
-desc = "Applies bllodlust to self"
+name = &"Bloodlust"
+lvl_requirement = 1
+cost = 0
+desc = "Status that can proc on self when using abilities; Attack 2x but 0.5 DEF and ExExhaust"
 status_effect = Array[Script]([ExtResource("1_nj5uy")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
 ExtResource("1_nj5uy"): PackedInt32Array(3, 2, 3)

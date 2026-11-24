@@ -9,11 +9,12 @@
 
 [resource]
 script = ExtResource("1_7fqab")
-name = &"Demon Bane Harakiri"
+name = &"Demon-Bane Harakiri"
+lvl_requirement = 12
 conditions = Array[Script]([ExtResource("1_i2y6p")])
-cost = 60
-flavour_text = "“In desperation, you spill your own innards, letting your bloodlust run wild. You’re no more than a demon now!”"
-desc = "Can only be used at less than 10% HP. Immortal for 2-3-4 turns. After 2-3-4 turns you die instantly. NO REVIVE. ATK multiplied by 3x. All skill damage counts as blood elemental."
+cost = 120
+flavour_text = "In desperation, you spill your own innards, letting your bloodlust run wild. You’re no more than a demon now!"
+desc = "Can only be used at less than 10% HP.  Immortal for 2-3-4 turns. After 2-3-4 turns you die instantly. NO REVIVE ATK multiplied by 3x. All skill damage counts as blood elemental."
 status_effect = Array[Script]([ExtResource("3_ruo1s"), ExtResource("4_dscsg"), ExtResource("5_i2y6p"), ExtResource("2_fckrg")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
 ExtResource("3_ruo1s"): PackedInt32Array(2, 3, 4),

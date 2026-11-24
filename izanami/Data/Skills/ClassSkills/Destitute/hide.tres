@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource("1_e28yx")
 name = &"Hide"
+lvl_requirement = 6
 rank = 2
-cost = 10
+cost = 40
+flavour_text = "You scramble for cover"
 desc = "Unable to be targeted for the current turn"
 type = &"Support"
 status_effect = Array[Script]([ExtResource("1_jyh37")])

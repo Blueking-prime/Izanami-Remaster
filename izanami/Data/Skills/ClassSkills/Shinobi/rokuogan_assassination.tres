@@ -5,10 +5,12 @@
 [resource]
 script = ExtResource("1_iplhk")
 element = "Physical"
-name = &"Rokuogan Assaination"
+name = &"Rokuogan Assassination"
+lvl_requirement = 12
 stats = 32
 stat_multiplier = Array[float]([4.0, 5.0, 6.0])
-cost = 50
+cost = 100
+flavour_text = "“This technique has no weakness”"
 desc = "40-50-60 POT AGI Phys damage; can only be used after all techniques except Soru have been used in a fight"
 flags_to_check = Array[StringName]([&"rankyaku_used", &"kami_e_used", &"tekkai_used", &"shigan_used", &"geppo_used"])
 metadata/_custom_type_script = "uid://kstpb53dvbbq"

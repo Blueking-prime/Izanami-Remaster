@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Heal_Skill" format=3]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_heal"]
+[ext_resource type="Script" uid="uid://cwfymgx22iu7g" path="res://Models/Statuses/Buffs/bleed.gd" id="2_bleed"]
+[ext_resource type="Script" uid="uid://cv1bwrjnw3l1n" path="res://Models/Statuses/Effects/death.gd" id="3_death"]
+[ext_resource type="Script" uid="uid://12tt5alqdiul" path="res://Models/Statuses/Effects/seal.gd" id="4_seal"]
+[ext_resource type="Script" uid="uid://8gjml2hu3oap" path="res://Models/Statuses/Effects/stun.gd" id="5_stun"]
+[ext_resource type="Script" uid="uid://cer6ga50bm4a1" path="res://Models/Statuses/Effects/toxin.gd" id="6_toxin"]
+[ext_resource type="Script" uid="uid://ck4wn0aed2naw" path="res://Models/Statuses/Effects/ex_exhaust.gd" id="7_ex_exhaust"]
+
+[resource]
+script = ExtResource("1_heal")
+name = &"Clear All Ailments"
+conditions = Array[Script]([ExtResource("2_bleed"), ExtResource("3_death"), ExtResource("4_seal"), ExtResource("5_stun"), ExtResource("6_toxin"), ExtResource("7_ex_exhaust")])
+aoe = true
+targetable = false
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

@@ -6,9 +6,11 @@
 script = ExtResource("1_l3m3b")
 hp_recover = true
 name = &"Salve"
+lvl_requirement = 3
 stats = 4
 stat_multiplier = Array[float]([1.0, 2.0, 3.0])
 cost = 25
+flavour_text = "You soothe your allies wounds"
 desc = "AOE Heal for 10-20-30 Potency WIS"
 aoe = true
 metadata/_custom_type_script = "uid://5wdiyimyq1xd"
