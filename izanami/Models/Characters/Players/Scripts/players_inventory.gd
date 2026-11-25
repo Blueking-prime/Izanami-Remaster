@@ -30,6 +30,8 @@ func load_stock(data: ResourceGroup):
 	for i in data.load_all():
 		add_entry(i)
 
+	print(inventory_data)
+
 func add_entry(entry: Variant):
 	if not is_instance_valid(entry): return
 	#if entry is Gear:

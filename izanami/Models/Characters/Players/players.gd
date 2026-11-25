@@ -36,6 +36,8 @@ var stored_pos: Vector2
 
 func _ready() -> void:
 	load_party()
+	inventory.load_stock(inventory.item_group)
+	inventory.load_stock(inventory.gear_group)
 
 func load_party():
 	party = get_children().filter(func(x): if x is Player and is_instance_valid(x): return x)

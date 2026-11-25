@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://c5y0lyfesygvd" path="res://Models/Items/base_item.gd" id="1_item"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_item")
+name = &"Sencha Tea"
+type = "Heal"
+desc = "Heals 200 HP and 200 STA"
+value = 200
+sp_fraction = 1
+sp_recover = true
+hp_recover = true
+price = 500

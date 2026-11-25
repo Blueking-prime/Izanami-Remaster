@@ -6,4 +6,4 @@
 script = ExtResource("1_c0qy2")
 base_folder = "res://Data/Skills/ClassSkills/FuLIang"
 excludes = Array[String](["*.gd", "*.uid"])
-paths = Array[String](["res://Data/Skills/ClassSkills/FuLIang/foretell.tres", "res://Data/Skills/ClassSkills/FuLIang/twelve_branches.tres", "res://Data/Skills/ClassSkills/FuLIang/ten_stems.tres", "res://Data/Skills/ClassSkills/FuLIang/nine_stars.tres", "res://Data/Skills/ClassSkills/FuLIang/adapt.tres", "res://Data/Skills/ClassSkills/FuLIang/five_elements.tres"])
+paths = Array[String](["res://Data/Skills/ClassSkills/FuLIang/adapt.tres", "res://Data/Skills/ClassSkills/FuLIang/five_elements.tres", "res://Data/Skills/ClassSkills/FuLIang/foretell.tres", "res://Data/Skills/ClassSkills/FuLIang/nine_stars.tres", "res://Data/Skills/ClassSkills/FuLIang/ten_stems.tres", "res://Data/Skills/ClassSkills/FuLIang/twelve_branches.tres"])

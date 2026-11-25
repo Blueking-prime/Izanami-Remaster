@@ -1,4 +1,4 @@
-extends ScrollContainer
+extends PanelContainer
 
 class_name Options
 

@@ -58,6 +58,13 @@ func load_character():
 	_display_skills()
 	_display_items()
 
+func _get_maxhp_value(_value: int = 1) -> int:
+	var _max_hp = (stats['END'] * 10) + (stats['WIS'] * 3) + (lvl * 15)
+	if _max_hp > 0:
+		return _max_hp
+	else:
+		return 1
+
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(Global.players) and self != Global.players.leader: return

@@ -21,7 +21,6 @@ metadata/_custom_type_script = "uid://b05xjy5qvosa3"
 script = ExtResource("1_xuhap")
 element = "Physical"
 name = &"Ichimonji"
-lvl_requirement = 1
 stats = 1
 stat_multiplier = Array[float]([2.5, 3.5, 4.5])
 cost = 30

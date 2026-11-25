@@ -53,13 +53,9 @@ var stats: Dictionary[StringName, int] = base_stats.duplicate()
 	'Blood':	0,
 }
 
-@export var max_hp: int:
+@export var max_hp: int = 1:
 	get():
-		var _max_hp = (stats['END'] * 10) + (stats['WIS'] * 3) + (lvl * 15)
-		if _max_hp > 0:
-			return _max_hp
-		else:
-			return 1
+		return _get_maxhp_value(max_hp)
 
 @export var hp: int:
 	set(value):
@@ -94,6 +90,10 @@ var init_pos: Vector2
 
 signal state_changed
 signal moved
+
+
+func _get_maxhp_value(_value: int = 1) -> int:
+	return _value
 
 func _ready() -> void:
 	base_stats = root_stats.duplicate()

@@ -14,10 +14,14 @@ extends Resource
 @export_category('Stats')
 ## Amount of ‘x’ item does (if applicable)
 @export var value: int = 0
+## Fully restore HP and SP
+@export var full_heal: bool = false
 ## Check if item recovers SP
 @export var sp_recover: bool
 ## Check if item recovers HP
 @export var hp_recover: bool
+## Amount of relative SP skill recovers compared to HP (if applicable)
+@export var sp_fraction: float = 1
 ## The status effect applied by this item
 @export var status_effect: Array[Script]
 ## How many turns the status effect would last (if applicable)
@@ -55,6 +59,9 @@ func use_on_target(target: Base_Character):
 		'Damage': use_damage(target)
 		'Cleanse': use_cleanse(target)
 
+	if hp_recover or sp_recover:
+		use_heal(target)
+
 
 func use_effect(target: Base_Character):
 		for i in status_effect:
@@ -78,18 +85,28 @@ func use_effect(target: Base_Character):
 
 func use_heal(target: Base_Character):
 	if hp_recover:
-		target.heal(value)
+		if full_heal:
+			target.heal(target.max_hp)
+		else:
+			target.heal(value)
 	if sp_recover and 'sp' in target:
-		target.restore(value / 2)
+		if full_heal:
+			target.restore(target.max_sp)
+		else:
+			target.restore(value * sp_fraction)
 
 func use_damage(target: Base_Character):
-	if target.statuses.counterstance:
-		target.statuses.counterstance = false
-		return
-
 	var el
 	if element != '':
 		el = element
+
+	if target.statuses.counterstance:
+		target.statuses.counterstance = false
+		if target.statuses.counter_element:
+			target.statuses.counter_element = ''
+		if target.statuses.fixed_counter_damage:
+			target.statuses.fixed_counter_damage = 0
+		value = 0
 
 	if el:
 		value *= (1 - target.resistances[el])
@@ -100,6 +117,10 @@ func use_damage(target: Base_Character):
 	target.damage(value)
 
 func use_cleanse(target: Base_Character):
-	for i in target.statuses.status_effects:
-		if i.get_script() in status_effect:
-			target.statuses.remove_status(i)
+	for j in target.statuses.status_effects.duplicate():
+		if j.get_script() in status_effect:
+			if j.name == 'ExExhaust' and 'sp' in target:
+				target.sp = 0
+			if j.name == 'Death' and j.extra_prop:
+				continue
+			target.statuses.remove_status(j)

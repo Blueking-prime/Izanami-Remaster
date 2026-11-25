@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_00j85")
-base_folder = "res://Models/Items"
+base_folder = "res://Data/Items"
 includes = Array[String](["*.tres"])
+paths = Array[String](["res://Data/Items/antidote.tres", "res://Data/Items/energy_candy.tres", "res://Data/Items/five_finger_seal.tres", "res://Data/Items/koban_coin.tres", "res://Data/Items/leaf.tres", "res://Data/Items/medicine.tres", "res://Data/Items/panacea.tres", "res://Data/Items/razor.tres", "res://Data/Items/sencha_tea.tres", "res://Data/Items/stamina_pill.tres", "res://Data/Items/tonic.tres"])

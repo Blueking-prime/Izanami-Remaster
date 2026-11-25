@@ -8,8 +8,10 @@ class_name CharacterItems
 
 var inventory: Inventory:
 	get():
-		if get_parent().get_parent() is Party: return get_parent().get_parent().inventory
-		else: return null
+		if Global.players:
+			return Global.players.inventory
+		else:
+			return null
 
 
 func load_stock() -> void:
@@ -19,8 +21,8 @@ func load_stock() -> void:
 		for i in item_group.load_all():
 			add_item(i)
 
-	#if inventory:
-		#_item_dict = inventory.item_data
+	if inventory:
+		_item_dict = inventory.item_data
 
 
 func add_item(item: Item):
@@ -35,10 +37,11 @@ func add_item(item: Item):
 func get_item(item_name: String) -> Item:
 	if inventory:
 		return inventory.get_entry_by_name(item_name)
-	elif _item_dict.has(item_name):
-		return _item_dict[item_name][0]
 	else:
-		return null
+		if _item_dict.has(item_name):
+			return _item_dict[item_name][0]
+		else:
+			return null
 
 func remove_item(item: Item):
 	if inventory:

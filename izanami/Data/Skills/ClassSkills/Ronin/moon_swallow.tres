@@ -7,9 +7,9 @@
 script = ExtResource("1_jobvy")
 element = "Physical"
 name = &"Moon Swallow"
-lvl_requirement = 2
 stats = 1
 stat_multiplier = Array[float]([2.0, 2.0, 2.0])
+lvl_requirement = 2
 cost = 40
 flavour_text = "Channeling the power of the Moon, you perform a dazzling strike"
 desc = "20 Pot STR Physical; 10-20-25% chance to stun enemy"

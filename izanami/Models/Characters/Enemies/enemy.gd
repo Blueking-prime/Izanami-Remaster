@@ -7,9 +7,12 @@ extends Base_Character
 @export var detector: EnemyDetector
 
 @export var atk_lines: Array[String] = []
-@export var loot: Array[Resource]
 @export var speed: int
 @export var freeze: bool = false
+
+@export var gold: int = 1
+@export var exp: int = 1
+@export var loot: Array[Resource]
 
 @export var heal_threshold: float = 0.8
 
@@ -95,19 +98,11 @@ func battle_ai(player_array: Array, enemy_array: Array):
 
 	Global.print_to_log('from ' + character_name)
 
-func gold_drop():
-	var sum = 0
-	for i in stats:
-		sum += stats[i]
+func gold_drop() -> int:
+	return gold
 
-	return sum * 10 * lvl
-
-func exp_drop():
-	var sum = 0
-	for i in stats:
-		sum += stats[i]
-
-	return sum * 1000 * lvl
+func exp_drop() -> int:
+	return exp
 
 func item_drop():
 	return loot.pick_random()

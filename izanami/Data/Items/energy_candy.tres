@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://c5y0lyfesygvd" path="res://Models/Items/base_item.gd" id="1_item"]
+[ext_resource type="Script" uid="uid://ck4wn0aed2naw" path="res://Models/Statuses/Effects/ex_exhaust.gd" id="2_exhaust"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_item")
+name = &"Energy Candy"
+type = "Cleanse"
+desc = "Cures ExExhaust"
+status_effect = Array[Script]([ExtResource("2_exhaust")])
+price = 350

@@ -7,9 +7,9 @@
 script = ExtResource("1_jd8af")
 element = "Physical"
 name = &"Scatter-Sky Strike"
-lvl_requirement = 4
 stats = 1
 stat_multiplier = Array[float]([2.0, 2.5, 3.0])
+lvl_requirement = 4
 cost = 45
 hp_cost = 0.1
 flavour_text = "You cleave across the battlefield."

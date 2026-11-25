@@ -8,6 +8,5 @@ element = "Wind"
 name = &"Goblin Punch EX"
 stats = 1
 stat_multiplier = Array[float]([3.5, 3.5, 3.5])
-lvl_requirement = 10
 desc = "35 Potency STR Wind Attack"
 metadata/_custom_type_script = "uid://kstpb53dvbbq"

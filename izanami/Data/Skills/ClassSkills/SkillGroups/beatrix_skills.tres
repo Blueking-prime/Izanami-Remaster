@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ResourceGroup" format=3]
+[gd_resource type="Resource" script_class="ResourceGroup" format=3 uid="uid://dbcktatg78u5h"]
 
 [ext_resource type="Script" uid="uid://b17sy7t5x0ufu" path="res://addons/godot_resource_groups/resource_group.gd" id="1_resource_group"]
 
@@ -6,4 +6,4 @@
 script = ExtResource("1_resource_group")
 base_folder = "res://Data/Skills/ClassSkills/Beatrix"
 excludes = Array[String](["*.gd", "*.uid"])
-paths = Array[String](["res://Data/Skills/ClassSkills/Beatrix/marigold.tres", "res://Data/Skills/ClassSkills/Beatrix/ingrid.tres", "res://Data/Skills/ClassSkills/Beatrix/genevieve.tres", "res://Data/Skills/ClassSkills/Beatrix/santa_maria.tres", "res://Data/Skills/ClassSkills/Beatrix/isabella.tres", "res://Data/Skills/ClassSkills/Beatrix/persephone.tres"])
+paths = Array[String](["res://Data/Skills/ClassSkills/Beatrix/genevieve.tres", "res://Data/Skills/ClassSkills/Beatrix/ingrid.tres", "res://Data/Skills/ClassSkills/Beatrix/isabella.tres", "res://Data/Skills/ClassSkills/Beatrix/marigold.tres", "res://Data/Skills/ClassSkills/Beatrix/persephone.tres", "res://Data/Skills/ClassSkills/Beatrix/santa_maria.tres"])

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://c5y0lyfesygvd" path="res://Models/Items/base_item.gd" id="1_item"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_item")
+name = &"Tonic"
+type = "Heal"
+desc = "Heals 150 HP"
+value = 150
+hp_recover = true
+price = 100

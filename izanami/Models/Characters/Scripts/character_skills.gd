@@ -29,7 +29,7 @@ func remove_skill(skill: Skill) -> void:
 
 func update_skills() -> void:
 	for skill in _all_skills:
-		if skill.lvl_requirement <= get_parent().lvl:
+		if is_instance_valid(skill) and skill.lvl_requirement <= get_parent().lvl:
 			add_skill(skill)
 
 

@@ -7,9 +7,9 @@
 script = ExtResource("1_7noe8")
 hp_recover = true
 name = &"Meditation"
-lvl_requirement = 6
 stats = 4
 stat_multiplier = Array[float]([1.0, 2.0, 3.0])
+lvl_requirement = 6
 conditions = Array[Script]([ExtResource("1_37pa8")])
 cost = 65
 flavour_text = "With some mantra you silence the voices of carnage in your mind."
