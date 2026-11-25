@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cstvxhmvp51ob"]
+
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_tlugc"]
+[ext_resource type="Resource" uid="uid://dj1btdcfnlo2s" path="res://Data/Skills/ClassSkills/SkillGroups/fu_liang_skills.tres" id="2_tlugc"]
+
+[node name="FuLiang" unique_id=1047805007 instance=ExtResource("1_tlugc")]
+classname = &"Starseeker"
+lock = true
+character_name = "Fu Liang"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 5,
+&"END": 5,
+&"GUI": 9,
+&"INT": 5,
+&"STR": 3,
+&"WIS": 9
+})
+level_stats = Array[StringName]([&"INT", &"GUI"])
+desc = "“Yes, the stars spoke of this outcome as well.”"
+
+[node name="Skills" parent="." index="2" unique_id=330096693]
+skill_group = ExtResource("2_tlugc")

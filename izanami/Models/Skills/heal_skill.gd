@@ -6,6 +6,12 @@ extends Skill
 @export var sp_recover: bool
 ## Check if skill recovers hp
 @export var hp_recover: bool
+## Restore HP and SP based of max values
+@export var percent_heal: bool = false
+## Amount of max SP skill recovers compared to HP (if applicable)
+@export var max_sp_fraction: Array[float] = [1, 1, 1]
+## Amount of max HP skill recovers compared to HP (if applicable)
+@export var max_hp_fraction: Array[float] = [1, 1, 1]
 ## Amount of relative SP skill recovers compared to HP (if applicable)
 @export var sp_fraction: float = 0.5
 ## Check if skill revives its target
@@ -51,6 +57,12 @@ func heal(target: Base_Character):
 	cleanse(target)
 	if target.alive:
 		if hp_recover:
-			target.heal(value)
+			if percent_heal:
+				target.heal(target.max_hp * max_hp_fraction[rank])
+			else:
+				target.heal(value)
 		if sp_recover and 'sp' in target:
-			target.restore(value * sp_fraction)
+			if percent_heal:
+				target.restore(target.max_sp * max_sp_fraction[rank])
+			else:
+				target.restore(value * sp_fraction)

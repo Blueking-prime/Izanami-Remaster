@@ -37,7 +37,10 @@
 [ext_resource type="PackedScene" uid="uid://b4jilrknh2vja" path="res://Models/Characters/Players/Classes/shinobi.tscn" id="21_6gyev"]
 [ext_resource type="PackedScene" uid="uid://ckvlq77lwkf6g" path="res://Models/Characters/Players/Classes/doctor.tscn" id="22_je7de"]
 [ext_resource type="PackedScene" uid="uid://djrcrookt0uto" path="res://Models/Characters/Players/Classes/maken.tscn" id="25_lnxco"]
+[ext_resource type="PackedScene" uid="uid://b0g05eppfag5k" path="res://Data/NPCs/beatrix.tscn" id="26_toxbd"]
 [ext_resource type="PackedScene" uid="uid://ckiwa6lyvqgds" path="res://Models/Characters/Players/Classes/destitute.tscn" id="26_wmsx6"]
+[ext_resource type="PackedScene" uid="uid://cstvxhmvp51ob" path="res://Data/NPCs/fu_liang.tscn" id="27_xuhmn"]
+[ext_resource type="PackedScene" uid="uid://dee1pdv74fydt" path="res://Data/NPCs/ragnarok.tscn" id="28_nkor6"]
 
 [node name="Global" type="Node" unique_id=1026132341 node_paths=PackedStringArray("TEXT", "UI", "ALGORITHMS", "SCENE_LOADER", "QUESTS")]
 script = ExtResource("1_u8o3i")
@@ -74,6 +77,12 @@ all_items_group = ExtResource("15_ug654")
 all_gears_group = ExtResource("16_4ds0u")
 all_skills_group = ExtResource("17_jytmj")
 all_players_group = ExtResource("18_yfm8f")
+playable_npcs = Dictionary[StringName, PackedScene]({
+&"Beatrix": ExtResource("26_toxbd"),
+&"Fu Liang": ExtResource("27_xuhmn"),
+&"Momiji": null,
+&"Ragnarok": ExtResource("28_nkor6")
+})
 classes = Dictionary[StringName, PackedScene]({
 &"Destitute": ExtResource("26_wmsx6"),
 &"Doctor": ExtResource("22_je7de"),

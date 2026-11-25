@@ -42,11 +42,11 @@ class_name Player
 @export var speed: int = 50
 @export var cost: int = 100
 @export var classname: StringName
+@export var lock: bool = false
 
 ## STATES
 var active_selection
 var freeze_movement: bool = false
-var lock: bool = false
 
 func load_character():
 	ally = 1
@@ -228,6 +228,7 @@ func save() -> CharacterSaveData:
 
 	save_data.lvl = lvl
 	save_data.alive = alive
+	save_data.lock = lock
 
 	save_data.hp = hp
 	save_data.sp = sp
@@ -245,6 +246,9 @@ func load_data(data: CharacterSaveData):
 
 	lvl = data.lvl
 	xp = data.xp
+
+	alive = data.alive
+	lock = data.lock
 
 	items.item_group = null
 	gear.player_gear_data = data.gear

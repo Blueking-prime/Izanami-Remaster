@@ -14,14 +14,20 @@ extends Resource
 @export_category('Stats')
 ## Amount of ‘x’ item does (if applicable)
 @export var value: int = 0
-## Fully restore HP and SP
-@export var full_heal: bool = false
+## Check if skill revives its target
+@export var revive_skill: bool = false
+## Restore HP and SP based of max values
+@export var percent_heal: bool = false
 ## Check if item recovers SP
 @export var sp_recover: bool
 ## Check if item recovers HP
 @export var hp_recover: bool
 ## Amount of relative SP skill recovers compared to HP (if applicable)
 @export var sp_fraction: float = 1
+## Amount of max SP skill recovers compared to HP (if applicable)
+@export var max_sp_fraction: float = 1
+## Amount of max HP skill recovers compared to HP (if applicable)
+@export var max_hp_fraction: float = 1
 ## The status effect applied by this item
 @export var status_effect: Array[Script]
 ## How many turns the status effect would last (if applicable)
@@ -84,16 +90,18 @@ func use_effect(target: Base_Character):
 
 
 func use_heal(target: Base_Character):
-	if hp_recover:
-		if full_heal:
-			target.heal(target.max_hp)
-		else:
-			target.heal(value)
-	if sp_recover and 'sp' in target:
-		if full_heal:
-			target.restore(target.max_sp)
-		else:
-			target.restore(value * sp_fraction)
+	revive(target)
+	if target.alive:
+		if hp_recover:
+			if percent_heal:
+				target.heal(target.max_hp * max_hp_fraction)
+			else:
+				target.heal(value)
+		if sp_recover and 'sp' in target:
+			if percent_heal:
+				target.restore(target.max_sp * max_sp_fraction)
+			else:
+				target.restore(value * sp_fraction)
 
 func use_damage(target: Base_Character):
 	var el
@@ -124,3 +132,8 @@ func use_cleanse(target: Base_Character):
 			if j.name == 'Death' and j.extra_prop:
 				continue
 			target.statuses.remove_status(j)
+
+
+func revive(target: Base_Character):
+	if revive_skill and not target.alive and not target.perma_dead:
+		target.alive = true

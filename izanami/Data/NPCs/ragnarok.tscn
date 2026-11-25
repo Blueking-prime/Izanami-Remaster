@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dee1pdv74fydt"]
+
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_cgm0f"]
+[ext_resource type="Resource" uid="uid://d0yxp86nfdo63" path="res://Data/Skills/ClassSkills/SkillGroups/ragnarok_skills.tres" id="2_cgm0f"]
+
+[node name="Ragnarok" unique_id=1047805007 instance=ExtResource("1_cgm0f")]
+classname = &"Dragon Demonkin"
+lock = true
+character_name = "Ragnarok"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 5,
+&"END": 5,
+&"GUI": 5,
+&"INT": 9,
+&"STR": 9,
+&"WIS": 3
+})
+level_stats = Array[StringName]([&"INT", &"GUI"])
+desc = "“.”"
+
+[node name="Skills" parent="." index="2" unique_id=330096693]
+skill_group = ExtResource("2_cgm0f")

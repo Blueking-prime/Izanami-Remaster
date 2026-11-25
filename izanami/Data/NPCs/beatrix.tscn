@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b0g05eppfag5k"]
+
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_r3a4i"]
+[ext_resource type="Resource" uid="uid://dbcktatg78u5h" path="res://Data/Skills/ClassSkills/SkillGroups/beatrix_skills.tres" id="2_b2elh"]
+
+[node name="Beatrix" unique_id=1047805007 instance=ExtResource("1_r3a4i")]
+classname = &"Avant-Courier"
+lock = true
+character_name = "Beatrix"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 9,
+&"END": 3,
+&"GUI": 9,
+&"INT": 5,
+&"STR": 5,
+&"WIS": 5
+})
+level_stats = Array[StringName]([&"INT", &"AGI"])
+desc = "“Really, you can just call me Beatrix, but titles mean a lot here as I've found.”"
+
+[node name="Skills" parent="." index="2" unique_id=330096693]
+skill_group = ExtResource("2_b2elh")

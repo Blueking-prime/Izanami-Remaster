@@ -22,6 +22,16 @@ func implement_starting_materials(player: Player):
 	match player.classname:
 		'Scion':
 			Global.players.gold += 1000
+			var gear: Gear = Global.get_resource('Royal Armor', 'Gear')
+			Global.players.inventory.add_entry(gear)
+			player.gear.equip_gear(gear)
+		'Maken':
+			var gear: Gear = Global.get_resource('Soul Sword', 'Gear')
+			Global.players.inventory.add_entry(gear)
+			player.gear.equip_gear(gear)
+		'Doctor':
+			for i in 10:
+				Global.players.inventory.add_entry(Global.get_resource('Medicine', 'Item'))
 
 func play_post_select_intro():
 	Global.set_seed()

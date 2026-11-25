@@ -1,23 +1,44 @@
 [gd_resource type="Resource" script_class="Heal_Skill" format=3 uid="uid://d1ufibqpeuqxu"]
 
-[ext_resource type="Script" uid="uid://cwfymgx22iu7g" path="res://Models/Statuses/Buffs/bleed.gd" id="1_5ho8n"]
 [ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="1_j2tli"]
 
 [resource]
 script = ExtResource("1_j2tli")
+sp_recover = null
 hp_recover = true
+percent_heal = true
+max_hp_fraction = Array[float]([0.5, 0.75, 1.0])
 revive_skill = true
 name = &"Resuscitation"
+stats = null
+stat_multiplier = null
 lvl_requirement = 8
+conditions = null
 accuracy = Array[float]([0.25, 0.5, 1.0])
+rank = null
 cost = 50
+hp_cost = null
 flavour_text = "You attempt to drag an ally back from the brink!"
-desc = "25-50-100% chance to resurrect any downed party member + Heal to 50-75-100%"
-status_effect = Array[Script]([ExtResource("1_5ho8n")])
-effect_duration = Dictionary[Script, PackedInt32Array]({
-ExtResource("1_5ho8n"): PackedInt32Array(1, 1, 1)
-})
-effect_magnitude = Dictionary[Script, PackedFloat32Array]({
-ExtResource("1_5ho8n"): PackedFloat32Array(-0.5, -0.75, -1)
-})
+desc = "25-50-100% chance to resurrect any downed party member + Heal for 50-75-100%"
+type = null
+crit_chance = null
+crit_mult = null
+steal_chance = null
+boost = null
+status_effect = null
+effect_duration = null
+effect_delay = null
+effect_magnitude = null
+effect_mag_stats = null
+effect_extra_prop = null
+effect_chance = null
+aoe = null
+universal = null
+random_target = null
+target_no = null
+targetable = null
+flags_to_check = null
+flags_to_set = null
+sub_skill_flags = null
+sub_skill_trigger_chance = null
 metadata/_custom_type_script = "uid://5wdiyimyq1xd"

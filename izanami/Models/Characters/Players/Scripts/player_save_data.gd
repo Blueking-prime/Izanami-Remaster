@@ -6,6 +6,7 @@ class_name PlayerSaveData
 @export var xp: int
 @export var character_name: String
 @export var classname: StringName
+@export var lock: bool
 
 @export var base_stats: Dictionary[StringName, int]
 
