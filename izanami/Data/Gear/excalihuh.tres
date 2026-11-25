@@ -1,22 +1,21 @@
-[gd_resource type="Resource" script_class="Gear" format=3 uid="uid://c7142lx6rgmo5"]
+[gd_resource type="Resource" script_class="Gear" load_steps=3 format=3]
 
-[ext_resource type="Script" uid="uid://pf3b8db5kr8t" path="res://Models/Gear/base_gear.gd" id="1_8rp22"]
-[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="1_wd2iy"]
-[ext_resource type="Resource" uid="uid://c8fa8b54vfmp8" path="res://Data/Skills/WeaponSkills/light_of_saber.tres" id="3_gkv74"]
+[ext_resource type="Script" uid="uid://pf3b8db5kr8t" path="res://Models/Gear/base_gear.gd" id="1_gear"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
 
 [resource]
-script = ExtResource("1_8rp22")
+script = ExtResource("1_gear")
 name = "Excalihuh?"
 slot = "weapon"
-desc = "RESTRICTED COPYRIGHT"
-price = 100
+desc = "Cursed. A makeshift of a legendary weapon."
+price = 200
 element = "Light"
 stats = Dictionary[StringName, int]({
-&"AGI": 5,
-&"END": 5,
-&"GUI": 0,
-&"INT": 0,
-&"STR": 5,
-&"WIS": 0
+&"AGI": 10,
+&"END": -5,
+&"GUI": 10,
+&"INT": -5,
+&"STR": 10,
+&"WIS": -5
 })
-skills = Array[ExtResource("1_wd2iy")]([ExtResource("3_gkv74")])
+skills = Array[ExtResource("2_skill")]([])

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Gear" load_steps=4 format=3]
+
+[ext_resource type="Script" uid="uid://pf3b8db5kr8t" path="res://Models/Gear/base_gear.gd" id="1_gear"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/WeaponSkills/turtle.tres" id="3_weapon_skill"]
+
+[resource]
+script = ExtResource("1_gear")
+name = "Turtle Shell"
+slot = "body"
+desc = "Armor made out of the bones of the immortal turtles of Jinryu."
+price = 500
+element = ""
+stats = Dictionary[StringName, int]({
+&"AGI": -10,
+&"END": 40,
+&"GUI": 0,
+&"INT": 0,
+&"STR": 0,
+&"WIS": 0
+})
+skills = Array[ExtResource("2_skill")]([ExtResource("3_weapon_skill")])

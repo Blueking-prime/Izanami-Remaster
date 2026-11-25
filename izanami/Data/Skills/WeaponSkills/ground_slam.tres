@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_u7ir6")
 element = "Physical"
-name = &"Quick Draw"
+name = &"Ground Slam"
 stats = 1
 stat_multiplier = Array[float]([1.0, 1.0, 2.0])
 rank = 2

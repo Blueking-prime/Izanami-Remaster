@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Gear" load_steps=3 format=3]
+
+[ext_resource type="Script" uid="uid://pf3b8db5kr8t" path="res://Models/Gear/base_gear.gd" id="1_gear"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+
+[resource]
+script = ExtResource("1_gear")
+name = "Demon Horn"
+slot = "head"
+desc = "The horn of a powerful demon, its power still thrums though it."
+price = 350
+element = "Blood"
+stats = Dictionary[StringName, int]({
+&"AGI": 0,
+&"END": 5,
+&"GUI": 0,
+&"INT": 10,
+&"STR": 0,
+&"WIS": 5
+})
+skills = Array[ExtResource("2_skill")]([])
