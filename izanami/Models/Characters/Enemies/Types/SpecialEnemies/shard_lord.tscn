@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/seithr_beam.tres" id="3_skill"]
+
+[node name="Shard Lord" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Shard Lord attacks."])
+gold = 25
+exp = 20
+character_name = "Shard Lord"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 5,
+&"END": 5,
+&"GUI": 5,
+&"INT": 8,
+&"STR": 5,
+&"WIS": 10
+})
+max_hp = 75
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": 0.0,
+&"Water": -0.5,
+&"Wind": 0.0,
+&"Dark": 1.5,
+&"Light": -1.0,
+&"Blood": 0.0
+})

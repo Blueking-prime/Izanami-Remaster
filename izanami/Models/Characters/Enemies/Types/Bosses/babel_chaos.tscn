@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/maul.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/psyco_attack.tres" id="4_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/fatal_cleave.tres" id="5_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/babel_chaos.tres" id="6_skill"]
+
+[node name="Babel Chaos" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Babel Chaos attacks."])
+gold = 600
+exp = 800
+character_name = "Babel Chaos"
+root_stats = Dictionary[StringName, int]({
+&"STR": 26,
+&"INT": 14,
+&"WIS": 10,
+&"END": 24,
+&"GUI": 12,
+&"AGI": 21
+})
+max_hp = 4500
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill"), ExtResource("4_skill"), ExtResource("5_skill"), ExtResource("6_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": 0.5,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": 0.5,
+&"Light": 0.5,
+&"Blood": -1.0
+})

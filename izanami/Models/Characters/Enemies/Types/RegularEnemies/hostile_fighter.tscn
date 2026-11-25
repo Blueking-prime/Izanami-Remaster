@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+
+[node name="Hostile Fighter" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Hostile Fighter attacks."])
+gold = 125
+exp = 50
+character_name = "Hostile Fighter"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 15,
+&"END": 15,
+&"GUI": 5,
+&"INT": 5,
+&"STR": 14,
+&"WIS": 4
+})
+max_hp = 550
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": -0.5,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": 0.0,
+&"Light": 2.0,
+&"Blood": 0.0
+})

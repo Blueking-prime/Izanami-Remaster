@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/seithr_beam.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/deva_wave_fist.tres" id="4_skill"]
+
+[node name="Ashura Seithrlord" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Ashura Seithrlord attacks."])
+gold = 100
+exp = 100
+character_name = "Ashura Seithrlord"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 10,
+&"END": 13,
+&"GUI": 10,
+&"INT": 9,
+&"STR": 15,
+&"WIS": 11
+})
+max_hp = 350
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill"), ExtResource("4_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": 0.0,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": 0.0,
+&"Light": -0.5,
+&"Blood": 1.0
+})

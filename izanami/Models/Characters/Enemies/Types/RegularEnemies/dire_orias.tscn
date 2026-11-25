@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/venom_bite.tres" id="3_skill"]
+
+[node name="Dire Orias" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Dire Orias attacks."])
+gold = 150
+exp = 250
+character_name = "Dire Orias"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 4,
+&"END": 9,
+&"GUI": 3,
+&"INT": 2,
+&"STR": 9,
+&"WIS": 2
+})
+max_hp = 445
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": 0.0,
+&"Water": 0.0,
+&"Wind": 0.5,
+&"Dark": 0.0,
+&"Light": -1.0,
+&"Blood": 0.0
+})

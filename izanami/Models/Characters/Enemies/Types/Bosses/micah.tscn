@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/soothing_tears.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/still_calm.tres" id="4_skill"]
+
+[node name="Micah" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Micah attacks."])
+gold = 350
+exp = 1000
+character_name = "Micah"
+root_stats = Dictionary[StringName, int]({
+&"STR": 7,
+&"INT": 22,
+&"WIS": 18,
+&"END": 14,
+&"GUI": 13,
+&"AGI": 13
+})
+max_hp = 1000
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill"), ExtResource("4_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": 0.0,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": -0.5,
+&"Light": 2.0,
+&"Blood": 0.0
+})

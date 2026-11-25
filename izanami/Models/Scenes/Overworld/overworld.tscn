@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k861kiv106ku" path="res://Models/Scenes/Overworld/overworld.gd" id="1_6s5ae"]
 [ext_resource type="Texture2D" uid="uid://cu7ubd3bg68w" path="res://Assets/Art/uNNAMED kATANA (1).jpg" id="2_4qj6l"]
-[ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/goblin.tscn" id="2_qknd2"]
+[ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/RegularEnemies/goblin.tscn" id="2_qknd2"]
 [ext_resource type="Texture2D" uid="uid://4wrb6xe7w3o3" path="res://Assets/Art/icon.svg" id="3_4qj6l"]
 [ext_resource type="Script" uid="uid://dlua1l2vyqqje" path="res://Models/Scenes/Overworld/location_pin.gd" id="4_rmeny"]
 [ext_resource type="Texture2D" uid="uid://b4xcktvul2jnv" path="res://Assets/Art/new_animated_texture.tres" id="5_4qj6l"]

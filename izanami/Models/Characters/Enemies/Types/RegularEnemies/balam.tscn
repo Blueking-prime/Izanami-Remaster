@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/black_flame.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Gear/wool_cap.tres" id="4_loot"]
+
+[node name="Balam" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Balam attacks."])
+gold = 200
+exp = 300
+character_name = "Balam"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 4,
+&"END": 6,
+&"GUI": 4,
+&"INT": 7,
+&"STR": 6,
+&"WIS": 3
+})
+max_hp = 300
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": 1.0,
+&"Water": -0.5,
+&"Wind": 0.0,
+&"Dark": -0.5,
+&"Light": 0.0,
+&"Blood": 0.0
+})

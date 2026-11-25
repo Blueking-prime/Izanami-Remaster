@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/soul_shock.tres" id="3_skill"]
+
+[node name="Borei" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Borei attacks."])
+gold = 120
+exp = 100
+character_name = "Borei"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 5,
+&"END": 5,
+&"GUI": 5,
+&"INT": 5,
+&"STR": 4,
+&"WIS": 18
+})
+max_hp = 300
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 1.0,
+&"Fire": 0.0,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": 0.0,
+&"Light": -1.0,
+&"Blood": 0.0
+})

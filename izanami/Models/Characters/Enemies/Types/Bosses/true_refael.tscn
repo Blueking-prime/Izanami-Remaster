@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/psyco_attack.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/haven_light.tres" id="4_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/armageddon.tres" id="5_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/god_hand.tres" id="6_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/ressurection.tres" id="7_skill"]
+
+[node name="True Refael" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["True Refael attacks."])
+gold = 1000
+exp = 1000
+character_name = "True Refael"
+root_stats = Dictionary[StringName, int]({
+&"STR": 18,
+&"INT": 30,
+&"WIS": 26,
+&"END": 25,
+&"GUI": 20,
+&"AGI": 20
+})
+max_hp = 8000
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill"), ExtResource("4_skill"), ExtResource("5_skill"), ExtResource("6_skill"), ExtResource("7_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": 0.0,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": 0.0,
+&"Light": 2.0,
+&"Blood": 0.0
+})

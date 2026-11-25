@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/fatal_cleave.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/seithr_beam.tres" id="4_skill"]
+
+[node name="Round Knight" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Round Knight attacks."])
+gold = 30
+exp = 35
+character_name = "Round Knight"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 5,
+&"END": 9,
+&"GUI": 6,
+&"INT": 5,
+&"STR": 9,
+&"WIS": 7
+})
+max_hp = 100
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill"), ExtResource("4_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": -0.5,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": 1.5,
+&"Light": -1.0,
+&"Blood": 0.0
+})

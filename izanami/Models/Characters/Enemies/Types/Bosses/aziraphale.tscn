@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/seithr_beam.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/seithr_torrent.tres" id="4_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/cauldron_burst.tres" id="5_skill"]
+
+[node name="Aziraphale" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Aziraphale attacks."])
+gold = 350
+exp = 1000
+character_name = "Aziraphale"
+root_stats = Dictionary[StringName, int]({
+&"STR": 8,
+&"INT": 24,
+&"WIS": 26,
+&"END": 17,
+&"GUI": 15,
+&"AGI": 16
+})
+max_hp = 2000
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill"), ExtResource("4_skill"), ExtResource("5_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": 1.0,
+&"Water": 1.0,
+&"Wind": 1.0,
+&"Dark": -1.0,
+&"Light": 2.0,
+&"Blood": 0.0
+})

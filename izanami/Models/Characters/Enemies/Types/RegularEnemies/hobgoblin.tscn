@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/goblin_punch_ultima.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Gear/fighting_knife.tres" id="4_loot"]
+
+[node name="Hobgoblin" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Hobgoblin attacks."])
+gold = 100
+exp = 200
+character_name = "Hobgoblin"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 3,
+&"END": 6,
+&"GUI": 3,
+&"INT": 3,
+&"STR": 6,
+&"WIS": 2
+})
+max_hp = 300
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": -1.0,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": 1.0,
+&"Light": -0.5,
+&"Blood": 0.0
+})

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dsdq0efwkbsg0" path="res://Models/Characters/Enemies/enemy.tscn" id="1_enemy"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/maul.tres" id="3_skill"]
+[ext_resource type="Resource" path="res://Data/Skills/EnemySkills/psyco_attack.tres" id="4_skill"]
+
+[node name="Psycho Demon" instance=ExtResource("1_enemy")]
+atk_lines = Array[String](["Psycho Demon attacks."])
+gold = 200
+exp = 150
+character_name = "Psycho Demon"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 11,
+&"END": 13,
+&"GUI": 11,
+&"INT": 16,
+&"STR": 13,
+&"WIS": 9
+})
+max_hp = 500
+
+[node name="Skills" parent="." index="2"]
+_all_skills = Array[ExtResource("2_skill")]([ExtResource("3_skill"), ExtResource("4_skill")])
+skill_group = null
+
+[node name="Statuses" parent="." index="4"]
+base_resistances = Dictionary[StringName, float]({
+&"Physical": 0.0,
+&"Fire": -0.5,
+&"Water": 0.0,
+&"Wind": 0.0,
+&"Dark": 2.0,
+&"Light": 0.0,
+&"Blood": 0.0
+})

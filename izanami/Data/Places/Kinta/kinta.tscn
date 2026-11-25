@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/barrier.tscn" id="2_qj3n8"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-chief-pre-conv.json" id="3_8t1gc"]
 [ext_resource type="JSON" path="res://Assets/Cutscenes/test_cutscene.json" id="3_hyl6v"]
-[ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/goblin.tscn" id="3_qj3n8"]
-[ext_resource type="PackedScene" uid="uid://bqial3twfexr4" path="res://Models/Characters/Enemies/Types/imp.tscn" id="4_jtihi"]
+[ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/RegularEnemies/goblin.tscn" id="3_qj3n8"]
+[ext_resource type="PackedScene" uid="uid://bqial3twfexr4" path="res://Models/Characters/Enemies/Types/RegularEnemies/imp.tscn" id="4_jtihi"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-chief-post-conv.json" id="5_soed5"]
 [ext_resource type="Script" uid="uid://d3yxx42ra51hx" path="res://Scripts/Checks/set_flag.gd" id="8_hyl6v"]
 
