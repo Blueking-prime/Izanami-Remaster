@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Dark"
+name = &"[0-form] Particle Wave"
+stats = 6
+lvl_requirement = 15
+stat_multiplier = Array[float]([2.5, 4.0, 6.0])
+cost = 161
+desc = "25-40-60 POT (WIS + INT) DARK"
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

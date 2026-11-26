@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Heal_Skill" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://5wdiyimyq1xd" path="res://Models/Skills/heal_skill.gd" id="2_heal"]
+
+[resource]
+script = ExtResource("2_heal")
+sp_recover = true
+percent_heal = true
+max_sp_fraction = Array[float]([1.0, 1.0, 1.0])
+name = &"Golden Ratio"
+lvl_requirement = 10
+cost = 80
+hp_cost = 0.5
+rank = 2
+desc = "Lose 50% of max HP; restore STA to max"
+targetable = false
+metadata/_custom_type_script = "uid://5wdiyimyq1xd"

@@ -11,7 +11,7 @@ stat_multiplier = Array[float]([1.0, 2.0, 3.0])
 cost = 35
 flavour_text = "You make an emboldened and entrancing claim"
 desc = "Party Heal for 10-20-30 potency GUI; 2x DEF Boost for one turn"
-status_effect = Array[Script]([ExtResource("2_b6wid"), ExtResource("3_ilxfo")])
+status_effect = Array[Script]([ExtResource("3_ilxfo")])
 effect_duration = Dictionary[Script, PackedInt32Array]({
 ExtResource("3_ilxfo"): PackedInt32Array(1, 1, 1)
 })

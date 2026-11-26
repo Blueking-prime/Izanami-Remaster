@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Offensive_Skill" load_steps=5 format=3]
+
+[ext_resource type="Script" uid="uid://kstpb53dvbbq" path="res://Models/Skills/offensive_skill.gd" id="1_offensive"]
+[ext_resource type="Script" uid="uid://b05xjy5qvosa3" path="res://Models/Skills/base_skill.gd" id="2_skill"]
+[ext_resource type="Script" uid="uid://clbewdc2ijari" path="res://Models/Statuses/Buffs/attack_buff.gd" id="3_attack_buff"]
+
+[sub_resource type="Resource" id="EulerDelugeATKBuff"]
+script = ExtResource("2_skill")
+name = &"Euler Deluge ATK Boost"
+desc = "Grants a 1.5x ATK buff to all allies for 3 turns"
+type = &"Support"
+status_effect = Array[Script]([ExtResource("3_attack_buff")])
+effect_duration = Dictionary[Script, PackedInt32Array]({
+ExtResource("3_attack_buff"): PackedInt32Array(3, 3, 3)
+})
+effect_magnitude = Dictionary[Script, PackedFloat32Array]({
+ExtResource("3_attack_buff"): PackedFloat32Array(1.5, 1.5, 1.5)
+})
+aoe = true
+targetable = false
+metadata/_custom_type_script = "uid://b05xjy5qvosa3"
+
+[resource]
+script = ExtResource("1_offensive")
+element = "Water"
+name = &"Euler Deluge"
+stats = 4
+lvl_requirement = 6
+stat_multiplier = Array[float]([0.5, 1.0, 1.5])
+cost = 70
+desc = "5-10-15 POT WIS WATER AOE; 1.5x AOE Damage Boost"
+aoe = true
+skill_to_trigger = SubResource("EulerDelugeATKBuff")
+metadata/_custom_type_script = "uid://kstpb53dvbbq"

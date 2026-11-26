@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://b17sy7t5x0ufu" path="res://addons/godot_resource_groups/resource_group.gd" id="1_group"]
+
+[resource]
+script = ExtResource("1_group")
+base_folder = "res://Data/Skills/ClassSkills/Momiji"
+includes = Array[String](["*.tres"])
+excludes = Array[String](["*.gd", "*.uid"])
+paths = Array[String](["res://Data/Skills/ClassSkills/Momiji/cauldron_burst.tres", "res://Data/Skills/ClassSkills/Momiji/euler_deluge.tres", "res://Data/Skills/ClassSkills/Momiji/gamma_flare.tres", "res://Data/Skills/ClassSkills/Momiji/golden_ratio.tres", "res://Data/Skills/ClassSkills/Momiji/particle_wave.tres", "res://Data/Skills/ClassSkills/Momiji/particle_wave_ii.tres"])

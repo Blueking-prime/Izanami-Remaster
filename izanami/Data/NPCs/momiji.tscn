@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://pt4glmjuhmod"]
+
+[ext_resource type="PackedScene" uid="uid://dqykicfu0u1ug" path="res://Models/Characters/Players/player.tscn" id="1_kqmq3"]
+[ext_resource type="Resource" path="res://Data/Skills/ClassSkills/SkillGroups/momiji_skills.tres" id="2_xu357"]
+
+[node name="Momiji" unique_id=1047805007 instance=ExtResource("1_kqmq3")]
+classname = &"Kijohime"
+lock = true
+character_name = "Momiji"
+root_stats = Dictionary[StringName, int]({
+&"AGI": 3,
+&"END": 5,
+&"GUI": 5,
+&"INT": 9,
+&"STR": 5,
+&"WIS": 9
+})
+level_stats = Array[StringName]([&"INT", &"WIS"])
+desc = "“I am Kijohime Momiji. Heir of the Venerable Daimaou.”"
+
+[node name="Skills" parent="." index="2" unique_id=330096693]
+skill_group = ExtResource("2_xu357")
