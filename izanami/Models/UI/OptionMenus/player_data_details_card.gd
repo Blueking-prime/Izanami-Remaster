@@ -32,6 +32,7 @@ func _on_button_pressed() -> void:
 		namefield.text = 'Obute'
 	selected.emit(self)
 
+
 func _update_hp_bar(value: int, text: String):
 	hp_bar.value = value
 	hp_bar_text.text = text

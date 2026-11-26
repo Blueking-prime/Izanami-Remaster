@@ -50,7 +50,7 @@ layout_mode = 2
 [node name="Remove" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer/TitleBox" parent_id_path=PackedInt32Array(1431410149, 1799335494) index="0" unique_id=178385498]
 visible = false
 
-[node name="Nametag" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer/TitleBox" parent_id_path=PackedInt32Array(1431410149, 1799335494) index="1" unique_id=1749505144]
+[node name="Nametag" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer/TitleBox/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 453508595) index="0" unique_id=1749505144]
 visible = false
 
 [node name="BARS" parent="ScrollContainer/HBoxContainer/PlayersStatus/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1431410149, 1459889764) index="3" unique_id=1956585683]

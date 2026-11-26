@@ -76,6 +76,7 @@ level_cap = 60
 speed = 20
 cost = 100
 classname = &""
+lock = false
 battle_sprite_texture = SubResource("AnimatedTexture_emc6j")
 dungeon_sprite_idle_texture = SubResource("AnimatedTexture_emc6j")
 dungeon_sprite_walk_texture = SubResource("AnimatedTexture_6k7lq")

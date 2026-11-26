@@ -30,11 +30,15 @@ func parse_branch(branch: Dictionary):
 
 	while current_line < dialogue_length:
 		var line: Array = branch.dialogue[current_line]
+		#Replace PLAYER_NAME
+		if line[0] == 'PLAYER_NAME':
+			line[0] = Checks.player_name
+
 		await Global.add_to_text_log(line)
 
 		# Check if speaker is in current party or part of npc group
 		if line[0] not in (
-				cutscene.info.characters + ['', 'PLAYER_NAME'] + Global.players.party.map(func (x): return x.character_name)
+				cutscene.info.characters + ['', Checks.player_name] + Global.players.party.map(func (x): return x.character_name)
 			):
 				current_line += 1
 				continue

@@ -26,9 +26,7 @@ func get_saves():
 
 	saves.clear()
 	for i in SaveAndLoad.save_files:
-		print(SaveAndLoad.folder_location + i)
 		var save_data: GameSaveData = load(SaveAndLoad.folder_location + i)
-		print(save_data)
 		save_data.name = i
 		saves.append(save_data)
 

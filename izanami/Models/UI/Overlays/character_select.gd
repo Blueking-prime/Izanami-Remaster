@@ -15,6 +15,10 @@ class_name CharacterSelector
 
 signal player_created(player: Player)
 
+var cur_index: int = 0:
+	set(value):
+		cur_index = clampi(value, 0, player_container.get_child_count() - 2)
+
 #func _ready() -> void:
 	#if not is_instance_valid(Global.players):
 		#Global.players = players_scene.instantiate()
@@ -31,9 +35,13 @@ func load_menu():
 	if not Global.exit_button.pressed.is_connected(Global._on_shop_exit): Global.exit_button.pressed.connect(Global._on_shop_exit)
 
 	for i in available_classes:
-		player_node_container.add_child(i)
-		create_card(i)
-		i.hide()
+		if i.get_parent() != player_node_container:
+			player_node_container.add_child(i)
+			create_card(i)
+			i.hide()
+
+	if is_instance_valid(player_container.get_child(cur_index)):
+		player_container.get_child(cur_index).select_button.call_deferred('grab_focus')
 
 func load_classes():
 	for i in available_class_scenes:
@@ -89,7 +97,7 @@ func choose_target(card: PlayerStatusCard):
 	back_button.show()
 	card.select_button.hide()
 	card.extra_details_card.show()
-
+	card.extra_details_card.namefield.call_deferred('grab_focus')
 
 func confirm_choice(card: PlayerDetailsCard):
 	# Maybe remove other nodes instead and change this to party node
@@ -111,6 +119,20 @@ func confirm_choice(card: PlayerDetailsCard):
 	#print(Global.players.get_children())
 	player_created.emit(player)
 	hide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible: return
+
+	if event.is_action_pressed('ui_right'):
+		cur_index += 1
+		if not cur_index % 2 == 0:
+			cur_index += 1
+		player_container.get_child(cur_index).select_button.call_deferred('grab_focus')
+	elif event.is_action_pressed('ui_left'):
+		cur_index -= 1
+		if not cur_index % 2 == 0:
+			cur_index -= 1
+		player_container.get_child(cur_index).select_button.call_deferred('grab_focus')
 
 func _on_button_pressed() -> void:
 	back_button.hide()

@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Container
 
 class_name Options
 

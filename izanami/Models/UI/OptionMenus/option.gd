@@ -36,3 +36,8 @@ func _on_focus_entered() -> void:
 func _on_button_down() -> void:
 	activated.emit(get_index())
 	Audio.play_activate_option_sfx()
+
+
+func _on_mouse_entered() -> void:
+	if visible and not disabled:
+		call_deferred('grab_focus')

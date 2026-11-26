@@ -3,8 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://twvv0wexmurt" path="res://Models/UI/OptionMenus/options.tscn" id="1_gnfuy"]
 [ext_resource type="Script" uid="uid://cpcnyphsrlyr6" path="res://Models/UI/Overlays/Text/text_box.gd" id="1_krbbq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_46m4p"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bawka"]
 
 [node name="VBoxContainer" type="VBoxContainer" unique_id=880763544 node_paths=PackedStringArray("title", "title_container", "text_box", "text", "spacer", "options", "button_panel", "skip_button", "log_button", "auto_button", "ffwd_button", "scroll_timer")]
@@ -100,20 +98,17 @@ mouse_filter = 1
 
 [node name="Margin2" type="MarginContainer" parent="TextBox/VBox" unique_id=109536703]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 3
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 3
 
 [node name="Options" parent="TextBox/VBox/Margin2" unique_id=372079653 instance=ExtResource("1_gnfuy")]
 layout_mode = 2
-size_flags_vertical = 10
-mouse_filter = 0
-vertical_scroll_mode = 0
+theme_type_variation = &"BlankPanel"
 
-[node name="PanelContainer" parent="TextBox/VBox/Margin2/Options" index="0" unique_id=2066197883]
-theme_override_styles/panel = SubResource("StyleBoxEmpty_46m4p")
+[node name="ScrollContainer" parent="TextBox/VBox/Margin2/Options" index="0" unique_id=111166081]
+vertical_scroll_mode = 0
 
 [node name="ButtonsPanel" type="PanelContainer" parent="." unique_id=958205540]
 layout_mode = 2

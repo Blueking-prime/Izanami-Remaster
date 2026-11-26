@@ -139,7 +139,7 @@ func warp_players(area: WarpPoint):
 		var confirm = await Global.show_confirmation_box("Go to %s" % [area.destination])
 		unfreeze()
 		if confirm:
-			Global.warp(get_tree().current_scene, area.destination_scene)
+			Global.warp(get_tree().current_scene, Global.town_scenes[area.destination])
 
 func clear_party(exceptions: Array = []):
 	for i in party:

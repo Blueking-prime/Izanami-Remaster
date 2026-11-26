@@ -5,8 +5,7 @@ class_name IntroScene
 #@export var canvas_layer: CanvasLayer
 @export var character_selector: CharacterSelector
 
-@export_file('*.json') var cutscene_1: String
-@export_file('*.json') var cutscene_2: String
+@export var intro_cutscene: JSON
 @export var party_scene: PackedScene
 
 
@@ -14,7 +13,7 @@ func play_intro():
 	if not is_instance_valid(Global.players):
 		Global.players = party_scene.instantiate()
 
-	#await Dialogue.show_cutscene(cutscene_1)
+	#await Dialogue.show_cutscene(intro_cutscene)
 	character_selector.load_menu()
 	character_selector.show()
 
@@ -35,15 +34,14 @@ func implement_starting_materials(player: Player):
 
 func play_post_select_intro():
 	Global.set_seed()
-	#await Dialogue.show_cutscene(cutscene_2)
-	Global.warp(null, Global.town_scenes['YomotsuHirasaka'])
+	Global.warp(null, Global.demonitarium_scene)
 	get_parent().queue_free()
 
 
 func _on_character_select_player_created(player: Player) -> void:
 	player.lock = true
 	Checks.player_name = player.character_name
-	Global.players.switch_leader(Global.players.party.find(player))
 	Global.players.clear_party()
+	Global.players.switch_leader(Global.players.party.find(player))
 	implement_starting_materials(player)
 	play_post_select_intro()

@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://sjo686i6woks"]
+[gd_scene format=3 uid="uid://sjo686i6woks"]
 
 [ext_resource type="Script" uid="uid://be0374h75c28e" path="res://Models/UI/OptionMenus/option.gd" id="1_mr27p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2aei"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="Option" type="Button" node_paths=PackedStringArray("container")]
+[node name="Option" type="Button" unique_id=1577583492 node_paths=PackedStringArray("container")]
 custom_minimum_size = Vector2(0, 15)
 anchors_preset = -1
 anchor_right = 0.072
@@ -18,7 +18,7 @@ alignment = 0
 script = ExtResource("1_mr27p")
 container = NodePath("MarginContainer/HBoxContainer")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=299523933]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,9 +32,10 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=834278274]
 layout_mode = 2
 alignment = 2
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

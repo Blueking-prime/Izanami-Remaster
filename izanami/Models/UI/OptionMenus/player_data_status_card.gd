@@ -40,7 +40,7 @@ var status_shown_flag: bool = false
 
 @export var select_button: Button
 
-@export var extra_details_card: Control
+@export var extra_details_card: PlayerDetailsCard
 
 @export var player: Player
 
