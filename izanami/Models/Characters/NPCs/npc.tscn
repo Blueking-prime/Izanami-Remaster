@@ -14,9 +14,13 @@ script = ExtResource("1_45exu")
 cutscenes = Dictionary[int, Resource]({
 0: ExtResource("2_bq6y0")
 })
+battles = null
+extra_battle_flags = null
+battle_set_flags = null
 sprite_texture = ExtResource("1_yxwxv")
 label = NodePath("Label")
 sprite = NodePath("Sprite2D")
+speed = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=226285900]
 position = Vector2(-7.62939e-06, -1.58548e-05)

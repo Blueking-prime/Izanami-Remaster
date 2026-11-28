@@ -4,11 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="2_8t1gc"]
 [ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/barrier.tscn" id="2_qj3n8"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-chief-pre-conv.json" id="3_8t1gc"]
-[ext_resource type="JSON" path="res://Assets/Cutscenes/test_cutscene.json" id="3_hyl6v"]
-[ext_resource type="PackedScene" uid="uid://dr3i0j0rl2a7g" path="res://Models/Characters/Enemies/Types/RegularEnemies/goblin.tscn" id="3_qj3n8"]
-[ext_resource type="PackedScene" uid="uid://bqial3twfexr4" path="res://Models/Characters/Enemies/Types/RegularEnemies/imp.tscn" id="4_jtihi"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-npc-pre-01-conv.json" id="5_1nuig"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-mon-et-yon-conv.json" id="5_hyl6v"]
 [ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-chief-post-conv.json" id="5_soed5"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-npc-post-01-conv.json" id="6_2bng1"]
+[ext_resource type="PackedScene" path="res://Models/Characters/Enemies/Types/Bosses/mon.tscn" id="6_hyl6v"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-npc-pre-02-conv.json" id="7_lwikj"]
+[ext_resource type="PackedScene" path="res://Models/Characters/Enemies/Types/Bosses/yon.tscn" id="7_soed5"]
 [ext_resource type="Script" uid="uid://d3yxx42ra51hx" path="res://Scripts/Checks/set_flag.gd" id="8_hyl6v"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-npc-post-02-conv.json" id="8_ygfqw"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-npc-pre-03-conv.json" id="9_tx4mv"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-npc-post-03-conv.json" id="10_chmed"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-npc-pre-04-conv.json" id="11_c1fej"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/2 - kinta-village-conv/2-kinta-npc-post-04-conv.json" id="12_4pnoc"]
 
 [sub_resource type="Resource" id="Resource_soed5"]
 script = ExtResource("8_hyl6v")
@@ -19,23 +27,62 @@ metadata/_custom_type_script = "uid://d3yxx42ra51hx"
 
 [node name="Kinta" unique_id=1401756524 instance=ExtResource("1_jkcqv")]
 
-[node name="Boss" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=845832440 instance=ExtResource("2_8t1gc")]
-position = Vector2(965, 188)
+[node name="Chief" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="1" unique_id=845832440 instance=ExtResource("2_8t1gc")]
+position = Vector2(959, 735)
 cutscenes = Dictionary[int, Resource]({
-0: ExtResource("3_hyl6v"),
+0: null,
 1: ExtResource("3_8t1gc"),
 2: ExtResource("5_soed5")
 })
+
+[node name="Kinta1" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="2" unique_id=1165947296 instance=ExtResource("2_8t1gc")]
+position = Vector2(1182, 777)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("5_1nuig"),
+2: ExtResource("6_2bng1")
+})
+
+[node name="Kinta2" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="3" unique_id=1007951071 instance=ExtResource("2_8t1gc")]
+position = Vector2(1247, 880)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("7_lwikj"),
+2: ExtResource("8_ygfqw")
+})
+
+[node name="Kinta3" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="4" unique_id=1137030588 instance=ExtResource("2_8t1gc")]
+position = Vector2(739, 774)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("9_tx4mv"),
+2: ExtResource("10_chmed")
+})
+
+[node name="Kinta4" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="5" unique_id=1224992560 instance=ExtResource("2_8t1gc")]
+position = Vector2(689, 862)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("11_c1fej"),
+2: ExtResource("12_4pnoc")
+})
+
+[node name="Boss" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="6" unique_id=773650258 instance=ExtResource("2_8t1gc")]
+position = Vector2(965, 188)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("5_hyl6v")
+})
 battles = Dictionary[int, Array]({
-1: [ExtResource("4_jtihi"), ExtResource("3_qj3n8")]
+1: [ExtResource("6_hyl6v"), ExtResource("7_soed5")]
 })
 battle_set_flags = Dictionary[int, ExtResource("8_hyl6v")]({
 1: SubResource("Resource_soed5")
 })
 
 [node name="SmithyBarrier" parent="ObjectsSort/Barriers" parent_id_path=PackedInt32Array(660711449) index="0" unique_id=1564323056 instance=ExtResource("2_qj3n8")]
-position = Vector2(273.00003, 1407.0001)
-scale = Vector2(30, 30)
+position = Vector2(270, 1404.0001)
+scale = Vector2(21, 21)
 states = Dictionary[int, bool]({
 1: true
 })

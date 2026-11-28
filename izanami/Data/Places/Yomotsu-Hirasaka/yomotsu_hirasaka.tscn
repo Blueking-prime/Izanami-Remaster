@@ -2,6 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://c5qgnil3yfo54" path="res://Models/Scenes/Town/town.tscn" id="1_d4xe5"]
 [ext_resource type="PackedScene" uid="uid://bh8db4jwqh3fd" path="res://Models/Characters/NPCs/npc.tscn" id="2_bdfll"]
+[ext_resource type="PackedScene" uid="uid://bhd28mkqo13qy" path="res://Models/Scenes/barrier.tscn" id="3_bdfll"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-layabout-ashura-corps-01-conv.json" id="3_kbnjk"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-layabout-ashura-corps-02-conv.json" id="4_8tjeb"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-layabout-ashura-corps-03-conv.json" id="5_6gd8b"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-slave-market-npc-01-conv.json" id="6_t0k0l"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-slave-market-npc-02-conv.json" id="7_k778h"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-slave-market-npc-03-conv.json" id="8_3xxgo"]
+[ext_resource type="JSON" path="res://Assets/izanami-dialogue/converted/1 - yomotsu-1-conv/1-slave-market-npc-04-conv.json" id="9_mvb48"]
 
 [node name="YomotsuHirasaka" unique_id=1401756524 instance=ExtResource("1_d4xe5")]
 entrance = Vector2(0, 0)
@@ -11,6 +19,63 @@ position = Vector2(663.99994, 560)
 
 [node name="Ashura-O" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="1" unique_id=786942742 instance=ExtResource("2_bdfll")]
 position = Vector2(1291.9999, 563)
+
+[node name="AshuraCorps1" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="3" unique_id=347093550 instance=ExtResource("2_bdfll")]
+position = Vector2(-269, 360)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("3_kbnjk")
+})
+
+[node name="AshuraCorps2" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="4" unique_id=374873736 instance=ExtResource("2_bdfll")]
+position = Vector2(-361, 586)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("4_8tjeb")
+})
+
+[node name="AshuraCorps3" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="5" unique_id=166741634 instance=ExtResource("2_bdfll")]
+position = Vector2(-439, 360)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("5_6gd8b")
+})
+
+[node name="SlaveMarket1" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="6" unique_id=475192953 instance=ExtResource("2_bdfll")]
+position = Vector2(2645, 646)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("6_t0k0l")
+})
+
+[node name="SlaveMarket2" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="7" unique_id=437865458 instance=ExtResource("2_bdfll")]
+position = Vector2(2514, 646)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("7_k778h")
+})
+
+[node name="SlaveMarket3" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="8" unique_id=584874203 instance=ExtResource("2_bdfll")]
+position = Vector2(2643, 809)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("8_3xxgo")
+})
+
+[node name="SlaveMarket4" parent="ObjectsSort/NPCs" parent_id_path=PackedInt32Array(1395145928) index="9" unique_id=317338969 instance=ExtResource("2_bdfll")]
+position = Vector2(2515, 809)
+cutscenes = Dictionary[int, Resource]({
+0: null,
+1: ExtResource("9_mvb48")
+})
+
+[node name="DungeonBarrier" parent="ObjectsSort/Barriers" parent_id_path=PackedInt32Array(660711449) index="0" unique_id=1564323056 instance=ExtResource("3_bdfll")]
+position = Vector2(1644, 718)
+scale = Vector2(20, 20)
+states = Dictionary[int, bool]({
+7: true
+})
+extra_checks = Array[StringName]([&"ashura_o_fought"])
 
 [editable path="CanvasLayer/Overlays/Save"]
 [editable path="CanvasLayer/Overlays/Save/VBoxContainer/SaveMenu"]

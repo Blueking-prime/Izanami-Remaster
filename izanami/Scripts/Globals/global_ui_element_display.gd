@@ -33,7 +33,8 @@ func show_text_box(speaker: String, prompt: String, persist: bool = false, scree
 
 	if not persist:
 		await get_parent().next
-		get_parent().text_box.queue_free()
+		if is_instance_valid(get_parent().text_box):
+			get_parent().text_box.queue_free()
 
 
 func _create_base_textbox(speaker: String, prompt: String, screen_side: String = 'L', dialogue: bool = false) -> void:

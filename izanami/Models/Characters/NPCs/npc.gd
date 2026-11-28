@@ -50,6 +50,7 @@ func set_state():
 
 	# Set cutscene
 	if cutscenes.has(Checks.state) and not Checks.check_cutscene_played(cutscenes[Checks.state]):
+		print(Checks.flags.played_cutscenes)
 		current_cutscene = cutscenes[Checks.state]
 	else:
 		current_cutscene = cutscenes[StateHandler.STATE.DEFAULT]
@@ -62,7 +63,9 @@ func play_cutscene():
 		if current_cutscene:
 			await Dialogue.show_cutscene(current_cutscene)
 		if current_battle:
-			if extra_battle_flags.has(Checks.state) and Checks.check_flags(extra_battle_flags[Checks.state]):
+			if extra_battle_flags.has(Checks.state) and not Checks.check_flags(extra_battle_flags[Checks.state]):
+				pass
+			else:
 				start_battle()
 
 func start_battle():

@@ -86,7 +86,6 @@ cutscenes = Dictionary[int, Resource]({
 [node name="TileMapLayer" type="TileMapLayer" parent="ObjectsSort" parent_id_path=PackedInt32Array(1553400495) index="2" unique_id=1595836310]
 
 [node name="EntranceTrigger" parent="ObjectsSort/CutsceneTriggers" parent_id_path=PackedInt32Array(1033116959) index="0" unique_id=1638876573 instance=ExtResource("3_0lbk2")]
-visible = false
 position = Vector2(1176.0001, 648)
 scale = Vector2(2.194, 2)
 cutscenes = Dictionary[int, Resource]({
